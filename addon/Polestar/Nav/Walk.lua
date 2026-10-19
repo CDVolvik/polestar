@@ -25,8 +25,9 @@
 -- goal at an NPC or object: its spawn's z, Nav.GetTargetWorld) to Path.Find,
 -- so the path ends on that floor (an Undercity quarter, not the street
 -- above); a walk leg's end with a height of its own (a dock's board point on
--- a pier deck, Nav/Travel.lua) carries that one, so the walk ends on the deck,
--- not in the water under it. A search with the height that fails, or whose
+-- a pier deck, a tram, zeppelin or portal end's floor, Nav/Travel.lua)
+-- carries that one, so the walk ends on the deck or at the tram's entrance,
+-- not in the water under it or on the roof above it. A search with the height that fails, or whose
 -- path ends more than Z_OFF yards above or below it (the last engine point
 -- before the goal), is asked once more without it, and that answer is the
 -- one used. A hand-set target has no height: searched as before.
@@ -98,7 +99,8 @@
 --   Walk.Measured(c, x, y, water) -> walkCost(c, wx, wy, start) -> cost, yards | nil, or nil
 --   Walk.LegPath(from, to) -> yards along that later walk's searched path, its hubs | nil
 --   Nav.GetRouteGeometry() -> { legs = { { kind, pts = { { c, wx, wy }, ... },
---     current, choke }, ... } } or nil without a target; NAV_ROUTE_GEOMETRY on change.
+--     current, choke }, ... } } or nil without a target or while handed off
+--     (Nav.HandedOff); NAV_ROUTE_GEOMETRY on change.
 --     kind: walk | flight | boat | zeppelin | tram | portal | hearth | teleport | lift.
 --
 -- Every search goes with opts { waterWalking, profile, style, danger }: the
@@ -1282,7 +1284,7 @@ local function build()
 end
 
 function Nav.GetRouteGeometry()
-	if not Nav.GetTarget() then return nil end
+	if not Nav.GetTarget() or Nav.HandedOff() then return nil end
 	local T = Nav.travel
 	local route = T and T.version or 0
 	if not geom or geomBuilt ~= geomVersion or geomRoute ~= route then

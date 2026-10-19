@@ -15,6 +15,7 @@
 	<Script file="Hooks.lua"/>
 	<Script file="GuideTexts.lua"/>
 	<Script file="Guides.lua"/>
+	<Script file="Import.lua"/>
 	<Script file="Search.lua"/>
 	<Script file="Engine.lua"/>
 	<Script file="RoutePlan.lua"/>

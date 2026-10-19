@@ -14,11 +14,12 @@
 // Addons load the way the client loads them: every file listed by the TOC, XML
 // manifests expanded in order, each chunk called with (addonName, namespace).
 // An addon entry may be { name, files: [...] } (paths relative to the addon
-// folder, .xml expanded) to load a subset, or { name, dir } to load the addon
-// folder `dir` (outside addon/, e.g. a pack built into a temp folder) by its
-// TOC. emit(value) prints one JSON line; runAddon returns those values parsed,
-// in order. A Lua error fails loudly. Each addon file's chunk is listed in
-// stub.addonSources: wow_stub.lua's map guard tells addon code by it.
+// folder, or absolute paths taken as is; .xml expanded) to load a subset, or
+// { name, dir } to load the addon folder `dir` (outside addon/, e.g. a pack
+// built into a temp folder) by its TOC. emit(value) prints one JSON line;
+// runAddon returns those values parsed, in order. A Lua error fails loudly.
+// Each addon file's chunk is listed in stub.addonSources: wow_stub.lua's map
+// guard tells addon code by it.
 
 const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -56,7 +57,7 @@ function xmlFiles(xmlPath) {
 function expand(addonDir, entries) {
 	const out = [];
 	for (const rel of entries) {
-		const target = path.join(addonDir, norm(rel));
+		const target = path.isAbsolute(rel) ? rel : path.join(addonDir, norm(rel));
 		if (!fs.existsSync(target)) throw new Error(`${path.relative(ROOT, addonDir)}: missing ${rel}`);
 		if (target.toLowerCase().endsWith('.xml')) out.push(...xmlFiles(target));
 		else out.push(target);

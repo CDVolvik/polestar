@@ -173,6 +173,51 @@ test('house style: the game\'s font by default and Inter on request, Polestar go
 	assert.deepEqual(out.schemes.map((c) => c.value), ['dusk', 'night', 'graphite'], 'EllesmereUI is offered only when installed');
 });
 
+// The ruRU game font has no middle dot, so the skin's face becomes Fira Sans
+// there; a face the player picked, and the other locales, are left alone.
+test('fonts: ruRU swaps the skin\'s game font for Fira Sans; an explicit pick and other locales keep theirs', () => {
+	const GAME = 'Fonts\\FRIZQT__.TTF';
+	const FIRA = 'Interface\\AddOns\\Polestar\\Media\\Fonts\\FiraSans-SemiBold.ttf';
+	const INTER = 'Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-SemiBold.ttf';
+	const faces = (locale) => run(`
+		local out = {}
+		out.default = (T.FontSpec("title"))
+		for _, skin in ipairs({ "hearth", "forever", "blizzard", "classic" }) do
+			Polestar.Set("ui.skin", skin)
+			out[skin] = (T.FontSpec("title"))
+		end
+		Polestar.Set("ui.skin", "polestar")
+		Polestar.Set("ui.font", "skin")
+		out.skinChoice = (T.FontSpec("title"))
+		Polestar.Set("ui.font", "game")
+		out.game = (T.FontSpec("title"))
+		Polestar.Set("ui.skin", "blizzard")
+		out.gameBlizzard = (T.FontSpec("title"))
+		Polestar.Set("ui.skin", "polestar")
+		Polestar.Set("ui.font", "inter")
+		out.inter = (T.FontSpec("title"))
+		emit(out)`, { before: `function GetLocale() return "${locale}" end` })[0];
+
+	const ru = faces('ruRU');
+	assert.equal(ru.default, FIRA, 'ruRU default');
+	assert.equal(ru.skinChoice, FIRA, 'ruRU with the skin\'s own font');
+	for (const skin of ['hearth', 'forever', 'blizzard', 'classic']) assert.equal(ru[skin], FIRA, `ruRU ${skin} by default`);
+	assert.equal(ru.game, GAME, 'ruRU with "the game\'s" font picked');
+	assert.equal(ru.gameBlizzard, GAME, 'ruRU with "the game\'s" font picked on a game skin');
+	assert.equal(ru.inter, INTER, 'ruRU with Inter picked');
+
+	for (const locale of ['zhCN', 'koKR']) {
+		const cjk = faces(locale);
+		assert.equal(cjk.default, GAME, `${locale} default`);
+		assert.equal(cjk.inter, GAME, `${locale} with Inter picked`);
+	}
+
+	const en = faces('enUS');
+	assert.equal(en.default, GAME, 'enUS default');
+	assert.equal(en.game, GAME, 'enUS with the game font picked');
+	assert.equal(en.inter, INTER, 'enUS with Inter picked');
+});
+
 test('settings from before schemes: a stored gold accent was the old default; any other stays the user\'s own', () => {
 	const ui = (accent) => `PolestarDB = { schema = 1, settings = { ui = { accent = ${accent} } } }`;
 	const [gold] = run(`emit({ accent = Polestar.Get("ui.accent"), live = { T.Accent() } })`, { before: ui('{ 0.9, 0.73, 0.4 }') });
@@ -263,6 +308,37 @@ test('EllesmereUI: an optional scheme and follow toggles, never a lock', () => {
 	assert.deepEqual(out.inter.font, ['Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-Medium.ttf', 13, '']);
 	assert.equal(out.inter.label, 'Inter');
 	assert.deepEqual(out.refollow, ['Interface\\AddOns\\EllesmereUI\\media\\fonts\\Expressway.ttf', 13, '']);
+});
+
+test('EllesmereUI font: a refresh sets the text again a frame later, so a string drawn at login is not left blank', () => {
+	const [out] = run(`
+		local fs = UIParent:CreateFontString()
+		T.Font(fs, "body")
+		fs:SetText("Innkeeper Heather")
+		local sets = 0
+		local set = fs.SetText
+		fs.SetText = function(self, ...) sets = sets + 1 return set(self, ...) end
+		T.Refresh()
+		stub.advance(0.1)
+		local ownFont = sets
+		Polestar.Set("ui.matchFont", true)
+		stub.advance(0.1)
+		sets = 0
+		T.Refresh()
+		local sameFrame = sets
+		stub.advance(0.1)
+		local later = sets - sameFrame
+		sets = 0
+		T.Refresh()
+		T.Refresh()
+		local syncTwo = sets
+		stub.advance(0.1)
+		emit({ ownFont = ownFont, sameFrame = sameFrame, later = later, twiceLater = sets - syncTwo, text = fs:GetText() })`, { before: 'stub.withEllesmere()' });
+	assert.equal(out.ownFont, 2, 'without EllesmereUI\'s font the one re-set stands, nothing is queued');
+	assert.equal(out.sameFrame, 2, 'the refresh sets the text again at once');
+	assert.equal(out.later, 2, 'and once more a frame later');
+	assert.equal(out.twiceLater, 2, 'refreshes in one frame share one later pass');
+	assert.equal(out.text, 'Innkeeper Heather');
 });
 
 // The class colour as the accent: it follows the player's class, lifted until
@@ -522,6 +598,40 @@ test('skins: a window repaints from the house style to Halo (veil, no fill) to H
 	assert.deepEqual(out.back, out.house, 'back to the house style, as it was');
 });
 
+// #353: Polestar's faces have no Chinese or Hangul; text with them takes the
+// client's font for that script, unless the client's locale already draws it.
+test("fonts: a Chinese or Korean name takes the client's font for its script, and back when the text changes (#353)", () => {
+	const [out] = run(`
+		local GF = Polestar.UI.GuideFrame
+		local fs = W.Text(GF.parts.nav, "hero", "text")
+		local function face() return (fs:GetFont()) end
+		local out = { latin = face() }
+		fs:SetText("Hello, 张伟"); out.han = face()
+		fs:SetText("Hello, 김민준"); out.hangul = face()
+		fs:SetFormattedText("%s, %s", "Hello", "Tom — Привет"); out.back = face()
+		Polestar.Set("ui.skin", "halo"); fs:SetText("Hello, 张伟"); Polestar.Set("ui.skin", "polestar"); out.repaint = face()
+		GetLocale = function() return "zhCN" end
+		fs:SetText("A"); fs:SetText("Hello, 张伟"); out.zhCN = face()
+		fs:SetText("Hello, 김민준"); out.zhCNHangul = face()
+		GetLocale = function() return "enUS" end
+		uistub.player.name = "张伟"
+		Polestar.UI.Welcome.Show("welcome")
+		for _, f in ipairs(stub.frames) do
+			for _, r in ipairs(f.regions) do
+				if r.text == "Hello, 张伟" or (r.GetText and r:GetText() == "Hello, 张伟" and r ~= fs) then out.welcome = (r:GetFont()) end
+			end
+		end
+		emit(out)`);
+	assert.doesNotMatch(out.latin, /ARKai|2002/);
+	assert.equal(out.han, 'Fonts\\ARKai_T.ttf');
+	assert.equal(out.hangul, 'Fonts\\2002.TTF');
+	assert.equal(out.back, out.latin, 'Latin and Cyrillic go back to the face');
+	assert.equal(out.repaint, 'Fonts\\ARKai_T.ttf', 'a skin change keeps it');
+	assert.doesNotMatch(out.zhCN, /ARKai_T/, 'a Chinese client draws it in its own font');
+	assert.equal(out.zhCNHangul, 'Fonts\\2002.TTF');
+	assert.equal(out.welcome, 'Fonts\\ARKai_T.ttf', "the welcome page's greeting");
+});
+
 // The game's looks (Theme/GameSkins.lua): each draws its own art source, and
 // a window taken through all three comes back to the house style as it was.
 test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Classic the vanilla dialog; a window goes through them and back", () => {
@@ -570,4 +680,41 @@ test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Cl
 	assert.equal(out.classicEdge, 'Interface\\DialogFrame\\UI-DialogBox-Border');
 	assert.deepEqual(out.back, out.house, 'back to the house style, as it was');
 	assert.equal(out.houseGame, false);
+});
+
+// #312: Forever's tab art is an outline. On the guide window's strip its top
+// and left run along the window's edge, which left the active tab's right
+// side as a lone line; there the active tab is the Settings list's selected
+// row, the resting tabs keep their art, and the Options tabs keep theirs.
+test('skins: on Forever the guide strip marks the active tab with the selected-row art, not a half-drawn outline (#312)', () => {
+	const [out] = run(`
+		local GF = Polestar.UI.GuideFrame
+		Polestar.Set("ui.skin", "forever")
+		uistub.openTabs({ { uistub.elwynn, 3 }, { uistub.tailoring, 2 } }, 1)
+		local function art(b)
+			local k = b.psSkin and b.psSkin.kit or {}
+			local lit, three = k.tabLit, k.tabArt
+			return { lit = lit ~= nil and lit:IsShown() and lit.atlas or lit and lit:IsShown() and lit.texture or false,
+				outline = three ~= nil and three[2]:IsShown() and three[2].texture or false }
+		end
+		local out = { active = art(GF.tabs[1]), rest = art(GF.tabs[2]) }
+		uistub.openTabs({ { uistub.elwynn, 3 }, { uistub.tailoring, 2 } }, 2)
+		out.moved = { first = art(GF.tabs[1]), second = art(GF.tabs[2]) }
+		-- the Options tabs are not on the window's edge: the tab outline as the client draws it
+		Polestar.UI.ShowOptions("guide")
+		out.options = {}
+		for _, t in ipairs(PolestarOptions.tabButtons) do
+			if t:IsShown() then out.options[#out.options + 1] = art(t) end
+		end
+		emit(out)`, {
+		before: `C_Texture = { GetAtlasInfo = function(name)
+			return { file = "atlas:" .. name, leftTexCoord = 0, rightTexCoord = 1, topTexCoord = 0, bottomTexCoord = 1, width = 7, height = 26 }
+		end }`,
+	});
+	assert.deepEqual(out.active, { lit: 'atlas:Options_List_Active', outline: false });
+	assert.deepEqual(out.rest, { lit: false, outline: 'atlas:Options_Tab_Middle' });
+	assert.deepEqual(out.moved, { first: { lit: false, outline: 'atlas:Options_Tab_Middle' }, second: { lit: 'atlas:Options_List_Active', outline: false } });
+	assert.ok(out.options.length > 1);
+	assert.ok(out.options.every((t) => t.lit === false && t.outline), 'outline tabs');
+	assert.ok(out.options.some((t) => t.outline === 'atlas:Options_Tab_Active_Middle'), 'the active one in the active outline');
 });

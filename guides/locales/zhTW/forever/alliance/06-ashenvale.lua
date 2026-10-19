@@ -91,25 +91,29 @@ return {
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
 	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "擊殺元素取得5個完整的元素護腕，然後使用{item:5456}",
 
-	-- Step 25: The Ruins of Stardust
+	-- Step 25: Alonso
+	-- {npc:210995} Alonso
+	["{npc:210995} may not offer these to every class; if he doesn't, carry on."] = "",
+
+	-- Step 26: The Ruins of Stardust
 	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "在密斯特拉湖西邊，星塵灌木生長在廢墟之間。",
 
-	-- Step 27: Windshear Crag
+	-- Step 28: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
 	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "向南騎過{area:421}進入{area:1276}隧道；出口在石爪山脈的{area:461}。{npc:4080}和{npc:4077}在峭壁西南方的{area:1076}紮營。",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}，在他們北邊的小屋裡",
 
-	-- Step 28: Venture Co. loggers
+	-- Step 29: Venture Co. loggers
 	["Venture Co. loggers"] = "風險投資公司樵夫",
 	-- {area:461} Windshear Crag
 	["The Venture Co. clear the forest of {area:461}. Loggers and Deforesters work all over it; the Operators run the shredders and one carries the blueprints."] = "風險投資公司正在砍伐{area:461}的森林。樵夫和砍樹工到處工作；操作員駕駛伐木機，其中一人帶著藍圖。",
 
-	-- Step 29: Piznik
+	-- Step 30: Piznik
 	-- {npc:4276} Piznik · {area:2160} Windshear Mine
 	["{npc:4276} mines in the {area:2160} at the east end of the crag. Talk to him and fend off the Venture Co. raiders while he mines."] = "{npc:4276}在峭壁東端的{area:2160}採礦。和他交談，在他採礦時擊退風險投資公司的襲擊者。",
 
-	-- Step 31: To Menethil Harbor
+	-- Step 32: To Menethil Harbor
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "前往{area:150}",
 	-- {area:1276} Talondeep Path
@@ -117,7 +121,7 @@ return {
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "搭船前往{area:150}",
 
-	-- Step 32: Menethil Harbor
+	-- Step 33: Menethil Harbor
 	-- {npc:1242} Karl Boran
 	["{npc:1242}, on the pier north of the inn"] = "{npc:1242}，在旅店北邊的碼頭上",
 	-- {npc:1239} First Mate Fitzsimmons
@@ -131,85 +135,85 @@ return {
 	-- {npc:2096} Tarrel Rockweaver
 	["{npc:2096}, by the north gate"] = "{npc:2096}，在北門旁",
 
-	-- Step 33: Spoils of War
+	-- Step 34: Spoils of War
 	["Timber and iron piles lie around the keep and along the harbor's walls."] = "木材和鐵堆放在城堡周圍和港口的城牆邊。",
 
-	-- Step 35: Bluegill Marsh
+	-- Step 36: Bluegill Marsh
 	-- {npc:1259} Gobbler
 	-- plural, as words: Bluegill Murlocs = {npc:1024} Bluegill Murloc
 	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "沿海岸向北離開米奈希爾港。藍腮魚人遍布沼澤；{npc:1259}帶著一群魚人在中間走動。",
 
-	-- Step 37: The Bluegill hovels
+	-- Step 38: The Bluegill hovels
 	["The Bluegill hovels"] = "藍腮魚人小屋",
 	-- {object:261} Damaged Crate · {object:142151} Sealed Barrel · {object:259} Half-buried Barrel
 	["Three containers in the murloc hovels, south to north: the {object:261}, then the {object:142151}, then the {object:259} at the north end."] = "魚人小屋中的三個容器，由南到北：{object:261}，然後是{object:142151}，最後是北端的{object:259}。",
 
-	-- Step 38: Karl Boran
+	-- Step 39: Karl Boran
 	-- {npc:1242} Karl Boran · {npc:2104} Captain Stoutfist
 	["{npc:1242}: for {npc:2104} in the keep"] = "{npc:1242}：給城堡裡的{npc:2104}",
 
-	-- Step 39: Captain Stoutfist
+	-- Step 40: Captain Stoutfist
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:1242} Karl Boran
 	["{npc:2104} stands in {area:2103}, a short walk from {npc:1242}."] = "{npc:2104}站在{area:2103}，離{npc:1242}不遠。",
 	-- {object:2117} Stormwind Keep
 	["For Bolvar Fordragon in {object:2117}: keep it"] = "給{object:2117}的伯瓦爾·弗塔根公爵：先留著",
 
-	-- Step 40: Young crocolisks
+	-- Step 41: Young crocolisks
 	["Young crocolisks"] = "小鱷魚",
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
 	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "沿道路向東。小濕地鱷魚潛伏在挖掘場北邊的水池中。",
 
-	-- Step 41: Whelgar's Excavation Site
+	-- Step 42: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "挖掘場在道路南邊的山丘上。",
 
-	-- Step 42: The raptor hills
+	-- Step 43: The raptor hills
 	["The raptor hills"] = "迅猛龍丘陵",
 	-- plural, as words: Mottled Raptors = {npc:1020} Mottled Raptor
 	["Mottled Raptors and Screechers roam the hills west of the excavation site."] = "雜斑迅猛龍和雜斑尖嘯龍在挖掘場西邊的丘陵遊蕩。",
 
-	-- Step 44: Raptor valley
+	-- Step 45: Raptor valley
 	["Raptor valley"] = "迅猛龍山谷",
 	["The bigger raptors hunt in the valley just west of the dig."] = "體型更大的迅猛龍在挖掘場西邊不遠的山谷中狩獵。",
 
-	-- Step 46: Thelgen Rock
+	-- Step 47: Thelgen Rock
 	-- {area:1021} Thelgen Rock
 	-- plural, as words: Cave Stalkers = {npc:4040} Cave Stalker · Leech Stalkers = {npc:1111} Leech Stalker
 	["Cave Stalkers and Leech Stalkers fill {area:1021}, the cave south-east of the excavation site."] = "洞穴捕獵者和吸血捕獵者遍布挖掘場東南方的洞穴{area:1021}。",
 
-	-- Step 47: Black Oozes
+	-- Step 48: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "黑色軟泥怪",
 	-- {area:1025} Green Belt · {npc:2093} Einar Stonegrip · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "黑色軟泥怪在{area:1025}道路北邊、{npc:2093}營地西邊的沼澤中爬行。任何軟泥怪都可能帶著{npc:2111}的袋子。",
 
-	-- Step 48: Green Belt
+	-- Step 49: Green Belt
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093}在路邊紮營；{npc:1244}站在更東邊的河邊。",
 
-	-- Step 49: The Mosshide gnolls
+	-- Step 50: The Mosshide gnolls
 	["The Mosshide gnolls"] = "蘚皮豺狼人",
 	-- {area:1025} Green Belt
 	-- plural, as words: Mosshide Gnolls = {npc:1007} Mosshide Gnoll
 	["Mosshide Gnolls and Mongrels hold the hills south-east of the {area:1025}."] = "蘚皮豺狼人和混血蘚皮豺狼人佔據{area:1025}東南方的丘陵。",
 
-	-- Step 51: Crude Flint
+	-- Step 52: Crude Flint
 	-- {npc:1244} Rethiel the Greenwarden
 	-- plural, as words: Mosshide Fenrunners = {npc:1010} Mosshide Fenrunner
 	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of {npc:1244}; almost every one drops flint."] = "蘚皮沼澤行者和蘚皮織霧者在{npc:1244}西邊和南邊不遠的河岸遊蕩；幾乎每一隻都會掉落燧石。",
 
-	-- Step 53: Fen Creepers
+	-- Step 54: Fen Creepers
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers"] = "沼澤爬行者",
 	-- {area:1025} Green Belt
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers hide in the marsh pools north-west of the {area:1025}."] = "沼澤爬行者躲在{area:1025}西北方的沼澤水池中。",
 
-	-- Step 54: Dun Modr
+	-- Step 55: Dun Modr
 	-- {area:205} Dun Modr · {area:881} Thandol Span · {npc:1071} Longbraid the Grim
 	["Follow the road north to {area:205}, at the foot of the {area:881}. {npc:1071} stands in the dwarves' camp."] = "沿道路向北前往{area:881}山腳下的{area:205}。{npc:1071}站在矮人營地裡。",
 
-	-- Step 56: Dragonmaw camp
+	-- Step 57: Dragonmaw camp
 	["Dragonmaw camp"] = "龍喉營地",
 	-- {area:1025} Green Belt · {npc:2092} Pilot Longbeard · {zone:1426} Dun Morogh
 	["The Dragonmaw camp lies south of the road, just west of the {area:1025}: Raiders, Swamprunners and Bonewarders. {npc:2092}'s quest in {zone:1426} needs level 28."] = "龍喉營地在道路南邊、{area:1025}西邊不遠處：有龍喉襲擊者、龍喉沼澤行者和龍喉白骨守衛。{npc:2092}在{zone:1426}的任務需要28級。",
@@ -217,11 +221,11 @@ return {
 	-- plural, as words: Dragonmaw Raiders = {npc:1034} Dragonmaw Raider
 	["grind on Dragonmaw Raiders and Swamprunners at the Dragonmaw camp, {zone:1437}"] = "在{zone:1437}的龍喉營地刷龍喉襲擊者和龍喉沼澤行者",
 
-	-- Step 57: Hearth to Menethil
+	-- Step 58: Hearth to Menethil
 	["Hearth to Menethil"] = "用爐石回到米奈希爾港",
 	["For the giant crocolisks of the north coast, on your next visit"] = "北海岸的巨型鱷魚，下次來時再打",
 
-	-- Step 58: Ironforge
+	-- Step 59: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
 	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "沿{zone:1437}的道路向東騎，向南穿過{area:836}進入{zone:1432}，再向西穿過隧道進入{zone:1426}，前往{area:1537}。",
 	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
@@ -229,13 +233,13 @@ return {
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
 	["Only with {item:5352} from {zone:1439}: {npc:2786}, the {object:32383}"] = "只有在持有{zone:1439}的{item:5352}時：{npc:2786}，{object:32383}",
 
-	-- Step 59: Ironforge priests
+	-- Step 60: Ironforge priests
 	-- {zone:1455} Ironforge
 	["{zone:1455} priests"] = "{zone:1455}的牧師",
 	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} Mystic Ward
 	["{npc:11406} and {npc:258785} are in the {object:32386}, in the {object:32362}."] = "{npc:11406}和{npc:258785}在{object:32362}的{object:32386}。",
 
-	-- Step 60: Cathedral of Light
+	-- Step 61: Cathedral of Light
 	["Cathedral of Light"] = "光明大教堂",
 	-- {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind · {object:28027} Dwarven District · {object:2098} Cathedral Square
 	["Take the {area:2257} from {object:171524} to {zone:1453}'s {object:28027}, then walk to the {object:2098}."] = "從{object:171524}搭乘{area:2257}前往{zone:1453}的{object:28027}，然後走到{object:2098}。",
@@ -244,29 +248,29 @@ return {
 	-- {npc:1444} Brother Kristoff · {object:2098} Cathedral Square
 	["{npc:1444}, in the {object:2098}"] = "{npc:1444}，在{object:2098}",
 
-	-- Step 61: Stormwind Keep
+	-- Step 62: Stormwind Keep
 	-- {npc:1440} Milton Sheaf
 	["{npc:1440}, in the Royal Library"] = "{npc:1440}，在皇家圖書館",
 	-- {quest:337} An Old History Book · {zone:1431} Duskwood
 	["Only if you looted {quest:337} in {zone:1431}"] = "只有在{zone:1431}拾取了{quest:337}時",
 
-	-- Step 62: Lord Grayson Shadowbreaker
+	-- Step 63: Lord Grayson Shadowbreaker
 	-- {npc:928} Lord Grayson Shadowbreaker
 	["Back to the Cathedral of Light: {npc:928} stands inside."] = "回到光明大教堂：{npc:928}站在裡面。",
 	-- {npc:2228} Lieutenant Farren Orinelle · {area:271} Southshore
 	["For {npc:2228} in {area:271}: keep it"] = "給{area:271}的{npc:2228}：先留著",
 
-	-- Step 63: Mage Quarter
+	-- Step 64: Mage Quarter
 	-- {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter
 	["{object:2164} is in the {object:2101}."] = "{object:2164}在{object:2101}。",
 
-	-- Step 64: Jorgen and Elling Trias
+	-- Step 65: Jorgen and Elling Trias
 	-- {npc:4959} Jorgen · {npc:482} Elling Trias
 	["{npc:4959} and {npc:482}"] = "{npc:4959}與{npc:482}",
 	-- {npc:482} Elling Trias · {object:2096} Trade District
 	["{npc:482}, the cheese shop in the {object:2096}"] = "{npc:482}，{object:2096}的乳酪店",
 
-	-- Step 65: Trade District
+	-- Step 66: Trade District
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "下一步：飛往{area:42}。",
 

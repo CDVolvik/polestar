@@ -13,8 +13,10 @@ sequenceDiagram
   P->>D: post: what went wrong, the report, screenshots
   B->>G: issue with labels, screenshots on the bug-media branch
   B->>D: "Tracked as #N", tag Tracked
-  P->>D: follow-up in the thread
+  P->>D: follow-up in the thread (the reporter or another player)
   B->>G: comment on the issue
+  G->>D: first pull request for the issue: "a fix is open", tag In progress (Action)
+  G->>D: needs-info: the maintainer's question, answered in the thread (Action)
   G->>D: closed: "fixed" / "not changing" / "duplicate", tag, lock (Action)
   G->>D: release published: "the fix is out in 0.2.x" (Action)
   G->>D: prerelease published: testers pinged in their channel (Action)
@@ -22,23 +24,26 @@ sequenceDiagram
 
 | What happens | Who does it | What the player sees |
 |---|---|---|
-| A new post | the bot, at once | "Tracked as fitzforge/polestar#N", tag **Tracked** |
-| The reporter writes again in the thread (text, screenshots, a new report) | the bot | nothing; it becomes a comment on the issue. Other people's replies stay on Discord |
+| A new post | the bot, at once | "Tracked as fitzforge/polestar#N. Replies in this thread, from anyone, are copied to the issue.", tag **Tracked** |
+| Anyone writes in the thread (text, screenshots, a new report) | the bot | nothing; it becomes a comment on the issue, the reporter's marked "(the reporter)". The bot's own messages are not copied |
 | The reporter edits the post's first message | the bot | nothing; the issue body is written again |
+| A pull request addresses the issue for the first time (its title names `#N`, or it says `closes`/`fixes`/`resolves #N`) | `pr-links.yml` | ping: "A fix for this is open (#M). It still has to be reviewed; we'll tell you here when it's fixed.", tag **In progress**. Once per issue: more pull requests, edits and closes tell the thread nothing. On GitHub the issue gets one comment listing its pull requests, kept up to date, and the label `has-pr` (CONTRIBUTING.md, "Before you start") |
+| Issue labelled **needs-info** | `discord-issue-sync.yml` | ping: "We need a little more to go on with this one", quoting the maintainer's last comment on the issue, and "Please answer here in the thread". The answer comes back to the issue as a follow-up. Tags unchanged |
 | Issue closed as **completed** (button, or `Fixes #N` in a commit) | `discord-issue-sync.yml` | ping: "This is fixed and will ship in the next Polestar update", tag **Fixed**, thread locked |
 | Issue closed as **not planned** | the same | ping: "We've decided not to change this one" (or, from `/close`, "No change is needed here", "We couldn't reproduce this one", "We're closing this one without a fix for now"), quoting your last comment on the issue as the reason; tag **Won't fix**, locked |
-| Issue closed as **duplicate** | the same | ping: "already reported, tracked in #M" (from a `Duplicate of #M` comment); tag **Duplicate**, locked |
+| Issue closed as **duplicate** of #M (`gh issue close N --duplicate-of M`, GitHub's "Close as duplicate", or `/close`), or closed as **not planned** with a maintainer's `Duplicate of #M` comment (what GitHub's website and older `gh` leave) and no other `resolution:` label | the same | ping: where #M stands, read from GitHub: labelled `released:vX` "It's the same bug as #M, and the fix is out in Polestar X"; labelled `fix-merged` or closed as completed "It's the same bug as #M, and that's already fixed: it ships in the next Polestar update"; closed as not planned "It's the same as #M, and we've decided not to change it" (or its `resolution:` label's words), quoting #M's last maintainer comment when it is 300 characters or less; open "we're tracking it in #M", with "A fix is in progress." when #M has `has-pr`. Then the maintainer's explanation on this issue: their latest comment that is more than the bare `Duplicate of #M` line. Tag **Duplicate**, locked |
 | Issue reopened | the same | "We've reopened this", tag **Tracked**, unlocked |
-| A release published | `discord-release-notify.yml` | ping: "The fix is out in **Polestar 0.2.x**", for every issue closed as completed that the release ships; the issue gets `released:v0.2.x` so it is never told twice. An issue closed by a commit (`Fixes #N`, a merged pull request) ships in the first full release whose tag holds that commit, so a fix merged into `next` waits for the feature release, however many patches go out first. One closed by hand (a patch's fix) ships in the first full release published after it closed. Prereleases do not count as the release before |
+| A release published | `discord-release-notify.yml` | ping: "The fix is out in **Polestar 0.2.x**", for every issue closed as completed that the release ships; the issue gets `released:v0.2.x` so it is never told twice. An issue closed by a commit (`Fixes #N`, a merged pull request) ships in the first full release whose tag holds that commit, so a fix merged into `next` waits for the feature release, however many patches go out first. One closed by hand (a patch's fix) ships in the first full release published after it closed. Prereleases do not count as the release before. Each issue from Discord closed as a duplicate of one the release ships (filed from Discord or not; found by GitHub's search for `reason:duplicate` and for a `Duplicate of` comment) gets "The fix for #M, the same bug as yours, is out in **Polestar 0.2.x**" and the same `released:` label, so it too is told once |
 | A prerelease published (`v0.3.0-rc.1`: GitHub's prerelease flag, or a tag with a `-` part) | the same | nothing in the threads, and no `released:` label. The testers channel gets one message pinging the tester role: the tag, the release's link, the player entries from the tag's `changes/` (as many as fit), and a request to report in #bugs. A re-run finds that message (a bot message with the tag in bold, among the channel's last 50) and pings no one again |
 
 ## What an issue holds
 
 The post's title, then "Reported by *name* on Discord" with a link to the
-thread and the post's forum tags, the player's words, a table read from the
-report (version, client and locale, character, guide, step and the step the
-guide is really at, zone and map, errors), the whole report folded under
-"Full report", and the screenshots.
+thread and the post's forum tags, the player's words (with the lines the
+report sets under them, the right spot and the other addons), a table read
+from the report's details (version, client and locale, character, guide,
+step and the step the guide is really at, zone and map, errors), the details
+folded under "Full report", and the screenshots.
 
 Labels: `discord`, `triage` and `bug` on every one, then from the report
 `v0.2.3`, `guide:01-elwynn-forest`, `locale:enUS` and `lua-error` when it
@@ -68,10 +73,10 @@ other issues or carry HTML. Say so in the #bugs guidelines, for example:
    Read Message History; `applications.commands` for `/close` and
    `/reopen`). Should the log ever say "slash commands not registered"
    with a 403, open the link again; there is no need to remove the bot.
-3. On #bugs, add four tags: **Tracked**, **Fixed**, **Won't fix** and
-   **Duplicate**, each with "Only allow moderators to apply this tag". A
-   missing one is skipped. A post tagged with any of them by hand is never
-   filed.
+3. On #bugs, add five tags: **Tracked**, **In progress**, **Fixed**,
+   **Won't fix** and **Duplicate**, each with "Only allow moderators to
+   apply this tag". A missing one is skipped. A post tagged with any of
+   them by hand is never filed.
 4. Copy #bugs' channel id (User Settings, Advanced, Developer Mode; then
    right-click #bugs, Copy Channel ID): that is `DISCORD_FORUM_ID`.
 5. For release candidates: a testers channel where the bot has View
@@ -148,11 +153,12 @@ the thread, as when it is closed there. Only you see the bot's answer.
 | `/close reason:No action needed` | not planned, `resolution:no-action` | "No change is needed here", **Won't fix** |
 | `/close reason:Can't reproduce` | not planned, `resolution:cannot-reproduce` | "We couldn't reproduce this one", **Won't fix** |
 | `/close reason:Not resolved` | not planned, `resolution:not-resolved` | "We're closing this one without a fix for now", **Won't fix** |
-| `/close reason:Duplicate duplicate_of:N` | duplicate, a `Duplicate of #N` comment | "already reported, tracked in #N", **Duplicate** |
+| `/close reason:Duplicate duplicate_of:N` | duplicate, a `Duplicate of #N` comment | where #N stands, as above, **Duplicate** |
 | `/reopen` | reopened, its `resolution:` label removed | "We've reopened this", **Tracked**, unlocked |
 
 `note:` is posted on the issue as your comment; for the four not-planned
-reasons it is quoted to the reporter under the first line. `issue:N` acts
+reasons it is quoted to the reporter under the first line, and for Duplicate
+it follows the `Duplicate of #N` line and is quoted as the explanation. `issue:N` acts
 on another issue, for use outside its thread. The commands are registered
 in the forum's server for Administrators only, and each use is checked
 again, so loosening them under Server Settings, Integrations lets others
@@ -160,18 +166,21 @@ see them but not use them.
 
 ## Working on it
 
-`npm test` runs `tests/discord-bot.test.js` over in-memory Discord and
-GitHub. To run the bot or `notify.js` against something else,
-`DISCORD_API` and `GITHUB_API_URL` point the clients elsewhere.
+`npm test` runs `tests/discord-bot.test.js` and `tests/discord-links.test.js`
+over in-memory Discord and GitHub. To run the bot, `notify.js` or `links.js`
+against something else, `DISCORD_API` and `GITHUB_API_URL` point the
+clients elsewhere.
 
 | File | What it does |
 |---|---|
 | `bot.js` | The service: settings, the gateway, the sync |
 | `notify.js` | The Actions' entry: `issue` (closed, reopened) and `release` |
+| `links.js` | The Actions' entry for pull requests: `event`, and `sweep` for every open one (`--dry-run`) |
 | `lib/report.js` | The addon's report (`addon/Polestar/UI/Report.lua`) read back into fields |
 | `lib/issue.js` | Issue title, body, labels and comments; the marker; making player text inert |
 | `lib/sync.js` | Posts, follow-ups and edits to issues; the index and the backfill |
 | `lib/notify.js` | Close, reopen and release messages, tags and locks; the testers' ping for a prerelease |
+| `lib/links.js` | Which issues a pull request addresses; the issue's pull requests comment, the overlap warning and their labels |
 | `lib/gateway.js`, `lib/discord.js`, `lib/github.js` | The Discord gateway and the two REST APIs; the media branch |
 
 A change to the report's layout in `Report.lua` needs `lib/report.js` and

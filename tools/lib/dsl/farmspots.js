@@ -37,13 +37,15 @@ function round3(n) {
 }
 
 // Zone safety for a map: the gathering zone table, else contested for any
-// open-world zone in zones.json (UIMapType 3) with Era bounds, else not
-// farmable (cities, instances, battlegrounds, maps the client cannot place).
+// open-world zone in zones.json (UIMapType 3) on Eastern Kingdoms or Kalimdor
+// by its frame (Era, else Forever's for a map Forever added, such as
+// Riverglades or Mount Hyjal), else not farmable (cities, instances,
+// battlegrounds, other continents, maps the client cannot place).
 function zoneSafety(data, map) {
 	const z = ZONES[map];
 	if (z) return z.side;
 	const info = data.zone(map);
-	const fr = data.eraFrame(map);
+	const fr = data.frame(map);
 	// Continents 0 (Eastern Kingdoms) and 1 (Kalimdor) only: battlegrounds are zones too.
 	return info && info.type === 3 && fr && (fr.c === 0 || fr.c === 1) ? 'AH' : null;
 }
@@ -69,7 +71,7 @@ function townPoints(data) {
 }
 
 function yardScale(data, map) {
-	const fr = data.eraFrame(map);
+	const fr = data.frame(map);
 	if (!fr) return { sx: 30, sy: 20 };
 	return { sx: Math.abs(fr.right - fr.left) / 100, sy: Math.abs(fr.bottom - fr.top) / 100 };
 }
@@ -94,8 +96,8 @@ function farmSpots(data, itemId) {
 			const markers = towns.get(s.map) || [];
 			const open = s.pts.filter((p) => !markers.some((m) => Math.hypot((p[0] - m[0]) * sx, (p[1] - m[1]) * sy) <= TOWN_YARDS));
 			if (!open.length) continue;
-			const fr = data.eraFrame(s.map);
-			const era = s.f === 'e' && (fr || !Object.keys(data.mapFrames.era || {}).length);
+			const fr = data.frame(s.map);
+			const era = s.f === 'e' && (data.eraFrame(s.map) || !Object.keys(data.mapFrames.era || {}).length);
 			for (const c of clusterPoints(open, fr, { radius: CLUSTER_YARDS, cap: PER_NPC_MAP })) {
 				const spot = { map: s.map, x: round2(c.x), y: round2(c.y) };
 				if (era) spot.f = 'e';

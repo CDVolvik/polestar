@@ -75,7 +75,15 @@
 // our walkable surfaces in its columns, joined by our links inside the
 // cell (every stored link but a closed one, CLOSED below), leaving out
 // regions of under MIN_REGION surfaces (rooftops, props) and anything below
-// the cell's top water surface (lake beds; SPF's rule). The piece of the
+// the cell's top water surface (lake beds; SPF's rule) but an indoor floor
+// with a solid span over it below the water (its entry's ceil): a city or a
+// cave under a lake. SPF's rule alone dropped every floor under a lake, and
+// the Undercity's Royal Quarter lies under one of Tirisfal's: its corridor
+// (1458 46,73 to 49,88) and every room past it were cut out, so walks to
+// Varimathras, Sylvanas and Sharlindra climbed out of the city and ended in
+// a straight line down (#420). Outdoor ground under water stays out even when
+// roofed: the terrain under Stormwind's canals, which no one walks, joined
+// up drew walks across the city on it. The piece of the
 // largest region (then the most columns, then the highest) is the base
 // surface, the others are floors, by height: pieces at one height that a
 // wall inside the cell parts stay apart, so a wall never leaks through a
@@ -578,7 +586,7 @@ function cellGrid({ tiles, loadTile, regions, C, c = 0, layers = {}, log = () =>
 		const k = kx * cg.NY + ky;
 		const cl = cg.cluster(k);
 		cl.floorStart = cg.floorCell.length;
-		const { n, first, z, flags, links, comp } = t;
+		const { n, first, z, ceil, flags, links, comp } = t;
 		const tslope = t.tslope || new Uint8Array(n);
 		const roads = layers.roads ? layers.roads(c, meta.col, meta.row) : null;
 		// Per chunk (16 x 16 columns): in a capital (by its area or the zone around its centre).
@@ -775,7 +783,7 @@ function cellGrid({ tiles, loadTile, regions, C, c = 0, layers = {}, log = () =>
 				});
 			}
 			const water = Math.max(-Infinity, ...list.filter((p) => p.val === 2).map((p) => p.z));
-			list = list.filter((p) => p.z >= water - STEP);
+			list = list.filter((p) => p.z >= water - STEP || (p.indoor * 2 > p.count && ceil[p.rep] < water));
 			list.sort((p, q) => q.size - p.size || q.count - p.count || q.z - p.z || p.root - q.root);
 			const [bottom, ...rest] = list;
 			rest.sort((p, q) => p.z - q.z || q.count - p.count || p.root - q.root);

@@ -39,6 +39,7 @@ is installed. The contract the tools write to is in
 | `new` | Starts a pack (the source of a community addon) in a new folder from `tools/templates/pack` |
 | `lint` | Checks a pack's `.guide` files without writing anything |
 | `compile` | Compiles a pack into its addon folder (ours into `addon/Polestar_Guides`) |
+| `export` | Prints one community guide as an import string (lints its pack first) |
 | `dev` | Rebuilds a pack into the game, and optionally the playground, on every save |
 | `playtest` | Plays a pack's guides to the end for every class they branch on |
 | `find` | Looks up quests, NPCs, objects, items, inns, flight points and guides, printed as guide lines |
@@ -112,7 +113,7 @@ The release steps are in [docs/RELEASING.md](../docs/RELEASING.md).
 | `planner/` | The route planner: server, workspace (packs, sources, edits, undo, lint), the command registry shared by HTTP, MCP and WebMCP, the MCP bridge, the walk routes on the navigation grid (`navpool.js`: worker pool, route cache, Walkable tiles) and the page in `planner/public` (WebGL2 map in `public/map`) |
 | `readme/` | The README's art, drawn by `readme`: `brand.js` (banners, emblem, logo, download and CurseForge buttons, CurseForge avatar) with the wordmark outlines of `outline.js`, `charts.js` (route charts) and `png.js` (the listing's PNG copies, through `rsvg-convert`) |
 | `templates/pack/` | What `new` copies into a new pack |
-| `discord-bot/` | The bug bot, a service rather than a command: files the Discord #bugs forum's posts as GitHub issues and tells the threads when they are fixed or shipped; setup in [discord-bot/README.md](discord-bot/README.md) |
+| `discord-bot/` | The bug bot, a service rather than a command: files the Discord #bugs forum's posts as GitHub issues and tells the threads when a fix opens, and when they are fixed or shipped; lists each issue's pull requests on the issue (`links.js`); setup in [discord-bot/README.md](discord-bot/README.md) |
 
 ### tools/lib
 
@@ -168,7 +169,7 @@ file's language written by `header()` in `lib/generated.js`:
 | `data/forever/trainers.json` | `trainers build` | `train` goals under `guides/`, `data/recordings`, the curated list, `npcs.json` | local | none |
 | `addon/Polestar/Core/ClassTrainers.lua` | `trainers build` | the same, and `data/forever/spawnz.json` for each trainer's height | yes | rerun |
 | `addon/Polestar/Talents/Builds.lua` | `talents build` | `talents/forever/*.json`, Forever trait tables from wago.tools (build pinned in `tools/commands/talents.js`) | yes | `talents check`; `tests/talents-build.test.js` runs it when the tables are cached |
-| `data/forever/travel.json` | `travel build` | client tables (Era and Forever), the newest cached Forever AreaTable (`data/sources/wago/`, the inns' areas), CMaNGOS classic-db (`data/sources/cmangos/`), `data/forever` map-frames, zones, npcs, objects, `data/recordings` | local | none |
+| `data/forever/travel.json` | `travel build` | client tables (Era and Forever), the newest cached Forever AreaTable (`data/sources/wago/`, the inns' areas), CMaNGOS classic-db (`data/sources/cmangos/`), `data/forever` map-frames, zones, npcs, objects, spawnz (the dock NPCs' heights), `data/recordings`, the navigation grid (`data/local/nav4`: the ends' board points and heights) | local | none |
 | `addon/Polestar/Nav/TravelData.lua` | `travel build` | the same | yes | rerun; `tests/travel-build.test.js` loads the committed file; `tests/nav-transit.test.js` builds and loads the timetables |
 | `addon/Polestar/Maps/FlightPaths.lua` | `travel build` | client TaxiPathNode | yes | rerun; `tests/nav-route-lines.test.js` loads the committed file |
 | `addon/Polestar_Travel/` | `travel build` | the local crossings file `data/local/crossings.json` | local | `tests/travel-crossings.test.js` validates the crossings file |

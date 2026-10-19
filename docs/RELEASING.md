@@ -198,8 +198,8 @@ version throughout.
     refresh the project description: the steps and settings are in
     [docs/curseforge/README.md](curseforge/README.md).
 
-11. Cut the next patch's branch from the new tag and push it, so guide
-    fixes for this release have a base:
+11. Cut the next patch's branch from the new tag and push it, so backported
+    guide fixes for this release have a base:
 
     ```sh
     git switch -c hotfix/0.2.1 v0.2.0 && git push -u origin hotfix/0.2.1 && git switch next
@@ -209,9 +209,12 @@ version throughout.
 
 A patch ships guide fixes on top of the latest release without the full
 data build. Its branch, `hotfix/<version>`, is cut from the release's tag
-(step 11 above), and guide fix pull requests are merged into it; the
-`Base branch` check refuses a pull request there that changes anything a
-patch may not carry. The example is `0.2.5` after `0.2.4`.
+(step 11 above). Contributors never open pull requests there: every fix
+goes to `next`, and the ones the patch should carry arrive as backport
+pull requests (below). The `Base branch` check refuses a pull request into
+a `hotfix/` branch from anyone but the backport workflow and the
+maintainers, and one that changes anything a patch may not carry. The
+example is `0.2.5` after `0.2.4`.
 
 The patch is built with the release's own tools, which the branch has, and
 run by `release patch` from a `next` checkout, which has the reference data
@@ -270,10 +273,11 @@ and the release tooling. Work in a worktree of the branch:
    `main` is a fast-forward: the branch was cut from the release `main`
    holds.
 
-4. Close the issues the patch fixes, as completed, before publishing: their
-   pull requests went to the `hotfix/` branch, so GitHub did not close
-   them, and the release workflow tells the Discord threads of issues
-   closed by the time the release is published.
+4. Check that the issues the patch fixes are closed before publishing:
+   their fixes merged into `next` with "closes #N", so GitHub closed them
+   then. Close any that are still open, as completed; the release workflow
+   tells the Discord threads of issues closed by the time the release is
+   published.
 
 5. Steps 8 to 10 above, with `release notes 0.2.5 --root .`: the notes, the
    GitHub release, CurseForge.
@@ -297,13 +301,14 @@ and the release tooling. Work in a worktree of the branch:
 
 ## Fixes merged into `next` that a patch should carry
 
-A guide fix merged into `next` that belongs in the coming patch gets the
-`backport` label, before or after the merge. `.github/workflows/backport.yml`
-then opens a pull request cherry-picking it onto the one open `hotfix/`
-branch (it comments instead when there is none, or several). That pull
-request goes through the same review and `Base branch` check as any other;
-close and reopen it to start its checks. A fix that needs anything `next`
-has and the release lacks is not a patch fix: leave the label off.
+This is how a patch gets its fixes. Contributors open every guide fix
+against `next`; one that belongs in the coming patch gets the `backport`
+label, before or after the merge. `.github/workflows/backport.yml` then
+opens a pull request cherry-picking it onto the one open `hotfix/` branch
+(it comments instead when there is none, or several). That pull request
+goes through the same review and `Base branch` check as any other; close
+and reopen it to start its checks. A fix that needs anything `next` has
+and the release lacks is not a patch fix: leave the label off.
 
 ## Branch rules
 

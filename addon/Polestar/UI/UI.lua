@@ -18,7 +18,9 @@ local format, type = string.format, type
 ns.RegisterDefaults("ui", {
 	shown = true,
 	locked = false,
+	lockHud = false, -- the arrow, the action buttons and the timers move only on a Shift-drag (ns.DragLocked)
 	growUp = false, -- pin the guide window by its bottom edge, so it grows upward
+	barsBottom = false, -- with growUp: tabs and navigator at the bottom, by the pinned edge
 	compact = false,
 	style = "standard", -- "standard" | "transparent"
 	scale = 1,
@@ -30,6 +32,7 @@ ns.RegisterDefaults("ui", {
 	showNotes = true,
 	notesOpen = true, -- a step's tip starts in full; off, it starts on one line (players asked for it open)
 	combat = "show", -- "show" | "fade" | "hide"; steady by default, a fade on every pull distracts
+	instance = "show", -- "show" | "hide": in dungeons and raids, until the player opens it there
 	reduceMotion = false,
 	skin = "polestar", -- "polestar" (the house style, the default) | "halo" | "hearth" | "forever" | "blizzard" | "classic" (Polestar.Theme, "Skins")
 	font = "skin", -- "skin" (the skin's: the game's own font, Fira Sans in Halo) | "game" | "inter" | "fira" (EllesmereUI's while matchFont is on)
@@ -352,6 +355,15 @@ function UI.GroupLine(goal)
 	return text and ("|c" .. Theme.Hex("dungeon") .. text .. "|r") or nil
 end
 
+-- An escort quest (the goal's compiled `escort`): its NPC walks off with
+-- whoever took it last and is gone until it respawns, so a player who finds
+-- the spot empty knows to wait. In the dungeon colour, as the group line.
+-- Nil once the goal is done or skipped.
+function UI.EscortLine(goal)
+	if goal.escort ~= true or goal.status == "done" or goal.status == "skipped" then return nil end
+	return "|c" .. Theme.Hex("dungeon") .. L["Escort: if the NPC is not there, wait for it to respawn"] .. "|r"
+end
+
 -- How to get the item a quest starts from, on the quest's one line (the
 -- goal's `starter`): "Runed Scroll: kill Aean Swiftriver (rare elite)", then
 -- "Runed Scroll: in your bags, right-click it". An item lying there as an
@@ -385,27 +397,31 @@ function UI.ReadingGoal(view, goal)
 	return setmetatable({
 		t = a.t, text = a.text, verb = a.verb, subject = a.subject, subjectKind = a.subjectKind,
 		quest = a.quest, note = a.note or false, optional = a.optional, progress = false, source = false, party = a.party,
+		escort = a.escort or false,
 		keptGreyText = a.keptGreyText,
 	}, { __index = goal })
 end
 
 -- The one line under a goal in the reading flow, only when it changes what
 -- the player does: why a quest is unavailable, that the goal needs a group,
--- how to get the item a quest starts from, which later quest a grey accept
--- "Skip grey quests" keeps opens, whom an item is got from, that an
--- area objective's mobs are all over its area, which mobs a farm spot is,
--- where a chosen trainer/vendor is, the open objectives of a quest to
+-- that it is an escort, how to get the item a quest starts from, which later
+-- quest a grey accept "Skip grey quests" keeps opens, whom an item is got
+-- from, that an area objective's mobs are all over its area, which mobs a
+-- farm spot is, where a chosen trainer/vendor is, the open objectives of a quest to
 -- complete that has several, the goal's own note, and an open turn-in's
 -- rewards. The rest of the detail ("for Kobold Camp Cleanup")
 -- lives in the tooltip.
 -- `shownMap`: a zone the window already names above (the person's), not repeated.
 -- `noParty`: the group line already shows on a goal above (said once per card).
 -- `noMissing`: so do the party members who lack this goal's quest.
-function UI.GoalSubline(goal, shownMap, noParty, noMissing)
+-- `noEscort`: the escort line already shows on a goal above (once per card).
+function UI.GoalSubline(goal, shownMap, noParty, noMissing, noEscort)
 	if goal.unavailable then return UI.GoalDetail(goal) end
 	local parts = {}
 	local party = not noParty and UI.GroupLine(goal)
 	if party then parts[#parts + 1] = party end
+	local escort = not noEscort and UI.EscortLine(goal)
+	if escort then parts[#parts + 1] = escort end
 	local starter = UI.StarterLine(goal)
 	if starter then parts[#parts + 1] = starter end
 	-- A grey accept "Skip grey quests" keeps, and the quest it opens.
@@ -543,7 +559,11 @@ end
 -- Routing
 ---------------------------------------------------------------------------
 
-ns.On("TOGGLE_FRAME", function() ns.Set("ui.shown", not ns.Get("ui.shown")) end)
+ns.On("TOGGLE_FRAME", function()
+	local GF = UI.GuideFrame
+	if GF and GF.ToggleInside and GF.ToggleInside() then return end
+	ns.Set("ui.shown", not ns.Get("ui.shown"))
+end)
 ns.On("SHOW_FRAME", function() ns.Set("ui.shown", true) end)
 ns.On("HIDE_FRAME", function() ns.Set("ui.shown", false) end)
 ns.On("SHOW_PICKER", function() if UI.ShowPicker then UI.ShowPicker() end end)
