@@ -20,6 +20,7 @@ const { checkLocation } = require('./places');
 const { blockingPrereqs } = require('../data/prereqs');
 const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf, isElite, isRare, hostileTo } = require('./group');
+const { escortOf } = require('./escort');
 const { goalHeight, spotHeight } = require('./heights');
 const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
 const { areaNamed } = require('../data/areas');
@@ -1538,6 +1539,8 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	}
 	// Group content (group.js): the author's `group [N]`, else derived.
 	setIf(goal, 'group', groupOf(goal, g.group, ctx.sides, data));
+	// An escort quest's accept and objectives (escort.js).
+	setIf(goal, 'escort', escortOf(goal, data));
 	setIf(goal, 'only', onlyOf(g.only));
 	setIf(goal, 'note', g.note);
 	// The height of the NPC or object the goal's point stands for, and of each
