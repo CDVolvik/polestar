@@ -1556,6 +1556,33 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
 
+// --- Battleworn Axe (Tazul | Robin, #340): the axes were collected east of
+// Alther's Mill, about ten normal Blackrock spawns that Tazul found too few
+// and too slow to respawn. The camps at the south end of Galardell Valley,
+// east of Stonewatch Keep, hold some forty, with no elite among them. The
+// arrow leads there, on the way down from the gnolls, not to the mill.
+test(`${REDRIDGE}: Tazul's report (#340): the Battleworn Axes lead to the Blackrock camps east of Stonewatch Keep, not to Alther's Mill`, { skip }, () => {
+	data = data || loadData(DATA);
+	const { point } = makeProjector(data.mapFrames);
+	const list = goals(REDRIDGE);
+	const axes = at(list, 'Battleworn Axe', (g) => g.t === 'collect' && g.item === 3014);
+	const { goal } = list[axes];
+	assert.ok(at(list, 'Shadowhide Pendant', (g) => g.t === 'collect' && g.item === 1075) < axes, 'after the Galardell gnolls');
+	const here = point(goal.map, goal.x, goal.y, goal.f || 'l');
+	const near = { normal: 0, elite: 0 };
+	for (const id of Object.keys(data.item(3014).drops.npc)) {
+		const npc = data.npc(Number(id));
+		for (const s of data.spawns('npc', Number(id)).filter((sp) => sp.map === goal.map)) {
+			for (const p of s.pts) {
+				const q = point(s.map, p[0], p[1], s.f);
+				if (Math.hypot(q.wx - here.wx, q.wy - here.wy) < 150) near[npc && npc.rank ? 'elite' : 'normal']++;
+			}
+		}
+	}
+	assert.equal(near.elite, 0, 'no elite axe carrier within 150 yd of the arrow');
+	assert.ok(near.normal >= 20, `at least 20 normal axe carriers within 150 yd (${near.normal})`);
+});
+
 // --- Encroachment (tor, #351): a level 10 quest whose Razormane go up to
 // level 9 was taken at Razor Hill at about 6 and done at 7, before the level
 // 7-8 quests of Tiragarde Keep and the Sen'jin loop.
