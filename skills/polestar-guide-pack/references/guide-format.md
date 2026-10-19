@@ -77,7 +77,7 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `train class` / `train <npc>` / `train <Profession> [Rank]` | Visit a trainer: the nearest of the player's class, that one, or the nearest of a profession | `npc` |
 | `buy <item> ["Name"]` | Buy an item; `nearest` picks the closest vendor selling it | `npc`, `xN`, `nearest` |
 | `vendor nearest` / `vendor <npc>` | Sell and repair | `npc` |
-| `level <N>` | Reach level N, grinding if need be; `level 12.5` is halfway through 12, `level 12+2500` 2500 XP into it (whole percent; the pack then needs Polestar 0.3.0) | no place modifiers |
+| `level <N>` | Reach level N, grinding if need be; `level 12.5` is halfway through 12, `level 12+2500` 2500 XP into it (whole percent; the pack then needs Polestar 0.2.6) | no place modifiers |
 | `note <text>` | A line of information; never holds the step. With `only`, quote the text | no `"text"`, no `group` |
 | `skill <Profession> <N>` | Reach skill N (`"First Aid"` quoted) | |
 | `learn <spell> ["Name"]` | Learn a recipe or spell | `npc`, `item`, `nearest` |

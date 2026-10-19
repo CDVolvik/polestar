@@ -46,7 +46,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `when <predicate>` | Inside a step: the step is only for characters in that state when the route gets there (see Conditions checked during play) | `when level<6` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
-| `level <N>.<fraction>` / `level <N>+<XP>` | Reach a point inside level N: 12.5 is halfway through 12, 12+2500 is 2500 XP into it (to whole percent; needs Polestar 0.3.0) | `level 12.5` |
+| `level <N>.<fraction>` / `level <N>+<XP>` | Reach a point inside level N: 12.5 is halfway through 12, 12+2500 is 2500 XP into it (to whole percent; needs Polestar 0.2.6) | `level 12.5` |
 | `# <text>` | A note for you and other authors; players never see it | `# check the patrol route` |
 | `<goal> -- <text>` | Shows the text under that goal | `accept 783 -- He stands at the abbey gate` |
 

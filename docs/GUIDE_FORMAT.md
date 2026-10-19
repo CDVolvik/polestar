@@ -265,7 +265,7 @@ ID"), and Polestar compares the game's own name for it, then the name you
 wrote.
 
 A pack with a `when` anywhere, or a `level` goal inside a level
-(`level 12.5`), is written in pack format 4, which Polestar 0.3.0 and later
+(`level 12.5`), is written in pack format 4, which Polestar 0.2.6 and later
 read (docs/PACK_FORMAT.md); a pack without stays readable by older versions.
 
 ## What the compiler fills in
