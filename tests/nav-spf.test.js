@@ -166,6 +166,117 @@ test('the arrow follows the path\'s points, with the yards left along it', () =>
 	assert.equal(out.calls, 1, 'walking along the path asks nothing more');
 });
 
+// The look-ahead (Walk.lua's AHEAD 30, PAD 10): the arrow aims up to 30 yd
+// along the path while every path point on the way stays within 10 yd of the
+// line to it. LOOK samples the arrow from (x, y): its offset to the aim point
+// (dx, dy), the yards shown and Walk.Left for the target (tx, ty).
+const LOOK = `
+local function look(x, y, tx, ty)
+	nav.place(x, y)
+	local state, dist, _, dn, dw = N.Sample()
+	local c = N.GetTargetWorld()
+	return { state = state, dx = dn, dy = dw, dist = dist, left = N.walk.Left(c, tx, ty) }
+end
+-- Answer the last search with points { x, y[, z] }, ...
+local function answerZ(pts)
+	local job, out = fake.last(), {}
+	for i, p in ipairs(pts) do out[i] = { map = job.map, x = p[1], y = p[2], z = p[3] } end
+	job.callback(out, 100, job)
+end
+`;
+
+// Degrees between the aim (dx, dy) and straight down -y.
+const offStraight = (s) => Math.abs(Math.atan2(s.dx, -s.dy)) * 180 / Math.PI;
+
+test('a wiggly road (points 3 yd either side of the line every 4 yd) keeps the arrow straight; the yards shown are the path\'s', () => {
+	const [out] = run(`${LOOK}
+		local pts = { { 0, 0 } }
+		for i = 1, 100 do pts[#pts + 1] = { (i % 2 == 1) and 3 or -3, -4 * i } end
+		pts[#pts + 1] = { 0, -404 }
+		nav.place(0, 0)
+		target(0, -404)
+		N.Sample()
+		answerZ(pts)
+		local r = {}
+		for y = 0, -300, -1 do r[#r + 1] = look(0, y, 0, -404) end
+		emit({ samples = r, pts = pts })`);
+	const pts = out.pts.map(([x, y]) => ({ x, y }));
+	const d = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+	let worst = 0;
+	for (const [k, s] of out.samples.entries()) {
+		const p = { x: 0, y: -k };
+		worst = Math.max(worst, offStraight(s));
+		// Walk.Left as before the look-ahead: to the next point (the first one
+		// ahead more than 5 yd away), then along the path from it.
+		let i = pts.findIndex((q) => q.y < p.y);
+		while (d(pts[i], p) <= 5) i++;
+		let want = d(pts[i], p);
+		for (let j = i; j < pts.length - 1; j++) want += d(pts[j], pts[j + 1]);
+		assert.equal(s.state, 'travel');
+		assert.ok(Math.abs(s.left - want) < 1e-6, `Walk.Left at y ${p.y}: ${s.left} against ${want}`);
+		assert.ok(Math.abs(s.dist - want) < 1e-6, 'the yards shown are Walk.Left');
+	}
+	assert.ok(worst <= 3, `the arrow stays within 3 degrees of straight (worst ${worst.toFixed(1)})`);
+});
+
+test('a real 90 degree corner still turns the arrow: gradually from within 30 yd, fully at the corner', () => {
+	const [out] = run(`${LOOK}
+		local pts = {}
+		for i = 0, 25 do pts[#pts + 1] = { 0, -4 * i } end      -- south to (0, -100)
+		for i = 1, 25 do pts[#pts + 1] = { 4 * i, -100 } end     -- then east to (100, -100)
+		nav.place(0, 0)
+		target(100, -100)
+		N.Sample()
+		answerZ(pts)
+		emit({ far = look(0, -40, 100, -100), near = look(0, -85, 100, -100), at = look(0, -97, 100, -100) })`);
+	assert.ok(offStraight(out.far) < 1, `60 yd before the corner: straight on (${offStraight(out.far).toFixed(1)})`);
+	const near = offStraight(out.near);
+	assert.ok(near > 10 && near < 45, `15 yd before it: turning toward it (${near.toFixed(1)})`);
+	assert.ok(out.near.dy < -5, 'still ahead along the road, not across the corner');
+	const at = offStraight(out.at);
+	assert.ok(at > 70, `at the corner: along the new road (${at.toFixed(1)})`);
+});
+
+test('the look-ahead never aims onto another floor (path heights) or past a split walk\'s chokepoint', () => {
+	const [floors] = run(`${LOOK}
+		local pts = {}
+		for i = 0, 50 do pts[#pts + 1] = { 0, -4 * i, i <= 5 and 0 or 20 } end -- past y -20, a floor 20 yd up
+		nav.place(0, 0)
+		target(0, -200)
+		N.Sample()
+		answerZ(pts)
+		local flat = look(0, 0, 0, -200)
+		-- The same straight road on one floor looks the whole 30 yd ahead.
+		target(0, -201)
+		N.Sample()
+		for _, p in ipairs(pts) do p[3] = 0 end
+		pts[#pts + 1] = { 0, -201, 0 }
+		answerZ(pts)
+		emit({ floor = flat, open = look(0, 0, 0, -201) })`);
+	assert.ok(floors.floor.dy >= -20, `stops at the last point on the player's floor (aim ${floors.floor.dy} yd)`);
+	assert.ok(floors.open.dy < -20, `one floor: further ahead (aim ${floors.open.dy} yd)`);
+
+	const [split] = run(`${LOOK}
+		nav.useTravelWorld()
+		${CHOKES}
+		local pts = {}
+		for i = 0, 150 do pts[#pts + 1] = { 0, -4 * i } end
+		nav.place(0, 0)
+		target(0, -600)
+		N.Sample()
+		answerZ(pts)
+		local legs, ci = N.GetRoute()
+		-- Walk down the road to 11 yd short of the bridge (its piece ends within 10), the arrow sampling each yard.
+		local furthest = 0
+		for y = 0, -139, -1 do
+			local s = look(0, y, 0, -600)
+			if y + s.dy < furthest then furthest = y + s.dy end
+		end
+		emit({ leg = legs[ci].choke and legs[ci].choke.kind, furthest = furthest })`);
+	assert.equal(split.leg, 'bridge', 'the first piece ends at the bridge (y -150)');
+	assert.ok(split.furthest >= -148, `the aim never passes the path point before the bridge (y -148; furthest ${split.furthest})`);
+});
+
 test('straying more than 25 yards from the path asks again, at most every 2 seconds, keeping the old path meanwhile', () => {
 	const [out] = run(`
 		local r = {}
