@@ -187,8 +187,14 @@ local BUILTIN = {
 		{ kind = "dropdown", key = "ui.combat", label = L["In combat"], help = L["What the window does while you fight."],
 			choices = { { value = "show", label = L["Keep visible"] }, { value = "fade", label = L["Fade out"] }, { value = "hide", label = L["Hide"] } } },
 	} },
+	{ page = GUIDE, tab = L["Window"], section = L["Dungeons"], controls = {
+		{ kind = "dropdown", key = "ui.instance", label = L["In dungeons"], help = L["What the window does in dungeons and raids. /polestar or the key binding opens it there until you leave."],
+			choices = { { value = "show", label = L["Keep visible"] }, { value = "hide", label = L["Hide"] } } },
+	} },
 	{ page = GUIDE, tab = L["Window"], section = L["Position"], controls = {
 		{ kind = "toggle", key = "ui.locked", label = L["Lock window"], help = L["Prevents moving and resizing."] },
+		{ kind = "toggle", key = "ui.lockHud", label = L["Lock arrow and buttons"],
+			help = L["Stops stray drags on the arrow, the action buttons and the flight and instance timers. Shift-drag still moves them."] },
 		{ kind = "toggle", key = "ui.growUp", label = L["Grow upward"], help = L["Keep the bottom edge in place, so longer steps extend the window up."] },
 		{ kind = "toggle", key = "ui.barsBottom", label = L["Bar at the bottom"], help = L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."],
 			disabled = function() return not ns.Get("ui.growUp") end },

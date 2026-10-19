@@ -47,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "Фиолетовые осколки светятся у дороги, недалеко к западу от места {area:321}.",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "Крепость орков в восточном конце дороги. Урда, распорядитель полетов, стоит у ворот.",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "Крепость орков в восточном конце дороги. {npc:2851}, распорядитель полетов, стоит у ворот.",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "Ящеры нагорья",

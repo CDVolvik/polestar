@@ -79,6 +79,7 @@ function createGitHub({ token, repo, api = API, fetch: fetchImpl = fetch }) {
 		updateIssue: (n, fields) => request('PATCH', `${r}/issues/${n}`, fields),
 		comment: (n, body) => request('POST', `${r}/issues/${n}/comments`, { body }),
 		comments: (n) => list(`${r}/issues/${n}/comments`),
+		editComment: (id, body) => request('PATCH', `${r}/issues/comments/${id}`, { body }),
 		addLabels: (n, labels) => request('POST', `${r}/issues/${n}/labels`, { labels }),
 		// Gone already is fine (404).
 		removeLabel: (n, name) => request('DELETE', `${r}/issues/${n}/labels/${encodeURIComponent(name)}`).catch((err) => {
@@ -88,6 +89,8 @@ function createGitHub({ token, repo, api = API, fetch: fetchImpl = fetch }) {
 		// An issue's timeline: its events, closes and cross-references included.
 		timeline: (n) => list(`${r}/issues/${n}/timeline`, 1000),
 		pull: (n) => request('GET', `${r}/pulls/${n}`),
+		// Open pull requests, oldest first.
+		openPulls: () => list(`${r}/pulls?state=open&sort=created&direction=asc`, 1000),
 		// Whether a ref (a tag) holds a commit: the commit is behind the ref or
 		// is it. A commit the repository does not have is in no ref.
 		contains: async (ref, sha) => {

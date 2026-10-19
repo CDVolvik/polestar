@@ -355,6 +355,39 @@ test('skipping a crossing\'s near end walks on; later plans near the crossing wa
 	assert.deepEqual(out.other, [600, 300]);
 });
 
+// #347: the player is in Thunder Bluff beside its flight master, with the
+// flight to Camp Taurajo known. A taxi node assigned to Mulgore sends them
+// through a city exit before walking back to the same flight master.
+test('Thunder Bluff to Camp Taurajo walks to the nearby flight master without leaving the city (#347)', () => {
+	const [legs] = runAddon({
+		stubs: ['stub_nav.lua'],
+		addons: [NAV],
+		login: true,
+		script: `
+			-- The report's map positions, converted through the shipped frames.
+			local legs = Polestar.Nav.PlanRoute({
+				c = 1, map = 1456,
+				wx = -850 + (-1545.833 + 850) * 0.5434,
+				wy = 516.667 + (-527.083 - 516.667) * 0.4384,
+				target = {
+					c = 1, map = 1413, label = "Accept Betrayal from Within",
+					wx = 1612.5 + (-5143.75 - 1612.5) * 0.5926,
+					wy = 2622.917 + (-7510.417 - 2622.917) * 0.4455,
+				},
+				faction = 2, known = { [22] = true, [77] = true },
+			})
+			emit(legs)`,
+	}).emitted;
+	assert.deepEqual(legs.map((l) => [l.kind, l.label]), [
+		['walk', 'Walk to the flight master'],
+		['fly', 'Fly to Camp Taurajo'],
+		['walk', 'Accept Betrayal from Within'],
+	]);
+	assert.equal(legs[0].to.id, 22);
+	assert.equal(legs[0].to.map, 1456, 'the flight master belongs to Thunder Bluff');
+	assert.ok(legs[0].seconds < 10, 'the nearby flight master does not require a lift detour');
+});
+
 // #237: on the Gold Road north out of the Barrens the real crossing's two ends
 // (Nav/TravelData.lua, carbonite-ashenvale--the-barrens) are about 510 yd
 // apart. Past the Barrens end, a plan made again before the client says
