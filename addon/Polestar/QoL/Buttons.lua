@@ -455,15 +455,16 @@ function Buttons.TargetNames(view, raw)
 	return names
 end
 
--- The macro for names, tried from names[preferred] on in click order. A plain
--- /targetexact takes the nearest match, corpse or not, so each line is
--- followed by "/cleartarget [dead]", and every later name is tried only while
--- nothing is targeted ("[noexists]"): the first living match is kept. With
--- later names to try, the first clear also drops a friendly target (the quest
--- giver just turned in to), which would otherwise stop the later names. A
--- single name, like the step key's NPC, keeps the target when nothing
--- matches. A name that is not MacroSafeName never becomes a line; names past
--- MACRO_LIMIT are dropped from the end.
+-- The macro for names, tried from names[preferred] on in click order. Out of
+-- combat it starts from nothing ("/cleartarget [nocombat]"), so a target that
+-- is none of the names -- a mob clicked by hand, the quest giver just turned
+-- in to -- cannot stop the chain; in a fight the target is left alone, since
+-- clearing it would cut melee swings and Auto Shot. A plain /targetexact
+-- takes the nearest match, corpse or not, so each line is followed by
+-- "/cleartarget [dead]", and every later name is tried only while nothing is
+-- targeted ("[noexists]"): the first living match is kept. A name that is not
+-- MacroSafeName never becomes a line; names past MACRO_LIMIT are dropped from
+-- the end.
 function Buttons.TargetMacro(list, preferred)
 	local n = #list
 	if n == 0 then return nil end
@@ -476,15 +477,10 @@ function Buttons.TargetMacro(list, preferred)
 	if count == 0 then return nil end
 	local text
 	repeat
-		local lines = {}
+		local lines = { "/cleartarget [nocombat]" }
 		for k = 1, count do
-			if k == 1 then
-				lines[1] = "/targetexact " .. order[1]
-				lines[2] = count > 1 and "/cleartarget [dead][noharm]" or "/cleartarget [dead]"
-			else
-				lines[#lines + 1] = "/targetexact [noexists] " .. order[k]
-				lines[#lines + 1] = "/cleartarget [dead]"
-			end
+			lines[#lines + 1] = (k == 1 and "/targetexact " or "/targetexact [noexists] ") .. order[k]
+			lines[#lines + 1] = "/cleartarget [dead]"
 		end
 		text = concat(lines, "\n")
 		count = count - 1
