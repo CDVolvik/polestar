@@ -200,6 +200,33 @@ local ICON_LIFT = 5 -- frame levels above the frame the icon sits on
 local COUNT_GAP = 2 -- px between the progress and the icon
 local isIcon = setmetatable({}, { __mode = "k" })
 
+-- Walk `frame` and its children to depth `d`, looking for a visible FontString
+-- (other than our own icon frames) whose text matches an "N/M" objective count.
+-- Returns true if one is found. Used to suppress our count when another addon
+-- (e.g. EllesmereUINameplates classText) is already showing it.
+local function hasExternalCount(frame, d)
+	if not frame or d == 0 then return false end
+	local ok, found = pcall(function()
+		local regions = { frame:GetRegions() }
+		for _, r in ipairs(regions) do
+			if not isIcon[r] and type(r.IsObjectType) == "function"
+					and r:IsObjectType("FontString") and r:IsShown() then
+				local t = r:GetText()
+				if type(t) == "string" and t:match("^%s*%d+/%d+") then return true end
+			end
+		end
+		return false
+	end)
+	if ok and found then return true end
+	local ok2, kids = pcall(function() return { frame:GetChildren() } end)
+	if ok2 then
+		for _, child in ipairs(kids) do
+			if not isIcon[child] and hasExternalCount(child, d - 1) then return true end
+		end
+	end
+	return false
+end
+
 -- Shown and readable: forbidden frames (protected plates) are skipped.
 local function shown(f)
 	if type(f) ~= "table" or type(f.IsShown) ~= "function" then return false end
@@ -313,6 +340,7 @@ local function place(f, plate, unit)
 		f:SetFrameLevel(ref:GetFrameLevel() + ICON_LIFT)
 	end)
 	f._hasBar = bar ~= nil
+	f._countChecked = nil
 	if ok or owner == plate then return ok, ok and replaced end
 	ok = pcall(function()
 		f:SetParent(plate)
@@ -321,6 +349,7 @@ local function place(f, plate, unit)
 		f:SetPoint("BOTTOM", plate, "TOP", 0, -2)
 	end)
 	f._hasBar = false
+	f._countChecked = nil
 	return ok, false
 end
 
@@ -397,20 +426,12 @@ local function updatePlate(unit)
 		or "Interface\\TargetingFrame\\UI-RaidTargetingIcon_8"
 	f.tex:SetTexture(skullTex)
 	f.tex:SetVertexColor(1, 1, 1, 1)
-	-- Show our count left of the bar. Skip it when the nameplate name already
-	-- starts with "N/M" (the WoW Forever client's built-in objective count),
-	-- and in the no-bar fallback where the icon sits near the name.
-	local clientHasCount = false
-	if f._hasBar then
-		local plate = plateFor(unit)
-		local uf = plate and type(plate.UnitFrame) == "table" and plate.UnitFrame
-		local nameFs = uf and type(uf.name) == "table" and uf.name
-		if nameFs and type(nameFs.GetText) == "function" then
-			local ok, t = pcall(nameFs.GetText, nameFs)
-			if ok then clientHasCount = type(t) == "string" and t:match("^%d+/%d+") ~= nil end
-		end
-	end
-	local text = f._hasBar and not clientHasCount and countText(npc) or nil
+	-- Show our count left of the bar only when no other addon is already showing
+	-- an "N/M" FontString on the plate (e.g. EllesmereUINameplates classText).
+	-- Walk plate + children to depth 3; skip our own frames via isIcon.
+	-- Also skip when icon is in the no-bar fallback (sits near the name).
+	local plate = f._hasBar and plateFor(unit) or nil
+	local text = plate and not hasExternalCount(plate, 3) and countText(npc) or nil
 	if text then
 		local tc = Q.Color("text")
 		f.count:SetTextColor(tc.r, tc.g, tc.b, tc.a or 1)
@@ -419,6 +440,14 @@ local function updatePlate(unit)
 	else
 		f.count:SetText("")
 		f.count:Hide()
+	end
+	-- EllesmereUI (and others) may build their count FontString after this handler.
+	-- Re-run once on the next frame so the walk sees it.
+	if not f._countChecked and C_Timer and C_Timer.After then
+		f._countChecked = true
+		C_Timer.After(0, function()
+			if icons[unit] == f then updatePlate(unit) end
+		end)
 	end
 	f:Show()
 end
