@@ -86,7 +86,7 @@
 				<label class="label" for="step-pick">Step</label>
 				<div class="row"><button type="button" id="step-prev" aria-label="Previous step">&lsaquo;</button><select id="step-pick"></select><button type="button" id="step-next" aria-label="Next step">&rsaquo;</button></div>
 				<label class="label" for="guide-pick">Load guide</label>
-				<div class="row"><select id="guide-pick"></select><button type="button" id="guide-load">Load</button></div>
+				<div class="row"><select id="guide-pick"></select><button type="button" id="guide-load">Load</button><button type="button" id="guide-export" title="The import string of the guide picked: a line a player pastes on the Import page (/polestar import). Community packs only.">Copy import string</button></div>
 			</div>
 			<ul id="goals" class="goals"></ul>
 			<div class="actions">
@@ -174,8 +174,8 @@
 
 <dialog id="copy-dialog">
 	<form method="dialog">
-		<h2>Changed settings</h2>
-		<p>Paste the /run lines into chat in game, or set the values in PolestarDB.</p>
+		<h2 id="copy-title">Changed settings</h2>
+		<p id="copy-lede">Paste the /run lines into chat in game, or set the values in PolestarDB.</p>
 		<textarea id="copy-text" rows="14" readonly></textarea>
 		<menu><button value="close" class="primary">Done</button></menu>
 	</form>

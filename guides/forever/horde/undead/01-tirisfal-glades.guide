@@ -259,7 +259,7 @@ step Brill
   accept 99134
   accept 99141
   accept 404                          -- Deathguard Dillinger
-  collect 286200 quest 99141.1 @58.2,51.5 -- Ask Deathguard Dillinger for his report
+  collect 286200 quest 99141.1 npc 1496 @58.2,51.5 -- Ask Deathguard Dillinger for his report
   accept 86784                        -- Deathguard Bartholomew
   train class                         -- The Brill trainers are in and around the inn
 
@@ -295,7 +295,7 @@ step Fields west of Brill
   collect 2858 quest 367.1
 
 step Gordo
-  collect 286202 quest 99141.3 @43.1,54.7 -- Ask Gordo for his report
+  collect 286202 quest 99141.3 npc 10666 @43.1,54.7 -- Ask Gordo for his report
 
 step Calvin Montague
   tip Walk on west to the Solliden Farmstead. Deathguard Simmer stands at the farm; Calvin, by the farmhouse, wants a duel: talk to him.
@@ -358,7 +358,7 @@ step Deathguard Linnea
   accept 360
   accept 356
   accept 97558                        -- Shelene Rhobart
-  collect 286201 quest 99141.2 @65.2,60.3 -- Ask Deathguard Kristof for his report
+  collect 286201 quest 99141.2 npc 251001 @65.2,60.3 -- Ask Deathguard Kristof for his report
 
 step Magistrate Sevren
   tip Back up the road to Brill.

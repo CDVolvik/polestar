@@ -17,6 +17,7 @@ const { loadData } = require('../lib/dsl/data');
 const { isDir } = require('../lib/addons');
 const { PACK_OPTIONS, PACK_USAGE, otherPack, noDataConflict, noDataCache, noReferenceData, buildPack, folderIn } = require('../lib/pack/build');
 const { commandPack } = require('../lib/pack/locate');
+const { packImporter } = require('../lib/pack/importstring');
 const { chooseDest } = require('./install');
 const { playPackRoot, untilStopped, defaultArt, playDataDir } = require('./play');
 
@@ -111,6 +112,7 @@ async function run(argv, env = process.env) {
 	const playRoot = opts.play ? playPackRoot() : null;
 	let playDir = null; // the last good build for the playground
 	let play = null;
+	let lastImporter = null; // the last good build's import strings (the playground's Copy import string)
 
 	// One rebuild: the pack is read again (pack.json may have changed, or be
 	// gone: its error is printed like any other and the last good build stays).
@@ -127,6 +129,7 @@ async function run(argv, env = process.env) {
 			return;
 		}
 		const { manifest, files } = built;
+		lastImporter = packImporter(built);
 		const summary = `${plural(built.guides.length, 'guide')}, ${plural(built.diag.warnings.length, 'warning')}`;
 		if (addons) {
 			try {
@@ -173,7 +176,7 @@ async function run(argv, env = process.env) {
 		const { startServer } = require('../play/server');
 		const art = defaultArt();
 		try {
-			play = await startServer({ port, host: '127.0.0.1', artDir: art || null, packs: playDir ? [playDir] : [], dataDir: playDataDir(), log: (m) => console.log(`[play] ${m}`) });
+			play = await startServer({ port, host: '127.0.0.1', artDir: art || null, packs: playDir ? [playDir] : [], importString: (id) => (lastImporter ? lastImporter(id) : { error: 'the pack has not built yet' }), dataDir: playDataDir(), log: (m) => console.log(`[play] ${m}`) });
 		} catch (e) {
 			console.error(`dev: the playground could not start: ${e.message}${e.code === 'EADDRINUSE' ? ` (port ${port} is taken; pass --port <n>, 0 picks a free one)` : ''}`);
 			return 1;

@@ -17,6 +17,7 @@
 
 <p align="center">
   On <a href="https://www.curseforge.com/wow/addons/polestar-guides"><b>CurseForge</b></a>, or from the Releases page. Questions, feedback and bug reports: join the <a href="https://discord.gg/vMbee6F2e9"><b>Polestar Discord</b></a>.
+  Polestar is free; if it saves you a few hours, you can <a href="https://ko-fi.com/0xfitz"><b>buy me a coffee</b></a>.
 </p>
 
 <p align="center">
@@ -26,6 +27,7 @@
   <a href="https://github.com/fitzforge/polestar/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/fitzforge/polestar/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://discord.gg/vMbee6F2e9"><img alt="Discord: join the Polestar community" src="https://img.shields.io/badge/Discord-join_us-5865f2?style=flat-square&logo=discord&logoColor=white&labelColor=232a3f"></a>
   <a href="https://www.curseforge.com/wow/addons/polestar-guides"><img alt="CurseForge: Polestar Guides" src="https://img.shields.io/badge/CurseForge-Polestar_Guides-f16436?style=flat-square&logo=curseforge&logoColor=white&labelColor=232a3f"></a>
+  <a href="https://ko-fi.com/0xfitz"><img alt="Ko-fi: buy me a coffee" src="https://img.shields.io/badge/Ko--fi-buy_me_a_coffee-ff5e5b?style=flat-square&logo=kofi&logoColor=white&labelColor=232a3f"></a>
 </p>
 
 <p align="center">
@@ -211,6 +213,12 @@ map. Renders of every window and state, drawn without the game, are in
   kills, loot, places reached, trainers visited, skills and reputation. Your
   place in a guide is recomputed from your quest log, so it survives lost
   saved variables.
+- **It catches up.** With "Skip grey quests" on, a guide you open on a
+  character who already did part of the route goes over what is done to
+  where you are: grey quests are left out, and so are green ones behind your
+  progress, unless a later quest needs them. A guide you are past, given to
+  you when no guide is open or by Start guide, hands over to the next.
+  Item, mount, reputation, profession and class guides do every step.
 - **A guide for where you are.** The window opens with a guide suggested for
   your race, class, level and location, and each guide hands over to the
   next one in its chain when you finish it.
@@ -245,8 +253,14 @@ map. Renders of every window and state, drawn without the game, are in
   takes you there, routed like any goal; Alt-click works over map icons.
   Click the spot again to let it go.
 - **Nearby services.** `/polestar near repair` (trainer, a profession,
-  class, reagents, vendor, innkeeper, bank, auction, flight, stable) points
-  the arrow at the quickest one to reach; the map's tracking menu lists them.
+  class, weapon, reagents, vendor, innkeeper, bank, auction, flight, stable)
+  points the arrow at the quickest one to reach; the map's tracking menu and
+  the guide window's Nearby services button list them, the button with a
+  page of the weapons a weapon master can teach you. Once you get there,
+  the arrow is back on the guide.
+- **OpenMap.** On [OpenMap](https://www.curseforge.com/wow/addons/openmap)'s
+  seamless world map the trail dots carry on across zone borders and show on
+  the whole-world view too. OpenMap's menu has a "Polestar trail dots" switch.
 - **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own
@@ -324,6 +338,8 @@ guides you there instead.
 - **On the game's reward panel** every choice that is an upgrade gets a green
   arrow, the one to take is framed, and a coin marks the one that sells for
   most. Turn-in goals name the best reward.
+- **In your bags** every item that is an upgrade gets the same green arrow,
+  in the game's bags and in Baganator.
 
 ### Lookup, Dungeons and Rares
 
@@ -911,10 +927,10 @@ the GPL version 3 or later, used with his permission
 the guide-pack permission below does not cover them.
 
 [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md) adds a permission under section
-7: guide packs produced by Polestar's compiler, including the reference data
-it places in them, may be distributed under terms of the pack author's
-choice (not guide text copied from Polestar's own guides, nor Polestar's
-code).
+7: guide packs produced by Polestar's compiler and import strings produced by
+its tools, including the reference data they place in them, may be
+distributed under terms of the author's choice (not guide text copied from
+Polestar's own guides, nor Polestar's code).
 
 <p align="center"><img src="docs/assets/emblem.svg" width="28" alt=""></p>
 

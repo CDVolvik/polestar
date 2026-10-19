@@ -884,15 +884,44 @@ function Theme.FontSpec(role)
 	end
 	local locale = GetLocale and GetLocale()
 	local face = Theme.FontKey()
+	-- The ruRU client font (FRIZQT___CYR) has no middle dot, which the UI and
+	-- guide text use as a separator; Fira Sans has it and covers Cyrillic.
+	-- Only when the skin picks the face: choosing "the game's" font keeps it.
+	local f = get("ui.font")
+	if face == "game" and locale == "ruRU" and (f == nil or f == "skin") then face = "fira" end
 	if face == "game" or CJK[locale] then
 		return STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, ""
 	end
 	return FAMILIES[face][spec[1]], size, ""
 end
 
+-- Polestar's faces, and a Latin or Cyrillic client's own font, have no
+-- Hangul, kana or Chinese characters, and a font set by its file keeps none
+-- of the game's per-script fallback, so a Chinese name came out as boxes
+-- (#353). Text with them takes the client's font for that script, as the
+-- game's own font families name it (Blizzard_Fonts_Shared/Shared/Fonts.xml),
+-- unless the client's own locale already draws that script. -> path | nil
+-- UTF-8 lead bytes E3-E9: U+3000-U+9FFF (CJK punctuation, kana, Chinese);
+-- EA-ED: U+A000-U+DFFF (Hangul syllables).
+local SCRIPT_FONTS = {
+	hangul = { path = "Fonts\\2002.TTF", locales = { koKR = true } },
+	han = { path = "Fonts\\ARKai_T.ttf", locales = { zhCN = true, zhTW = true } },
+}
+function Theme.ScriptFont(text)
+	if type(text) ~= "string" then return nil end
+	local at = text:find("[\227-\237]")
+	if not at then return nil end
+	local b = text:byte(at)
+	local script = SCRIPT_FONTS[b >= 234 and "hangul" or "han"]
+	local locale = GetLocale and GetLocale()
+	if script.locales[locale] then return nil end
+	return script.path
+end
+
 local fonted = setmetatable({}, { __mode = "k" }) -- fontString -> role
 local outlined = setmetatable({}, { __mode = "k" }) -- fontString -> true
 local flat = setmetatable({}, { __mode = "k" }) -- fontString -> true: no drop shadow
+local scripted = setmetatable({}, { __mode = "k" }) -- fontString -> its text's script font, or false
 
 -- Text shadows: the house style's soft 1, -1; Halo's 1 down at 90 % black
 -- (DIRECTION_B_HALO.md §2); Blizzard's hard 1, -1 black, as the game's.
@@ -912,15 +941,9 @@ local function paintShadow(fs)
 	fs:SetShadowColor(r, g, b, flat[fs] and 0 or (outlined[fs] and 1 or 0.6))
 end
 
-local function paintFont(fs, role)
-	local path, size, flags = Theme.FontSpec(role)
-	if outlined[fs] then flags = "OUTLINE" end
-	if not fs:SetFont(path, size, flags) then
-		fs:SetFont(STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, flags)
-	end
-	paintShadow(fs)
-	-- Forever leaves a string blank after a new font until its text changes
-	-- (the options' values and tiles after a skin change): set it again.
+-- Forever leaves a string blank after a new font until its text changes
+-- (the options' values and tiles after a skin change): set it again.
+local function textAgain(fs)
 	local text = fs.GetText and fs:GetText()
 	if text and text ~= "" then
 		fs:SetText(text .. " ")
@@ -928,9 +951,36 @@ local function paintFont(fs, role)
 	end
 end
 
+local retextQueued = false
+
+local function paintFont(fs, role)
+	local path, size, flags = Theme.FontSpec(role)
+	local text = fs.GetText and fs:GetText()
+	local script = Theme.ScriptFont(text)
+	scripted[fs] = script or false
+	if script then path = script end
+	if outlined[fs] then flags = "OUTLINE" end
+	if not fs:SetFont(path, size, flags) then
+		fs:SetFont(STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, flags)
+	end
+	paintShadow(fs)
+	textAgain(fs)
+end
+
+-- New text in another script than the font drawn (a name in Chinese, #353):
+-- the string is painted again for it.
+local function retext(fs)
+	local role = fonted[fs]
+	if role and (Theme.ScriptFont(fs:GetText()) or false) ~= scripted[fs] then paintFont(fs, role) end
+end
+
 function Theme.Font(fs, role)
 	if type(fs) ~= "table" or not fs.SetFont then return fs end
 	role = ROLES[role] and role or "body"
+	if fonted[fs] == nil and hooksecurefunc and fs.GetText then
+		hooksecurefunc(fs, "SetText", retext)
+		if fs.SetFormattedText then hooksecurefunc(fs, "SetFormattedText", retext) end
+	end
 	fonted[fs] = role
 	paintFont(fs, role)
 	return fs
@@ -1559,6 +1609,16 @@ function Theme.Refresh()
 	for sky in pairs(bands) do paintBand(sky) end
 	for frame, kind in pairs(skinned) do paint(frame, kind) end
 	for fs, role in pairs(fonted) do paintFont(fs, role) end
+	-- EllesmereUI's font is handed over at login, in the frame the window is
+	-- first drawn: a string set again in that frame can stay blank, so once more
+	-- a frame later.
+	if Theme.FollowsEllesmereFont() and C_Timer and C_Timer.After and not retextQueued then
+		retextQueued = true
+		C_Timer.After(0, function()
+			retextQueued = false
+			for fs in pairs(fonted) do textAgain(fs) end
+		end)
+	end
 	for i = 1, #handlers do
 		local ok, err = pcall(handlers[i])
 		if not ok and geterrorhandler then geterrorhandler()(err) end

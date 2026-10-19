@@ -11,6 +11,7 @@ const path = require('node:path');
 const { parseArgs, printDiagnostics, resolvePath, plural } = require('../lib/cli');
 const { writePackDir } = require('../lib/dsl/project');
 const { PACK_OPTIONS, PACK_USAGE, otherPack, buildPack, folderIn } = require('../lib/pack/build');
+const { packImporter } = require('../lib/pack/importstring');
 
 const { ROOT } = require('../lib/paths');
 const DEFAULT_ART = '/tmp/polestar-art';
@@ -76,6 +77,7 @@ async function run(argv) {
 		return 1;
 	}
 	const packs = [];
+	let importString = null;
 	if (other) {
 		const { dir, built } = buildPlayPack(other, { dataDir: resolvePath(opts.data, 'data/forever', ROOT) });
 		if (!dir) {
@@ -84,12 +86,13 @@ async function run(argv) {
 		}
 		console.log(`community addon ${built.manifest.id}: ${plural(built.guides.length, 'guide')}, loaded after ours`);
 		packs.push(dir);
+		importString = packImporter(built);
 	}
 	const { startServer } = require('../play/server');
 	const t0 = Date.now();
 	const dataDir = playDataDir();
 	const play = await startServer({
-		port: opts.port, host: opts.host, artDir: opts.art || null, fresh: opts.fresh, packs,
+		port: opts.port, host: opts.host, artDir: opts.art || null, fresh: opts.fresh, packs, importString,
 		dataDir,
 		log: (m) => console.log(`[play] ${m}`),
 	});

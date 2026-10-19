@@ -236,11 +236,14 @@ step Mystral Lake
   accept 1016                             -- Sentinel Velene Starstrike
   collect 5455 quest 1016 @46.6,69.6      -- Kill the elementals for 5 Intact Elemental Bracers, then use the Divining Scroll
   turnin 1016
-  accept 78132                            -- Alonso
+
+step Alonso
+  goto 42.4,70 "Alonso"
+  accept 78132 optional                   -- Alonso may not offer these to every class; if he doesn't, carry on.
   turnin 78132
-  accept 78133
+  accept 78133 optional
   turnin 78133
-  accept 78134
+  accept 78134 optional
   turnin 78134
 
 step The Ruins of Stardust

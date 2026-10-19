@@ -6,6 +6,7 @@
 //   GET  /                     the page (and its files)
 //   GET  /api/meta             races, classes, zones (with art), screen size, the version /api/version serves
 //   GET  /api/guides           every registered guide's header
+//   POST /api/import           { guide } -> { text } (its import string) or { error }
 //   GET  /api/version          { version }: moves once each time reload() (a rebuild) restarts the session
 //   POST /api/act              { action, known } -> a frame (svg, glyphs, hits, state, errors, timing)
 //   POST /api/character        { race, cls, faction } -> a new character (a relog)
@@ -81,12 +82,15 @@ function staticFile(res, dir, rel) {
 }
 
 // opts: { port, host, dataDir, artDir, fresh, packs, log }; packs: other guide
-// packs' built folders, loaded after ours (see Session).
+// packs' built folders, loaded after ours (see Session); importString: (guide
+// id) -> { text } or { error }, the community pack's guide as an import
+// string (play and dev pass it; without it the page's Copy import string says
+// there is no community pack).
 // -> { server, url, port, session, reload, close }: reload({ packs?, why? })
 // saves, restarts the Lua session (with the new pack folders when given) and
 // tells the page on its next frame; `polestar dev` calls it after a rebuild.
 async function startServer(opts = {}) {
-	const { port = 8077, host = '127.0.0.1', dataDir = path.join(ROOT, 'data', 'play'), artDir = null, fresh = false, packs = [], log = () => {} } = opts;
+	const { port = 8077, host = '127.0.0.1', dataDir = path.join(ROOT, 'data', 'play'), artDir = null, fresh = false, packs = [], importString = null, log = () => {} } = opts;
 	if (fresh) fs.rmSync(dataDir, { recursive: true, force: true });
 	fs.mkdirSync(dataDir, { recursive: true });
 	let config = readConfig(dataDir);
@@ -156,6 +160,10 @@ end
 return out`);
 			return r.ok ? r.value : [];
 		}),
+		'POST /api/import': (b) => {
+			if (!importString) return { error: 'Import strings carry a community pack\'s guides: start the playground on one (polestar play <pack>).' };
+			return importString(String(b.guide || ''));
+		},
 		'POST /api/act': (b) => serial(() => frame(b.action || { type: 'render' }, Number(b.known) || 0)),
 		'POST /api/character': (b) => serial(async () => {
 			const races = sharedData().races;

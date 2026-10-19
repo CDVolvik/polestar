@@ -17,23 +17,31 @@ nobody has checked it yet, run the polestar-triage skill
 (`skills/polestar-triage/SKILL.md`) first. A fix needs a verdict of
 "confirmed" or "partly right" and the evidence behind it.
 
+Then make sure no one is fixing it already: the issue's "Pull requests for
+this issue" comment (label `has-pr`), and
+`gh pr list --state open --search "<issue number>"`, then the quest id. An
+open pull request that covers it means you help on that one instead
+(polestar-contributing, "Before you start on an issue").
+
 ## 1. Pick the branch
 
-| The fix | Base branch |
-|---|---|
-| Changes only `guides/`, the recompiled `addon/Polestar_Guides/`, `tests/guides-*.test.js`, `tools/lib/data/corrections.json` and its changelog fragment in `changes/`, for a bug in the latest release | `hotfix/<next patch>`, for example `hotfix/0.2.5` |
-| Needs anything else (addon Lua, tools, a data addon), or the bug is only on `next` | `next` |
-| Not sure | `next` |
+Every fix starts from `next`, and its pull request goes to `next`:
 
 ```sh
 git fetch origin
-git branch -r --list 'origin/hotfix/*'     # the open patch branch, if any
-git switch -c fix/<short-name> origin/hotfix/0.2.5    # or origin/next
+git switch -c fix/<short-name> origin/next
 ```
 
+A fix players need in the coming patch (only `guides/`, the recompiled
+`addon/Polestar_Guides/`, `tests/guides-*.test.js`,
+`tools/lib/data/corrections.json` and its changelog fragment in `changes/`)
+still goes to `next`: say so in the description, and the maintainer adds
+the `backport` label after it merges, which opens the patch pull request on
+its own. Never open a pull request against a `hotfix/` branch or `main`.
+
 A patch fix has to work with the released addon. If it needs an addon or
-tools change that is only on `next`, it belongs on `next`. Never base a
-branch on `main`.
+tools change that is only on `next`, it waits for the feature release.
+Never base a branch on `main`.
 
 ## 2. Find the step and read why it is there
 
@@ -135,8 +143,7 @@ Guides.lua to the maintainer.
 
 - Base it on the branch from step 1. The template asks for the verdict and
   its evidence, and which checks ran and which did not.
-- Issues: write "closes #N" on `next`, or "fixes #N" on a `hotfix/` branch
-  (GitHub does not close issues for those, so the maintainer does it when
-  the patch ships).
+- Issues: write "closes #N", once for each issue the pattern fix covers.
+  That is what lists the pull request on each issue.
 - Say that an AI agent wrote or helped with it. The person running the
   agent reads the diff and the description before opening the pull request.

@@ -32,6 +32,8 @@ end
 
 -- The Polestar Discord's invite: where players report problems (UI/Report.lua).
 ns.DiscordURL = "https://discord.gg/vMbee6F2e9"
+-- A new issue on Polestar's GitHub: the report window fills one in (UI/Report.lua).
+ns.IssueURL = "https://github.com/fitzforge/polestar/issues/new"
 
 local pcall, type, pairs, select, tostring = pcall, type, pairs, select, tostring
 
@@ -416,6 +418,12 @@ function ns.Set(path, value)
 	ns.Fire("SETTING_CHANGED", path, ns.Get(path))
 end
 
+-- The arrow, the action buttons and the timers: with ui.lockHud on, a drag
+-- moves them only while Shift is held, so a stray drag does nothing.
+function ns.DragLocked()
+	return ns.Get("ui.lockHud") and not ns.Compat.IsShiftKeyDown() and true or false
+end
+
 -- Forget stored values for one section (or all), back to defaults.
 function ns.ResetSettings(section)
 	local settings = DB().settings
@@ -436,6 +444,8 @@ function ns.CharState()
 	if s.schema == nil then s.schema = 1 end
 	if type(s.manual) ~= "table" then s.manual = {} end
 	if type(s.skipped) ~= "table" then s.skipped = {} end
+	-- Per guide, per step: true when its `when` held as the route passed it, or it was unskipped (Engine.lua, Own.latchWhen; a failed one is stored in `skipped`).
+	if type(s.when) ~= "table" then s.when = {} end
 	if type(s.flags) ~= "table" then s.flags = {} end
 	return s
 end

@@ -6,21 +6,25 @@
 -- planned like any target (Nav/Travel.lua walks a ghost there on foot).
 --
 -- Cost of each choice in seconds: the run (ghost run speed) and, for the
--- Spirit Healer, resurrection sickness (none through level 10, then one
--- minute per level above 10, at most ten minutes). A choice only flips when
--- the other one is clearly better, so the arrow does not flicker.
+-- Spirit Healer, resurrection sickness. That is the length the game last gave
+-- this character at its level (read from the debuff once it is on them),
+-- else Forever's current rule: none through level 10, then ten minutes
+-- (#390; Classic's one minute per level above 10 is not what Forever gives).
+-- A choice only flips when the other one is clearly better, so the arrow
+-- does not flicker.
 --
 --   Polestar.QoL.GetDeathAdvice() -> { choice = "corpse"|"healer", corpseYards, healerYards,
 --                                      corpseSeconds, healerSeconds, sickness, note } | nil
 --
--- Client: UnitIsGhost, C_DeathInfo.GetCorpseMapPosition, GetUnitSpeed (Forever API docs).
+-- Client: UnitIsGhost, C_DeathInfo.GetCorpseMapPosition, GetUnitSpeed,
+-- C_UnitAuras.GetPlayerAuraBySpellID (AuraData.duration) (Forever API docs).
 
 local ADDON, ns = ...
 local L = ns.L
 local QoL = ns.QoL
 local readable = ns.Compat.Readable
 
-local type, sqrt, floor, min, format = type, math.sqrt, math.floor, math.min, string.format
+local type, sqrt, floor, format = type, math.sqrt, math.floor, string.format
 
 local Death = {}
 QoL.Death = Death
@@ -30,12 +34,32 @@ local HYSTERESIS = 5      -- seconds the other choice must win by to flip
 local INTERVAL = 1
 local LAYER = "qol.death"
 
--- Resurrection sickness in seconds at a level.
-function Death.Sickness(level)
+local SICKNESS_SPELL = 15007 -- Resurrection Sickness
+local SICKNESS = 600         -- Forever, from level 11 on
+
+-- Resurrection sickness in seconds at a level. `seen` is the debuff the game
+-- last gave ({ level, seconds }); it wins at that level.
+function Death.Sickness(level, seen)
 	level = level or 1
+	if type(seen) == "table" and seen.level == level and type(seen.seconds) == "number" then return seen.seconds end
 	if level <= 10 then return 0 end
-	return min(level - 10, 10) * 60
+	return SICKNESS
 end
+
+-- The debuff's full length while it is on the player, kept per character
+-- with the level it came at.
+local function readSickness()
+	local A = C_UnitAuras
+	if not (A and A.GetPlayerAuraBySpellID) then return end
+	local ok, aura = pcall(A.GetPlayerAuraBySpellID, SICKNESS_SPELL)
+	local seconds = ok and type(aura) == "table" and readable(aura.duration)
+	if type(seconds) ~= "number" or seconds <= 0 then return end
+	local info = ns.Compat.GetPlayerInfo and ns.Compat.GetPlayerInfo()
+	local level = info and info.level
+	if not level then return end
+	QoL.State().resSickness = { level = level, seconds = floor(seconds + 0.5) }
+end
+Death.ReadSickness = readSickness
 
 -- Nearest Spirit Healer on continent c: c, wx, wy, map, x, y, yards.
 local liveCache = {}
@@ -84,7 +108,10 @@ local function runSpeed()
 	return RUN_SPEED
 end
 
--- Corpse in world yards: c, wx, wy, map, x, y (live percent on the player's map).
+-- Corpse in world yards: c, wx, wy, map, x, y (live percent on the zone that
+-- holds it). The client answers on the player's map, off its edge when the
+-- ghost is in the next zone (#270), so the point is moved onto the zone under
+-- it on the continent map; the player's map when that finds none.
 local function corpse()
 	local C = ns.Compat
 	local map = C.GetPlayerMapPosition and C.GetPlayerMapPosition()
@@ -97,6 +124,14 @@ local function corpse()
 	if not (x and y) or (x == 0 and y == 0) then return nil end
 	local c, wx, wy = C.MapToWorld(map, x * 100, y * 100)
 	if not c then return nil end
+	local J = ns.Nav and ns.Nav.journey
+	local cont = J and C.GetContinentMap(map)
+	if cont then
+		local kx, ky = C.WorldToMap(c, wx, wy, cont)
+		local zm, zx, zy
+		if kx then zm, zx, zy = J.ZonePoint(cont, kx, ky) end
+		if zm then return c, wx, wy, zm, zx, zy end
+	end
 	return c, wx, wy, map, x * 100, y * 100
 end
 
@@ -112,9 +147,10 @@ local noted = false
 local previous -- the picked target (Nav override) the death helper replaced
 
 -- Pure decision, for tests and the tick: choice, corpseSeconds, healerSeconds, sickness.
-function Death.Decide(corpseYards, healerYards, speed, level, previous)
+-- `seen` as for Death.Sickness.
+function Death.Decide(corpseYards, healerYards, speed, level, previous, seen)
 	speed = speed and speed > 0 and speed or RUN_SPEED
-	local sickness = Death.Sickness(level)
+	local sickness = Death.Sickness(level, seen)
 	local cs = corpseYards and corpseYards / speed or nil
 	local hs = healerYards and (healerYards / speed + sickness) or nil
 	if not cs and not hs then return nil end
@@ -196,7 +232,8 @@ function Death.Update()
 	if cc == pc then corpseYards = sqrt((cwx - px) ^ 2 + (cwy - py) ^ 2) end
 	local hc, hwx, hwy, hmap, hx, hy, healerYards = Death.NearestHealer(pc, px, py)
 	local info = C.GetPlayerInfo and C.GetPlayerInfo()
-	local choice, cs, hs, sickness = Death.Decide(corpseYards, healerYards, runSpeed(), info and info.level, current)
+	local choice, cs, hs, sickness = Death.Decide(corpseYards, healerYards, runSpeed(), info and info.level, current,
+		QoL.State().resSickness)
 	if not choice then return nil end
 	advice.choice, advice.sickness = choice, sickness
 	advice.corpseYards, advice.corpseSeconds = corpseYards, cs
@@ -255,10 +292,19 @@ local function check()
 end
 Death.Check = check
 
+-- Back from the Spirit Healer (or a /reload while sick): note the debuff's
+-- length, again a second later in case it lands after the event.
+local function alive()
+	check()
+	if not QoL.On("deathHelper") or isGhost() then return end
+	readSickness()
+	if C_Timer and C_Timer.After then C_Timer.After(1, readSickness) end
+end
+
 ns.RegisterEvent("PLAYER_DEAD", check)
 ns.RegisterEvent("PLAYER_ALIVE", check)
-ns.RegisterEvent("PLAYER_UNGHOST", check)
-ns.RegisterEvent("PLAYER_ENTERING_WORLD", check)
+ns.RegisterEvent("PLAYER_UNGHOST", alive)
+ns.RegisterEvent("PLAYER_ENTERING_WORLD", alive)
 ns.On("SETTING_CHANGED", function(path)
 	if path == "qol.deathHelper" or path == "qol" or path == "" then check() end
 end)

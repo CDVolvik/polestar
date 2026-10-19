@@ -13,7 +13,7 @@ const { TABLES, PREREQ_RULE, buildAllTalents } = require('../lib/talents/build')
 
 // The Forever client build the trees were read from. Raise it, rebuild, and
 // review the diff when the client's talents change.
-const BUILD = '1.60.1.70374';
+const BUILD = '1.60.1.70450';
 
 const usage = `usage: node tools/polestar.js talents build|check [options]
 
@@ -67,4 +67,4 @@ async function run(argv) {
 	return reportSync({ 'Builds.lua': result.lua }, outDir, { check: mode === 'check', command: 'talents build' });
 }
 
-module.exports = { name: 'talents', summary: 'Build or check Talents/Builds.lua (talent plans)', usage, run };
+module.exports = { name: 'talents', summary: 'Build or check Talents/Builds.lua (talent plans)', usage, run, BUILD };

@@ -29,6 +29,13 @@ const { tocFiles, ADDONS } = require('./lua');
 
 const PACKS = ['Polestar_QuestDB', 'Polestar_Codex', 'Polestar_ItemDB'];
 
+// A quantized reading may be one clock step high; never grant more than 1 ms.
+function withinBudget(value, budget, scale, resolution) {
+	return [value, budget, scale, resolution].every(Number.isFinite)
+		&& value >= 0 && budget > 0 && scale >= 1 && resolution >= 0
+		&& value < budget * scale + Math.min(resolution, 1);
+}
+
 // { stubs, before, present }: on-demand loading of the local packs present.
 function localPacks() {
 	const present = PACKS.filter((p) => fs.existsSync(path.join(ADDONS, p, `${p}.toc`)));
@@ -91,7 +98,7 @@ function format(r) {
 	return out.join('\n');
 }
 
-module.exports = { profileGuide, localPacks, moduleOf, format };
+module.exports = { profileGuide, localPacks, moduleOf, format, withinBudget };
 
 if (require.main === module) {
 	const args = process.argv.slice(2);
