@@ -41,7 +41,10 @@ next forever/alliance/05-duskwood
 #   drop for the Tower of Azora).
 # - Refresh (2026): Expanding Horizons (97914, from 03-darkshore) is handed
 #   to Baros Alexston at the Stormwind stop; his reply, Making Do (97926),
-#   goes back to Auberdine in 06-ashenvale. The new consensus visits
+#   goes back to Auberdine in 06-ashenvale. Baros offers Making Do only
+#   after Expanding Horizons (#453), which a player who skipped it in
+#   Darkshore does not have, and the project data lists no prerequisite:
+#   the accept is optional, so nobody is held at Baros. The new consensus visits
 #   Redridge later (25-26, after the Wetlands); this guide keeps the old
 #   place at 21-23, where its quests are not grey, and the zone order of
 #   the guides it chains with.
@@ -78,7 +81,7 @@ step Stormwind
   tip The Auberdine boat docks at Stormwind Harbor. Walk up into the city for training and Baros Alexston, then leave by the main gate and follow the road east through Elwynn Forest.
   train class only Warrior,Paladin,Hunter,Rogue,Priest,Mage,Warlock,Druid -- Level 18 and 20 spells
   turnin 97914                                -- Baros Alexston: Thundris' letter from Auberdine
-  accept 97926                                -- For Thundris Windweaver, on the return to Auberdine (06-ashenvale)
+  accept 97926 optional                       -- Only once Expanding Horizons is handed in: for Thundris Windweaver, back in Auberdine (06-ashenvale)
   vendor nearest
 
 step Shaman training
