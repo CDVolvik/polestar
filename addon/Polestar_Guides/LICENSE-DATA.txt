@@ -8,7 +8,7 @@ CMaNGOS classic-db: creature and gameobject spawn heights
 ---------------------------------------------------------
 URL: https://raw.githubusercontent.com/cmangos/classic-db/22b51464f1625f6ef6275771de1f5466c6f5d19e/Full_DB/ClassicDB_1_12_1_z2815.sql.gz
 Revision: 22b51464f1625f6ef6275771de1f5466c6f5d19e
-License: GPL-3.0; spawn heights (z) only, used as facts like the transport periods: a guide goal at an NPC or object carries its spawn's height
+License: GPL-3.0; spawn heights (z) only, used as facts like the transport periods: a guide goal, spawn spot or smart-target candidate at an NPC or object (and Core/ClassTrainers.lua's class trainers) carries its spawn's height
 CMaNGOS (https://github.com/cmangos/classic-db)
 
 pfQuest

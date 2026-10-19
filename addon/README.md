@@ -116,6 +116,7 @@ never in saved variables.
 | `SpecData.lua` | `Gear` | Generated: stat weight bands per spec and level, racial gear traits |
 | `Gear.lua` | `Gear` | Upgrade advice: an item's score and whether it is an upgrade |
 | `Tooltip.lua` | `Gear` | Upgrade lines on item tooltips |
+| `Bags.lua` | `Gear.Bags` | The upgrade arrow on bag items, in the game's bags and Baganator |
 | `Rewards.lua` | `Gear` | Ranks quest reward choices |
 | `Picks.lua` | `Gear` | The reward to take at a turn-in, for the guide window and tooltips |
 | `Options.lua` | (registers options) | The Gear options page |
@@ -187,7 +188,7 @@ never in saved variables.
 | `Welcome.lua` | `UI.Welcome` | The welcome a character sees the first time Polestar meets it |
 | `Copy.lua` | `UI.ShowCopy` | A small window holding text to copy |
 | `Report.lua` | `UI.Report` | "Report a problem" (the guide window's bug button, `/polestar report`): a report on the step on screen to copy for the Polestar Discord; `UI.ShowDiscord`, the invite on its own |
-| `Packs.lua` | `UI.Packs` | The Guide packs page of the options window |
+| `Packs.lua` | `UI.Packs` | The Community guides page of the options window |
 | `Options.lua` | `UI.Options` | The options window: pages, tabs, sections, settings search |
 
 ### Rares

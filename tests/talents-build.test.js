@@ -153,7 +153,7 @@ test('buildAllTalents: two files for one class, or a bad pick, name the class', 
 
 // The committed file matches the plans and the Forever tables (when cached).
 const ROOT = path.join(__dirname, '..');
-const CACHE = path.join(ROOT, 'data', 'sources', 'wago', '1.60.1.70374');
+const CACHE = path.join(ROOT, 'data', 'sources', 'wago', '1.60.1.70450');
 const cached = TABLES.every((t) => fs.existsSync(path.join(CACHE, `${t}.csv`)));
 
 test('talents check: Builds.lua is up to date and every plan\'s picks are legal', { skip: !cached && 'no cached Forever trait tables' }, async () => {
@@ -169,7 +169,7 @@ test('talents check: Builds.lua is up to date and every plan\'s picks are legal'
 
 test('treeFacts on the Forever tables: three spec columns for every class, Hunter and Priest strays left out', { skip: !cached && 'no cached Forever trait tables' }, async () => {
 	const { loadTables } = require('../tools/lib/professions/tables');
-	const { tables } = await loadTables({ sourcesDir: path.join(ROOT, 'data', 'sources'), build: '1.60.1.70374', offline: true, tables: TABLES, log: () => {} });
+	const { tables } = await loadTables({ sourcesDir: path.join(ROOT, 'data', 'sources'), build: '1.60.1.70450', offline: true, tables: TABLES, log: () => {} });
 	const strays = {};
 	for (const cls of Object.keys(CLASSES)) {
 		const f = treeFacts(tables, cls);

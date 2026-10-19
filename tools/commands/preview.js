@@ -110,7 +110,7 @@ for i, id in ipairs(CHOICES) do
 end
 QoL.Rewards.OnQuestComplete()`;
 
-const FONT_FILES = ['Inter-Regular.ttf', 'Inter-Medium.ttf', 'Inter-SemiBold.ttf'];
+const FONT_FILES = ['Inter-Regular.ttf', 'Inter-Medium.ttf', 'Inter-SemiBold.ttf', 'FiraSans-Regular.ttf', 'FiraSans-Medium.ttf', 'FiraSans-SemiBold.ttf'];
 // Fonts the preview cannot ship (EllesmereUI's, the client's) are set in the
 // nearest Inter weight; widths are measured in the same face that is drawn.
 const FALLBACK = 'Inter-Medium.ttf';
@@ -383,7 +383,7 @@ end`;
 // the arrow in your own colours.
 const CUSTOM_LOOK = `Polestar.Set("ui.borderAccent", true); Polestar.Set("ui.borderSize", 2); Polestar.Set("ui.band", false); Polestar.Set("ui.shadow", false)
 Polestar.Set("nav.arrowColor", { 0.45, 0.7, 1 }); Polestar.Set("nav.arrowNearColor", { 1, 0.55, 0.85 })`;
-// The Guide packs page over the real registry (uistub.realGuides in place
+// The Community guides page over the real registry (uistub.realGuides in place
 // of stub_ui's fake): ours and Joe's on, Ann's with two problems, Sam's
 // too new for this Polestar, Kim's turned off in the AddOns list.
 const PACKS_ADDONS = `stub.addons = {
@@ -415,6 +415,25 @@ guide("ann/d", "ann", 12, { category = "Dungeons" })
 guide("dungeons/deadmines", "ann", 1)
 Polestar.RegisterGuide({ id = "ann/broken", pack = "ann", title = "Broken", steps = {} })
 realGuides.ScanInstalled()`;
+// The guide menu over the same registry: Joe's Routes listed under Community
+// guides, its Westfall selected with the author's credits in the details.
+const PACKS_PICKER = `Polestar.Guides = uistub.realGuides
+local function guide(id, pack, title, zone, minL, maxL)
+	local steps = {}
+	for i = 1, 6 * (maxL - minL) do steps[i] = { goals = { { t = "level", level = maxL } } } end
+	Polestar.RegisterGuide({ id = id, pack = pack, title = title, zone = zone, faction = "Alliance", category = "Leveling", minLevel = minL, maxLevel = maxL, steps = steps })
+end
+Polestar.RegisterPack({ addon = "Polestar_Guides", id = "guides", format = 1, title = "Polestar Guides", author = "Polestar", version = "0.1.0", license = "GPL-3.0" })
+guide("forever/alliance/02-westfall", "guides", "Westfall", "Westfall", 10, 15)
+Polestar.RegisterPack({ addon = "JoeRoutes", id = "joe", format = 1, title = "Joe's Routes", author = "Joe", version = "1.2.0", license = "CC-BY-4.0",
+	website = "https://github.com/joe/routes", source = "Written from my own play" })
+guide("joe/elwynn", "joe", "Elwynn Forest", "Elwynn Forest", 1, 10)
+guide("joe/westfall", "joe", "Westfall", "Westfall", 10, 15)
+guide("joe/redridge", "joe", "Redridge Mountains", "Redridge Mountains", 15, 20)
+guide("joe/duskwood", "joe", "Duskwood", "Duskwood", 20, 25)
+Polestar.RegisterPack({ addon = "AnnDungeons", id = "ann", format = 1, title = "Ann's Dungeons", author = "Ann", version = "0.4.0", license = "MIT" })
+Polestar.RegisterGuide({ id = "ann/deadmines", pack = "ann", title = "The Deadmines", category = "Dungeons", minLevel = 17, maxLevel = 23, steps = { { goals = { { t = "level", level = 23 } } } } })
+uistub.realGuides.ScanInstalled()`;
 
 // The route choice window, filled the way Engine.GetRouteChoice fills it, with
 // each zone's pitch, pros and cons read from its guide file. The shipped
@@ -454,6 +473,53 @@ C_Map.GetMapArtLayers = function(id) local m = ART[id]; return m and { m.layer }
 C_Map.GetMapArtLayerTextures = function(id) local m = ART[id]; return m and m.textures or {} end
 C_Map.GetMapArtID = function(id) local m = ART[id]; return m and m.artID end
 `;
+}
+// With POLESTAR_CLIENT_ART holding atlases.json ({ [lower-case atlas element]:
+// { file, w, h, l, r, t, b } }, the Forever client's members) and files.json
+// ({ [lower-case "interface\\...\\name"]: fileID }), the game's own UI art is
+// drawn too: SetAtlas, C_Texture.GetAtlasInfo and SetTexture by path resolve
+// to file IDs, so the game's looks (Theme/GameSkins.lua) can be checked
+// before a client run. Only textures decoded into the folder are listed.
+let uiArtLua;
+function clientUiArtLua() {
+	if (uiArtLua !== undefined) return uiArtLua;
+	uiArtLua = '';
+	const atlasFile = CLIENT_ART && path.join(CLIENT_ART, 'atlases.json');
+	if (!atlasFile || !fs.existsSync(atlasFile)) return uiArtLua;
+	const have = (fid) => fs.existsSync(path.join(CLIENT_ART, `${fid}.tga`));
+	const atlases = Object.entries(JSON.parse(fs.readFileSync(atlasFile, 'utf8')))
+		.filter(([, a]) => have(a.file))
+		.map(([k, a]) => `[${JSON.stringify(k)}] = { ${a.file}, ${a.w}, ${a.h}, ${a.l}, ${a.r}, ${a.t}, ${a.b} }`);
+	const files = Object.entries(JSON.parse(fs.readFileSync(path.join(CLIENT_ART, 'files.json'), 'utf8')))
+		.filter(([, fid]) => have(fid))
+		.map(([k, fid]) => `[${JSON.stringify(k)}] = ${fid}`);
+	uiArtLua = `local ATLAS = { ${atlases.join(', ')} }
+local FILES = { ${files.join(', ')} }
+C_Texture = C_Texture or {}
+C_Texture.GetAtlasInfo = function(n)
+	local a = type(n) == "string" and ATLAS[n:lower()]
+	if a then return { file = a[1], width = a[2], height = a[3], leftTexCoord = a[4], rightTexCoord = a[5], topTexCoord = a[6], bottomTexCoord = a[7] } end
+end
+local M = stub.Methods
+local setTexture = M.SetTexture
+M.SetTexture = function(self, p, ...)
+	if type(p) == "string" then
+		local fid = FILES[(p:lower():gsub("/", "\\\\"):gsub("%.blp$", ""))]
+		if fid then p = fid end
+	end
+	return setTexture(self, p, ...)
+end
+M.SetAtlas = function(self, n, useSize)
+	local a = type(n) == "string" and ATLAS[n:lower()]
+	self.atlas = n
+	if not a then return false end
+	setTexture(self, a[1])
+	self.texCoord = { a[4], a[5], a[6], a[7] }
+	if useSize then self:SetSize(a[2], a[3]) end
+	return true
+end
+`;
+	return uiArtLua;
 }
 function routeScene(from, fromTitle, options, joinsAt) {
 	const choice = { from, fromTitle, recommended: options.find((o) => o.recommended).id, joinsAt, options };
@@ -709,6 +775,28 @@ const SCENES = [
 		],
 	},
 	{
+		file: 'skins-guide.svg',
+		title: 'Skins: the guide window in Polestar, Halo and Hearth',
+		backdrop: 'terrain',
+		panels: [
+			{ roots: GUIDE, script: TABS },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); ${TABS}` },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "hearth"); ${TABS}` },
+		],
+	},
+	{
+		file: 'skins-states.svg',
+		title: 'Skins: a hub step, transparent and the header menu, in Halo and Hearth',
+		backdrop: 'terrain',
+		panels: [
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); ${TABS}; uistub.setStep(4)` },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); Polestar.Set("ui.style", "transparent"); ${TABS}; ${HOVER}` },
+			{ roots: [...GUIDE, 'PolestarMenu'], script: `Polestar.Set("ui.skin", "halo"); ${TABS}; stub.RunScript(Polestar.UI.GuideFrame.menuButton, "OnClick", "LeftButton")` },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "hearth"); ${TABS}; uistub.setStep(4)` },
+			{ roots: [...GUIDE, 'PolestarMenu'], script: `Polestar.Set("ui.skin", "hearth"); ${TABS}; stub.RunScript(Polestar.UI.GuideFrame.menuButton, "OnClick", "LeftButton")` },
+		],
+	},
+	{
 		file: 'guide-transparent.svg',
 		title: 'Transparent mode over a bright world: at rest, and with the cursor over it',
 		backdrop: 'terrain',
@@ -841,7 +929,7 @@ Polestar.UI.Picker.Select("forever/class/warlock/incubus-horde")`),
 	},
 	{
 		file: 'report.svg',
-		title: 'Report a problem (the guide window\'s bug button): what went wrong, the report to copy, the Polestar Discord; the invite on its own (the sidebar\'s Discord mark)',
+		title: 'Report a problem (the guide window\'s bug button): what went wrong, the right spot to mark, the report for the Polestar Discord, or a filled-in issue on GitHub; the invite on its own (the sidebar\'s Discord mark)',
 		panels: [
 			{
 				roots: ['PolestarReport'],
@@ -899,6 +987,16 @@ stub.RunScript(d, "OnTextChanged", true)`,
 			{ roots: OPTIONS, script: 'Polestar.UI.ShowOptions("guide")' },
 			{ roots: OPTIONS, script: 'Polestar.UI.ShowOptions("guide"); Polestar.UI.Options.Select("guide", "Arrow & routes")' },
 			{ roots: OPTIONS, script: 'Polestar.UI.ShowOptions("guide"); Polestar.UI.Options.Select("guide", "Automation")' },
+		],
+	},
+	{
+		file: 'skins-options.svg',
+		title: 'Skins: Options in Halo and Hearth (Guide, Window; Appearance, Windows with the Skin setting)',
+		panels: [
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "halo"); Polestar.UI.ShowOptions("guide")' },
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "halo"); Polestar.UI.ShowOptions("appearance"); Polestar.UI.Options.Select("appearance", "Windows")' },
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "hearth"); Polestar.UI.ShowOptions("guide")' },
+			{ roots: OPTIONS, script: 'Polestar.Set("ui.skin", "hearth"); Polestar.UI.ShowOptions("appearance"); Polestar.UI.Options.Select("appearance", "Windows")' },
 		],
 	},
 	{
@@ -975,7 +1073,7 @@ end`,
 	},
 	{
 		file: 'options-packs.svg',
-		title: 'Options: Guide packs: ours and a community pack on, one with problems and its report, one turned off, one too new; where suggestions come from',
+		title: 'Options: Community guides: ours and a community addon on, one with problems and its report, one turned off, one too new; where suggestions come from',
 		panels: [
 			{ roots: OPTIONS, before: PACKS_ADDONS, script: `${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
 			{ roots: OPTIONS, before: PACKS_ADDONS, script: `${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")
@@ -992,6 +1090,63 @@ end`,
 		],
 	},
 	{
+		file: 'skins-more.svg',
+		title: 'Skins: the welcome, the journey and the route choice in Halo, then in Hearth',
+		backdrop: 'terrain',
+		panels: [
+			{ roots: ['PolestarWelcome'], script: 'Polestar.Set("ui.skin", "halo"); Polestar.UI.Welcome.Show("welcome")' },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "halo"); ${JOURNEY}` },
+			{ roots: ROUTE, script: `Polestar.Set("ui.skin", "halo"); ${UNDEAD_CHOICE}` },
+			{ roots: ['PolestarWelcome'], script: 'Polestar.Set("ui.skin", "hearth"); Polestar.UI.Welcome.Show("welcome")' },
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "hearth"); ${JOURNEY}` },
+			{ roots: ROUTE, script: `Polestar.Set("ui.skin", "hearth"); ${UNDEAD_CHOICE}` },
+		],
+	},
+	{
+		file: 'skins-dungeons.svg',
+		title: 'Skins: the dungeon journal in Halo and Hearth',
+		panels: [
+			{ dungeons: true, roots: PICKER, script: dungeonsScene('Polestar.Set("ui.skin", "halo"); Polestar.Dungeons.Open("wailing-caverns")') },
+			{ dungeons: true, roots: PICKER, script: dungeonsScene('Polestar.Set("ui.skin", "hearth"); Polestar.Dungeons.Open("wailing-caverns")') },
+		],
+	},
+	{
+		file: 'skins-picker.svg',
+		title: 'Skins: the guide menu in Halo and Hearth',
+		panels: [
+			{ roots: PICKER, script: pickerScene(`Polestar.Set("ui.skin", "halo"); ${TABS}; Polestar.UI.ShowPicker(); Polestar.UI.Picker.Select(uistub.elwynn)`) },
+			{ roots: PICKER, script: pickerScene(`Polestar.Set("ui.skin", "hearth"); ${TABS}; Polestar.UI.ShowPicker(); Polestar.UI.Picker.Select(uistub.elwynn)`) },
+		],
+	},
+	{
+		file: 'skins-new.svg',
+		title: 'Skins: the welcome\'s Route style page, Options\' Community guides, the gamepad\'s focus and hints, and the report window, in Halo and Hearth',
+		panels: ['halo', 'hearth'].flatMap((k) => [
+			{ roots: ['PolestarWelcome'], script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.Welcome.Show("route")` },
+			{ roots: OPTIONS, before: PACKS_ADDONS, script: `Polestar.Set("ui.skin", "${k}"); ${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
+			{ roots: PAD_OPTIONS, before: PAD(), script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("gamepad"); stub.advance(0.3)` },
+			{ roots: ['PolestarReport'], script: `Polestar.Set("ui.skin", "${k}"); ${TABS}; Polestar.UI.ShowReport()` },
+		]),
+	},
+	// The game's looks draw the client's own art: rendered only with
+	// POLESTAR_CLIENT_ART (local: true), so it never lands in docs/preview.
+	...['forever', 'blizzard', 'classic'].map((k) => ({
+		file: `skins-game-${k}.svg`,
+		title: `Skins: ${k}: the guide window (a hub step, the menu), Options (Guide, Appearance, Community guides, Gamepad), the welcome's Route style page and the report window`,
+		backdrop: 'terrain',
+		local: true,
+		panels: [
+			{ roots: GUIDE, script: `Polestar.Set("ui.skin", "${k}"); ${TABS}; uistub.setStep(4)` },
+			{ roots: [...GUIDE, 'PolestarMenu'], script: `Polestar.Set("ui.skin", "${k}"); ${TABS}; stub.RunScript(Polestar.UI.GuideFrame.menuButton, "OnClick", "LeftButton")` },
+			{ roots: OPTIONS, script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("guide")` },
+			{ roots: OPTIONS, script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("appearance"); Polestar.UI.Options.Select("appearance", "Windows")` },
+			{ roots: OPTIONS, before: PACKS_ADDONS, script: `Polestar.Set("ui.skin", "${k}"); ${PACKS_SCENE}; Polestar.UI.ShowOptions("guidepacks")` },
+			{ roots: PAD_OPTIONS, before: PAD(), script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.ShowOptions("gamepad"); stub.advance(0.3)` },
+			{ roots: ['PolestarWelcome'], script: `Polestar.Set("ui.skin", "${k}"); Polestar.UI.Welcome.Show("route")` },
+			{ roots: ['PolestarReport'], script: `Polestar.Set("ui.skin", "${k}"); ${TABS}; Polestar.UI.ShowReport()` },
+		],
+	})),
+	{
 		file: 'picker.svg',
 		title: 'Guide menu: Home (Continue, Suggested) with the details; Leveling folders by faction and band',
 		panels: [
@@ -1003,6 +1158,17 @@ end`,
 				roots: PICKER,
 				script: pickerScene(`${TABS}; Polestar.Set("ui.pickerFaction", "All"); Polestar.UI.ShowPicker(); Polestar.UI.Picker.SetCategory("Leveling")
 Polestar.UI.Picker.Select("forever/alliance/02-westfall")`),
+			},
+		],
+	},
+	{
+		file: 'picker-packs.svg',
+		title: 'Guide menu: a community addon under Community guides, its guide credited to its author',
+		panels: [
+			{
+				roots: PICKER,
+				before: PACKS_ADDONS,
+				script: `${PACKS_PICKER}; Polestar.UI.ShowPicker(); Polestar.UI.Picker.SetCategory("pack:joe"); Polestar.UI.Picker.Select("joe/westfall")`,
 			},
 		],
 	},
@@ -1205,6 +1371,7 @@ Polestar.UI.Picker.SetCategory("Leveling"); Polestar.UI.Picker.Select("forever/h
 // (stub_ui.lua's fake Engine and guides, installed after load).
 function dumpPanel(panel, prelude) {
 	const before = [prelude, `dofile(${JSON.stringify(path.join(ROOT, 'tools', 'preview', 'stub.lua'))})`];
+	before.push(clientUiArtLua());
 	if (panel.eui) before.push('stub.withEllesmere()');
 	if (panel.before) before.push(panel.before);
 	if (panel.codex) before.push(codexStub());
@@ -1249,6 +1416,7 @@ async function run(argv) {
 	const written = [];
 	for (const scene of SCENES) {
 		if (only.size && !only.has(scene.file) && !only.has(scene.file.replace(/\.svg$/, ''))) continue;
+		if (scene.local && !CLIENT_ART) continue;
 		const shared = { glyphs: new Set(), defs: [] };
 		let panels;
 		try {

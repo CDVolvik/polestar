@@ -34,7 +34,7 @@ N.RegisterTravelData({
 		{19,0,-14473,464.1,1434,27.53,77.67,1,"Booty Bay, Stranglethorn"},
 		{20,0,-12414.2,146.3,1434,32.51,29.28,2,"Grom'gol, Stranglethorn"},
 		{21,0,-6634,-2180.1,1418,4.06,44.89,2,"Kargath, Badlands"},
-		{22,1,-1197.2,29.7,1412,39.28,26.99,2,"Thunder Bluff, Mulgore"},
+		{22,1,-1197.2,29.7,1456,46.65,49.9,2,"Thunder Bluff, Mulgore"},
 		{23,1,1677.6,-4315.7,1454,45.28,63.75,2,"Orgrimmar, Durotar"},
 		{25,1,-441.8,-2596.1,1413,51.5,30.41,2,"Crossroads, The Barrens"},
 		{26,1,6341.4,557.7,1439,36.4,45.62,1,"Auberdine, Darkshore"},

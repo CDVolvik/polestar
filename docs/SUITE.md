@@ -15,7 +15,7 @@ contracts between the modules are in [docs/ARCHITECTURE.md](ARCHITECTURE.md).
 | Quests | Map and minimap pins for available quests, objective areas, quest givers (off by default, Map options); tooltip lines on mobs and items that a quest needs; quest levels in the log; a quest icon beside the health bar of nameplates of mobs a quest needs (replacement nameplates included) |
 | Lookup (Codex) | One search over guides and entities (items, mounts, pets, recipes, tabards, quests, NPCs, rares, treasures, dungeons, zones). "How to get" for any item, mount or pet: sources ranked for this character, one click to a guide (curated when one exists, otherwise built on the spot). Tooltip source lines; Alt-click an item link to guide; target or mouse over a player to see their mount and how to get it. Search only: no browse-everything lists |
 | Dungeons | A journal page per dungeon: every quest with where to get it, its objective, its chain and its rewards (item choices, XP, money, reputation), plus bosses and the entrance on the map, with "guide me" to givers and the entrance; attunements and keys (Molten Core, Onyxia's Lair, Blackwing Lair, Naxxramas, Scholomance, Blackrock Depths, the City of Dalaran...) with this character's progress and a guide through what is left. No loot tables |
-| Upgrades | Upgrade indicator on item tooltips and the best pick on quest reward choices, from stat weights per spec (detected from the client's talent points) and level band |
+| Upgrades | Upgrade indicator on item tooltips and an upgrade arrow on bag items (the game's bags and Baganator), the best pick on quest reward choices, from stat weights per spec (detected from the client's talent points) and level band |
 | Rares | Rare NPC and treasure database with locations and loot, map pins (off by default, Map options), alerts (only through APIs the Forever client has) |
 | Maps | World map without fog of war (the zone-art overlay table), coordinates, zone level ranges, dungeon entrance and travel pins (off by default, Map options) |
 | QoL | Quality of life helpers: action buttons, XP and pace, merchant, reward marks, flight masters, death helper, toggles, requests from other players |
@@ -79,17 +79,17 @@ their versions in its `meta`.
 | `Polestar_QuestDB` | `data/forever` (includes QuestieDB) | no (local) | on demand |
 | `Polestar_Codex` | `data/forever/codex` (release-safe inputs) | no (generated); in every release zip | on demand (first search, tooltip or lookup) |
 | `Polestar_Travel` | a local crossings file (`travel build`) | no (local) | always, when built |
-| community guide packs (`PolestarPack_*` by default) | a pack's `.guide` files, by its author (`docs/PACKS.md`) | in the author's repository | always, when installed |
+| community addons (`PolestarPack_*` by default) | a pack's `.guide` files, by its author (`docs/PACKS.md`) | in the author's repository | always, when installed |
 
 Local packs are generated into gitignored folders and installed by
 `node tools/polestar.js install` like the rest. Without them the core still
 works: Lookup, Dungeons and Rares say the Codex is not installed (get the
 release zip, not GitHub's "Source code") or turned off (enable it) instead of failing. Every addon, what it holds and how it is built: [ARCHITECTURE, "Overview"](ARCHITECTURE.md#overview).
 
-Guide packs (ours and the community's) register through one registry
+Packs (ours and the community addons) register through one registry
 (`Core/Guides.lua`, ARCHITECTURE "The guide registry"; the rules in
 PACK_FORMAT.md): each owns its guide-id prefix,
-a refusal is recorded against its pack and shown on Options > Guide packs, and
+a refusal is recorded against its pack and shown on Options > Community guides, and
 a pack the player switches off hides its guides everywhere (`PACKS_CHANGED`).
 The tools treat every pack alike (`new`, `doctor`, `lint`, `compile`,
 `playtest`, `play`, `dev`, `pack`, `install`, `sim compare --pack`);
@@ -127,7 +127,7 @@ choice, the welcome for new characters (`UI/Welcome.lua`), the copy window
 (`UI/Copy.lua`, `PolestarCopy`: text to copy, such as `/polestar where`'s
 lines), the report window (`UI/Report.lua`, `PolestarReport`: the guide
 window's bug writes a report on the step on screen to paste on the Polestar
-Discord) and the rare alert. Options carries a Guide packs page
+Discord) and the rare alert. Options carries a Community guides page
 (`UI/Packs.lua`) and a Gamepad page (`UI/GamepadGuide.lua`); every window
 answers a gamepad while it is open (`UI/Gamepad.lua`, ported from Ding! by
 Yendi).

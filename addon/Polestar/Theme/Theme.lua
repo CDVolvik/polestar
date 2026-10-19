@@ -134,6 +134,112 @@ local SCHEMES = {
 }
 Theme.SCHEMES = SCHEMES
 Theme.SCHEME_ORDER = { "dusk", "night", "graphite" }
+
+-- "#rrggbb" and an alpha -> { r, g, b, a }.
+local function hex(s, a)
+	local r, g, b = s:match("#?(%x%x)(%x%x)(%x%x)")
+	return { tonumber(r, 16) / 255, tonumber(g, 16) / 255, tonumber(b, 16) / 255, a or 1 }
+end
+Theme.HexColor = hex
+
+-- Skins (ui.skin): "polestar", the house style above (the default), the
+-- two directions of the design handoff, and the game's own looks
+-- (docs/ARCHITECTURE.md, "Skins"):
+--   "halo"      Forever · Halo: no frame, a dark veil with soft edges under
+--               the text, an off-white ladder, the game's gold, Fira Sans
+--   "hearth"    Forever · Hearth: Polestar in warm game colours, a brown
+--               gradient window, the client's red buttons, font and text
+--               colours
+--   "forever", "blizzard", "classic"   the client's own art: WoW Forever's,
+--               the retail art (Blizzard Style) and the vanilla files
+--               (Theme/GameSkins.lua draws them)
+-- A skin brings its whole palette, its fonts, its frame paints and its sizes.
+-- The colour scheme, ground colour and brightness belong to the house style;
+-- the player's own accent, window border and arrow colours win in every skin.
+-- The palettes are the handoff's tokens as given (DIRECTION_B_HALO.md §1,
+-- DIRECTION_A_BLIZZARD.md §1); the washes of a skin are its own colours, not
+-- the house ink at the house alphas.
+local SKIN_PALETTES = {
+	halo = {
+		bg = hex("080604", 0.84), panel = hex("120E0A", 0.97), panelAlt = hex("FFFFFF", 0.06),
+		sidebar = hex("080604", 0), footer = hex("080604", 0), sky = hex("080604", 0),
+		text = hex("F4EFE6"), textDim = hex("C2B9A9"), textMuted = hex("8F8778"), textOff = hex("6E675C"),
+		title = hex("F4EFE6"), ink = hex("FFFFFF"), star = hex("FFFFFF", 0), shade = hex("000000"),
+		scrim = hex("080604"), onAccent = hex("17130E"), shadow = hex("080604", 0.72),
+		accent = hex("FFD100"),
+		veil = hex("080604", 0.6), veilWindow = hex("080604", 0.84), menuBg = hex("120E0A", 0.97),
+		inputBg = hex("000000", 0.35), control = hex("FFFFFF", 0.06),
+		accentLine = hex("FFD100", 0.35), padSelect = hex("FFD100", 0.12), chipAccent = hex("FFD100", 0.16),
+		separator = hex("FFFFFF", 0.12), rowLine = hex("FFFFFF", 0.08),
+		border = hex("FFFFFF", 0.14), divider = hex("FFFFFF", 0.12), hover = hex("FFFFFF", 0.07),
+		selected = hex("FFFFFF", 0.08), toggle = hex("FFFFFF", 0.16), track = hex("FFFFFF", 0.18),
+		progress = hex("FFFFFF", 0.12), chip = hex("FFFFFF", 0.08), box = hex("FFFFFF", 0.35),
+		thumb = hex("F4EFE6"), swatch = hex("FFFFFF", 0.25), watermark = hex("FFFFFF", 0.028), mover = hex("FFFFFF", 0.06),
+		success = hex("5FD068"), arrive = hex("5FD068"), todo = hex("FFD100"), warning = hex("FF9A3C"),
+		later = hex("FF9A3C"), danger = hex("FF9A3C"), manual = hex("B49CFF"), skipped = hex("5CC8D6"),
+		icon = hex("C2B9A9"), iconHover = hex("F4EFE6"), buttonText = hex("F4EFE6"), personName = hex("8CCBFF"), tabRest = hex("C2B9A9"),
+		rowLabel = hex("F4EFE6"), navRest = hex("C2B9A9"),
+		link = hex("8CCBFF"), npc = hex("8CCBFF"), quest = hex("FFE07A"), place = hex("F5AD85"),
+		rare = hex("FF8052"), dungeon = hex("A385FF"), discord = hex("5865F2"),
+	},
+	hearth = {
+		bg = hex("1E170D", 0.95), bgBottom = hex("090704", 0.95), panel = hex("000000", 0.92), panelAlt = hex("000000"),
+		sidebar = hex("000000", 0.3), footer = hex("000000", 0), sky = hex("2C200C"), skyBottom = hex("150F06"),
+		text = hex("FFFFFF"), textDim = hex("CCCCCC"), textMuted = hex("9D9D9D"), textOff = hex("808080"),
+		title = hex("FFD100"), ink = hex("FFFFFF"), star = hex("FFFFFF", 0), shade = hex("000000"),
+		scrim = hex("000000"), onAccent = hex("17130E"), shadow = hex("000000", 0.7),
+		accent = hex("FFD100"),
+		veil = hex("000000", 0), veilWindow = hex("000000", 0), menuBg = hex("000000", 0.92),
+		inputBg = hex("000000"), control = hex("000000"),
+		accentLine = hex("9A7A34", 0.6), padSelect = hex("FFD100", 0.14), chipAccent = hex("FFD100", 0.16),
+		separator = hex("9A7A34", 0.45), rowLine = hex("FFFFFF", 0.06),
+		border = hex("6B6B6B"), windowEdge = hex("5C4518"), divider = hex("9A7A34", 0.45), hover = hex("FFD100", 0.12),
+		selected = hex("6E96FF", 0.28), toggle = hex("000000"), track = hex("000000"),
+		progress = hex("000000", 0.75), chip = hex("000000", 0.6), box = hex("8A7A5A"),
+		thumb = hex("FFE27A"), swatch = hex("FFFFFF", 0.25), watermark = hex("FFFFFF", 0.028), mover = hex("FFD100", 0.12),
+		frameEdge = hex("9A7A34"), frameEdgeDark = hex("5C4518"), titleLine = hex("6B5420"),
+		success = hex("1EFF00"), arrive = hex("58C04A"), todo = hex("FFD100"), warning = hex("FF8040"),
+		later = hex("FF8040"), danger = hex("FF8040"), manual = hex("C77DFF"), skipped = hex("71D5FF"),
+		icon = hex("FFD100"), iconHover = hex("FFD100"), buttonText = hex("FFD100"), personName = hex("FFD100"), tabRest = hex("A38D58"),
+		rowLabel = hex("FFFFFF"), navRest = hex("CCCCCC"),
+		link = hex("FFD100"), npc = hex("FFFFFF"), discord = hex("5865F2"),
+	},
+}
+
+-- The game's looks start from Hearth's game colours (white text, gold
+-- titles, the client's quality greens and oranges) with their own grounds,
+-- glyph tints and rules.
+local function gamePalette(over)
+	local p = {}
+	for k, v in pairs(SKIN_PALETTES.hearth) do p[k] = v end
+	for k, v in pairs(over) do p[k] = v end
+	return p
+end
+SKIN_PALETTES.forever = gamePalette({
+	bg = hex("000000", 0.96), bgBottom = hex("000000", 0.96), sidebar = hex("000000", 0.25),
+	textDim = hex("AE9D81"), tabRest = hex("FFD100"), icon = hex("CEB282"), iconHover = hex("F2D199"),
+	-- The Settings panel's labels and its list's rows: GameFontNormal, gold.
+	rowLabel = hex("FFD100"), navRest = hex("FFD100"),
+	separator = hex("AE9D81", 0.35), divider = hex("AE9D81", 0.35), accentLine = hex("AE9D81", 0.5),
+	border = hex("5C4A30"), windowEdge = hex("5C4A30"), hover = hex("FFD100", 0.1), selected = hex("FFD100", 0.14),
+})
+SKIN_PALETTES.blizzard = gamePalette({
+	bg = hex("000000", 0.96), bgBottom = hex("000000", 0.96), sidebar = hex("000000", 0.25),
+	icon = hex("E8E8E8"), iconHover = hex("FFFFFF"), tabRest = hex("FFD100"), rowLabel = hex("FFD100"), navRest = hex("FFD100"),
+	separator = hex("FFD100", 0.35), divider = hex("FFFFFF", 0.15), accentLine = hex("FFD100", 0.45),
+	border = hex("404040"), windowEdge = hex("404040"), hover = hex("FFFFFF", 0.08), selected = hex("FFD100", 0.14),
+})
+SKIN_PALETTES.classic = gamePalette({
+	bg = hex("101010", 0.85), bgBottom = hex("101010", 0.85), sidebar = hex("000000", 0),
+	icon = hex("FFD100"), iconHover = hex("FFFFFF"), tabRest = hex("FFD100"), rowLabel = hex("FFD100"), navRest = hex("FFD100"),
+	separator = hex("969696", 0.45), divider = hex("969696", 0.45), accentLine = hex("969696", 0.6),
+	border = hex("696969"), windowEdge = hex("696969"), hover = hex("FFFFFF", 0.08), selected = hex("FFD100", 0.14),
+})
+Theme.SKIN_PALETTES = SKIN_PALETTES
+Theme.SKIN_ORDER = { "polestar", "halo", "hearth", "forever", "blizzard", "classic" }
+-- The skins drawn in game colours and controls (the client's check boxes,
+-- sliders, red buttons, the game font with its hard shadow).
+local GAME_SKINS = { hearth = true, forever = true, blizzard = true, classic = true }
 Theme.GROUNDS = { "bg", "panel", "panelAlt", "sidebar", "footer", "sky" }
 
 -- Alphas of the ink washes, by role.
@@ -371,7 +477,78 @@ end
 
 local P -- the resolved palette; rebuilt on the next read after a change
 
+-- The skin in use (ui.skin); an unknown value (an older or newer build) is
+-- the house style.
+function Theme.SkinKey()
+	local k = get("ui.skin")
+	return SKIN_PALETTES[k] and k or "polestar"
+end
+
+-- Whether the skin in use (or `key`) is drawn in the game's colours and
+-- controls: Hearth and the game's own looks.
+function Theme.GameSkin(key)
+	return GAME_SKINS[key or Theme.SkinKey()] or false
+end
+
+function Theme.SkinChoices()
+	return {
+		{ value = "polestar", text = ns.L["Polestar"] },
+		{ value = "halo", text = ns.L["Halo"] },
+		{ value = "hearth", text = ns.L["Hearth"] },
+		{ value = "forever", text = ns.L["WoW Forever"] },
+		{ value = "blizzard", text = ns.L["Blizzard"] },
+		{ value = "classic", text = ns.L["Classic"] },
+	}
+end
+
+-- The tokens the skins added, in the house style: what each one stands for
+-- there, so a module may read them in any skin.
+local HOUSE_EXTRA = {
+	textOff = "textMuted", title = "text", link = "npc", todo = "accent", later = "warning", arrive = "success",
+	manual = "item", skipped = "spell", separator = "divider", rowLine = "divider", veil = "bg", veilWindow = "bg",
+	menuBg = "panel", control = "panelAlt", icon = "textDim", iconHover = "text", buttonText = "text",
+	personName = "npc", tabRest = "textDim", rowLabel = "text", navRest = "textDim",
+}
+
+-- A skin's palette, with the player's own accent, window border and arrow
+-- colours over it.
+local function resolveSkin(skin)
+	local out = {}
+	for name, c in pairs(SHARED) do out[name] = copy(c) end
+	for name, c in pairs(ART) do out[name] = copy(c) end
+	for name, c in pairs(BRAND) do out[name] = copy(c) end
+	for name, c in pairs(SKIN_PALETTES[skin]) do out[name] = copy(c) end
+	local r, g, b
+	local own = get("ui.accent")
+	if isColor(own) then
+		r, g, b = own[1], own[2], own[3]
+	elseif Theme.FollowsClassAccent() then
+		r, g, b = classColor()
+	elseif Theme.FollowsEllesmereAccent() then
+		r, g, b = euiAccent()
+	end
+	if r then out.accent = { r, g, b, 1 } end
+	r, g, b = out.accent[1], out.accent[2], out.accent[3]
+	out.scheme, out.skin = skin, skin
+	local edge = get("ui.borderColor")
+	if isColor(edge) then
+		out.windowBorder = { edge[1], edge[2], edge[3], 1 }
+	elseif get("ui.borderAccent") then
+		out.windowBorder = { r, g, b, 0.8 }
+	else
+		out.windowBorder = copy(out.windowEdge or out.border)
+	end
+	local far, near = get("nav.arrowColor"), get("nav.arrowNearColor")
+	out.arrow = isColor(far) and { far[1], far[2], far[3], 1 } or copy(out.accent)
+	out.arrowNear = isColor(near) and { near[1], near[2], near[3], 1 } or copy(out.arrive)
+	out.arrowText = copy(out.arrow)
+	out.arrowNearText = copy(out.arrowNear)
+	return out
+end
+
 local function resolve()
+	local skin = Theme.SkinKey()
+	if skin ~= "polestar" then return resolveSkin(skin) end
 	local key = Theme.SchemeKey()
 	local src = SCHEMES[key == "ellesmere" and "graphite" or key]
 	local out = {}
@@ -435,6 +612,14 @@ local function resolve()
 	out.arrowText = { liftTo(lightest, out.text, out.arrow) }
 	out.arrowNearText = { liftTo(lightest, out.text, out.arrowNear) }
 	out.arrowText[4], out.arrowNearText[4] = 1, 1
+	for name, from in pairs(HOUSE_EXTRA) do
+		if not out[name] then out[name] = copy(out[from]) end
+	end
+	out.accentLine = { r, g, b, 0.35 }
+	out.padSelect = { r, g, b, 0.12 }
+	out.chipAccent = { r, g, b, 0.16 }
+	out.inputBg = { out.shade[1], out.shade[2], out.shade[3], 0.35 }
+	out.skin = "polestar"
 	return out
 end
 
@@ -510,6 +695,17 @@ end
 
 function Theme.Media(name)
 	return MEDIA .. "UI\\" .. name
+end
+
+-- Glyphs a skin draws its own way (DIRECTION_B_HALO.md §7: the report flag
+-- and the Nearby services house).
+local GAME_ICON = { bug = "flag", ["icon-goto"] = "house" }
+local SKIN_ICON = { halo = GAME_ICON, hearth = GAME_ICON, forever = GAME_ICON, blizzard = GAME_ICON, classic = GAME_ICON }
+
+-- A glyph's name in the skin in use.
+function Theme.Icon(name)
+	local own = SKIN_ICON[Theme.SkinKey()]
+	return own and own[name] or name
 end
 
 -- The night-sky band is drawn 1024x128 at 1:1. A header shows the top-left
@@ -601,30 +797,117 @@ local ROLES = {
 	mono = { "medium", 12 },
 }
 
--- Inter covers Latin, Greek and Cyrillic; these locales need the client font.
+-- Fira Sans (SIL OFL 1.1), the Halo skin's face: Latin, Greek and Cyrillic.
+local FIRA = {
+	regular = MEDIA .. "Fonts\\FiraSans-Regular.ttf",
+	medium = MEDIA .. "Fonts\\FiraSans-Medium.ttf",
+	semibold = MEDIA .. "Fonts\\FiraSans-SemiBold.ttf",
+}
+local FAMILIES = { inter = FACES, fira = FIRA }
+
+-- The font a skin starts with (ui.font "skin", the default): the house
+-- style and Blizzard the game's own, Halo Fira Sans.
+local SKIN_FONT = { polestar = "game", halo = "fira", hearth = "game", forever = "game", blizzard = "game", classic = "game" }
+
+-- A skin's own sizes, where they differ from the ladder above (the handoff's
+-- typography: DIRECTION_B_HALO.md §2, the same in DIRECTION_A_BLIZZARD.md §2).
+local SKIN_ROLES = {
+	halo = { hero = { "semibold", 24 } },
+	hearth = { hero = { "semibold", 24 } },
+}
+
+---------------------------------------------------------------------------
+-- Sizes (units) that change with the skin. Each module keeps the house
+-- style's value as its own constant and asks Theme.Metric(key, house): a
+-- skin's value when it has one (DIRECTION_B_HALO.md §3; Blizzard takes
+-- Halo's layout, DIRECTION_A_BLIZZARD.md §4, and its own controls, §3).
+---------------------------------------------------------------------------
+
+local METRICS = {
+	halo = {
+		row = 34, menuRow = 26, menuPad = 6, menuWidth = 260, servicesWidth = 290,
+		buttonH = 28, buttonPad = 14, dropdownW = 166, dropdownH = 26, chevron = 10, chevronInset = 8,
+		sliderW = 112, valueW = 56, checkbox = 16,
+		shellW = 930, shellH = 690, shellSidebar = 200, shellTabs = 32, shellPad = 28, shellFooter = 56,
+		pickerW = 1100, pickerH = 640, pickerDetail = 380, pickerSidebar = 230,
+		guidePad = 12, guideIconGap = 9, guideTabs = 28, guideNav = 32, guideNavBtn = 22, guideNavIcon = 12,
+		guideIconBtnW = 24, guideIconBtnH = 22, guideIcon = 13, guideRow = 22, guideCheck = 16,
+		guideProgress = 3, guideGrip = 8, guideFoot = 17, guideUpRow = 20, guideUpToggle = 26, guideNavGap = 2,
+	},
+	hearth = {
+		row = 28, menuRow = 22, menuPad = 6, menuWidth = 260, servicesWidth = 290,
+		buttonH = 22, buttonPad = 14, dropdownW = 170, dropdownH = 24, chevron = 10, chevronInset = 6,
+		sliderW = 120, valueW = 56, checkbox = 18,
+		shellW = 930, shellH = 690, shellSidebar = 200, shellTabs = 32, shellPad = 28, shellFooter = 56,
+		pickerW = 1100, pickerH = 640, pickerDetail = 380, pickerSidebar = 230,
+		guidePad = 12, guideIconGap = 9, guideTabs = 28, guideNav = 32, guideNavBtn = 20, guideNavIcon = 12,
+		guideIconBtnW = 20, guideIconBtnH = 20, guideIcon = 11, guideRow = 22, guideCheck = 15,
+		guideProgress = 14, guideGrip = 8, guideFoot = 28, guideUpRow = 20, guideUpToggle = 26, guideNavGap = 4,
+	},
+}
+-- The game's looks take Hearth's sizes and type.
+for _, k in ipairs({ "forever", "blizzard", "classic" }) do
+	METRICS[k] = METRICS.hearth
+	SKIN_ROLES[k] = SKIN_ROLES.hearth
+end
+Theme.METRICS = METRICS
+
+function Theme.Metric(key, house)
+	local m = METRICS[Theme.SkinKey()]
+	local v = m and m[key]
+	if v == nil then return house end
+	return v
+end
+
+-- Inter and Fira Sans cover Latin, Greek and Cyrillic; these locales need
+-- the client font.
 local CJK = { zhCN = true, zhTW = true, koKR = true }
 
+-- The face in use: "game", "inter" or "fira" (ui.font; "skin" follows the skin).
+function Theme.FontKey()
+	local f = get("ui.font")
+	local skin = Theme.SkinKey()
+	-- No setting at all (a Nav-only load, before UI registers its defaults):
+	-- Inter in the house style, as before skins.
+	if f == nil and skin == "polestar" then return "inter" end
+	if f == nil or f == "skin" or not (f == "game" or FAMILIES[f]) then f = SKIN_FONT[skin] end
+	return f
+end
+
 function Theme.FontSpec(role)
-	local spec = ROLES[role] or ROLES.body
+	local own = SKIN_ROLES[Theme.SkinKey()]
+	local spec = (own and own[role]) or ROLES[role] or ROLES.body
 	local size = spec[2]
 	if Theme.FollowsEllesmereFont() and S.GetFont then
 		local ok, path, flag = pcall(S.GetFont)
 		if ok and type(path) == "string" then return path, size, flag or "" end
 	end
 	local locale = GetLocale and GetLocale()
-	if get("ui.font") == "game" or CJK[locale] then
+	local face = Theme.FontKey()
+	if face == "game" or CJK[locale] then
 		return STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, ""
 	end
-	return FACES[spec[1]], size, ""
+	return FAMILIES[face][spec[1]], size, ""
 end
 
 local fonted = setmetatable({}, { __mode = "k" }) -- fontString -> role
 local outlined = setmetatable({}, { __mode = "k" }) -- fontString -> true
 local flat = setmetatable({}, { __mode = "k" }) -- fontString -> true: no drop shadow
 
+-- Text shadows: the house style's soft 1, -1; Halo's 1 down at 90 % black
+-- (DIRECTION_B_HALO.md §2); Blizzard's hard 1, -1 black, as the game's.
+local HARD = { 1, -1, 1 }
+local SKIN_SHADOW = { halo = { 0, -1, 0.9 }, hearth = HARD, forever = HARD, blizzard = HARD, classic = HARD }
+
 local function paintShadow(fs)
 	if not fs.SetShadowOffset then return end
 	local r, g, b = Theme.Color("shade")
+	local own = SKIN_SHADOW[Theme.SkinKey()]
+	if own then
+		fs:SetShadowOffset(own[1], own[2])
+		fs:SetShadowColor(0, 0, 0, flat[fs] and 0 or own[3])
+		return
+	end
 	fs:SetShadowOffset(1, -1)
 	fs:SetShadowColor(r, g, b, flat[fs] and 0 or (outlined[fs] and 1 or 0.6))
 end
@@ -636,6 +919,13 @@ local function paintFont(fs, role)
 		fs:SetFont(STANDARD_TEXT_FONT or "Fonts\\FRIZQT__.TTF", size, flags)
 	end
 	paintShadow(fs)
+	-- Forever leaves a string blank after a new font until its text changes
+	-- (the options' values and tiles after a skin change): set it again.
+	local text = fs.GetText and fs:GetText()
+	if text and text ~= "" then
+		fs:SetText(text .. " ")
+		fs:SetText(text)
+	end
 end
 
 function Theme.Font(fs, role)
@@ -802,6 +1092,8 @@ local function bare(f)
 	if d.bg then d.bg:Hide() end
 	hideBorder(f)
 	if f.psShadow then f.psShadow:Hide() end
+	if d.veil then d.veil:Hide() end
+	if d.nine then for _, n in pairs(d.nine) do if n then n:Hide() end end end
 end
 
 local HOUSE_PAINT = {
@@ -852,6 +1144,12 @@ local HOUSE_PAINT = {
 		Theme.Border(f, Theme.Color("border"))
 		hoverWash(f)
 	end,
+	-- An action tile (W.ActionTile): a button's ground in the house style.
+	tile = function(f)
+		fill(f):SetVertexColor(Theme.Color("panelAlt"))
+		Theme.Border(f, Theme.Color("border"))
+		hoverWash(f)
+	end,
 	editbox = function(f)
 		local r, g, b = Theme.Color("shade")
 		fill(f):SetVertexColor(r, g, b, 0.35)
@@ -897,20 +1195,325 @@ local HOUSE_PAINT = {
 		d.bar:SetVertexColor(Theme.Accent())
 		d.bar:SetShown(f.psSelected and true or false)
 		hoverWash(f)
+		-- Back from a game look's tab, whose label sat on its art.
+		local label = rawget(f, "Label")
+		if f.psKitLabel and label then
+			label:ClearAllPoints()
+			label:SetPoint("CENTER", f, "CENTER", 0, 0)
+			f.psKitLabel = nil
+		end
 	end,
 	close = function(f)
 		glyph(f, "close", 14):SetVertexColor(Theme.Color("textDim"))
 		hoverWash(f):SetVertexColor(Theme.Wash("hover"))
 	end,
 	scrollbar = function(f)
+		-- Back from a game look's scroll bar (Theme/GameSkins.lua): the slim
+		-- white thumb over the whole bar.
 		local thumb = f.thumb or f.psThumb
+		if f.psInset then
+			f.psInset = nil
+			f:SetWidth(6)
+			if thumb and thumb.SetTexture then
+				thumb:SetTexture(Theme.Media("white"))
+				thumb:SetTexCoord(0, 1, 0, 1)
+				thumb:SetWidth(2)
+			end
+		end
 		if thumb and thumb.SetVertexColor then thumb:SetVertexColor(Theme.Wash("thumb")) end
 	end,
 }
 
+---------------------------------------------------------------------------
+-- Halo and Blizzard paints (DIRECTION_B_HALO.md §4 and §7,
+-- DIRECTION_A_BLIZZARD.md §3 and §6). A kind a skin does not paint falls
+-- back to the house paint.
+---------------------------------------------------------------------------
+
+-- The soft veil: Media/UI/veil-soft (64 px, its 24 px edge fading to clear)
+-- in nine slices, laid 24 units out from the frame so the frame itself sits
+-- on the solid middle. Tinted with `token` at `alpha`.
+local VEIL_OUT = 24
+local VEIL_SLICE = 24 / 64
+local function veilFor(frame)
+	local v = frame.psSkin.veil
+	if v then return v end
+	v = CreateFrame("Frame", nil, frame)
+	v:SetFrameLevel(math.max(0, frame:GetFrameLevel() - 1))
+	v:SetPoint("TOPLEFT", frame, "TOPLEFT", -VEIL_OUT, VEIL_OUT)
+	v:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", VEIL_OUT, -VEIL_OUT)
+	local tex, a, b = Theme.Media("veil-soft"), VEIL_SLICE, 1 - VEIL_SLICE
+	-- { point, relative point x/y in slices, texcoords }
+	local cells = {
+		{ 0, a, 0, a }, { a, b, 0, a }, { b, 1, 0, a },
+		{ 0, a, a, b }, { a, b, a, b }, { b, 1, a, b },
+		{ 0, a, b, 1 }, { a, b, b, 1 }, { b, 1, b, 1 },
+	}
+	v.parts = {}
+	for i, c in ipairs(cells) do
+		local t = v:CreateTexture(nil, "BACKGROUND", nil, -8)
+		t:SetTexture(tex)
+		t:SetTexCoord(c[1], c[2], c[3], c[4])
+		v.parts[i] = t
+	end
+	local p, E = v.parts, VEIL_OUT
+	p[1]:SetPoint("TOPLEFT", v, "TOPLEFT"); p[1]:SetSize(E, E)
+	p[3]:SetPoint("TOPRIGHT", v, "TOPRIGHT"); p[3]:SetSize(E, E)
+	p[7]:SetPoint("BOTTOMLEFT", v, "BOTTOMLEFT"); p[7]:SetSize(E, E)
+	p[9]:SetPoint("BOTTOMRIGHT", v, "BOTTOMRIGHT"); p[9]:SetSize(E, E)
+	p[2]:SetPoint("TOPLEFT", p[1], "TOPRIGHT"); p[2]:SetPoint("BOTTOMRIGHT", p[3], "BOTTOMLEFT")
+	p[8]:SetPoint("TOPLEFT", p[7], "TOPRIGHT"); p[8]:SetPoint("BOTTOMRIGHT", p[9], "BOTTOMLEFT")
+	p[4]:SetPoint("TOPLEFT", p[1], "BOTTOMLEFT"); p[4]:SetPoint("BOTTOMRIGHT", p[7], "TOPRIGHT")
+	p[6]:SetPoint("TOPLEFT", p[3], "BOTTOMLEFT"); p[6]:SetPoint("BOTTOMRIGHT", p[9], "TOPRIGHT")
+	p[5]:SetPoint("TOPLEFT", p[1], "BOTTOMRIGHT"); p[5]:SetPoint("BOTTOMRIGHT", p[9], "TOPLEFT")
+	frame.psSkin.veil = v
+	return v
+end
+
+local function showVeil(frame, token, alpha)
+	local v = veilFor(frame)
+	local r, g, b, a = Theme.Color(token)
+	a = alpha or a
+	for i = 1, #v.parts do v.parts[i]:SetVertexColor(r, g, b, a) end
+	v:Show()
+	return v
+end
+
+-- A vertical two-colour fill (top, bottom), the gradients of Blizzard's
+-- frames and buttons where the client has no texture of the exact tint.
+local function gradientFill(frame, top, bottom, layer, sub)
+	local t = fill(frame, layer, sub)
+	t:SetVertexColor(1, 1, 1, 1)
+	if t.SetGradient and CreateColor then
+		t:SetGradient("VERTICAL", CreateColor(bottom[1], bottom[2], bottom[3], bottom[4] or 1), CreateColor(top[1], top[2], top[3], top[4] or 1))
+	else
+		t:SetVertexColor(top[1], top[2], top[3], top[4] or 1)
+	end
+	return t
+end
+
+-- The game's red panel button (Interface\Buttons\UI-Panel-Button-*, as
+-- UIPanelButtonNoTooltipTemplate lays it: left 12, middle, right 12).
+local PANEL_BUTTON = { "Interface\\Buttons\\UI-Panel-Button-Up", "Interface\\Buttons\\UI-Panel-Button-Down",
+	"Interface\\Buttons\\UI-Panel-Button-Disabled", "Interface\\Buttons\\UI-Panel-Button-Highlight" }
+local function redButton(f)
+	local d = f.psSkin
+	if not d.red then
+		local red = {}
+		for i, coords in ipairs({ { 0, 0.09375 }, { 0.09375, 0.53125 }, { 0.53125, 0.625 } }) do
+			local t = f:CreateTexture(nil, "BACKGROUND", nil, -6)
+			t:SetTexCoord(coords[1], coords[2], 0, 0.6875)
+			red[i] = t
+		end
+		red[1]:SetPoint("TOPLEFT"); red[1]:SetPoint("BOTTOMLEFT"); red[1]:SetWidth(12)
+		red[3]:SetPoint("TOPRIGHT"); red[3]:SetPoint("BOTTOMRIGHT"); red[3]:SetWidth(12)
+		red[2]:SetPoint("TOPLEFT", red[1], "TOPRIGHT"); red[2]:SetPoint("BOTTOMRIGHT", red[3], "BOTTOMLEFT")
+		local hl = f:CreateTexture(nil, "HIGHLIGHT")
+		hl:SetTexture(PANEL_BUTTON[4])
+		hl:SetTexCoord(0, 0.625, 0, 0.6875)
+		hl:SetBlendMode("ADD")
+		hl:SetAllPoints(f)
+		red.hl = hl
+		d.red = red
+	end
+	local enabled = not (f.IsEnabled and not f:IsEnabled())
+	local file = enabled and (f.psPressed and PANEL_BUTTON[2] or PANEL_BUTTON[1]) or PANEL_BUTTON[3]
+	for i = 1, 3 do
+		d.red[i]:SetTexture(file)
+		d.red[i]:SetVertexColor(1, 1, 1, 1)
+		d.red[i]:Show()
+	end
+	d.red.hl:Show()
+	return d.red
+end
+
+-- Hide whatever another skin painted on a frame before this one paints it.
+local function hideAll(v)
+	if type(v) ~= "table" then return end
+	if v.Hide then v:Hide() return end
+	for _, x in pairs(v) do hideAll(x) end
+end
+
+local function clearSkin(f)
+	local d = f.psSkin
+	if d.bg then d.bg:Hide() end
+	if d.bg and d.kitFill then
+		-- A game look drew its own art in the fill: back to the house fill,
+		-- white over the whole frame, untiled.
+		d.bg:SetTexture(Theme.Media("white"))
+		d.bg:SetTexCoord(0, 1, 0, 1)
+		if d.bg.SetHorizTile then d.bg:SetHorizTile(false); d.bg:SetVertTile(false) end
+		d.bg:ClearAllPoints()
+		d.bg:SetAllPoints(f)
+		d.kitFill = nil
+	end
+	hideBorder(f)
+	if f.psShadow then f.psShadow:Hide() end
+	if d.veil then d.veil:Hide() end
+	if d.nine then for _, n in pairs(d.nine) do if n then n:Hide() end end end
+	if d.red then for i = 1, 3 do d.red[i]:Hide() end; d.red.hl:Hide() end
+	if d.line then d.line:Hide() end
+	if d.hover then d.hover:SetVertexColor(1, 1, 1, 0) end
+	-- The game's looks (Theme/GameSkins.lua) keep their pieces here.
+	if d.kit then hideAll(d.kit) end
+end
+
+-- One 1-unit line along a frame's bottom edge (the dropdowns' accentLine).
+local function bottomLine(f, token)
+	local d = f.psSkin
+	if not d.line then
+		d.line = f:CreateTexture(nil, "BORDER")
+		d.line:SetTexture(Theme.Media("white"))
+		d.line:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 0, 0)
+		d.line:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", 0, 0)
+		d.line:SetHeight(1)
+	end
+	d.line:SetVertexColor(Theme.Color(token))
+	d.line:Show()
+end
+
+-- A window's veil opacity: the skin's (84 %, the guide window's 60 %) scaled
+-- by the player's window opacity against its default (ui.bgOpacity, 94 %).
+local function veilAlpha(f, token)
+	local _, _, _, a = Theme.Color(token)
+	local scale = (f.psBgAlpha or Theme.GroundAlpha()) / 0.94
+	return math.min(1, a * scale)
+end
+
+local SKIN_PAINT = {
+	halo = {
+		window = function(f)
+			if f.psBare then return bare(f) end
+			local token = f.psGuide and "veil" or "veilWindow"
+			showVeil(f, token, veilAlpha(f, token))
+			local shown, size = Theme.WindowBorder()
+			if shown and (isColor(get("ui.borderColor")) or get("ui.borderAccent")) then
+				Theme.Border(f, Theme.Color("windowBorder"))
+			end
+		end,
+		panel = function(f)
+			if f.psBare then return bare(f) end
+			fill(f):SetVertexColor(Theme.Color("menuBg"))
+			Theme.Border(f, Theme.Color("separator"))
+		end,
+		sidebar = function(f) end,
+		inset = function(f)
+			fill(f):SetVertexColor(1, 1, 1, 0.04)
+		end,
+		button = function(f)
+			fill(f):SetVertexColor(Theme.Color("control"))
+			Theme.Border(f, Theme.Color("border"))
+			hoverWash(f)
+		end,
+		dropdown = function(f)
+			fill(f):SetVertexColor(Theme.Color("control"))
+			Theme.Border(f, Theme.Color("divider"))
+			bottomLine(f, "accentLine")
+			hoverWash(f)
+		end,
+		tile = function(f)
+			fill(f):SetVertexColor(1, 1, 1, 0.05)
+			hideBorder(f)
+			hoverWash(f)
+		end,
+		editbox = function(f)
+			fill(f):SetVertexColor(Theme.Color("inputBg"))
+			if f.psFocused then
+				local r, g, b = Theme.Accent()
+				Theme.Border(f, r, g, b, 0.8)
+			else
+				Theme.Border(f, Theme.Color("border"))
+			end
+		end,
+		checkbox = function(f)
+			HOUSE_PAINT.checkbox(f)
+			local d = f.psSkin
+			d.box:SetSize(16, 16)
+			fill(d.box):SetVertexColor(Theme.Color("inputBg"))
+			Theme.Border(d.box, Theme.Color("box"))
+		end,
+	},
+	hearth = {
+		-- Flat windows (Yendi, after playing it): the handoff's brown gradient
+		-- without the game's metal frame, edged by the window border setting
+		-- in a brown hairline (#5C4518) unless the player picked their own.
+		window = function(f)
+			if f.psBare then return bare(f) end
+			local a = veilAlpha(f, "bg")
+			local top, bottom = { Theme.Color("bg") }, { Theme.Color("bgBottom") }
+			top[4], bottom[4] = a, a
+			gradientFill(f, top, bottom)
+			local shown, size = Theme.WindowBorder()
+			if shown then
+				local br, bg, bb, ba = Theme.Color("windowBorder")
+				Theme.Border(f, br, bg, bb, ba, nil, size)
+			else
+				hideBorder(f)
+			end
+		end,
+		panel = function(f)
+			if f.psBare then return bare(f) end
+			local top, bottom = { Theme.Color("bg") }, { Theme.Color("bgBottom") }
+			top[4], bottom[4] = 0.97, 0.97
+			gradientFill(f, top, bottom)
+			Theme.Border(f, Theme.Color("frameEdgeDark"))
+		end,
+		tile = function(f)
+			fill(f):SetVertexColor(0, 0, 0, 0.4)
+			Theme.Border(f, Theme.Color("titleLine"))
+			hoverWash(f)
+		end,
+		sidebar = function(f)
+			fill(f):SetVertexColor(Theme.Color("sidebar"))
+		end,
+		inset = function(f)
+			fill(f):SetVertexColor(0, 0, 0, 0.45)
+		end,
+		-- The game's red button for text buttons (W.Button) alone; anything
+		-- else painted as a button (cards, rows, tiles) is a dark well edged
+		-- in brown.
+		button = function(f)
+			if f.psTextButton then return redButton(f) end
+			fill(f):SetVertexColor(0, 0, 0, 0.4)
+			Theme.Border(f, Theme.Color("titleLine"))
+			hoverWash(f)
+		end,
+		dropdown = function(f)
+			fill(f):SetVertexColor(Theme.Color("control"))
+			Theme.Border(f, Theme.Color("border"))
+			hoverWash(f)
+		end,
+		editbox = function(f)
+			fill(f):SetVertexColor(Theme.Color("inputBg"))
+			if f.psFocused then
+				local r, g, b = Theme.Accent()
+				Theme.Border(f, r, g, b, 0.8)
+			else
+				Theme.Border(f, Theme.Color("border"))
+			end
+		end,
+		checkbox = function(f)
+			HOUSE_PAINT.checkbox(f)
+			local d = f.psSkin
+			d.box:SetSize(15, 15)
+			gradientFill(d.box, { 0, 0, 0, 1 }, { 0.11, 0.11, 0.11, 1 })
+			Theme.Border(d.box, Theme.Color("box"))
+		end,
+	},
+}
+Theme.SKIN_PAINT = SKIN_PAINT
+-- The paint helpers Theme/GameSkins.lua builds the game's looks from.
+Theme.Paint = { fill = fill, hoverWash = hoverWash, bare = bare, hideBorder = hideBorder, redButton = redButton, house = HOUSE_PAINT }
+
 local function paint(frame, kind)
 	frame.psSkin = frame.psSkin or {}
-	local fn = HOUSE_PAINT[kind] or HOUSE_PAINT.panel
+	local skin = Theme.SkinKey()
+	if frame.psSkin.skin ~= skin then
+		if frame.psSkin.skin then clearSkin(frame) end
+		frame.psSkin.skin = skin
+	end
+	local own = SKIN_PAINT[skin]
+	local fn = (own and own[kind]) or HOUSE_PAINT[kind] or HOUSE_PAINT.panel
 	fn(frame)
 end
 
@@ -963,7 +1566,7 @@ function Theme.Refresh()
 end
 
 local LOOKS = {
-	["ui.accent"] = true, ["ui.font"] = true, ["ui.scheme"] = true, ["ui.bgColor"] = true, ["ui.bgOpacity"] = true,
+	["ui.accent"] = true, ["ui.font"] = true, ["ui.skin"] = true, ["ui.scheme"] = true, ["ui.bgColor"] = true, ["ui.bgOpacity"] = true,
 	["ui.brightness"] = true, ["ui.matchAccent"] = true, ["ui.classAccent"] = true, ["ui.matchFont"] = true,
 	["ui.border"] = true, ["ui.borderColor"] = true, ["ui.borderAccent"] = true, ["ui.borderSize"] = true,
 	["ui.band"] = true, ["ui.shadow"] = true, ["nav.arrowColor"] = true, ["nav.arrowNearColor"] = true,

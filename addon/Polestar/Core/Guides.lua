@@ -99,12 +99,8 @@ local RUN_SPEED = 7 -- yards per second
 local CROSS_CONTINENT = 3600 -- seconds
 ns.TRAVEL_CROSS_CONTINENT = CROSS_CONTINENT
 
-function ns.TravelCost(from, to)
-	local nav = ns.Nav
-	if nav and nav.EstimateTravel then
-		local ok, s = pcall(nav.EstimateTravel, from, to)
-		if ok and type(s) == "number" then return s end
-	end
+-- A cheap direct world-distance estimate: never touches the route planner.
+local function directTravelCost(from, to)
 	local C = ns.Compat
 	local c1, x1, y1 = C.MapToWorld(from.map, from.x, from.y, from.f)
 	local c2, x2, y2 = C.MapToWorld(to.map, to.x, to.y, to.f)
@@ -112,6 +108,16 @@ function ns.TravelCost(from, to)
 	if c1 ~= c2 then return CROSS_CONTINENT end
 	local dx, dy = x2 - x1, y2 - y1
 	return (dx * dx + dy * dy) ^ 0.5 / RUN_SPEED
+end
+ns.DirectTravelCost = directTravelCost
+
+function ns.TravelCost(from, to)
+	local nav = ns.Nav
+	if nav and nav.EstimateTravel then
+		local ok, s = pcall(nav.EstimateTravel, from, to)
+		if ok and type(s) == "number" then return s end
+	end
+	return directTravelCost(from, to)
 end
 
 -- The player's live position as a travel point, or nil (instance, loading).
@@ -474,7 +480,7 @@ function ns.RegisterPack(meta)
 		r.status = "on"
 		return true
 	end
-	-- Every other pack, refused ones included, is listed on the Guide packs page.
+	-- Every other pack, refused ones included, is listed on the Community guides page.
 	local addon = meta.addon
 	local r = newRecord(meta, addon)
 	loadingRefused = nil
@@ -705,7 +711,7 @@ function Guides.Packs()
 	return out
 end
 
--- Problems over every listed pack (the Guide packs page's dot).
+-- Problems over every listed pack (the Community guides page's dot).
 function Guides.ProblemCount()
 	local n = 0
 	for _, r in ipairs(Guides.Packs()) do n = n + #r.problems end
@@ -748,12 +754,14 @@ local function noGuides(r)
 end
 
 -- A pack that never registered, from its TOC and the client's state. The
--- compiler writes its Title as "Polestar Pack: <title>" for the AddOns list;
+-- compiler writes its Title as "Polestar Community: <title>" for the AddOns
+-- list (community addons built before that say "Polestar Pack: <title>");
 -- here it reads as the pack's own title, as a registered pack's does.
 -- Priority: too-new > disabled > not-loaded > broken.
 local function fromToc(r, name, reason, enabled)
 	local title = meta(name, "Title")
-	r.title = escape(title and title:gsub("^Polestar Pack: ", "") or name)
+	if title then title = title:gsub("^Polestar Community: ", ""):gsub("^Polestar Pack: ", "") end
+	r.title = escape(title or name)
 	for key, field in pairs({ author = "Author", version = "Version", license = "X-License", website = "X-Website" }) do
 		local v = meta(name, field)
 		r[key] = v and escape(v) or nil
@@ -938,7 +946,7 @@ local function canSuggest(id)
 end
 
 -- The packs suggestions can come from, ours ("guides") first, then the
--- others as Guides.Packs orders them (the Guide packs page's choices).
+-- others as Guides.Packs orders them (the Community guides page's choices).
 function Guides.SuggestSources()
 	local out = { "guides" }
 	for _, r in ipairs(Guides.Packs()) do

@@ -283,6 +283,13 @@ local function buildLook(f)
 	f.edge:Hide()
 end
 
+-- In every skin but the house style each glyph pin sits on a dark disc
+-- (DIRECTION_B_HALO.md, "Carte": a dark disc, the glyph in its subject's colour).
+local function skinDisc()
+	local T = ns.Theme
+	return type(T) == "table" and type(T.SkinKey) == "function" and T.SkinKey() ~= "polestar"
+end
+
 -- Shows the parts of a pin's look for its current state (clamped minimap
 -- pins show only the edge pointer).
 local function showParts(f, p, clamped)
@@ -290,7 +297,7 @@ local function showParts(f, p, clamped)
 	f.fill:SetShown(not clamped and not icon)
 	f.ring:SetShown(not clamped and not icon)
 	f.icon:SetShown(not clamped and icon)
-	f.back:SetShown(not clamped and icon and p.backdrop and true or false)
+	f.back:SetShown(not clamped and icon and (p.backdrop or skinDisc()) and true or false)
 	f.mark:SetShown(not clamped and type(p.ring) == "table")
 	f.glow:SetShown(not clamped and p.glow and true or false)
 	f.edge:SetShown(clamped and true or false)
@@ -310,7 +317,7 @@ local function applyLook(f, p, size)
 		f.hasIcon = false
 	end
 	local disc = size * BACKDROP_SCALE
-	if p.backdrop then
+	if p.backdrop or (path and skinDisc()) then
 		local br, bg, bb = backdropColor()
 		f.back:SetSize(disc, disc)
 		f.back:SetVertexColor(br, bg, bb, BACKDROP_ALPHA * a)

@@ -1,6 +1,6 @@
 ---
 name: polestar-contributing
-description: The rules for working on the Polestar repository (the WoW Forever leveling guide addon, fitzforge/polestar) for a contributor - which branch a change goes to, generated files, changelog fragments, tests, what a pull request must never do, and how to post on issues. Use for any change, pull request, commit or issue comment in a Polestar clone; read polestar-triage first for a bug report and polestar-guide-fix for a guide fix.
+description: The rules for working on the Polestar repository (the WoW Forever leveling guide addon, fitzforge/polestar) for a contributor - checking that no one else is already fixing an issue, which branch a change goes to, linking the issue, generated files, changelog fragments, tests, what a pull request must never do, and how to post on issues. Use for any change, pull request, commit or issue comment in a Polestar clone; read polestar-triage first for a bug report and polestar-guide-fix for a guide fix.
 compatibility: A clone of fitzforge/polestar with Node 24 or newer. Reference data (data/forever) and Lua 5.1 are needed for the guide checks.
 ---
 
@@ -23,7 +23,7 @@ says where each topic is documented. `polestar` below is
 |---|---|
 | Looking at, triaging, reproducing or answering a bug report or issue | polestar-triage |
 | Fixing a step, route, giver or coordinate in `guides/` | polestar-guide-fix |
-| Writing a separate guide pack (not Polestar's own guides) | polestar-guide-pack |
+| Writing a separate community addon (guide pack; not Polestar's own guides) | polestar-guide-pack |
 
 ## Bug reports are leads, not verdicts
 
@@ -37,6 +37,43 @@ anything, and don't change a guide to match a report you could not verify.
 Don't "fix" a symptom. Special-casing one quest id, hiding an error or
 loosening a check so the complaint goes away is not a fix. If the real cause
 is out of reach, say what you found and stop.
+
+## Before you start on an issue
+
+Many contributors' agents work on the same reports at once, and two pull
+requests for one bug waste both. Before you write any code for an issue:
+
+1. **Is someone already on it?** Run all three, and read what they find:
+
+   ```sh
+   gh issue view <N> --comments          # a "Pull requests for this issue" comment, the has-pr label, "I'm on this"
+   gh pr list --state open --search "<N>"
+   gh pr list --state open --search "<quest id or guide name>"
+   ```
+
+   An open pull request that covers the issue means you don't open another.
+   Tell the person running you, and offer to review it, try it, or add
+   the missing part on that pull request (a comment, which a human reads
+   first). A different fix for the same bug is a review comment on theirs,
+   not a second pull request.
+2. **Is it checked?** Start from issues labelled `confirmed` or
+   `patch-candidate`; triage anything else first (polestar-triage).
+3. **Claim it visibly.** Draft a short "I'm looking at this" comment for
+   the person running you to post, and open the pull request early (a draft
+   while unfinished).
+4. **Link every issue it fixes** so the workflow lists the pull request on
+   the issue and labels it `has-pr`: the number in the title (`(#302)`), or
+   "closes #302" (into `next`) / "fixes #302" (into `hotfix/`) in the
+   description, once per issue. "See #302" or "refs #302" is only a link.
+   Don't link an issue you are not fixing: a Discord reporter is told a fix
+   is open when the first pull request for their issue appears.
+5. **The label `overlap`** on your pull request means another open pull
+   request addresses the same issue; its comment names it. Compare them and
+   say on yours what each covers. The maintainer merges one: correct and
+   complete first, then the earlier one.
+
+A claim with no commit or reply for a week is free to take over: say so on
+the issue first. CONTRIBUTING.md, "Before you start", is the long form.
 
 ## Which branch
 

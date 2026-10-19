@@ -13,12 +13,19 @@
 -- outlines and shadows in shade, the hover wash that says "movable" in the
 -- ink "mover" wash. No colour literals.
 --
--- Two styles (nav.arrowStyle):
+-- Styles (nav.arrowStyle; "skin", the default, takes the skin's: 3D in the
+-- house style, the Halo dart in Halo, the Hearth dart in Hearth and the
+-- game's looks):
 --   "3d"   a pre-rendered arrow lying on the ground in front of you: one
 --          sprite-sheet frame per heading (tools/media/nav/arrow3d.js), the
 --          body tinted with SetVertexColor and an untinted specular sheet
 --          added on top; the heading picks the frame
 --   "flat" a faceted dart rotated with SetRotation
+--   "halo", "hearth"  the skins' darts (DIRECTION_B_HALO.md §3,
+--          DIRECTION_A_BLIZZARD.md §5; tools/media/skins.js): a 54-unit dart
+--          with a dark 2-unit edge, rotated; Halo's in the accent, Hearth's
+--          gold gradient baked in; both turn to the arrival colour within
+--          40 m. Arrival: a 48-unit ring (stroke 3), then a check (stroke 5).
 --
 -- Work happens only while shown: OnUpdate samples the world at 20 Hz and
 -- damps the heading every frame, allocating nothing. Hidden states (no
@@ -43,7 +50,15 @@ local TWO_PI = 2 * pi
 local STEP = TWO_PI / FRAMES
 local SPRITE = DIAL * 1.5
 
-ns.RegisterDefaults("nav", { arrowStyle = "3d" })
+ns.RegisterDefaults("nav", { arrowStyle = "skin" })
+
+-- The style a skin's arrow takes ("skin" in nav.arrowStyle).
+local SKIN_ARROW = { polestar = "3d", halo = "halo", hearth = "hearth", forever = "hearth", blizzard = "hearth", classic = "hearth" }
+local DART = 54          -- the skins' dart, in the 64-unit dial
+local DART_NEAR = 43.7   -- 40 m, in yards: the skins' darts turn to the arrival colour
+local SKIN_RING = 48     -- the skins' arrival ring
+-- The darts' dark edge: Halo #17130E (near #0B1A0C), Hearth #2A1A00.
+local EDGE = { halo = { 0.09, 0.075, 0.055 }, haloNear = { 0.043, 0.102, 0.047 }, hearth = { 0.165, 0.102, 0 } }
 
 -- Sheet frame for a heading (radians, counter-clockwise, 0 = straight ahead):
 -- frame i shows the arrow turned i * 360 / FRAMES degrees.
@@ -65,7 +80,7 @@ frame:SetSize(WIDTH, DIAL + TEXT_H)
 frame:SetFrameStrata("MEDIUM")
 frame:SetClampedToScreen(true)
 frame:SetMovable(true)
-frame:EnableMouse(true) -- always movable: drag the arrow anywhere
+frame:EnableMouse(true) -- always movable: drag the arrow anywhere (Shift-drag with ui.lockHud on)
 frame:RegisterForDrag("LeftButton")
 frame:Hide()
 
@@ -131,6 +146,29 @@ ring:SetTexture(MEDIA .. "arrived")
 ring:SetSize(DIAL, DIAL)
 ring:SetPoint("CENTER")
 
+-- The skins' darts and arrival (Media/UI: dart, dart-edge, dart-gold,
+-- skin-ring, skin-check, circle).
+local UI_DIR = "Interface\\AddOns\\" .. ADDON .. "\\Media\\UI\\"
+local dart = dial:CreateTexture(nil, "ARTWORK")
+dart:SetTexture(UI_DIR .. "dart")
+dart:SetSize(DART, DART)
+dart:SetPoint("CENTER")
+local dartEdge = dial:CreateTexture(nil, "ARTWORK", nil, 1)
+dartEdge:SetTexture(UI_DIR .. "dart-edge")
+dartEdge:SetAllPoints(dart)
+local skinDisc = dial:CreateTexture(nil, "BACKGROUND")
+skinDisc:SetTexture(UI_DIR .. "circle")
+skinDisc:SetSize(SKIN_RING - 2, SKIN_RING - 2)
+skinDisc:SetPoint("CENTER")
+local skinRing = dial:CreateTexture(nil, "ARTWORK")
+skinRing:SetTexture(UI_DIR .. "skin-ring")
+skinRing:SetSize(SKIN_RING * 60 / 48, SKIN_RING * 60 / 48) -- the ring is 48 of the texture's 60 units
+skinRing:SetPoint("CENTER")
+local skinCheck = dial:CreateTexture(nil, "ARTWORK", nil, 1)
+skinCheck:SetTexture(UI_DIR .. "skin-check")
+skinCheck:SetAllPoints(skinRing)
+for _, t in ipairs({ dart, dartEdge, skinDisc, skinRing, skinCheck }) do t:Hide() end
+
 -- A travel instruction (hearth, teleport, fly, take a boat or a lift) has no
 -- direction to point at: the dial shows what to do instead, the leg's glyph in the accent.
 local UI_MEDIA = "Interface\\AddOns\\" .. ADDON .. "\\Media\\UI\\"
@@ -159,6 +197,7 @@ etaText:SetJustifyH("CENTER")
 local Arrow = {
 	frame = frame, dial = dial, mover = mover, body = body, facet = facet, glow = glow, sheet = sheet, sheetSpec = sheetSpec,
 	ring = ring, halo = halo, legIcon = legIcon, distText = distText, labelText = labelText, etaText = etaText,
+	dart = dart, dartEdge = dartEdge, skinRing = skinRing, skinCheck = skinCheck, skinDisc = skinDisc,
 }
 Nav.arrow = Arrow
 
@@ -198,8 +237,13 @@ local function etaColor()
 	etaText:SetTextColor(r, g, b, 0.8)
 end
 
+local function skinStyle() return style == "halo" or style == "hearth" end
+
 local function setRotation(a)
-	if style == "3d" then
+	if skinStyle() then
+		dart:SetRotation(a)
+		dartEdge:SetRotation(a)
+	elseif style == "3d" then
 		local f = Nav.ArrowFrame(a)
 		if f ~= shownFrame then
 			shownFrame = f
@@ -218,11 +262,25 @@ end
 local function showArrow(on)
 	local flat = on and style == "flat"
 	local solid = on and style == "3d"
+	local own = on and skinStyle()
 	body:SetShown(flat)
 	facet:SetShown(flat)
 	glow:SetShown(flat)
 	sheet:SetShown(solid)
 	sheetSpec:SetShown(solid)
+	dart:SetShown(own)
+	dartEdge:SetShown(own)
+end
+
+-- The skins' arrival: the ring, the disc under it (Halo's veil), and the
+-- check once the arrival has shown (Arrow's OnUpdate: SKIN_CHECK_AFTER).
+local SKIN_CHECK_AFTER = 0.6
+local function showSkinArrival(on)
+	local own = on and skinStyle()
+	skinRing:SetShown(own)
+	skinDisc:SetShown(own and style == "halo")
+	skinCheck:SetShown(false)
+	return own
 end
 
 local function setMode(m)
@@ -232,8 +290,9 @@ local function setMode(m)
 	dial:SetShown(travel or done or act)
 	grabArea(travel or done or act)
 	showArrow(travel)
-	ring:SetShown(done)
-	halo:SetShown(done or act)
+	local skinDone = showSkinArrival(done)
+	ring:SetShown(done and not skinDone)
+	halo:SetShown((done and not skinDone) or act)
 	legIcon:SetShown(act)
 	lastYards, lastEta = nil, nil
 	lastDist, closeSpeed = nil, 0
@@ -243,6 +302,9 @@ local function setMode(m)
 		local r, g, b = Nav.RGB("arrowNear")
 		ring:SetVertexColor(r, g, b, 1)
 		halo:SetVertexColor(r, g, b, 0.5)
+		skinRing:SetVertexColor(r, g, b, 1)
+		skinCheck:SetVertexColor(r, g, b, 1)
+		skinDisc:SetVertexColor(0.031, 0.024, 0.016, 0.45)
 		distText:SetTextColor(Nav.RGB("arrowNearText"))
 		-- An area objective is never done by standing somewhere: look around,
 		-- then move on (a click on the arrow, or the next spot comes up by itself).
@@ -284,15 +346,33 @@ local function setMode(m)
 	end
 end
 
+local nearShown -- the skins' darts: whether the arrival colour is on
+
 local function tint(r, g, b)
 	tintR, tintG, tintB = r, g, b
 	body:SetVertexColor(r, g, b, 1)
 	glow:SetVertexColor(r, g, b, 0.45)
 	sheet:SetVertexColor(r, g, b, 1)
+	if skinStyle() then
+		-- Hearth's far dart is its baked gold, unless the player picked
+		-- their own arrow colour; up close (and Halo's always) it is tinted.
+		local own = type(ns.Get("nav.arrowColor")) == "table"
+		local gold = style == "hearth" and not nearShown and not own
+		dart:SetTexture(UI_DIR .. (gold and "dart-gold" or "dart"))
+		if gold then dart:SetVertexColor(1, 1, 1, 1) else dart:SetVertexColor(r, g, b, 1) end
+		local e = EDGE[style == "halo" and (nearShown and "haloNear" or "halo") or "hearth"]
+		dartEdge:SetVertexColor(e[1], e[2], e[3], 1)
+	end
 end
 
 -- The far colour away, the near colour up close; smoothstep over CLOSE_RANGE.
 local function applyColor(dist, radius)
+	if skinStyle() then
+		-- The skins' darts: the far colour, then the arrival colour within 40 m.
+		nearShown = dist <= DART_NEAR
+		tint(Nav.RGB(nearShown and "arrowNear" or "arrow"))
+		return
+	end
 	local t = 1 - (dist - radius) / CLOSE_RANGE
 	if t < 0 then t = 0 elseif t > 1 then t = 1 end
 	t = t * t * (3 - 2 * t)
@@ -448,6 +528,9 @@ frame:SetScript("OnUpdate", function(_, elapsed)
 			curAngle = wrap(curAngle + diff * (1 - exp(-elapsed * DAMPING)))
 			setRotation(curAngle)
 		end
+	elseif (mode == "arrived" or mode == "search") and skinStyle() then
+		pulse = pulse + elapsed
+		if pulse >= SKIN_CHECK_AFTER and not skinCheck:IsShown() then skinCheck:Show() end
 	elseif mode == "arrived" or mode == "search" then
 		pulse = pulse + elapsed
 		local s = 1 + 0.06 * sin(pulse * 4)
@@ -478,21 +561,26 @@ function Nav.ResetArrowPosition()
 	ns.Set("nav.arrowPos", nil)
 end
 
+local moving = false
 frame:SetScript("OnDragStart", function(self)
+	if ns.DragLocked() then return end
+	moving = true
 	self:StartMoving()
 end)
 
 frame:SetScript("OnDragStop", function(self)
+	if not moving then return end
+	moving = false
 	self:StopMovingOrSizing()
 	local point, _, relPoint, x, y = self:GetPoint(1)
 	if point then ns.Set("nav.arrowPos", { point = point, relPoint = relPoint, x = x, y = y }) end
 end)
 
 frame:SetScript("OnEnter", function(self)
-	mover:Show()
+	mover:SetShown(not ns.DragLocked())
 	GameTooltip:SetOwner(self, "ANCHOR_BOTTOM")
 	GameTooltip:SetText(L["Polestar arrow"])
-	GameTooltip:AddLine(L["Drag to move."], Nav.RGB("text"))
+	GameTooltip:AddLine(ns.Get("ui.lockHud") and L["Shift-drag to move."] or L["Drag to move."], Nav.RGB("text"))
 	local target = Nav.GetTarget()
 	if target and target.spots then GameTooltip:AddLine(L["Click for the next spot."], Nav.RGB("text")) end
 	GameTooltip:Show()
@@ -522,16 +610,35 @@ function Arrow:OnSettings()
 	lastYards = nil -- nav.distanceUnit: redraw the distance on the next sample
 	showEta = ns.Get("nav.arrowEta") and true or false
 	if not showEta and mode == "travel" then etaText:Hide() end
-	applyStyle(ns.Get("nav.arrowStyle") == "flat" and "flat" or "3d")
+	applyStyle(Arrow.StyleFor(ns.Get("nav.arrowStyle")))
 	applyPosition()
 	self:Refresh()
 end
 
+-- The style a setting stands for: "skin" takes the skin's.
+function Arrow.StyleFor(v)
+	if v == "skin" or v == nil then
+		local Theme = ns.Theme
+		return SKIN_ARROW[Theme and Theme.SkinKey and Theme.SkinKey() or "polestar"] or "3d"
+	end
+	if v == "flat" or v == "halo" or v == "hearth" then return v end
+	return "3d"
+end
+
 function Arrow:OnTheme()
-	Nav.SetHudFont(distText, "number", 16)
-	Nav.SetHudFont(labelText, "body", 12)
-	Nav.SetHudFont(etaText, "small", 12)
-	labelText:SetTextColor(Nav.RGB("text"))
+	applyStyle(Arrow.StyleFor(ns.Get("nav.arrowStyle")))
+	if skinStyle() then
+		-- The handoff's arrow text: distance Display 20, name 12, line 11.
+		Nav.SetHudFont(distText, "number", 20)
+		Nav.SetHudFont(labelText, "body", 12)
+		Nav.SetHudFont(etaText, "small", 11)
+		labelText:SetTextColor(Nav.RGB("npc"))
+	else
+		Nav.SetHudFont(distText, "number", 16)
+		Nav.SetHudFont(labelText, "body", 12)
+		Nav.SetHudFont(etaText, "small", 12)
+		labelText:SetTextColor(Nav.RGB("text"))
+	end
 	etaColor()
 	mover:SetColorTexture(Nav.Wash("mover"))
 	local m = mode

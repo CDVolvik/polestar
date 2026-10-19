@@ -73,6 +73,41 @@ report goes through the same steps before anything changes:
 5. **Credit the reporter** in the fix's changelog entry, "(thanks <name>)",
    and tell them which release carries the fix.
 
+## Before you start
+
+Many people, and their agents, work on the same reports at once. These
+steps keep two of you from fixing the same thing without knowing:
+
+1. **Look for work already open.** An issue with the label `has-pr` has a
+   comment, "Pull requests for this issue", listing who is on it. Not every
+   pull request names its issue, so search too:
+   `gh pr list --state open --search "<issue number>"`, then the quest id
+   and the guide's name. When an open pull request covers it, help there
+   instead of opening another: review it, try it in the game, or offer the
+   part it is missing.
+2. **Start from a checked report.** Issues labelled `confirmed` or
+   `patch-candidate` have the evidence on them. Any other report is a lead:
+   check it first ([How a report is handled](#how-a-report-is-handled)).
+3. **Say you are on it.** Leave a short comment on the issue, and open your
+   pull request early, as a draft while it is unfinished. Link the issue so
+   it shows: the issue's number in the title (`(#302)`), or "closes #302"
+   (into `next`) or "fixes #302" (into a `hotfix/` branch) in the
+   description, once for each issue it fixes. A plain mention ("see #302")
+   is a link, not a claim, and does not list your pull request on the issue.
+4. **If your pull request gets the label `overlap`,** another open pull
+   request addresses the same issue (its comment names it). Compare the two
+   and say on both what each covers. One is merged: the correct and complete
+   one first, then the earlier. Useful parts of the other are carried over
+   with credit to its author.
+5. **One issue, one pull request.** The same bug in several guides is one
+   pull request that fixes the pattern and lists every issue it closes.
+6. **A claim that went quiet** (no commit or reply for a week) is free:
+   say on the issue that you are taking it over, and go ahead.
+
+An issue filed from the Discord #bugs forum tells its reporter in their
+thread when the first pull request for it opens, so link only what you are
+really fixing.
+
 ## Fixing a guide
 
 Each guide's title leads to its file: the leveling guides live under
@@ -214,7 +249,7 @@ Agents are welcome. [AGENTS.md](AGENTS.md), which most coding agents read
 on their own, sends them to the skill for their task in `skills/`:
 `polestar-contributing` for any change or pull request, `polestar-triage`
 for checking a report, `polestar-guide-fix` for fixing a guide step and
-`polestar-guide-pack` for writing a guide pack. Your own agent settings and
+`polestar-guide-pack` for writing a community addon. Your own agent settings and
 notes stay yours: keep them out of commits. Claude Code reads AGENTS.md only
 while you have no `CLAUDE.md` or `CLAUDE.local.md` of your own; if you write
 one, start it with `@AGENTS.md`. The rules that matter most:
@@ -304,6 +339,6 @@ the player) and merged into its base branch.
 
 ## Licence
 
-Contributions to Polestar are under GPL-3.0 ([LICENSE](LICENSE)). Guide packs
-written by others are separate works; see
+Contributions to Polestar are under GPL-3.0 ([LICENSE](LICENSE)). Community
+addons written by others are separate works; see
 [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md).
