@@ -3,7 +3,7 @@
 	"source": "Polestar, with ForeverDB's talent data",
 	"sourceUrl": "https://foreverdb.net/class/Shaman/talents",
 	"credit": "Written for Polestar on Forever's tree (ForeverDB lists no Shaman builds yet). ForeverDB's Shaman talent page (https://foreverdb.net/class/Shaman/talents) is used only as a reference for Forever's changed and new talents; every pick is checked against Forever's own tree.",
-	"checkedOn": "WoW: Forever beta 1.60.1.70374",
+	"checkedOn": "WoW: Forever beta 1.60.1.70450",
 	"summary": "Level as Enhancement (Flurry, Stormstrike, Maelstrom Weapon) for steady melee with few rests, or Elemental (Lightning Overload, Lava Burst) to kill from range. Restoration heals dungeons well and levels slowly alone.",
 	"order": [
 		"Elemental",
@@ -124,26 +124,27 @@
 				{
 					"level": 27,
 					"tree": "Elemental",
-					"talent": "Call of Thunder",
+					"talent": "Eye of the Storm",
 					"rank": 1
 				},
 				{
 					"level": 28,
 					"tree": "Elemental",
 					"talent": "Eye of the Storm",
-					"rank": 1
+					"rank": 2
 				},
 				{
 					"level": 29,
 					"tree": "Elemental",
 					"talent": "Eye of the Storm",
-					"rank": 2
+					"rank": 3
 				},
 				{
 					"level": 30,
 					"tree": "Elemental",
-					"talent": "Eye of the Storm",
-					"rank": 3
+					"talent": "Lava Burst",
+					"rank": 1,
+					"note": "Lava Burst is a big Fire nuke, best after Flame Shock; Call of Flame makes it stronger."
 				},
 				{
 					"level": 31,
@@ -203,9 +204,9 @@
 				{
 					"level": 40,
 					"tree": "Elemental",
-					"talent": "Lava Burst",
+					"talent": "Elemental Mastery",
 					"rank": 1,
-					"note": "Lava Burst is the capstone: a big Fire nuke, best after Flame Shock."
+					"note": "Elemental Mastery is the capstone: for a while, quicker Lightning Bolts and Lava Bursts and no cooldown on Chain Lightning."
 				},
 				{
 					"level": 41,
@@ -660,64 +661,64 @@
 				{
 					"level": 10,
 					"tree": "Restoration",
-					"talent": "Totemic Focus",
+					"talent": "Tidal Focus",
 					"rank": 1,
-					"note": "Totemic Focus first: cheaper totems, which you drop on every pull while leveling."
+					"note": "Tidal Focus first: cheaper heals, and more hit for your Lightning Bolts while you quest."
 				},
 				{
 					"level": 11,
 					"tree": "Restoration",
-					"talent": "Totemic Focus",
+					"talent": "Tidal Focus",
 					"rank": 2
 				},
 				{
 					"level": 12,
 					"tree": "Restoration",
-					"talent": "Totemic Focus",
+					"talent": "Tidal Focus",
 					"rank": 3
 				},
 				{
 					"level": 13,
 					"tree": "Restoration",
-					"talent": "Totemic Focus",
+					"talent": "Tidal Focus",
 					"rank": 4
 				},
 				{
 					"level": 14,
 					"tree": "Restoration",
-					"talent": "Totemic Focus",
+					"talent": "Tidal Focus",
 					"rank": 5
 				},
 				{
 					"level": 15,
 					"tree": "Restoration",
-					"talent": "Mindfulness",
+					"talent": "Totemic Focus",
 					"rank": 1,
-					"note": "Mindfulness keeps half your mana regeneration going while casting."
+					"note": "Totemic Focus: cheaper totems, which you drop on every pull while leveling."
 				},
 				{
 					"level": 16,
 					"tree": "Restoration",
-					"talent": "Mindfulness",
+					"talent": "Totemic Focus",
 					"rank": 2
 				},
 				{
 					"level": 17,
 					"tree": "Restoration",
-					"talent": "Mindfulness",
+					"talent": "Totemic Focus",
 					"rank": 3
 				},
 				{
 					"level": 18,
 					"tree": "Restoration",
-					"talent": "Improved Reincarnation",
-					"rank": 1
+					"talent": "Totemic Focus",
+					"rank": 4
 				},
 				{
 					"level": 19,
 					"tree": "Restoration",
-					"talent": "Improved Reincarnation",
-					"rank": 2
+					"talent": "Totemic Focus",
+					"rank": 5
 				},
 				{
 					"level": 20,
@@ -728,25 +729,26 @@
 				{
 					"level": 21,
 					"tree": "Restoration",
-					"talent": "Healing Focus",
-					"rank": 1
+					"talent": "Mindfulness",
+					"rank": 1,
+					"note": "Mindfulness keeps half your mana regeneration going while casting."
 				},
 				{
 					"level": 22,
 					"tree": "Restoration",
-					"talent": "Healing Focus",
+					"talent": "Mindfulness",
 					"rank": 2
 				},
 				{
 					"level": 23,
 					"tree": "Restoration",
-					"talent": "Healing Focus",
+					"talent": "Mindfulness",
 					"rank": 3
 				},
 				{
 					"level": 24,
 					"tree": "Restoration",
-					"talent": "Ancestral Healing",
+					"talent": "Healing Focus",
 					"rank": 1
 				},
 				{
