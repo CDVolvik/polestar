@@ -360,18 +360,28 @@ local mapView = { width = 0, height = 0, scale = 1, small = false, marks = {}, m
 
 local function boundsOf(mapID)
 	local b = bounds[mapID]
-	if b == nil then
-		b = false
-		local C = ns.Compat
-		if not (C and C.MapToWorld) then return nil end
-		local c1, top, left = C.MapToWorld(mapID, 0, 0)
-		local c2, bottom, right = C.MapToWorld(mapID, 100, 100)
-		if c1 and c1 == c2 and top ~= bottom and left ~= right then
-			b = { c = c1, left = left, top = top, kx = 1 / (right - left), ky = 1 / (bottom - top) }
-		end
+	if b ~= nil then return b or nil end
+	local C = ns.Compat
+	if not (C and C.MapToWorld) then return nil end
+	local c1, top, left = C.MapToWorld(mapID, 0, 0)
+	local c2, bottom, right = C.MapToWorld(mapID, 100, 100)
+	if c1 and c1 == c2 and top ~= bottom and left ~= right then
+		b = { c = c1, left = left, top = top, kx = 1 / (right - left), ky = 1 / (bottom - top) }
 		bounds[mapID] = b
+		return b
 	end
-	return b or nil
+	-- Live API failed for this zone map (e.g. a client where GetWorldPosFromMapPos only
+	-- covers continent maps): fall back to the Era-frame bounds that the route points use.
+	c1, top, left = C.MapToWorld(mapID, 0, 0, "e")
+	c2, bottom, right = C.MapToWorld(mapID, 100, 100, "e")
+	if c1 and c1 == c2 and top ~= bottom and left ~= right then
+		b = { c = c1, left = left, top = top, kx = 1 / (right - left), ky = 1 / (bottom - top) }
+		bounds[mapID] = b
+		return b
+	end
+	-- No bounds yet (map not open or not in data); don't cache the failure so
+	-- drawWorld retries when the map is actually opened.
+	return nil
 end
 
 -- A continent map: its dots are smaller. (Bigger maps span continents and

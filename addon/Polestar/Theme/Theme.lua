@@ -237,6 +237,11 @@ SKIN_PALETTES.classic = gamePalette({
 })
 Theme.SKIN_PALETTES = SKIN_PALETTES
 Theme.SKIN_ORDER = { "polestar", "halo", "hearth", "forever", "blizzard", "classic" }
+-- Skins hidden from the picker while their issues are fixed. A saved value
+-- naming a hidden skin resolves to the house style at load; the raw saved
+-- value is left alone so the player's choice restores when the skin returns.
+-- See issue #306.
+local HIDDEN_SKINS = { forever = true }
 -- The skins drawn in game colours and controls (the client's check boxes,
 -- sliders, red buttons, the game font with its hard shadow).
 local GAME_SKINS = { hearth = true, forever = true, blizzard = true, classic = true }
@@ -477,11 +482,12 @@ end
 
 local P -- the resolved palette; rebuilt on the next read after a change
 
--- The skin in use (ui.skin); an unknown value (an older or newer build) is
--- the house style.
+-- The skin in use (ui.skin); an unknown value (an older or newer build) or
+-- a hidden skin is the house style (the raw saved value is kept so the
+-- player's choice restores when a hidden skin returns).
 function Theme.SkinKey()
 	local k = get("ui.skin")
-	return SKIN_PALETTES[k] and k or "polestar"
+	return (SKIN_PALETTES[k] and not HIDDEN_SKINS[k]) and k or "polestar"
 end
 
 -- Whether the skin in use (or `key`) is drawn in the game's colours and
@@ -491,11 +497,11 @@ function Theme.GameSkin(key)
 end
 
 function Theme.SkinChoices()
+	-- "forever" is hidden while its border and progress bar are fixed (#306)
 	return {
 		{ value = "polestar", text = ns.L["Polestar"] },
 		{ value = "halo", text = ns.L["Halo"] },
 		{ value = "hearth", text = ns.L["Hearth"] },
-		{ value = "forever", text = ns.L["WoW Forever"] },
 		{ value = "blizzard", text = ns.L["Blizzard"] },
 		{ value = "classic", text = ns.L["Classic"] },
 	}
@@ -694,6 +700,7 @@ end
 ---------------------------------------------------------------------------
 
 function Theme.Media(name)
+	if name == "icon-skull" then return "Interface\\TargetingFrame\\UI-RaidTargetingIcon_8" end
 	return MEDIA .. "UI\\" .. name
 end
 

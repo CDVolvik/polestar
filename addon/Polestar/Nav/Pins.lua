@@ -1613,6 +1613,10 @@ local function areaFrame()
 	mmArea = ns.CreateFrameUnder("Frame", nil, Minimap)
 	mmArea:SetAllPoints(Minimap)
 	mmArea:SetFrameLevel((Minimap:GetFrameLevel() or 1) + 3)
+	-- SetClipsChildren clips all child textures to the frame boundary, so hulls
+	-- that extend past the minimap edge are cut there. On a square minimap this
+	-- gives exact clipping; on a round one the mask (below) does the round clip.
+	if mmArea.SetClipsChildren then mmArea:SetClipsChildren(true) end
 	if mmArea.CreateMaskTexture then
 		mmMask = mmArea:CreateMaskTexture()
 		mmMask:SetPoint("CENTER", mmArea, "CENTER", 0, 0)
@@ -1683,7 +1687,10 @@ end
 -- facing changed; walking only moves it.
 local function placeHull(count, p, layer, i, dn, dw)
 	areaFrame()
-	if not mmMask and sqrt(dn * dn + dw * dw) + layer.reach[i] > sRadius then return count end
+	-- Without a round mask, the hull may slightly overflow the circular rim;
+	-- that is preferable to the area not showing at all (regression from d8e93587
+	-- replacing per-spot discs with convex hulls whose reach typically exceeds the
+	-- minimap radius).
 	count = count + 1
 	local rec = mmHulls[count] or hullRecord(count)
 	local facing = sRotate and sFacing or false

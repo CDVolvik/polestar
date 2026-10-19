@@ -678,7 +678,8 @@ end
 local function card(f, kit, selected)
 	if kit.card then
 		sliced(f, "card", kit, selected and kit.cardSelected or kit.card, f, nil, "BACKGROUND", -6)
-		sliced(f, "cardLit", kit, kit.cardHover, f, nil, "HIGHLIGHT", 0)
+		local lp = sliced(f, "cardLit", kit, kit.cardHover, f, nil, "HIGHLIGHT", 0)
+		for i = 1, 9 do if lp[i] then lp[i]:SetBlendMode("ADD") end end
 		return
 	end
 	if kit.source == "file" then
@@ -725,7 +726,8 @@ local function field(f, kit)
 		return
 	end
 	sliced(f, "dd", kit, kit.dropdown, f, { 7, 7, 7, 7 }, "BACKGROUND", -6)
-	sliced(f, "ddLit", kit, kit.dropdownLit, f, { 7, 7, 7, 7 }, "HIGHLIGHT", 0)
+	local dp = sliced(f, "ddLit", kit, kit.dropdownLit, f, { 7, 7, 7, 7 }, "HIGHLIGHT", 0)
+	for i = 1, 9 do if dp[i] then dp[i]:SetBlendMode("ADD") end end
 	local arrow = tex(f, "ddArrow", "HIGHLIGHT", 1)
 	draw(arrow, kit, kit.dropdownArrow)
 	arrow:ClearAllPoints()
@@ -897,6 +899,7 @@ function Theme.KitIconButton(b)
 	local hl = tex(b, "plateLit", "HIGHLIGHT")
 	draw(hl, kit, kit.plateHover)
 	hl:SetAllPoints(b)
+	hl:SetBlendMode("ADD")
 	b.Icon:SetAlpha(1)
 	return true
 end
@@ -1050,6 +1053,7 @@ function Theme.KitRowLit(r, shown, key, inset)
 	if key == "navLit" and kit.navHover then
 		local hv = tex(r, key .. "Hover", "HIGHLIGHT", 0)
 		draw(hv, kit, kit.navHover)
+		hv:SetBlendMode("ADD")
 		hv:ClearAllPoints()
 		hv:SetPoint("LEFT", r, "LEFT", inset or 4, 0)
 		hv:SetPoint("RIGHT", r, "RIGHT", -(inset or 4), 0)

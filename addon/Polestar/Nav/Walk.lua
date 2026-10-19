@@ -141,10 +141,12 @@ ns.RegisterDefaults("nav", { navRouting = true, routeStyle = "balanced" })
 local PACK = "Polestar_Nav"
 local STRAY = 25            -- yards off the path: ask again
 local ASK_EVERY = 2         -- seconds between asks for the same goal
-local POINT_REACH = 5       -- yards: a path point is passed
-local LOOKAHEAD = 12        -- path segments looked at ahead of the current one (how far along the player is)
-local AHEAD = 30            -- yards along the path the arrow looks ahead of the player
-local PAD = 10              -- yards: path points this close to the line from the player to the aim lie on the way
+local POINT_REACH = 20     -- yards: a path point is passed (the body)
+local POINT_REACH_TIGHT = 5 -- yards: reach near a boundary, floor change, or the goal
+local NEAR_CHOKE = 25       -- yards from a boundary or goal: use POINT_REACH_TIGHT
+local LOOKAHEAD = 12        -- path segments looked at ahead of the current one
+local AHEAD = 45            -- yards along the path the arrow looks ahead of the player
+local PAD = 12              -- yards: path points this close to the line from the player to the aim lie on the way
 local FLOOR_STEP = 6        -- yards above or below the next point: another floor, never aimed past
 local GOAL_MOVED = 1        -- yards: the goal is another one
 local FAIL_RETRY, FAIL_MOVED = 15, 25 -- a failed search is asked again this late, this far away
@@ -560,6 +562,18 @@ local function segment(px, py, a, b)
 	return sqrt(ex * ex + ey * ey)
 end
 
+-- The reach used to mark point i as passed: tight near a boundary (stop), a floor
+-- change, or the goal so the body never skips a turn at a doorway or chokepoint.
+local function pointReach(i, stop)
+	if stop and stop <= count and left[i] - left[stop] < NEAR_CHOKE then return POINT_REACH_TIGHT end
+	if left[i] < NEAR_CHOKE then return POINT_REACH_TIGHT end
+	if i > 1 then
+		local za, zb = ptsZ[i - 1], ptsZ[i]
+		if za and zb and abs(zb - za) > FLOOR_STEP then return POINT_REACH_TIGHT end
+	end
+	return POINT_REACH
+end
+
 function Walk.Aim(pc, px, py, goalC, goalX, goalY, handmade, goalZ, stop)
 	local P = engine()
 	if P and P.SurfacesAt and pc then track(P, pc, px, py) end
@@ -605,12 +619,24 @@ function Walk.Aim(pc, px, py, goalC, goalX, goalY, handmade, goalZ, stop)
 	end
 	if best > idx then idx = best end
 	while idx <= count do
+		if stop and idx > stop then break end
 		local dx, dy = ptsX[idx] - px, ptsY[idx] - py
-		if dx * dx + dy * dy > POINT_REACH * POINT_REACH then break end
+		-- Use the large body only when the player has passed this point along the path;
+		-- ahead of the player: tight reach only (don't swallow corners or floor changes).
+		local reach
+		if idx > 1 then
+			local ax, ay = ptsX[idx] - ptsX[idx - 1], ptsY[idx] - ptsY[idx - 1]
+			if ax * ax + ay * ay > 0 and (-dx) * ax + (-dy) * ay < 0 then
+				reach = POINT_REACH_TIGHT  -- player not yet at this point: 5 yd only
+			else
+				reach = pointReach(idx, stop)  -- player past/at it: large body with guards
+			end
+		else
+			reach = pointReach(idx, stop)
+		end
+		if dx * dx + dy * dy > reach * reach then break end
 		idx = idx + 1
 	end
-	-- Strayed: keep this path until the new one is in.
-	if off > STRAY and token == nil and not wanted and GetTime() - askedAt >= ASK_EVERY then ask(P, pc, px, py) end
 	if idx > count then
 		lastLeft = nil
 		return nil
@@ -619,6 +645,15 @@ function Walk.Aim(pc, px, py, goalC, goalX, goalY, handmade, goalZ, stop)
 	local toIdx = sqrt(dx * dx + dy * dy)
 	lastLeft = toIdx + left[idx]
 	local ax, ay = ahead(px, py, toIdx, stop)
+	-- Re-ask: strayed from the path, or aim >90° off the path's forward direction
+	-- (a stale path with early points behind the player causes this).
+	local shouldAsk = off > STRAY
+	if not shouldAsk and count >= 2 then
+		local fi = idx > 1 and idx - 1 or 1
+		local fwdX, fwdY = ptsX[fi + 1] - ptsX[fi], ptsY[fi + 1] - ptsY[fi]
+		if fwdX * (ax - px) + fwdY * (ay - py) < 0 then shouldAsk = true end
+	end
+	if shouldAsk and token == nil and not wanted and GetTime() - askedAt >= ASK_EVERY then ask(P, pc, px, py) end
 	return pc, ax, ay, lastLeft
 end
 
