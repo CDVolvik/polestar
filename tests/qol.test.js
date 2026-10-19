@@ -612,10 +612,12 @@ test('rare button: targets the rares in range, comes up and goes with them, each
 		emit({ b:GetAttribute("macrotext") or "nil", b:IsShown() })
 	`);
 	assert.deepEqual(out[0], ['nil', false]);
-	assert.deepEqual(out[1], ['macro', '/targetexact Hogger\n/targetexact Thuros Lightfingers', true, 'Thuros Lightfingers', '/targetexact Wolf']);
-	assert.equal(out[2], '/targetexact Thuros Lightfingers\n/targetexact Hogger', 'the next click moves on');
-	assert.deepEqual(out[3], ['/targetexact Thuros Lightfingers\n/targetexact Hogger', true], 'in combat the button keeps what it did');
-	assert.deepEqual(out[4], ['/targetexact Hogger', true]);
+	// #373's macro: from nothing out of combat, the preferred name first, corpses passed over.
+	const macro = (...names) => ['/cleartarget [nocombat]', ...names.flatMap((n, i) => [`/targetexact ${i ? '[noexists] ' : ''}${n}`, '/cleartarget [dead]'])].join('\n');
+	assert.deepEqual(out[1], ['macro', macro('Thuros Lightfingers', 'Hogger'), true, 'Thuros Lightfingers', macro('Wolf')]);
+	assert.equal(out[2], macro('Hogger', 'Thuros Lightfingers'), 'the next click moves on');
+	assert.deepEqual(out[3], [macro('Hogger', 'Thuros Lightfingers'), true], 'in combat the button keeps what it did');
+	assert.deepEqual(out[4], [macro('Hogger'), true]);
 	assert.deepEqual(out[5], ['nil', false]);
 	assert.deepEqual(out[6], ['nil', false]);
 });
