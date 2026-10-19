@@ -29,6 +29,10 @@ next forever/horde/02-the-barrens
 # Deviations from the export:
 # - Thendal Village: the Ursera, Hanaa's camp and the Urs'anah den are done
 #   in one loop west of the village; Valreaa's turn-in waits for that return.
+# - Thendal Village: the watchtower comes before Rorian, a few steps from
+#   Elatrell: The Anchors of Zephras and Falling With Style, then the Walk on
+#   Air glide down to Rorian, who takes Harmony in Balance and Falling With
+#   Style on one visit (#363).
 # - Shen'dar: the hippogryph nests (92516, 93951) and the Small Eggs of
 #   Restocking the Larders (92553) move from before the first Falaath trip to
 #   the second southern loop (Falaath -> West Pylon -> nests -> Shen'dar). The
@@ -117,26 +121,24 @@ step Thendal Grove
   kill 250873 quest 92461.1
 
 step Back to Thendal Village
+  tip Halaan Hawk-Eye and Myriaal Mistwake stand at the top of the watchtower, a few steps north-east of Elatrell.
   turnin 92462                        -- Elatrell Featherlight
   accept 92463
-  turnin 92461                        -- Rorian the Dayseeker
-  accept 92532 only Warrior           -- Rorian the Dayseeker: the Crumpled Note
-  accept 92482 only Hunter            -- Rorian the Dayseeker: a note from your trainer
-  accept 92484 only Shaman            -- Rorian: examine the Humming Recall Crystal
-  accept 92485 only Druid             -- Rorian: A Student of Nature
-  accept 93552                        -- Dalia the Collector
   accept 94414                        -- Halaan Hawk-Eye
   complete 94414 @43.77,24.08         -- talk to Halaan Hawk-Eye
   turnin 94414
   accept 92474                        -- Myriaal Mistwake
 
-step The watchtower
-  tip Climb the watchtower in the village, jump off the top and use Walk on Air to float down.
-  complete 92474 @43.7,24.1
-
 step Rorian's errands
-  turnin 92474                        -- Rorian the Dayseeker
+  tip Jump off the top of the watchtower and use Walk on Air to float down to Rorian, west of the tower.
+  turnin 92461                        -- Rorian the Dayseeker
+  turnin 92474
   accept 92464
+  accept 92532 only Warrior           -- Rorian the Dayseeker: the Crumpled Note
+  accept 92482 only Hunter            -- Rorian the Dayseeker: a note from your trainer
+  accept 92484 only Shaman            -- Rorian: examine the Humming Recall Crystal
+  accept 92485 only Druid             -- Rorian: A Student of Nature
+  accept 93552                        -- Dalia the Collector
   accept 92598                        -- Ventaari Brightwish
 
 step Raw Windstones
