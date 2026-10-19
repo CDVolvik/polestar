@@ -243,6 +243,13 @@ packages.
   the best site for its level (kill XP per hour at Δ = 0..+2). "Grinding" is
   only killing for XP with no quest involved; kills for objectives and drops
   are quest work (`xpSplit.kill`).
+- **Shared kill credit** (game rule): a kill counts for every quest in the
+  log that wants that mob. Kills (and drops) for one kill or collect
+  objective also count for the other active quests' objectives on the same
+  mob whose site is within 100 yd (`SHARE_R`, run.js), up to what each still
+  needs; that objective then needs only the rest, and one fully covered
+  needs no trip. Kills before a quest is accepted give it nothing. The kill
+  XP is earned once (`sharedKills` in results: the kills saved).
 - Route policies (not measurements; reported times stay real): routes are
   compared by time to 60 with every hour of grinding counted 2.5 times
   (`grindWeight`) and every move into another zone counted 7.5 minutes more
@@ -258,15 +265,70 @@ packages.
   single-quest trips back; 450 s and 2.5 gave Orc 121.5 h with 2.9 h of
   grinding and 22 visits for one quest or none, Human 120.7 h with 10.2 h
   and 23.
-- Quest log limit 20; a package that needs more open quests is split. Forever's
-  client accepts 40 (`MAXIMUM_NUM_QUESTS_LOG_CAN_ACCEPT = 40` for its Camelot
-  game type, `Blizzard_APIDocumentationGenerated/QuestConstantsDocumentation.lua`;
-  the quest log shows N/40). The limit never binds the guides or the score
-  (the evaluator does not count the log across packages); at 20 it splits one
-  package, Alliance Elwynn Forest 6-10, which the published Alliance results
-  use, so 40 comes with the next world and new searches in 0.2.5 (issue #30).
+- Quest log limit 40 (Forever's client: `MAXIMUM_NUM_QUESTS_LOG_CAN_ACCEPT = 40`
+  for its Camelot game type, `Blizzard_APIDocumentationGenerated/QuestConstantsDocumentation.lua`;
+  the quest log shows N/40; issue #30): a package that needs more open
+  quests is split. It is a world option (`maxOpen`, recorded in the world
+  file; a world with another limit is rebuilt). The results up to 0.2.5
+  were searched at 20. The evaluator holds the log to it across the whole
+  route: an accept with the log full waits (deferred like an accept above
+  the character's level: taken in the same pass once a turn-in frees a
+  slot, else in the package's second pass or a later return; still full
+  there, it is skipped and counted). A stopgap until sim v2 plans the log:
+  when the log is full, the character abandons the lowest-level quest in
+  it at least 6 levels below it (`ABANDON_GAP`, evaluate.js; its reward is
+  already reduced), losing that quest's progress, and waits only when none
+  is that low. Without it, quests a route accepts and never hands in (65
+  in the 200k-route Orc time route) filled the log for good: today's best
+  routes went from 123.5 to 173.3 h. Results report `logPeak` (at most the
+  limit), `logDeferred` (accepts that waited), `logSkipped`,
+  `logAbandoned` and `acceptedNeverTurnedIn` (accepted at some point, not
+  turned in by 60: wasted accepts).
 - Every parameter has a prior (mean and spread). Calibration (§4) narrows
   them.
+
+### Objectives (`--objective time|smooth`)
+
+What the search minimises is set by the policy parameters above; the
+objective chooses them (params.js `OBJECTIVES`, one place). Reported times
+stay real under either.
+
+| objective | zoneChange | zoneReturn | spotReturn | grindWeight | wastedAccept |
+|---|---|---|---|---|---|
+| `time` (default) | 450 s | 0 | 0 | 2.5 | 0 |
+| `smooth` | 900 s | 1800 s | 900 s | 4 | 600 s |
+
+- `zoneReturn`: seconds per move back into a zone the route was in earlier
+  and left (the first entry is free).
+- `spotReturn`: seconds per return to a spot already worked: work (accept,
+  objective, turn-in) in a 250 yd cell (`SPOT_CELL`, run.js) where work was
+  done in an earlier stretch. A stretch ends when the character moves more
+  than 600 yd (`SPOT_LEAVE`, evaluate.js) from where it began.
+- `grindWeight` 4 under smooth: grinding never moves, so with the return
+  penalties alone (2.5) the search ground instead of questing. Horde Orc,
+  200,000 routes, seed 1: time 123.5 h to 60 with 9.3 h of grinding, 105
+  zone changes, 73 zone returns, 507 spot returns; smooth at 2.5: 131.3 h,
+  52.4 h, 38, 8, 219; at 4: 127.4 h, 28.8 h, 57, 25, 365; at 6: 126.5 h,
+  16.3 h, 85, 50, 433.
+- `wastedAccept`: seconds per quest accepted and never handed in (given
+  up for a full log, or still in the log at 60). Taking a quest only to
+  drop it is not smooth: Horde Orc, 100,000 routes with walks, the smooth
+  objective without it gave up 42 quests and left 63 never handed in.
+
+Smooth results are their own files (`<faction>-<race>-<class>-smooth.json`,
+`consensus-<faction>-smooth.json`, `compare-…-smooth.json`), so the two
+objectives never overwrite each other. Results, `sim compare` rows and the
+`sim run` report carry the smoothness counters next to the hours:
+`zoneChanges`, `zoneReturns`, `spotReturns`, `sharedKills` and the quest
+log counters above.
+
+`--param key=value` (repeatable) sets any parameter of params.js after the
+objective's preset, fixed at that value (also in robustness draws); an
+unknown key is an error. A variant gets its own result files only with
+`--tag <name>`: `sim run --objective smooth --param grindWeight=6 --tag g6`
+writes `horde-orc-any-smooth-g6.json`, and `robust`, `compare` and
+`consensus` with the same `--tag` read and write that variant. Results
+record `overrides` and `tag`.
 
 ## 3. Route evaluation and search
 
@@ -351,13 +413,14 @@ sim walks   [--faction F] [--radius Y] [--workers W]  route the world's walks wi
             (data/sim/walks-<faction>.json; run, robust, compare, bench and consensus use them)
 sim calibrate [--fdj DIR]                            fit parameters to quest data and recordings
 sim run     --faction F [--race R] [--class C] [--paths N] [--workers W] [--seed S] [--dungeons]
-            [--jobs J] [--anneal A] [--max-paths M]
-sim robust  --faction F [--race R] [--class C] [--draws K] [--top N]   robustness of the top routes
+            [--jobs J] [--anneal A] [--max-paths M] [--objective time|smooth] [--param K=V ...] [--tag T]
+sim robust  --faction F [--race R] [--class C] [--draws K] [--top N] [--objective O]   robustness of the top routes
 sim compare --faction F [--race R] [--class C] [--guides DIR] [--pack DIR | DIR] [--to 10,20,30] [--with-optional]
-            Polestar's routes vs the best found, same model
+            [--objective O]   Polestar's routes vs the best found, same model
 sim bench   --faction F [--race R] [--class C]      bracket table: zones, levels, quests per 10 levels
 sim export  --result <file> --out <dir>             zone-by-zone skeleton guides + visits.json for authors
-sim consensus --faction F [--dungeons] [--evals N]  one 12-60 route shared by the faction's starts (+ exports)
+sim consensus --faction F [--dungeons] [--evals N] [--objective O]   one 12-60 route shared by the faction's starts (+ exports)
+(robust, compare and consensus take --param and --tag too)
 ```
 
 Less common options: `--fdj <dir>` (calibrate: the ForeverDungeonJournal
@@ -380,9 +443,11 @@ and `--sim <dir>` move the reference data and simulator outputs (default
 `data/forever`, `data/sim`).
 
 `sim run` writes `data/sim/results/<faction>-<race>-<class>.json`
-(`…-dungeons.json` with `--dungeons`) and prints a
+(`…-dungeons.json` with `--dungeons`, `…-smooth.json` with `--objective
+smooth`) and prints a
 report: the best route as zone visits with level ranges and times, time to
-each tenth level, XP split, travel share, convergence, and the comparison.
+each tenth level, XP split, travel share, the smoothness counters,
+convergence, and the comparison.
 
 `sim export` writes one `.guide` skeleton per zone visit (accepts, objectives,
 turn-ins in the simulator's order, plus `getfp`, `sethome`, `hearth` and

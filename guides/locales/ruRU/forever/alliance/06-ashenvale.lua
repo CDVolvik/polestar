@@ -91,25 +91,29 @@ return {
 	-- plural, as words: Intact Elemental Bracers = {item:12220} Intact Elemental Bracer
 	["Kill the elementals for 5 Intact Elemental Bracers, then use the {item:5456}"] = "Убивайте элементалей ради 5 неповрежденных браслетов элементаля, затем используйте {item:5456}",
 
-	-- Step 25: The Ruins of Stardust
+	-- Step 25: Alonso
+	-- {npc:210995} Alonso
+	["{npc:210995} may not offer these to every class; if he doesn't, carry on."] = "",
+
+	-- Step 26: The Ruins of Stardust
 	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "К западу от озера Мистраль среди руин растут кусты, покрытые звездной пылью.",
 
-	-- Step 27: Windshear Crag
+	-- Step 28: Windshear Crag
 	-- {area:421} Mystral Lake · {area:1276} Talondeep Path · {area:461} Windshear Crag · {npc:4080} Kaela Shadowspear · {npc:4077} Gaxim Rustfizzle · {area:1076} Webwinder Path
 	["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Скачите на юг мимо места {area:421} в туннель ({area:1276}); он выходит здесь: {area:461} (Когтистые горы). {npc:4080} и {npc:4077} стоят лагерем здесь: {area:1076}, к юго-западу от утеса.",
 	-- {npc:4201} Ziz Fizziks
 	["{npc:4201}, in the hut north of them"] = "{npc:4201}, в хижине к северу от них",
 
-	-- Step 28: Venture Co. loggers
+	-- Step 29: Venture Co. loggers
 	["Venture Co. loggers"] = "Лесорубы Торговой компании",
 	-- {area:461} Windshear Crag
 	["The Venture Co. clear the forest of {area:461}. Loggers and Deforesters work all over it; the Operators run the shredders and one carries the blueprints."] = "Торговая компания вырубает лес ({area:461}). Лесорубы и лесозаготовители работают повсюду; операторы управляют крошшерами, у одного из них чертежи.",
 
-	-- Step 29: Piznik
+	-- Step 30: Piznik
 	-- {npc:4276} Piznik · {area:2160} Windshear Mine
 	["{npc:4276} mines in the {area:2160} at the east end of the crag. Talk to him and fend off the Venture Co. raiders while he mines."] = "{npc:4276} добывает руду здесь: {area:2160}, в восточной части утеса. Поговорите с ним и отбивайтесь от налетчиков Торговой компании, пока он работает.",
 
-	-- Step 31: To Menethil Harbor
+	-- Step 32: To Menethil Harbor
 	-- {area:150} Menethil Harbor
 	["To {area:150}"] = "В место {area:150}",
 	-- {area:1276} Talondeep Path
@@ -117,7 +121,7 @@ return {
 	-- {area:150} Menethil Harbor
 	["Boat to {area:150}"] = "Корабль: {area:150}",
 
-	-- Step 32: Menethil Harbor
+	-- Step 33: Menethil Harbor
 	-- {npc:1242} Karl Boran
 	["{npc:1242}, on the pier north of the inn"] = "{npc:1242}, на пирсе к северу от таверны",
 	-- {npc:1239} First Mate Fitzsimmons
@@ -131,85 +135,85 @@ return {
 	-- {npc:2096} Tarrel Rockweaver
 	["{npc:2096}, by the north gate"] = "{npc:2096}, у северных ворот",
 
-	-- Step 33: Spoils of War
+	-- Step 34: Spoils of War
 	["Timber and iron piles lie around the keep and along the harbor's walls."] = "Груды бревен и железа лежат вокруг крепости и вдоль стен гавани.",
 
-	-- Step 35: Bluegill Marsh
+	-- Step 36: Bluegill Marsh
 	-- {npc:1259} Gobbler
 	-- plural, as words: Bluegill Murlocs = {npc:1024} Bluegill Murloc
 	["Follow the coast north out of Menethil. Bluegill Murlocs fill the marsh; {npc:1259} walks with a pack in the middle of it."] = "Идите вдоль побережья на север из Гавани Менетилов. Болото полно мурлоков из племени Синежабрых; {npc:1259} бродит со стаей посреди него.",
 
-	-- Step 37: The Bluegill hovels
+	-- Step 38: The Bluegill hovels
 	["The Bluegill hovels"] = "Хижины Синежабрых",
 	-- {object:261} Damaged Crate · {object:142151} Sealed Barrel · {object:259} Half-buried Barrel
 	["Three containers in the murloc hovels, south to north: the {object:261}, then the {object:142151}, then the {object:259} at the north end."] = "Три контейнера в хижинах мурлоков, с юга на север: {object:261}, затем {object:142151}, затем {object:259} в северной части.",
 
-	-- Step 38: Karl Boran
+	-- Step 39: Karl Boran
 	-- {npc:1242} Karl Boran · {npc:2104} Captain Stoutfist
 	["{npc:1242}: for {npc:2104} in the keep"] = "{npc:1242}: для NPC {npc:2104} в крепости",
 
-	-- Step 39: Captain Stoutfist
+	-- Step 40: Captain Stoutfist
 	-- {npc:2104} Captain Stoutfist · {area:2103} Menethil Keep · {npc:1242} Karl Boran
 	["{npc:2104} stands in {area:2103}, a short walk from {npc:1242}."] = "{npc:2104} стоит здесь: {area:2103}, недалеко от NPC {npc:1242}.",
 	-- {object:2117} Stormwind Keep
 	["For Bolvar Fordragon in {object:2117}: keep it"] = "Для Верховного лорда Болвара Фордрагона ({object:2117}): сохраните",
 
-	-- Step 40: Young crocolisks
+	-- Step 41: Young crocolisks
 	["Young crocolisks"] = "Молодые кроколиски",
 	-- plural, as words: Young Wetlands Crocolisks = {npc:1417} Young Wetlands Crocolisk
 	["Follow the road east. Young Wetlands Crocolisks lurk in the pools north of the excavation site."] = "Идите по дороге на восток. Молодые болотные кроколиски прячутся в прудах к северу от раскопок.",
 
-	-- Step 41: Whelgar's Excavation Site
+	-- Step 42: Whelgar's Excavation Site
 	["The excavation site sits on the hill south of the road."] = "Раскопки находятся на холме к югу от дороги.",
 
-	-- Step 42: The raptor hills
+	-- Step 43: The raptor hills
 	["The raptor hills"] = "Холмы ящеров",
 	-- plural, as words: Mottled Raptors = {npc:1020} Mottled Raptor
 	["Mottled Raptors and Screechers roam the hills west of the excavation site."] = "Крапчатые ящеры и крикуны бродят по холмам к западу от раскопок.",
 
-	-- Step 44: Raptor valley
+	-- Step 45: Raptor valley
 	["Raptor valley"] = "Долина ящеров",
 	["The bigger raptors hunt in the valley just west of the dig."] = "Крупные ящеры охотятся в долине чуть западнее раскопок.",
 
-	-- Step 46: Thelgen Rock
+	-- Step 47: Thelgen Rock
 	-- {area:1021} Thelgen Rock
 	-- plural, as words: Cave Stalkers = {npc:4040} Cave Stalker · Leech Stalkers = {npc:1111} Leech Stalker
 	["Cave Stalkers and Leech Stalkers fill {area:1021}, the cave south-east of the excavation site."] = "Пещерные ловцы и ловцы-кровопийцы заполняют {area:1021}, пещеру к юго-востоку от раскопок.",
 
-	-- Step 47: Black Oozes
+	-- Step 48: Black Oozes
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes"] = "Черные слизнюки",
 	-- {area:1025} Green Belt · {npc:2093} Einar Stonegrip · {npc:2111} Sida
 	-- plural, as words: Black Oozes = {npc:1032} Black Ooze
 	["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "Черные слизнюки ползают по болоту к северу от дороги ({area:1025}), к западу от лагеря {npc:2093}. В любом слизнюке может оказаться сумка NPC {npc:2111}.",
 
-	-- Step 48: Green Belt
+	-- Step 49: Green Belt
 	-- {npc:2093} Einar Stonegrip · {npc:1244} Rethiel the Greenwarden
 	["{npc:2093} camps by the road; {npc:1244} stands farther east, by the river."] = "{npc:2093} стоит лагерем у дороги; {npc:1244} стоит восточнее, у реки.",
 
-	-- Step 49: The Mosshide gnolls
+	-- Step 50: The Mosshide gnolls
 	["The Mosshide gnolls"] = "Гноллы из стаи Мохошкуров",
 	-- {area:1025} Green Belt
 	-- plural, as words: Mosshide Gnolls = {npc:1007} Mosshide Gnoll
 	["Mosshide Gnolls and Mongrels hold the hills south-east of the {area:1025}."] = "Гноллы и полукровки из стаи Мохошкуров удерживают холмы к юго-востоку от места {area:1025}.",
 
-	-- Step 51: Crude Flint
+	-- Step 52: Crude Flint
 	-- {npc:1244} Rethiel the Greenwarden
 	-- plural, as words: Mosshide Fenrunners = {npc:1010} Mosshide Fenrunner
 	["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of {npc:1244}; almost every one drops flint."] = "Бегуны топей и туманоплеты из стаи Мохошкуров бродят по берегам реки чуть западнее и южнее {npc:1244}; почти с каждого падает кремень.",
 
-	-- Step 53: Fen Creepers
+	-- Step 54: Fen Creepers
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers"] = "Трясинные ползуны",
 	-- {area:1025} Green Belt
 	-- plural, as words: Fen Creepers = {npc:1040} Fen Creeper
 	["Fen Creepers hide in the marsh pools north-west of the {area:1025}."] = "Трясинные ползуны прячутся в болотных прудах к северо-западу от места {area:1025}.",
 
-	-- Step 54: Dun Modr
+	-- Step 55: Dun Modr
 	-- {area:205} Dun Modr · {area:881} Thandol Span · {npc:1071} Longbraid the Grim
 	["Follow the road north to {area:205}, at the foot of the {area:881}. {npc:1071} stands in the dwarves' camp."] = "Идите по дороге на север сюда: {area:205}, у подножия моста ({area:881}). {npc:1071} стоит в лагере дворфов.",
 
-	-- Step 56: Dragonmaw camp
+	-- Step 57: Dragonmaw camp
 	["Dragonmaw camp"] = "Лагерь Драконьей Пасти",
 	-- {area:1025} Green Belt · {npc:2092} Pilot Longbeard · {zone:1426} Dun Morogh
 	["The Dragonmaw camp lies south of the road, just west of the {area:1025}: Raiders, Swamprunners and Bonewarders. {npc:2092}'s quest in {zone:1426} needs level 28."] = "Лагерь Драконьей Пасти находится к югу от дороги, чуть западнее места {area:1025}: налетчики, болотные бегуны и костостражи. Для задания NPC {npc:2092} ({zone:1426}) нужен 28-й уровень.",
@@ -217,11 +221,11 @@ return {
 	-- plural, as words: Dragonmaw Raiders = {npc:1034} Dragonmaw Raider
 	["grind on Dragonmaw Raiders and Swamprunners at the Dragonmaw camp, {zone:1437}"] = "убивайте налетчиков и болотных бегунов из клана Драконьей Пасти в их лагере ({zone:1437})",
 
-	-- Step 57: Hearth to Menethil
+	-- Step 58: Hearth to Menethil
 	["Hearth to Menethil"] = "Камень возвращения: Гавань Менетилов",
 	["For the giant crocolisks of the north coast, on your next visit"] = "Для огромных болотных кроколисков северного побережья, в следующий раз",
 
-	-- Step 58: Ironforge
+	-- Step 59: Ironforge
 	-- {zone:1437} Wetlands · {area:836} Dun Algaz · {zone:1432} Loch Modan · {zone:1426} Dun Morogh · {area:1537} Ironforge
 	["Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}."] = "Скачите на восток по дороге ({zone:1437}), на юг через {area:836} в зону {zone:1432} и на запад через туннель в зону {zone:1426} сюда: {area:1537}.",
 	-- {npc:1573} Gryth Thurden · {object:32372} Great Forge
@@ -229,13 +233,13 @@ return {
 	-- {item:5352} Book: The Powers Below · {zone:1439} Darkshore · {npc:2786} Gerrig Bonegrip · {object:32383} Forlorn Cavern
 	["Only with {item:5352} from {zone:1439}: {npc:2786}, the {object:32383}"] = "Только если у вас есть {item:5352} из зоны {zone:1439}: {npc:2786}, {object:32383}",
 
-	-- Step 59: Ironforge priests
+	-- Step 60: Ironforge priests
 	-- {zone:1455} Ironforge
 	["{zone:1455} priests"] = "Жрецы: {zone:1455}",
 	-- {npc:11406} High Priest Rohan · {npc:258785} High Priestess Mims · {object:32386} Hall of Mysteries · {object:32362} Mystic Ward
 	["{npc:11406} and {npc:258785} are in the {object:32386}, in the {object:32362}."] = "{npc:11406} и {npc:258785} находятся здесь: {object:32386} ({object:32362}).",
 
-	-- Step 60: Cathedral of Light
+	-- Step 61: Cathedral of Light
 	["Cathedral of Light"] = "Собор Света",
 	-- {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind · {object:28027} Dwarven District · {object:2098} Cathedral Square
 	["Take the {area:2257} from {object:171524} to {zone:1453}'s {object:28027}, then walk to the {object:2098}."] = "Сядьте на поезд ({area:2257}) в месте {object:171524} до места {object:28027} ({zone:1453}), затем идите сюда: {object:2098}.",
@@ -244,29 +248,29 @@ return {
 	-- {npc:1444} Brother Kristoff · {object:2098} Cathedral Square
 	["{npc:1444}, in the {object:2098}"] = "{npc:1444}, {object:2098}",
 
-	-- Step 61: Stormwind Keep
+	-- Step 62: Stormwind Keep
 	-- {npc:1440} Milton Sheaf
 	["{npc:1440}, in the Royal Library"] = "{npc:1440}, в королевской библиотеке",
 	-- {quest:337} An Old History Book · {zone:1431} Duskwood
 	["Only if you looted {quest:337} in {zone:1431}"] = "Только если вы добыли {quest:337} в зоне {zone:1431}",
 
-	-- Step 62: Lord Grayson Shadowbreaker
+	-- Step 63: Lord Grayson Shadowbreaker
 	-- {npc:928} Lord Grayson Shadowbreaker
 	["Back to the Cathedral of Light: {npc:928} stands inside."] = "Вернитесь в Собор Света: {npc:928} стоит внутри.",
 	-- {npc:2228} Lieutenant Farren Orinelle · {area:271} Southshore
 	["For {npc:2228} in {area:271}: keep it"] = "Для NPC {npc:2228} ({area:271}): сохраните",
 
-	-- Step 63: Mage Quarter
+	-- Step 64: Mage Quarter
 	-- {object:2164} The Slaughtered Lamb · {object:2101} Mage Quarter
 	["{object:2164} is in the {object:2101}."] = "{object:2164} находится здесь: {object:2101}.",
 
-	-- Step 64: Jorgen and Elling Trias
+	-- Step 65: Jorgen and Elling Trias
 	-- {npc:4959} Jorgen · {npc:482} Elling Trias
 	["{npc:4959} and {npc:482}"] = "{npc:4959} и {npc:482}",
 	-- {npc:482} Elling Trias · {object:2096} Trade District
 	["{npc:482}, the cheese shop in the {object:2096}"] = "{npc:482}, сырная лавка ({object:2096})",
 
-	-- Step 65: Trade District
+	-- Step 66: Trade District
 	-- {area:42} Darkshire
 	["Next: fly to {area:42}."] = "Далее: летите сюда: {area:42}.",
 
