@@ -1100,6 +1100,7 @@ L["Legacy"] = "Héritage"
 L["Collectibles"] = "Objets de collection"
 L["Sections"] = "Sections"
 L["guide status: Completed"] = "Terminé"
+L["Miscellaneous"] = "Divers"
 
 -- UI/Lookup.lua
 L["Companion"] = "Mascotte"
