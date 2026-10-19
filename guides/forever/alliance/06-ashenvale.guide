@@ -62,6 +62,10 @@ next forever/alliance/07-thousand-needles
 # - Menethil Harbor: Karl Boran (279), on the pier, is taken first off the
 #   boat and Caitlin Grassman (98282) next to Sida. Stormwind Keep: Bolvar
 #   (98190) before the Royal Library, on the way in.
+# - Unrequited Love (98461, Forever, optional): Archaeologist Hollee's note
+#   is taken in Auberdine before the boat and handed to Tarrel Rockweaver
+#   before In Search of the Excavation Team (305). A player carrying it gets
+#   no 305 from him until it is handed in (#524).
 #
 # Class quests: on arrival in Auberdine, Night Elf Druids finish Trial of the
 # Sea Lion and Aquatic Form (272, 5061: Moonglade, then Darnassus) and Night
@@ -294,6 +298,7 @@ step To Menethil Harbor
   zone Darkshore
   hearth "Astranaar"                      -- Hearthstone on cooldown? Head back north through the Talondeep Path.
   fly "Auberdine"
+  accept 98461 optional                   -- Archaeologist Hollee
   goto 32.4,43.8 "Boat to Menethil Harbor"
 
 step Menethil Harbor
@@ -307,6 +312,7 @@ step Menethil Harbor
   accept 98197                            -- Valstag Ironjaw, by the keep
   accept 472                              -- Harlo Barnaby, by the north gate
   accept 484                              -- James Halloran, by the north gate
+  turnin 98461 optional                   -- Tarrel Rockweaver: he won't offer 305 while you carry it
   accept 305                              -- Tarrel Rockweaver, by the north gate
 
 step Spoils of War

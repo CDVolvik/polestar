@@ -2083,6 +2083,22 @@ test(`Nittepitte's report (#453): Making Do is optional in Redridge and Ashenval
 	assert.ok(ashenvale[at(ashenvale, 'turnin 97926', is('turnin', 97926))].goal.optional, 'turnin 97926 is optional');
 });
 
+// Ioney (#524): "quest not available from Tarrel Rockweaver until completing
+// 'Unrequited Love' first, which was in the questlog from earlier." Hollee's
+// note (98461, Forever) is handed to Tarrel before he gives In Search of the
+// Excavation Team (305); both are optional, so a player without the note is
+// not held.
+
+test(`${ASHENVALE}: Ioney's report (#524): Unrequited Love is handed to Tarrel Rockweaver before In Search of the Excavation Team, and taken in Auberdine before the boat`, { skip }, () => {
+	const list = goals(ASHENVALE);
+	const take = at(list, 'accept 98461', is('accept', 98461));
+	const give = at(list, 'turnin 98461', is('turnin', 98461));
+	const excavation = at(list, 'accept 305', is('accept', 305));
+	assert.ok(take < give && give < excavation, 'the note is taken, then handed in, then 305 is taken');
+	assert.equal(list[give].s, list[excavation].s, 'the hand-in is in the same Menethil step as 305');
+	assert.ok(list[take].goal.optional && list[give].goal.optional, 'both goals are optional');
+});
+
 // Pynte (#327): "Timberling Seeds quest points me to the north of Teldrassil
 // instead of just around the quest giver." XrayAlpha's diagnosis: QuestieDB's
 // server drop table gives the Elder Timberling (level 10) 100% for the seed and
