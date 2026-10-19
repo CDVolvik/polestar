@@ -532,10 +532,12 @@ test('skins: Polestar by default; Halo and Hearth bring their tokens, fonts, siz
 			selected = c("selected"), row = T.Metric("row", 40), font = (T.FontSpec("body")), menuRow = T.Metric("menuRow", 26) }
 		Polestar.Set("ui.skin", "nonsense")
 		out.unknown = T.SkinKey()
+		Polestar.Set("ui.skin", "forever")
+		out.hiddenForever = T.SkinKey()
 		emit(out)`);
 	const r = (cs) => round(cs);
 	assert.equal(out.key, 'polestar');
-	assert.deepEqual(out.choices, ['polestar', 'halo', 'hearth', 'forever', 'blizzard', 'classic']);
+	assert.deepEqual(out.choices, ['polestar', 'halo', 'hearth', 'blizzard', 'classic']);
 	assert.equal(out.houseRow, 40);
 	assert.equal(out.houseHero, 26, 'the house ladder is unchanged');
 	const h = out.halo;
@@ -568,6 +570,7 @@ test('skins: Polestar by default; Halo and Hearth bring their tokens, fonts, siz
 	assert.equal(b.menuRow, 22);
 	assert.equal(b.font, 'Fonts\\FRIZQT__.TTF', "the game's font");
 	assert.equal(out.unknown, 'polestar', 'an unknown skin is the house style');
+	assert.equal(out.hiddenForever, 'polestar', 'a saved "forever" choice draws the default skin while it is hidden (#306)');
 });
 
 test('skins: a window repaints from the house style to Halo (veil, no fill) to Hearth (gradient) and back, live', () => {
@@ -636,6 +639,7 @@ test("fonts: a Chinese or Korean name takes the client's font for its script, an
 // a window taken through all three comes back to the house style as it was.
 test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Classic the vanilla dialog; a window goes through them and back", () => {
 	const [out] = run(`
+		T._testShowHidden = true
 		Polestar.UI.ShowOptions()
 		local f = PolestarOptions
 		local function state()
@@ -688,6 +692,7 @@ test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Cl
 // row, the resting tabs keep their art, and the Options tabs keep theirs.
 test('skins: on Forever the guide strip marks the active tab with the selected-row art, not a half-drawn outline (#312)', () => {
 	const [out] = run(`
+		T._testShowHidden = true
 		local GF = Polestar.UI.GuideFrame
 		Polestar.Set("ui.skin", "forever")
 		uistub.openTabs({ { uistub.elwynn, 3 }, { uistub.tailoring, 2 } }, 1)
@@ -717,4 +722,37 @@ test('skins: on Forever the guide strip marks the active tab with the selected-r
 	assert.ok(out.options.length > 1);
 	assert.ok(out.options.every((t) => t.lit === false && t.outline), 'outline tabs');
 	assert.ok(out.options.some((t) => t.outline === 'atlas:Options_Tab_Active_Middle'), 'the active one in the active outline');
+});
+// #306: three Forever-skin guide-window bugs confirmed in game by Fitz (rc1).
+// (a) body bleed and (b) progress bar offsets are open; fixes deferred to a
+//     later release (see #306).
+// (c) Hover plates covering button content: plateLit, cardLit, navHover were
+//     HIGHLIGHT BLEND (opaque); changed to ADD so hover brightens without hiding.
+test('skins: Forever hover plates use ADD blend (#306c)', () => {
+	const [out] = run(`
+		T._testShowHidden = true
+		local GF = Polestar.UI.GuideFrame
+		Polestar.Set("ui.skin", "forever")
+		uistub.openTabs({ { uistub.elwynn, 3 } }, 1)
+		GF.PaintProgress(true)
+
+		-- (c) hover blend mode
+		local cardBtn = CreateFrame("Button")
+		T.SKIN_PAINT.forever.button(cardBtn)
+		local cl = cardBtn.psSkin and cardBtn.psSkin.kit and cardBtn.psSkin.kit.cardLit
+		local navRow = CreateFrame("Button")
+		T.KitRowLit(navRow, true, "navLit", 0)
+		local hv = navRow.psSkin and navRow.psSkin.kit and navRow.psSkin.kit.navLitHover
+		local pl = GF.parts.nav.Prev.psSkin and GF.parts.nav.Prev.psSkin.kit and GF.parts.nav.Prev.psSkin.kit.plateLit
+
+		emit({ cardBlend = cl and cl[2] and cl[2].blend or false,
+			navBlend  = hv and hv.blend or false,
+			platBlend = pl and pl.blend or false })`, {
+		before: `C_Texture = { GetAtlasInfo = function(name)
+			return { file = "atlas:" .. name, leftTexCoord = 0, rightTexCoord = 1, topTexCoord = 0, bottomTexCoord = 1, width = 110, height = 110 }
+		end }`,
+	});
+	assert.equal(out.cardBlend, 'ADD', 'cardLit ADD');
+	assert.equal(out.navBlend,  'ADD', 'navHover ADD');
+	assert.equal(out.platBlend, 'ADD', 'plateLit ADD');
 });

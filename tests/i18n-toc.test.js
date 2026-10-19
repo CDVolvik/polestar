@@ -44,3 +44,15 @@ test('the translations keep Polestar\'s name, fill every locale, and the per-lan
 	assert.equal(tocLines('Polestar_Codex').length, LOCALE_CODES.length * 2);
 	assert.throws(() => tocText('Polestar_Unknown'), /toc\.js/);
 });
+
+test('Polestar_Names_* and Polestar_Guides_* TOCs have ## Group: Polestar (#510)', () => {
+	const tocs = fs.readdirSync(ADDONS).filter((d) => fs.existsSync(path.join(ADDONS, d, `${d}.toc`)));
+	const namesPacks = tocs.filter((d) => d.startsWith('Polestar_Names_'));
+	const guidesPacks = tocs.filter((d) => d.startsWith('Polestar_Guides_'));
+	assert.ok(namesPacks.length === 9, `expected 9 names packs, got ${namesPacks.length}`);
+	assert.ok(guidesPacks.length === 9, `expected 9 guides packs, got ${guidesPacks.length}`);
+	for (const addon of [...namesPacks, ...guidesPacks]) {
+		const f = fields(fs.readFileSync(path.join(ADDONS, addon, `${addon}.toc`), 'utf8'));
+		assert.equal(f['Group'], 'Polestar', `${addon} is missing ## Group: Polestar`);
+	}
+});

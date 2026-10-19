@@ -231,7 +231,7 @@ test('a real 90 degree corner still turns the arrow: gradually from within 30 yd
 		emit({ far = look(0, -40, 100, -100), near = look(0, -85, 100, -100), at = look(0, -97, 100, -100) })`);
 	assert.ok(offStraight(out.far) < 1, `60 yd before the corner: straight on (${offStraight(out.far).toFixed(1)})`);
 	const near = offStraight(out.near);
-	assert.ok(near > 10 && near < 45, `15 yd before it: turning toward it (${near.toFixed(1)})`);
+	assert.ok(near > 25 && near < 70, `15 yd before it: turning toward it (${near.toFixed(1)})`);
 	assert.ok(out.near.dy < -5, 'still ahead along the road, not across the corner');
 	const at = offStraight(out.at);
 	assert.ok(at > 70, `at the corner: along the new road (${at.toFixed(1)})`);
@@ -2394,4 +2394,64 @@ test('#234 floor (Ruling 36b): a search sent without a height, then the floor fo
 	assert.equal(out.after, 1, 'and not again');
 	assert.equal(out.late, 'none');
 	assert.equal(out.lateCalls, 0, 'a floor found more than 5 s after the search asks nothing');
+});
+
+// Arrow body (POINT_REACH=20, PAD=12, AHEAD=45): the player has a 20 yd body
+// so path points within it are always treated as passed; the wider look-ahead
+// corridor keeps the arrow from going sideways on an offset path; a switchback
+// with legs 15 yd apart keeps the arrow on the near leg, not cutting across.
+
+test('A1: arrow aims forward when ~12 yd off-path; wider PAD=12 corridor vs old PAD=10', () => {
+	// Player at (8,13); path (0,0)→(10,0)→(30,0)→(60,0).
+	// Old PAD=10: lateral deviation of (10,0) from player→(30,0) line ≈10.2 yd > 10
+	//   → look-ahead pins aim at (10,0) — sideways (aim_x=10).
+	// New PAD=12: 10.2 yd < 12 → look-ahead spans to (30,0) — forward (aim_x≥20).
+	const [out] = run(`
+		local r = {}
+		nav.place(8, 13)
+		target(60, 0)
+		aim()
+		fake.resolve(0,0, 10,0, 30,0, 60,0)
+		r.aim = aim()
+		emit(r)`);
+	assert.equal(out.aim[0], 'travel');
+	assert.ok(out.aim[2] >= 20, `aim_x ${out.aim[2]} should be ≥20 (forward), not stuck at 10`);
+});
+
+test('A2: player 12 yd off a straight path; arrow within 30° of forward with wider look-ahead', () => {
+	// Player at (50,12); path points every 10 yd from (0,0) to (100,0).
+	// Old AHEAD=30: budget exhausted after 1-2 points → aim ≈(55,0), ~67° off east.
+	// New AHEAD=45: look-ahead reaches (85,0) → ≈18° off east.
+	const [out] = run(`
+		local r = {}
+		nav.place(50, 12)
+		target(100, 0)
+		aim()
+		fake.resolve(0,0, 10,0, 20,0, 30,0, 40,0, 50,0, 60,0, 70,0, 80,0, 90,0, 100,0)
+		r.aim = aim()
+		emit(r)`);
+	assert.equal(out.aim[0], 'travel');
+	assert.ok(out.aim[2] >= 70,
+		`aim_x ${out.aim[2]} should be ≥70 (≤30° off east from x=50), not stuck near 55`);
+});
+
+test('A4: switchback with legs 15 yd apart — PAD=12 keeps the arrow on the near leg', () => {
+	// Player at (70,0) near end of leg1 (x=0..100,y=0); leg2 is at y=-15.
+	// With PAD=20 the corridor would span to y=-15 and aim toward leg2 (cutting the
+	// switchback). With PAD=12 the across check fails (≈13.4 yd > 12) and aim stays
+	// on leg1 (y=0 or very close).
+	const [out] = run(`
+		local r = {}
+		nav.place(70, 0)
+		target(0, -15)
+		aim()
+		-- leg1: x=0..100 y=0 (points every 10 yd); turn (100,-15); leg2: x=100..0 y=-15
+		fake.resolve(
+			0,0, 10,0, 20,0, 30,0, 40,0, 50,0, 60,0, 70,0, 80,0, 90,0, 100,0,
+			100,-15, 90,-15, 80,-15, 70,-15, 60,-15, 50,-15, 40,-15, 30,-15, 20,-15, 10,-15, 0,-15)
+		r.aim = aim()
+		emit(r)`);
+	assert.equal(out.aim[0], 'travel');
+	assert.ok(out.aim[3] >= -12,
+		`aim_y ${out.aim[3]} should be ≥-12 (near leg1 at y=0, not cut to leg2 at y=-15)`);
 });
