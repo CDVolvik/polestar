@@ -19,6 +19,10 @@ for (const r of Object.values(RACE_BY_FILE)) {
 }
 const CLASS_BITS = Object.fromEntries(Object.values(CLASSES).map((c) => [classLabel(c.file), c.bit]));
 
+// Routed yards / straight yards over the walks the guides use (sim walks, 2026-10-17): the
+// order of a package's steps prices a pair without a routed walk with it.
+const ROUTED_AVG = 1.3;
+
 const K_ACCEPT = 0;
 const K_TASK = 1;
 const K_TURNIN = 2;
@@ -192,6 +196,10 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	const qXp = new Float64Array(Q); // recorded full reward, 0 = estimate, -1 = none (repeatable)
 	const qGiver = new Int32Array(Q);
 	const qEnder = new Int32Array(Q);
+	// Every giver and ender of a quest that has several (world gAlt/eAlt): qi -> Map('npc:<id>' -> point).
+	const qGiverAlt = new Map();
+	const qEnderAlt = new Map();
+	const altPts = (alt) => new Map(Object.entries(alt).map(([k, p]) => [k, usePt(p)]));
 	const qAccept = new Int32Array(Q).fill(-1);
 	const qTask0 = new Int32Array(Q);
 	const qTask1 = new Int32Array(Q);
@@ -241,7 +249,17 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	const pkgStart = [];
 	const pkgEnd = [];
 	const W = world.points;
-	const wdist = (a, b) => (W[a][1] !== W[b][1] ? Infinity : Math.hypot(W[a][2] - W[b][2], W[a][3] - W[b][3]));
+	// The order of a package's steps: by routed walks where `sim walks` has them
+	// (the straight line × an average detour for the rest), else the straight line.
+	const walks = world.walks || null;
+	const NW = W.length;
+	const straight = (a, b) => Math.hypot(W[a][2] - W[b][2], W[a][3] - W[b][3]);
+	const wdist = (a, b) => {
+		if (W[a][1] !== W[b][1]) return Infinity;
+		if (!walks) return straight(a, b);
+		const r = walks.get(a * NW + b);
+		return r !== undefined ? r : straight(a, b) * ROUTED_AVG;
+	};
 	const KIND = ['accept', 'task', 'turnin'];
 	const dungeons = withDungeons ? world.dungeons || [] : [];
 	const dQuests = dungeons.map(() => []);
@@ -317,6 +335,25 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 	for (const d of dungeons) usePt(d.pt);
 	const startPt = usePt(start.pt);
 	const innRunPt = world.inns.map((n) => usePt(n.pt));
+	// Other givers and enders last, so every other point keeps its index.
+	quests.forEach((q, i) => {
+		if (q.gAlt) qGiverAlt.set(i, altPts(q.gAlt));
+		if (q.eAlt) qEnderAlt.set(i, altPts(q.eAlt));
+	});
+
+	// Routed walks between the run's points (world.walks, sim walks) as one
+	// NP x NP table, -1 where there is none: Travel.leg reads it on every walk.
+	let walkRun = null;
+	if (walks) {
+		const NPw = ptList.length;
+		walkRun = new Float32Array(NPw * NPw).fill(-1);
+		for (const [key, yd] of walks) {
+			const a = ptIndex.get(Math.floor(key / NW));
+			if (a === undefined) continue;
+			const b = ptIndex.get(key % NW);
+			if (b !== undefined) walkRun[a * NPw + b] = yd;
+		}
+	}
 
 	// ---- point geometry, flight masters and inns at points ----
 	const N = world.nodes.length;
@@ -376,9 +413,10 @@ function compileRun(world, { race, cls = null, raceBits = {}, family = 'solo' } 
 
 	return {
 		faction, race, cls, world,
+		walks, walkRun, nodeW: Int32Array.from(world.nodes.map((n) => n.pt)),
 		start: { pt: startPt, zone: start.zone, quest: start.quest },
 		quests, qIndex, Q,
-		qLevel, qMinLevel, qExcl0, qExcl1, exclList: Int32Array.from(exclList), qTier, qXp, qGiver, qEnder, qAccept, qTask0, qTask1, qPre0, qPre1, qAll0, qAll1, allList: Int32Array.from(allList),
+		qLevel, qMinLevel, qExcl0, qExcl1, exclList: Int32Array.from(exclList), qTier, qXp, qGiver, qEnder, qGiverAlt, qEnderAlt, qAccept, qTask0, qTask1, qPre0, qPre1, qAll0, qAll1, allList: Int32Array.from(allList),
 		qParent, qAfter0, qAfter1, afterList: Int32Array.from(afterList),
 		preList: Int32Array.from(preList),
 		taskPt: Int32Array.from(taskPt), taskW0: Int32Array.from(taskW0), taskW1: Int32Array.from(taskW1),

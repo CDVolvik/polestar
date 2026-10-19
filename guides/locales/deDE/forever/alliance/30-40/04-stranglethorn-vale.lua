@@ -72,7 +72,8 @@ return {
 	["Down to {area:35}"] = "Hinab nach {area:35}",
 	-- {object:3202} Grom'gol (no name in this language: may be words) · {area:35} Booty Bay
 	["Follow the main road south the length of the jungle, past the {object:3202} turn-off, to {area:35} on the southern cape."] = "Folge der Hauptstraße durch den ganzen Dschungel nach Süden, vorbei an der Abzweigung nach {object:3202}, bis {area:35} am Südkap.",
-	["Gyll, on the top floor by the docks"] = "Gyll, im obersten Stockwerk bei den Docks",
+	-- {npc:2859} Gyll
+	["{npc:2859}, on the top floor by the docks"] = "{npc:2859}, im obersten Stockwerk bei den Docks",
 	-- {npc:2832} Nixxrax Fillamug · {object:56910} The Salty Sailor Tavern
 	["{npc:2832}, in the {object:56910}"] = "{npc:2832}, in der {object:56910}",
 	-- {npc:2495} Drizzlik

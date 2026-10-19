@@ -816,11 +816,11 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `accept` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `item`/`itemName`, `minLevel`, `qlvl`, `pre`, `preAll`, `closedBy`, `preTitles` | on quest **or** completed |
 | `turnin` | `quest`, `title` | `npc`/`npcName`, `object`/`objName`, `rewards = { choices = { { item, itemName, quality } }, items = { ... }, xp, money }` (copper), `direct` | completed; `direct` (never accepted, so never orphaned): its QUEST_TURNED_IN during the step (latched) or the completed flag, not the session's turn-ins, so one hand-in of a repeatable closes one goal |
 | `complete` | `quest`, `title` | — | ready for turn-in or completed |
-| `kill` | `target` | `npc`, `count`, `quest`, `oi` | objective `oi` finished, or quest ready/completed (not while the log lists no objectives yet, right after the accept); without `quest`: manual |
-| `collect` | `item`, `itemName` | `count`, `quest`, `oi` | objective finished / quest ready (as `kill`) / completed; without `quest`: item count ≥ `count` |
+| `kill` | `target` | `npc`, `count`, `quest`, `oi` | its objective finished (the quest-log line named after `target`, else line `oi`), or quest ready/completed (not while the log lists no objectives yet, right after the accept); without `quest`: manual |
+| `collect` | `item`, `itemName` | `count`, `quest`, `oi` | objective finished (the line named after the item, else `oi`) / quest ready (as `kill`) / completed; without `quest`: item count ≥ `count`, or, for a single item the step's next `accept … item` starts its quest with (paired as in the step view), that quest in the log or done (accepting uses the item up) |
 | `goto` | `map`, `x`, `y` | `text`, `r` (default 8 yd), `area` (its name in the client's language shows instead of `text`) | within radius, **or** gone into its `area` (subzone text equals the client's name of it, not the zone's, while indoors, after being seen elsewhere since the step came up; not for a goto after one into the same area in the step), **or** any later goal in the step is done, **or**, when only gotos, notes and goals that do not apply follow it in the step, the next step that applies is done with a quest goal of it done (`Own.nextStepDone`, counted as anchorStep counts: not a skipped step or one with `only`, not a goal with `only`; a cave's mouth or a dock ahead of work done ahead of the guide, #240) |
 | `talk` | `npc`, `npcName` | — | gossip/quest frame opened with that NPC during this step; else manual |
-| `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest`; else manual |
+| `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest` (the line named after the object, else `oi`); else manual |
 | `use` | `item`, `itemName` | `quest`, `oi` | objective state if `quest`; else manual |
 | `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it |
 | `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual |
@@ -1151,7 +1151,10 @@ the same person never splits that person's group.
   cycled spot or candidate) while it is open, else the current goal's own
   place (its coordinates, its spawn area, the source of its item), else the
   header's, else the focus group's first open located goal (blocking, then
-  optional, then notes); nil on a done step (no focus). Reaching the place of
+  optional, then notes), else a quest's current goal at the place of the
+  focus group (a goto already reached) or of the nearest group before it for
+  the same quest (the giver of a bare `complete`), never of a later group;
+  nil on a done step (no focus). Reaching the place of
   any other goal of the step arrives at its header. A focus change fires
   `STEP_UPDATED(step)` and `WAYPOINT_CHANGED` like any other progress.
 - Out-of-order play still counts: finishing a later person's goals marks that
@@ -1646,11 +1649,13 @@ Polestar.Pins.MinimapCursor() -> dNorth, dWest | nil      -- yards from the play
   and read as nil. The global is taken at login, once every addon has loaded,
   so an addon bringing its own TomTom-compatible global keeps it; it is given
   back (cleared) when the setting goes off or TomTom loads. `Nav/Bridges.lua`
-  never mirrors into it. Default off: the stand-in has methods only, so an
-  addon that finds the global and reads TomTom's settings (`TomTom.db`, its
-  profile) would error; the option ("Let other addons set waypoints",
-  Options, Integrations, TomTom) says so. With it off nothing sets
-  `TomTom` and `/way` is not claimed.
+  never mirrors into it, nor into Shortest Path Forever's own stand-in (the
+  global while it is installed and TomTom is not): a waypoint there starts a
+  journey of its own, which Polestar steps aside for (#306). Default off: the
+  stand-in has methods only, so an addon that finds the global and reads
+  TomTom's settings (`TomTom.db`, its profile) would error; the option ("Let
+  other addons set waypoints", Options, Integrations, TomTom) says so. With it
+  off nothing sets `TomTom` and `/way` is not claimed.
 - **Following TomTom** (`nav.followTomTom`, off; real TomTom only): hooks on
   TomTom's table: `SetCrazyArrow(uid)` points Polestar's arrow at that
   waypoint (not `corpse`, not `from = "Polestar"`), `RemoveWaypoint` and
@@ -2458,7 +2463,7 @@ Polestar.Transit.NextDeparture(kind, id, now, side) -> wait, ride, timed | nil
     -- enough), ride until you are off; untimed: the expected values, timed = false
 Polestar.Transit.NextArrival(kind, id, now, side) -> arriveIn (0 = there), departIn | nil while untimed
 Polestar.Transit.Caption(kind, id, now, side) -> "Next boat in 1:20" | "Boat docked, leaves in 0:40"
-    | untimed "Next boat in about 2:55"
+    | untimed "Boat: average wait 2:55"
 Polestar.Transit.Riding(now) -> { kind, route, dock, arriveIn } | nil   -- the ride the observer identified
 Polestar.Transit.Lifts() -> { { id, name, c, wx, wy, top, bottom }, ... };  LiftNear(c, wx, wy [, yards]) -> id, name
 Polestar.Transit.Teleports(now) -> { { spell, name, cast, ready, to = point | nil, bind }, ... }
@@ -3518,8 +3523,11 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   `UI.ShowReport()` or `SHOW_REPORT`): the guide window's bug (in the
   navigator while a guide is open), its menu's "Report a problem" and
   `/polestar report` open it on the step on screen. The player types what
-  went wrong (250 letters); the report box holds `UI.Report.Text(description,
-  details)`: their words after "**What went wrong:**", then
+  went wrong (250 letters); the report is `UI.Report.Text(description,
+  details, spot)`: their words after "**What went wrong:**", then as bold
+  lines under it the right spot when one is marked ("**Right spot:**") and
+  the other addons that are loaded, names only, quest, map and guide addons
+  first, then A to Z ("**Addons:**", left out when there are none), then
   `UI.Report.Details()` in a code block, one fact a line, taken when the
   window opens: Polestar's version and stage, the client build and locale;
   race, class, level (XP %) and faction (never the name or realm); the guide
@@ -3541,16 +3549,45 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   Polestar's files, `BugGrabber:GetDB()`) by their path from the AddOns
   folder, and the calls the game blocked (`Polestar.Blocked()`) as "blocked
   in <addon>: <function> (<time>)": the newest three of both together, by
-  `seq` (!BugGrabber's count as the newest), each counted. Every line is cut
-  at 100 bytes, so at its longest the report fits one Discord message (2000
-  characters). Under it, Discord's mark, "Polestar on Discord" and "Get the
-  invite", which opens the invite (`Polestar.DiscordURL`) in the copy
-  window: the game opens no links for addons, so the report is the only text
-  a member copies. What the player typed stays while the window is reopened
-  on the same step. The hub's and the settings' sidebars carry the Discord's
-  mark at the end of the version line (`UI.Report.SidebarLink(shell)`),
-  which opens the invite like `/polestar discord` (`UI.ShowDiscord`,
-  `SHOW_DISCORD`).
+  `seq` (!BugGrabber's count as the newest), each counted. Above the code
+  block, under the player's words, bold lines for the right spot when one
+  is marked and the other addons that are loaded (quest, map and guide
+  addons first, then A to Z). Every line is cut at 100 bytes, and when the
+  report is still longer than one Discord message (2000 characters) the
+  Addons line is shortened, then dropped, never a line the bot reads. The
+  Discord bot (`tools/discord-bot`) takes the code block for the details
+  and everything above it, the bold lines included, as the description it
+  quotes in the issue.
+  "Mark the right spot" hides the window behind a bar (`PolestarMark`) while
+  the player walks to where the step should have sent them; "Mark here"
+  keeps `ns.WhereLines()` as the right spot, and "Clear mark" takes it out.
+  Under it, the way to send the report: Discord's mark, "Report it on
+  Discord", three numbered lines (press Copy report then Ctrl+C, open #bugs
+  and press New Post, paste and post: the bot files it), "Copy report",
+  which shows the report box under it selected, and "Get the invite", which
+  opens the invite (`Polestar.DiscordURL`) in the copy window. Last, for a
+  player with a GitHub account, "Open on GitHub" opens in the copy window a
+  link to a new issue on Polestar's GitHub,
+  `UI.Report.IssueURL(description, details, spot)`, whose query fills the
+  issue form's fields by their ids: a "Wrong step" issue (`wrong-step.yml`:
+  title, guide, step, character, the right spot, the report) when the
+  player marked a spot, a "Bug report" (`bug-report.yml`) otherwise, both
+  with the version and the addons. The report in the issue leaves out the
+  Addons line and, in a Wrong step issue, the Right spot line: each has its
+  own field. The whole link stays under `UI.Report.LINK_MAX` (GitHub
+  refuses one much longer): the report loses goals after the arrow's, then
+  is cut, and the addons field lists as many as fit after a line that
+  counts them. Copy report and Open on GitHub wait until the description
+  holds `UI.Report.DESC_MIN` characters. The game opens no links and has no
+  clipboard for addons, so every text to take away is selected for Ctrl+C.
+  A gamepad starts on "Copy report", or on "Mark the right spot" while it
+  waits. The details, the issue's fields and the right spot are taken when
+  the window opens or the spot is marked, so the guide moving on changes
+  neither. What the player typed and the right spot stay while the window
+  is reopened on the same step. The hub's and the settings' sidebars carry
+  the Discord's mark at the end of the version line
+  (`UI.Report.SidebarLink(shell)`), which opens the invite like
+  `/polestar discord` (`UI.ShowDiscord`, `SHOW_DISCORD`).
 - **Per-character UI state** in `CharState().ui`: `recentGuides` (ids, newest
   first, at most 10), `favoriteGuides` (id -> true), `pickerSelected` (id).
 
@@ -3566,7 +3603,7 @@ current one on (at most eight, then "3 more steps"): the leg's number in
 the route, its glyph (by `leg.kind`, or `leg.step` for a walk's chokepoint:
 lift, gate, bridge, cave, pass), its caption (`leg.label`; without one the
 kind's words and where it ends, never "Unknown") and its time. Boats,
-zeppelins, the tram and lifts add a line, "leaves in about 0:15 · ride 0:10"
+zeppelins, the tram and lifts add a line, "average wait 0:15 · ride 0:10"
 ("leaves in" once a ride timed the loop; "on board · 0:42" while riding).
 A walk whose engine path enters the other faction's towns (`leg.hubs`) adds
 "Hostile town: Southshore" (names joined by commas) in the warning colour.
@@ -3824,7 +3861,7 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   `talents build` writes them all into `Builds.lua`, one `T.Register` per
   class, sorted by class. The tool finds each class's tree by its class skill
   line (`CLASSES` in `tools/lib/talents/build.js`) and leaves out a stray
-  copy of a talent far off the grid (1.60.1.70374: Hunter node 104982,
+  copy of a talent far off the grid (1.60.1.70374 and 1.60.1.70450: Hunter node 104982,
   Lightning Reflexes again; Priest node 105865, Holy Specialization again).
 - **Validation.** `Builds.lua` carries the tree the plans were replayed on.
   At run time each node is matched by ID (same rank count and name), else by
