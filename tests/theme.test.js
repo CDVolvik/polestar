@@ -522,6 +522,40 @@ test('skins: a window repaints from the house style to Halo (veil, no fill) to H
 	assert.deepEqual(out.back, out.house, 'back to the house style, as it was');
 });
 
+// #353: Polestar's faces have no Chinese or Hangul; text with them takes the
+// client's font for that script, unless the client's locale already draws it.
+test("fonts: a Chinese or Korean name takes the client's font for its script, and back when the text changes (#353)", () => {
+	const [out] = run(`
+		local GF = Polestar.UI.GuideFrame
+		local fs = W.Text(GF.parts.nav, "hero", "text")
+		local function face() return (fs:GetFont()) end
+		local out = { latin = face() }
+		fs:SetText("Hello, 张伟"); out.han = face()
+		fs:SetText("Hello, 김민준"); out.hangul = face()
+		fs:SetFormattedText("%s, %s", "Hello", "Tom — Привет"); out.back = face()
+		Polestar.Set("ui.skin", "halo"); fs:SetText("Hello, 张伟"); Polestar.Set("ui.skin", "polestar"); out.repaint = face()
+		GetLocale = function() return "zhCN" end
+		fs:SetText("A"); fs:SetText("Hello, 张伟"); out.zhCN = face()
+		fs:SetText("Hello, 김민준"); out.zhCNHangul = face()
+		GetLocale = function() return "enUS" end
+		uistub.player.name = "张伟"
+		Polestar.UI.Welcome.Show("welcome")
+		for _, f in ipairs(stub.frames) do
+			for _, r in ipairs(f.regions) do
+				if r.text == "Hello, 张伟" or (r.GetText and r:GetText() == "Hello, 张伟" and r ~= fs) then out.welcome = (r:GetFont()) end
+			end
+		end
+		emit(out)`);
+	assert.doesNotMatch(out.latin, /ARKai|2002/);
+	assert.equal(out.han, 'Fonts\\ARKai_T.ttf');
+	assert.equal(out.hangul, 'Fonts\\2002.TTF');
+	assert.equal(out.back, out.latin, 'Latin and Cyrillic go back to the face');
+	assert.equal(out.repaint, 'Fonts\\ARKai_T.ttf', 'a skin change keeps it');
+	assert.doesNotMatch(out.zhCN, /ARKai_T/, 'a Chinese client draws it in its own font');
+	assert.equal(out.zhCNHangul, 'Fonts\\2002.TTF');
+	assert.equal(out.welcome, 'Fonts\\ARKai_T.ttf', "the welcome page's greeting");
+});
+
 // The game's looks (Theme/GameSkins.lua): each draws its own art source, and
 // a window taken through all three comes back to the house style as it was.
 test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Classic the vanilla dialog; a window goes through them and back", () => {
