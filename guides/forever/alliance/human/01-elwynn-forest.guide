@@ -69,6 +69,9 @@ next forever/alliance/02-westfall
 #   after Deputy Willem and Marshal McBride (Willem is at the spawn, Eagan at
 #   the far corner), and Investigate Echo Ridge (15) right after Kobold Camp
 #   Cleanup is handed in to McBride, before the class letters.
+# - Skirmish at Echo Ridge (21) is taken when Investigate Echo Ridge is
+#   handed in to McBride, and Report to Goldshire (54) and The Adventurer
+#   (96627) when Skirmish is: he offers each at once (#310).
 # - Eastvale: Sara Timberlain, on the way in, before Hagar Lowe.
 #
 # Class quests, as class-only steps (the level 10-12 ones from the last
@@ -161,9 +164,9 @@ step Echo Ridge Mine
 
 step Northshire Abbey
   turnin 15                                   -- Marshal McBride
+  accept 21
   turnin 91743                                -- Brother Paxton
   accept 91745
-  accept 21                                   -- Marshal McBride
   turnin 3100 only Warrior                    -- Llane Beshere, the warrior trainer
   turnin 3101 only Paladin                    -- Brother Sammuel, the paladin trainer
   turnin 92479 only Hunter                    -- Tordrin Sternblade, by the Abbey
@@ -213,12 +216,12 @@ step Northshire Abbey
   turnin 3905                                 -- Brother Neals, upstairs
   turnin 6                                    -- Deputy Willem
   turnin 21                                   -- Marshal McBride
+  accept 54
+  accept 96627
   turnin 91752 optional
   accept 91758 optional
   turnin 91758 optional                       -- Tordrin Sternblade
   accept 91772 optional                       -- his kobold tracker shows the kobolds to click on the road to Goldshire
-  accept 54                                   -- Marshal McBride
-  accept 96627
   accept 2158                                 -- Falkhaan Isenstrider, by the stables south of the Abbey
   train class
 
