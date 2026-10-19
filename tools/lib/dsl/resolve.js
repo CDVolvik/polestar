@@ -22,6 +22,8 @@ const { clusterPoints, scaleOf } = require('../questdb/cluster');
 const { groupOf, isElite, isRare, hostileTo } = require('./group');
 const { goalHeight, spotHeight } = require('./heights');
 const { goalArea, goalNode, goalInnkeeper, goalFlightMaster } = require('./places');
+const { areaNamed } = require('../data/areas');
+const { levelRange } = require('./when');
 
 // A collect's sources are named only for an item that few creatures or
 // objects drop (at 2% or more, with spawns); past this it drops everywhere.
@@ -652,6 +654,8 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		setIf(step, 'title', s.title);
 		setIf(step, 'note', s.tip);
 		setIf(step, 'only', onlyOf(s.only));
+		const stepZone = resolveZone(s.zone || (s.goals[0] && s.goals[0].zone));
+		setIf(step, 'when', resolveWhen(s.when, stepZone ? stepZone.id : null, h.levels ? [h.levels.min, h.levels.max] : null, data, warn));
 		step.goals = [];
 		hidden(step, '_line', s.line);
 		hidden(step, '_only', s.only);
@@ -715,6 +719,122 @@ function resolveGuide(ast, data, diag, opts = {}) {
 	// The guide menu's "Group" chip: some goal of the route needs a group.
 	if (guide.steps.some((s) => s.goals.some((goal) => goal.group && !goal.optional))) guide.group = true;
 	return guide;
+}
+
+// What an accept of quest `id` (record `q`, or null) waits on, for the
+// engine: blocking prerequisites only (breadcrumbs dropped: `pre` = one of
+// them suffices, `preAll` = every one is needed), the quests that close it
+// for good once taken or done (the quest a breadcrumb leads to, and its
+// exclusive group: another race's or class's version of the same chain), and
+// their titles for the engine's "needs <quest> first" / "you took <quest>" text.
+function acceptGate(q, id, data) {
+	const out = {};
+	const { all, any } = blockingPrereqs(q, (p) => data.quest(p));
+	if (any.length) out.pre = any;
+	if (all.length) out.preAll = all;
+	const closedBy = [];
+	for (const c of [Number(q && q.breadcrumbFor), ...((q && q.excl) || []).map(Number)]) {
+		if (Number.isInteger(c) && c > 0 && c !== id && !closedBy.includes(c)) closedBy.push(c);
+	}
+	if (closedBy.length) out.closedBy = closedBy;
+	const titles = {};
+	for (const p of [...all, ...any, ...closedBy]) {
+		const pq = data.quest(p);
+		if (pq && pq.title) titles[p] = String(pq.title);
+	}
+	if (Object.keys(titles).length) out.preTitles = titles;
+	return out;
+}
+
+// A step's `when` predicates (tools/lib/dsl/when.js) as the engine reads them
+// (docs/PACK_FORMAT.md, "Format 4"): quest and item ids checked against the
+// data; `available` with what an accept of the quest waits on (minLevel,
+// pre, preAll, closedBy); a zone, subzone or bind location with its area
+// (places.js, "Places by ID"), the subzone looked up in the step's zone.
+// `levels`: the guide's [min, max], to warn about a step no character in
+// that range sees.
+function resolveWhen(list, zoneId, levels, data, warn) {
+	if (!list || !list.length) return undefined;
+	const haveQuests = Object.keys(data.quests || {}).length > 0;
+	const haveItems = Object.keys(data.items || {}).length > 0;
+	const haveZones = Object.keys(data.zones || {}).length > 0;
+	const out = list.map((p) => {
+		const w = { k: p.k };
+		if (p.neg) w.neg = true;
+		switch (p.k) {
+			case 'level':
+				w.op = p.op;
+				w.n = p.n;
+				break;
+			case 'onquest':
+			case 'complete':
+			case 'turnedin':
+			case 'available': {
+				w.q = Array.isArray(p.q) ? p.q.slice() : p.q;
+				for (const id of [].concat(p.q)) {
+					if (haveQuests && !data.quest(id)) warn(p.line, `quest ${id} is not in data (new Forever content?)`);
+				}
+				if (p.k === 'available') {
+					const q = data.quest(p.q);
+					if (q && q.minLevel > 0) w.minLevel = Number(q.minLevel);
+					const gate = acceptGate(q, p.q, data);
+					setIf(w, 'pre', gate.pre);
+					setIf(w, 'preAll', gate.preAll);
+					setIf(w, 'closedBy', gate.closedBy);
+				}
+				break;
+			}
+			case 'has':
+				w.item = p.item;
+				w.n = p.n;
+				if (haveItems && !data.item(p.item)) warn(p.line, `item ${p.item} is not in data (new Forever content?)`);
+				break;
+			case 'zone': {
+				w.name = p.name;
+				const found = data.zoneNamed(p.name);
+				if (found && found.zone.areaId) w.area = Number(found.zone.areaId);
+				else if (!found && haveZones) warn(p.line, `zone "${p.name}" is not in zones.json: the game never reports that zone name, so the predicate never holds there`, 'write the zone as the game names it (`polestar find --kind zone <text>`)');
+				break;
+			}
+			case 'subzone': {
+				w.name = p.name;
+				const z = zoneId != null ? data.zone(zoneId) : null;
+				const area = areaNamed(data.areas, p.name, z && z.areaId);
+				if (area) w.area = area.id;
+				else if (data.areas) warn(p.line, `subzone "${p.name}" names no single area${z && z.name ? ` in ${z.name}` : ''}: the predicate compares the subzone text as written, in English only`);
+				break;
+			}
+			default: {
+				// bound
+				w.name = p.name;
+				const bad = checkLocation(data, 'sethome', p.name);
+				if (bad) warn(p.line, bad.message.replace(/^sethome/, 'bound'), bad.hint);
+				const area = areaNamed(data.areas, p.name);
+				if (area) w.area = area.id;
+			}
+		}
+		return w;
+	});
+	// No character in the guide's levels sees a step whose `level` predicates
+	// leave no level; nor any character a step that asks for one state both ways.
+	const lv = list.filter((p) => p.k === 'level');
+	if (lv.length && levels) {
+		let [lo, hi] = levels;
+		for (const p of lv) {
+			const [a, b] = levelRange(p);
+			lo = Math.max(lo, a);
+			hi = Math.min(hi, b);
+		}
+		if (lo > hi) warn(lv[lv.length - 1].line, `the step's \`when level\` never holds for this guide's levels (${levels[0]}-${levels[1]}): no character sees the step`);
+	}
+	const key = (p) => JSON.stringify({ ...p, neg: undefined, line: undefined });
+	for (const p of list) {
+		if (p.k !== 'level' && list.some((o) => o !== p && !!o.neg !== !!p.neg && key(o) === key(p))) {
+			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : 'place'}: no character sees it`);
+			break;
+		}
+	}
+	return out;
 }
 
 function objectiveFor(q, kind, id) {
@@ -913,26 +1033,7 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				setIf(goal, 'minLevel', ml);
 				// For the engine's grey-quest skipping.
 				if (q && Number(q.level) > 0) goal.qlvl = Number(q.level);
-				// Blocking prerequisites only (breadcrumbs dropped): `pre` = one of
-				// them suffices, `preAll` = every one is needed.
-				const { all, any } = blockingPrereqs(q, (id) => data.quest(id));
-				if (any.length) goal.pre = any;
-				if (all.length) goal.preAll = all;
-				// Quests that close this one for good once taken or done: the quest a
-				// breadcrumb leads to, and its exclusive group (another race's or
-				// class's version of the same chain).
-				const closedBy = [];
-				for (const id of [Number(q && q.breadcrumbFor), ...((q && q.excl) || []).map(Number)]) {
-					if (Number.isInteger(id) && id > 0 && id !== goal.quest && !closedBy.includes(id)) closedBy.push(id);
-				}
-				if (closedBy.length) goal.closedBy = closedBy;
-				// Titles for the engine's "needs <quest> first" / "you took <quest>" text.
-				const titles = {};
-				for (const id of [...all, ...any, ...closedBy]) {
-					const pq = data.quest(id);
-					if (pq && pq.title) titles[id] = String(pq.title);
-				}
-				if (Object.keys(titles).length) goal.preTitles = titles;
+				Object.assign(goal, acceptGate(q, goal.quest, data));
 			}
 			if (v === 'turnin') {
 				const rewards = {};
@@ -1428,8 +1529,13 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 	}
 	if (g.r !== undefined) goal.r = g.r;
 	if (g.optional) goal.optional = true;
-	// `turnin ... direct`: handed in from the giver's window with no accept.
-	if (g.direct) goal.direct = true;
+	// `turnin ... direct`: handed in from the giver's window with no accept;
+	// its quest's level, as an accept's, for the engine's grey-quest skipping.
+	if (g.direct) {
+		goal.direct = true;
+		const q = goal.quest !== undefined ? data.quest(goal.quest) : null;
+		if (q && Number(q.level) > 0) goal.qlvl = Number(q.level);
+	}
 	// Group content (group.js): the author's `group [N]`, else derived.
 	setIf(goal, 'group', groupOf(goal, g.group, ctx.sides, data));
 	setIf(goal, 'only', onlyOf(g.only));

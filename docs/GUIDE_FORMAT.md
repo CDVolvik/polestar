@@ -109,6 +109,7 @@ Step directives:
 |---|---|
 | `zone <Name>` / `zone map <uiMapID>` | Current zone for coordinates from here on (sticky across later steps, also when its step has `only`: after a class trip, the next step everyone sees names its zone again). |
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
+| `when <predicate>` | The step applies only while the predicate holds when the route reaches it; several `when` lines must all hold. See "Conditions checked during play". |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
 
 A step must contain at least one goal.
@@ -201,6 +202,63 @@ Comma-separated names, case-insensitive:
 
 Classes OR together, races OR together, factions OR together; the three groups
 AND. `only Warrior,Paladin,Dwarf` = (Warrior or Paladin) and Dwarf.
+
+## Conditions checked during play
+
+`only` says who a step is for; `when` says in which state. A step with
+`when` applies only while its predicate holds, checked on the character's
+live state while the step is the current one or still ahead. Several `when`
+lines must all hold; for "one or the other", write the step twice.
+
+```
+step Back to Gornek
+  when onquest 788
+  when level<6
+  turnin 788
+```
+
+| Predicate | Holds when |
+|---|---|
+| `level<N`, `level<=N`, `level>N`, `level>=N` | the character's level compares so with N (1-60); `level` takes no `!` |
+| `onquest <quest>[,<quest>...]` | any of the quests is in the log |
+| `complete <quest>` | the quest is in the log, ready to turn in |
+| `turnedin <quest>` | the quest is handed in |
+| `available <quest>` | the quest can be taken now: not in the log or done, the level reached, its prerequisites done and none of the quests that close it taken or done (the compiler copies these from the data, as for an `accept`) |
+| `has <item> [xN]` | the bags hold N (default 1) or more |
+| `zone "<Name>"` | the zone text reads so (the zone as the game names it) |
+| `subzone "<Name>"` | the subzone text reads so |
+| `bound "<Location>"` | the hearthstone is bound there (a bind location, as for `sethome`) |
+
+`!` in front of any predicate but `level` turns it around: `!onquest 788`
+holds while the quest is not in the log, `!has 159 x5` while the bags hold
+fewer than five. Names can be quoted or bare.
+
+**Once the route moves past a step, its outcome stays.** Polestar stores
+whether the step's `when` held at that moment (once the quest log can be
+read after login), and reads that from then on: a "buy water" step passed
+because the bags were full is stored as skipped and does not come back when
+the water runs out, and a step that applied stays done. The player can
+unskip such a step like any other; it then applies whatever its `when`.
+Resetting the guide's progress forgets the stored outcomes.
+
+While its `when` fails, a step counts as one that does not apply: like a step
+for another class, it never holds the guide, and a turn-in whose only accept
+is in such a step goes with it.
+
+A step with `when onquest Q` (or `when complete Q`) can hand in Q with no
+`accept Q` before it: "hand it in if you picked it up elsewhere". A `turnin`
+whose quest is accepted earlier only in steps with `when` warns: characters
+who passed those steps never see it, so give it the same `when` or a
+`when onquest`.
+
+Zone, subzone and bind location names work on every client language: the
+compiler gives each its area ID where the data names one (see "Places by
+ID"), and Polestar compares the game's own name for it, then the name you
+wrote.
+
+A pack with a `when` anywhere is written in pack format 4, which Polestar
+0.3.0 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
+older versions.
 
 ## What the compiler fills in
 
@@ -467,6 +525,11 @@ Errors:
   as `elite`, unless the goal was already reported as elite
 
 Warnings:
+- a `when` predicate naming a quest or item the data lacks, a zone not in
+  `zones.json`, a bind location no inn has, or a subzone that names no single
+  area; a step whose `when level` leaves none of the guide's levels, or that
+  asks for one predicate both ways (`onquest 7` and `!onquest 7`): no
+  character sees it
 - an `accept` whose prerequisites (`pre`, any one suffices) are none of them turned in earlier in the chain
 - an `accept` above the level the route plausibly reaches (when XP data exists)
 - an `accept` of a quest whose `excl` (exclusive) quest is accepted or turned in

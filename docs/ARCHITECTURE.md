@@ -132,6 +132,8 @@ Messages:
 | `PLAYER_SKIPPED_STEP` | guideId, stepIndex | Engine, after `Skip()` (the window, the menu, `/polestar skip`): the guide window offers the undo |
 | `WAYPOINT_CHANGED` | waypoint or nil | Engine (and Nav when an override is set/cleared) |
 | `GUIDE_COMPLETED` | guideId | Engine |
+| `GUIDE_PLACED` | guideId, stepIndex or nil, `{ guideId, ... }` | Engine, active tab, once placement of a guide just opened ends (see "Placement"; not for a guide a login or /reload brings back): where the guide resumes, and the guides passed whole on the way; the guide window goes over the steps before it, titles and count rolling (`GF.PlayCatchUp`, after `PLAYER_ENTERING_WORLD`) |
+| `CATCH_UP` | true \| false | Guide window, while its catch-up goes over the steps (`GF.PlayCatchUp`): the arrow shows an hourglass turning over in its dial's place (`Arrow.SetBusy`; Media/UI `hourglass`, `hourglass-sand`, tools/media/ui.js) |
 | `SETTING_CHANGED` | path, value | Core settings |
 | `TOGGLE_FRAME` / `SHOW_FRAME` / `HIDE_FRAME` | — | commands, keybinds → UI |
 | `SHOW_PICKER` | — | commands → UI |
@@ -762,6 +764,7 @@ Polestar.RegisterGuide({
       title = "Deputy Willem",     -- optional
       note = "...",                -- optional, player-facing
       only = { classes = { "WARRIOR" }, races = { "Human" }, factions = { "Alliance" } },  -- optional, AND across keys, OR within
+      when = { { k = "level", op = "<", n = 6 }, { k = "onquest", q = { 788 } } },  -- optional (format 4): conditions checked during play, all must hold
       goals = { goal, ... },       -- at least one
     },
   },
@@ -881,7 +884,7 @@ implements them:
   until that addon's `ADDON_LOADED`; guides registered before their pack are
   refused, their ids kept in a per-pack list and listed as `guide-refused`
   problems when it comes.
-- Format: `Guides.FORMATS` (the formats this Polestar reads, `1` and `2`);
+- Format: `Guides.FORMATS` (the formats this Polestar reads, `1` to `4`);
   `Guides.Validate` checks each guide against the `REQUIRED` verb table
   (`Guides.VERBS`).
 - Problems: each refusal goes on the pack's record,
@@ -1035,9 +1038,12 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   open guide's follow-up once the player is within two levels of it.
 - **Out-levelled guides.** When the player's level exceeds the active guide's
   `maxLevel` by 2 or more, the Engine fires `GUIDE_OUTLEVELED(guideId,
-  suggestedId)` once per guide per session; the UI offers the jump. Setting
-  `behavior.skipGrey` (default off) auto-skips `accept` goals for quests already
-  grey for the character, and with them the quests' turn-ins and objectives,
+  suggestedId)` once per guide per session, once the guide is placed (a
+  catch-up may pass it whole first); the UI offers the jump. Setting
+  `behavior.skipGrey` (default off; leveling guides only, see "Every step")
+  auto-skips `accept` goals for quests already grey for the character (and
+  `turnin ... direct` goals, which the compiler gives their quest's level
+  too), and with them the quests' turn-ins and objectives,
   unless the quest is a prerequisite (`pre`, `preAll`) of a quest later in the
   guide or its chain that is not grey, directly or through other grey ones.
 - **Class-training reminder.** Class trainers ship in the core:
@@ -1061,6 +1067,28 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `train` goal (an npc in the registry or `train class`). The UI shows a slim
   banner with Show (temporary `Nav.SetTarget`) and Later, cleared by
   `CLASS_TRAINED`; Options → Guide → Automation → "Trainer reminders".
+- **Conditions checked during play.** A step with `when` (format 4;
+  GUIDE_FORMAT, "Conditions checked during play") applies only while every
+  predicate holds (`Own.whenFails`, `Own.predicateHolds`): the level, quests
+  in the log, ready to turn in, handed in or available (an accept's own
+  test: level, `pre`/`preAll` through `missingPre`, `closedBy`), an item
+  count in the bags, the zone or subzone text, the bind location (place
+  names as the area's name in the client's language, `Compat.GetAreaName`,
+  else as written). `stepApplies` reads them, so such a step counts as one
+  for other characters while they fail, and a turn-in whose only accept sits
+  there goes with it (`orphaned`). When the route moves past a step
+  (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a
+  `when` that held in `CharState().when[guideId][step]`, one that failed as
+  a skip in `CharState().skipped`, read from then on (`Own.whenHolds`): a
+  step passed because its condition failed never comes back when the
+  condition changes, one that applied stays applied, and `Unskip` brings a
+  wrongly stored step back (storing it as held). Nothing is stored before
+  `QUEST_LOG_UPDATE` (`logReady`; the log lags `PLAYER_LOGIN`):
+  `Own.latchCaughtUp` stores the steps passed meanwhile once it can.
+  `ResetProgress` forgets them; a pack update moves them with the steps
+  (`Own.remap`). The live state they read already re-evaluates the guide
+  (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
+  `HEARTHSTONE_BOUND`).
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is
@@ -1329,8 +1357,8 @@ Step view (render-ready; the UI never re-derives status):
 }
 ```
 
-Current step = first step, in order, that is applicable (`only` matches),
-not skipped, and not done. A step is done when every applicable,
+Current step = first step, in order, that is applicable (`only` matches
+and, with `when`, its predicates hold), not skipped, and not done. A step is done when every applicable,
 non-optional goal is done; a step of only notes/optional goals is done at
 once. Step views for indices before the current step report `done`,
 `skipped` or `na`; after it, `upcoming` or `na`.
@@ -1379,6 +1407,61 @@ holds at its opening, see "Not yet available"):
   evidence), or a travel goal (goto, fly, hearth, explore) while the player
   stands within 150 yd of the start step's work. Soft goals passed are
   latched. Any other open goal holds the step.
+
+**The catch-up** (`Own.catchUp`, with `behavior.skipGrey` on, in a guide that
+does not do every step): before the start is worked out, the accepts behind
+the last quest progress that are more than 2 levels below the character
+(green or lower) and not taken yet are left out, unless a quest worth doing
+needs them first (`Own.needsFrom` down `pre`/`preAll`, over the guide and the
+guides after it: `Own.chainOf`). Worth doing: an accept that is not grey,
+behind the anchor only from 2 levels below up. A quest in the log goes by the
+same rules (`"log"`): left out while not done, kept once it only has to be
+handed in. Left out (`Own.leftOut[guideId]`, for the session; each
+placement works it out again), an accept no longer applies, with its turn-in
+and objectives; taking the quest by hand brings it back. In a guide the
+character is past (`maxLevel` + 2, as the out-levelled banner counts) going
+back is a detour: every grey or green accept not taken yet is left out,
+anywhere in the guide, unless at least `Own.CHAIN_WORTH` (3) accepts from
+yellow up need it down the chain (`Own.catchUpPast`); a quest in the log
+too, until it only has to be handed in. Grey accepts anywhere go by `behavior.skipGrey`'s own rule (greyNeed).
+Travel goals (goto, fly, hearth, explore) before the start also pass in a
+step before the last left-out or grey-skipped accept: the way to what was
+left out goes with it. A flight path, a hearth, training or a purchase there
+still holds unless it is behind the last quest progress: the character may
+never have been there. A guide the character is past (an accept left out or
+grey-skipped, or `maxLevel` reached) with no start, no accept waiting for a
+level (a missing prerequisite is often a grey quest it left out, which never
+comes) and the quest log read passes whole (`Own.passedWhole`), its travel
+too. Only a guide just opened for the player (`Own.opened` with
+`autoChain`: the login's pick, Start guide, a guide chained to) then chains
+to `next` as a finished one does (`Own.placedThrough`); its flight paths,
+hearths and training ahead of the last quest progress pass for the session
+only (`Own.passedNow`), never stored as done. A guide the player opens by
+hand, or a login or /reload brings back, stays where placement puts it: at
+such a step, or finished. With every quest of a guide done
+(`Own.allQuestsDone`) all its soft goals pass and are latched. Start guide
+(`Engine.StartGuide`: the guide window with no guide, the welcome) opens
+`StartingGuide()` for the player (`OpenTab(id, true, true)`, `autoChain`), so
+it goes on through such guides as the login's pick does. The next guide is
+placed the same way, even when it finished earlier in the session (another
+try): only a guide passed on the same run stops it (`Own.chainSeen`), against
+a loop of `next`. The picker's "done" check (`GetGuideState`) for a guide
+placement passed whole needs every quest the character can take in it turned
+in, so a guide passed with grey quests never done is not checked; a guide
+finished in play is done as before. Where it offers a route choice, the
+catch-up takes the option with the most quest work done
+(`Own.likeliestRoute`, `Own.doneIn`), the recommended one among equals. With
+no tab open at login (`behavior.autoSelectGuide`), a character who did quests
+in their race's first guide (`Guides.FirstGuide()`: the suggestion at level
+1) starts there and goes through the guides to where they are; one with
+nothing done there gets `Guides.Suggest()`, as before. `GUIDE_PLACED(guideId,
+step, passed)` fires for the active tab once placement of a guide just
+opened ends, with the guides passed whole.
+
+**Every step** (`Own.everyStep`): any guide but a leveling one (category
+`Leveling` or none) does every step: no grey quest is left out and nothing
+is caught up (an item, a mount, a reputation, a profession, a class chain is
+done whole).
 
 Ticks and stored check-offs keep counting. After placement soft steps hold
 as usual, so a quest taken out of order during play never jumps a training
@@ -2048,6 +2131,30 @@ permission; `addon/Polestar_Nav/CREDITS.md`).
   outlines `scrim` at 50%.
 - `nav.routeLines` (default on) with `nav.worldPins` / `nav.minimapPins` per
   surface.
+- Line style (`Maps/RouteSparkle.lua`, `UI/LineStyle.lua`): `nav.lineStyle`
+  `"dots"` (the default, the above) or `"sparkle"`, set in the window the
+  gear beside "Route lines" opens (Options, Guide, Arrow & routes; the gear
+  is `W.Toggle`'s `opts.gear`). Sparkles (ported from Forever Sparkle Trail)
+  sit along the same draw paths, measured in yards and split by continent:
+  evenly spaced on screen at any zoom (`nav.sparkleDensity`, 36 px at 1 to
+  9 px at 10), each a `Media/Nav/sparkle` star over `Media/Nav/glow`,
+  additive and tinted (`nav.sparkleColor`: loot gold and four others, or
+  each leg's dot colour), twinkling on its own hash and drifting toward the
+  goal (`nav.sparkleFlow`); `nav.sparkleIntensity`, `nav.sparkleSubtlety`,
+  `nav.sparkleSize`, `nav.sparkleMax` (per surface) and `nav.sparkleLater`
+  (the legs after this one, at 40%), with three presets
+  (`RouteLines.ApplySparklePreset`). They are painted on the same two frames
+  from their own pools, redrawn 30 times a second while shown; the leg being
+  travelled starts at the player (within 60 yd, checked every 0.25 s). A
+  draw emits only along the stretches of each run whose segments reach the
+  minimap's face (within radius × √2 of the player, plus a sparkle's jitter)
+  or the map's canvas (`Sparkle.Spans`, over the run projected once per
+  route, map, canvas size or OpenMap change), at most 4000 places per
+  surface, and sets a texture's colour or shows it only when that changes:
+  its cost follows the sparkles shown, not the route's length. With
+  OpenMap's stitched world map on (`OpenMapAPI.IsStitched`), the world map
+  places them with `OpenMapAPI.CanvasFromWorldPos` and lifts the frame above
+  `OpenMapAPI.ArtTopLevel()`.
 - Chokepoints: a Travel leg ending at one carries `choke = { kind, name }`;
   `Nav/Layers.lua` gives its route stop (`nav.route`) the kind's glyph on a
   scrim disc in the accent (`icon-lift`; `icon-gate` for gates and building
@@ -2159,7 +2266,8 @@ search with it that fails, or whose path's last engine point before the goal
 lies more than 30 yd above or below it, is asked once more without it, and
 that answer stands for the goal (later searches for it, after straying, go
 without it too). A walk to a leg's end with a height of its own (a dock's
-board point) carries that one the same way; walks to other leg ends go
+board point, a tram, zeppelin or portal end's floor: "End heights" below)
+carries that one the same way; walks to other leg ends go
 without a height (docs/NAV_QA.md Z1-Z3). A later walk from a board point
 (off the boat) starts at the deck's height (`from.z`; asked once more with
 neither height when that fails), and the measure into the target gives each
@@ -2450,6 +2558,22 @@ in), then the lower surface; an end with none warns. travel.json carries it
 as the end's `board`, TravelData.lua as the end's tenth field (after its
 AreaTable area). Zeppelin and tram ends stand on their platforms and get
 none.
+
+**End heights.** An end on dry ground gets a height instead
+(`transports.js` `endHeight`; with no grid, none): the surface of its
+column nearest the height of what stands there, within 10 yd, by the same
+region and open rules. That height is the Deeprun Tram's AreaTrigger in
+Stormwind and Ironforge, a portal's AreaTrigger and its classic-db
+destination, or the spawn of the dock NPC an end is placed at (zeppelin
+masters, wharfmasters: `data/forever/spawnz.json`, within 15 yd of the
+end); never a ship's stop (the ship's origin: a zeppelin's lies about 17 yd
+above its tower). Without it the walk ended on the cheapest surface of the
+cell: the roof above the tram's entrance, 417 yd round by the Keep where
+the entrance is 131 yd away (#338), or the foot of Orgrimmar's zeppelin
+tower. travel.json carries it as the end's `z`, TravelData.lua as the
+end's tenth field (a number, where a board point is a table); an end with
+a source height and no surface near it warns (the Undercity tower's top
+under Hin Denburg is not open both ways on the grid).
 
 The crossings file (schema 1, Era map percent):
 

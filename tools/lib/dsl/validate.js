@@ -525,6 +525,7 @@ function validateGuides(guides, data, diag) {
 		checkBareCompletes(g, data, diag);
 		const accepted = new Set();
 		const turnedIn = new Set();
+		const whenOnly = new Set();
 		const learned = new Set();
 		// Quests accepted or turned in earlier on the path -> their character sets.
 		const taken = new Map();
@@ -609,11 +610,21 @@ function validateGuides(guides, data, diag) {
 					}
 					turnedIn.add(goal.quest);
 				} else {
+					// An accept only in steps with `when` may never happen: noted for the hand-ins after it.
+					if (step.when) {
+						if (!accepted.has(goal.quest)) whenOnly.add(goal.quest);
+					} else {
+						whenOnly.delete(goal.quest);
+					}
 					accepted.add(goal.quest);
 				}
 				take(own.get(goal));
 			} else if (goal.t === 'turnin' || goal.t === 'complete' || (OBJECTIVE_VERBS.has(goal.t) && goal.quest !== undefined)) {
-				if (!accepted.has(goal.quest)) {
+				// `when onquest Q` / `when complete Q`: the step applies only with Q in
+				// the log, taken anywhere, so it needs no accept in the chain.
+				const onQuest = (step.when || []).some((p) => !p.neg
+					&& ((p.k === 'onquest' && [].concat(p.q).includes(goal.quest)) || (p.k === 'complete' && p.q === goal.quest)));
+				if (!accepted.has(goal.quest) && !onQuest) {
 					if (direct.has(goal.quest)) {
 						diag.error(file, ln, `\`${goal.t}\` for quest ${questName(data, goal.quest, goal.title)}, which is handed in directly (\`turnin ${goal.quest} direct\`): it is never in the quest log, so nothing tracks its objectives. Get what it asks for with a plain \`buy\` or \`collect\`, without \`quest\``);
 					} else {
@@ -626,6 +637,9 @@ function validateGuides(guides, data, diag) {
 				if (goal.t === 'turnin') {
 					turnedIn.add(goal.quest);
 					take(own.get(goal));
+				}
+				if (goal.t === 'turnin' && whenOnly.has(goal.quest) && !onQuest && !step.when) {
+					diag.warn(file, ln, `\`turnin\` for quest ${questName(data, goal.quest, goal.title)}, which is accepted earlier only in steps with \`when\`: characters who pass those steps never see this turn-in. Give it the same \`when\` or a \`when onquest ${goal.quest}\``);
 				}
 				if (goal.t === 'complete' && q && Array.isArray(q.objectives) && q.objectives.length === 0) {
 					diag.warn(file, ln, `\`complete\` for quest ${questName(data, goal.quest, goal.title)}, which has no objectives: the action is the turn-in; use \`turnin\``);

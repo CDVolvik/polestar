@@ -20,6 +20,7 @@ ns.RegisterDefaults("ui", {
 	locked = false,
 	lockHud = false, -- the arrow, the action buttons and the timers move only on a Shift-drag (ns.DragLocked)
 	growUp = false, -- pin the guide window by its bottom edge, so it grows upward
+	barsBottom = false, -- with growUp: tabs and navigator at the bottom, by the pinned edge
 	compact = false,
 	style = "standard", -- "standard" | "transparent"
 	scale = 1,

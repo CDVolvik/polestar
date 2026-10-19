@@ -624,6 +624,13 @@ local function layoutTab(b, pad)
 	b.Range:SetPoint("LEFT", b.Icon, "RIGHT", 6 + (titleW >= 1 and titleW + TAB_RANGE_GAP or 0), 0)
 end
 
+-- With ui.growUp and ui.barsBottom the tab strip and navigator sit at the
+-- bottom, by the edge the window is pinned to, with the progress foot above
+-- the navigator. Otherwise the order runs strip, navigator, body, foot.
+local function barsBottom()
+	return ns.Get("ui.growUp") and ns.Get("ui.barsBottom") and true or false
+end
+
 local function tabButton(i)
 	local b = tabButtons[i]
 	if b then return b end
@@ -638,8 +645,9 @@ local function tabButton(i)
 	b.Bar = b:CreateTexture(nil, "OVERLAY")
 	b.Bar:SetTexture(Theme.Media("white"))
 	b.Bar:SetHeight(2)
-	b.Bar:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
-	b.Bar:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 0, 0)
+	local edge = barsBottom() and "TOP" or "BOTTOM"
+	b.Bar:SetPoint(edge .. "LEFT", b, edge .. "LEFT", 0, 0)
+	b.Bar:SetPoint(edge .. "RIGHT", b, edge .. "RIGHT", 0, 0)
 	W.Color(b.Bar, "accent")
 	b.Icon = b:CreateTexture(nil, "ARTWORK")
 	b.Icon:SetSize(12, 12)
@@ -1077,6 +1085,50 @@ local function stackJourney(y, width)
 	return y
 end
 
+local function placeBars(showFoot)
+	local flip = barsBottom()
+	strip:ClearAllPoints()
+	nav:ClearAllPoints()
+	body:ClearAllPoints()
+	foot:ClearAllPoints()
+	band:ClearAllPoints()
+	strip.Rule:ClearAllPoints()
+	nav.Rule:ClearAllPoints()
+	local edge = flip and "TOP" or "BOTTOM"
+	strip.Rule:SetPoint(edge .. "LEFT", strip, edge .. "LEFT", 0, 0)
+	strip.Rule:SetPoint(edge .. "RIGHT", strip, edge .. "RIGHT", 0, 0)
+	nav.Rule:SetPoint(edge .. "LEFT", nav, edge .. "LEFT", 0, 0)
+	nav.Rule:SetPoint(edge .. "RIGHT", nav, edge .. "RIGHT", 0, 0)
+	if flip then
+		strip:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 0, 0)
+		strip:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", 0, 0)
+		nav:SetPoint("BOTTOMLEFT", strip, "TOPLEFT", 0, 0)
+		nav:SetPoint("BOTTOMRIGHT", strip, "TOPRIGHT", 0, 0)
+		foot:SetPoint("BOTTOMLEFT", nav, "TOPLEFT", 0, 0)
+		foot:SetPoint("BOTTOMRIGHT", nav, "TOPRIGHT", 0, 0)
+		body:SetPoint("TOPLEFT", F, "TOPLEFT", 0, 0)
+		body:SetPoint("TOPRIGHT", F, "TOPRIGHT", 0, 0)
+		band:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 1, 1)
+		band:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", -1, 1)
+	else
+		strip:SetPoint("TOPLEFT", F, "TOPLEFT", 0, 0)
+		strip:SetPoint("TOPRIGHT", F, "TOPRIGHT", 0, 0)
+		nav:SetPoint("TOPLEFT", strip, "BOTTOMLEFT", 0, 0)
+		nav:SetPoint("TOPRIGHT", strip, "BOTTOMRIGHT", 0, 0)
+		body:SetPoint("TOPLEFT", nav, "BOTTOMLEFT", 0, 0)
+		body:SetPoint("TOPRIGHT", nav, "BOTTOMRIGHT", 0, 0)
+		foot:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 0, 0)
+		foot:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", 0, 0)
+		band:SetPoint("TOPLEFT", F, "TOPLEFT", 1, -1)
+		band:SetPoint("TOPRIGHT", F, "TOPRIGHT", -1, -1)
+	end
+	for _, b in ipairs(tabButtons) do
+		b.Bar:ClearAllPoints()
+		b.Bar:SetPoint(edge .. "LEFT", b, edge .. "LEFT", 0, 0)
+		b.Bar:SetPoint(edge .. "RIGHT", b, edge .. "RIGHT", 0, 0)
+	end
+end
+
 function GF.Layout()
 	if not F then return end
 	local width = F:GetWidth()
@@ -1127,8 +1179,11 @@ function GF.Layout()
 	foot:SetShown(showFoot)
 	local stripH = showStrip and TAB_H or 0
 	F:SetHeight(floor(stripH + NAV_H + y + (showFoot and PROG_H or 0) + 0.5))
+	placeBars(showFoot)
 	band:SetHeight(stripH + NAV_H)
-	band:SetTexCoord(Theme.BandCoords(width - 2, stripH + NAV_H, 30))
+	local x0, x1, y0, y1 = Theme.BandCoords(width - 2, stripH + NAV_H, 30)
+	if barsBottom() then y0, y1 = y1, y0 end
+	band:SetTexCoord(x0, x1, y0, y1)
 	if showStrip then GF.RenderTabs() end
 	GF.PaintProgress(false)
 end
@@ -1186,14 +1241,14 @@ local function setEmpty(kind)
 		empty.Title:SetText(L["No guides installed"])
 		empty.Text:SetText(L["Enable Polestar Guides or a community addon in the AddOns list on the character screen, then reload."])
 	elseif kind == "noguide" then
-		local id = G and G.Suggest and G.Suggest()
+		local id = E and E.StartingGuide and E.StartingGuide() or (G and G.Suggest and G.Suggest())
 		local suggested = id and G.Get(id)
 		empty.Title:SetText(L["No guide open"])
 		if suggested then
 			empty.Text:SetText(L["Suggested for you"] .. ": |c" .. Theme.Hex("text") .. suggested.title .. "|r")
 			W.SetButtonText(empty.Primary, L["Start guide"])
 			empty.Primary.psAction = function()
-				if E and E.OpenTab then E.OpenTab(id) elseif E and E.SetGuide then E.SetGuide(id) end
+				if E and E.StartGuide then E.StartGuide() elseif E and E.OpenTab then E.OpenTab(id) elseif E and E.SetGuide then E.SetGuide(id) end
 			end
 			empty.Primary:Show()
 			W.SetButtonText(empty.Secondary, L["Browse guides"])
@@ -1297,8 +1352,12 @@ local function navigatorFor(guide, index)
 	local E = Engine()
 	local count = guide and E.GetStepCount and E.GetStepCount() or 0
 	if guide then
-		nav.Steps.Count:SetText(string.format("%d / %d", index or count, count))
-		nav.Title:SetText(guide.title or guide.id)
+		-- While the catch-up shows the guides passed whole, the count and title
+		-- are its (GF.PlayCatchUp).
+		if GF.catchingUp ~= "guides" then
+			nav.Steps.Count:SetText(string.format("%d / %d", index or count, count))
+			nav.Title:SetText(guide.title or guide.id)
+		end
 		nav.psMeta = UI.GuideMeta(guide)
 	else
 		nav.Steps.Count:SetText("")
@@ -1320,6 +1379,7 @@ local function navigatorFor(guide, index)
 	else
 		nav.Title:SetPoint("LEFT", nav, "LEFT", PAD, 0)
 	end
+	if GF.catchingUp == "guides" then return end
 	local cw = max(floor(nav.Steps.Count:GetStringWidth() + 0.5), 40)
 	nav.Steps.Count:SetWidth(cw)
 	nav.Steps:SetWidth(24 + cw + 24)
@@ -1496,7 +1556,7 @@ function GF.Render()
 		GF.Layout()
 		return
 	end
-	local index = E.GetStepIndex and E.GetStepIndex()
+	local index = GF.catchUpIndex or (E.GetStepIndex and E.GetStepIndex())
 	navigatorFor(guide, index)
 	-- The undo goes once the step is no longer skipped (undone elsewhere).
 	local k = notices.stepSkip
@@ -1535,13 +1595,16 @@ function GF.Render()
 	showSteps(true)
 	GF.Layout()
 	GF.PaintProgress(shownGuide == guide.id)
-	if focusChanged and F:IsVisible() then
+	if focusChanged and F:IsVisible() and not GF.catchingUp then
 		-- The next person (or step) slides up 6px into place as it fades in.
 		Anim.To(card, "alpha", 0, 1, Anim.BASE, "out")
 		Anim.To(card, "offset", -6, 0, Anim.BASE, "out")
 	end
 	shownIndex, shownGuide, shownFocus = index, guide.id, focus
 end
+
+-- The step the window shows (the catch-up's while it goes over the steps).
+function GF.ShownStep() return shownIndex end
 
 -- STEP_UPDATED: same step, new goal status/progress. When the focus moved
 -- to the next person this re-renders (with the slide); otherwise rows are
@@ -1784,7 +1847,8 @@ local APPLY = {
 	["ui.width"] = function() GF.ApplyWidth() end,
 	["ui.pos"] = function() GF.ApplyPosition() end,
 	-- Re-pin by the other corner where the window stands now, so it does not jump.
-	["ui.growUp"] = function() GF.SavePosition() end,
+	["ui.growUp"] = function() GF.SavePosition(); GF.Layout() end,
+	["ui.barsBottom"] = function() GF.Layout() end,
 	["ui.upcoming"] = function() GF.Render() end,
 	["ui.upcomingOpen"] = function() GF.Render() end,
 	["ui.showNotes"] = function() GF.Render() end,
@@ -2605,6 +2669,86 @@ ns.On("STEP_SKIPPED", function(_, to, skips)
 		notices.skipped = nil
 		if F:IsShown() and ns.IsLoggedIn() then GF.Layout() end
 	end)
+end)
+
+-- The catch-up (GUIDE_PLACED): once a guide just opened is placed, the
+-- window goes over the steps before the one it resumes at, each shown in
+-- full (the card, the journey, what follows) one after another faster and
+-- faster, then the step placed. Guides passed whole go by first, by title.
+-- It plays when a guide is opened (by the player, the login's pick, a guide
+-- chained to), from step 1; a guide a login or /reload brings back is placed
+-- without it (the Engine fires GUIDE_PLACED for opened guides only). Not
+-- with reduced motion, the window hidden, or a single step to go over. A
+-- guide placed before the world is entered waits for it. Only the window
+-- moves: the Engine's step, the arrow and the automation stay on the step
+-- placed.
+local CATCH_GUIDE = 0.35 -- seconds per guide passed whole (at most 1.2 in all)
+GF.catchUpState = { entered = false }
+
+local function catchUpDone()
+	GF.catchingUp, GF.catchUpIndex = nil, nil
+	ns.Fire("CATCH_UP", false)
+	GF.Render()
+end
+
+function GF.PlayCatchUp(guideId, step, chain)
+	local cs = GF.catchUpState
+	if not cs.entered then
+		cs.queued = { guideId, step, chain }
+		return
+	end
+	local passed = chain and #chain or 0
+	if not (F and F:IsShown() and ns.IsLoggedIn()) or Anim.Reduced() then return end
+	-- A single step passed is no catch-up (the player's own first step).
+	if not step or (step <= 2 and passed == 0) then return end
+	local Count = nav.Steps.Count
+	-- CATCH_UP(true|false): the arrow shows an hourglass meanwhile (Nav/Arrow.lua).
+	ns.Fire("CATCH_UP", true)
+	local function roll()
+		GF.catchingUp = "steps"
+		local shown
+		Count.psOnValue = function(_, v)
+			local i = max(1, min(step - 1, floor(v)))
+			if i ~= shown then
+				shown = i
+				GF.catchUpIndex = i
+				GF.Render()
+			end
+		end
+		-- Slow at first, then faster: about 0.06 s a step, 2.5 s at most.
+		local dur = min(2.5, 0.5 + 0.06 * (step - 1))
+		Anim.To(Count, "value", 1, step - 0.001, dur, "in", catchUpDone)
+	end
+	if passed == 0 then return roll() end
+	-- The guides passed whole, each shown done.
+	GF.catchingUp = "guides"
+	local titles = {}
+	for i, id in ipairs(chain) do
+		local g = ns.Guides.Get(id)
+		titles[i] = { g and (g.title or g.id) or id, g and #g.steps or 0 }
+	end
+	Count.psOnValue = function(o, v)
+		local t = titles[min(passed, floor(v) + 1)]
+		nav.Title:SetText(t[1])
+		o:SetText(string.format("%d / %d", t[2], t[2]))
+	end
+	Anim.To(Count, "value", 0, passed - 0.001, min(1.2, CATCH_GUIDE * passed), "linear", function()
+		if step > 1 then return roll() end
+		catchUpDone()
+	end)
+end
+
+ns.RegisterEvent("PLAYER_ENTERING_WORLD", function()
+	local cs = GF.catchUpState
+	if cs.entered then return end
+	cs.entered = true
+	local q = cs.queued
+	cs.queued = nil
+	if q and F then GF.PlayCatchUp(q[1], q[2], q[3]) end
+end)
+
+ns.On("GUIDE_PLACED", function(guideId, step, chain)
+	if F then GF.PlayCatchUp(guideId, step, chain) end
 end)
 
 -- GUIDE_OUTLEVELED(guideId, suggestedId): the player has outgrown the guide

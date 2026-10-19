@@ -1429,6 +1429,9 @@ L["The skin's arrow"] = "La flecha del tema"
 -- L["Stops stray drags on the arrow, the action buttons and the flight and instance timers. Shift-drag still moves them."] = ""
 -- L["In dungeons"] = ""
 -- L["What the window does in dungeons and raids. /polestar or the key binding opens it there until you leave."] = ""
+-- L["Line style"] = ""
+-- L["Bar at the bottom"] = ""
+-- L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desactivado en la lista de AddOns"
@@ -2059,6 +2062,35 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 
 -- Nav/Pins.lua
 -- L["Polestar trail dots"] = ""
+
+-- UI/LineStyle.lua
+-- L["How the route lines are drawn: Polestar's dots, or sparkles that drift along the way to the goal."] = ""
+-- L["Dots"] = ""
+-- L["Sparkle"] = ""
+-- L["Intensity"] = ""
+-- L["How bright each sparkle and its glow are."] = ""
+-- L["Density"] = ""
+-- L["How close together the sparkles sit, the same at any zoom."] = ""
+-- L["Smaller, dimmer, calmer twinkles that drift less; no glow at 100%."] = ""
+-- L["Sparkle size"] = ""
+-- L["Each sparkle's size before subtlety."] = ""
+-- L["Flow toward goal"] = ""
+-- L["How fast the sparkles drift toward the goal; 0 holds them still."] = ""
+-- L["Most sparkles shown"] = ""
+-- L["A ceiling on each map, whatever the density."] = ""
+-- L["Sparkle colour"] = ""
+-- L["Loot gold is the colour of the game's own loot sparkle. Route colours tint each leg as the dots are."] = ""
+-- L["Loot gold"] = ""
+-- L["Arcane blue"] = ""
+-- L["Fel green"] = ""
+-- L["Rose"] = ""
+-- L["Starlight"] = ""
+-- L["Route colours"] = ""
+-- L["Whole route"] = ""
+-- L["Sparkle the legs after this one too, fainter. Off: only the leg you are on."] = ""
+-- L["Subtle"] = ""
+-- L["Dazzling"] = ""
+-- L["Route line style"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "El objetivo de la flecha, las paradas de su ruta de viaje, los demás objetivos del paso y las zonas donde aparecen sus monstruos y objetos."

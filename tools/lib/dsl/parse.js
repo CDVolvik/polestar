@@ -4,7 +4,8 @@
 //
 // parseGuide(text, file, diag) -> guide | null
 //   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line] }, steps: [step] }
-//   step  = { line, title, only, tip, goals: [goal] }
+//   step  = { line, title, only, tip, when?: [predicate], goals: [goal] }
+//   (when: tools/lib/dsl/when.js predicates, each with its line; only on a step that has one)
 //   goal  = { line, verb, zone, note, ...positional/modifier fields }
 // `zone` on a goal is the zone spec in effect ({ name } | { map }, with line),
 // shared by every goal under the same header/step `zone` line.
@@ -18,6 +19,7 @@
 
 const { lexLine } = require('./lexer');
 const { parseConditions, FACTIONS } = require('./conditions');
+const { parseWhen } = require('./when');
 
 // Slash-separated segments, none empty (an empty one would make a hidden `.lua` file).
 const ID_RE = /^[a-z0-9_-]+(?:\/[a-z0-9_-]+)*$/;
@@ -27,7 +29,7 @@ const COORD_RE = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/;
 
 const HEADER_KEYS = ['guide', 'title', 'levels', 'zone', 'faction', 'race', 'class', 'next', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'author', 'version', 'coords', 'pitch', 'pro', 'con'];
 // Lines inside a step that are not goals.
-const STEP_KEYS = ['zone', 'only', 'tip'];
+const STEP_KEYS = ['zone', 'only', 'tip', 'when'];
 
 // `group [N]`: the goal needs a group (of N players), shown in the guide window.
 const COMMON = ['text', 'optional', 'only', 'group'];
@@ -260,6 +262,10 @@ function parseGuide(text, file, diag) {
 				c.errors.forEach((e) => err(ln, e));
 				c.warnings.forEach((w) => warn(ln, w));
 				if (!c.errors.length) step.only = c.value;
+			} else if (kw === 'when') {
+				const w = parseWhen(line.slice(toks[1] ? toks[1].start : lex.end, lex.end));
+				if (w.error) err(ln, w.error, w.hint);
+				else (step.when ||= []).push({ ...w.value, line: ln });
 			} else {
 				const tip = unquoteRest(line, lex, 1);
 				if (!tip) {
