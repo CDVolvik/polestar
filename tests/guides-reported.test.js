@@ -1556,6 +1556,33 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
 
+// --- The walk into Westfall (Pynte, #416): every start guide reaches
+// Westfall on foot down the road from Elwynn, past the Jansen Stead and
+// Saldean's Farm. The guide went to Sentinel Hill first and then back north
+// to those farms. Their quests and Report to Gryan Stoutmantle are taken on
+// the way south, so the hill is reached with them and the road in is walked
+// one way; Elwynn ends at Deputy Rainer on that road, not at the hill.
+
+test(`${WESTFALL}: Pynte's report (#416): the farm quests and Report to Gryan Stoutmantle are taken on the road in, before Sentinel Hill`, { skip }, () => {
+	const list = goals(WESTFALL);
+	const report = at(list, 'turnin 109', is('turnin', 109));
+	const hill = list[report];
+	assert.equal(hill.step, list[at(list, 'sethome', (g) => g.t === 'sethome')].step, 'Report to Gryan Stoutmantle is handed in on the first Sentinel Hill stop');
+	for (const q of [109, 36, 151, 64, 9, 22, 92909]) {
+		const i = at(list, `accept ${q}`, is('accept', q));
+		assert.ok(i < report, `${q} is taken before Sentinel Hill`);
+		assert.ok(list[i].goal.y < hill.goal.y - 10, `${q} is taken north of the hill, on the road in`);
+	}
+	assert.ok(at(list, 'turnin 36', is('turnin', 36)) < report && at(list, 'accept 38', is('accept', 38)) < report, 'Westfall Stew is handed to Salma on the way south');
+	// The road in runs south: no step before the hill sends the arrow back north.
+	const before = list.slice(0, report).filter(located).filter(everyone);
+	before.forEach((g, i) => i && g.step !== before[i - 1].step && assert.ok(g.goal.y >= before[i - 1].goal.y - 3, `${g.step.title} is not north of ${before[i - 1].step.title}`));
+	const elwynn = goals(ELWYNN).filter(everyone);
+	const last = elwynn[elwynn.length - 1].goal;
+	assert.deepEqual([last.t, last.quest, last.npc], ['accept', 109, 963], 'Elwynn ends at Deputy Rainer on the road west');
+	assert.ok(!elwynn.some(({ goal }) => goal.t === 'getfp' && goal.node === hill.step.goals.find((g) => g.t === 'getfp').node), 'Elwynn leaves the Sentinel Hill flight path to Westfall');
+});
+
 // --- Thendal Grove (Alx-Ryan, #363): the guide walked you to Rorian, up the
 // watchtower a few steps from Elatrell, then floated you back down to Rorian.
 // The tower comes first now: The Anchors of Zephras and Falling With Style
