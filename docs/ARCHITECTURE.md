@@ -2032,6 +2032,30 @@ permission; `addon/Polestar_Nav/CREDITS.md`).
   outlines `scrim` at 50%.
 - `nav.routeLines` (default on) with `nav.worldPins` / `nav.minimapPins` per
   surface.
+- Line style (`Maps/RouteSparkle.lua`, `UI/LineStyle.lua`): `nav.lineStyle`
+  `"dots"` (the default, the above) or `"sparkle"`, set in the window the
+  gear beside "Route lines" opens (Options, Guide, Arrow & routes; the gear
+  is `W.Toggle`'s `opts.gear`). Sparkles (ported from Forever Sparkle Trail)
+  sit along the same draw paths, measured in yards and split by continent:
+  evenly spaced on screen at any zoom (`nav.sparkleDensity`, 36 px at 1 to
+  9 px at 10), each a `Media/Nav/sparkle` star over `Media/Nav/glow`,
+  additive and tinted (`nav.sparkleColor`: loot gold and four others, or
+  each leg's dot colour), twinkling on its own hash and drifting toward the
+  goal (`nav.sparkleFlow`); `nav.sparkleIntensity`, `nav.sparkleSubtlety`,
+  `nav.sparkleSize`, `nav.sparkleMax` (per surface) and `nav.sparkleLater`
+  (the legs after this one, at 40%), with three presets
+  (`RouteLines.ApplySparklePreset`). They are painted on the same two frames
+  from their own pools, redrawn 30 times a second while shown; the leg being
+  travelled starts at the player (within 60 yd, checked every 0.25 s). A
+  draw emits only along the stretches of each run whose segments reach the
+  minimap's face (within radius × √2 of the player, plus a sparkle's jitter)
+  or the map's canvas (`Sparkle.Spans`, over the run projected once per
+  route, map, canvas size or OpenMap change), at most 4000 places per
+  surface, and sets a texture's colour or shows it only when that changes:
+  its cost follows the sparkles shown, not the route's length. With
+  OpenMap's stitched world map on (`OpenMapAPI.IsStitched`), the world map
+  places them with `OpenMapAPI.CanvasFromWorldPos` and lifts the frame above
+  `OpenMapAPI.ArtTopLevel()`.
 - Chokepoints: a Travel leg ending at one carries `choke = { kind, name }`;
   `Nav/Layers.lua` gives its route stop (`nav.route`) the kind's glyph on a
   scrim disc in the accent (`icon-lift`; `icon-gate` for gates and building

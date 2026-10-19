@@ -211,7 +211,8 @@ local BUILTIN = {
 	{ page = GUIDE, tab = L["Arrow & routes"], section = L["Routes"], controls = {
 		H({ kind = "toggle", key = "nav.travel", label = L["Plan travel routes"], help = L["Flights, boats and your hearthstone when they are faster. Off: the arrow points straight at the goal."] }),
 		H({ kind = "toggle", key = "nav.navRouting", label = L["Walk real paths"], help = L["The arrow follows paths on the ground around cliffs, water and walls, on Polestar's walking maps, with Shortest Path Forever's router by Cillian Berragan. Off: it points straight at each stop."] }),
-		H({ kind = "toggle", key = "nav.routeLines", label = L["Route lines"], help = L["The way to the goal on the world map and the minimap: dots where you walk, lines where you fly, sail or ride, the legs after this one fainter. Drawn as Shortest Path Forever by Cillian Berragan draws them."] }),
+		H({ kind = "toggle", key = "nav.routeLines", label = L["Route lines"], help = L["The way to the goal on the world map and the minimap: dots where you walk, lines where you fly, sail or ride, the legs after this one fainter. Drawn as Shortest Path Forever by Cillian Berragan draws them."],
+			gear = { tip = L["Line style"], onClick = function() if UI.ShowLineStyle then UI.ShowLineStyle() end end } }),
 		H({ kind = "toggle", key = "nav.teleports", label = L["Class teleports"], help = L["Routes may start with a Teleport spell you know (a mage's city teleports, a druid's Moonglade) when it is faster. A city teleport needs a Rune of Teleportation in your bags."],
 			disabled = function() return not ns.Get("nav.travel") end }),
 		{ kind = "toggle", key = "nav.shareTransit", label = L["Share boat times"], help = L["Riding a boat, zeppelin, tram or lift times it; your guild and group get those times and you get theirs, so the arrow can say when the next one leaves."] },
@@ -689,7 +690,7 @@ end
 local function makeControl(parent, c)
 	local w
 	if c.kind == "toggle" then
-		w = W.Toggle(parent, c.label, c.key, c.help)
+		w = W.Toggle(parent, c.label, c.key, c.help, nil, c.gear and { gear = c.gear } or nil)
 	elseif c.kind == "slider" then
 		w = W.Slider(parent, c.label, c.key, c.min or 0, c.max or 1, c.step or 0.1, c.format, c.help, nil, c.release and { release = true } or nil)
 	elseif c.kind == "dropdown" then
@@ -719,6 +720,8 @@ local function makeControl(parent, c)
 	w.psControl = c
 	return w
 end
+-- A control from its spec, as the pages make them (UI/LineStyle.lua).
+O.Control = makeControl
 
 -- Lay controls out in a two-column grid from y; settings rows are 40px,
 -- button tiles 60px, and a line grows to the tallest of its two (a label
