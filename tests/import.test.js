@@ -115,7 +115,7 @@ test('the caps, the checksum and the key lists are the writer\'s', () => {
 	assert.deepEqual(out.keys.step, sorted(STEP_KEYS));
 	assert.deepEqual(out.keys.goal, sorted(GOAL_KEYS));
 	assert.deepEqual(out.keys.only, sorted(ONLY_KEYS));
-	for (const k of ['reagents', 'candidates', 'spots', 'items', 'reward']) assert.deepEqual(out.keys[k], sorted(LIST_KEYS[k]), k);
+	for (const k of ['reagents', 'candidates', 'fromNpcs', 'spots', 'items', 'reward']) assert.deepEqual(out.keys[k], sorted(LIST_KEYS[k]), k);
 });
 
 test('round trip: .guide -> string -> preview -> Import registers the guide a community addon registers', () => {

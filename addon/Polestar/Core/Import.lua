@@ -211,6 +211,7 @@ local GOAL = rec({
 	spots = list(rec({ x = N, y = N, z = N, r = N, n = N, alt = B })),
 	spread = B, optional = B, only = ONLY, profLine = N, profName = S, profRank = N, note = S,
 	from = S, fromKind = S, fromRank = N, fromFaction = S, fromAlso = S, fromId = N, fromAlsoId = N,
+	fromNpcs = list(rec({ npc = N, npcName = S })),
 	candidates = list(rec({ npc = N, npcName = S, map = N, x = N, y = N, z = N, f = S, faction = S, races = LS, classes = LS,
 		lvl = rec({ min = N, max = N }), rate = N, spawns = N })),
 	rewards = rec({ choices = list(REWARD_ITEM), items = list(REWARD_ITEM), xp = N, money = N }),
@@ -236,6 +237,7 @@ end
 Import.KEYS = {
 	guide = keysOf(GUIDE), step = keysOf(STEP), goal = keysOf(GOAL), only = keysOf(ONLY),
 	reagents = keysOf(GOAL.rec.reagents.list), candidates = keysOf(GOAL.rec.candidates.list), spots = keysOf(GOAL.rec.spots.list),
+	fromNpcs = keysOf(GOAL.rec.fromNpcs.list),
 	items = keysOf(REWARD_ITEM), reward = keysOf(GUIDE.rec.reward.list),
 }
 
