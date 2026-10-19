@@ -50,7 +50,8 @@ test('RIDING_DUE shows a riding banner (icon-mount, title, body, dismiss button)
 	assert.equal(out.shown, true, 'banner visible');
 	assert.ok(out.text.includes('Level 40'), 'title has level');
 	assert.ok(out.text.includes('100 g'), 'body has cost');
-	assert.ok(out.text.includes('112g'), 'body has balance');
+	assert.ok(out.text.includes('112 g'), 'balance uses "N g" style with space');
+	assert.ok(out.text.includes('10% off at Honored'), 'discount always shown');
 	assert.equal(out.close, true, 'dismiss × shown');
 	assert.equal(out.later, false, 'no Later button');
 	assert.equal(out.jump, true, 'Take me there shown when can afford');
@@ -106,6 +107,35 @@ test('tier 2 banner shows Journeyman Riding title and 1,000 g cost', () => {
 	`);
 	assert.ok(out.includes('Journeyman'), 'Journeyman Riding title');
 	assert.ok(out.includes('1,000 g'), '1000g cost shown');
+});
+
+test('banner shows "Honored: 90 g" when player is Honored with home faction', () => {
+	// Before fix: discount was skipped when standing was nil; when Honored, showed "10% off" not price.
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 1120000 end
+		-- Override GetFactionStanding to return Honored (5) for Stormwind (72).
+		Polestar.Compat.GetFactionStanding = function(id) if id == 72 then return 5 end end
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 900000, factionID = 72,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" } })
+		emit(B.Text:GetText())
+	`);
+	assert.ok(out.includes('Honored: 90 g'), 'shows discounted price when Honored');
+	assert.ok(!out.includes('10% off at Honored'), 'does not double-show');
+});
+
+test('banner shows "10% off at Honored" when faction standing is unknown', () => {
+	// Before fix: when GetFactionStanding returns nil, the discount was dropped entirely.
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 1120000 end
+		-- Compat.GetFactionStanding returns nil (no faction data yet).
+		Polestar.Compat.GetFactionStanding = function() return nil end
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000, factionID = 72,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" } })
+		emit(B.Text:GetText())
+	`);
+	assert.ok(out.includes('10% off at Honored'), 'discount shown even when standing unknown');
 });
 
 // ---- Dismiss and Take me there -----------------------------------------------

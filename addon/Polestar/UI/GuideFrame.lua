@@ -941,17 +941,6 @@ function GF.LayoutBanner(width)
 	elseif kind == "riding" then
 		banner.Icon:SetTexture(Theme.Media("icon-mount"))
 		local copper = GetMoney and GetMoney() or 0
-		-- Money string: prefer QoL.Money; fall back to simple g/s/c.
-		local Q = ns.QoL
-		local moneyStr
-		if Q and Q.Money then
-			moneyStr = Q.Money(copper)
-		else
-			local g, s, c = floor(copper / 10000), floor(copper / 100) % 100, copper % 100
-			if g > 0 then moneyStr = s > 0 and string.format("%dg %ds", g, s) or string.format("%dg", g)
-			elseif s > 0 then moneyStr = c > 0 and string.format("%ds %dc", s, c) or string.format("%ds", s)
-			else moneyStr = string.format("%dc", c) end
-		end
 		-- Affordability from pre-computed cost in the notice (class mounts are free).
 		local cost = n.cost or 0
 		local canAfford = n.classKind ~= nil or copper >= cost
@@ -968,16 +957,18 @@ function GF.LayoutBanner(width)
 			local tierName = n.tier == 1 and L["Apprentice Riding"] or L["Journeyman Riding"]
 			local baseGold = n.tier == 1 and L["100 g"] or L["1,000 g"]
 			local bodyParts = { tierName .. DOT .. baseGold }
+			-- Discount: always mention; "Honored: Xg" when standing is confirmed.
 			local C = ns.Compat
-			if n.factionID and C and C.GetFactionStanding then
-				local standing = C.GetFactionStanding(n.factionID)
-				if standing and standing >= 5 then
-					bodyParts[#bodyParts + 1] = L["Honored: 10% off"]
-				elseif standing then
-					bodyParts[#bodyParts + 1] = L["10% off at Honored"]
-				end
+			local standing = n.factionID and C and C.GetFactionStanding and C.GetFactionStanding(n.factionID)
+			if standing and standing >= 5 then
+				-- Discounted gold: tier 1 = 90 g, tier 2 = 900 g.
+				local discountedGold = n.tier == 1 and 90 or 900
+				bodyParts[#bodyParts + 1] = string.format(L["Honored: %d g"], discountedGold)
+			else
+				bodyParts[#bodyParts + 1] = L["10% off at Honored"]
 			end
-			bodyParts[#bodyParts + 1] = string.format(L["You have %s."], moneyStr)
+			-- Balance: gold-only to match "100 g" / "1,000 g" style.
+			bodyParts[#bodyParts + 1] = string.format(L["You have %d g."], floor(copper / 10000))
 			body = table.concat(bodyParts, DOT)
 		end
 		banner.Text:SetText(title .. "\n" .. body)
