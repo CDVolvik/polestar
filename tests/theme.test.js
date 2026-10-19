@@ -310,6 +310,21 @@ test('EllesmereUI: an optional scheme and follow toggles, never a lock', () => {
 	assert.deepEqual(out.refollow, ['Interface\\AddOns\\EllesmereUI\\media\\fonts\\Expressway.ttf', 13, '']);
 });
 
+test('EllesmereUI font with an outline: a primary button\'s dark label on the accent drops it, other text keeps it (#521)', () => {
+	const [out] = run(`
+		stub.euiS.GetFont = function() return "Interface\\\\AddOns\\\\EllesmereUI\\\\media\\\\fonts\\\\Expressway.ttf", "OUTLINE" end
+		Polestar.Set("ui.matchFont", true)
+		local fs = UIParent:CreateFontString()
+		T.Font(fs, "body")
+		local load = W.Button(UIParent, "Load guide", nil, { primary = true })
+		local tab = W.Button(UIParent, "Open in new tab", nil, {})
+		T.Refresh()
+		emit({ body = select(3, fs:GetFont()), primary = select(3, load.Label:GetFont()), other = select(3, tab.Label:GetFont()) })`, { before: 'stub.withEllesmere()' });
+	assert.equal(out.body, 'OUTLINE', 'text on the panels keeps EllesmereUI\'s outline');
+	assert.equal(out.other, 'OUTLINE', 'so does a secondary button\'s light label');
+	assert.equal(out.primary, '', 'dark ink on the accent has no outline to smear it');
+});
+
 test('EllesmereUI font: a refresh sets the text again a frame later, so a string drawn at login is not left blank', () => {
 	const [out] = run(`
 		local fs = UIParent:CreateFontString()
