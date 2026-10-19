@@ -13,7 +13,7 @@ const { parseGuide } = require('../tools/lib/dsl/parse');
 const { Diagnostics } = require('../tools/lib/dsl/diag');
 const { Data } = require('../tools/lib/dsl/data');
 const { emitGuides } = require('../tools/lib/dsl/emit');
-const { formatFor, WHEN_FORMAT } = require('../tools/lib/pack/format');
+const { formatFor, MONEY_TASK_FORMAT } = require('../tools/lib/pack/format');
 const { compile, fixtureData, guideText, lineOf, plain } = require('./helpers/dsl');
 
 function parse(text) {
@@ -99,12 +99,12 @@ test('a step that asks for a dungeon and its `!` warns that no character sees it
 	assert.ok(r.warnings.includes(`test.guide:${lineOf(text, 'when dungeon "Ragefire Chasm"')}: the step asks for \`dungeon\` and \`!dungeon\` of the same dungeon: no character sees it`), r.text);
 });
 
-test('the emitted predicate carries the map id after the name, and the pack is written in format 4', () => {
+test('the emitted predicate carries the map id after the name, and the pack is written in format 5', () => {
 	const r = compile(guideText(['step One', '  when !dungeon "Ragefire Chasm"', '  accept 783']), dungeonData());
 	assert.deepEqual(r.errors, [], r.text);
 	const lua = emitGuides([{ guide: r.guides[0], source: null }]);
 	assert.match(lua, /\n\t\t\t\t\twhen = \{ \{ k = "dungeon", neg = true, name = "Ragefire Chasm", map = 389 \} \},\n/);
-	assert.equal(formatFor(r.guides), WHEN_FORMAT);
+	assert.equal(formatFor(r.guides), MONEY_TASK_FORMAT);
 });
 
 test('`next <id> when dungeon` resolves the same way', () => {
@@ -114,4 +114,6 @@ test('`next <id> when dungeon` resolves the same way', () => {
 	assert.deepEqual(r.errors, [], r.text);
 	const g = r.guides.find((x) => x.id === 't/main');
 	assert.deepEqual(plain(g.nextWhen), { 't/rfc': [{ k: 'dungeon', name: 'Ragefire Chasm', map: 389 }] });
+	// On a `next` line too, `dungeon` needs format 5 (0.2.6 refuses an unknown `when` kind).
+	assert.equal(formatFor(r.guides), MONEY_TASK_FORMAT);
 });

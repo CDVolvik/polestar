@@ -284,8 +284,9 @@ hold:
 
 A `when` that is not a non-empty list, or a predicate of another kind or
 without its keys, refuses the guide. Polestar 0.2.6 reads every kind above
-but `"dungeon"`, which came after it: 0.2.6 refuses a guide with one ("bad
-when"). Once the route has moved past a step,
+but `"money"` and `"dungeon"`, which came after it: a guide with one, on a
+step or a `next` option, is written in format 5, so 0.2.6 says the pack needs
+Polestar 0.3.0 instead of refusing the guide ("bad when"). Once the route has moved past a step,
 Polestar stores whether its `when` held (per character, guide and step) and
 reads that from then on.
 
@@ -322,8 +323,9 @@ list refuses the guide.
 
 ## Format 5
 
-Format 4 with the **`money`** and **`task`** goals and the **`money`** `when`
-predicate. Polestar 0.3.0 and later read it.
+Format 4 with the **`money`** and **`task`** goals and the **`money`** and
+**`dungeon`** `when` predicates (on a step or a `next` option). Polestar 0.3.0
+and later read it.
 The compiler writes a pack in format 5 only when its guides use one of them;
 any other pack stays in format 3 or 4. A 0.2.6 client accepts a format-4 pack
 and then refuses a guide with an unknown verb or predicate, so these features
@@ -591,8 +593,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
   `along` and `label`, a `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6
-  and later, format 5 (the `money` and `task` goals, the `money` when
-  predicate) by 0.3.0 and later.
+  and later, format 5 (the `money` and `task` goals, the `money` and
+  `dungeon` when predicates) by 0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).
