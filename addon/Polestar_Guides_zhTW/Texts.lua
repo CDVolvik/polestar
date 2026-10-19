@@ -174,7 +174,6 @@ t.guides["forever/alliance/04-redridge-mountains"] = (function() return {
 		["Lake murlocs"] = "湖邊魚人",
 		["Level 18 and 20 spells"] = "18級和20級法術",
 		["Murloc Flesheaters and Tidecallers line the south shore east of the bridge. Any of them can carry a {item:1467} or a fin."] = "魚人食腐者和魚人招潮者分布在橋東邊的南岸。他們每一個都可能帶著{item:1467}或魚鰭。",
-		["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Dire Condors and Great Goretusks roam the same hills."] = "混血赤脊山豺狼人和其他豺狼人佔據{area:1002}東邊、道路北側的山丘；赤脊山鞭笞者在牠們之間徘徊，赤脊山偷獵者在道路南側紮營。恐鷲和巨型血牙野豬在同樣的山丘上遊蕩。",
 		["Shaman training"] = "薩滿訓練",
 		["Swim east from the bridge into {area:68}; the chest lies on the lake bed."] = "從橋向東游進{area:68}；箱子在湖底。",
 		["The Wanted poster by the inn: {npc:703}, in {area:1000}"] = "旅店旁的通緝告示：{npc:703}，在{area:1000}",
