@@ -117,6 +117,21 @@ Read it before writing a guide.
 
    Raise `version` in `pack.json` for each release.
 
+   **One small guide** (a quest chain, an item, a mount, an errand; at most
+   60 steps) can go out as an import string instead, a line players paste
+   on Polestar's Import page (`/polestar import`) with nothing to install:
+
+   ```sh
+   polestar export guides/cozy-sleeping-bag.guide > cozy.txt
+   ```
+
+   `export` lints the pack first and refuses a guide with errors; the
+   string carries the guide and the pack's `license`. Raise the guide's
+   own `version` header with each new string: it decides Import or Update in
+   the game. A `next` must lead to one of Polestar's guides or to a guide
+   the player imports first. A route or a set of guides stays a community
+   addon (`polestar pack`).
+
 ## Example
 
 A short guide, every id from `polestar find`, that lints clean and plays to

@@ -1081,9 +1081,8 @@ end
 
 local function renderRail()
 	local P = UI.Picker
-	W.ShellRail(win, P and P.RailItems and P.RailItems() or {}, {
-		{ key = "Options", label = L["Options"], icon = "sliders", tip = L["Options"] },
-	}, "Options", function(key)
+	local foot = P and P.FootItems and P.FootItems() or { { key = "Options", label = L["Options"], icon = "sliders", tip = L["Options"] } }
+	W.ShellRail(win, P and P.RailItems and P.RailItems() or {}, foot, "Options", function(key)
 		if P and P.ShowSection then P.ShowSection(key) end
 		UI.ShowPicker()
 	end)

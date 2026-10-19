@@ -4521,6 +4521,26 @@ end)
 ns.On("PACKS_CHANGED", function()
 	if not ns.IsLoggedIn() then return end
 	sync()
+	-- A guide registered again in its place (an import updated on the Import
+	-- page): its tab takes the new guide where it stands, at the step the
+	-- player was looking at, as a reload would bring it back (checkShape
+	-- carries ticks and skips to the steps it kept).
+	local replacedActive, replaced = false, false
+	for i = 1, #tabs do
+		local g = Guides.Get(tabs[i].guide.id)
+		if g and g ~= tabs[i].guide then
+			tabs[i] = restoredTab(g)
+			replaced = true
+			if i == activeIndex then replacedActive = true end
+		end
+	end
+	if replaced then
+		tabsDirty = true
+		useActive()
+		persist()
+		if replacedActive then ns.Fire("GUIDE_CHANGED", guide.id) end
+		evaluate()
+	end
 	-- Tabs whose guide is gone close together and become absent at their
 	-- place before anything is saved, so their pins stay. The active tab, if
 	-- it goes, hands over to its right neighbour (else the left), as CloseTab.

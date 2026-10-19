@@ -142,6 +142,7 @@ Messages:
 | `SHOW_COPY` | title, text | `/polestar where` → UI/Copy.lua |
 | `SHOW_REPORT` | — | `/polestar report` → UI/Report.lua |
 | `SHOW_DISCORD` | — | `/polestar discord` → UI/Report.lua |
+| `SHOW_IMPORT` | — | `/polestar import` (Core/Import.lua) → UI/Import.lua: the hub at Import |
 | `TOGGLE_PICKER` / `TOGGLE_OPTIONS` | — | key bindings and gamepad chords (`POLESTAR_MENU`, `POLESTAR_OPTIONS`) → UI: open, or close when open |
 | `TOGGLE_FOCUS` | — | `POLESTAR_FOCUS` → UI/GamepadGuide.lua (focus mode) |
 
@@ -170,11 +171,12 @@ the nearest 5, `opts.compact` writes yards from 1000 as "1.2k yd"
 (`Rares.YardsText`); metres turn to kilometres from 1000 m. The bug report
 keeps yards for whoever reads it.
 
-`PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, welcomeSeen = 1, gamepad = { chords = { [action] = "PADRSHOULDER+PADDUP" } } }`
+`PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, imports = { [guideId] = { format, license, guide, frames } }, welcomeSeen = 1, gamepad = { chords = { [action] = "PADRSHOULDER+PADDUP" } } }`
 `PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = true }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, welcomeSeen = 0|1 }`
 
 `packs[<id>].off` hides a pack's guides account-wide (the Community guides page's
-switch). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
+switch). `imports` holds the guides pasted on the Import page, as decoded
+("The guide registry", imported guides). `welcomeSeen` (UI/Welcome.lua) is the version of the welcome last
 seen: in `PolestarDB`, the account has had its welcome (later characters skip
 its Set up and Route style pages); in `PolestarCharDB`, this character has (0 while due).
 `behavior.suggestFrom` (default `"guides"`) is the pack suggestions come from.
@@ -218,7 +220,7 @@ the saved view for the current guide), `guide <id>`, `status`, `tabs`,
 `packs` (Options at Community guides), `gamepad` (Options at Gamepad), `where`, `report` (`SHOW_REPORT`),
 `discord` (`SHOW_DISCORD`), `debug`; Nav adds `arrow`, `way` and `route`;
 modules add theirs (`xp`, `gear`, `instances`, `dungeons`, `lookup`, `mount`,
-`rares`, `questdb`).
+`rares`, `questdb`, `import` (`SHOW_IMPORT`, Core/Import.lua)).
 
 `where` prints the player's map and position as two guide lines, `zone map
 <uiMapID>` and `goto <x>,<y> live` (two decimals, the client's live frame,
@@ -882,7 +884,9 @@ implements them:
 - Ids: `Guides.RESERVED` (reserved pack ids) and `Guides.OwnsId` (which
   prefix a pack owns: `forever/` and `draft/` for `guides`, `lookup/` for the
   internal `lookup` pack, registered with `internal = true` and never listed
-  or switchable, `<id>/` for every other pack).
+  or switchable, every `<author>/` that is a valid, unreserved pack id for
+  `imported` (below), `<id>/` for every other pack). An id another pack's
+  guide holds is refused, so an imported guide never takes a pack's place.
 - Clashes: guides and map frames a refused pack's files register are dropped
   until that addon's `ADDON_LOADED`; guides registered before their pack are
   refused, their ids kept in a per-pack list and listed as `guide-refused`
@@ -899,7 +903,8 @@ implements them:
   record from its TOC.
 
 A pack record: `id`, `addon`, `format`, `title`, `author`, `version`,
-`license`, `website`, `source`, `notes`, `official` (ours), `status` (the
+`license`, `website`, `source`, `notes`, `official` (ours), `imported` (the
+imported guides' pack), `status` (the
 statuses of PACK_FORMAT rule 9; `off` from `PolestarDB.packs[id].off`),
 `reason`, `needs`, `problems`, `guides` (ids), `guideCount`.
 
@@ -907,15 +912,49 @@ statuses of PACK_FORMAT rule 9; `off` from `PolestarDB.packs[id].off`),
 Polestar.RegisterPack(meta) -> ok, err
 Polestar.RegisterGuide(def) -> ok, err      -- def.pack must be registered and own def.id; validates shape
 Polestar.RegisterMapFrames(frames, packId)
-Polestar.Guides.Packs() -> { record, ... }  -- every pack but internal ones, ours first, then by title
+Polestar.Guides.Packs() -> { record, ... }  -- every pack but internal ones and `imported`, ours first, then by title
 Polestar.Guides.Pack(id) -> record | nil
 Polestar.Guides.PackShown(id) -> bool
 Polestar.Guides.SetPackShown(id, shown)     -- PolestarDB.packs[id].off; fires PACKS_CHANGED(id)
 Polestar.Guides.ProblemCount() -> n         -- over every listed pack (the Options dot)
 Polestar.Guides.OwnsId(packId, guideId) -> bool
-Polestar.Guides.SuggestSources() -> { packId, ... }  -- "guides", then shown packs with leveling guides
+Polestar.Guides.SuggestSources() -> { packId, ... }  -- "guides", then shown packs with leveling guides (never `imported`)
 Polestar.Guides.SuggestSource() -> packId   -- behavior.suggestFrom when it can, else "guides"
 Polestar.Guides.OfferedBy(id) -> { guide, ... }      -- shown guides whose route choice offers id
+Polestar.Guides.DropImported(id) -> bool    -- takes an imported guide out (Import.Delete), nothing else
+```
+
+**Imported guides** (`Core/Import.lua`; the string's format: PACK_FORMAT.md,
+"Import strings"). A guide shared as one line of text and pasted on the
+Import page belongs to the reserved pack `imported`, which Import.lua
+registers (`imported = true`) as its file loads, before any pack can. Its
+guides keep their authors' ids (`yendi/cozy-sleeping-bag`), carry
+`license` (the string's) and are kept in `PolestarDB.imports[id]` as
+decoded. Guides.lua's login handler calls `Import.Load` after
+`ScanInstalled` and before `GUIDES_REGISTERED`, so every stored guide goes
+through the same checks as a pasted string with every community addon
+known. The reader: the client's `C_EncodingUtil.DecodeBase64` and
+`DecompressString` (zlib, as `Polestar_Nav`'s maps; a client without them
+is told it cannot read strings), Adler-32 over the payload, a JSON parser of
+its own (no `null`, 12 levels deep at most), then the guide built field by
+field from a fixed schema of the compiler's keys and types (`Import.KEYS`;
+`tests/import.test.js` holds it to emit.js's key lists), then the id,
+prefix, `next`, step-cap and `Guides.Validate` checks. Nothing in a string
+is run. The record is never listed on the Community guides page (`Packs`)
+nor a suggestion source; the guide menu lists it as "Imported" under
+Community guides, and `P.Credits` takes the guide's own `license`. Saving or
+deleting fires `PACKS_CHANGED("imported")`; a guide registered again in its
+place is taken by its open tab where it stands (Engine, `PACKS_CHANGED`:
+`restoredTab`, so ticks and skips follow the steps it kept).
+
+```lua
+Polestar.Import.Decode(text) -> entry | nil, reason   -- entry = { format, license, guide, frames }
+Polestar.Import.Preview(text) -> info | nil, reason   -- info: entry, id, title, author, version, steps, minLevel, maxLevel, faction, license, state ("new"|"update"|"same"|"older"), have
+Polestar.Import.Save(entry) -> ok, reason             -- checks again, registers, stores
+Polestar.Import.Delete(id) -> bool
+Polestar.Import.List() -> { { id, title, author, version, license, steps, problem }, ... }  -- by title
+Polestar.Import.Load()                                -- at login
+Polestar.Import.LIMITS                                -- { length = 50000, steps = 60, payload = 262144, text = 4096 }
 ```
 
 Only guides of shown packs (`on`, plus the internal `lookup`) are visible to
@@ -3500,7 +3539,8 @@ is a muted heading over the rows after it, not a choice (the menu's "Community
 guides").
 
 The settings window is a rail shell like the hub (`W.Shell` with `rail`): it
-shows the hub's sections (`UI.Picker.RailItems()`) with Options marked, and a
+shows the hub's sections (`UI.Picker.RailItems()`, and at its foot
+`UI.Picker.FootItems()`) with Options marked, and a
 section reopens the hub there. Switching between the two places the window
 being opened at the other's top-left corner (`UI.Picker.TakePlace`), so the
 rail does not move.
@@ -3544,6 +3584,21 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   list), `P.Section()` names it, `P.Query()` is the search text. A section's
   top-level divisions go in `nav`, not in a tab row; `W.ShellTabs` on the hub
   is for views inside one division, and the section's frame starts under it.
+  A section registered with `foot = true` sits at the rail's foot, above
+  Options, instead of among the sections (`P.FootItems(onOptions)`: Options,
+  then each foot section, from the bottom up).
+- **Import** (`UI/Import.lua`, a foot section, order 90; `/polestar import`
+  and `SHOW_IMPORT` open it). The two ways to bring someone else's guides
+  into Polestar side by side (an import string for one small guide, a
+  community addon for a route or a set), then a single-line box: what is
+  pasted is read at once (`Import.Preview`) and shown before anything is
+  saved ("Title · by Author · N steps · levels a–b · faction · licence"),
+  with Import (Update when an older version is imported; nothing for the
+  same or a newer one, with a line saying so) and Cancel, or the reason it
+  is refused. Enter imports. Below, "Your imported guides" (title, "By
+  author · version · licence", why a stored guide did not register,
+  Delete with a second click to confirm), then "Want more than one guide?"
+  (community addons in three steps and the GUIDE_PACKS.md link).
 - **Guide menu** (the Guides section): three panes. Left: the categories with
   counts. Middle: Home (continue and suggested), Browse, Current (open tabs),
   Recent tabs over one line per guide,
@@ -4137,6 +4192,7 @@ What `compile` writes into a pack's folder: Core, "Guide data (compiled Lua)".
 |---|---|
 | `new [dir]` | writes a pack from `tools/templates/pack/` (the CI workflow and devcontainer only when the clone has an `origin`) |
 | `lint`, `compile` | checks with our guides as context; writes `<pack>/dist/<folder>/`; `--format text\|json\|github` |
+| `export <file.guide>` | lints the file's pack (the nearest `pack.json` above it) and prints its one guide as an import string (`tools/lib/pack/importstring.js`; PACK_FORMAT.md, "Import strings"); refuses a file with errors, of several guides, of Polestar's own, over 60 steps or 50,000 characters. `play` and `dev --play` give the same string (`POST /api/import`, the page's Copy import string) |
 | `doctor` | Node, Lua, reference data, AddOns folder, `pack.json` |
 | `find` | quests, NPCs, objects, items, inns, flight points and our guides as guide lines (`--json`); `--kind inn\|flight` without a text lists every inn or flight point (from `travel.json`) |
 | `playtest` | every guide to the end per class (`tools/lib/playtest.js`, also behind `tests/guides.test.js`); a guide starts with the prerequisites of its accepts that the guides chaining into it turn in already done, and those they leave for it only to hand in in the log, as for a player arriving on the route |

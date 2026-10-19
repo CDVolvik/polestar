@@ -21,7 +21,7 @@ function formatFor(guides) {
 
 const PACK_ID_RE = /^[a-z0-9][a-z0-9-]{1,31}$/;
 const FOLDER_RE = /^[A-Za-z0-9_-]{1,64}$/;
-const RESERVED_IDS = new Set(['guides', 'forever', 'lookup', 'draft', 'polestar']);
+const RESERVED_IDS = new Set(['guides', 'forever', 'lookup', 'draft', 'polestar', 'imported']);
 
 // A folder we generated says so in its TOC (and the old layout in Pack.xml):
 // only such a folder is ever replaced by compile, install or dev.

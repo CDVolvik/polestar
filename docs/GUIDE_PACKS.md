@@ -128,6 +128,35 @@ guides from different addons in different tabs.
 
 </details>
 
+### One guide from a string
+
+A small guide, such as a quest chain, an item, a mount or an errand, can
+come as an **import string** instead of an addon: one line of text its
+author shares on Discord, GitHub or a forum. Nothing to install.
+
+1. Open **Import** at the foot of the hub's left rail, just above Options
+   (`/polestar import`).
+2. Paste the string into the box. Polestar reads it and shows what it
+   holds before anything is saved: "Cozy Sleeping Bag · by Yendi · 14
+   steps · levels 30–40 · Alliance and Horde · CC-BY-4.0".
+3. Press **Import**. The guide is in the guide menu under **Community
+   guides**, in the entry **Imported**, credited to its author: "By Yendi ·
+   Imported · CC-BY-4.0". It stays imported on every character of your
+   account.
+
+- **To update it**, paste the newer string: the button reads **Update**,
+  and your progress stays where the guide's steps did not change.
+- **To remove it**, press **Delete** on its row under **Your imported
+  guides** (twice: the second click confirms).
+- A string Polestar cannot read, one that is too big, or one holding a guide
+  Polestar refuses is turned down with the reason, and nothing is saved.
+- Polestar never suggests an imported guide on its own: you pick it.
+
+An import string is data, never code: Polestar reads the guide out of it
+field by field and runs nothing in it, so it cannot do anything a guide
+cannot. As with a community addon, Polestar does not test or vouch for the
+guide; report its problems to its author.
+
 ## For authors
 
 ### What you get
@@ -305,6 +334,48 @@ addons built before this name read "Polestar Pack:" until you rebuild them;
 Polestar reads both.
 
 </details>
+
+### Import strings
+
+A single small guide can go to players as one line of text instead of an
+addon: they paste it on Polestar's Import page (`/polestar import`). Use it
+for a quest chain, an item, a mount, an errand; a route or a set of guides is
+a community addon.
+
+| | Import string | Community addon |
+|---|---|---|
+| **For** | one small guide | a whole route or a set of guides |
+| **You run** | `polestar export <file.guide>` | `polestar pack` |
+| **Players** | paste it on the Import page | install it, then restart the game |
+| **Updates** | raise the guide's `version` and share the new string: players press Update | raise `version` in `pack.json` and upload the new zip |
+| **Size** | one guide of at most 60 steps (and 50,000 characters) | no limit |
+
+```sh
+polestar lint && polestar playtest       # the same checks as for an addon
+polestar export guides/cozy-sleeping-bag.guide > cozy.txt
+```
+
+- The guide still lives in a pack: `export` finds the `pack.json` above the
+  file, and the guide id starts with your pack id
+  (`yendi/cozy-sleeping-bag`), so two authors' guides never collide. The
+  string carries the guide and your pack's `license`; its author is the
+  guide's `author`, else the pack's.
+- `export` lints the pack first and refuses a guide with errors (another
+  guide's errors do not stop it). It prints only the string on stdout, so
+  `> file.txt` keeps just that line.
+- A guide's `version` decides between Import and Update in the game: raise
+  it when you share a new string.
+- A `next` or route choice may lead only to one of Polestar's guides or to a
+  guide the player imported before; `export` names the guides to import
+  first. Polestar refuses a string whose guide leads anywhere else.
+- A guide id under the id of a community addon the player has installed
+  stays that addon's: the string is refused.
+- In `polestar play <pack>` (and `polestar dev --play`), **Copy import
+  string** beside the guide picker gives the string of the guide picked.
+
+The format of the string is in [PACK_FORMAT.md, "Import
+strings"](PACK_FORMAT.md#import-strings). Strings are covered by the same
+[licence exception](../LICENSE-EXCEPTION.md) as community addons.
 
 ### Where to go next
 

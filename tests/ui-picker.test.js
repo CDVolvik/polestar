@@ -162,7 +162,8 @@ test('left pane: the rail holds the sections and Options; the sidebar holds the 
 	// Sections (Guides built in, then the registered ones by order) are on the rail, Options at its foot.
 	assert.equal(out.sections[0], 'Guides');
 	assert.equal(out.sections[1], 'Lookup');
-	assert.deepEqual(out.rail, ['Options', 'Guides*', ...out.sections.slice(1)]);
+	// Import is a foot section: above Options, not among the sections at the top.
+	assert.deepEqual(out.rail, ['Options', 'Import', 'Guides*', ...out.sections.slice(1).filter((s) => s !== 'Import')]);
 	assert.deepEqual(out.labels, ['All guides 13', 'Leveling 6', 'Professions 3', 'Reputation 1', 'Exploration 1', 'Legacy 1', 'Collectibles 1', 'Favourites 0']);
 	assert.match(out.icon, /\\star$/);
 	assert.deepEqual(out.r, {
@@ -219,12 +220,13 @@ test('the search placeholder is the first wording that fits the box, refitted on
 	assert.deepEqual(out.narrow, ['Search', true], 'the last wording, cut to the box when even it is too long');
 });
 
-test('the hub fits: every section on the rail above Options, every category in the sidebar above the status line', () => {
+test('the hub fits: every section on the rail above the foot (Import, Options), every category in the sidebar above the status line', () => {
 	const [out] = run(`
-		-- Fill the rail to eight sections: the docs/SUITE.md ones (Guides,
-		-- Lookup, Dungeons, Rares) and stand-ins for more.
+		-- Fill the rail to seven sections above its foot of two (Import,
+		-- Options): the docs/SUITE.md ones (Guides, Lookup, Dungeons, Rares)
+		-- and stand-ins for more.
 		local i = 0
-		while #P.Sections() < 8 do
+		while #P.RailItems() < 7 do
 			i = i + 1
 			local key = i == 1 and "Rares" or ("Extra" .. i)
 			UI.RegisterSection({ key = key, label = key, icon = "compact", order = 50 + i,
@@ -232,16 +234,18 @@ test('the hub fits: every section on the rail above Options, every category in t
 				nav = function() return { { key = "a", label = "A" }, { key = "b", label = "B" } }, "a" end })
 		end
 		local all = {}
-		for k, s in ipairs(P.Sections()) do all[k] = s.key end
+		for k, s in ipairs(P.RailItems()) do all[k] = s.key end
 		UI.ShowPicker()
 		P.SetCategory("All")
 		local H = PolestarPicker:GetHeight()
 		local function bottomOf(b) local _, _, _, _, y = b:GetPoint(1); return -y + b:GetHeight() end
 		local function topOfFoot(b) local _, _, _, _, y = b:GetPoint(1); return H - 2 - (y + b:GetHeight()) end
+		local foot = {}
+		for _, item in ipairs(P.FootItems()) do foot[item.key] = true end
 		local railBottom, options, keys = 0, nil, {}
 		for _, b in ipairs(PolestarPicker.railButtons) do
 			if b:IsShown() then
-				if b.psKey == "Options" then options = topOfFoot(b) else
+				if foot[b.psKey] then options = math.min(options or math.huge, topOfFoot(b)) else
 					railBottom = math.max(railBottom, bottomOf(b))
 					keys[#keys + 1] = b.psKey
 				end
@@ -258,8 +262,8 @@ test('the hub fits: every section on the rail above Options, every category in t
 		emit({ keys = keys, all = all, railBottom = railBottom, options = options, navBottom = navBottom, statusTop = H - 2 - statusY - 14,
 			sectionNav = sectionNav, railOn = (function() for _, b in ipairs(PolestarPicker.railButtons) do if b:IsShown() and b.Bar:IsShown() then return b.psKey end end end)(),
 			details = P.details:IsShown(), list = PolestarPicker.Content:IsShown() })`);
-	assert.equal(out.all.length, 8);
-	assert.deepEqual(out.keys, out.all, 'eight sections fit the rail');
+	assert.equal(out.all.length, 7);
+	assert.deepEqual(out.keys, out.all, 'seven sections fit the rail above its foot of two');
 	assert.ok(out.railBottom <= out.options, `rail ends at ${out.railBottom}, Options starts at ${out.options}`);
 	assert.ok(out.navBottom <= out.statusTop, `categories end at ${out.navBottom}, the status line starts at ${out.statusTop}`);
 	assert.deepEqual(out.sectionNav, ['a', 'b'], 'a section\'s own index replaces the categories');
