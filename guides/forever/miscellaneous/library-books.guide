@@ -41,8 +41,8 @@ zone Stormwind City
 #   point on 386759 (Theocritus). The goals below are placed by hand.
 # - Basilisks (79535), Demons and You (79950), Legends of the Tidesages
 #   (81949) and Venomous Journeys (81954) end at one librarian each in
-#   data/forever, but Forever's quest data lists both Owen Thadd and Garion
-#   Wendell for all four, as for every other shared book: both turn them in.
+#   data/forever, while Forever's quest data lists both Owen Thadd and Garion
+#   Wendell for all four. The steps keep both; needs an in-game check.
 # - The milestone quests (Friend of the Library 78150, Greater Friend of the
 #   Library 79536 and 82208) are offered by the librarian once enough books are
 #   handed in; their levels are the data's. How many books each takes is not in
