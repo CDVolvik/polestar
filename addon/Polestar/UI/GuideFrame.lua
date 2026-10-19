@@ -1877,7 +1877,7 @@ local skinShown
 -- Hearth's tab: framed, gold on the active one (DIRECTION_A_BLIZZARD.md §3);
 -- the game's looks: their kit's tab art.
 function GF.PaintTab(b)
-	local kit = Theme.KitTab(b, b.psActive)
+	local kit = Theme.KitTab(b, b.psActive, nil, true)
 	local bliz = Theme.SkinKey() == "hearth"
 	local f = rawget(b, "psFrameTex")
 	if bliz and not f then

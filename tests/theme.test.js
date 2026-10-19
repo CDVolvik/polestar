@@ -681,3 +681,40 @@ test("skins: WoW Forever draws the client's atlas, Blizzard the retail sheet, Cl
 	assert.deepEqual(out.back, out.house, 'back to the house style, as it was');
 	assert.equal(out.houseGame, false);
 });
+
+// #312: Forever's tab art is an outline. On the guide window's strip its top
+// and left run along the window's edge, which left the active tab's right
+// side as a lone line; there the active tab is the Settings list's selected
+// row, the resting tabs keep their art, and the Options tabs keep theirs.
+test('skins: on Forever the guide strip marks the active tab with the selected-row art, not a half-drawn outline (#312)', () => {
+	const [out] = run(`
+		local GF = Polestar.UI.GuideFrame
+		Polestar.Set("ui.skin", "forever")
+		uistub.openTabs({ { uistub.elwynn, 3 }, { uistub.tailoring, 2 } }, 1)
+		local function art(b)
+			local k = b.psSkin and b.psSkin.kit or {}
+			local lit, three = k.tabLit, k.tabArt
+			return { lit = lit ~= nil and lit:IsShown() and lit.atlas or lit and lit:IsShown() and lit.texture or false,
+				outline = three ~= nil and three[2]:IsShown() and three[2].texture or false }
+		end
+		local out = { active = art(GF.tabs[1]), rest = art(GF.tabs[2]) }
+		uistub.openTabs({ { uistub.elwynn, 3 }, { uistub.tailoring, 2 } }, 2)
+		out.moved = { first = art(GF.tabs[1]), second = art(GF.tabs[2]) }
+		-- the Options tabs are not on the window's edge: the tab outline as the client draws it
+		Polestar.UI.ShowOptions("guide")
+		out.options = {}
+		for _, t in ipairs(PolestarOptions.tabButtons) do
+			if t:IsShown() then out.options[#out.options + 1] = art(t) end
+		end
+		emit(out)`, {
+		before: `C_Texture = { GetAtlasInfo = function(name)
+			return { file = "atlas:" .. name, leftTexCoord = 0, rightTexCoord = 1, topTexCoord = 0, bottomTexCoord = 1, width = 7, height = 26 }
+		end }`,
+	});
+	assert.deepEqual(out.active, { lit: 'atlas:Options_List_Active', outline: false });
+	assert.deepEqual(out.rest, { lit: false, outline: 'atlas:Options_Tab_Middle' });
+	assert.deepEqual(out.moved, { first: { lit: false, outline: 'atlas:Options_Tab_Middle' }, second: { lit: 'atlas:Options_List_Active', outline: false } });
+	assert.ok(out.options.length > 1);
+	assert.ok(out.options.every((t) => t.lit === false && t.outline), 'outline tabs');
+	assert.ok(out.options.some((t) => t.outline === 'atlas:Options_Tab_Active_Middle'), 'the active one in the active outline');
+});

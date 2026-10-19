@@ -998,20 +998,34 @@ end
 -- A tab in the kit's art (MinimalTabTemplate: Options_Tab_* along its
 -- bottom, the active one 3 higher; the vanilla option tabs in Classic) with
 -- its label on the art: BOTTOM 0,6 when active, 0,4 otherwise. -> true
-function Theme.KitTab(b, active, label)
+-- `flush`: the tab's top lies on the window's edge (the guide window's
+-- strip). Forever's tab art is an outline whose top and left run along that
+-- edge, leaving its right side as a lone line by the rest of the strip
+-- (#312); there the active tab is the Settings list's selected row instead.
+function Theme.KitTab(b, active, label, flush)
 	local kit = Theme.Kit()
 	if not kit then
 		hideKey(b, "tab")
 		return false
 	end
 	local isFile = kit.source == "file"
+	local lit = flush and active and kit.source == "atlas" and kit.navLit
 	local host = child(b, "tab", -1)
 	host:EnableMouse(false)
 	host:ClearAllPoints()
 	host:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
 	host:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 0, 0)
-	host:SetHeight(active and (isFile and 28 or 26) or (isFile and 24 or 23))
-	three(b, "tabArt", kit, active and kit.tabActive or kit.tab, host, isFile and 14 or 7, isFile and 16 / 112 or nil, "BACKGROUND", 0)
+	if lit then
+		host:SetPoint("TOP", b, "TOP", 0, 0)
+		hideKey(b, "tabArt")
+		local t = tex(b, "tabLit", "BACKGROUND", 0, host)
+		draw(t, kit, lit)
+		t:SetAllPoints(host)
+	else
+		hideKey(b, "tabLit")
+		host:SetHeight(active and (isFile and 28 or 26) or (isFile and 24 or 23))
+		three(b, "tabArt", kit, active and kit.tabActive or kit.tab, host, isFile and 14 or 7, isFile and 16 / 112 or nil, "BACKGROUND", 0)
+	end
 	if label then
 		b.psKitLabel = true
 		label:ClearAllPoints()
