@@ -42,6 +42,10 @@ next forever/horde/02-the-barrens
 # - The Ripped Missive (94490) is accepted from Commander Haalien's drop in
 #   the Al'Aketh camp; The Fate of the Den (94491) goes to Lotheluum on the
 #   way back through Valanaar.
+# - The Broken Construct (93737): the Enchanted Gyrozephyr (93737.3) lies
+#   only east of Shen'dar Village, south-west of Windsong Lake; it is fetched
+#   after the highwaymen's hills, before Standing Our Ground, so Riaani gets
+#   all three parts.
 # - Welcome to Shen'dar Village (92514) is taken from Constable Aonda when
 #   The Next Step is handed in, not on the later visit: the talk to Illaya
 #   for The Windshapers then counts for it too, and only Coriella is left.
@@ -410,6 +414,10 @@ step Bandit Highwaymen
   tip The highwaymen hold the hills north-east of the orchard. More Construct Parts lie near the road to Valanaar.
   collect 253596 quest 92685.1
   collect 260881 quest 93737.2
+
+step Enchanted Gyrozephyr
+  tip The last Construct Parts, the Enchanted Gyrozephyrs, lie far to the north, east of Shen'dar Village and south-west of Windsong Lake. Then head back south-west to Aamelia at the orchard.
+  collect 260883 quest 93737.3
 
 step Standing Our Ground
   turnin 92685                        -- Aamelia Windfield
