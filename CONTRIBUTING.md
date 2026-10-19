@@ -135,37 +135,22 @@ git grep "accept 184"
 - When the guide is wrong because the data is (a giver, a spawn, a drop),
   fix the data in `tools/lib/data/corrections.json` too, so the simulator and
   the next route refresh see it.
-- `addon/Polestar_Guides/Guides.lua` comes from
-  `node tools/polestar.js compile`: commit the file it writes, never a hand
-  edit or a hunk spliced in from another compile. A spliced hunk can still be
-  valid Lua and load without an error while the game never sees its goals: a
-  goal left between a step's `title` and its `goals = {`, or a step's goals
-  left open so the next step becomes one of its goals. When your reference
-  data is older or newer than the branch's, a recompile also changes guides
-  you did not touch. Keep only your change by compiling the guides before and
-  after it with the same local data and merging the difference into the
-  committed file:
-
-  ```sh
-  tmp=$(mktemp -d)
-  git archive origin/next guides | tar -x -C "$tmp"   # the guides your change starts from
-  node tools/polestar.js compile --guides "$tmp/guides" --out "$tmp/before"
-  node tools/polestar.js compile --out "$tmp/after"
-  git merge-file addon/Polestar_Guides/Guides.lua "$tmp/before/Guides.lua" "$tmp/after/Guides.lua"
-  ```
-
-  A conflict means your data differs from the branch's in the very lines
-  your change touches: rebuild the data and compile, or say so in the pull
-  request and leave Guides.lua to the maintainer.
+- **Do not commit `addon/Polestar_Guides/Guides.lua`.** It is compiled from
+  `guides/` and `data/forever`; the maintainer runs `node tools/polestar.js
+  compile` (via `polestar regen`) after merge. Never hand-edit it or splice
+  in a hunk from a partial compile: a spliced hunk can still be valid Lua
+  while the game never sees the goals it contains.
 - Check your change:
 
   ```sh
-  node tools/polestar.js lint                       # every compile check, writes nothing
+  node tools/polestar.js lint                        # every compile check, writes nothing
   node tools/polestar.js playtest --filter westfall  # play the matching guides to the end for every class
+  node --test tests/guides-reported.test.js          # or tests/guides-caves.test.js for a cave mouth
   ```
 
   `--filter` plays only the guides whose file or id contains its text;
-  `--class Warrior` narrows it to one class.
+  `--class Warrior` narrows it to one class. You don't need the full test
+  suite; CI runs it on your pull request.
 
 Both need the reference data (below). If you cannot build it, send the fix
 anyway: describe what you changed and why, say that you could not run the
@@ -188,33 +173,51 @@ checks, and they are run before it is merged.
 AddOns folder and `pack.json`. `node tools/polestar.js help` lists every
 command.
 
+## Checks
+
+Run only the checks for what you changed. CI runs the full suite on every
+pull request and tells you if anything else broke.
+
+| What you changed | What you run |
+|---|---|
+| A guide step (`.guide` file, existing guide) | `node tools/polestar.js lint` and `playtest --filter <guide>` (need reference data; say so in the PR if unavailable); for a fix to a reported bug, also `node --test tests/guides-reported.test.js` (or `tests/guides-caves.test.js` for a cave mouth) |
+| A new or renamed guide file | The same lint and playtest; note in the PR that `Guides.lua` needs recompiling — the maintainer does it after merge |
+| The addon's Lua (`addon/Polestar/`) | The test file(s) for the area you changed: `node --test tests/<area>.test.js`. Find it with `grep -rl <module-name> tests/*.test.js`; for example, a change to `Theme/` → `node --test tests/theme.test.js`. For a UI change, optionally run `node tools/polestar.js preview` to review the renders |
+| A tool or its library (`tools/`) | That tool's tests: `node --test "tests/<tool>*.test.js"` (e.g. `node --test tests/compile.test.js`) |
+| `tools/media/` (texture generators) | `node tools/polestar.js media` to see the textures locally; CI verifies the generators work |
+| Player-facing English strings (`L["..."]`) | The area's tests (see addon Lua row above); translations are handled by the maintainer after merge — nothing extra from you |
+| `tools/lib/data/corrections.json` | `node --test tests/data-corrections.test.js` |
+| A changelog fragment in `changes/` | `node tools/polestar.js changelog check` |
+| Anything else | `node --test tests/<area>.test.js` for what you touched |
+
+A few tests skip automatically when the reference data (`data/forever`) or
+Lua 5.1 is missing. [tests/README.md](tests/README.md) describes the suite;
+[docs/SUITE.md](docs/SUITE.md) what is in and out of scope.
+
+**You do not commit** `addon/Polestar_Guides/Guides.lua`, `docs/preview/*.svg`,
+the locale files in `addon/Polestar*/`, or `addon/Polestar/Media/*.tga` unless
+your change is to the generator itself (a texture generator in `tools/media/`,
+the preview renderer in `tools/preview/`, or the compiler in `tools/lib/dsl/`).
+The maintainer regenerates those after merging your PR.
+
 ## Code changes
 
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) explains how the addon and the
   tools fit together; [docs/README.md](docs/README.md) maps every document.
-- Keep the suite green:
-
-  ```sh
-  npm test        # the same as: node --test "tests/**/*.test.js"
-  ```
-
-  A few tests skip when the reference data or the game client is missing.
-  [tests/README.md](tests/README.md) describes the suite, and
-  [docs/SUITE.md](docs/SUITE.md) what is in and out of scope. CI runs
-  `npm test` on every pull request, then fails when the textures in
-  `addon/Polestar/Media` differ from what `node tools/polestar.js media`
-  builds: after changing `tools/media`, run it and commit the textures.
+- Behaviour changes come with tests that show the behaviour. Run the tests
+  for what you changed (see [Checks](#checks) above); CI runs the full suite
+  on every PR and tells you if anything else broke.
 - For UI changes, `node tools/polestar.js preview` renders the guide window,
-  menu and options to `docs/preview/*.svg`; look at them before and after,
-  and commit them with the change: CI renders them again and fails when they
-  differ. They change only with the addon's Lua, never with a guide
-  recompile: the guide menu scenes load frozen copies of six compiled guides
-  (`tests/fixtures/preview`). [docs/DESIGN.md](docs/DESIGN.md) describes the
-  visual system.
-- Player-facing text is a literal `L["..."]`. After adding, changing or
-  removing texts, run `node tools/polestar.js i18n sync` and commit the
-  locale files with the change ([docs/TRANSLATING.md](docs/TRANSLATING.md),
-  "For developers"); CI runs `i18n check`.
+  menu and options to `docs/preview/*.svg`. Run it to review your change
+  visually; CI runs it on every PR to verify the renderer still works.
+  [docs/DESIGN.md](docs/DESIGN.md) describes the visual system. The renders
+  use frozen sample guides, not the shipped ones, so a guide edit never
+  changes them.
+- Player-facing text is a literal `L["..."]`. Adding, changing or removing
+  a string does not require any extra step from you: CI checks the existing
+  locale files and the maintainer runs `i18n sync` after merge to propagate
+  new strings to the locale files.
+
 
 ## Branches
 
