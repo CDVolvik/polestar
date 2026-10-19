@@ -3,7 +3,7 @@
 // Tells #bugs threads what happened on GitHub; run by the workflows
 // .github/workflows/discord-issue-sync.yml and discord-release-notify.yml.
 //
-//   node tools/discord-bot/notify.js issue     an issue closed or reopened
+//   node tools/discord-bot/notify.js issue     an issue closed, reopened or labelled needs-info
 //   node tools/discord-bot/notify.js release   a release published
 //
 // Reads the event from GITHUB_EVENT_PATH (NOTIFY_EVENT_PATH first when set:

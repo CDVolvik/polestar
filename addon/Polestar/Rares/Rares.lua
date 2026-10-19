@@ -35,7 +35,7 @@ ns.Rares = Rares
 local serverTime, mapName = ns.Compat.Now, ns.Compat.MapName
 
 local wipe = wipe or function(t) for k in pairs(t) do t[k] = nil end return t end
-local type, pairs, tostring,tonumber, floor, sqrt, format = type, pairs, tostring, tonumber, math.floor, math.sqrt, string.format
+local type, pairs, tostring, tonumber, floor, sqrt, format = type, pairs, tostring, tonumber, math.floor, math.sqrt, string.format
 
 ns.RegisterDefaults("rares", {
 	enabled = true,

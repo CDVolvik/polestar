@@ -6,7 +6,7 @@
 --   To Silithus                                            destination
 --   1  [lift]  Walk to The Great Lift, Top         11:10   current step: accent glyph
 --   2  [lift]  Take The Great Lift                  0:25      and the 2px accent bar
---              leaves in about 0:15 · ride 0:10
+--              average wait 0:15 · ride 0:10
 --   3  [goto]  Walk to Silithus                    25:13
 --
 -- Shown while the route has more than one leg (Nav.travel.Active()): a lone
@@ -259,10 +259,11 @@ function JP.Compute(legs, ci)
 	return view
 end
 
--- "leaves in about 0:15 · ride 0:10" (untimed: the loop's average wait).
+-- "leaves in 0:15 · ride 0:10" once timed; untimed, "average wait 0:15 ·
+-- ride 0:10": the loop's average, which does not count down.
 function JP.DepartureText(i)
 	if view.board[i] then return format(L["on board \194\183 %s"], JP.FormatTime(view.ride[i])) end
-	local lead = view.timed[i] and L["leaves in %s"] or L["leaves in about %s"]
+	local lead = view.timed[i] and L["leaves in %s"] or L["average wait %s"]
 	return format(L["%s \194\183 ride %s"], format(lead, JP.FormatTime(view.wait[i])), JP.FormatTime(view.ride[i]))
 end
 
