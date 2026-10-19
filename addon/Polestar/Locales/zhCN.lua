@@ -160,6 +160,7 @@ L["Browse the guide with the gamepad"] = "用手柄浏览指南"
 L["Open the guide menu"] = "打开指南菜单"
 L["Open Polestar options"] = "打开 Polestar 选项"
 L["Open the Gamepad page: button names and bindings"] = "打开手柄页面：按钮名称和绑定"
+-- L["Target rare"] = ""
 
 -- Theme/Theme.lua
 L["Dusk"] = "黄昏"
@@ -667,7 +668,6 @@ L["Targets the current step's mobs by name; each click moves to the next name. B
 L["Hearthstone button"] = "炉石按钮"
 L["Shows your Hearthstone while the guide says to hearth. Bindable."] = "指南要求使用炉石时显示炉石。可绑定按键。"
 L["Button size"] = "按钮大小"
-L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "任务物品、炉石和目标按钮的缩放。拖动任意一个可整体移动。"
 L["Target name position"] = "目标名称位置"
 L["Where the target's name shows around the target button: right, left, above or below."] = "目标名称显示在目标按钮的哪个位置：右、左、上或下。"
 L["Right"] = "右"
@@ -740,6 +740,9 @@ L["Start this session's XP per hour from zero."] = "将本次每小时经验从�
 -- L["Icon on NPCs"] = ""
 -- L["The target button and the step key put a raid icon on the mob and the NPC they target; out of combat, a press that finds neither clears your target. Your party sees the icons; in a raid only the leader and assistants can set them."] = ""
 -- L["A new one each press, so the last few NPCs keep theirs. Every press counts, even one that marks nothing."] = ""
+-- L["Rare button"] = ""
+-- L["Shows a button that targets a rare Polestar spotted nearby, until it dies or is out of sight. Bindable."] = ""
+-- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "仅限联盟"
@@ -2015,3 +2018,4 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- L["Next tram in about %s"] = "下班地铁约 %s后到"
 -- L["Next lift in about %s"] = "下次升降梯约 %s后到"
 -- L["leaves in about %s"] = "约%s后出发"
+-- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "任务物品、炉石和目标按钮的缩放。拖动任意一个可整体移动。"
