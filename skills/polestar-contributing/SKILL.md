@@ -1,6 +1,6 @@
 ---
 name: polestar-contributing
-description: The rules for working on the Polestar repository (the WoW Forever leveling guide addon, fitzforge/polestar) for a contributor - checking that no one else is already fixing an issue, that every pull request goes to next (patch fixes arrive by backport), linking the issue, generated files, changelog fragments, tests, what a pull request must never do, and how to post on issues. Use for any change, pull request, commit or issue comment in a Polestar clone; read polestar-triage first for a bug report and polestar-guide-fix for a guide fix.
+description: The rules for working on the Polestar repository (the WoW Forever leveling guide addon, fitzforge/polestar) for a contributor - checking that no one else is already fixing an issue, that every pull request goes to next, linking the issue, generated files, changelog fragments, tests, what a pull request must never do, and how to post on issues. Use for any change, pull request, commit or issue comment in a Polestar clone; read polestar-triage first for a bug report and polestar-guide-fix for a guide fix.
 compatibility: A clone of fitzforge/polestar with Node 24 or newer. Reference data (data/forever) and Lua 5.1 are needed for the guide checks.
 ---
 
@@ -56,8 +56,8 @@ requests for one bug waste both. Before you write any code for an issue:
    the missing part on that pull request (a comment, which a human reads
    first). A different fix for the same bug is a review comment on theirs,
    not a second pull request.
-2. **Is it checked?** Start from issues labelled `confirmed` or
-   `patch-candidate`; triage anything else first (polestar-triage).
+2. **Is it checked?** Start from issues labelled `confirmed`; triage
+   anything else first (polestar-triage).
 3. **Claim it visibly.** Draft a short "I'm looking at this" comment for
    the person running you to post, and open the pull request early (a draft
    while unfinished).
@@ -77,19 +77,12 @@ the issue first. CONTRIBUTING.md, "Before you start", is the long form.
 
 ## Which branch
 
-| Your change | Base branch | Ships in |
-|---|---|---|
-| Anything: guide fixes, addon Lua, tools, data builds, UI, translations, new guides, route refreshes | `next` (the default branch) | the next feature release |
-| A guide-only fix players need sooner: `guides/`, the recompiled `addon/Polestar_Guides/`, its test, `tools/lib/data/corrections.json`, its fragment in `changes/` | `next` as well; the maintainer labels it `backport` after it merges | the next patch release too |
+Every pull request goes to **`next`**, the repository's default branch.
+Never to `main`; the `Base branch` check fails those.
 
-- Never open a pull request against `main` or a `hotfix/` branch, and never
-  push to `main`, `next` or a `hotfix/` branch directly. The `Base branch`
-  check fails a contributor's pull request to either.
-- The `backport` label opens the patch pull request on the open `hotfix/`
-  branch on its own. Don't open a second pull request for it; if you think
-  your fix belongs in the patch, say so in the description.
-- A patch fix has to work against the released addon. If it needs an addon
-  or tools change that is only on `next`, it waits for the feature release.
+- Never push to `main` or `next` directly.
+- A patch release is just a smaller, sooner release from `next` (version
+  bump `x.y.Z`). All fixes go to `next`; there is one branch, one release path.
 - Never tag, release, bump the version (`polestar version`) or upload. Only
   the maintainer does that, after playing the build in the game.
 

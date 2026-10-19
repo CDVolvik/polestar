@@ -1,8 +1,8 @@
 'use strict';
 // Changelog fragments: each change is its own file, changes/<slug>.md, so
-// pull requests into next and into a hotfix branch never touch the same lines
-// of CHANGELOG.md. A fragment is front matter naming its section, then the
-// entry as CHANGELOG.md writes it:
+// concurrent pull requests never touch the same lines of CHANGELOG.md. A
+// fragment is front matter naming its section, then the entry as CHANGELOG.md
+// writes it:
 //
 //   ---
 //   section: players

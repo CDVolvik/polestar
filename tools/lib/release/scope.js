@@ -1,44 +1,7 @@
 'use strict';
-// What a patch release may carry: the paths a hotfix/ branch may change from
-// the release it patches. Everything else (the addon, the tools, the data
-// addons) belongs on `next` and in a feature release (docs/RELEASING.md,
-// "Patch releases").
+// Git helpers shared by release tooling.
 
 const { spawnSync } = require('node:child_process');
-
-const PATCH_ALLOWED = Object.freeze([
-	'guides/**',
-	'addon/Polestar_Guides/**',
-	'tests/guides-*.test.js',
-	'tools/lib/data/corrections.json',
-	'CHANGELOG.md',
-	'changes/**',
-]);
-
-// A glob as a regular expression: `**` crosses folders, `*` does not.
-function globRegExp(glob) {
-	let re = '';
-	for (let i = 0; i < glob.length; i++) {
-		const c = glob[i];
-		if (c === '*' && glob[i + 1] === '*') {
-			re += '.*';
-			i++;
-		} else if (c === '*') re += '[^/]*';
-		else re += c.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
-	}
-	return new RegExp(`^${re}$`);
-}
-
-const MATCHERS = PATCH_ALLOWED.map(globRegExp);
-
-function allowed(file) {
-	return MATCHERS.some((re) => re.test(file));
-}
-
-// The paths a patch may not carry, in input order, each once.
-function disallowed(paths) {
-	return [...new Set(paths.filter((p) => !allowed(p)))];
-}
 
 // Paths from a list: one per line, blank lines skipped. A `git diff
 // --name-status` line (`M\tpath`, `R100\told\tnew`) gives each path it names.
@@ -62,7 +25,7 @@ function git(root, args) {
 }
 
 // The newest plain vX.Y.Z tag reachable from HEAD in root, in version order;
-// prerelease tags (v0.3.0-rc.1) are never a patch's base.
+// prerelease tags (v0.3.0-rc.1) are skipped.
 function latestTag(root) {
 	const tags = git(root, ['tag', '--merged', 'HEAD', '--list', 'v*'])
 		.split('\n')
@@ -79,4 +42,4 @@ function changedSince(root, base) {
 	return parsePaths(git(root, ['diff', '--name-only', '--no-renames', `${base}...HEAD`]));
 }
 
-module.exports = { PATCH_ALLOWED, allowed, disallowed, parsePaths, git, latestTag, changedSince };
+module.exports = { parsePaths, git, latestTag, changedSince };

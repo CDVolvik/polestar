@@ -14,9 +14,8 @@ package them. You can help without touching any code.
 - **Fix a guide.** Guides are plain text files; a fix is often one line. See
   [Fixing a guide](#fixing-a-guide). New here? Start with an issue labelled
   [good first issue](https://github.com/fitzforge/polestar/labels/good%20first%20issue)
-  or [patch-candidate](https://github.com/fitzforge/polestar/labels/patch-candidate):
-  small issues to start on, and confirmed guide-only fixes with the evidence
-  on the issue.
+  or `confirmed`: small issues to start on, and confirmed guide-only fixes with
+  the evidence on the issue.
 - **Record a session.** The Polestar Recorder addon (its own download beside
   Polestar on the GitHub release; it runs with or without Polestar) logs your
   play: quests, routes, rares you see, what creatures and chests drop, the
@@ -85,9 +84,9 @@ steps keep two of you from fixing the same thing without knowing:
    and the guide's name. When an open pull request covers it, help there
    instead of opening another: review it, try it in the game, or offer the
    part it is missing.
-2. **Start from a checked report.** Issues labelled `confirmed` or
-   `patch-candidate` have the evidence on them. Any other report is a lead:
-   check it first ([How a report is handled](#how-a-report-is-handled)).
+2. **Start from a checked report.** Issues labelled `confirmed` have the
+   evidence on them. Any other report is a lead: check it first
+   ([How a report is handled](#how-a-report-is-handled)).
 3. **Say you are on it.** Leave a short comment on the issue, and open your
    pull request early, as a draft while it is unfinished. Link the issue so
    it shows: the issue's number in the title (`(#302)`), or "closes #302"
@@ -224,24 +223,14 @@ The maintainer regenerates those after merging your PR.
 | Branch | Holds |
 |---|---|
 | `main` | The latest release, what players have. It moves only when a release is made. |
-| `next` | The next feature release (the repository's default branch). |
-| `hotfix/<version>` | The next patch release, for example `hotfix/0.2.5`: cut from the latest release's tag right after it ships, deleted once the patch is out. |
+| `next` | The next release (the repository's default branch). Every pull request goes here. |
 
 Every pull request goes to **`next`**: guide fixes, the addon, the tools,
 the data builds, translations, new guides and route refreshes. Never to
-`main` or a `hotfix/` branch; the `Base branch` check fails those.
-
-A guide fix players need before the next feature release still starts on
-`next`. Once it merges, the maintainer adds the `backport` label, and a
-pull request picking it onto the open `hotfix/` branch opens on its own.
-A patch carries only guide fixes: changes to `guides/`, the recompiled
-`addon/Polestar_Guides/`, the fix's test, `tools/lib/data/corrections.json`
-and its changelog fragment in `changes/`, and it has to work with the
-released addon. You don't need to do anything for this; if you think your
-fix belongs in the coming patch, say so in the pull request.
-
-After a patch ships, `main` is merged into `next`, so `next` always has
-every released fix. docs/RELEASING.md has the release side.
+`main`; the `Base branch` check fails those. `main` moves only when a
+release is made: it is fast-forwarded to `next` and tagged. A patch release
+is just a version bump (`x.y.Z`) from `next`, sooner than a feature release.
+docs/RELEASING.md has the release side.
 
 ## Using an AI agent
 
@@ -308,10 +297,6 @@ your request matches it; to be sure, name it: "use polestar-triage on #123".
   the person who reported it at the end of its entry, by the name they
   reported under: "(thanks Tom)". A contribution credits its author the
   same way.
-- A guide fix that should also go out in the coming patch: say so in the
-  pull request. The maintainer adds the `backport` label when it merges,
-  and a pull request picking it onto the `hotfix/` branch opens on its own
-  (docs/RELEASING.md).
 
 ## How a pull request is reviewed
 
