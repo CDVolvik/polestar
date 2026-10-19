@@ -253,6 +253,7 @@ local ownPairs = {} -- { english, translation } of every translated text the cli
 local shownNames = {} -- every name Polestar.Names gave (the client's language)
 local guideTexts = {} -- pack id -> { [guide id] = { english = translation } }
 local guideEnglish = {} -- { id, pack, texts = { english... }, names }
+local authorCredits = {} -- exact credit line -> the same label without its proper name
 
 local function own(en, s)
 	if type(s) == "string" and s ~= "" then ownPairs[#ownPairs + 1] = { en, s } end
@@ -359,6 +360,10 @@ function A.hookPolestar()
 	local prepare = GT.Prepare
 	function GT.Prepare(def, ...)
 		if type(def) == "table" and type(def.id) == "string" then
+			if type(def.author) == "string" and def.author ~= "" then
+				local template = ns.L["By %s"]
+				authorCredits[format(template, ns.EscapeText(def.author))] = format(template, "⟦author⟧")
+			end
 			local list = {}
 			local function add(v) if type(v) == "string" and v:find("%a%a%a") then list[#list + 1] = v end end
 			for _, f in ipairs({ "title", "why", "pitch" }) do add(def[f]) end
@@ -605,7 +610,7 @@ function A.dump()
 			end
 			return flagged
 		end
-		local rest = cutTyped(plain)
+		local rest = cutTyped(authorCredits[e.text] and strip(authorCredits[e.text]) or plain)
 		local flagged = flag(rest)
 		if #flagged > 0 then
 			-- Cut the names the client gave that hold a flagged word, the longest first.

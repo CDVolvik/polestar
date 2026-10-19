@@ -79,6 +79,28 @@ end)`,
 	}
 });
 
+test('author credits keep proper names while their label and surrounding prose are checked', () => {
+	L.SCENES['test-author-credit'] = {
+		script: () => `
+Polestar.RegisterPack({ addon="Polestar_Test", id="test", format=1, title="Test", author="NorthernScribe", version="1", license="MIT" })
+Polestar.RegisterGuide({ id="test/credits", pack="test", title="署名", author="NorthernScribe", minLevel=1, maxLevel=60, steps={{goals={{t="note",text="说明"}}}}})
+leaks.try("author credit", function()
+	local fs=CreateFrame("Frame",nil,UIParent):CreateFontString()
+	fs:SetText(string.format(Polestar.L["By %s"],"NorthernScribe"))
+	fs:SetText("NorthernScribe says kill ten wolves")
+	fs:SetText("Author: NorthernScribe")
+end)`,
+	};
+	try {
+		const r=L.checkRun('zhCN','test-author-credit',L.runScene('zhCN','test-author-credit'),L.loadAllow(),{classify:false});
+		assert.deepEqual(r.errors,[]);
+		const mine=r.leaks.filter(l=>l.scenes.includes('author credit'));
+		assert.deepEqual(mine.map(l=>l.text),['NorthernScribe says kill ten wolves','Author: NorthernScribe']);
+		assert.ok(mine[0].words.includes('wolves'));
+		assert.ok(mine[1].words.includes('Author'));
+	} finally { delete L.SCENES['test-author-credit']; }
+});
+
 // English a Russian or Chinese client must never see, each found with its
 // scene: an interface string "translated" as its English, English the code
 // writes out in words a translation elsewhere also uses (open, the, guide,

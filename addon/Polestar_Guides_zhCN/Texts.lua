@@ -5423,6 +5423,10 @@ t.guides["forever/legacy/legacy-challenges"] = (function() return {
 		["{npc:16033} offers it once {quest:8996} is turned in"] = "交还{quest:8996}后，{npc:16033}会提供此任务",
 		["{npc:16073}, inside Upper Blackrock Spire after Mea Culpa (no spawn in the data: the arrow leads to {npc:16033}'s {area:254})"] = "{npc:16073}，在黑石塔上层完成“瓦塔拉克公爵”之后（数据中没有刷新点：箭头指向{npc:16033}所在的{area:254}）",
 } end)()
+t.guides["forever/miscellaneous/library-books"] = (function() return {
+		["Library Books"] = "图书馆藏书",
+		["Lost books and scrolls all over the world: each pays experience at the library, and enough of them earn a {quest:78150} reward."] = "世界各地散落着书籍和卷轴：交给图书馆可获得经验，交够数量后还可领取{quest:78150}奖励。",
+} end)()
 t.guides["forever/professions/alchemy"] = (function() return {
 		["Apprentice {skill:171}"] = "初级{skill:171}",
 		["Artisan needs character level 35 and {skill:171} 200; it raises the cap to 300. Materials for 225-300 are worth about 7g 80s in all."] = "专家级需要角色等级35级且{skill:171}达到200；上限提高到300。225-300所需材料总价约7金80银。",
