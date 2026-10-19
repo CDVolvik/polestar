@@ -532,10 +532,12 @@ test('skins: Polestar by default; Halo and Hearth bring their tokens, fonts, siz
 			selected = c("selected"), row = T.Metric("row", 40), font = (T.FontSpec("body")), menuRow = T.Metric("menuRow", 26) }
 		Polestar.Set("ui.skin", "nonsense")
 		out.unknown = T.SkinKey()
+		Polestar.Set("ui.skin", "forever")
+		out.hiddenForever = T.SkinKey()
 		emit(out)`);
 	const r = (cs) => round(cs);
 	assert.equal(out.key, 'polestar');
-	assert.deepEqual(out.choices, ['polestar', 'halo', 'hearth', 'forever', 'blizzard', 'classic']);
+	assert.deepEqual(out.choices, ['polestar', 'halo', 'hearth', 'blizzard', 'classic']);
 	assert.equal(out.houseRow, 40);
 	assert.equal(out.houseHero, 26, 'the house ladder is unchanged');
 	const h = out.halo;
@@ -568,6 +570,7 @@ test('skins: Polestar by default; Halo and Hearth bring their tokens, fonts, siz
 	assert.equal(b.menuRow, 22);
 	assert.equal(b.font, 'Fonts\\FRIZQT__.TTF', "the game's font");
 	assert.equal(out.unknown, 'polestar', 'an unknown skin is the house style');
+	assert.equal(out.hiddenForever, 'polestar', 'a saved "forever" choice draws the default skin while it is hidden (#306)');
 });
 
 test('skins: a window repaints from the house style to Halo (veil, no fill) to Hearth (gradient) and back, live', () => {

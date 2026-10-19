@@ -548,41 +548,15 @@ end
 -- The guide window (and the toasts, psLight).
 local GUIDE = {
 	forever = function(f, kit)
-		-- /polestar skintest <n>: temporary variants for Fitz to verify in game.
-		-- a = edge frame at f's level (BELOW content at f+1); cover at BORDER 1
-		--     on edge hides inner bleed while content draws above it.
-		-- b = out={0,0,0,0}: slim flush to window edge, no outer protrusion
-		-- c = original rc1 (inset 3, BACKGROUND)
-		-- default = body BORDER 1, inset 0, out {3,3,3,3} (attempt 2)
-		local st = ns and ns.Get and ns.Get("ui.skintest") or ""
-		local bvar = (st:find("a") and "a") or (st:find("b") and "b") or (st:find("c") and "c") or ""
-		local out = { 3, 3, 3, 3 }
-		if bvar == "b" then out = { 0, 0, 0, 0 } end
-		if bvar == "c" then
-			body(f, 0, 0, 0, 0.96 * opacity(f), 3)  -- original rc1
-		else
-			local bg = body(f, 0, 0, 0, 0.96 * opacity(f))
-			bg:SetDrawLayer("BORDER", 1)
-		end
+		body(f, 0, 0, 0, 0.96 * opacity(f), 3)
+		-- The micro menu box's bronze line (55 units, its chamfered corners
+		-- 12), the line 3 units in from the art's edge: laid 3 out so it runs
+		-- on the window's edge. Its filled middle is left out: the body is
+		-- the window's own.
 		local o = child(f, "edge", 6)
 		o:EnableMouse(false)
 		o:SetAllPoints(f)
-		if bvar == "a" then
-			-- Drop edge frame to f's own level. Content child frames default to
-			-- f:GetFrameLevel()+1, so they draw above edge+cover. The slim's
-			-- outer bronze line extends outside f and is unaffected.
-			o:SetFrameLevel(f:GetFrameLevel())
-		end
-		sliced(f, "slim", kit, kit.slim, o, out, "BORDER", 0, true)
-		if bvar == "a" then
-			local cv = o:CreateTexture(nil, "BORDER", nil, 1)
-			cv:SetTexture(Theme.Media("white"))
-			cv:SetVertexColor(0, 0, 0, 0.96 * opacity(f))
-			cv:SetAllPoints(f)
-			f.psSkin.kit.slimCover = cv
-		elseif f.psSkin and f.psSkin.kit and f.psSkin.kit.slimCover then
-			f.psSkin.kit.slimCover:Hide()
-		end
+		sliced(f, "slim", kit, kit.slim, o, { 3, 3, 3, 3 }, "BORDER", 0, true)
 	end,
 	blizzard = function(f)
 		local a = opacity(f)
@@ -1161,27 +1135,15 @@ function Theme.KitStatus(b)
 	if not kit then return false end
 	local fill = b:GetStatusBarTexture()
 	if kit.source == "atlas" then
-		-- Bar variants (/polestar skintest):
-		-- x = fill at OVERLAY (above ARTWORK statusArt), frame at original offsets
-		-- y = original rc1 (broken fill, original offsets)
-		-- default = attempt2 margins outside bar (+11/-13)
-		local st = ns and ns.Get and ns.Get("ui.skintest") or ""
-		local bv = (st:find("x") and "x") or (st:find("y") and "y") or ""
-		local f2, l2, r2, tp2, bt2 = region(kit, kit.status.fill)
-		if f2 then b:SetStatusBarTexture(f2); fill = b:GetStatusBarTexture(); fill:SetTexCoord(l2, r2, tp2, bt2) end
+		local f, l, r, tp, bt = region(kit, kit.status.fill)
+		if f then b:SetStatusBarTexture(f); fill = b:GetStatusBarTexture(); fill:SetTexCoord(l, r, tp, bt) end
 		fill:SetVertexColor(1, 1, 1, 1)
-		if bv == "x" and fill.SetDrawLayer then fill:SetDrawLayer("OVERLAY", 0) end
 		draw(b.Bg, kit, kit.status.bg)
 		local o = child(b, "statusFrame", 2)
 		o:EnableMouse(false)
 		o:ClearAllPoints()
-		if bv == "x" or bv == "y" then
-			o:SetPoint("TOPLEFT", b, "TOPLEFT", -7, 6)
-			o:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 7, -7)
-		else
-			o:SetPoint("TOPLEFT", b, "TOPLEFT", -7, 11)
-			o:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 7, -13)
-		end
+		o:SetPoint("TOPLEFT", b, "TOPLEFT", -7, 6)
+		o:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 7, -7)
 		sliced(b, "statusArt", kit, kit.status.frame, o, nil, "ARTWORK", 0, true)
 	elseif kit.source == "retail" then
 		b:SetStatusBarTexture(CLASSIC.statusFill[1])

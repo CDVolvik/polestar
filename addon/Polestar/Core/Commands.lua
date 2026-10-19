@@ -172,15 +172,3 @@ ns.RegisterCommand("discord", function() ns.Fire("SHOW_DISCORD") end, L["The inv
 
 ns.RegisterCommand("packs", function() ns.Fire("SHOW_OPTIONS", "guidepacks") end, L["Open the Community guides page"])
 ns.RegisterCommand("gamepad", function() ns.Fire("SHOW_OPTIONS", "gamepad") end, L["Open the Gamepad page: button names and bindings"])
--- TEMPORARY: in-game skin variants for rc2-fixes testing.
--- /polestar skintest <n>  where n combines border (a/b/c) and bar (x/y)
--- e.g. "ax" "bx" "ay" "c" "x" etc.  Empty string or "cy" = rc1 originals.
--- /polestar skintest (no arg) prints the current value.
-ns.RegisterCommand("skintest", function(rest)
-	if rest == "" then
-		ns.Print("ui.skintest = '" .. tostring(ns.Get("ui.skintest") or "") .. "'")
-		return
-	end
-	ns.Set("ui.skintest", rest ~= "" and rest or nil)
-	ns.Print("skintest set to '" .. rest .. "' — /reload to apply")
-end, "DEV: skin variant (a/b/c + x/y); /reload to apply")
