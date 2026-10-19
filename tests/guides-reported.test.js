@@ -1508,3 +1508,41 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	assert.equal(list[reports].step, list[at(list, 'accept 6543', is('accept', 6543))].step, 'opened on the Kadrak step');
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
+
+// --- Gnoll Paws (Bashidian Twotao, #385): Westfall's Gnoll Paws had no
+// point, so the arrow searched every camp of every Gnoll Paw dropper in the
+// zone, down to the level 16-19 Bandits, Taskmasters and Mystics in the
+// south. A quest item whose droppers span level bands is hand-placed on the
+// low ones the step means: the arrow leads to a camp of droppers at most two
+// levels above the quest, not a search over the whole zone. The same
+// held for Westfall's north coast murlocs, Darkshore's crawlers and
+// threshers below Auberdine, the Barrens' plainstriders by the Crossroads,
+// Silverpine's worgs and Vile Fins by the Yoricks' house and Hillsbrad's
+// bears and lions west of Tarren Mill.
+const BY_LEVEL = [
+	[WESTFALL, 725, 102],
+	[WESTFALL, 254548, 92744],
+	[WESTFALL, 730, 38],
+	[DARKSHORE, 5385, 983],
+	[DARKSHORE, 5412, 1001],
+	['forever/horde/02-the-barrens.guide', 5087, 844],
+	['forever/horde/orc-troll/02-the-barrens.guide', 5087, 844],
+	[SILVERPINE, 3164, 429],
+	[SILVERPINE, 730, 91920],
+	[HILLSBRAD_HORDE, 3476, 496],
+	[HILLSBRAD_HORDE, 3496, 501],
+];
+test("Bashidian Twotao's report (#385): a quest drop from droppers of several level bands leads to the low ones' camp, not over the whole zone", { skip }, () => {
+	data = data || loadData(DATA);
+	for (const [guide, item, quest] of BY_LEVEL) {
+		const { goal } = goals(guide)[at(goals(guide), `${guide} collect ${item}`, (g) => g.t === 'collect' && g.item === item && g.quest === quest)];
+		const qlvl = data.quest(quest).level;
+		const what = `${guide} collect ${item} (quest ${quest}, level ${qlvl})`;
+		assert.ok(located({ goal }) && !goal.spread, `${what} has a point and is no zone-wide search`);
+		const droppers = Object.keys(data.item(item).drops.npc).map((id) => data.npc(Number(id))).filter((n) => n && n.spawns && n.spawns[goal.map]);
+		const here = droppers.filter((n) => n.spawns[goal.map].pts.some((p) => Math.hypot(p[0] - goal.x, p[1] - goal.y) < 3));
+		assert.ok(here.length && here.every((n) => n.level <= qlvl + 2), `${what} leads to droppers at most two levels above the quest (${here.map((n) => `${n.name} ${n.level}`).join(', ')})`);
+	}
+	const paws = goals(WESTFALL).find(({ goal }) => goal.t === 'collect' && goal.item === 725).goal;
+	assert.ok(paws.y < 35, `the Gnoll Paws lead into the north hills (${paws.x},${paws.y})`);
+});

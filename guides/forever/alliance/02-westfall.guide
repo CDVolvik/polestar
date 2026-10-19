@@ -68,6 +68,13 @@ next forever/alliance/03-darkshore
 # - Sentinel Hill: Humans hand Thor the Quartermaster's letter (6181) after
 #   Gryan and Danuvin, who stand beside Lewis at the top of the tower, so
 #   the hill is walked down once.
+# - Gnoll Paws (102, #385): hand-placed in the north hills (44.7,14.6, the
+#   densest Riverpaw Gnoll and Scout spawns, level 11-13). Unplaced, the
+#   arrow searched every Gnoll Paw dropper's camp in the zone, down to the
+#   level 16-19 Bandits, Taskmasters and Mystics in the south. The north
+#   coast's murloc gills and eyes (92744, 38) are placed the same way, on
+#   the level 11-12 Coastrunners north of the mine (43.5,9.2), not the
+#   15-18 murlocs down the west coast.
 #
 # Optional: Furlbrow's Deed (184), only with the Westfall Deed from Elwynn's
 # Defias.
@@ -166,12 +173,12 @@ step Jangolode Mine
 
 step The north coast
   tip Murloc Coastrunners and Raiders line the beach north of the mine. They flee at low health: pull one at a time.
-  collect 254548 quest 92744 only Dwarf,Gnome,NightElf,Skyborne -- Longshore Murloc Gills
-  collect 730 quest 38.2                      -- Murloc Eye
+  collect 254548 quest 92744 @43.5,9.2 only Dwarf,Gnome,NightElf,Skyborne -- Longshore Murloc Gills
+  collect 730 quest 38.2 @43.5,9.2            -- Murloc Eye
 
 step The gnoll hills
-  tip Riverpaw Gnolls and Scouts roam the hills between the coast and the Jansen Stead.
-  collect 725 quest 102                       -- Gnoll Paws
+  tip Riverpaw Gnolls and Scouts (level 11-13) roam the hills south of the coast, from above Jangolode Mine east to the Jansen Stead. The gnolls further south and west are 13-19: stay in the north hills.
+  collect 725 quest 102 @44.7,14.6            -- Gnoll Paws
 
 step The Jansen Stead
   turnin 64                                   -- Farmer Furlbrow
