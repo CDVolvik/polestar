@@ -7,8 +7,9 @@
 // accepts closed by an exclusive quest taken earlier, accepts never turned in
 // on a route, `complete` on quests without objectives, required elite work in
 // Leveling guides, `|` in player-facing text, a `goto` placed right before a
-// goal that already leads to the same place, and timed quest items carried
-// longer than they last (timed.js).
+// goal that already leads to the same place, timed quest items carried
+// longer than they last (timed.js), turn-ins needing an item no earlier goal
+// gets, and a `complete` without a place on a quest whose objectives have one.
 //
 // Our house rules (required elite work, the solo filter) are errors in our
 // pack (`guides`) and warnings in every other.
@@ -27,6 +28,7 @@ const { eliteWork } = require('./group');
 const { PIPE_HINT } = require('../pack/manifest');
 const { MAX_LEVEL, CUM_XP } = require('../game/xp');
 const { checkTimedItems } = require('./timed');
+const { objectiveLabel } = require('./data');
 
 // Quest XP is only part of what a questing route earns; mob kills on the way
 // add roughly as much again. Generous on purpose: this only drives a warning.
@@ -217,6 +219,55 @@ function questName(data, id, title) {
 	return t ? `${id} (${t})` : String(id);
 }
 
+// Whether the world gives an item: a drop from an npc or object, a vendor, or
+// a container. An item only a quest or an NPC hands over has none.
+function worldSource(it) {
+	if (!it) return false;
+	const d = it.drops || {};
+	const some = (o) => o && Object.keys(o).length > 0;
+	return some(d.npc) || some(d.object) || (Array.isArray(it.vendors) && it.vendors.length > 0) || (Array.isArray(it.containers) && it.containers.length > 0);
+}
+
+// Items quest q's objectives ask for that the world gives, skipping what the
+// quest hands over itself (`sourceItem`, a starting item). Its
+// `requiredItems` are left out: they are what the work uses up (a torch, a
+// bait, a flare gun), mostly handed over by its giver, not what the hand-in
+// takes. -> [{ id, name, oi }]
+function neededItems(data, q) {
+	const own = new Set([q.sourceItem, ...((q.start && q.start.item) || [])].filter((x) => x != null));
+	const out = [];
+	for (const o of data.questObjectives(q.id)) {
+		if (o.kind !== 'item' || o.id == null || own.has(o.id) || out.some((x) => x.id === o.id)) continue;
+		const it = data.item(o.id);
+		if (worldSource(it)) out.push({ id: o.id, name: it.name ? String(it.name) : `item ${o.id}`, oi: o.index });
+	}
+	return out;
+}
+
+// Whether an entity has a known place: spawns of the npc or object, and for an
+// item, of an npc or object that drops it or an npc that sells it.
+function placed(data, kind, id) {
+	if (kind === 'npc' || kind === 'object') return data.spawns(kind, id).length > 0;
+	if (kind !== 'item') return false;
+	const it = data.item(id);
+	if (!it) return false;
+	const d = it.drops || {};
+	return (
+		Object.keys(d.npc || {}).some((n) => placed(data, 'npc', Number(n))) ||
+		Object.keys(d.object || {}).some((o) => placed(data, 'object', Number(o))) ||
+		(it.vendors || []).some((n) => placed(data, 'npc', Number(n)))
+	);
+}
+
+// The objectives of quest `id` that have a place to point at, as `7.1 = kill …` labels.
+function placedObjectives(data, id) {
+	const KIND = { kill: 'npc', object: 'object', item: 'item' };
+	return data
+		.questObjectives(id)
+		.filter((o) => KIND[o.kind] && o.id != null && placed(data, KIND[o.kind], o.id))
+		.map((o) => objectiveLabel(id, o));
+}
+
 // A `goto` is redundant when the goal right after it (notes skipped) has its
 // own location within GOTO_REDUNDANT_YARDS of the goto point: the arrow leads
 // to that goal directly. The yards run to the edge of the goal's nearest spawn
@@ -277,6 +328,63 @@ function checkRedundantGotos(g, data, diag) {
 				goto._line,
 				`\`goto ${goto.x},${goto.y}\`${goto.text ? ` "${goto.text}"` : ''} sends the player where ${label} (line ${next._line}) already leads, ${Math.round(yards)} yards away`,
 				`remove the goto: the arrow leads to ${label} directly`,
+			);
+		});
+	}
+}
+
+// A `turnin` whose quest's objectives ask for an item the world gives
+// (neededItems) that no earlier goal in this guide or a guide chaining into it
+// gets: a goal for the item (`collect`, `buy`, any goal naming it), one linked
+// to its objective (`kill … quest Q.O` for a drop), or a `complete` of the
+// quest (every objective). The guide then sends the player to the hand-in
+// without it, as with the Enchanted Gyrozephyr on Zephras Isle (#285, #424).
+// A warning.
+function checkTurninItems(g, before, data, diag) {
+	const held = new Set(); // item ids a goal gets
+	const objectives = new Set(); // "Q.O" a goal works on
+	const completed = new Set(); // quests with a `complete` goal
+	const note = (goal) => {
+		if (goal.item !== undefined && goal.t !== 'use') held.add(goal.item);
+		if (goal.quest !== undefined && goal.oi !== undefined) objectives.add(`${goal.quest}.${goal.oi}`);
+		if (goal.t === 'complete') completed.add(goal.quest);
+	};
+	for (const a of before) for (const s of a.steps) for (const goal of s.goals) note(goal);
+	for (const step of g.steps) {
+		for (const goal of step.goals) {
+			const q = goal.t === 'turnin' && goal.quest !== undefined ? data.quest(goal.quest) : null;
+			if (q) {
+				const missing = neededItems(data, q).filter((it) => !held.has(it.id) && !objectives.has(`${goal.quest}.${it.oi}`) && !completed.has(goal.quest));
+				if (missing.length) {
+					const list = missing.map((it) => `${it.name} (${it.id}, objective ${goal.quest}.${it.oi})`).join(', ');
+					diag.warn(
+						g._ast.file,
+						goal._line,
+						`quest ${questName(data, goal.quest, goal.title)} is turned in, but no earlier goal in this guide or a guide chaining into it gets ${list}`,
+						'add the goal that gets it before the turn-in (`collect <item> quest <Q.O>`, or the `kill`/`interact` that drops it, linked to its objective)',
+					);
+				}
+			}
+			note(goal);
+		}
+	}
+}
+
+// A `complete` with no place of its own (no coordinates, no `goto` earlier in
+// its step) on a quest whose objectives have places: the arrow has nowhere to
+// point while the player works on them (#395, #424). A warning.
+function checkBareCompletes(g, data, diag) {
+	for (const step of g.steps) {
+		step.goals.forEach((goal, i) => {
+			if (goal.t !== 'complete' || goal.x !== undefined || goal.quest === undefined) return;
+			if (step.goals.slice(0, i).some((x) => x.t === 'goto' && x.x !== undefined)) return;
+			const places = placedObjectives(data, goal.quest);
+			if (!places.length) return;
+			diag.warn(
+				g._ast.file,
+				goal._line,
+				`\`complete\` for quest ${questName(data, goal.quest, goal.title)} has no place, but its objectives do (${places.join(', ')}): the arrow has nowhere to point`,
+				`write a goal per objective (\`kill <npc> quest ${goal.quest}.<n>\`, \`collect <item> quest ${goal.quest}.<n>\`), or give the \`complete\` a \`goto\` or coordinates`,
 			);
 		});
 	}
@@ -413,6 +521,8 @@ function validateGuides(guides, data, diag) {
 		const file = g._ast.file;
 		checkPipes(g, diag);
 		checkRedundantGotos(g, data, diag);
+		checkTurninItems(g, ancestors(g), data, diag);
+		checkBareCompletes(g, data, diag);
 		const accepted = new Set();
 		const turnedIn = new Set();
 		const learned = new Set();
