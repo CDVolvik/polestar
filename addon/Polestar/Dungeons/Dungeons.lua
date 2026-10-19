@@ -53,7 +53,8 @@
 --   PlanStops, OrderStops): Dungeons/Pickup.lua. Handing them in after the
 --   run (HandinPlan, HandinFollowUps, HandinGuide, HandIn, HandinText):
 --   Dungeons/Handin.lua. Attunements and keys (AttunementState, AttuneGuide,
---   Attune): Dungeons/Attune.lua.
+--   Attune): Dungeons/Attune.lua. What the quests are worth in levels
+--   (QuestXP): Dungeons/XP.lua.
 -- Settings: dungeons.enabled. Command: /polestar dungeons [name].
 
 local ADDON, ns = ...

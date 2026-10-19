@@ -1110,6 +1110,8 @@ L["Collectibles"] = "Коллекции"
 L["Sections"] = "Разделы"
 L["guide status: Completed"] = "Завершён"
 L["Miscellaneous"] = "Разное"
+-- L["If you finish this guide"] = ""
+-- L["You are level %d. Level %d is recommended for this guide; from there:"] = ""
 
 -- UI/Lookup.lua
 L["Companion"] = "Питомец"
@@ -1320,6 +1322,8 @@ L["Dungeons need the Codex"] = "Подземельям нужен Codex"
 L["Nothing is left to do for it."] = "Делать больше нечего."
 L["The map can't open in combat: press Show on map again when it ends."] = "Карту нельзя открыть в бою: нажмите «Показать на карте» снова после боя."
 L["Search dungeons"] = "Поиск подземелий"
+-- L["If you finish the quests here"] = ""
+-- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Прямо здесь"
@@ -2271,6 +2275,25 @@ L["Guide: %d (%d levels)"] = "Гайд: %d (уровней: %d)"
 -- QoL/Bind.lua
 -- L["Bound your Hearthstone to %s."] = ""
 -- L["Bound your Hearthstone."] = ""
+
+-- UI/LevelTip.lua
+-- L["+%s levels"] = ""
+-- L["+%d%% of a level"] = ""
+-- L["1 quest for you, not done yet."] = ""
+-- L["%d quests for you, not done yet."] = ""
+-- L["%s XP from quests, about %s from %d kills the guide asks for."] = ""
+-- L["1 kill or loot goal could not be estimated."] = ""
+-- L["%d kill or loot goals could not be estimated."] = ""
+-- L["1 gives less XP: by then you are 6 or more levels above it."] = ""
+-- L["%d give less XP: by then you are 6 or more levels above them."] = ""
+-- L["1 more has no XP known and is not counted."] = ""
+-- L["%d more have no XP known and are not counted."] = ""
+-- L["Quests you have done are left out."] = ""
+-- L["Start: level %d"] = ""
+-- L["Now: %d%% into level %d"] = ""
+-- L["After: level %d"] = ""
+-- L["After: %d%% into level %d"] = ""
+-- L["Recommended: level %d"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."

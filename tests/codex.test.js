@@ -408,7 +408,7 @@ function syntheticInputs() {
 			1179: { id: 1179, name: 'Ice Cold Milk', drops: { npc: {}, object: { 2843: 25 } }, vendors: [] },
 		},
 		quests: {
-			176: { id: 176, title: 'Wanted: "Hogger"', level: 11, minLevel: 5, races: 77, classes: null, start: { npc: [], object: [68], item: [] }, end: { npc: [240], object: [] }, pre: [1], preAll: [33], preAny: [7, 783], objectives: [{ type: 'item', id: 1931, count: null, text: 'Huge Gnoll Claw' }], zone: 1429 },
+			176: { id: 176, title: 'Wanted: "Hogger"', level: 11, minLevel: 5, races: 77, classes: null, start: { npc: [], object: [68], item: [] }, end: { npc: [240], object: [] }, pre: [1], preAll: [33], preAny: [7, 783], objectives: [{ type: 'item', id: 1931, count: null, text: 'Huge Gnoll Claw' }], zone: 1429, xp: 1050 },
 			// QuestieDB requiredMinRep 3000 (Friendly) and a reputation objective 9000 (Honored): the rewards need Honored.
 			9001: { id: 9001, title: 'Frostsaber Errand', level: 60, minLevel: 55, races: null, classes: null, start: { npc: [4730], object: [], item: [] }, end: { npc: [4730], object: [] }, pre: [], objectives: [], zone: 1438, minRep: { faction: 589, value: 3000 }, reputation: { faction: 589, value: 9000 }, rewards: { items: [20002] }, source: ['questie-forever'] },
 		},
@@ -531,6 +531,9 @@ test('mergeCodex applies precedence, dedupes sources and keeps provenance', () =
 	assert.deepEqual([it[20002].repFaction, it[20002].repStanding], [null, null]);
 	assert.deepEqual([codex.quests[9001].repFaction, codex.quests[9001].repStanding], [589, 6]);
 	assert.equal(codex.quests[176].repFaction, undefined, 'an ungated quest carries no standing');
+	// A quest's full XP reward comes along from quests.json; none known, none written.
+	assert.equal(codex.quests[176].xp, 1050);
+	assert.equal(codex.quests[9001].xp, undefined);
 	// Quest source from FLB items and FLB quest rewards dedupe (choice kept); RareScanner loot adds a drop.
 	assert.deepEqual(it[2933].sources, [
 		{ type: 'quest', quest: 176, choice: true, from: ['flbis'] },

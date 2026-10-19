@@ -1110,6 +1110,8 @@ L["Collectibles"] = "收藏品"
 L["Sections"] = "區段"
 L["guide status: Completed"] = "已完成"
 L["Miscellaneous"] = "其他"
+-- L["If you finish this guide"] = ""
+-- L["You are level %d. Level %d is recommended for this guide; from there:"] = ""
 
 -- UI/Lookup.lua
 L["Companion"] = "小寵物"
@@ -1320,6 +1322,8 @@ L["Dungeons need the Codex"] = "地城需要 Codex"
 L["Nothing is left to do for it."] = "已無事可做。"
 L["The map can't open in combat: press Show on map again when it ends."] = "戰鬥中無法開啟地圖：戰鬥結束後再按一次「在地圖上顯示」。"
 L["Search dungeons"] = "搜尋地城"
+-- L["If you finish the quests here"] = ""
+-- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "就在這裡"
@@ -2271,6 +2275,25 @@ L["Guide: %d (%d levels)"] = "指南：%d（還差 %d 級）"
 -- QoL/Bind.lua
 -- L["Bound your Hearthstone to %s."] = ""
 -- L["Bound your Hearthstone."] = ""
+
+-- UI/LevelTip.lua
+-- L["+%s levels"] = ""
+-- L["+%d%% of a level"] = ""
+-- L["1 quest for you, not done yet."] = ""
+-- L["%d quests for you, not done yet."] = ""
+-- L["%s XP from quests, about %s from %d kills the guide asks for."] = ""
+-- L["1 kill or loot goal could not be estimated."] = ""
+-- L["%d kill or loot goals could not be estimated."] = ""
+-- L["1 gives less XP: by then you are 6 or more levels above it."] = ""
+-- L["%d give less XP: by then you are 6 or more levels above them."] = ""
+-- L["1 more has no XP known and is not counted."] = ""
+-- L["%d more have no XP known and are not counted."] = ""
+-- L["Quests you have done are left out."] = ""
+-- L["Start: level %d"] = ""
+-- L["Now: %d%% into level %d"] = ""
+-- L["After: level %d"] = ""
+-- L["After: %d%% into level %d"] = ""
+-- L["Recommended: level %d"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever 正在導引。關閉「已安裝時以 Shortest Path Forever 導引」（「選項」>「箭頭與路線」）即可使用 Polestar 的箭頭。"

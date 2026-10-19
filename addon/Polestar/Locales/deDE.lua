@@ -425,6 +425,8 @@ L["All"] = "Alle"
 L["Sections"] = "Abschnitte"
 L["guide status: Completed"] = "Abgeschlossen"
 L["Miscellaneous"] = "Verschiedenes"
+-- L["If you finish this guide"] = ""
+-- L["You are level %d. Level %d is recommended for this guide; from there:"] = ""
 
 -- UI/Report.lua
 L["skipped"] = "übersprungen"
@@ -1045,6 +1047,8 @@ L["Dungeons need the Codex"] = "Dungeons brauchen den Codex"
 L["No guide could be made for this (%s)."] = "Dafür konnte kein Guide erstellt werden (%s)."
 L["Search dungeons"] = "Dungeons suchen"
 L["The map can't open in combat: press Show on map again when it ends."] = "Die Karte lässt sich im Kampf nicht öffnen: Klicke nach dem Kampf erneut auf „Auf der Karte zeigen“."
+-- L["If you finish the quests here"] = ""
+-- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
 
 -- UI/Lookup.lua
 L["Mount"] = "Reittier"
@@ -2244,6 +2248,25 @@ L["Guide: %d (%d levels)"] = "Guide: %d (%d Stufen)"
 -- QoL/Bind.lua
 -- L["Bound your Hearthstone to %s."] = ""
 -- L["Bound your Hearthstone."] = ""
+
+-- UI/LevelTip.lua
+-- L["+%s levels"] = ""
+-- L["+%d%% of a level"] = ""
+-- L["1 quest for you, not done yet."] = ""
+-- L["%d quests for you, not done yet."] = ""
+-- L["%s XP from quests, about %s from %d kills the guide asks for."] = ""
+-- L["1 kill or loot goal could not be estimated."] = ""
+-- L["%d kill or loot goals could not be estimated."] = ""
+-- L["1 gives less XP: by then you are 6 or more levels above it."] = ""
+-- L["%d give less XP: by then you are 6 or more levels above them."] = ""
+-- L["1 more has no XP known and is not counted."] = ""
+-- L["%d more have no XP known and are not counted."] = ""
+-- L["Quests you have done are left out."] = ""
+-- L["Start: level %d"] = ""
+-- L["Now: %d%% into level %d"] = ""
+-- L["After: level %d"] = ""
+-- L["After: %d%% into level %d"] = ""
+-- L["Recommended: level %d"] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."

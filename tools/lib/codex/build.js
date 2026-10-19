@@ -1195,6 +1195,8 @@ function mergeCodex(inputs) {
 				rewards,
 				choices,
 			};
+			// Its full XP reward (quests.json), for what a guide or dungeon is worth in levels.
+			if (int(q.xp) > 0) quests[id].xp = int(q.xp);
 			// The standing its rewards need (questRep): an unmet one blocks its reward row.
 			const gate = questRep(q);
 			if (gate) Object.assign(quests[id], { repFaction: gate.faction, repStanding: gate.standing });

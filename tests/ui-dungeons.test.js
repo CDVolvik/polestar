@@ -185,6 +185,50 @@ test('A page: the painting header with the name, facts and actions; tabs with co
 	assert.deepEqual(out.back, [false, 1, true, false]);
 });
 
+test('The levels chip: what the quests still to do are worth; hovering it shows the XP, a bar of the levels it spans and what was counted; none at 60', () => {
+	const [out] = run(`
+		-- 19,800 of 23,200 into 20; the page's quests with XP known: 1,600 + 2,350 + 1,900.
+		uistub.player.xp, uistub.player.xpMax = 19800, 23200
+		Polestar.Dungeons.Open("wailing-caverns")
+		local _, _, pg = DS.Frames()
+		local chip = { pg.XP:IsShown(), pg.XP.Text:GetText() }
+		pg.XP:GetScript("OnEnter")(pg.XP)
+		local t = Polestar.UI.LevelTip.Frame()
+		local cells, marks = 0, {}
+		for _, c in ipairs(t.Cells) do if c:IsShown() then cells = cells + 1 end end
+		for _, m in ipairs(t.Marks) do if m:IsShown() then marks[#marks + 1] = m:GetText() end end
+		local tip = { t:IsShown(), t.Head:GetText(), t.Levels:GetText(), t.XP:GetText(), t.Now:GetText(), t.Then:GetText(), t.Notes:GetText(),
+			cells, marks, t.Cells[1].Gain:IsShown(), t.Cells[2].Gain:IsShown() }
+		pg.XP:GetScript("OnLeave")(pg.XP)
+		local left = t:IsShown()
+		uistub.player.level = 60
+		DS.Open("deadmines"); DS.Open("wailing-caverns")
+		emit({ chip = chip, tip = tip, left = left, at60 = pg.XP:IsShown() })`);
+	assert.deepEqual(out.chip, [true, '+24% of a level']);
+	assert.deepEqual(out.tip, [true, 'If you finish the quests here', '+24% of a level', '5,850 XP',
+		'Now: 85% into level 20', 'After: 9% into level 21',
+		'3 quests for you, not done yet.\n1 more has no XP known and is not counted.',
+		2, ['20', '21', '22'], true, true]);
+	assert.equal(out.left, false, 'leaving the chip hides the panel');
+	assert.equal(out.at60, false, 'at 60 the quests give no XP: no chip');
+});
+
+test('The levels chip below the quests\' level: it says the recommended level; the panel says so first and sums from there, quests only', () => {
+	const [out] = run(`
+		uistub.player.level = 10
+		Polestar.Dungeons.Open("wailing-caverns")
+		local _, _, pg = DS.Frames()
+		pg.XP:GetScript("OnEnter")(pg.XP)
+		local t = Polestar.UI.LevelTip.Frame()
+		emit({ chip = pg.XP.Text:GetText(), need = t.Need:GetText(), now = t.Now:GetText(), first = t.Marks[1]:GetText(), notes = t.Notes:GetText() })`);
+	// Deviate Hides opens at 13, the lowest of the page's quests.
+	assert.equal(out.chip, 'Recommended: level 13');
+	assert.equal(out.need, 'You are level 10. Level 13 is recommended for the quests here; from there:');
+	assert.equal(out.now, 'Start: level 13');
+	assert.equal(out.first, '13');
+	assert.doesNotMatch(out.notes, /kills/, 'a dungeon page counts its quests only');
+});
+
 test('A page with quests to pick up: "Pick up the quests" is the primary action, the entrance second; with none left, "Nothing to pick up" says why', () => {
 	const [open, none] = run(`
 		local printed = {}
