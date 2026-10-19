@@ -1976,6 +1976,9 @@ L["Classic"] = "Classic"
 -- QoL/Buttons.lua
 -- L["Click again for the next name. Shift-drag to move."] = ""
 
+-- Nav/Pins.lua
+-- L["Polestar trail dots"] = ""
+
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."
 -- L["The arrow's target, the stops of its travel route, the step's other goals and the areas their mobs and objects spawn in."] = "Das Ziel des Pfeils, die Stationen seiner Reiseroute, die anderen Ziele des Schritts und die Gebiete, in denen ihre Mobs und Objekte spawnen."
