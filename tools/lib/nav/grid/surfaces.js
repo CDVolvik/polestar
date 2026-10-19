@@ -20,7 +20,7 @@ const {
 } = require('./format');
 const { rasterise } = require('./rasterise');
 
-const KIND_FLAGS = [FLAG.TERRAIN, FLAG.WMO, FLAG.WMO | FLAG.INDOOR, FLAG.M2];
+const KIND_FLAGS = [FLAG.TERRAIN, FLAG.WMO, FLAG.WMO | FLAG.INDOOR, FLAG.M2, FLAG.M2]; // geom KIND (a walkway's surfaces are M2's)
 const LIQUID = { NONE: 0, WATER: 1, OCEAN: 2, MAGMA: 3, SLIME: 4 };
 
 // hf: rasterise()'s Heightfield; geom: tileGeometry's { c, col, row, areas,
