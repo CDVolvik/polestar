@@ -1432,6 +1432,8 @@ L["The skin's arrow"] = "La flecha del tema"
 -- L["Line style"] = ""
 -- L["Bar at the bottom"] = ""
 -- L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."] = ""
+-- L["Close offers the guide skips"] = ""
+-- L["After Polestar accepts or turns in a quest, closes the quest window the NPC opens next when the guide skips its quests. Hold Shift to keep it open."] = ""
 
 -- UI/Packs.lua
 L["turned off in the AddOns list"] = "desactivado en la lista de AddOns"

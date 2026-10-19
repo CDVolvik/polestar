@@ -1684,6 +1684,8 @@ L["The skin's arrow"] = "La flèche de l'habillage"
 -- L["Line style"] = ""
 -- L["Bar at the bottom"] = ""
 -- L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."] = ""
+-- L["Close offers the guide skips"] = ""
+-- L["After Polestar accepts or turns in a quest, closes the quest window the NPC opens next when the guide skips its quests. Hold Shift to keep it open."] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Avertissement de raid"
