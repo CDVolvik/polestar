@@ -59,6 +59,12 @@
 			},
 			"note": "The Binding (Warlock voidwalker, after 1501) is open to Orc, Undead and Troll Warlocks: Wowhead Forever https://www.wowhead.com/forever/quest=1504 lists Races [race=2], [race=5], [race=8] (checked 2026-10-14). The merged data has races 2 (Orc only)."
 		},
+		"1560": {
+			"set": {
+				"escort": true
+			},
+			"note": "Tooga's Quest (Tanaris; Tooga gives it, Torta takes it) is an escort: Forever's quest data reads \"Show Tooga the way back to his wife, Torta\", objective \"Lead Tooga to Torta\", with a 30 minute timer (checked 2026-10-19). No text says escort and its objective is a kill objective in quests.json, so the compiler's escort rule (tools/lib/dsl/escort.js) misses it. Both Tanaris guides route it."
+		},
 		"1919": {
 			"set": {
 				"races": 4294967361
@@ -479,6 +485,12 @@
 				]
 			},
 			"note": "Her Name Is Olgra (Barrens, Mankrik) comes after Lost in Battle 4921: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=95774 lists \"1. Lost in Battle; 2. Her Name Is Olgra\", and its text (\"she has died in battle. Her name is Olgra\") follows finding her body (checked 2026-10-16). Issue #65: Mankrik did not offer it beside Lost in Battle. QuestieDB 1.0.5 has no prerequisite."
+		},
+		"96204": {
+			"set": {
+				"escort": true
+			},
+			"note": "The Windshaper's Wrath (Silverpine Forest, Undead Paladin; Lumina Windsinger gives it) is an escort: Forever's quest data reads \"Accompany Lumina Windsinger and help her escape Fenris Keep\", objective \"Escort Lumina Windsinger to safety\" (checked 2026-10-19). quests.json has no objectives for it, so the compiler's escort rule (tools/lib/dsl/escort.js) misses it. class/paladin/lumina-windsinger.guide routes it."
 		},
 		"96395": {
 			"set": {

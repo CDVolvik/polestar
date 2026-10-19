@@ -5240,8 +5240,8 @@ do
 					title = "{npc:5955}'s escort",
 					note = "The little turtle {npc:5955} hides at the north end of the valley. Lead him home to his wife {npc:6015}, by the water just east of {area:977}: he walks slowly and the desert's beasts go for him, so keep him alive.",
 					goals = {
-						{ t = "accept", quest = 1560, title = "Tooga's Quest", npc = 5955, npcName = "Tooga", minLevel = 40, qlvl = 50, map = 1446, x = 29.48, y = 60.51, f = "e", spots = { { x = 29.5, y = 60.5, r = 15, n = 1 }, { x = 30, y = 65, r = 15, n = 1 }, { x = 30, y = 70, r = 15, n = 1 }, { x = 31.8, y = 74.2, z = 9, r = 15, n = 1 } } },
-						{ t = "complete", quest = 1560, title = "Tooga's Quest" },
+						{ t = "accept", quest = 1560, title = "Tooga's Quest", npc = 5955, npcName = "Tooga", minLevel = 40, qlvl = 50, map = 1446, x = 29.48, y = 60.51, f = "e", spots = { { x = 29.5, y = 60.5, r = 15, n = 1 }, { x = 30, y = 65, r = 15, n = 1 }, { x = 30, y = 70, r = 15, n = 1 }, { x = 31.8, y = 74.2, z = 9, r = 15, n = 1 } }, escort = true },
+						{ t = "complete", quest = 1560, title = "Tooga's Quest", escort = true },
 						{ t = "turnin", quest = 1560, title = "Tooga's Quest", npc = 6015, npcName = "Torta", map = 1446, x = 66.58, y = 25.67, z = 0.8, f = "e" },
 					},
 				},
@@ -13111,7 +13111,7 @@ do
 					note = "Free her with the key, then stay close while she fights her way out of the keep.",
 					goals = {
 						{ t = "turnin", quest = 91862, title = "Lumina Windsinger", npc = 248755, npcName = "Lumina Windsinger", map = 1421, x = 65.51, y = 23.47, f = "e" },
-						{ t = "accept", quest = 96204, title = "The Windshaper's Wrath", npc = 248755, npcName = "Lumina Windsinger", minLevel = 18, qlvl = 22, map = 1421, x = 65.51, y = 23.47, f = "e" },
+						{ t = "accept", quest = 96204, title = "The Windshaper's Wrath", npc = 248755, npcName = "Lumina Windsinger", minLevel = 18, qlvl = 22, map = 1421, x = 65.51, y = 23.47, f = "e", escort = true },
 					},
 				},
 				{
@@ -27302,8 +27302,8 @@ do
 					title = "{npc:5955}'s escort",
 					note = "{npc:5955} waits in the valley. Walk him all the way to his wife {npc:6015} in {area:977}, north-east across the desert: stay close, slow down for him and fight off what attacks him. Do not mount or hearth out of his reach. {npc:8579} stands in the port too.",
 					goals = {
-						{ t = "accept", quest = 1560, title = "Tooga's Quest", npc = 5955, npcName = "Tooga", minLevel = 40, qlvl = 50, map = 1446, x = 31.8, y = 74.15, z = 9, f = "e", spots = { { x = 31.8, y = 74.2, z = 9, r = 15, n = 1 }, { x = 30, y = 70, r = 15, n = 1 }, { x = 30, y = 65, r = 15, n = 1 }, { x = 29.5, y = 60.5, r = 15, n = 1 } } },
-						{ t = "complete", quest = 1560, title = "Tooga's Quest" },
+						{ t = "accept", quest = 1560, title = "Tooga's Quest", npc = 5955, npcName = "Tooga", minLevel = 40, qlvl = 50, map = 1446, x = 31.8, y = 74.15, z = 9, f = "e", spots = { { x = 31.8, y = 74.2, z = 9, r = 15, n = 1 }, { x = 30, y = 70, r = 15, n = 1 }, { x = 30, y = 65, r = 15, n = 1 }, { x = 29.5, y = 60.5, r = 15, n = 1 } }, escort = true },
+						{ t = "complete", quest = 1560, title = "Tooga's Quest", escort = true },
 						{ t = "turnin", quest = 1560, title = "Tooga's Quest", npc = 6015, npcName = "Torta", map = 1446, x = 66.58, y = 25.67, z = 0.8, f = "e", note = "{npc:6015}, {area:977}" },
 						{ t = "turnin", quest = 3520, title = "Screecher Spirits", npc = 8579, npcName = "Yeh'kinya", map = 1446, x = 66.99, y = 22.36, z = 8.5, f = "e" },
 					},
