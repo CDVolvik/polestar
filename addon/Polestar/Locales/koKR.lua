@@ -172,6 +172,7 @@ L["Halo"] = "후광"
 L["Hearth"] = "화롯가"
 L["Blizzard"] = "블리자드"
 L["Classic"] = "클래식"
+-- L["WoW Forever"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "클릭하여 복사"
@@ -1323,6 +1324,10 @@ L["The map can't open in combat: press Show on map again when it ends."] = "전�
 L["Search dungeons"] = "던전 검색"
 -- L["If you finish the quests here"] = ""
 -- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
+-- L["%s XP at your level"] = ""
+-- L["If you finish this quest and the chain before it"] = ""
+-- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
+-- L["%s XP with its chain"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "바로 여기"

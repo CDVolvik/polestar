@@ -1439,6 +1439,18 @@ Polestar.UI.Picker.SetCategory("Leveling"); Polestar.UI.Picker.Select("forever/h
 		],
 	},
 	{
+		file: 'dungeons-chain.svg',
+		title: 'Wailing Caverns, Leaders of the Fang with Nara Wildmane before it still to do: the chain chip after its rewards, hovered (the quest and its chain, 3,000 XP); at 27, Nara Wildmane in the chain hovered: its levels, state, start and end, rewards and its XP at your level',
+		panels: [
+			{ dungeons: true, roots: PICKER, script: dungeonsScene(`done[1490] = nil; Polestar.Dungeons.Open("wailing-caverns"); DS.ShowQuest(914)
+local b; for _, x in ipairs(DS.blocks) do if x:IsShown() and x.psQuest == 914 then b = x end end
+Polestar.UI.LevelTip.Show(b.ChainXP)`) },
+			{ dungeons: true, roots: [...PICKER, 'GameTooltip'], script: dungeonsScene(`preview.enableTooltips(); uistub.player.level = 27; UnitLevel = function() return 27 end; Polestar.Dungeons.Open("wailing-caverns"); DS.ShowQuest(914)
+local b; for _, x in ipairs(DS.blocks) do if x:IsShown() and x.psQuest == 914 then b = x end end
+local r = b.Chains[1]; r:GetScript("OnEnter")(r)`) },
+		],
+	},
+	{
 		file: 'dungeons-bosses.svg',
 		title: 'Wailing Caverns: the Bosses tab (kill order and the quests each serves) and the Map tab (the entrance and the quest givers near it); All dungeons with the filter on All',
 		panels: [
