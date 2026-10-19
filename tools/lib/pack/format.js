@@ -11,7 +11,7 @@ const { header } = require('../generated');
 // Polestar 0.2.5.
 const FORMAT = 3;
 const WHEN_FORMAT = 4;
-const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.3.0' };
+const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6' };
 
 // The format a pack's compiled guides need: WHEN_FORMAT when a step of
 // them has `when`, or a `next` option has one (`nextWhen`), else FORMAT.

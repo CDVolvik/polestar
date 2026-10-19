@@ -1080,6 +1080,18 @@
 			},
 			"note": "Emphasis on Sacrifice (Paladin charger) is for Human and Dwarf Paladins and starts at Lord Grayson Shadowbreaker: Wowhead Forever https://www.wowhead.com/forever/quest=7637 lists Races [race=1], [race=3] and Start npc=928 (checked 2026-10-16). Both races reach him by their own Lord Grayson Shadowbreaker quest: 7638 for Humans, 7670 for Dwarves, whose next is 7637 in the merged data. The compiled guide had only the Human's 7638 as its prerequisite, so a Dwarf read as lacking it."
 		},
+		"8227": {
+			"set": {
+				"start": {
+					"npc": [],
+					"object": [
+						180366
+					],
+					"item": []
+				}
+			},
+			"note": "Nat's Measuring Tape starts only at the Battered Tackle Box (object 180366), as Forever's quest data (page snapshot 2026-10-17) has it. The merged data also listed the tape itself (item 19973) as a starter, but the client (ItemSparse, Forever 1.60.1 and Era 1.15.9) gives the item no StartQuestID: the box hands you the tape for the quest."
+		},
 		"8228": {
 			"set": {
 				"start": {
@@ -2061,6 +2073,14 @@
 		},
 		"91901": {
 			"set": {
+				"start": {
+					"npc": [
+						256386,
+						256390
+					],
+					"object": [],
+					"item": []
+				},
 				"end": {
 					"npc": [
 						256386,
@@ -2069,7 +2089,7 @@
 					"object": []
 				}
 			},
-			"note": "A Sealed Crate: Forever's quest data (page snapshot 2026-10-17) ends with Dokimi (npc 256386) and Marcy Baker (npc 256390); as its ender the merged data lacked Marcy Baker (npc 256390)."
+			"note": "A Sealed Crate: Forever's quest data (page snapshot 2026-10-17) ends with Dokimi (npc 256386) and Marcy Baker (npc 256390); as its ender the merged data lacked Marcy Baker (npc 256390). As giver Forever's quest data names only Marcy Baker, for every crate quest (91899-91906), while Dokimi's own entry there ends them all and starts none: the giver line has only the Alliance side. QuestieDB's Forever store has Dokimi as the giver, and the client tells you to 'Deliver the completed crate to your faction's trade representative' (Dokimi for the Horde, Marcy Baker for the Alliance), so both give it, as 91899, 91900 and 91904 already have."
 		},
 		"91920": {
 			"set": {

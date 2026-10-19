@@ -30,7 +30,9 @@ const COORD_RE = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/;
 
 const HEADER_KEYS = ['guide', 'title', 'levels', 'zone', 'faction', 'race', 'class', 'next', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'author', 'version', 'coords', 'pitch', 'pro', 'con'];
 // Lines inside a step that are not goals.
-const STEP_KEYS = ['zone', 'only', 'tip', 'when'];
+// `loop`: the step's `goto` points are the spawn areas of its kill, collect
+// and interact goals (resolve.js, applyLoop).
+const STEP_KEYS = ['zone', 'only', 'tip', 'when', 'loop'];
 
 // `group [N]`: the goal needs a group (of N players), shown in the guide window.
 const COMMON = ['text', 'optional', 'only', 'group'];
@@ -267,6 +269,10 @@ function parseGuide(text, file, diag) {
 				const w = parseWhen(line.slice(toks[1] ? toks[1].start : lex.end, lex.end));
 				if (w.error) err(ln, w.error, w.hint);
 				else (step.when ||= []).push({ ...w.value, line: ln });
+			} else if (kw === 'loop') {
+				if (toks.length > 1) err(ln, '`loop` takes nothing');
+				else if (step.loop) err(ln, 'duplicate `loop` in step');
+				else step.loop = ln;
 			} else {
 				const tip = unquoteRest(line, lex, 1);
 				if (!tip) {
