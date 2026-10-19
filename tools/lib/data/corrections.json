@@ -105,6 +105,25 @@
 			},
 			"note": "Emphasis on Sacrifice (Paladin charger) is for Human and Dwarf Paladins and starts at Lord Grayson Shadowbreaker: Wowhead Forever https://www.wowhead.com/forever/quest=7637 lists Races [race=1], [race=3] and Start npc=928 (checked 2026-10-16). Both races reach him by their own Lord Grayson Shadowbreaker quest: 7638 for Humans, 7670 for Dwarves, whose next is 7637 in the merged data. The compiled guide had only the Human's 7638 as its prerequisite, so a Dwarf read as lacking it."
 		},
+		"65593": {
+			"set": {
+				"objectives": [
+					{
+						"type": "item",
+						"id": 190179,
+						"count": 1,
+						"text": "Avelina's Heart"
+					},
+					{
+						"type": "item",
+						"id": 190180,
+						"count": 1,
+						"text": "Isaac's Heart"
+					}
+				]
+			},
+			"note": "Hearts of the Lovers (Horde Warlock incubus, Godrick Farsan) needs both hearts, Avelina's Heart first, then Isaac's Heart: Forever's quest data for quest 65593 (checked 2026-10-19), and Phyz's report (#412): with Avelina's heart in the bags the guide passed the Isaac Pearson step, so the log's first line is Avelina's. QuestieDB lists only Isaac's Heart."
+		},
 		"87760": {
 			"set": {
 				"pre": [
