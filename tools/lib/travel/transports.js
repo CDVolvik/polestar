@@ -29,6 +29,16 @@
 //   its pier. Where an end's point is not on dry walkable ground, it gets a
 //   board point: where passengers walk to and board (boardPoint, from the
 //   navigation grid; none without a grid).
+// - An end on dry ground gets a height (endHeight, from the grid; none
+//   without one): the walkable surface of its column nearest the height of
+//   what stands there, so the walk to it ends on that floor. That is the
+//   tram's AreaTrigger, or the spawn of the NPC an end is placed at (the
+//   zeppelin masters and wharfmasters, CMaNGOS classic-db's spawns in
+//   data/forever/spawnz.json); never a ship's stop (the ship's origin: a
+//   zeppelin's lies 17 yd above its tower). Without one the walking engine
+//   ends on the cheapest surface there: the walk to the Deeprun Tram climbed
+//   to the roof above its entrance (#338), the one to Orgrimmar's zeppelin
+//   tower stopped at its foot.
 
 const { round, dist2d, isJump } = require('./geo');
 const { spawnPoints, indexByName } = require('./entities');
@@ -44,6 +54,8 @@ const TRAM_WAIT = 30; // two trams shuttle continuously
 const ANCHOR_YARDS = 120;
 const STOP_MERGE_YARDS = 40;
 const BOARD_YARDS = 30; // a board point is at most this far from its end's stop
+const END_Z_YARDS = 10; // an end's height is a surface at most this far above or below what stands there
+const SPAWN_Z_YARDS = 15; // ... a dock NPC's spawn at most this far from the end (dsl/heights.js HEIGHT_YARDS)
 
 const A = 1;
 const H = 2;
@@ -324,11 +336,51 @@ function boardPoint(nav, end) {
 	return best && { wx: round(best.wx, 1), wy: round(best.wy, 1), z: round(best.z, 1) };
 }
 
+// The height of the NPC or object an end is placed at (an anchor used for its
+// position, endpoint): its spawn in spawnz (data/forever/spawnz.json's
+// { npc, object }: [[map, wx, wy, z]]) nearest the end, within
+// SPAWN_Z_YARDS; null without one.
+function anchorHeight(spawnz, end, anchor, anchorInfo) {
+	if (!spawnz || !anchor || anchor.use !== 'position' || !anchorInfo || anchorInfo.error) return null;
+	let best = null;
+	for (const id of new Set(anchorInfo.pts.map((p) => p.id))) {
+		for (const [c, wx, wy, z] of (spawnz[anchorInfo.kind] || {})[id] || []) {
+			const d = c === end.c ? Math.hypot(wx - end.wx, wy - end.wy) : Infinity;
+			if (d <= SPAWN_Z_YARDS && (!best || d < best.d)) best = { d, z };
+		}
+	}
+	return best && best.z;
+}
+
+// The height of an end on dry ground: the dry surface of its column nearest
+// `z` (its source's height) within END_Z_YARDS, of a region of at least
+// SNAP_REGION surfaces and open both ways (boardPoint's rules). The Deeprun
+// Tram's AreaTrigger in Stormwind lies at 96.6 over surfaces at 59.5, 91.8,
+// 122.3 and 142.5: the entrance is 91.8. nav: tools/lib/nav/path.js openNav.
+// -> z (one decimal), or null: nothing there qualifies.
+function endHeight(nav, { c, wx, wy }, z) {
+	if (typeof z !== 'number' || !Number.isFinite(z)) return null;
+	const at = cellOf(wx, wy);
+	const t = nav.tile(c, at.col, at.row);
+	if (!t) return null;
+	const k = at.j * TILE_CELLS + at.i;
+	let best = null;
+	for (const e of drySurfaces(t, k)) {
+		const size = nav.regionSize(c, at.col, at.row, e);
+		if ((size !== null && size < SNAP_REGION) || !nav.isOpen(t, k, e)) continue;
+		const d = Math.abs(t.z[e] - z);
+		if (d <= END_Z_YARDS && (best === null || d < best.d)) best = { d, z: t.z[e] };
+	}
+	return best && round(best.z, 1);
+}
+
 // foreverTables: the Forever client's { TaxiPathNode } for `client: 'forever'`
 // ships (null when unavailable: those are skipped with `foreverError`).
-// nav: the navigation grid (path.js openNav) for the ends' board points;
-// null: none.
-function buildTransports({ tables, foreverTables = null, foreverBuild = null, foreverError = 'not loaded', frames, npcs, objects, liveFrames = new Map(), nav = null }) {
+// nav: the navigation grid (path.js openNav) for the ends' board points and
+// heights; null: none.
+// spawnz: data/forever/spawnz.json, for the heights of the ends placed at an
+// NPC (anchorHeight); null: none.
+function buildTransports({ tables, foreverTables = null, foreverBuild = null, foreverError = 'not loaded', frames, npcs, objects, liveFrames = new Map(), nav = null, spawnz = null }) {
 	const warnings = [];
 	const indexes = { npcs: indexByName(npcs), objects: indexByName(objects) };
 	const points = { era: pathPoints(tables.TaxiPathNode), forever: foreverTables ? pathPoints(foreverTables.TaxiPathNode) : null };
@@ -344,6 +396,7 @@ function buildTransports({ tables, foreverTables = null, foreverBuild = null, fo
 		let waitB;
 		let source;
 		let ends = null; // the ends' TaxiPathNode stops (boats and zeppelins), for the timetable
+		let heights = [null, null]; // the ends' source heights: the tram's AreaTriggers, the dock NPCs' spawns
 		if (t.kind === 'tram') {
 			const ta = triggers.get(t.a.trigger);
 			const tb = triggers.get(t.b.trigger);
@@ -357,6 +410,7 @@ function buildTransports({ tables, foreverTables = null, foreverBuild = null, fo
 			b = endpoint(t.b, frames, liveFrames, tb, null, warnings, t.id);
 			if (a) a.source = `AreaTrigger ${t.a.trigger}`;
 			if (b) b.source = `AreaTrigger ${t.b.trigger}`;
+			heights = [ta.z, tb.z];
 			const inside = Math.hypot(ib.wx - ia.wx, ib.wy - ia.wy);
 			ab = ba = inside / TRANSPORT_SPEED + 2 * LOAD_SECONDS;
 			waitA = waitB = TRAM_WAIT;
@@ -385,6 +439,7 @@ function buildTransports({ tables, foreverTables = null, foreverBuild = null, fo
 			a = endpoint(t.a, frames, liveFrames, sa, anchorA, warnings, t.id);
 			ends = { a: { c: sa.c, wx: sa.wx, wy: sa.wy }, b: { c: sb.c, wx: sb.wx, wy: sb.wy } };
 			b = endpoint(t.b, frames, liveFrames, sb, anchorB, warnings, t.id);
+			heights = [a && anchorHeight(spawnz, a, t.a.anchor, anchorA), b && anchorHeight(spawnz, b, t.b.anchor, anchorB)];
 			const fwd = sailBetween(pts, stops, sa, sb);
 			const back = sailBetween(pts, stops, sb, sa);
 			const docked = stops.reduce((s, stop) => s + stop.delay, 0);
@@ -401,11 +456,16 @@ function buildTransports({ tables, foreverTables = null, foreverBuild = null, fo
 			continue;
 		}
 		if (nav) {
-			for (const e of [a, b]) {
+			[a, b].forEach((e, i) => {
 				const board = boardPoint(nav, e);
 				if (board) e.board = board;
 				else if (!onDryGround(nav, e)) warnings.push(`${t.id}: the ${e.name} end is not on dry ground and has no dry ground within ${BOARD_YARDS} yd`);
-			}
+				else if (heights[i] !== null) {
+					const z = endHeight(nav, e, heights[i]);
+					if (z !== null) e.z = z;
+					else warnings.push(`${t.id}: the ${e.name} end has no walkable surface within ${END_Z_YARDS} yd of its height ${round(heights[i], 1)}`);
+				}
+			});
 		}
 		out.push({
 			id: t.id,
@@ -424,4 +484,4 @@ function buildTransports({ tables, foreverTables = null, foreverBuild = null, fo
 	return { transports: out, warnings };
 }
 
-module.exports = { buildTransports, boardPoint, onDryGround, inZone, TRANSPORTS, TRANSPORT_SPEED, LOAD_SECONDS, ANCHOR_YARDS, BOARD_YARDS };
+module.exports = { buildTransports, boardPoint, endHeight, onDryGround, inZone, TRANSPORTS, TRANSPORT_SPEED, LOAD_SECONDS, ANCHOR_YARDS, BOARD_YARDS, END_Z_YARDS };

@@ -30,6 +30,35 @@ function tmp() {
 	return tmpdir('polestar-travel-');
 }
 
+test('a flight master in a city uses its named city, not the surrounding region (#347)', () => {
+	const { Frames } = require('../tools/lib/travel/geo');
+	const { buildTaxi } = require('../tools/lib/travel/taxi');
+	// Synthetic overlapping maps, with the same flight master listed on both
+	// as Tal is in Mulgore and Thunder Bluff in the source spawn data.
+	const square = (size) => ({ c: 1, top: size, bottom: -size, left: size, right: -size });
+	const frames = new Frames({ 9000: square(100), 9001: square(10), 9002: square(1000) }, {
+		9000: { name: 'Test Region', type: 3 },
+		9001: { name: 'Test City', type: 3 },
+		9002: { name: 'Test Continent', type: 2 },
+	});
+	const node = { ID: 101, ContinentID: 1, Pos_0: 0, Pos_1: 0, Flags: 2, CharacterBitNumber: 1, Name_lang: 'Test City, Test Region' };
+	function build(maps, overrides = {}) {
+		const npcs = maps.length ? {
+			1001: {
+				id: 1001, name: 'Test Flight Master', faction: 'H', roles: ['flightmaster'],
+				spawns: Object.fromEntries(maps.map((map) => [map, { f: 'e', pts: [[50, 50]] }])),
+			},
+		} : {};
+		return buildTaxi({ frames, npcs, tables: { TaxiNodes: [{ ...node, ...overrides }], TaxiPath: [], TaxiPathNode: [] } }).nodes[0];
+	}
+	assert.equal(build([9000, 9001]).map, 9001, 'the city name breaks the tie between duplicate spawn maps');
+	assert.equal(build([]).map, 9001, 'the named city also wins when no NPC matches');
+	assert.equal(build([9000]).map, 9000, 'an unambiguous NPC spawn map still takes precedence');
+	assert.equal(build([], { Name_lang: 'Test Village, Test Region' }).map, 9000, 'ordinary town names still use their region');
+	assert.equal(build([], { Pos_0: 50 }).map, 9000, 'a named city outside the point does not win');
+	assert.deepEqual([build([9000, 9001]).x, build([9000, 9001]).y], [50, 50]);
+});
+
 test('flight masters, flights, transports and inns come from the client tables and spawn data', async () => {
 	const { travel, warnings } = await buildTravel(opts());
 	assert.equal(travel.build, '1.15.0.1');
@@ -351,6 +380,51 @@ test('a ship stop in the water 12 yd off a pier gets a board point on the deck; 
 	const { travel, warnings } = await buildTravel(opts());
 	assert.equal(warnings.filter((w) => /no navigation grid/.test(w)).length, 1, warnings.join('\n'));
 	assert.ok(travel.transports.every((t) => !t.a.board && !t.b.board));
+});
+
+// #338 (Tazul): the Deeprun Tram's Stormwind end had no height, so the walk to
+// it ended on the roof above the entrance. An end on dry ground gets the floor
+// of its column nearest the height of what stands there (the AreaTrigger, the
+// dock NPC's spawn), within 10 yd.
+test('an end on dry ground gets the floor nearest its source\'s height: the entrance under a roof, not the roof', async () => {
+	const { endHeight } = require('../tools/lib/travel/transports');
+	const { Scene } = require('./helpers/navscene');
+	const { buildGrid } = require('../tools/lib/nav/grid/build');
+	const { openNav } = require('../tools/lib/nav/path');
+	// Flat ground (z 0) with a 60 x 60 yd roof plate 12 yd up over it, a ramp onto its west edge.
+	const s = new Scene();
+	s.box(200, 200, 11.5, 260, 260, 12, 1);
+	s.quad([170, 220, 0], [200, 220, 12], [200, 240, 12], [170, 240, 0], 1);
+	const dir = tmpdir('polestar-endz-');
+	await buildGrid({
+		outDir: dir, workers: 0,
+		continents: [{ c: 0, name: 'test', tiles: [{ col: s.col, row: s.row }] }],
+		geometryJob: () => ({ geom: s.geom() }),
+	});
+	const nav = openNav({ dir });
+	const end = s.world(230, 230);
+	assert.ok(Math.abs(endHeight(nav, end, 4.8) - 0) < 0.5, 'a trigger 4.8 yd over the ground: the ground under the roof');
+	assert.ok(Math.abs(endHeight(nav, end, 13) - 12) < 0.5, 'a spawn on the roof: the roof');
+	assert.equal(endHeight(nav, end, 30), null, 'nothing within 10 yd: none');
+	assert.equal(endHeight(nav, end, null), null, 'no source height: none');
+});
+
+test('the committed TravelData.lua gives the tram and zeppelin ends their floor: the tram\'s entrances, the towers\' tops', () => {
+	const [ends] = runAddon({
+		stubs: ['stub_nav.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Nav/Nav.xml'] }],
+		script: `
+			local out = {}
+			for _, t in ipairs(Polestar.Nav.GetTravelData().transports) do
+				out[t.id] = { t.a.z or false, t.b.z or false }
+			end
+			emit(out)`,
+	}).emitted;
+	const near = (v, z) => typeof v === 'number' && Math.abs(v - z) < 3;
+	const tram = ends['tram-stormwind-ironforge'];
+	assert.ok(near(tram[0], 92) && near(tram[1], 502), `the tram's entrances in Stormwind (AreaTrigger 96.6) and Ironforge: ${tram}`);
+	const og = ends['zeppelin-orgrimmar-undercity'];
+	assert.ok(near(og[0], 54), `Orgrimmar's tower top (Frezza at 53.6): ${og[0]}`);
 });
 
 test('the committed TravelData.lua has the Forever ships on their dock maps', () => {

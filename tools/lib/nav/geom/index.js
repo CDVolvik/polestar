@@ -28,6 +28,14 @@ const { parsePlacements, placementMatrix, transformPoints, transformBox } = requ
 const { loadWmo } = require('./wmo');
 const { parseM2 } = require('./m2');
 
+// The reviewed openings (openings.json): { id, wmo, portal, depth }.
+const OPENINGS = require('./openings.json').openings.map((o) => {
+	if (typeof o.id !== 'string' || !Number.isInteger(o.wmo) || !Number.isInteger(o.portal) || o.portal < 0 || !(o.depth > 0 && o.depth <= 4)) {
+		throw new Error(`openings.json: bad entry ${JSON.stringify(o.id)}`);
+	}
+	return { id: o.id, wmo: o.wmo, portal: o.portal, depth: o.depth };
+});
+
 const GRID = 64;
 const KIND = { terrain: 0, wmoOutdoor: 1, wmoIndoor: 2, m2: 3 };
 const LIQUID = { none: 0, water: 1, ocean: 2, magma: 3, slime: 4 };
@@ -215,12 +223,16 @@ function model(cache, fdid, load) {
 //     entry per type present, triangles counter-clockwise seen from above;
 //   placements: [{ type: 'wmo' | 'm2', fdid, uniqueId, first, count }], the
 //     collision triangle range each placement added (a WMO appears, with the
-//     same uniqueId, in every tile it touches).
+//     same uniqueId, in every tile it touches);
+//   openings: [{ id, pts: [wx, wy] x 4, zlo, zhi }], the cuts of the reviewed
+//     openings (openings.json, OPENINGS) placed in this tile: the portal's
+//     span along its wall, `depth` yards to each side of its plane, between
+//     its bottom and top (rasterise.js carve).
 // Model triangles (collision and liquid) are kept when their xy box meets the
 // tile grown by `margin` yards (default 0); terrain triangles are
 // counter-clockwise seen from above, collision triangles as the model
 // stores them. opts.cache: Map fdid -> parsed WMO/M2, shared across tiles.
-async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map(), margin = 0 } = {}) {
+async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map(), margin = 0, openings = OPENINGS } = {}) {
 	const [rootBuf, objBuf, liquid] = await Promise.all([casc.get(root), obj0 ? casc.get(obj0) : null, liquidInfo(casc)]);
 	const terrain = parseRoot(rootBuf);
 	const { tris: ttris, holes } = terrainTriangles(terrain.mcnk);
@@ -236,6 +248,7 @@ async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map
 	const wet = new Soup(1 << 10);
 	const missing = new Set();
 	const placements = [];
+	const cuts = [];
 	const get = (fdid) => casc.get(fdid);
 
 	const { wmo, m2 } = objBuf ? parsePlacements(chunks(objBuf)) : { wmo: [], m2: [] };
@@ -254,6 +267,16 @@ async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map
 		for (const g of mdl.missing) missing.add(g);
 		const m = placementMatrix(p);
 		stats.wmoTris += place('wmo', p, mdl, m, p.extents, mdl.kind);
+		for (const o of openings) {
+			if (o.wmo !== p.fdid) continue;
+			const v = mdl.portals && mdl.portals[o.portal];
+			if (!v) throw new Error(`openings.json ${o.id}: WMO ${p.fdid} has no portal ${o.portal}`);
+			const cut = openingCut(transformPoints(m, v), o.depth);
+			if (!cut) throw new Error(`openings.json ${o.id}: portal ${o.portal} of WMO ${p.fdid} is not upright`);
+			const xs = cut.pts.map((q) => q[0]);
+			const ys = cut.pts.map((q) => q[1]);
+			if (overlaps([Math.min(...xs), Math.min(...ys), 0, Math.max(...xs), Math.max(...ys), 0], box)) cuts.push({ id: o.id, ...cut });
+		}
 		if (mdl.liquid.idx.length && overlaps(p.extents, box)) stats.wmoLiquidTris += wet.add(transformPoints(m, mdl.liquid.verts), mdl.liquid.idx, mdl.liquid.kind, box);
 	});
 	m2.forEach((p, i) => {
@@ -290,7 +313,47 @@ async function tileGeometry(casc, { c, col, row, root, obj0 }, { cache = new Map
 		wmoLiquid,
 		stats,
 		placements,
+		openings: cuts,
 	};
 }
 
-module.exports = { continentTiles, continentFlags, tileGeometry, liquidInfo, transportTravel, KIND, LIQUID };
+// A placed portal (x, y, z per vertex, world) -> { pts: [wx, wy] x 4, zlo, zhi }:
+// its span along the wall (the vertices' extent across the plane's horizontal
+// normal), `depth` yards to each side; null when the portal is not upright.
+function openingCut(v, depth) {
+	const n = v.length / 3;
+	if (n < 3) return null;
+	let nx = 0;
+	let ny = 0;
+	let nz = 0;
+	for (let i = 0; i < n; i++) {
+		const j = (i + 1) % n;
+		nx += (v[i * 3 + 1] - v[j * 3 + 1]) * (v[i * 3 + 2] + v[j * 3 + 2]);
+		ny += (v[i * 3 + 2] - v[j * 3 + 2]) * (v[i * 3] + v[j * 3]);
+		nz += (v[i * 3] - v[j * 3]) * (v[i * 3 + 1] + v[j * 3 + 1]);
+	}
+	const h = Math.hypot(nx, ny);
+	if (!(h > 1e-6) || Math.abs(nz) / Math.hypot(h, nz) > 0.2) return null;
+	nx /= h;
+	ny /= h;
+	const ax = -ny;
+	const ay = nx;
+	let lo = Infinity;
+	let hi = -Infinity;
+	let zlo = Infinity;
+	let zhi = -Infinity;
+	let along = 0;
+	for (let i = 0; i < n; i++) {
+		const t = v[i * 3] * ax + v[i * 3 + 1] * ay;
+		if (t < lo) lo = t;
+		if (t > hi) hi = t;
+		along += v[i * 3] * nx + v[i * 3 + 1] * ny;
+		zlo = Math.min(zlo, v[i * 3 + 2]);
+		zhi = Math.max(zhi, v[i * 3 + 2]);
+	}
+	along /= n;
+	const at = (t, s) => [ax * t + nx * (along + s), ay * t + ny * (along + s)];
+	return { pts: [at(lo, -depth), at(hi, -depth), at(hi, depth), at(lo, depth)], zlo, zhi };
+}
+
+module.exports = { continentTiles, continentFlags, tileGeometry, openingCut, liquidInfo, transportTravel, KIND, LIQUID, OPENINGS };

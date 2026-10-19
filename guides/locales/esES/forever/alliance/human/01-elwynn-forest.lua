@@ -357,8 +357,8 @@ return {
 	["{npc:6171}: Redemption"] = "{npc:6171}: Redención",
 
 	-- Step 73: Sentinel Hill
-	-- {zone:1436} Westfall · {area:108} Sentinel Hill
-	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. Thor, the gryphon master, stands on the hill."] = "Sigue el camino hacia el oeste pasando el Cuartel de Arroyoeste hasta {zone:1436} y luego al sur por él hasta {area:108}. Thor, el maestro de grifos, está en la colina.",
+	-- {zone:1436} Westfall · {area:108} Sentinel Hill · {npc:523} Thor
+	["Follow the road west past Westbrook into {zone:1436}, then south along it to {area:108}. {npc:523}, the gryphon master, stands on the hill."] = "Sigue el camino hacia el oeste pasando el Cuartel de Arroyoeste hasta {zone:1436} y luego al sur por él hasta {area:108}. {npc:523}, el maestro de grifos, está en la colina.",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Murloc Foragers and Lurkers line the river south of the bridge. {npc:473}, a Defias, walks the {area:62} west of it. Finish the Prowlers and Young Forest Bears on the way."] = "Los Batidores múrloc y los Rondadores ocupan el río al sur del puente. {npc:473}, un Defias, recorre {area:62}, al oeste. Termina con los Merodeadores y los Osos del bosque jóvenes por el camino.",

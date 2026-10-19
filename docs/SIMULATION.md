@@ -66,6 +66,12 @@ Outputs: `data/sim/` and `data/bench/` (both gitignored).
 - **Givers in several places** (Minor Manifestation of Earth: the Valley of
   Trials and Mulgore): the quest starts at the giver's site nearest its
   turn-in (Call of Earth 1518 in the valley, 1521 in Mulgore).
+- **Several givers or enders** (Cenarion Aid 8254: Brother Joshua in
+  Stormwind and High Priest Rohan in Ironforge; the two Wanted Posters of
+  Tanaris): the route search uses the first friendly one the data lists,
+  and the world also keeps every friendly one by entity (`gAlt`, `eAlt`:
+  `{ "npc:<id>": point }`, only when there is more than one), so a guide is
+  scored at the one it names (§5).
 - **Child quests** (Questie `parentQuest`): a child is offered only while
   its parent is in the log, so the parent is not its prerequisite and the
   child is accepted after the parent's accept and before its turn-in. A
@@ -91,7 +97,8 @@ Outputs: `data/sim/` and `data/bench/` (both gitignored).
 - **Tasks** group a quest's objectives by site (spawn clusters, 70 yd).
 - **Hubs**: givers and enders clustered (150 yd), with flight masters, inns
   and class trainers nearby (trainers.json, TravelData).
-- **Travel graph**: walking (straight line × detour factor, per continent),
+- **Travel graph**: walking (the walking router's routed walks where `sim
+  walks` has them, below; else the straight line × detour factor, per continent),
   flights between known flight paths (TravelData flight times), boats,
   zeppelins and trams (wait + ride, data/forever/travel.json), hearthstone
   (bind, 60 min cooldown, parameter). All-pairs shortest paths over the
@@ -100,6 +107,33 @@ Outputs: `data/sim/` and `data/bench/` (both gitignored).
   flight or a ride), or walking, whichever is cheaper. A place the
   character cannot reach (another landmass with no transport, e.g. back to
   Zephras Isle) skips the step and is counted (`unreachable`).
+- **Walks** (`sim walks`, tools/lib/sim/walks.js): the walking router the
+  arrow uses (addon/Polestar_Nav, run standalone by `nav eval`'s harness)
+  walks every pair of the world's points (quest givers, enders, objective
+  sites, inns, transport nodes, starts) up to 4,000 yd apart on the same
+  landmass, as the faction (its hostile towns cost more) in the arrow's
+  default route style (balanced): one `Path.FindMany` search per point,
+  on worker threads (about 10 min per faction on 15 workers), into
+  `data/sim/walks-<faction>.json`. A walk between two of those points is
+  then the routed yards × `routeMul` (prior 1 ± 0.05: a player strays a
+  little from the drawn line), and so are the walks to and from
+  transport nodes, between nodes, and the order of a package's steps; a
+  longer walk, or one the router could not find, keeps the straight line
+  × detour. The file is used only on the world (data hash) and walking
+  maps (PACK.json) it was built on, and a search result records whether
+  it was searched with walks, so it replays only on the same (`--no-walks`
+  walks the straight line × detour anyway). Measured on the 3,103
+  walking legs the default guides of the 8 starts use (2026-10-17): the
+  straight line × 1.3 is right on average (routed 1.31 Eastern Kingdoms,
+  1.34 Kalimdor) but wrong both ways, about 2.1 h per start too slow
+  within zones (open ground is nearer 1.1-1.2) and 2.1 h too fast between
+  them, nearly all of it 97 legs straight through a mountain or a cliff
+  (Silithus to Feralas: 1,785 yd straight, 13,807 walked; the Barrens to
+  Thousand Needles: 325 and 4,168). A factor per zone or per pair of
+  zones fixed neither (the error is the leg's, not the zone's), so the
+  walks are routed one by one.
+  With walks the search needs longer to settle: `--paths 3000000` (the
+  default 1,000,000 stopped Human at a route 5 h worse).
 - **Travel safety**: each zone's level is the P10 of its hostile normal-rank
   spawns (the `maps build` ZoneLevels heuristic, tools/lib/maps/zonelevels.js),
   and each 200-yard cell of a landmass belongs to the zone with the most NPC
@@ -209,6 +243,13 @@ packages.
   the best site for its level (kill XP per hour at Δ = 0..+2). "Grinding" is
   only killing for XP with no quest involved; kills for objectives and drops
   are quest work (`xpSplit.kill`).
+- **Shared kill credit** (game rule): a kill counts for every quest in the
+  log that wants that mob. Kills (and drops) for one kill or collect
+  objective also count for the other active quests' objectives on the same
+  mob whose site is within 100 yd (`SHARE_R`, run.js), up to what each still
+  needs; that objective then needs only the rest, and one fully covered
+  needs no trip. Kills before a quest is accepted give it nothing. The kill
+  XP is earned once (`sharedKills` in results: the kills saved).
 - Route policies (not measurements; reported times stay real): routes are
   compared by time to 60 with every hour of grinding counted 2.5 times
   (`grindWeight`) and every move into another zone counted 7.5 minutes more
@@ -224,15 +265,70 @@ packages.
   single-quest trips back; 450 s and 2.5 gave Orc 121.5 h with 2.9 h of
   grinding and 22 visits for one quest or none, Human 120.7 h with 10.2 h
   and 23.
-- Quest log limit 20; a package that needs more open quests is split. Forever's
-  client accepts 40 (`MAXIMUM_NUM_QUESTS_LOG_CAN_ACCEPT = 40` for its Camelot
-  game type, `Blizzard_APIDocumentationGenerated/QuestConstantsDocumentation.lua`;
-  the quest log shows N/40). The limit never binds the guides or the score
-  (the evaluator does not count the log across packages); at 20 it splits one
-  package, Alliance Elwynn Forest 6-10, which the published Alliance results
-  use, so 40 comes with the next world and new searches in 0.2.5 (issue #30).
+- Quest log limit 40 (Forever's client: `MAXIMUM_NUM_QUESTS_LOG_CAN_ACCEPT = 40`
+  for its Camelot game type, `Blizzard_APIDocumentationGenerated/QuestConstantsDocumentation.lua`;
+  the quest log shows N/40; issue #30): a package that needs more open
+  quests is split. It is a world option (`maxOpen`, recorded in the world
+  file; a world with another limit is rebuilt). The results up to 0.2.5
+  were searched at 20. The evaluator holds the log to it across the whole
+  route: an accept with the log full waits (deferred like an accept above
+  the character's level: taken in the same pass once a turn-in frees a
+  slot, else in the package's second pass or a later return; still full
+  there, it is skipped and counted). A stopgap until sim v2 plans the log:
+  when the log is full, the character abandons the lowest-level quest in
+  it at least 6 levels below it (`ABANDON_GAP`, evaluate.js; its reward is
+  already reduced), losing that quest's progress, and waits only when none
+  is that low. Without it, quests a route accepts and never hands in (65
+  in the 200k-route Orc time route) filled the log for good: today's best
+  routes went from 123.5 to 173.3 h. Results report `logPeak` (at most the
+  limit), `logDeferred` (accepts that waited), `logSkipped`,
+  `logAbandoned` and `acceptedNeverTurnedIn` (accepted at some point, not
+  turned in by 60: wasted accepts).
 - Every parameter has a prior (mean and spread). Calibration (§4) narrows
   them.
+
+### Objectives (`--objective time|smooth`)
+
+What the search minimises is set by the policy parameters above; the
+objective chooses them (params.js `OBJECTIVES`, one place). Reported times
+stay real under either.
+
+| objective | zoneChange | zoneReturn | spotReturn | grindWeight | wastedAccept |
+|---|---|---|---|---|---|
+| `time` (default) | 450 s | 0 | 0 | 2.5 | 0 |
+| `smooth` | 900 s | 1800 s | 900 s | 4 | 600 s |
+
+- `zoneReturn`: seconds per move back into a zone the route was in earlier
+  and left (the first entry is free).
+- `spotReturn`: seconds per return to a spot already worked: work (accept,
+  objective, turn-in) in a 250 yd cell (`SPOT_CELL`, run.js) where work was
+  done in an earlier stretch. A stretch ends when the character moves more
+  than 600 yd (`SPOT_LEAVE`, evaluate.js) from where it began.
+- `grindWeight` 4 under smooth: grinding never moves, so with the return
+  penalties alone (2.5) the search ground instead of questing. Horde Orc,
+  200,000 routes, seed 1: time 123.5 h to 60 with 9.3 h of grinding, 105
+  zone changes, 73 zone returns, 507 spot returns; smooth at 2.5: 131.3 h,
+  52.4 h, 38, 8, 219; at 4: 127.4 h, 28.8 h, 57, 25, 365; at 6: 126.5 h,
+  16.3 h, 85, 50, 433.
+- `wastedAccept`: seconds per quest accepted and never handed in (given
+  up for a full log, or still in the log at 60). Taking a quest only to
+  drop it is not smooth: Horde Orc, 100,000 routes with walks, the smooth
+  objective without it gave up 42 quests and left 63 never handed in.
+
+Smooth results are their own files (`<faction>-<race>-<class>-smooth.json`,
+`consensus-<faction>-smooth.json`, `compare-…-smooth.json`), so the two
+objectives never overwrite each other. Results, `sim compare` rows and the
+`sim run` report carry the smoothness counters next to the hours:
+`zoneChanges`, `zoneReturns`, `spotReturns`, `sharedKills` and the quest
+log counters above.
+
+`--param key=value` (repeatable) sets any parameter of params.js after the
+objective's preset, fixed at that value (also in robustness draws); an
+unknown key is an error. A variant gets its own result files only with
+`--tag <name>`: `sim run --objective smooth --param grindWeight=6 --tag g6`
+writes `horde-orc-any-smooth-g6.json`, and `robust`, `compare` and
+`consensus` with the same `--tag` read and write that variant. Results
+record `overrides` and `tag`.
 
 ## 3. Route evaluation and search
 
@@ -295,6 +391,15 @@ Only the fitted parameter values are kept (data/sim/params.json).
   extras can save. Elite and dungeon quests are outside the solo world, so
   they stay out either way. Search results (best found, consensus) are not
   guides and are unchanged.
+- **Guides are scored at the giver and ender they name.** A compiled
+  accept or turn-in carries its NPC or object (`accept 8254 npc 11406`, or
+  the one the compiler placed it at), and a quest with several is scored
+  there, not at the world's first. Guides used to be scored at the
+  first, a trip the player never makes: Horde guides were charged the walk
+  to the Steamwheedle Port poster for the two Tanaris wanted quests they
+  take in the Gadgetzan square, and class guides the trip to another city's
+  trainer (Rohan for Cenarion Aid was scored by moving him in the data).
+  About 0.1 h to 60 for most starts and up to 0.9 h for Horde Warriors.
 - A pack (`sim compare --pack <dir>`, or the pack folder as the one
   argument): its chain, after our chain up to the pack's first level when it
   starts above 1, under the same model
@@ -304,15 +409,18 @@ Only the fitted parameter values are kept (data/sim/params.json).
 
 ```
 sim world   [--faction F] [--rebuild]               build/cache the world model (data/sim/world-<faction>.json)
+sim walks   [--faction F] [--radius Y] [--workers W]  route the world's walks with the walking router
+            (data/sim/walks-<faction>.json; run, robust, compare, bench and consensus use them)
 sim calibrate [--fdj DIR]                            fit parameters to quest data and recordings
 sim run     --faction F [--race R] [--class C] [--paths N] [--workers W] [--seed S] [--dungeons]
-            [--jobs J] [--anneal A] [--max-paths M]
-sim robust  --faction F [--race R] [--class C] [--draws K] [--top N]   robustness of the top routes
+            [--jobs J] [--anneal A] [--max-paths M] [--objective time|smooth] [--param K=V ...] [--tag T]
+sim robust  --faction F [--race R] [--class C] [--draws K] [--top N] [--objective O]   robustness of the top routes
 sim compare --faction F [--race R] [--class C] [--guides DIR] [--pack DIR | DIR] [--to 10,20,30] [--with-optional]
-            Polestar's routes vs the best found, same model
+            [--objective O]   Polestar's routes vs the best found, same model
 sim bench   --faction F [--race R] [--class C]      bracket table: zones, levels, quests per 10 levels
 sim export  --result <file> --out <dir>             zone-by-zone skeleton guides + visits.json for authors
-sim consensus --faction F [--dungeons] [--evals N]  one 12-60 route shared by the faction's starts (+ exports)
+sim consensus --faction F [--dungeons] [--evals N] [--objective O]   one 12-60 route shared by the faction's starts (+ exports)
+(robust, compare and consensus take --param and --tag too)
 ```
 
 Less common options: `--fdj <dir>` (calibrate: the ForeverDungeonJournal
@@ -328,14 +436,18 @@ our chain up to its first level when it starts above 1; written to
 (compare: levels to show, default 10,20,30,40,50,60), `--top <n>` (robust:
 routes re-evaluated), `--dungeons` (run, robust and consensus: the
 dungeon-inclusive family, needs `data/forever/dungeons.json`), `--offline`
-(never download the QuestXP table), `--quiet` (less output); `--data <dir>`
+(never download the QuestXP table), `--radius <yards>` (walks: route every
+pair of points up to this far apart, default 4000), `--no-walks` (walk the
+straight line × detour even with a walks file), `--quiet` (less output); `--data <dir>`
 and `--sim <dir>` move the reference data and simulator outputs (default
 `data/forever`, `data/sim`).
 
 `sim run` writes `data/sim/results/<faction>-<race>-<class>.json`
-(`…-dungeons.json` with `--dungeons`) and prints a
+(`…-dungeons.json` with `--dungeons`, `…-smooth.json` with `--objective
+smooth`) and prints a
 report: the best route as zone visits with level ranges and times, time to
-each tenth level, XP split, travel share, convergence, and the comparison.
+each tenth level, XP split, travel share, the smoothness counters,
+convergence, and the comparison.
 
 `sim export` writes one `.guide` skeleton per zone visit (accepts, objectives,
 turn-ins in the simulator's order, plus `getfp`, `sethome`, `hearth` and
@@ -611,6 +723,12 @@ column; `--guides` with the guides of tag v0.1.0 for the middle one):
 - **Bag items**: cloth donations and items bought or carried over are
   modelled as gathered where they drop, so scoring a guide that hands them
   in from the bags adds trips the player does not make.
+- **Walks without heights**: the world's points carry no height, so the
+  router meets each at the floor it finds first. On Thunder Bluff's mesas
+  (36 of the 56 Horde points it cannot reach, a lift up) and a few cave
+  and town points, it finds none: 6.6% of Horde pairs and 1.7% of
+  Alliance pairs keep the straight line × detour. The compiler already
+  has spawn heights (spawnz.json); passing them would route those too.
 - **Search depth**: see convergence above; Human and Skyborne H were still
   improving at the route cap.
 

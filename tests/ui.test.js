@@ -429,6 +429,40 @@ test('grow upward pins the window by its bottom-left; turning it on or off keeps
 	assert.equal(out.offPoint[0], 'TOPLEFT');
 });
 
+test('bar at the bottom needs grow upward; then the tabs, navigator and progress stack at the bottom', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		local function at() return { strip = { GF.parts.strip:GetPoint(1) }, foot = { GF.parts.foot:GetPoint(1) }, nav = { GF.parts.nav:GetPoint(1) } } end
+		local normal = at()
+		Polestar.Set("ui.barsBottom", true)
+		local withoutGrow = at()
+		Polestar.Set("ui.growUp", true)
+		local flipped = at()
+		Polestar.Set("ui.barsBottom", false)
+		emit({ normal = normal, withoutGrow = withoutGrow, flipped = flipped, back = at() })`);
+	const pt = (o) => [o.strip[0], o.foot[2], o.nav[0]];
+	assert.deepEqual(pt(out.normal), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'default: tabs on top, foot at the bottom');
+	assert.deepEqual(pt(out.withoutGrow), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'without grow upward the option changes nothing');
+	assert.deepEqual(pt(out.flipped), ['BOTTOMLEFT', 'TOPLEFT', 'BOTTOMLEFT'], 'flipped: tabs at the bottom, the navigator and the foot stacked above them');
+	assert.deepEqual(pt(out.back), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'turning it off restores the order');
+});
+
+test('bar at the bottom: a tab opened while it is on has its highlight on the top edge from the render that makes it', () => {
+	const [out] = run(`
+		Polestar.Set("ui.growUp", true)
+		Polestar.Set("ui.barsBottom", true)
+		local points, render = {}, GF.RenderTabs
+		GF.RenderTabs = function(...)
+			render(...)
+			for _, b in ipairs(shownTabs()) do points[#points + 1] = b.Bar:GetPoint(1) end
+		end
+		uistub.openTabs(TABS, 1)
+		GF.RenderTabs = render
+		emit({ points = points })`);
+	assert.ok(out.points.length >= 2, 'the tabs were rendered');
+	for (const p of out.points) assert.equal(p, 'TOPLEFT', 'a new tab\'s highlight sits on the edge next to the navigator');
+});
+
 test('combat: by default the window stays as it is; fade dims it, hide hides it, both restore afterwards', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
@@ -629,6 +663,58 @@ test('a goal with alternative trainers shows where it is and cycles to the next'
 	assert.equal(out.alone, 'Elwynn Forest', 'without a person above, the goal names its zone');
 });
 
+test('the Nearby menu opens a page of weapons: known ones and those not yet at this level are off, a pick goes to the master, Back returns', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		local B = GF.nearbyButton
+		local function rows()
+			local out = {}
+			for _, r in ipairs(PolestarMenu.rows) do if r:IsShown() then out[#out + 1] = r end end
+			return out
+		end
+		local function pick(text)
+			for _, r in ipairs(rows()) do if r.Text:GetText() == text then r:Click() return r end end
+		end
+		B:Click()
+		pick("Weapon master  \\226\\128\\186")
+		local page = {}
+		for _, r in ipairs(rows()) do page[#page + 1] = { r.Text:GetText(), r.psItem.disabled and true or false } end
+		pick("Daggers (known)")
+		local stillOpen = PolestarMenu:IsShown()
+		pick("Swords")
+		local go = lastCall("NearbyGo")
+		B:Click()
+		pick("Weapon master  \\226\\128\\186")
+		pick("Back")
+		local back = rows()[1].Text:GetText()
+		emit({ page = page, stillOpen = stillOpen, go = go, back = back })`);
+	assert.deepEqual(out.page, [['Back', false], ['Swords', false], ['Daggers (known)', true], ['Polearms (from level 20)', true]]);
+	assert.equal(out.stillOpen, true, 'a weapon already known does nothing');
+	assert.deepEqual(out.go, ['NearbyGo', 'weapon', 43]);
+	assert.equal(out.back, 'Vendor', 'Back shows the services again');
+});
+
+test('on the way to a nearby service, a banner and the Nearby menu offer the way back to the guide', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		local B = GF.parts.banner
+		local before = B:IsShown()
+		uistub.trip = { name = "Innkeeper Farley", label = "Innkeeper" }
+		Polestar.Fire("NEARBY_TRIP", uistub.trip)
+		local shown = { B:IsShown(), B.Text:GetText(), B.Jump.Label:GetText(), B.Close:IsShown() }
+		GF.nearbyButton:Click()
+		local first = PolestarMenu.rows[1].Text:GetText()
+		W.HideMenu()
+		B.Jump:Click()
+		local ended = lastCall("NearbyEndTrip") ~= nil
+		emit({ before = before, shown = shown, first = first, ended = ended, after = B:IsShown() })`);
+	assert.equal(out.before, false);
+	assert.deepEqual(out.shown, [true, 'On the way to Innkeeper Farley (Innkeeper).', 'Back to the guide', false]);
+	assert.equal(out.first, 'Back to the guide');
+	assert.equal(out.ended, true);
+	assert.equal(out.after, false, 'the banner goes with the trip');
+});
+
 test('GUIDE_OUTLEVELED: a dismissible banner offers the better guide, in the same tab', () => {
 	const [out] = run(`
 		uistub.openTabs(TABS, 1)
@@ -672,6 +758,55 @@ test('non-leveling guides name their category, and a place only when the guide h
 	]);
 });
 
+test('the header carries Nearby services between Skip and the bug: its menu points the arrow, nothing in combat, and an option hides it', () => {
+	const [out] = run(`
+		local nav, B = GF.parts.nav, GF.nearbyButton
+		local function rows()
+			local out = {}
+			for _, r in ipairs(PolestarMenu.rows) do if r:IsShown() then out[#out + 1] = r end end
+			return out
+		end
+		local function texts()
+			local out = {}
+			for _, r in ipairs(rows()) do out[#out + 1] = r.Text:GetText() end
+			return out
+		end
+		local function relOf(f) local _, rel = f:GetPoint(1) return rel end
+		local noGuide = { shown = B:IsShown(), rel = relOf(B) == nav.Menu }
+		uistub.setGuide(uistub.elwynn, 3)
+		local order = { skip = relOf(nav.Skip) == B, nearby = relOf(B) == nav.Report, report = relOf(nav.Report) == nav.Menu }
+		B:Click()
+		local items = texts()
+		for _, r in ipairs(rows()) do if r.Text:GetText() == "Mining trainer" then r:Click() end end
+		local mining = lastCall("NearbyGo")
+		B:Click()
+		for _, r in ipairs(rows()) do if r.Text:GetText() == "Innkeeper" then r:Click() end end
+		local inn = lastCall("NearbyGo")
+		stub.inCombat = true
+		B:Click()
+		local disabled = 0
+		for _, r in ipairs(rows()) do if not r.psItem.disabled then disabled = disabled + 1 end end
+		W.HideMenu()
+		stub.inCombat = false
+		Polestar.Set("nav.nearbyButton", false)
+		local off = B:IsShown()
+		-- Off, Skip moves up to the bug, and stays there on the next step.
+		local skipOff = { now = relOf(nav.Skip) == nav.Report }
+		uistub.setGuide(uistub.elwynn, 4)
+		skipOff.nextStep = relOf(nav.Skip) == nav.Report
+		Polestar.Set("nav.nearbyButton", true)
+		skipOff.backOn = relOf(nav.Skip) == B
+		emit({ noGuide = noGuide, order = order, items = items, mining = mining, inn = inn, enabledInCombat = disabled, off = off, skipOff = skipOff })`);
+	assert.deepEqual(out.noGuide, { shown: true, rel: true }, 'without a guide it sits by the menu');
+	assert.deepEqual(out.order, { skip: true, nearby: true, report: true }, 'Skip, Nearby, the bug, the menu');
+	assert.deepEqual(out.items, ['Vendor', 'Innkeeper', 'Mining trainer', 'Weapon master  \u203a', 'Bank']);
+	assert.deepEqual(out.mining, ['NearbyGo', 'trainer', 186]);
+	assert.deepEqual(out.inn, ['NearbyGo', 'innkeeper']);
+	assert.equal(out.enabledInCombat, 0, 'in combat every entry is off');
+	assert.equal(out.off, false);
+	assert.deepEqual(out.skipOff, { now: true, nextStep: true, backOn: true }, 'with the button off, Skip sits by the bug');
+});
+
 test('the header menu: picker, new tab, compact, transparent, lock; destructive items ask twice', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
@@ -699,6 +834,38 @@ test('the header menu: picker, new tab, compact, transparent, lock; destructive 
 	assert.equal(out.picker, true);
 	assert.equal(out.options, true);
 	assert.equal(out.pickerAfter, false, 'one dialog at a time');
+});
+
+// The catch-up (GUIDE_PLACED, fired for a guide just opened): the window
+// shows each step before the one placed in turn, in full, then that one; not
+// for a single step. The Engine's step never moves.
+test('the catch-up shows every step up to the one placed, each time a guide opened is placed', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 4)
+		local nav, Count = GF.parts.nav, GF.parts.nav.Steps.Count
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local rolling = { GF.catchingUp, GF.ShownStep() }
+		stub.advance(0.6)
+		GF.Render()
+		local mid = { count = Count:GetText(), shown = GF.ShownStep(), engine = Polestar.Engine.GetStepIndex() }
+		stub.advance(3)
+		local done = { GF.catchingUp or false, Count:GetText(), GF.parts.card:GetAlpha(), GF.ShownStep() }
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local again = GF.catchingUp ~= nil
+		stub.advance(3)
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 2, {})
+		local single = GF.catchingUp ~= nil
+		emit({ rolling = rolling, mid = mid, done = done, again = again, single = single })`);
+	assert.deepEqual(out.rolling, ['steps', 1], 'it starts on step 1');
+	assert.ok(out.mid.shown >= 1 && out.mid.shown <= 3, `a step gone over is shown in full (${out.mid.shown})`);
+	assert.equal(out.mid.count, `${out.mid.shown} / ${out.done[1].split(' / ')[1]}`);
+	assert.equal(out.mid.engine, 4, 'the Engine stays on the step placed');
+	assert.equal(out.done[0], false);
+	assert.match(out.done[1], /^4 \/ \d+$/);
+	assert.equal(out.done[2], 1);
+	assert.equal(out.done[3], 4);
+	assert.equal(out.again, true, 'the guide opened again: it goes over the steps again');
+	assert.equal(out.single, false, 'a single step passed: nothing rolls');
 });
 
 test('profession, reputation and achievement goals: own colours, icons, progress bars', () => {
@@ -830,6 +997,139 @@ test('combat state is read at login, so a /reload mid-fight still fades or hides
 			local hidden = not PolestarGuideFrame:IsShown()
 			stub.inCombat = false
 			stub.fire("PLAYER_REGEN_ENABLED")
+			emit({ hidden = hidden, shown = PolestarGuideFrame:IsShown() })`,
+	}).emitted;
+	assert.deepEqual(out, { hidden: true, shown: true });
+});
+
+// Through a loading screen into an instance of `kind` ("party", "raid",
+// "pvp", ...), or out of it with nil.
+const ENTER = `
+local function enter(kind)
+	uistub.instance = kind
+	stub.fire("PLAYER_ENTERING_WORLD", false, false)
+end
+`;
+
+test('in dungeons: by default the window stays; with Hide it hides in a dungeon and a raid and comes back on leaving, the show setting untouched', () => {
+	const [out] = run(`${ENTER}
+		uistub.setGuide(uistub.elwynn, 3)
+		enter("party")
+		local byDefault = F:IsShown()
+		enter(nil)
+		Polestar.Set("ui.instance", "hide")
+		local outside = F:IsShown()
+		enter("party")
+		local dungeon, stored = F:IsShown(), Polestar.Get("ui.shown")
+		enter(nil)
+		local left = F:IsShown()
+		enter("raid")
+		local raid = F:IsShown()
+		Polestar.Set("ui.instance", "show")
+		local turnedOff = F:IsShown()
+		emit({ byDefault = byDefault, outside = outside, dungeon = dungeon, stored = stored, left = left, raid = raid, turnedOff = turnedOff })`);
+	assert.deepEqual(out, { byDefault: true, outside: true, dungeon: false, stored: true, left: true, raid: false, turnedOff: true });
+});
+
+test('in dungeons: battlegrounds, arenas and scenarios are not dungeons, and the window stays', () => {
+	const [out] = run(`${ENTER}
+		Polestar.Set("ui.instance", "hide")
+		local shown = {}
+		for _, kind in ipairs({ "pvp", "arena", "scenario" }) do
+			enter(kind)
+			shown[#shown + 1] = F:IsShown()
+		end
+		emit(shown)`);
+	assert.deepEqual(out, [true, true, true]);
+});
+
+test('in dungeons: /polestar, the key binding or the minimap button opens the window there until you leave, and closes it again without turning it off', () => {
+	const [out] = run(`${ENTER}
+		Polestar.Set("ui.instance", "hide")
+		enter("party")
+		Polestar.Fire("TOGGLE_FRAME")
+		local opened, storedOpen = F:IsShown(), Polestar.Get("ui.shown")
+		enter("party")
+		local loadingScreen = F:IsShown()
+		Polestar.Fire("TOGGLE_FRAME")
+		local closed, storedClosed = F:IsShown(), Polestar.Get("ui.shown")
+		Polestar.Fire("TOGGLE_FRAME")
+		enter(nil)
+		local outside = F:IsShown()
+		enter("party")
+		local nextVisit = F:IsShown()
+		emit({ opened = opened, storedOpen = storedOpen, loadingScreen = loadingScreen, closed = closed,
+			storedClosed = storedClosed, outside = outside, nextVisit = nextVisit })`);
+	assert.deepEqual(out, { opened: true, storedOpen: true, loadingScreen: true, closed: false, storedClosed: true,
+		outside: true, nextVisit: false });
+});
+
+test('in dungeons: a guide picked there, /polestar show or the Show the window switch opens the window for the visit', () => {
+	const [out] = run(`${ENTER}
+		Polestar.Set("ui.instance", "hide")
+		enter("party")
+		Polestar.Fire("SHOW_FRAME")
+		local shown = F:IsShown()
+		enter(nil)
+		enter("party")
+		Polestar.Set("ui.shown", false)
+		Polestar.Set("ui.shown", true)
+		emit({ shown = shown, switched = F:IsShown() })`);
+	assert.deepEqual(out, { shown: true, switched: true });
+});
+
+test('in dungeons: a window hidden by hand stays hidden after leaving', () => {
+	const [out] = run(`${ENTER}
+		Polestar.Set("ui.instance", "hide")
+		Polestar.Fire("HIDE_FRAME")
+		enter("party")
+		enter(nil)
+		emit({ shown = F:IsShown(), stored = Polestar.Get("ui.shown") })`);
+	assert.deepEqual(out, { shown: false, stored: false });
+});
+
+test('in dungeons: a window off on the way in, opened and closed there with /polestar, stays off after leaving', () => {
+	const [out] = run(`${ENTER}
+		Polestar.Set("ui.instance", "hide")
+		Polestar.Fire("HIDE_FRAME")
+		enter("party")
+		Polestar.Fire("TOGGLE_FRAME")
+		local opened = F:IsShown()
+		Polestar.Fire("TOGGLE_FRAME")
+		local closed = F:IsShown()
+		enter(nil)
+		emit({ opened = opened, closed = closed, shown = F:IsShown(), stored = Polestar.Get("ui.shown") })`);
+	assert.deepEqual(out, { opened: true, closed: false, shown: false, stored: false });
+});
+
+test('in dungeons: a fight there does not bring the window back, and In combat still hides one opened by hand', () => {
+	const [out] = run(`${ENTER}
+		Polestar.Set("ui.instance", "hide")
+		Polestar.Set("ui.combat", "hide")
+		enter("party")
+		stub.fire("PLAYER_REGEN_DISABLED")
+		local fight = F:IsShown()
+		stub.fire("PLAYER_REGEN_ENABLED")
+		local afterFight = F:IsShown()
+		Polestar.Fire("TOGGLE_FRAME")
+		stub.fire("PLAYER_REGEN_DISABLED")
+		local openedFight = F:IsShown()
+		stub.fire("PLAYER_REGEN_ENABLED")
+		emit({ fight = fight, afterFight = afterFight, openedFight = openedFight, openedAfter = F:IsShown() })`);
+	assert.deepEqual(out, { fight: false, afterFight: false, openedFight: false, openedAfter: true });
+});
+
+test('in dungeons: a /reload inside still hides the window', () => {
+	const [out] = runAddon({
+		stubs: ['stub_ui.lua'],
+		addons: [{ name: 'Polestar', files: FILES }],
+		script: `uistub.install()
+			uistub.instance = "party"
+			Polestar.Set("ui.instance", "hide")
+			stub.login()
+			local hidden = not PolestarGuideFrame:IsShown()
+			uistub.instance = nil
+			stub.fire("PLAYER_ENTERING_WORLD", false, false)
 			emit({ hidden = hidden, shown = PolestarGuideFrame:IsShown() })`,
 	}).emitted;
 	assert.deepEqual(out, { hidden: true, shown: true });
@@ -1083,6 +1383,27 @@ test('labels kept in tables are in the client language: the group line and the g
 	assert.match(out.elite, /\|c\w+Rarer Elite: Gruppe empfohlen\|r/);
 	assert.deepEqual(out.tabs, ['Start', 'Stöbern', 'Aktuell', 'Zuletzt']);
 	assert.equal(out.title, 'Start');
+});
+
+test('an escort quest\'s open goal says the NPC may have to respawn, in the dungeon colour, once per card; not once done or skipped', () => {
+	const [out] = run(`
+		local function line(goal, noEscort) return UI.GoalSubline(goal, nil, nil, nil, noEscort) or false end
+		local open = { t = "accept", quest = 309, status = "active", escort = true }
+		emit({
+			open = line(open),
+			again = line(open, true),
+			hex = Polestar.Theme.Hex("dungeon"),
+			done = line({ t = "accept", quest = 309, status = "done", escort = true }),
+			skipped = line({ t = "complete", quest = 309, status = "skipped", escort = true }),
+			plain = line({ t = "accept", quest = 7, status = "active" }),
+			starter = UI.ReadingGoal({ goals = { open } }, { t = "collect", status = "active", starterOf = 1 }).escort,
+		})`);
+	assert.equal(out.open, `|c${out.hex}Escort: if the NPC is not there, wait for it to respawn|r`);
+	assert.equal(out.again, false);
+	assert.equal(out.done, false);
+	assert.equal(out.skipped, false);
+	assert.equal(out.plain, false);
+	assert.equal(out.starter, true, 'an item-started escort reads as its accept, line included');
 });
 
 test('a collect whose line already names its source has no source line under it; author text keeps it', () => {

@@ -3,7 +3,7 @@
 	"source": "Polestar, with ForeverDB's talent data",
 	"sourceUrl": "https://foreverdb.net/class/Mage/talents",
 	"credit": "Written for Polestar on Forever's tree (ForeverDB lists no Mage builds yet). ForeverDB's Mage talent page (https://foreverdb.net/class/Mage/talents) is used only as a reference for Forever's changed and new talents; every pick is checked against Forever's own tree.",
-	"checkedOn": "WoW: Forever beta 1.60.1.70374",
+	"checkedOn": "WoW: Forever beta 1.60.1.70450",
 	"summary": "Level as Frost (the safest: slows, freezes and Ice Barrier) or Fire (more damage, with Pyroblast openers and Blast Wave). Arcane builds around Arcane Blast and Arcane Power and wants more mana between pulls.",
 	"order": [
 		"Arcane",
@@ -14,7 +14,7 @@
 		{
 			"key": "arcane",
 			"spec": "Arcane",
-			"split": "31/0/20",
+			"split": "32/0/19",
 			"link": "https://foreverdb.net/class/Mage/talents",
 			"picks": [
 				{
@@ -107,8 +107,9 @@
 				{
 					"level": 24,
 					"tree": "Arcane",
-					"talent": "Arcane Subtlety",
-					"rank": 1
+					"talent": "Missile Barrage",
+					"rank": 1,
+					"note": "Missile Barrage: Arcane Blast, Arcane Wrath, Fireball and Frostbolt can make your next Arcane Missiles faster and cheaper."
 				},
 				{
 					"level": 25,
@@ -132,197 +133,198 @@
 				{
 					"level": 28,
 					"tree": "Arcane",
-					"talent": "Missile Barrage",
-					"rank": 1
+					"talent": "Arcane Wrath",
+					"rank": 1,
+					"note": "Arcane Wrath, opened by Arcane Blast, is a nuke that grows with your maximum mana. Its point does not count toward the Arcane tiers, so the plan spends 32 points in Arcane."
 				},
 				{
 					"level": 29,
 					"tree": "Arcane",
 					"talent": "Arcane Subtlety",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 30,
+					"tree": "Arcane",
+					"talent": "Missile Barrage",
+					"rank": 2
+				},
+				{
+					"level": 31,
 					"tree": "Arcane",
 					"talent": "Presence of Mind",
 					"rank": 1,
 					"note": "Presence of Mind makes one spell instant: an opener, or a finisher on a runner."
 				},
 				{
-					"level": 31,
-					"tree": "Arcane",
-					"talent": "Arcane Mind",
-					"rank": 1
-				},
-				{
 					"level": 32,
 					"tree": "Arcane",
 					"talent": "Arcane Mind",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 33,
 					"tree": "Arcane",
 					"talent": "Arcane Mind",
-					"rank": 3
+					"rank": 2
 				},
 				{
 					"level": 34,
 					"tree": "Arcane",
 					"talent": "Arcane Mind",
-					"rank": 4
+					"rank": 3
 				},
 				{
 					"level": 35,
 					"tree": "Arcane",
 					"talent": "Arcane Mind",
-					"rank": 5
+					"rank": 4
 				},
 				{
 					"level": 36,
 					"tree": "Arcane",
-					"talent": "Arcane Instability",
-					"rank": 1
+					"talent": "Arcane Mind",
+					"rank": 5
 				},
 				{
 					"level": 37,
 					"tree": "Arcane",
 					"talent": "Arcane Instability",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 38,
 					"tree": "Arcane",
 					"talent": "Arcane Instability",
-					"rank": 3
+					"rank": 2
 				},
 				{
 					"level": 39,
 					"tree": "Arcane",
-					"talent": "Arcane Focus",
-					"rank": 1
+					"talent": "Arcane Instability",
+					"rank": 3
 				},
 				{
 					"level": 40,
+					"tree": "Arcane",
+					"talent": "Arcane Subtlety",
+					"rank": 2
+				},
+				{
+					"level": 41,
 					"tree": "Arcane",
 					"talent": "Arcane Power",
 					"rank": 1,
 					"note": "Arcane Power is the capstone: more damage for more mana, best with Presence of Mind on a tough target."
 				},
 				{
-					"level": 41,
-					"tree": "Frost",
-					"talent": "Improved Frostbolt",
-					"rank": 1,
-					"note": "The remaining 20 points go to Frost for a quicker Frostbolt, a shorter Frost Nova cooldown, longer slows and Ice Block."
-				},
-				{
 					"level": 42,
 					"tree": "Frost",
 					"talent": "Improved Frostbolt",
-					"rank": 2
+					"rank": 1,
+					"note": "The remaining 19 points go to Frost for a quicker Frostbolt, a shorter Frost Nova cooldown, longer slows and Ice Block."
 				},
 				{
 					"level": 43,
 					"tree": "Frost",
 					"talent": "Improved Frostbolt",
-					"rank": 3
+					"rank": 2
 				},
 				{
 					"level": 44,
 					"tree": "Frost",
 					"talent": "Improved Frostbolt",
-					"rank": 4
+					"rank": 3
 				},
 				{
 					"level": 45,
 					"tree": "Frost",
 					"talent": "Improved Frostbolt",
-					"rank": 5
+					"rank": 4
 				},
 				{
 					"level": 46,
 					"tree": "Frost",
-					"talent": "Improved Frost Nova",
-					"rank": 1
+					"talent": "Improved Frostbolt",
+					"rank": 5
 				},
 				{
 					"level": 47,
 					"tree": "Frost",
 					"talent": "Improved Frost Nova",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 48,
 					"tree": "Frost",
-					"talent": "Permafrost",
-					"rank": 1
+					"talent": "Improved Frost Nova",
+					"rank": 2
 				},
 				{
 					"level": 49,
 					"tree": "Frost",
 					"talent": "Permafrost",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 50,
 					"tree": "Frost",
 					"talent": "Permafrost",
-					"rank": 3
+					"rank": 2
 				},
 				{
 					"level": 51,
 					"tree": "Frost",
-					"talent": "Frost Channeling",
-					"rank": 1
+					"talent": "Permafrost",
+					"rank": 3
 				},
 				{
 					"level": 52,
 					"tree": "Frost",
 					"talent": "Frost Channeling",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 53,
 					"tree": "Frost",
 					"talent": "Frost Channeling",
-					"rank": 3
+					"rank": 2
 				},
 				{
 					"level": 54,
 					"tree": "Frost",
-					"talent": "Piercing Ice",
-					"rank": 1
+					"talent": "Frost Channeling",
+					"rank": 3
 				},
 				{
 					"level": 55,
 					"tree": "Frost",
 					"talent": "Piercing Ice",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 56,
 					"tree": "Frost",
 					"talent": "Piercing Ice",
-					"rank": 3
+					"rank": 2
 				},
 				{
 					"level": 57,
 					"tree": "Frost",
-					"talent": "Ice Block",
-					"rank": 1
+					"talent": "Piercing Ice",
+					"rank": 3
 				},
 				{
 					"level": 58,
 					"tree": "Frost",
-					"talent": "Arctic Reach",
+					"talent": "Ice Block",
 					"rank": 1
 				},
 				{
 					"level": 59,
 					"tree": "Frost",
 					"talent": "Arctic Reach",
-					"rank": 2
+					"rank": 1
 				},
 				{
 					"level": 60,
@@ -496,32 +498,33 @@
 				{
 					"level": 35,
 					"tree": "Fire",
-					"talent": "Fire Power",
-					"rank": 1
+					"talent": "Critical Mass",
+					"rank": 4
 				},
 				{
 					"level": 36,
 					"tree": "Fire",
-					"talent": "Fire Power",
-					"rank": 2
+					"talent": "Critical Mass",
+					"rank": 5
 				},
 				{
 					"level": 37,
 					"tree": "Fire",
 					"talent": "Fire Power",
-					"rank": 3
+					"rank": 1,
+					"note": "Fire Power raises your Fire damage for each of your Fire effects on the target: Ignite, Pyroblast's burn and the like."
 				},
 				{
 					"level": 38,
 					"tree": "Fire",
 					"talent": "Fire Power",
-					"rank": 4
+					"rank": 2
 				},
 				{
 					"level": 39,
 					"tree": "Fire",
 					"talent": "Fire Power",
-					"rank": 5
+					"rank": 3
 				},
 				{
 					"level": 40,

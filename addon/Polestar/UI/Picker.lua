@@ -6,7 +6,7 @@
 -- Left: the hub rail (sections, Options at its foot; below), then the
 -- sidebar: the search under the wordmark, then the categories with their
 -- icons and counts (All, Leveling, Professions, Reputation, Exploration,
--- Legacy, Collectibles, Favorites). A category with no guide for any faction
+-- Legacy, Collectibles, Miscellaneous, Favorites). A category with no guide for any faction
 -- is left out; one empty only for this faction fades and says how to reach
 -- its guides. Dungeons have their own hub section, not a category.
 -- Middle: tabs (Home: Continue cards for the open tabs and the suggested
@@ -89,13 +89,13 @@ local VIEWS = { "home", "browse", "current", "recent" }
 local VIEW_LABEL = { home = L["Home"], browse = L["Browse"], current = L["Current"], recent = L["Recent"] }
 
 -- The guide format's categories, in the order players look for them.
-local CATEGORIES = { "Leveling", "Class", "Professions", "Reputation", "Exploration", "Legacy", "Collectibles" }
+local CATEGORIES = { "Leveling", "Class", "Professions", "Reputation", "Exploration", "Legacy", "Collectibles", "Miscellaneous" }
 P.CATEGORIES = CATEGORIES
 local CATEGORY_RANK = {}
 for i, c in ipairs(CATEGORIES) do CATEGORY_RANK[c] = i end
 local CATEGORY_ICON = {
 	Leveling = "icon-level", Class = "icon-train", Professions = "icon-craft", Reputation = "icon-rep", Exploration = "icon-explore",
-	Legacy = "icon-achieve", Collectibles = "icon-collect", Favorites = "star",
+	Legacy = "icon-achieve", Collectibles = "icon-collect", Miscellaneous = "icon-treasure", Favorites = "star",
 }
 P.CATEGORY_ICON = CATEGORY_ICON
 
@@ -938,7 +938,8 @@ local function setPrimary(b, on)
 end
 
 -- A guide's credits: "By <author>" for ours; for a pack's guide "By
--- <author> · <pack title> <version> · <licence>". The author is the guide's
+-- <author> · <pack title> <version> · <licence>" (an imported guide: "By
+-- <author> · Imported · <its own licence>"). The author is the guide's
 -- own, else its pack's. -> text or nil, the pack's source or nil
 function P.Credits(g)
 	if not g then return nil end
@@ -950,7 +951,8 @@ function P.Credits(g)
 	if author then parts[1] = string.format(L["By %s"], author) end
 	if pack then
 		parts[#parts + 1] = (pack.title or pack.id) .. (pack.version and (" " .. pack.version) or "")
-		if pack.license then parts[#parts + 1] = pack.license end
+		local license = pack.license or (pack.imported and type(g.license) == "string" and g.license or nil)
+		if license then parts[#parts + 1] = license end
 	end
 	if #parts == 0 then return nil end
 	return table.concat(parts, DOT), pack and pack.source or nil
@@ -1381,10 +1383,24 @@ local function renderSection(s)
 	f:SetPoint("BOTTOMRIGHT", win.Main, "BOTTOMRIGHT", 0, 0)
 end
 
--- The hub's sections as rail items (the settings window shows the same rail).
+-- The hub's sections as rail items (the settings window shows the same rail);
+-- a section with `foot = true` sits at the rail's foot instead, above
+-- Options (P.FootItems).
 function P.RailItems()
 	local items = {}
-	for i, s in ipairs(sections) do items[i] = { key = s.key, label = s.label or s.key, icon = s.icon } end
+	for _, s in ipairs(sections) do
+		if not s.foot then items[#items + 1] = { key = s.key, label = s.label or s.key, icon = s.icon } end
+	end
+	return items
+end
+
+-- The rail's foot from the bottom up: Options (onOptions opens the settings;
+-- nil: the shell's own onSelect), then every `foot` section above it.
+function P.FootItems(onOptions)
+	local items = { { key = "Options", label = L["Options"], icon = "sliders", tip = L["Options"], onClick = onOptions } }
+	for _, s in ipairs(sections) do
+		if s.foot then items[#items + 1] = { key = s.key, label = s.label or s.key, icon = s.icon } end
+	end
 	return items
 end
 
@@ -1398,12 +1414,10 @@ function P.TakePlace(to, from)
 	to:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left * k, top * k)
 end
 
--- The rail: every section, Options at its foot.
+-- The rail: every section, Options at its foot with the foot sections above it.
 local function renderRail()
-	P.railShown = W.ShellRail(win, P.RailItems(), {
-		{ key = "Options", label = L["Options"], icon = "sliders", tip = L["Options"],
-			onClick = function() if UI.ShowOptions then UI.ShowOptions() end end },
-	}, section or GUIDES.key, function(key) P.ShowSection(key) end)
+	P.railShown = W.ShellRail(win, P.RailItems(), P.FootItems(function() if UI.ShowOptions then UI.ShowOptions() end end),
+		section or GUIDES.key, function(key) P.ShowSection(key) end)
 end
 
 -- The sidebar index of a section: its own nav, or for a one-view section

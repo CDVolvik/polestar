@@ -141,6 +141,25 @@ test('pack: floors stack over the ground and a ramp joins them; the street over 
 	assert.ok(S.reach(cl, high).has(low), 'and down to the ground under it');
 });
 
+test('pack: an indoor floor under a lake stays when the ground over it roofs it, outdoor ground there does not (the Undercity\'s Royal Quarter under a Tirisfal lake, #420)', async () => {
+	// Flat ground (z 0) under a lake (surface 3: a swim surface) over x, y 150..400, and 30 yd down under it an
+	// indoor hall floor (x 180..260) and an outdoor one (x 290..370), y 180..360. The ground roofs both: the hall
+	// is no lake bed; outdoor ground under water (the terrain under Stormwind's canals) is no place to walk.
+	const s = new Scene();
+	s.water(150, 150, 400, 400, 3);
+	s.floor(180, 180, 260, 360, -30);
+	s.floor(290, 180, 370, 360, -30, 1);
+	const { D } = await packOf([s]);
+	const p = at(D, s, 220, 270, -30);
+	assert.ok(p.node !== null, 'a surface there');
+	assert.ok(Math.abs(p.cl.z[p.node] + 30) <= ZQ, `the hall's floor under the lake (${p.cl.z[p.node]})`);
+	const top = at(D, s, 220, 270, 3);
+	assert.ok(Math.abs(top.cl.z[top.node] - 3) <= ZQ, `the lake's surface over it (${top.cl.z[top.node]})`);
+	assert.ok(S.reach(p.cl, p.node).has(at(D, s, 200, 340, -30).node), 'the hall is walkable');
+	const out = at(D, s, 330, 270, -30);
+	assert.ok(Math.abs(out.cl.z[out.node] - 3) <= ZQ, `outdoor ground under the lake is left out: only the lake there (${out.cl.z[out.node]})`);
+});
+
 test('pack: round trip through the decoder: cells, flags, heights, floors and graph agree with the cell grid', async () => {
 	// Two tiles side by side (col 32 west of col 33), a wall on their border with a 30 yd gap, a platform with a ramp.
 	const a = new Scene({ col: 32 });

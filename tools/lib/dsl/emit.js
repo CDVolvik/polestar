@@ -7,7 +7,9 @@ const { FORMAT, NEEDS, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX } =
 const { header } = require('../generated');
 
 const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
-const STEP_KEYS = ['title', 'note', 'only', 'goals'];
+const STEP_KEYS = ['title', 'note', 'only', 'when', 'goals'];
+// A step's `when` predicates (format 4), in this key order.
+const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'q', 'item', 'name', 'area', 'minLevel', 'pre', 'preAll', 'closedBy'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit
 // where no other goal has a value, so adding them left older output unchanged.
 // `z` (heights.js) follows y, `node` and `area` (places.js) precede map: a
@@ -16,11 +18,13 @@ const GOAL_KEYS = [
 	't', 'class', 'spell', 'spellName', 'faction', 'factionName', 'standing', 'achievement', 'achievementName', 'criteria',
 	'quest', 'title', 'target', 'npc', 'npcName', 'object', 'objName', 'item', 'itemName', 'count', 'oi', 'skill', 'skillLine', 'rank', 'rankMax', 'level', 'untilSkill',
 	'reagents', 'location', 'minLevel', 'qlvl', 'pre', 'preAll', 'closedBy', 'preTitles', 'text', 'node', 'area', 'map', 'x', 'y', 'z', 'f', 'r', 'spots', 'spread', 'optional', 'only', 'profLine', 'profName', 'profRank', 'note',
-	'from', 'fromKind', 'fromRank', 'fromFaction', 'fromAlso', 'fromId', 'fromAlsoId', 'candidates', 'rewards', 'group', 'direct',
+	'from', 'fromKind', 'fromRank', 'fromFaction', 'fromAlso', 'fromId', 'fromAlsoId', 'fromNpcs', 'candidates', 'rewards', 'group', 'direct', 'escort',
 ];
 const REAGENT_KEYS = ['item', 'itemName', 'count'];
 // `z` (heights.js) follows y in candidates and spawn areas as in goals.
 const CANDIDATE_KEYS = ['npc', 'npcName', 'map', 'x', 'y', 'z', 'f', 'faction', 'races', 'classes', 'lvl', 'rate', 'spawns'];
+// A collect's `fromNpcs`: the creatures its point and spawn areas belong to.
+const SOURCE_NPC_KEYS = ['npc', 'npcName'];
 // Spawn areas: map-percent centre in the goal's map and frame, its height,
 // radius in yards, spawn count, and `alt` for a place the arrow reaches only
 // when moved on to it.
@@ -31,7 +35,7 @@ const REWARD_KEYS = ['item', 'itemName', 'quality'];
 const GUIDE_REWARD_KEYS = ['item', 'itemName', 'quality', 'choice', 'spell', 'spellName', 'text'];
 // Farm-spot rates (items per kill) need three decimals; coordinates are already rounded to two.
 const LIST_DECIMALS = { candidates: 3 };
-const LIST_KEYS = { reagents: REAGENT_KEYS, candidates: CANDIDATE_KEYS, spots: SPOT_KEYS, items: REWARD_KEYS, choices: REWARD_KEYS, reward: GUIDE_REWARD_KEYS };
+const LIST_KEYS = { reagents: REAGENT_KEYS, candidates: CANDIDATE_KEYS, fromNpcs: SOURCE_NPC_KEYS, spots: SPOT_KEYS, items: REWARD_KEYS, choices: REWARD_KEYS, reward: GUIDE_REWARD_KEYS };
 const ONLY_KEYS = ['classes', 'races', 'factions'];
 // RegisterPack's keys in order (`addon` and `format` are written by the compiler).
 const PACK_KEYS = ['id', 'title', 'author', 'version', 'license', 'website', 'source', 'notes'];
@@ -125,6 +129,7 @@ function emitGuide(guide, sourceRel) {
 						for (const goal of sv) out.push(`\t\t\t\t\t\t${inline(goal, GOAL_KEYS)},`);
 						out.push('\t\t\t\t\t},');
 					} else if (sk === 'only') out.push(`\t\t\t\t\tonly = ${inline(sv, ONLY_KEYS)},`);
+					else if (sk === 'when') out.push(`\t\t\t\t\twhen = ${list(sv, WHEN_KEYS)},`);
 					else out.push(`\t\t\t\t\t${sk} = ${scalar(sv)},`);
 				}
 				out.push('\t\t\t\t},');
@@ -141,6 +146,72 @@ function emitGuide(guide, sourceRel) {
 	return `${out.join('\n')}\n`;
 }
 
+// The data emitGuide writes, as plain JSON values instead of Lua source: the
+// same keys in the same places, numbers rounded as luaNumber rounds them, so
+// a guide carried another way (an import string, tools/lib/pack/importstring.js)
+// registers exactly as Guides.lua registers it. `pack` is left out: the
+// carrier names the pack. preTitles keeps its quest ids as the object's keys.
+function dataScalar(v, decimals) {
+	if (typeof v === 'number') return Number(luaNumber(v, decimals));
+	if (typeof v === 'string' || typeof v === 'boolean') return v;
+	throw new Error(`cannot write ${typeof v} as a scalar`);
+}
+
+function dataList(arr, keys, decimals) {
+	return arr.map((v) => (v !== null && typeof v === 'object' ? dataInline(v, keys || Object.keys(v).sort(), decimals) : dataScalar(v)));
+}
+
+function dataInline(obj, keys, decimals) {
+	const out = {};
+	for (const k of keys) {
+		const v = obj[k];
+		if (v === undefined || v === null) continue;
+		if (Array.isArray(v)) out[k] = dataList(v, LIST_KEYS[k] || null, LIST_DECIMALS[k]);
+		else if (k === 'preTitles') {
+			const ids = {};
+			for (const id of Object.keys(v).map(Number).sort((a, b) => a - b)) ids[id] = dataScalar(v[id]);
+			out[k] = ids;
+		} else if (typeof v === 'object') out[k] = dataInline(v, k === 'only' ? ONLY_KEYS : k === 'lvl' ? ['min', 'max'] : Object.keys(v).sort(), decimals);
+		else out[k] = dataScalar(v, decimals);
+	}
+	return out;
+}
+
+function guideData(guide) {
+	const out = {};
+	for (const k of GUIDE_KEYS) {
+		const v = guide[k];
+		if (v === undefined || v === null || k === 'pack') continue;
+		if (k === 'steps') {
+			out.steps = v.map((step) => {
+				const s = {};
+				for (const sk of STEP_KEYS) {
+					const sv = step[sk];
+					if (sv === undefined || sv === null) continue;
+					if (sk === 'goals') s.goals = sv.map((goal) => dataInline(goal, GOAL_KEYS));
+					else if (sk === 'only') s.only = dataInline(sv, ONLY_KEYS);
+					else if (sk === 'when') s.when = dataList(sv, WHEN_KEYS);
+					else s[sk] = dataScalar(sv);
+				}
+				return s;
+			});
+		} else if (k === 'names' || k === 'written') {
+			const m = {};
+			for (const t of Object.keys(v).sort()) m[t] = String(v[t]);
+			out[k] = m;
+		} else if (Array.isArray(v)) out[k] = dataList(v, LIST_KEYS[k] || null);
+		else out[k] = dataScalar(v);
+	}
+	return out;
+}
+
+// Era frames as emitMapFrames writes them: { [mapId]: { c, left, right, top, bottom } }.
+function framesData(frames) {
+	const out = {};
+	for (const id of Object.keys(frames).map(Number).sort((a, b) => a - b)) out[id] = dataInline(frames[id], FRAME_KEYS, 4);
+	return out;
+}
+
 // Guides.lua: every guide's block, sorted by id. entries: [{ guide, source }].
 function emitGuides(entries) {
 	const sorted = entries.slice().sort((a, b) => (a.guide.id < b.guide.id ? -1 : a.guide.id > b.guide.id ? 1 : 0));
@@ -148,8 +219,9 @@ function emitGuides(entries) {
 }
 
 // Pack.lua: the pack's registration with its credits (manifest: pack.json, read by tools/lib/pack/manifest.js).
-function emitPack(manifest) {
-	const parts = ['addon = ADDON', `id = ${luaString(manifest.id)}`, `format = ${FORMAT}`];
+// `format`: the one its guides need (pack/format.js formatFor), FORMAT by default.
+function emitPack(manifest, format = FORMAT) {
+	const parts = ['addon = ADDON', `id = ${luaString(manifest.id)}`, `format = ${format}`];
 	for (const k of PACK_KEYS.slice(1)) if (manifest[k] !== undefined && manifest[k] !== null) parts.push(`${k} = ${luaString(manifest[k])}`);
 	return `${header('lua', 'compile', 'pack.json')}\nlocal ADDON = ...\n\nPolestar.RegisterPack({ ${parts.join(', ')} })\n`;
 }
@@ -160,7 +232,7 @@ function emitPack(manifest) {
 // and sits in Polestar's group there, under Polestar's own entry, like
 // Polestar_Guides; Polestar's menus show the plain title (Pack.lua). A title
 // already carrying that prefix or the legacy "Polestar Pack: " is kept.
-function emitToc(manifest, iface) {
+function emitToc(manifest, iface, format = FORMAT) {
 	const ours = manifest.id === 'guides';
 	const prefixed = [TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX].some((p) => manifest.title.startsWith(p));
 	const title = ours || prefixed ? manifest.title : `${TOC_TITLE_PREFIX}${manifest.title}`;
@@ -178,8 +250,8 @@ function emitToc(manifest, iface) {
 	lines.push(
 		'## Dependencies: Polestar',
 		`## X-Polestar-Pack: ${manifest.id}`,
-		`## X-Polestar-Format: ${FORMAT}`,
-		`## X-Polestar-Needs: ${NEEDS[FORMAT]}`,
+		`## X-Polestar-Format: ${format}`,
+		`## X-Polestar-Needs: ${NEEDS[format]}`,
 		`## X-License: ${manifest.license}`,
 	);
 	if (manifest.website) lines.push(`## X-Website: ${manifest.website}`);
@@ -330,4 +402,4 @@ function emitLicense(meta) {
 	return `${out.join('\n').trimEnd()}\n`;
 }
 
-module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, GUIDE_KEYS, GOAL_KEYS };
+module.exports = { emitGuides, emitPack, emitToc, emitTextsToc, emitTexts, emitMapFrames, emitClassTrainers, emitLicense, luaString, luaNumber, guideData, framesData, GUIDE_KEYS, STEP_KEYS, WHEN_KEYS, GOAL_KEYS, ONLY_KEYS, LIST_KEYS, FRAME_KEYS };

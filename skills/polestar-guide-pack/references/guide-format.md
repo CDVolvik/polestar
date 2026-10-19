@@ -28,7 +28,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `race <Race>, ...` | Only these races (Conditions) |
 | `class <Class>, ...` | Only these classes |
 | `next <id>, ...` | The guide that follows. Several ids: the player chooses, the first is the default; each must suit this guide's characters (`polestar find <zone> --kind guide --race <Race>`) |
-| `category <Category>` | `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Dungeons` |
+| `category <Category>` | `Leveling` (default), `Class`, `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Miscellaneous`, `Dungeons` |
 | `folder <text>` | The guide menu folder to list it under |
 | `keywords <word>, ...` | Extra words the guide menu search matches |
 | `collects <item>, ...` | Item ids the guide obtains |
@@ -51,6 +51,7 @@ every goal in it that is not `optional` is; its goals are open together.
 | `tip <text>` | A note for the whole step |
 | `zone <Name>` / `zone map <uiMapID>` | The zone for coordinates from here on, in later steps too |
 | `only <condition>, ...` | The step is only for matching characters |
+| `when <predicate>` | The step is only for characters in that state when the route gets there; several lines must all hold (see Conditions) |
 
 ## Goals
 
@@ -64,7 +65,7 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `turnin <quest> ["Title"]` | Hand a quest in | `npc`, `object`, `choose`, `reward`, `xp`, `money`, `direct` |
 | `complete <quest> ["Title"]` | Finish every objective of a quest with nothing more specific to track | |
 | `kill <npc>` / `kill "<Name>"` | Kill a mob; with `quest Q.O` the quest log counts it, without it the player ticks it | `npc`, `quest`, `xN` |
-| `collect <item> ["Name"]` | Loot or gather items; without `quest`, counted in the bags | `quest`, `xN`, `nearest` |
+| `collect <item> ["Name"]` | Loot or gather items; without `quest`, counted in the bags | `npc`, `quest`, `xN`, `nearest` |
 | `goto <x>,<y> ["Label"]` | Walk there; for travel and places the data has no target for | `map`, `r`, `era` / `live` only |
 | `talk <npc>` | Speak to an NPC | |
 | `interact <object>` | Click a game object | `quest` |
@@ -100,7 +101,7 @@ After the arguments, in any order.
 | `map <uiMapID>` | The map of this goal's `@` coordinates |
 | `r <yards>` | How close counts as arrived (`goto`, default 8) |
 | `era` / `live` | The map frame of this goal's typed coordinates |
-| `npc <id>` / `object <id>` / `item <id>` | Which NPC, object or item, when the data knows several |
+| `npc <id>` / `object <id>` / `item <id>` | Which NPC, object or item, when the data knows several; on `collect`, the NPC who hands the item over, for an item nothing drops (a quest report given in a gossip window) |
 | `quest <id>.<n>` | The quest objective this goal counts, numbered as `polestar find <id> --kind quest` lists them (`quest <id>` alone lets the data pick) |
 | `x<N>` | How many: kills, items, purchases, crafts |
 | `"text"` | Right after an id: the name or title, for content missing from the data; later: the text players see |
@@ -126,6 +127,13 @@ Warrior or Paladin).
 - Races: `Human` `Dwarf` `Gnome` `NightElf` `Orc` `Troll` `Tauren` `Undead`
   (or `Scourge`) `Skyborne` (Skyborne plays on both sides).
 - Factions: `Alliance` `Horde`.
+
+`when` checks the character's state instead, one predicate per line:
+`level<N` (also `<=`, `>`, `>=`), `onquest <quest>, ...`, `complete <quest>`,
+`turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
+`subzone "<Name>"`, `bound "<Location>"`; `!` in front of any but `level`
+turns it around. Once the route has passed the step, the outcome stays. A
+pack with `when` needs Polestar 0.3.0 or newer.
 
 ## Lint errors that come up most
 

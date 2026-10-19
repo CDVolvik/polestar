@@ -85,6 +85,8 @@ local focusGroup -- the group on screen
 local shownIndex, shownGuide, shownFocus -- what the card shows, to tell a change from an update
 local tipOpen = false
 local inCombat = false
+local inInstance, openInside = false, false -- in a dungeon or raid; opened there by the player
+local shownOnEntry = false -- ui.shown when this visit began
 local state = "none" -- "steps" | "noguides" | "noguide" | "notyet" | "complete"
 local texts = {} -- every string the window draws, for transparent-mode outlines
 local chrome = {} -- frames that hide in transparent mode until hovered
@@ -374,7 +376,8 @@ end
 -- accent; the others sit in textDim.
 -- `noParty`: a row above already says the group line (UI.GoalSubline);
 -- `noMissing`: one already names who in the party lacks the goal's quest.
-local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing)
+-- `noEscort`: one already says the escort line.
+local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing, noEscort)
 	local sameGoal = sameStep and r.psGoal and r.psGoal.index == goal.index and r.psGoal.t == goal.t
 	r.psGoal = goal
 	local status = goal.status
@@ -392,7 +395,7 @@ local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing)
 	r.Text:SetText(UI.GoalLine(goal))
 	-- White while it is to be done; done and skipped goals step back.
 	W.Color(r.Text, (done or skipped) and "textMuted" or "text")
-	local sub = UI.GoalSubline(goal, person.Where:IsShown() and person.psPlace and person.psPlace.map or nil, noParty, noMissing)
+	local sub = UI.GoalSubline(goal, person.Where:IsShown() and person.psPlace and person.psPlace.map or nil, noParty, noMissing, noEscort)
 	r.Sub:SetText(sub or "")
 	r.Sub:SetShown(sub ~= nil)
 	-- An unavailable quest's reason is the point of the line: keep it readable.
@@ -622,6 +625,13 @@ local function layoutTab(b, pad)
 	b.Range:SetPoint("LEFT", b.Icon, "RIGHT", 6 + (titleW >= 1 and titleW + TAB_RANGE_GAP or 0), 0)
 end
 
+-- With ui.growUp and ui.barsBottom the tab strip and navigator sit at the
+-- bottom, by the edge the window is pinned to, with the progress foot above
+-- the navigator. Otherwise the order runs strip, navigator, body, foot.
+local function barsBottom()
+	return ns.Get("ui.growUp") and ns.Get("ui.barsBottom") and true or false
+end
+
 local function tabButton(i)
 	local b = tabButtons[i]
 	if b then return b end
@@ -636,8 +646,9 @@ local function tabButton(i)
 	b.Bar = b:CreateTexture(nil, "OVERLAY")
 	b.Bar:SetTexture(Theme.Media("white"))
 	b.Bar:SetHeight(2)
-	b.Bar:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
-	b.Bar:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 0, 0)
+	local edge = barsBottom() and "TOP" or "BOTTOM"
+	b.Bar:SetPoint(edge .. "LEFT", b, edge .. "LEFT", 0, 0)
+	b.Bar:SetPoint(edge .. "RIGHT", b, edge .. "RIGHT", 0, 0)
 	W.Color(b.Bar, "accent")
 	b.Icon = b:CreateTexture(nil, "ARTWORK")
 	b.Icon:SetSize(12, 12)
@@ -681,7 +692,7 @@ end
 
 local CATEGORY_ICON = {
 	Leveling = "icon-level", Class = "icon-train", Professions = "icon-craft", Reputation = "icon-rep", Legacy = "icon-achieve",
-	Exploration = "icon-explore", Collectibles = "star", Dungeons = "icon-kill",
+	Exploration = "icon-explore", Collectibles = "star", Miscellaneous = "icon-treasure", Dungeons = "icon-kill",
 }
 GF.CATEGORY_ICON = CATEGORY_ICON
 
@@ -765,9 +776,17 @@ local function awayNotice(E, g)
 	return a
 end
 
+local function nearbyTrip()
+	local Nearby = ns.Nav and ns.Nav.nearby
+	return Nearby and Nearby.Trip and Nearby.Trip() or nil
+end
+
 local function bannerNotice()
 	local E = Engine()
 	local g = E and E.GetGuide and E.GetGuide()
+	-- On the way to a nearby service (Nav/Nearby.lua): the way back first.
+	local t = nearbyTrip()
+	if t then return "trip", t end
 	local k = notices.stepSkip
 	if k and g ~= nil and g.id == k.guideId and (not view or view.index ~= k.step) then return "stepSkip", k end
 	local s = notices.skipped
@@ -856,6 +875,11 @@ function GF.LayoutBanner(width)
 			placeLink(banner.Jump, string.format(L["Back to step %d"], n.live), 0, -4)
 		end
 		banner.Close:Show()
+	elseif kind == "trip" then
+		banner.Icon:SetTexture(Theme.Media("icon-goto"))
+		banner.Text:SetText(string.format(L["On the way to %s (%s)."], n.name or "", n.label or ""))
+		placeLink(banner.Jump, L["Back to the guide"], 0, -4)
+		banner.Close:Hide()
 	elseif kind == "outlevel" then
 		banner.Icon:SetTexture(Theme.Media("icon-level"))
 		banner.Text:SetText(L["You have outlevelled this guide."])
@@ -887,7 +911,9 @@ end
 function GF.TakeBanner()
 	local kind, n = bannerNotice()
 	local E = Engine()
-	if kind == "stepSkip" then
+	if kind == "trip" then
+		ns.Nav.nearby.EndTrip()
+	elseif kind == "stepSkip" then
 		notices.stepSkip = nil
 		if E and E.Unskip then E.Unskip(n.step) end
 	elseif kind == "away" then
@@ -916,7 +942,9 @@ end
 -- screen that is not the live one: until another step is).
 function GF.DismissBanner()
 	local kind, n = bannerNotice()
-	if kind == "away" then
+	if kind == "trip" then
+		ns.Nav.nearby.EndTrip()
+	elseif kind == "away" then
 		notices.away = n.guideId .. ":" .. n.index
 	elseif kind then
 		notices[kind] = nil
@@ -1058,6 +1086,50 @@ local function stackJourney(y, width)
 	return y
 end
 
+local function placeBars(showFoot)
+	local flip = barsBottom()
+	strip:ClearAllPoints()
+	nav:ClearAllPoints()
+	body:ClearAllPoints()
+	foot:ClearAllPoints()
+	band:ClearAllPoints()
+	strip.Rule:ClearAllPoints()
+	nav.Rule:ClearAllPoints()
+	local edge = flip and "TOP" or "BOTTOM"
+	strip.Rule:SetPoint(edge .. "LEFT", strip, edge .. "LEFT", 0, 0)
+	strip.Rule:SetPoint(edge .. "RIGHT", strip, edge .. "RIGHT", 0, 0)
+	nav.Rule:SetPoint(edge .. "LEFT", nav, edge .. "LEFT", 0, 0)
+	nav.Rule:SetPoint(edge .. "RIGHT", nav, edge .. "RIGHT", 0, 0)
+	if flip then
+		strip:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 0, 0)
+		strip:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", 0, 0)
+		nav:SetPoint("BOTTOMLEFT", strip, "TOPLEFT", 0, 0)
+		nav:SetPoint("BOTTOMRIGHT", strip, "TOPRIGHT", 0, 0)
+		foot:SetPoint("BOTTOMLEFT", nav, "TOPLEFT", 0, 0)
+		foot:SetPoint("BOTTOMRIGHT", nav, "TOPRIGHT", 0, 0)
+		body:SetPoint("TOPLEFT", F, "TOPLEFT", 0, 0)
+		body:SetPoint("TOPRIGHT", F, "TOPRIGHT", 0, 0)
+		band:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 1, 1)
+		band:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", -1, 1)
+	else
+		strip:SetPoint("TOPLEFT", F, "TOPLEFT", 0, 0)
+		strip:SetPoint("TOPRIGHT", F, "TOPRIGHT", 0, 0)
+		nav:SetPoint("TOPLEFT", strip, "BOTTOMLEFT", 0, 0)
+		nav:SetPoint("TOPRIGHT", strip, "BOTTOMRIGHT", 0, 0)
+		body:SetPoint("TOPLEFT", nav, "BOTTOMLEFT", 0, 0)
+		body:SetPoint("TOPRIGHT", nav, "BOTTOMRIGHT", 0, 0)
+		foot:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 0, 0)
+		foot:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", 0, 0)
+		band:SetPoint("TOPLEFT", F, "TOPLEFT", 1, -1)
+		band:SetPoint("TOPRIGHT", F, "TOPRIGHT", -1, -1)
+	end
+	for _, b in ipairs(tabButtons) do
+		b.Bar:ClearAllPoints()
+		b.Bar:SetPoint(edge .. "LEFT", b, edge .. "LEFT", 0, 0)
+		b.Bar:SetPoint(edge .. "RIGHT", b, edge .. "RIGHT", 0, 0)
+	end
+end
+
 function GF.Layout()
 	if not F then return end
 	local width = F:GetWidth()
@@ -1070,7 +1142,8 @@ function GF.Layout()
 	nav.Title:SetShown((not showStrip or not steps) and nav.Title:GetText() ~= nil and nav.Title:GetText() ~= "")
 	local skipW = nav.Skip:IsShown() and nav.Skip:GetWidth() + 4 or 0
 	local reportW = nav.Report:IsShown() and nav.Report:GetWidth() or 0
-	nav.Title:SetWidth(max(40, width - PAD - (steps and nav.Steps:GetWidth() + 12 or 0) - 24 - 8 - 8 - skipW - reportW))
+	local nearbyW = nav.Nearby:IsShown() and nav.Nearby:GetWidth() or 0
+	nav.Title:SetWidth(max(40, width - PAD - (steps and nav.Steps:GetWidth() + 12 or 0) - 24 - 8 - 8 - skipW - reportW - nearbyW))
 	card:SetWidth(width)
 
 	local y = 0
@@ -1107,8 +1180,11 @@ function GF.Layout()
 	foot:SetShown(showFoot)
 	local stripH = showStrip and TAB_H or 0
 	F:SetHeight(floor(stripH + NAV_H + y + (showFoot and PROG_H or 0) + 0.5))
+	placeBars(showFoot)
 	band:SetHeight(stripH + NAV_H)
-	band:SetTexCoord(Theme.BandCoords(width - 2, stripH + NAV_H, 30))
+	local x0, x1, y0, y1 = Theme.BandCoords(width - 2, stripH + NAV_H, 30)
+	if barsBottom() then y0, y1 = y1, y0 end
+	band:SetTexCoord(x0, x1, y0, y1)
 	if showStrip then GF.RenderTabs() end
 	GF.PaintProgress(false)
 end
@@ -1166,14 +1242,14 @@ local function setEmpty(kind)
 		empty.Title:SetText(L["No guides installed"])
 		empty.Text:SetText(L["Enable Polestar Guides or a community addon in the AddOns list on the character screen, then reload."])
 	elseif kind == "noguide" then
-		local id = G and G.Suggest and G.Suggest()
+		local id = E and E.StartingGuide and E.StartingGuide() or (G and G.Suggest and G.Suggest())
 		local suggested = id and G.Get(id)
 		empty.Title:SetText(L["No guide open"])
 		if suggested then
 			empty.Text:SetText(L["Suggested for you"] .. ": |c" .. Theme.Hex("text") .. suggested.title .. "|r")
 			W.SetButtonText(empty.Primary, L["Start guide"])
 			empty.Primary.psAction = function()
-				if E and E.OpenTab then E.OpenTab(id) elseif E and E.SetGuide then E.SetGuide(id) end
+				if E and E.StartGuide then E.StartGuide() elseif E and E.OpenTab then E.OpenTab(id) elseif E and E.SetGuide then E.SetGuide(id) end
 			end
 			empty.Primary:Show()
 			W.SetButtonText(empty.Secondary, L["Browse guides"])
@@ -1266,12 +1342,23 @@ function GF.PaintSkip(shown, enabled)
 	W.Color(b.Label, "textDim", a)
 end
 
+-- Skip sits left of the Nearby services button, or of the bug when that
+-- button is off (nav.nearbyButton).
+local function anchorSkip()
+	nav.Skip:ClearAllPoints()
+	nav.Skip:SetPoint("RIGHT", nav.Nearby:IsShown() and nav.Nearby or nav.Report, "LEFT", -2, 0)
+end
+
 local function navigatorFor(guide, index)
 	local E = Engine()
 	local count = guide and E.GetStepCount and E.GetStepCount() or 0
 	if guide then
-		nav.Steps.Count:SetText(string.format("%d / %d", index or count, count))
-		nav.Title:SetText(guide.title or guide.id)
+		-- While the catch-up shows the guides passed whole, the count and title
+		-- are its (GF.PlayCatchUp).
+		if GF.catchingUp ~= "guides" then
+			nav.Steps.Count:SetText(string.format("%d / %d", index or count, count))
+			nav.Title:SetText(guide.title or guide.id)
+		end
 		nav.psMeta = UI.GuideMeta(guide)
 	else
 		nav.Steps.Count:SetText("")
@@ -1282,6 +1369,9 @@ local function navigatorFor(guide, index)
 	W.SetIconState(nav.Next, false, guide ~= nil and index ~= nil)
 	GF.PaintSkip(guide ~= nil, guide ~= nil and index ~= nil)
 	nav.Report:SetShown(guide ~= nil)
+	nav.Nearby:ClearAllPoints()
+	nav.Nearby:SetPoint("RIGHT", guide and nav.Report or nav.Menu, "LEFT", 0, 0)
+	anchorSkip()
 	-- No guide: no steps to walk; the navigator names the addon instead.
 	nav.Steps:SetShown(guide ~= nil)
 	nav.Title:ClearAllPoints()
@@ -1290,6 +1380,7 @@ local function navigatorFor(guide, index)
 	else
 		nav.Title:SetPoint("LEFT", nav, "LEFT", PAD, 0)
 	end
+	if GF.catchingUp == "guides" then return end
 	local cw = max(floor(nav.Steps.Count:GetStringWidth() + 0.5), 40)
 	nav.Steps.Count:SetWidth(cw)
 	nav.Steps:SetWidth(24 + cw + 24)
@@ -1418,6 +1509,7 @@ local function fillCard(sameFocus)
 	-- goal that carries it, not under every goal of the same run.
 	local partySaid = {}
 	local missingSaid = {} -- quest -> a row already names who lacks it
+	local escortSaid = false -- a row already says the escort line
 	-- The current goal (the Engine's `current`: the first open blocking goal
 	-- of the focus, else its first open optional one) takes the accent; it
 	-- is the goal the arrow leads to. The header stands for its "Go to".
@@ -1427,8 +1519,10 @@ local function fillCard(sameFocus)
 		local pop = sameFocus and goal.status == "done" and r.psStatus and r.psStatus ~= "done" and r.psGoal and r.psGoal.index == goal.index
 		local isCurrent = view.current ~= nil and goal.index == view.current and goal.status == "active"
 		local party = UI.GroupLine(goal)
-		paintRow(r, goal, pop, sameFocus, isCurrent, party and partySaid[party], goal.quest and missingSaid[goal.quest])
+		local escort = UI.EscortLine(goal) ~= nil
+		paintRow(r, goal, pop, sameFocus, isCurrent, party and partySaid[party], goal.quest and missingSaid[goal.quest], escort and escortSaid)
 		if party then partySaid[party] = true end
+		if escort then escortSaid = true end
 		if goal.quest and goal.oi and goal.status ~= "skipped" then missingSaid[goal.quest] = true end
 		r.Mark:SetShown(goal.status ~= "done" and goal.status ~= "skipped" and isTarget(goal, t) and not person.Mark:IsShown())
 		r:Show()
@@ -1466,7 +1560,7 @@ function GF.Render()
 		GF.Layout()
 		return
 	end
-	local index = E.GetStepIndex and E.GetStepIndex()
+	local index = GF.catchUpIndex or (E.GetStepIndex and E.GetStepIndex())
 	navigatorFor(guide, index)
 	-- The undo goes once the step is no longer skipped (undone elsewhere).
 	local k = notices.stepSkip
@@ -1505,13 +1599,16 @@ function GF.Render()
 	showSteps(true)
 	GF.Layout()
 	GF.PaintProgress(shownGuide == guide.id)
-	if focusChanged and F:IsVisible() then
+	if focusChanged and F:IsVisible() and not GF.catchingUp then
 		-- The next person (or step) slides up 6px into place as it fades in.
 		Anim.To(card, "alpha", 0, 1, Anim.BASE, "out")
 		Anim.To(card, "offset", -6, 0, Anim.BASE, "out")
 	end
 	shownIndex, shownGuide, shownFocus = index, guide.id, focus
 end
+
+-- The step the window shows (the catch-up's while it goes over the steps).
+function GF.ShownStep() return shownIndex end
 
 -- STEP_UPDATED: same step, new goal status/progress. When the focus moved
 -- to the next person this re-renders (with the slide); otherwise rows are
@@ -1640,10 +1737,29 @@ local function targetAlpha()
 	return a
 end
 
+-- With ui.instance "hide", the window waits out a dungeon or raid until the
+-- player opens it there. Like combat it never writes ui.shown, so leaving
+-- brings back what the player had.
+local function hiddenInside()
+	return inInstance and not openInside and ns.Get("ui.instance") == "hide"
+end
+
 function GF.ApplyVisibility()
 	if not F then return end
-	local show = ns.Get("ui.shown") and not (inCombat and ns.Get("ui.combat") == "hide")
+	local show = ns.Get("ui.shown") and not (inCombat and ns.Get("ui.combat") == "hide") and not hiddenInside()
 	F:SetShown(show and true or false)
+end
+
+-- The toggle (/polestar, the key binding, the minimap button) inside, with
+-- ui.instance "hide" and the window on, now and on the way in: opens or
+-- closes it for this visit, ui.shown untouched. -> true when it did. A
+-- window that was off on the way in toggles ui.shown as anywhere else, so
+-- closing it there keeps it off after leaving.
+function GF.ToggleInside()
+	if not (inInstance and shownOnEntry and ns.Get("ui.instance") == "hide" and ns.Get("ui.shown")) then return false end
+	openInside = not openInside
+	GF.ApplyVisibility()
+	return true
 end
 
 function GF.ApplyAlpha(animate)
@@ -1720,7 +1836,12 @@ function GF.ApplyScale()
 end
 
 local APPLY = {
-	["ui.shown"] = function() GF.ApplyVisibility() end,
+	-- Shown inside (a guide picked, /polestar show, the switch): open for the visit.
+	["ui.shown"] = function()
+		if inInstance and ns.Get("ui.shown") then openInside = true end
+		GF.ApplyVisibility()
+	end,
+	["ui.instance"] = function() GF.ApplyVisibility() end,
 	["ui.scale"] = function() GF.ApplyScale() end,
 	["ui.opacity"] = function() GF.ApplyAlpha(false) end,
 	["ui.bgOpacity"] = function() GF.ApplyStyle() end,
@@ -1730,13 +1851,19 @@ local APPLY = {
 	["ui.width"] = function() GF.ApplyWidth() end,
 	["ui.pos"] = function() GF.ApplyPosition() end,
 	-- Re-pin by the other corner where the window stands now, so it does not jump.
-	["ui.growUp"] = function() GF.SavePosition() end,
+	["ui.growUp"] = function() GF.SavePosition(); GF.Layout() end,
+	["ui.barsBottom"] = function() GF.Layout() end,
 	["ui.upcoming"] = function() GF.Render() end,
 	["ui.upcomingOpen"] = function() GF.Render() end,
 	["ui.showNotes"] = function() GF.Render() end,
 	["ui.notesOpen"] = function() tipOpen = ns.Get("ui.notesOpen") and true or false; GF.Render() end,
 	["ui.combat"] = function() GF.ApplyVisibility(); GF.ApplyAlpha(false) end,
 	["ui.font"] = function() GF.Layout() end,
+	["nav.nearbyButton"] = function()
+		nav.Nearby:SetShown(ns.Get("nav.nearbyButton") ~= false)
+		anchorSkip()
+		GF.Layout()
+	end,
 }
 
 ---------------------------------------------------------------------------
@@ -1750,7 +1877,7 @@ local skinShown
 -- Hearth's tab: framed, gold on the active one (DIRECTION_A_BLIZZARD.md §3);
 -- the game's looks: their kit's tab art.
 function GF.PaintTab(b)
-	local kit = Theme.KitTab(b, b.psActive)
+	local kit = Theme.KitTab(b, b.psActive, nil, true)
 	local bliz = Theme.SkinKey() == "hearth"
 	local f = rawget(b, "psFrameTex")
 	if bliz and not f then
@@ -2026,6 +2153,59 @@ local function openMenu(button)
 	})
 end
 
+-- Nearby services (Nav/Nearby.lua): the nearest vendor, repair, inn, flight
+-- master or trainer, as the arrow's target. Looked up after combat only.
+local openNearby
+
+-- The weapon master's page of the menu: the weapons to learn, each to the
+-- nearest master who teaches it; a weapon already known, or not yet at this
+-- level, says so and is off. Back returns to the services.
+local function openWeapons(button, entry)
+	local Nearby = ns.Nav.nearby
+	local fight = InCombatLockdown and InCombatLockdown()
+	local items = {
+		{ text = L["Back"], icon = "chevron-left", onClick = function() openNearby(button) end },
+		{ separator = true },
+	}
+	for _, w in ipairs(entry.weapons) do
+		local text, off = w.label, fight
+		if w.known then
+			text, off = string.format(L["%s (known)"], w.label), true
+		elseif w.level then
+			text, off = string.format(L["%s (from level %d)"], w.label, w.level), true
+		end
+		local line = w.line
+		items[#items + 1] = { text = text, disabled = off, onClick = function() Nearby.Go("weapon", line) end }
+	end
+	W.ShowMenu(button, items)
+end
+
+function openNearby(button)
+	if W.MenuShown(button) then return W.HideMenu() end
+	local Nearby = ns.Nav and ns.Nav.nearby
+	if not (Nearby and Nearby.MenuItems) then return end
+	local fight = InCombatLockdown and InCombatLockdown()
+	local items = {}
+	if Nearby.Trip and Nearby.Trip() then
+		items[1] = { text = L["Back to the guide"], icon = "chevron-left", onClick = function() Nearby.EndTrip() end }
+		items[2] = { separator = true }
+	end
+	for _, e in ipairs(Nearby.MenuItems()) do
+		if e.separator then
+			items[#items + 1] = e
+		elseif e.weapons then
+			-- A page of its own: which weapon to learn.
+			items[#items + 1] = { text = e.label .. "  \226\128\186", icon = e.icon, disabled = fight,
+				onClick = function() openWeapons(button, e) end }
+		else
+			local key, line = e.key, e.line
+			items[#items + 1] = { text = e.label, icon = e.icon, disabled = fight,
+				onClick = function() Nearby.Go(key, line) end }
+		end
+	end
+	W.ShowMenu(button, items)
+end
+
 ---------------------------------------------------------------------------
 -- Build
 ---------------------------------------------------------------------------
@@ -2126,6 +2306,12 @@ local function build()
 	nav.Report.psTipLines = { L["Write what went wrong, copy the report and paste it on the Polestar Discord."] }
 	nav.Report:SetPoint("RIGHT", nav.Menu, "LEFT", 0, 0)
 	nav.Report:Hide()
+	-- Nearby services: left of the bug, right of Skip.
+	nav.Nearby = W.IconButton(nav, "icon-goto", 24, L["Nearby services"], openNearby)
+	nav.Nearby.psTipLines = { L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] }
+	nav.Nearby:SetPoint("RIGHT", nav.Report, "LEFT", 0, 0)
+	nav.Nearby:SetShown(ns.Get("nav.nearbyButton") ~= false)
+	GF.nearbyButton = nav.Nearby
 	-- Skip: the 11px skip glyph and a Small label, a ghost button left of the
 	-- bug.
 	local skip = CreateFrame("Button", nil, nav)
@@ -2138,7 +2324,6 @@ local function build()
 	skip.Label:SetPoint("LEFT", skip.Icon, "RIGHT", 5, 0)
 	skip.Label:SetText(L["Skip"])
 	skip:SetWidth(floor(7 + 11 + 5 + skip.Label:GetStringWidth() + 8 + 0.5))
-	skip:SetPoint("RIGHT", nav.Report, "LEFT", -2, 0)
 	skip:SetScript("OnClick", function() GF.SkipStep() end)
 	skip:SetScript("OnEnter", function(self)
 		if self:IsEnabled() then
@@ -2154,6 +2339,7 @@ local function build()
 	end)
 	skip:Hide()
 	nav.Skip = skip
+	anchorSkip()
 	nav.Title = T(nav, "small", "textDim")
 	-- The step's own title and the guide's facts, on the step number.
 	local countHit = CreateFrame("Frame", nil, nav.Steps)
@@ -2167,11 +2353,11 @@ local function build()
 		GF.HoverIn()
 	end)
 	countHit:SetScript("OnLeave", function(self) W.HideTooltip(self) end)
-	for _, b in ipairs({ nav.Menu, nav.Report, nav.Next, nav.Prev, nav.Skip }) do hoverable(b) end
+	for _, b in ipairs({ nav.Menu, nav.Report, nav.Nearby, nav.Next, nav.Prev, nav.Skip }) do hoverable(b) end
 	-- Transparent chrome: the step number fades with its chevrons (nav.Steps
 	-- holds all three) and the title with them; a lone "3 / 8" over the world
 	-- would read as a stray number. Progress stays readable in the foot.
-	for _, c in ipairs({ nav.Menu, nav.Report, nav.Skip, nav.Steps, nav.Title }) do chrome[#chrome + 1] = c end
+	for _, c in ipairs({ nav.Menu, nav.Report, nav.Nearby, nav.Skip, nav.Steps, nav.Title }) do chrome[#chrome + 1] = c end
 
 	-- Body
 	body = CreateFrame("Frame", nil, F)
@@ -2489,6 +2675,86 @@ ns.On("STEP_SKIPPED", function(_, to, skips)
 	end)
 end)
 
+-- The catch-up (GUIDE_PLACED): once a guide just opened is placed, the
+-- window goes over the steps before the one it resumes at, each shown in
+-- full (the card, the journey, what follows) one after another faster and
+-- faster, then the step placed. Guides passed whole go by first, by title.
+-- It plays when a guide is opened (by the player, the login's pick, a guide
+-- chained to), from step 1; a guide a login or /reload brings back is placed
+-- without it (the Engine fires GUIDE_PLACED for opened guides only). Not
+-- with reduced motion, the window hidden, or a single step to go over. A
+-- guide placed before the world is entered waits for it. Only the window
+-- moves: the Engine's step, the arrow and the automation stay on the step
+-- placed.
+local CATCH_GUIDE = 0.35 -- seconds per guide passed whole (at most 1.2 in all)
+GF.catchUpState = { entered = false }
+
+local function catchUpDone()
+	GF.catchingUp, GF.catchUpIndex = nil, nil
+	ns.Fire("CATCH_UP", false)
+	GF.Render()
+end
+
+function GF.PlayCatchUp(guideId, step, chain)
+	local cs = GF.catchUpState
+	if not cs.entered then
+		cs.queued = { guideId, step, chain }
+		return
+	end
+	local passed = chain and #chain or 0
+	if not (F and F:IsShown() and ns.IsLoggedIn()) or Anim.Reduced() then return end
+	-- A single step passed is no catch-up (the player's own first step).
+	if not step or (step <= 2 and passed == 0) then return end
+	local Count = nav.Steps.Count
+	-- CATCH_UP(true|false): the arrow shows an hourglass meanwhile (Nav/Arrow.lua).
+	ns.Fire("CATCH_UP", true)
+	local function roll()
+		GF.catchingUp = "steps"
+		local shown
+		Count.psOnValue = function(_, v)
+			local i = max(1, min(step - 1, floor(v)))
+			if i ~= shown then
+				shown = i
+				GF.catchUpIndex = i
+				GF.Render()
+			end
+		end
+		-- Slow at first, then faster: about 0.06 s a step, 2.5 s at most.
+		local dur = min(2.5, 0.5 + 0.06 * (step - 1))
+		Anim.To(Count, "value", 1, step - 0.001, dur, "in", catchUpDone)
+	end
+	if passed == 0 then return roll() end
+	-- The guides passed whole, each shown done.
+	GF.catchingUp = "guides"
+	local titles = {}
+	for i, id in ipairs(chain) do
+		local g = ns.Guides.Get(id)
+		titles[i] = { g and (g.title or g.id) or id, g and #g.steps or 0 }
+	end
+	Count.psOnValue = function(o, v)
+		local t = titles[min(passed, floor(v) + 1)]
+		nav.Title:SetText(t[1])
+		o:SetText(string.format("%d / %d", t[2], t[2]))
+	end
+	Anim.To(Count, "value", 0, passed - 0.001, min(1.2, CATCH_GUIDE * passed), "linear", function()
+		if step > 1 then return roll() end
+		catchUpDone()
+	end)
+end
+
+ns.RegisterEvent("PLAYER_ENTERING_WORLD", function()
+	local cs = GF.catchUpState
+	if cs.entered then return end
+	cs.entered = true
+	local q = cs.queued
+	cs.queued = nil
+	if q and F then GF.PlayCatchUp(q[1], q[2], q[3]) end
+end)
+
+ns.On("GUIDE_PLACED", function(guideId, step, chain)
+	if F then GF.PlayCatchUp(guideId, step, chain) end
+end)
+
 -- GUIDE_OUTLEVELED(guideId, suggestedId): the player has outgrown the guide
 -- in the active tab; offer the suggested one until dismissed or taken.
 ns.On("GUIDE_OUTLEVELED", function(guideId, suggestedId)
@@ -2516,6 +2782,11 @@ ns.On("CLASS_TRAINED", function()
 	if ns.IsLoggedIn() then GF.Layout() end
 end)
 
+-- A trip to a nearby service began or ended: its banner shows or goes.
+ns.On("NEARBY_TRIP", function()
+	if F and ns.IsLoggedIn() then GF.Layout() end
+end)
+
 ns.On("SETTING_CHANGED", function(path)
 	if not F then return end
 	local fn = APPLY[path]
@@ -2538,3 +2809,25 @@ ns.RegisterEvent("PLAYER_REGEN_ENABLED", function()
 	GF.ApplyVisibility()
 	GF.ApplyAlpha(true)
 end)
+
+-- Dungeons and raids only: not battlegrounds, arenas or scenarios.
+local function instanceNow()
+	local C = ns.Compat
+	if not (C and C.IsInInstance) then return false end
+	local ok, inside, kind = pcall(C.IsInInstance)
+	return (ok and inside and (kind == "party" or kind == "raid")) and true or false
+end
+
+-- Every way in or out passes a loading screen, a /reload included. Going in
+-- or out ends a visit, so the next one starts hidden again.
+local function checkInstance()
+	local now = instanceNow()
+	if now ~= inInstance then
+		openInside = false
+		shownOnEntry = ns.Get("ui.shown") and true or false
+	end
+	inInstance = now
+	GF.ApplyVisibility()
+end
+ns.RegisterEvent("PLAYER_ENTERING_WORLD", checkInstance)
+ns.RegisterEvent("ZONE_CHANGED_NEW_AREA", checkInstance)
