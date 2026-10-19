@@ -65,6 +65,21 @@
   "name": "Linen Cloth",
   "vendors": []
  },
+ "286200": {
+  "drops": {
+   "npc": {},
+   "object": {}
+  },
+  "id": 286200,
+  "name": "Dillinger's Report",
+  "questItem": true,
+  "source": [
+   "questie-forever"
+  ],
+  "vendors": [
+   152
+  ]
+ },
  "4306": {
   "drops": {
    "npc": {

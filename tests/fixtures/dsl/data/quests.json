@@ -406,5 +406,43 @@
   "title": "Either Way",
   "xp": 100,
   "zone": 1429
+ },
+ "99141": {
+  "classes": null,
+  "end": {
+   "npc": [
+    197
+   ],
+   "object": []
+  },
+  "excl": [],
+  "id": 99141,
+  "level": 6,
+  "minLevel": 4,
+  "next": null,
+  "objectiveText": "Obtain Dillinger's report for Marshal McBride.",
+  "objectives": [
+   {
+    "count": null,
+    "id": 286200,
+    "text": "Dillinger's Report",
+    "type": "item"
+   }
+  ],
+  "pre": [],
+  "races": null,
+  "source": [
+   "questie-forever"
+  ],
+  "start": {
+   "item": [],
+   "npc": [
+    197
+   ],
+   "object": []
+  },
+  "title": "Patience",
+  "xp": 405,
+  "zone": 1429
  }
 }

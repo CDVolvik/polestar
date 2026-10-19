@@ -104,6 +104,28 @@ test('a collect names the sources its point and spawn areas belong to (fromNpcs)
 	assert.equal(goalsOf(['step One', '  kill 6']).goals[0].fromNpcs, undefined);
 });
 
+test('a collect whose item nothing drops names the NPC who hands it over: the data\'s vendors, or the npc the guide names', () => {
+	// Dillinger's Report has no droppers and is a quest item, and the data lists
+	// Brother Danil as its "vendor": for a quest item that means he hands it
+	// over, in his gossip window, so the target button gets his name.
+	const handed = goalsOf(['step One', '  accept 99141', '  collect 286200 quest 99141.1 @48,42']).goals[1];
+	assert.deepEqual(handed.fromNpcs, [{ npc: 152, npcName: 'Brother Danil' }]);
+	assert.equal(handed.npc, undefined, 'a hand-over NPC is named, never placed: `buy … nearest` is the vendor path');
+	// `npc <id>` names one outright, for an item the data links to nobody (a
+	// quest report). Nothing else is then named.
+	const named = goalsOf(['step One', '  accept 99141', '  collect 286200 quest 99141.1 npc 295 @48,42']).goals[1];
+	assert.equal(named.npc, 295);
+	assert.equal(named.npcName, 'Innkeeper Farley');
+	assert.equal(named.fromNpcs, undefined, 'the named NPC stands alone');
+	// A trade good a vendor happens to stock is no hand-over: Refreshing Spring
+	// Water is farmed or bought in bulk, and names nobody to target.
+	const trade = goalsOf(['step One', '  collect 159 x2 @48,42']).goals[0];
+	assert.equal(trade.fromNpcs, undefined);
+	// An item with droppers is untouched: its own sources still lead.
+	const dropped = goalsOf(['step One', '  collect 750 x4']).goals[0];
+	assert.deepEqual(dropped.fromNpcs, [{ npc: 69, npcName: 'Timber Wolf' }, { npc: 299, npcName: 'Diseased Young Wolf' }]);
+});
+
 test('a second source dropping the item at 50% or more is named beside the first; both carry their ids (the names in the client\'s language)', () => {
 	// Fractured Canine: Timber Wolf 70%, Diseased Young Wolf (299) 60%.
 	const g = goalsOf(['step One', '  collect 3299 x2']).goals[0];
