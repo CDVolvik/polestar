@@ -477,6 +477,15 @@ Warnings:
   leaves out the characters still holding the quest, the warning says so (its
   turn-ins do not count for them)
 - `complete` on a quest with no objectives: the turn-in is the action; use `turnin`
+- a `turnin` whose quest's objectives ask for an item the world gives (a drop,
+  an object, a vendor or a container; not one the quest or an NPC hands over)
+  that no earlier goal in the guide or a guide chaining into it gets: a goal
+  for the item (`collect`, `buy`), one linked to its objective (`kill … quest
+  Q.O`), or a `complete` of the quest
+- a `complete` with no place (no coordinates and no `goto` earlier in its step)
+  on a quest whose objectives have places (an npc or object with spawns, an
+  item with a placed dropper or vendor): the arrow has nowhere to point; write a
+  goal per objective
 - explicit coordinates more than 50 yards from every known spawn of the entity
 - ids missing from data but given explicit names/coordinates (new Forever content)
 - objective-capable goals with no coordinates
