@@ -153,6 +153,42 @@ test('secure buttons: changes during combat wait for PLAYER_REGEN_ENABLED; displ
 	assert.deepEqual(out[1], ['item:903', '/cleartarget [nocombat]\n/targetexact Gnoll\n/cleartarget [dead]', 1.4, 903, '4']);
 });
 
+test('secure buttons: the name sits on the chosen side of every button', () => {
+	const out = run(`
+		local function side(b) local p, _, rp, x, y = b.Label:GetPoint(1); return { p, rp, x, y } end
+		local all = { PolestarQuestItemButton, PolestarTargetButton, PolestarHearthButton }
+		for _, v in ipairs({ "right", "left", "above", "below", "nonsense" }) do
+			set("buttonTextSide", v)
+			emit({ side(all[1]), side(all[2]), side(all[3]) })
+		end
+	`);
+	const at = (p, rp, x, y) => [[p, rp, x, y], [p, rp, x, y], [p, rp, x, y]];
+	assert.deepEqual(out[0], at('LEFT', 'RIGHT', 8, 0));
+	assert.deepEqual(out[1], at('RIGHT', 'LEFT', -8, 0));
+	assert.deepEqual(out[2], at('BOTTOM', 'TOP', 0, 4));
+	assert.deepEqual(out[3], at('TOP', 'BOTTOM', 0, -4));
+	assert.deepEqual(out[4], at('LEFT', 'RIGHT', 8, 0), 'an unknown value falls back to the right');
+});
+
+test('secure buttons: an Above name sits over a quest item button shown above the target button', () => {
+	const out = run(`
+		local t = PolestarTargetButton
+		local function over() local _, rel = t.Label:GetPoint(1); return rel and rel:GetName() end
+		set("buttonTextSide", "above")
+		q.step({ { t = "kill", target = "Murloc" } })
+		emit({ over() })
+		q.items[900] = { name = "Torch" }
+		q.addItem(0, 1, 900, 1)
+		q.step({ { t = "use", item = 900, quest = 7 }, { t = "kill", target = "Murloc" } })
+		emit({ over() })
+		q.step({ { t = "kill", target = "Gnoll" } })
+		emit({ over() })
+	`);
+	assert.deepEqual(out[0], ['PolestarTargetButton']);
+	assert.deepEqual(out[1], ['PolestarQuestItemButton'], 'clear of the quest item button, not in the gap under it');
+	assert.deepEqual(out[2], ['PolestarTargetButton'], 'back on the target button once the item button goes');
+});
+
 test('secure buttons: a login under combat lockdown (/reload mid-fight) defers every protected call', () => {
 	const out = run(`
 		q.items[900] = { name = "Torch" }
