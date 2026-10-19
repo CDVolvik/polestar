@@ -81,7 +81,10 @@ end
 -- imported, the same, or older. -> the line under the preview, or nil
 local function stateNote(info)
 	if info.state == "update" then
-		return format(L["You have version %s of this guide. Update replaces it and keeps your progress where its steps are unchanged."], tostring(info.have))
+		local note = format(L["You have version %s of this guide. Update replaces it and keeps your progress where its steps are unchanged."], tostring(info.have))
+		if info.authorChanged then note = note .. " " .. L["The author differs from the stored guide's."] end
+		if info.licenseChanged then note = note .. " " .. L["The licence differs from the stored guide's."] end
+		return note
 	elseif info.state == "same" then
 		return L["This guide is already imported, at this version."]
 	elseif info.state == "older" then

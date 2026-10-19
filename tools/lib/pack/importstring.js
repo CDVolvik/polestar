@@ -29,12 +29,14 @@ const PREFIX = '!PS1!';
 // holds the two equal): the whole string, the steps of its guide, the
 // payload once decompressed (bytes), and any one text or object key in it
 // (bytes).
-const LIMITS = { length: 50000, steps: 60, payload: 262144, text: 4096 };
+const LIMITS = { length: 50000, steps: 60, payload: 262144, text: 4096, names: 128, goals: 100, candidates: 128 };
 
 // The first text or key in v longer than LIMITS.text, as the addon names it
 // (`guide.steps[2].note`), or null.
 function longText(v, where = '') {
-	if (typeof v === 'string') return Buffer.byteLength(v) > LIMITS.text ? where : null;
+	// names/written map values are capped at LIMITS.names, not LIMITS.text.
+	const cap = /^guide\.(names|written)\./.test(where) ? LIMITS.names : LIMITS.text;
+	if (typeof v === 'string') return Buffer.byteLength(v) > cap ? where : null;
 	if (Array.isArray(v)) {
 		for (let i = 0; i < v.length; i++) {
 			const hit = longText(v[i], `${where}[${i + 1}]`);
