@@ -19,9 +19,10 @@ The rules that hold for every task:
 - Before fixing an issue, check that no open pull request already does
   (`gh pr list --state open --search "<N>"`, the issue's `has-pr` label).
   Help on that one instead of opening a second, and link every issue yours
-  fixes ("closes #N" / "fixes #N").
-- Pull requests go to `next`, or to `hotfix/<version>` for a guide-only fix
-  to the latest release. Never to `main`.
+  fixes ("closes #N").
+- Pull requests always go to `next`, never to `main` or a `hotfix/` branch.
+  A guide fix for the coming patch gets the `backport` label from the
+  maintainer after it merges.
 - Never claim a check passed that you did not run, and never invent quest
   ids, coordinates or names.
 - A human reads every comment before it is posted.
