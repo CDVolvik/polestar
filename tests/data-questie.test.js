@@ -406,6 +406,20 @@ describe('QuestieDB merge', () => {
 		assert.deepEqual(read('npcs')[1].spawns, { 1429: { f: 'l', pts: [[47.5, 40.25]] } });
 	});
 
+	// tools/lib/data/corrections.json: dungeon quests whose Forever XP is about
+	// twice the Classic QuestXP the store has (issue #394), corrected from in-game recordings.
+	test('corrections.json gives dungeon quests their Forever XP over QuestieDB\'s QuestXP', async () => {
+		const quest = (name, questLevel) => ({ name, questLevel, requiredLevel: 1, startedBy: [[2]], finishedBy: [[2]] });
+		const { read } = await build({}, {
+			quests: { 377: quest('Crime and Punishment', 26), 959: quest('Trouble at the Docks', 18) },
+			files: { 'support/Forever/QuestXP/xpDB-classic.lua': 'local QuestXP = QuestieLoader:ImportModule("QuestXP");\nQuestXP.db = {\n  [377] = {26, 2100},\n  [959] = {18, 1350},\n}\n' },
+		});
+		const q = read('quests');
+		assert.equal(q[377].xp, 4400, 'Crime and Punishment: The Stockade');
+		assert.equal(q[959].xp, 2650, 'Trouble at the Docks: Wailing Caverns');
+		for (const id of [377, 959]) assert.ok(q[id].source.includes('polestar-correction'), `${id} is tagged as corrected`);
+	});
+
 	test("objectives come in the game's order: creatures, objects, items, kill credits, the trigger", async () => {
 		const { read } = await build({}, {
 			quests: {
