@@ -46,6 +46,39 @@ function gain(state, amount) {
 	return ups;
 }
 
+// A point inside a level, as a `level` goal or a `when level` predicate
+// writes it (docs/GUIDE_FORMAT.md): "12" is the start of level 12, "12.5"
+// halfway through it, "12+2500" 2500 XP into it (this table's XP).
+// -> { level, frac?, xp? } or { error }. `frac` is the share of the level done,
+// rounded to whole percent as the guide window shows it, and always strictly
+// between 0 and 1: "12.0" and "12+0" are plain level 12, and a point that
+// rounds to the start or the end of the level is an error. `xp` is the XP as
+// written. The level of "12" is not range-checked: callers do that.
+function levelPoint(text) {
+	const s = String(text);
+	if (/^\d+$/.test(s)) return { level: Number(s) };
+	const m = /^(\d+)(?:\.(\d+)|\+(\d+))$/.exec(s);
+	if (!m) return { error: `malformed level "${s}" (expected N, N.fraction or N+XP)` };
+	const level = Number(m[1]);
+	if (level < 1 || level >= MAX_LEVEL) return { error: `level ${s}: a point inside a level needs a level from 1 to ${MAX_LEVEL - 1}` };
+	const xp = m[3] !== undefined ? Number(m[3]) : undefined;
+	if (xp !== undefined && xp >= LEVEL_XP[level]) return { error: `level ${s}: more XP than level ${level} needs (${LEVEL_XP[level]})` };
+	const exact = xp !== undefined ? xp / LEVEL_XP[level] : Number(`0.${m[2]}`);
+	if (exact === 0) return { level };
+	const frac = Math.round(exact * 100) / 100;
+	if (frac <= 0) return { error: `level ${s} is less than 1% into level ${level}: write ${level}` };
+	if (frac >= 1) return { error: `level ${s} rounds to the end of level ${level}: write ${level + 1}` };
+	return xp !== undefined ? { level, frac, xp } : { level, frac };
+}
+
+// Whether progress { level, xp } has reached a `level` goal: past its level,
+// or at it with `frac` of the level's XP (as the addon counts it:
+// XP / XPMax >= frac).
+function levelReached(state, level, frac) {
+	if (state.level !== level || !frac || level >= MAX_LEVEL) return state.level >= level;
+	return state.xp / LEVEL_XP[level] >= frac;
+}
+
 // --- Quest XP ---------------------------------------------------------------
 
 const QUESTXP_BUILD = '1.15.9.70003';
@@ -167,7 +200,7 @@ function mobXp(playerLevel, mobLevel, elite = false) {
 }
 
 module.exports = {
-	LEVEL_XP, MAX_LEVEL, CUM_XP, gain,
+	LEVEL_XP, MAX_LEVEL, CUM_XP, gain, levelPoint, levelReached,
 	parseQuestXp, loadQuestXp,
 	baseQuestXp, questXpShare, questXpAt, questXp,
 	zeroDiff, greyLevel, mobXp,

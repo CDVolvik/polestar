@@ -123,7 +123,7 @@ const ALLOWED = {
 	'Polestar/Dungeons/Dungeons.lua': [1, 'through Compat.OpenWorldMap'],
 	'Polestar/Nav/Journey.lua': [6, "the map's canvas click handler and /way, neither with the gamepad interface; wayTaken only reads"],
 	'Polestar/Nav/Nearby.lua': [3, 'the tracking menus, not with the gamepad interface'],
-	'Polestar/QoL/Social.lua': [2, "dialogs closed for the player, never with the gamepad interface (its focus owns them)"],
+	'Polestar/QoL/QoL.lua': [2, "dialogs closed for the player (QoL.ClosePopup), never with the gamepad interface (its focus owns them)"],
 	'Polestar/QoL/Toggles.lua': [3, 'the error-message setting, which does nothing with the gamepad interface'],
 	'Polestar/UI/Options.lua': [2, "closing the game's Settings panel, never with the gamepad interface or in combat"],
 	'Polestar/UI/Gamepad.lua': [3, "a window's override bindings, only with the keyboard and mouse interface; the gamepad interface's focused window only read (a field, never a call)"],

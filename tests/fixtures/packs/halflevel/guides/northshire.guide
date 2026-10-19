@@ -1,0 +1,17 @@
+# Fixture: level goals inside a level (tests/playtest.test.js): the player
+# grinds halfway through level 2, then 300 XP into level 3.
+guide halflevel/northshire
+title Half Level Fixture
+faction Alliance
+race Human
+levels 1-6
+zone Elwynn Forest
+
+step Northshire Abbey
+  goto 48.2,42.0 "Northshire Abbey"
+
+step Halfway through 2
+  level 2.5
+
+step Into 3
+  level 3+300

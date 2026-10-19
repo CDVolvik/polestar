@@ -3,7 +3,7 @@
 -- Pins (just before ADDON_LOADED, after the addon files ran), overrides the
 -- map half of Compat with one flat test map, and provides the client APIs QoL
 -- uses: XP, bags and items, merchant (guild repair, goods), trainer, quest
--- rewards, gossip,
+-- rewards, gossip, the innkeeper's bind confirmation,
 -- taxi map, death, loot, requests from other players (q.social), popups
 -- (q.showPopup), UIErrorsFrame message types, and installed-but-unloaded
 -- addons (q.installed).
@@ -24,6 +24,8 @@
 --   q.combat(true|false)                        -- PLAYER_REGEN_DISABLED / ENABLED
 --   q.click(frame, down)                        -- OnClick + PostClick (button "LeftButton")
 --   q.gainXP(n)                                 -- UnitXP moves, PLAYER_XP_UPDATE (levels up past xpMax)
+--   q.xpBar(shown)                              -- the game's XP bar frames (StatusTrackingBarManager); returns the experience bar
+--   q.engine.levelTarget = N                    -- what Engine.LevelTarget answers above the player's level
 --   q.calls                                     -- { { "UseContainerItem", bag, slot }, { "GetQuestReward", i }, ... }
 
 local q = {
@@ -47,7 +49,7 @@ local q = {
 	loot = 0,
 	specialItems = {}, -- questID -> itemID (quest log special item)
 	engine = { step = nil, view = nil, guide = nil, waypoint = nil },
-	nav = { target = nil, sets = {}, releases = 0, clears = 0, route = nil, ci = 1 },
+	nav = { target = nil, sets = {}, releases = 0, clears = 0, route = nil, ci = 1, boundInn = nil },
 	pins = {},
 	cooldowns = {},
 	inRange = nil,
@@ -112,6 +114,36 @@ function q.gainXP(n)
 		q.xpMax = q.xpMaxFor(q.level)
 	end
 	stub.fire("PLAYER_XP_UPDATE", "player")
+end
+
+-- The game's XP bar (Blizzard_StatusTrackingBar): two containers under
+-- StatusTrackingBarManager, each with its own bars by StatusTrackingBarInfo
+-- index; the experience bar in the main one. Made by the client, so the
+-- frames count as game frames (stub.underGameFrames). Returns the XP bar.
+function q.xpBar(shown)
+	StatusTrackingBarInfo = { BarsEnum = { None = -1, Reputation = 1, Honor = 2, Artifact = 3, Experience = 4, Azerite = 5, HouseFavor = 6 } }
+	local manager = CreateFrame("Frame", "StatusTrackingBarManager", UIParent)
+	manager.barContainers = {}
+	local exp
+	for i, name in ipairs({ "MainStatusTrackingBarContainer", "SecondaryStatusTrackingBarContainer" }) do
+		local c = CreateFrame("Frame", name, manager)
+		c:SetSize(571, 17)
+		c.bars = {}
+		for index = 1, 6 do
+			local bar = CreateFrame("Frame", nil, c)
+			bar:SetSize(565, 11)
+			bar.StatusBar = CreateFrame("StatusBar", nil, bar)
+			bar.StatusBar:SetAllPoints(bar)
+			bar.OverlayFrame = CreateFrame("Frame", nil, bar)
+			bar.OverlayFrame:SetFrameLevel(4)
+			bar:Hide()
+			c.bars[index] = bar
+		end
+		manager.barContainers[i] = c
+		if i == 1 then exp = c.bars[4] end
+	end
+	if shown ~= false then exp:Show() end
+	return exp
 end
 
 C_DeathInfo = {}
@@ -449,6 +481,12 @@ function q.openGossip(npc, opts)
 	stub.fire("GOSSIP_SHOW")
 end
 
+-- The bind confirmation (GameDialogDefs.lua's CONFIRM_BINDER Accept).
+Enum.PlayerInteractionType = { Binder = 20 }
+C_PlayerInteractionManager = {}
+function C_PlayerInteractionManager.ConfirmationInteraction(t) call("ConfirmationInteraction", t) end
+function C_PlayerInteractionManager.ClearInteraction(t) call("ClearInteraction", t) end
+
 TaxiFrame = CreateFrame("Frame", "TaxiFrame", UIParent)
 TaxiFrame.shown = false
 function NumTaxiNodes() return #q.taxiNodes end
@@ -564,6 +602,22 @@ function Engine.GetStepView(i) if i == q.engine.step then return q.engine.view e
 function Engine.GetGuide() return q.engine.guide end
 function Engine.GetWaypoint() return q.engine.waypoint end
 function Engine.IsClassTrainer(npc) return npc ~= nil and q.classTrainers[npc] == true end
+-- The Engine's rule: a located goal at its npc, `sethome nearest` at a candidate.
+function Engine.IsSethomeInnkeeper(goal, npc)
+	if not (npc and goal and goal.t == "sethome") then return false end
+	if not goal.location then
+		for _, c in ipairs(goal.candidates or {}) do if c.npc == npc then return true end end
+		return false
+	end
+	return npc == goal.npc
+end
+
+-- q.engine.levelTarget: the guide's next `level N`; returned only above `level`.
+function Engine.LevelTarget(level)
+	local t = q.engine.levelTarget
+	if t and q.engine.step and t > (level or q.level) then return t, q.engine.step end
+	return nil
+end
 
 -- A step from raw goals: views get status "active" unless goal.status says otherwise.
 function q.step(goals, index)
@@ -606,6 +660,8 @@ function Nav.ClearTarget()
 	q.nav.target = nil
 end
 function Nav.GetRoute() return q.nav.route, q.nav.route and q.nav.ci or nil end
+-- The inn this character is bound at: q.nav.boundInn, its innkeeper.
+function Nav.BoundInn() return q.nav.boundInn and { npc = q.nav.boundInn } or nil end
 
 local Pins = {}
 q.Pins = Pins

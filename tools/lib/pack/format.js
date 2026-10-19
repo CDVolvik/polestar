@@ -13,11 +13,16 @@ const FORMAT = 3;
 const WHEN_FORMAT = 4;
 const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6' };
 
+// A `level` goal with `frac` (a point inside the level) needs format 4 too:
+// an older Polestar would count it done at the start of the level.
+const usesLevelFrac = (g) => (g.steps || []).some((s) => (s.goals || []).some((goal) => goal.t === 'level' && goal.frac));
+
 // The format a pack's compiled guides need: WHEN_FORMAT when a step of
-// them has `when`, or a `next` option has one (`nextWhen`), else FORMAT.
+// them has `when`, a level goal has `frac`, or a `next` option has a `when`
+// (`nextWhen`), else FORMAT.
 function formatFor(guides) {
 	const uses = (guides || []).some((g) => (g.steps || []).some((s) => Array.isArray(s.when) && s.when.length));
-	if (uses) return WHEN_FORMAT;
+	if (uses || (guides || []).some(usesLevelFrac)) return WHEN_FORMAT;
 	const nextWhen = (guides || []).some((g) => g.nextWhen && Object.keys(g.nextWhen).length);
 	if (nextWhen) return WHEN_FORMAT;
 	return FORMAT;

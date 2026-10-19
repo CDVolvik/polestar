@@ -266,15 +266,15 @@ the next gamepad action there is blocked ("An action was blocked because of
 taint from Polestar"; seen in game as a quest reward was taken, then on every
 panel after it). `SetParent` is not hooked. So every frame of Polestar's
 whose parent is a game frame, or is under one (the map canvases, the
-minimap, the quest reward and talent buttons, and the frames under those),
-is made through `CreateFrameUnder`; frames under Polestar's own windows,
-which hang off `UIParent`, are made with `CreateFrame`. No `CreateFramePool`
-with a game frame either: it calls `CreateFrame` with its parent.
-`tests/lua/wow_stub.lua`'s `CreateFrame` raises on a call from addon code
-whose parent is, or is under, a frame addon code did not make
+minimap, the quest reward and talent buttons, the XP bar, and the frames
+under those), is made through `CreateFrameUnder`; frames under Polestar's
+own windows, which hang off `UIParent`, are made with `CreateFrame`. No
+`CreateFramePool` with a game frame either: it calls `CreateFrame` with its
+parent. `tests/lua/wow_stub.lua`'s `CreateFrame` raises on a call from addon
+code whose parent is, or is under, a frame addon code did not make
 (`stub.underGameFrames`), and `tests/nav-mapcanvas.test.js`,
-`tests/qol.test.js` (the reward marks) and `tests/talents.test.js` (the
-talent marks) check that none was made.
+`tests/qol.test.js` (the reward marks, the XP bar mark) and
+`tests/talents.test.js` (the talent marks) check that none was made.
 
 ### Gamepad interface
 
@@ -840,14 +840,14 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `talk` | `npc`, `npcName` | — | gossip/quest frame opened with that NPC during this step; else manual |
 | `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest` (the line named after the object, else `oi`); else manual |
 | `use` | `item`, `itemName` | `quest`, `oi` | objective state if `quest`; else manual |
-| `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it |
+| `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it. `Engine.IsSethomeInnkeeper(goal, npc)` says whether `npc` is that innkeeper (for `sethome nearest`, one of its candidates); QoL's bind helper asks it |
 | `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual; latched once it lands in its live step |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` | with `node`: that taxi node among the known ones (`flags.taxi`, recorded by Nav/Travel.lua from the flight map); without: taxi map opened at a flight master of that name (persisted in `flags.fp`); else manual |
 | `fly` | `location` | `area`, `node` | as `hearth`, including the in-step latch (`node`: the flight point, named in the client's language where no `area` names the place) |
 | `train` | — | `npc`, `npcName`, `text` | trainer window opened during this step, else manual |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName` | item count ≥ `count` (default 1) |
 | `vendor` | — | `npc`, `npcName`, `text` | merchant window opened during this step, else manual |
-| `level` | `level` | — | player level ≥ `level` |
+| `level` | `level` | `frac` | player level > `level`, or = `level` with XP / XPMax ≥ `frac` (no `frac`: level ≥ `level`) |
 | `note` | `text` | — | never blocks (informational) |
 | `skill` | `skill` (name), `level` | `skillLine` | skill rank ≥ `level` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName` (trainer), `item` (recipe item) | spell known |
@@ -981,6 +981,7 @@ Polestar.Engine.Next() / Prev() / Goto(i)    -- look at another step; changes no
 Polestar.Engine.Skip() -> stepIndex         -- skip the step shown, saved; fires PLAYER_SKIPPED_STEP
 Polestar.Engine.Unskip(i) -> bool           -- undo a skip
 Polestar.Engine.GetLiveStep() -> i | nil    -- the first open step, whatever step is shown
+Polestar.Engine.LevelTarget(level?) -> N, stepIndex | nil   -- the first `level N` goal from the step shown for this character (step `only`/`when`, goal `only`; skips left out) with N above `level` (default: the character's); QoL's XP bar mark
 Polestar.Engine.StartGate(id) -> gate | nil -- a Class guide this character cannot start yet: { level } or { pre, preTitle }, with giver, map (see "Not yet available")
 Polestar.Engine.ToggleGoal(stepIndex, goalIndex) -> bool   -- tick any goal but a note done, or clear its check-off
 Polestar.Engine.SkipGoal(stepIndex, goalIndex) -> bool     -- skip an optional goal, or bring it back
@@ -1097,7 +1098,9 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `ResetProgress` forgets them; a pack update moves them with the steps
   (`Own.remap`). The live state they read already re-evaluates the guide
   (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
-  `HEARTHSTONE_BOUND`).
+  `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`). A `level` predicate with `frac`
+  (`when level>=12.5`) compares the level plus the share of it done
+  (XP / XPMax) with `n + frac`.
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is
@@ -3293,6 +3296,70 @@ Polestar.QoL.Rewards.best, .reason                -- auto-pick's settled answer 
   (`gear.pickTooltip`) appears only when its pick is an upgrade, so it never
   contradicts the coin. `gear.rewards` is the guide window's pick line only.
 
+### Binding at the guide's inn — QoL, asks the Engine
+
+`QoL/Bind.lua`, behind `qol.autoBind` (Quality of Life → Travel →
+Hearthstone; off by default, as it binds for the player). It does one thing:
+while the active tab's current step has an open `sethome` goal, it binds the
+Hearthstone at the innkeeper that goal names, and nowhere else.
+
+```lua
+Polestar.QoL.Bind.Wanted(npc) -> bool        -- an open sethome goal of the current step binds at npc (Engine.IsSethomeInnkeeper), and the character is not bound at that innkeeper's inn (Nav.BoundInn)
+Polestar.QoL.Bind.BinderOption(options) -> option | nil  -- the gossip's bind option: icon or overrideIconID 132052 (BinderGossipIcon)
+Polestar.QoL.Bind.OnGossip() -> bool         -- GOSSIP_SHOW (Toggles.lua: after the flight helper, before skipGossip): picked the bind option
+```
+
+- **Gossip.** At such an innkeeper, the bind option is picked by its icon,
+  never its text (`QoL.SelectGossip`: by `gossipOptionID`, else
+  `orderIndex`). Not with Shift held, and not while the gossip has a quest to
+  pick up or hand in (`QoL.HasQuestBusiness`, which the flight helper shares):
+  the quest automation goes first and the gossip shows again after it.
+- **Confirmation.** Picking the option fires `CONFIRM_BINDER(areaName)`,
+  registered only while the setting is on (`QoL.WhileOn`). While the
+  innkeeper (`"npc"`, else the last gossip's NPC: the client may have closed
+  the gossip) is still `Wanted`, whether the helper or the player picked the
+  option, and Shift was held neither at that gossip nor now, it answers as the
+  popup's Accept does
+  (`C_PlayerInteractionManager.ConfirmationInteraction(Enum.PlayerInteractionType.Binder)`,
+  then `ClearInteraction(Binder)`; Blizzard_StaticPopup_Game
+  GameDialogDefs.lua), closes the "CONFIRM_BINDER" popup on the next frame
+  (`QoL.ClosePopup`, as for summons; left to the player under the gamepad
+  interface style) and prints "Bound your Hearthstone to <area>.". The
+  Engine completes the goal from the bind as it does for one by hand
+  (`HEARTHSTONE_BOUND`).
+
+### Guide level on the XP bar — QoL/XPMark
+
+```lua
+Polestar.QoL.XPMark.Label(level, target) -> text | nil   -- pure: "Guide: 11" (the next level), "Guide: 14 (4 levels)"; nil when target <= level
+Polestar.QoL.XPMark.Refresh()                            -- show, move or hide the mark now
+Polestar.QoL.XPMark.frame                                -- the mark, once made
+```
+
+- **Target** (`qol.xpTargetMark`, on by default; Quality of Life >
+  Trackers > Experience): `Engine.LevelTarget(level)`, the level the guide
+  holds you to before it moves on. Guide levels are whole levels (the
+  compiler takes no fractions), so the mark is always the end of this
+  level's bar: a 2px accent tick at the bar's right edge, standing 2px above
+  and below it, with the label left of it in the accent colour (outlined
+  `small` text). Nothing when the option is off, no guide is open, no `level`
+  goal lies ahead above your level, or you are at the maximum level.
+- **The game's bar is only read.** The experience bar is the one of
+  `StatusTrackingBarManager.barContainers` whose
+  `bars[StatusTrackingBarInfo.BarsEnum.Experience]` is shown
+  (Blizzard_StatusTrackingBar). The mark is Polestar's own frame made under
+  that bar through `CreateFrameUnder`, spanning its `StatusBar` one level
+  above its `OverlayFrame` (MEDIUM strata, like the bar's own text), so it
+  fades, hides and resizes with the bar and its gamepad width. It takes no
+  mouse: the bar's tooltip stays. No scripts, methods or hooks on the bar;
+  no bar shown (another addon replaced or hid it, the maximum level): no
+  mark, and no error.
+- **Updates**, coalesced to the next frame (after the game's bar and the
+  engine took the same event): `PLAYER_XP_UPDATE` and
+  `PLAYER_ENTERING_WORLD` while the option is on (`QoL.WhileOn`),
+  `PLAYER_LEVEL_UP` (its level: `UnitLevel` can lag the event), step
+  changes (`QoL.OnStep`), the setting, and the theme's accent.
+
 ## Lookup — Codex, sources, generated guides, mount spotting
 
 `addon/Polestar/Lookup/` (`Lookup.xml`: Codex, Sources, Guide, Spotter,
@@ -3427,8 +3494,11 @@ guides.
 The pick-up guide is built in game (`addon/Polestar/Dungeons/Pickup.lua`):
 `Dungeons.PickupPlan(key)` takes the page's quests that apply to the character
 (faction, race and class masks through `Lookup.QuestBlock`, the page's class
-list), not done, not in the log (those are `carried`), open by
-max(level, the dungeon's lowest level), picked up outside from an NPC or object
+list), not done, not in the log (those are `carried`), not closed for good (a
+quest of the page's `closedBy` done or in the log: a breadcrumb whose quest is
+taken, such as Klockmort's Essentials once Essential Artificials is; each
+accept carries `closedBy` too, so the Engine passes it once taken on the way),
+open by max(level, the dungeon's lowest level), picked up outside from an NPC or object
 (not from an item, not inside), and not a follow-up of another quest of the
 page; each with its open prerequisites (`Lookup.QuestChain`: all of `pre`, one
 of `preAny` this character can take, in the order they are done). The giver

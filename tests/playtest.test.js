@@ -173,3 +173,10 @@ test('a class no persona\'s race can be is played as the first race of the guide
 	assert.ok(ok.includes('ok  classes/druid (Tauren Druid)'), out);
 	assert.deepEqual(ok.filter((l) => l.includes('classes/totems')), ['ok  classes/totems (Orc Shaman)', 'ok  classes/totems (Tauren Shaman)', 'ok  classes/totems (Tauren Druid)']);
 });
+
+test('level goals inside a level play through: the player gets that share of the level\'s XP', { skip }, () => {
+	const pack = commandPack({ pack: path.join(PACKS, 'halflevel') });
+	const { results } = playtest({ dir: pack.dir, manifest: pack.manifest, classes: ['WARRIOR'], contextDir: pack.contextDir, contextDataDir: pack.contextDataDir });
+	assert.ok(results.length > 0);
+	for (const r of results) assert.equal(r.ok, true, JSON.stringify(r));
+});
