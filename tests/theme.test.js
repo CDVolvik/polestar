@@ -173,6 +173,51 @@ test('house style: the game\'s font by default and Inter on request, Polestar go
 	assert.deepEqual(out.schemes.map((c) => c.value), ['dusk', 'night', 'graphite'], 'EllesmereUI is offered only when installed');
 });
 
+// The ruRU game font has no middle dot, so the skin's face becomes Fira Sans
+// there; a face the player picked, and the other locales, are left alone.
+test('fonts: ruRU swaps the skin\'s game font for Fira Sans; an explicit pick and other locales keep theirs', () => {
+	const GAME = 'Fonts\\FRIZQT__.TTF';
+	const FIRA = 'Interface\\AddOns\\Polestar\\Media\\Fonts\\FiraSans-SemiBold.ttf';
+	const INTER = 'Interface\\AddOns\\Polestar\\Media\\Fonts\\Inter-SemiBold.ttf';
+	const faces = (locale) => run(`
+		local out = {}
+		out.default = (T.FontSpec("title"))
+		for _, skin in ipairs({ "hearth", "forever", "blizzard", "classic" }) do
+			Polestar.Set("ui.skin", skin)
+			out[skin] = (T.FontSpec("title"))
+		end
+		Polestar.Set("ui.skin", "polestar")
+		Polestar.Set("ui.font", "skin")
+		out.skinChoice = (T.FontSpec("title"))
+		Polestar.Set("ui.font", "game")
+		out.game = (T.FontSpec("title"))
+		Polestar.Set("ui.skin", "blizzard")
+		out.gameBlizzard = (T.FontSpec("title"))
+		Polestar.Set("ui.skin", "polestar")
+		Polestar.Set("ui.font", "inter")
+		out.inter = (T.FontSpec("title"))
+		emit(out)`, { before: `function GetLocale() return "${locale}" end` })[0];
+
+	const ru = faces('ruRU');
+	assert.equal(ru.default, FIRA, 'ruRU default');
+	assert.equal(ru.skinChoice, FIRA, 'ruRU with the skin\'s own font');
+	for (const skin of ['hearth', 'forever', 'blizzard', 'classic']) assert.equal(ru[skin], FIRA, `ruRU ${skin} by default`);
+	assert.equal(ru.game, GAME, 'ruRU with "the game\'s" font picked');
+	assert.equal(ru.gameBlizzard, GAME, 'ruRU with "the game\'s" font picked on a game skin');
+	assert.equal(ru.inter, INTER, 'ruRU with Inter picked');
+
+	for (const locale of ['zhCN', 'koKR']) {
+		const cjk = faces(locale);
+		assert.equal(cjk.default, GAME, `${locale} default`);
+		assert.equal(cjk.inter, GAME, `${locale} with Inter picked`);
+	}
+
+	const en = faces('enUS');
+	assert.equal(en.default, GAME, 'enUS default');
+	assert.equal(en.game, GAME, 'enUS with the game font picked');
+	assert.equal(en.inter, INTER, 'enUS with Inter picked');
+});
+
 test('settings from before schemes: a stored gold accent was the old default; any other stays the user\'s own', () => {
 	const ui = (accent) => `PolestarDB = { schema = 1, settings = { ui = { accent = ${accent} } } }`;
 	const [gold] = run(`emit({ accent = Polestar.Get("ui.accent"), live = { T.Accent() } })`, { before: ui('{ 0.9, 0.73, 0.4 }') });
