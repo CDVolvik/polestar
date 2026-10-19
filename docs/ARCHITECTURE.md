@@ -1512,6 +1512,20 @@ quests, and only while its goal is not done: the giver of a repeatable keeps
 offering it); never choose among multiple rewards; with `behavior.warnClosing` on,
 never accept a quest that closes another for good (Missable quests).
 
+After its own accept or turn-in, the game often opens the NPC's next window
+by itself: the follow-up of the quest just handed in, or the NPC's other
+quests (#360). With `behavior.closeSkipped` (default on) Automation closes
+that window (`CloseQuest`, `C_GossipInfo.CloseGossip`) on the next frame when
+it shows nothing the guide takes: no `accept` goal not yet taken, no quest in
+the log with a `turnin` goal, no `direct` goal, in the current or next two
+steps, whatever the automation settings. Only the first quest or gossip
+window at the same NPC within 2 seconds of Polestar's accept or turn-in
+counts; a later window, one at another NPC or one the player opens from a
+list stays. Never in combat, with Shift held, on a progress or reward
+window, or on a gossip window with options of its own (a vendor, trainer or
+innkeeper). A quest the guide still wants at that NPC is taken on the next
+talk.
+
 ## Theme — used by UI and Nav
 
 ```lua
