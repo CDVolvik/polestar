@@ -390,6 +390,13 @@ test('forever/alliance/03-darkshore.guide: XooVe\'s report (#216): a grey quest 
 // Brill, done on arrival, so nothing waited for the quest. The same holds for
 // the other event and escort objectives written as a `goto`.
 
+test(`${TIRISFAL}: Pledge-Resupply's report: The Argent Emissary points to Deathguard Terrence at 61.4,53.4`, { skip }, () => {
+	const list = goals(TIRISFAL);
+	const accept = at(list, 'accept 96895 (The Argent Emissary)', is('accept', 96895));
+	const { map, x, y } = list[accept].goal;
+	assert.deepEqual({ map, x, y }, { map: 1420, x: 61.4, y: 53.4 });
+});
+
 test(`a Priest's report: an event or escort objective holds its step until the quest is complete`, { skip }, () => {
 	for (const [guide, quest] of [[TIRISFAL, 99134], [TIRISFAL, 98389], [TIRISFAL, 99144], [DUROTAR, 99123], [TELDRASSIL, 99053]]) {
 		const list = goals(guide);

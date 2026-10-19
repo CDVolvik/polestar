@@ -4,6 +4,7 @@
 const path = require('node:path');
 const sim = require('../lib/sim');
 const { fmtH, fmtHM, table } = require('../lib/sim/report');
+const { objectiveName, parseOverrides, tagName } = require('../lib/sim/params');
 
 const usage = `usage: node tools/polestar.js sim <command> [options]
 
@@ -12,13 +13,13 @@ const usage = `usage: node tools/polestar.js sim <command> [options]
               (data/sim/walks-<faction>.json; run, robust, compare, bench and consensus use them)
   sim calibrate [--fdj DIR]                            fit parameters to quest data and recordings
   sim run     --faction F [--race R] [--class C] [--paths N] [--workers W] [--seed S] [--dungeons]
-              [--jobs J] [--anneal A] [--max-paths M]
-  sim robust  --faction F [--race R] [--class C] [--draws K] [--top N]   robustness of the top routes
+              [--jobs J] [--anneal A] [--max-paths M] [--objective time|smooth] [--param K=V ...] [--tag T]
+  sim robust  --faction F [--race R] [--class C] [--draws K] [--top N] [--objective O]   robustness of the top routes
   sim compare --faction F [--race R] [--class C] [--guides DIR] [--pack DIR | DIR] [--to 10,20,30] [--with-optional]
-              Polestar's routes vs the best found, same model
+              [--objective O]   Polestar's routes vs the best found, same model
   sim bench   --faction F [--race R] [--class C]      bracket table: zones, levels, quests per 10 levels
   sim export  --result <file> --out <dir>             zone-by-zone skeleton guides + visits.json for authors
-  sim consensus --faction F [--dungeons] [--evals N]  one 12-60 route shared by the faction's starts (+ exports)
+  sim consensus --faction F [--dungeons] [--evals N] [--objective O]   one 12-60 route shared by the faction's starts (+ exports)
 
 Without --race, run/robust/compare/bench cover every start of the faction
 (Horde: Orc, Tauren, Undead, Skyborne; Alliance: Human, Dwarf, NightElf,
@@ -45,13 +46,22 @@ options:
   --anneal <n>       run: annealing evaluations per job (default 6000)
   --max-paths <n>    run: hard cap on evaluated routes (default 3x --paths)
   --dungeons         run/robust/consensus: the dungeon-inclusive family (needs data/forever/dungeons.json)
+  --objective <o>    run/robust/compare/consensus: what the search optimises (default time):
+                     time = the fastest route; smooth = fewer zone changes, returns into zones
+                     left earlier and returns to spots already worked (docs/SIMULATION.md);
+                     smooth results are their own files (horde-orc-any-smooth.json)
+  --param <k=v>      run/robust/compare/consensus: set a model parameter (params.js), after the
+                     objective's preset; repeatable (--param grindWeight=6 --param zoneReturn=0)
+  --tag <name>       run/robust/compare/consensus: a result file variant, e.g. --tag g6 writes
+                     horde-orc-any-smooth-g6.json (and robust/compare/consensus read and write it)
   --radius <yards>   walks: route every pair of points up to this far apart (default 4000)
   --no-walks         run/robust/compare/bench/consensus: walk the straight line × detour even
                      when data/sim/walks-<faction>.json is there
   --offline          never download the QuestXP table
   --quiet            less output`;
 
-const VALUE = new Set(['faction', 'race', 'class', 'paths', 'workers', 'seed', 'draws', 'top', 'result', 'out', 'data', 'sim', 'fdj', 'guides', 'pack', 'to', 'band', 'jobs', 'anneal', 'max-paths', 'evals', 'radius']);
+const VALUE = new Set(['faction', 'race', 'class', 'paths', 'workers', 'seed', 'draws', 'top', 'result', 'out', 'data', 'sim', 'fdj', 'guides', 'pack', 'to', 'band', 'jobs', 'anneal', 'max-paths', 'evals', 'radius', 'objective', 'param', 'tag']);
+const REPEAT = new Set(['param']);
 const FLAGS = new Set(['rebuild', 'offline', 'quiet', 'help', 'dungeons', 'with-optional', 'no-walks']);
 
 function parseArgs(argv) {
@@ -71,7 +81,8 @@ function parseArgs(argv) {
 		if (!VALUE.has(key)) throw new Error(`unknown option --${key}`);
 		const v = m[2] != null ? m[2] : argv[++i];
 		if (v == null) throw new Error(`--${key} needs a value`);
-		out[key] = v;
+		if (REPEAT.has(key)) (out[key] = out[key] || []).push(v);
+		else out[key] = v;
 	}
 	return out;
 }
@@ -82,6 +93,9 @@ function common(args) {
 	if (args.sim) o.simDir = path.resolve(args.sim);
 	if (args.offline) o.offline = true;
 	if (args.band) o.bandWidth = Number(args.band);
+	if (args.objective) o.objective = objectiveName(args.objective);
+	if (args.param) o.overrides = parseOverrides(args.param);
+	if (args.tag) o.tag = tagName(args.tag);
 	if (args['no-walks']) o.walks = false;
 	o.log = args.quiet ? () => {} : (m) => console.error(m);
 	return o;
@@ -92,9 +106,11 @@ function races(args, faction) {
 }
 
 function printRun(r) {
-	console.log(`\n== ${r.faction} ${r.race} (${r.class}, ${r.family}) ==`);
+	console.log(`\n== ${r.faction} ${r.race} (${r.class}, ${r.family}${sim.variantLabel(r.objective, r.overrides, r.tag)}) ==`);
 	console.log(`evaluated routes ${r.evaluatedRoutes.toLocaleString('en-US')} in ${r.rounds} rounds, ${r.wallSeconds.toFixed(1)} s on ${r.workers} workers; ${r.msPerEval != null ? r.msPerEval.toFixed(3) : '?'} ms per route evaluation; converged: ${r.converged ? 'yes' : 'no'}`);
 	console.log(`best: ${fmtH(r.best.seconds)} to 60 (${fmtHM(r.best.seconds)}); quests ${r.best.questsDone}; XP quest/kill/grind ${r.best.xpSplit.quest}/${r.best.xpSplit.kill}/${r.best.xpSplit.grind}; travel ${((100 * r.best.travelSeconds) / r.best.seconds).toFixed(1)}%; grinding ${fmtH(r.best.grindSeconds)}`);
+	console.log(`smoothness: zone changes ${r.best.zoneChanges}; zone returns ${r.best.zoneReturns}; spot returns ${r.best.spotReturns}; shared-credit kills saved ${Math.round(r.best.sharedKills)}`);
+	console.log(`quest log: peak ${r.best.logPeak}; accepts deferred for a full log ${r.best.logDeferred}, skipped ${r.best.logSkipped}; quests abandoned ${r.best.logAbandoned}; accepted but never turned in ${r.best.acceptedNeverTurnedIn}`);
 	console.log(`time to: ${Object.entries(r.best.timeTo).map(([l, s]) => `${l}: ${fmtH(s)}`).join('  ')}`);
 	console.log(table(['zone', 'levels', 'arrive', 'hours', 'quests'], r.best.visits.map((v) => [v.zone, `${v.levelIn.toFixed(1)}-${v.levelOut.toFixed(1)}`, fmtH(v.arrive), ((v.leave - v.arrive) / 3600).toFixed(2), v.quests])));
 	const c = r.curve;
@@ -107,6 +123,9 @@ async function run(argv) {
 	let args;
 	try {
 		args = parseArgs(argv);
+		if (args.objective) objectiveName(args.objective);
+		parseOverrides(args.param);
+		tagName(args.tag);
 	} catch (err) {
 		console.error(`${err.message}\n\n${usage}`);
 		return 2;
