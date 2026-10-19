@@ -170,7 +170,9 @@ test('at its longest, with a marked spot and 40 addons, the report still fits on
 	const addons = english.text.split('\n')[2];
 	assert.match(addons, /^\*\*Addons:\*\* QuestAndMapHelperWithALongName01, .*\.\.\.$/, `the Addons line gives way: ${addons}`);
 	const unmarked = longest(...SCRIPTS[0], { unmarked: true }).text;
-	assert.equal(unmarked.split('\n')[1], '**Addons:** QuestAndMapHelperWithALongName01, QuestAndMapHelperWithALongName02, QuestAndMapHelperWithALongNam...', 'with room, the Addons line stays, cut at 100 bytes');
+	const unmarkedAddons = unmarked.split('\n')[1];
+	assert.ok(unmarked.length <= 2000, `the unmarked report fits too: ${unmarked.length}`);
+	assert.ok(unmarkedAddons.split(', ').length > english.text.split('\n')[2].split(', ').length, `without the Right spot line the Addons line takes the room it frees, not a fixed 100 bytes: ${unmarkedAddons}`);
 	assert.match(english.text, /^\.\.\. 3 more goals$/m, 'goals past the sixth are counted, not listed');
 	assert.equal((english.text.match(/^ {2}1x /gm) || []).length, 3, 'the newest three of the errors and blocked calls together');
 	assert.equal((english.text.match(/^ {2}1x blocked in Polestar_Long/gm) || []).length, 3, 'the blocked calls came last');
@@ -289,6 +291,25 @@ test('the hub and the settings carry the Polestar Discord at the foot of the sid
 	assert.deepEqual(out.fromHub, invite);
 	assert.deepEqual(out.fromCommand, invite);
 	assert.deepEqual(out.after, { icon: false, text: 'zone map 1429' }, 'the next text to copy comes without the mark');
+});
+
+test('an everyday report names every other addon: the Addons line is only shortened when the whole report would not fit one Discord message (#527)', () => {
+	const names = ['EllesmereUIMinimap', 'EllesmereUIQuestTracker', 'ForeverQuestTint', 'GearQuestForever', 'GearQuestForeverOptions', 'Leatrix_Maps',
+		'QuestieDB', 'TomTom', 'AtlasBIStooltips', 'Baganator', 'Details', 'BugSack', 'Auctionator', 'WeakAuras', 'Plater', 'OmniCC', 'Bartender4', 'Prat-3.0'];
+	const [out] = run(`
+		for _, name in ipairs(${JSON.stringify(names).replace('[', '{').replace(/]$/, '}')}) do
+			stub.addons[#stub.addons + 1] = { name = name, loaded = true }
+		end
+		uistub.setGuide(uistub.elwynn, 3)
+		UI.ShowReport()
+		local F = PolestarReport
+		F.Desc:SetText("If you use yellow accent colour, text is sometimes very hard to read.")
+		stub.RunScript(F.Desc, "OnTextChanged", true)
+		emit({ report = F.Box:GetText() })`);
+	const line = out.report.split('\n')[1];
+	assert.ok(out.report.length < 2000);
+	for (const name of names) assert.ok(line.includes(name), `${name} is on the Addons line: ${line}`);
+	assert.ok(!line.endsWith('...'), `nothing is cut: ${line}`);
 });
 
 test('the report names the other addons that are loaded; "Open on GitHub" gives a link that opens a new GitHub bug report with the report, its title, the version and those addons filled in; with a marked spot it is a Wrong step issue', () => {
