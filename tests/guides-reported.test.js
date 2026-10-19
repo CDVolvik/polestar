@@ -1556,6 +1556,24 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
 
+// --- Encroachment (tor, #351): a level 10 quest whose Razormane go up to
+// level 9 was taken at Razor Hill at about 6 and done at 7, before the level
+// 7-8 quests of Tiragarde Keep and the Sen'jin loop.
+
+test(`${DUROTAR}: tor's report (#351): Encroachment is taken after the Tiragarde Keep and Sen'jin, Echo Isles and Kolkar Crag turn-ins`, { skip }, () => {
+	const list = goals(DUROTAR);
+	const encroachment = at(list, 'accept 837 (Encroachment)', is('accept', 837));
+	for (const q of [96822, 784, 791, 830, 817, 818, 826, 808, 786]) {
+		assert.ok(at(list, `turnin ${q}`, is('turnin', q)) < encroachment, `${q} is handed in before Encroachment is taken`);
+	}
+	// The Razormane are killed after it is taken, before it is handed in.
+	const turnin = at(list, 'turnin 837', is('turnin', 837));
+	for (const n of [3111, 3112, 3113, 3114]) {
+		const kill = at(list, `kill ${n}`, (g) => g.t === 'kill' && g.quest === 837 && g.npc === n);
+		assert.ok(encroachment < kill && kill < turnin, `Razormane ${n} is killed between the accept and the turn-in`);
+	}
+});
+
 // --- Hearts of the Lovers (Phyz, #412): QuestieDB lists only Isaac's Heart,
 // so the Ratchet step read the quest log's first line, which is Avelina's
 // Heart, and passed as soon as the Silverpine heart was in the bags.
