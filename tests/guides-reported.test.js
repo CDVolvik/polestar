@@ -1358,3 +1358,18 @@ test('#246: no NPC or object goal is on a neighbouring zone\'s map where the two
 	}
 	assert.deepEqual([...new Set(offenders)], [], 'goals on the map of a zone Wowhead Forever does not place them in');
 });
+
+// --- The Barrens (Fitz, #273): Savannah Lion Hides drop from the Patriarchs
+// in the Dry Hills and from the Matriarchs by Ratchet, but the Sprung Traps
+// the same step needs are all in the Dry Hills. The hide arrow stays there.
+test('forever/horde/04-the-barrens.guide: Fitz\'s report (#273): the Savannah Lion Hide arrow stays in the Dry Hills with the traps, never by Ratchet', { skip }, () => {
+	const list = goals('forever/horde/04-the-barrens.guide');
+	for (const quest of [95494, 95507]) {
+		const { goal } = list[at(list, `the Dry Hills collect for ${quest}`, is('collect', quest))];
+		for (const p of [goal, ...(goal.spots || [])]) {
+			const where = `${goal.itemName} at ${p.x},${p.y}`;
+			assert.ok(p.x >= 40 && p.x <= 52 && p.y >= 10 && p.y <= 22, `${where} is in the Dry Hills`);
+			assert.ok(Math.hypot(p.x - 60, p.y - 33) > 10, `${where} is not near Ratchet's Matriarchs (60,33)`);
+		}
+	}
+});
