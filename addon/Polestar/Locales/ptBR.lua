@@ -1633,6 +1633,8 @@ L["Polestar's own look (the default), Halo (no frame, a soft dark veil, Fira San
 L["The skin's arrow"] = "A seta do tema"
 -- L["Lock arrow and buttons"] = ""
 -- L["Stops stray drags on the arrow, the action buttons and the flight and instance timers. Shift-drag still moves them."] = ""
+-- L["In dungeons"] = ""
+-- L["What the window does in dungeons and raids. /polestar or the key binding opens it there until you leave."] = ""
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Aviso de raide"
