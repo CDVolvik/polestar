@@ -26,6 +26,7 @@ local function tomtom()
 	local T = TomTom
 	if T == Nav.tomtomShim then return nil end
 	local H, C = Nav.handoff, ns.Compat
+	-- Shortest Path present, TomTom absent: on purpose, this also skips a third addon's TomTom-compatible global.
 	if H and H.Available() and not (C and C.AddOnPresent and C.AddOnPresent("TomTom")) then return nil end
 	if type(T) == "table" and type(T.AddWaypoint) == "function" and type(T.RemoveWaypoint) == "function" then return T end
 end
