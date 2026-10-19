@@ -1896,11 +1896,45 @@ test('death: decision weighs the run against resurrection sickness', () => {
 		emit({ (D.Decide(nil, 20, 7, 30)) })         -- corpse elsewhere: healer
 		emit({ D.Decide(70, 40, 7, 8, "corpse") })   -- healer wins by under 5 s: keep the corpse
 	`);
-	assert.deepEqual(out[0], [0, 0, 240, 600, 600]);
+	assert.deepEqual(out[0], [0, 0, 600, 600, 600]);
 	assert.deepEqual(out[1].slice(0, 1), ['healer']);
 	assert.deepEqual(out[2].slice(0, 2), ['corpse', 100]);
 	assert.equal(out[3][0], 'healer');
 	assert.equal(out[4][0], 'corpse');
+});
+
+test("death: resurrection sickness is Forever's ten minutes from level 11, or what the game last gave at that level (#390)", () => {
+	const out = run(`
+		local D = QoL.Death
+		-- level 12, corpse 1050 yd (150 s), healer 20 yd: the Classic rule's
+		-- 2 minutes sent you to the Spirit Healer; Forever gives ten
+		emit({ D.Sickness(11), D.Sickness(12) })
+		emit({ D.Decide(1050, 20, 7, 12) })
+		-- back from the Spirit Healer at 12 with the debuff on: its length is kept
+		q.level = 12
+		q.auras[15007] = { spellId = 15007, duration = 120, expirationTime = 1000 }
+		stub.fire("PLAYER_UNGHOST")
+		local seen = PolestarCharDB.qol.resSickness
+		emit({ seen.level, seen.seconds })
+		emit({ D.Sickness(12, seen), D.Sickness(13, seen) })
+		emit({ (D.Decide(1050, 20, 7, 12, nil, seen)) })
+		-- a ghost at 12: the advice uses the length the game gave
+		q.auras[15007] = nil
+		QoL.SetData({ spiritHealers = { { 0, 20, 0, 9000, 50, 49 } }, flightMasters = {} })
+		q.player = { c = 0, wx = 0, wy = 0 }
+		local _, cx, cy = q.mapPoint(0, -1050)
+		q.corpse = { cx, cy }
+		q.ghost = true
+		stub.fire("PLAYER_ALIVE")
+		local a = QoL.GetDeathAdvice()
+		emit({ a.choice, a.sickness })
+	`);
+	assert.deepEqual(out[0], [600, 600]);
+	assert.deepEqual(out[1].slice(0, 1), ['corpse']);
+	assert.deepEqual(out[2], [12, 120]);
+	assert.deepEqual(out[3], [120, 600]);
+	assert.deepEqual(out[4], ['healer']);
+	assert.deepEqual(out[5], ['healer', 120]);
 });
 
 test('death: as a ghost the arrow points at the faster choice; resurrection releases it', () => {
