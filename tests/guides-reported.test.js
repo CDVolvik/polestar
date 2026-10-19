@@ -206,6 +206,19 @@ test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker a
 	}
 });
 
+// MadReign_Ltd (CurseForge, Paladin 12, 0.2.5): Hilda and Ephram did not offer their quests at the guide's
+// step (a Paladin about level 9 there; both need level 10), and did after A Righteous Cause, at 12.
+test(`${TIRISFAL}: MadReign_Ltd's report: a Paladin takes Hilda's and Ephram's quests after A Righteous Cause is handed in`, { skip }, () => {
+	const paladin = goals(TIRISFAL).filter(forClass('PALADIN'));
+	const cause = at(paladin, 'turnin 96896 (A Righteous Cause)', is('turnin', 96896));
+	for (const q of [99152, 99153]) {
+		const take = at(paladin, `accept ${q}`, is('accept', q));
+		assert.ok(cause < take, `${q} is taken after A Righteous Cause is handed in`);
+		const work = at(paladin, `the objective of ${q}`, (g) => g.t === 'collect' && g.quest === q);
+		assert.ok(take < work && work < at(paladin, `turnin ${q}`, is('turnin', q)), `${q}: accept, objective, turn-in`);
+	}
+});
+
 test(`${TIRISFAL}: an3vilmonk3y's report (#345): the class letter is taken at Sarvis with Rattling the Rattlecages, and a Warlock's skulls are collected in the Rattlecage step`, { skip }, () => {
 	const SARVIS = 1569;
 	const letters = { WARRIOR: 3095, ROGUE: 3096, PRIEST: 3097, MAGE: 3098, WARLOCK: 3099 };
@@ -1028,6 +1041,37 @@ test(`${DARKSHORE}: Twerkjob's report: The Red Crystal leads the arrow to the cr
 	assert.ok(yards(lead.goal, crystal) < 30, `the arrow leads to the crystal (${lead.goal.x},${lead.goal.y})`);
 });
 
+// The Blackwood Corrupted's only objective is the Talisman of Corruption, but
+// Xabraxxis' Demon Bag holds it only once the satyr is summoned: the Empty
+// Cleansing Bowl filled at the Auberdine Moonwell, a sample from each of the
+// Blackwood Nut, Fruit and Grain Stores, and the mixed bowl used by the
+// bonfire (the quest's text; its required items in the data).
+test(`${DARKSHORE}: XooVe's report (#302): The Blackwood Corrupted fills the bowl and gathers the three samples before the Talisman, and uses the bowl where Xabraxxis comes`, { skip }, () => {
+	const list = goals(DARKSHORE);
+	const accept = at(list, 'accept 4763 (The Blackwood Corrupted)', is('accept', 4763));
+	const talisman = at(list, 'the Talisman of Corruption', (g) => g.t === 'collect' && g.quest === 4763 && g.item === 12355);
+	const quest = data.quests[4763];
+	const spawn = (kind, id) => {
+		const [x, y] = data[kind][id].spawns[1439].pts[0];
+		return { map: 1439, x, y };
+	};
+	// The samples and the filled bowl: what the quest needs beyond the bowl it hands over.
+	const needed = quest.requiredItems.filter((item) => item !== quest.sourceItem);
+	assert.deepEqual([...needed].sort(), [12341, 12342, 12343, 12347], 'the data lists the three samples and the filled bowl');
+	const got = needed.map((item) => {
+		const i = at(list, `collect ${item} (${data.items[item].name})`, (g) => g.t === 'collect' && g.item === item);
+		assert.ok(i > accept && i < talisman, `${data.items[item].name} is collected after the accept and before the Talisman`);
+		const [source] = Object.keys(data.items[item].drops.object);
+		assert.ok(located(list[i]) && yards(list[i].goal, spawn('objects', source)) < 5, `${data.items[item].name} leads to ${data.objects[source].name}`);
+		return i;
+	});
+	const fill = got[needed.indexOf(12347)];
+	assert.equal(list[fill].step, list[accept].step, 'the bowl is filled in Auberdine, where Thundris gives the quest');
+	const use = at(list, 'use 12347 (Filled Cleansing Bowl)', (g) => g.t === 'use' && g.item === 12347);
+	assert.ok(got.every((i) => i < use) && use < talisman, 'the bowl is used with every sample in the bags, before the Talisman');
+	assert.ok(yards(list[use].goal, spawn('npcs', 10373)) < 10, `the bowl is used where Xabraxxis comes (${list[use].goal.x},${list[use].goal.y})`);
+});
+
 test(`${DUN_MOROGH}: Rumbleshot's Ammo leads to the Ammo Crate by Mountaineer Gretchen, not to Hegnar`, { skip }, () => {
 	const list = goals(DUN_MOROGH);
 	const ammo = list.find(({ goal: g }) => g.t === 'collect' && g.quest === 5541);
@@ -1465,18 +1509,18 @@ test("#286: a typed coordinate is near its target's spawns in its own map frame,
 // south-west of the bow, to where QuestieDB 1.0.5 had it; 1.0.6 moved it to
 // 59.4,56.4, where the player found it. A quest item that lies on the ground
 // at a few fixed spots is collected where one of them is: the arrow leads
-// within 1 map unit of its object's spawn.
+// within 1 map unit of its object's spawn, both points in the same map frame
+// (Augustus' Receipt Book, #423: the Un'Goro guide's 17.4,31.1 is the Era
+// frame's name for the spawn the data gives as 14.04,24.22 live).
 const AWAY_FROM_ITS_OBJECTS = new Set([
 	// Fish from pools: the schools drift along the shore, and the step points at a stretch of it.
 	'forever/professions/fishing.guide 16968',
 	'forever/professions/fishing.guide 16969',
 	'forever/professions/fishing.guide 16970',
-	// The data has the book at 14.0,24.2 (pfQuest and QuestieDB agree); the guide says the
-	// Terrordale inn at 17.4,31.1. Not checked in game yet; left for its own fix.
-	'forever/horde/50-60/01-un-goro-crater.guide 15884',
 ]);
 test("#289: a quest item picked up from objects is collected at one of the objects' spawns", { skip }, () => {
 	data = data || loadData(DATA);
+	const { point } = makeProjector(data.mapFrames);
 	const offenders = [];
 	for (const guide of allGuides()) {
 		for (const { step, goal } of goals(guide)) {
@@ -1485,9 +1529,12 @@ test("#289: a quest item picked up from objects is collected at one of the objec
 			if (!item || !item.questItem || !item.drops) continue;
 			const objects = Object.keys(item.drops.object || {});
 			if (!objects.length || Object.keys(item.drops.npc || {}).length) continue;
-			const pts = objects.flatMap((id) => data.spawns('object', Number(id)).filter((s) => s.map === goal.map).flatMap((s) => s.pts));
+			const pts = objects.flatMap((id) => data.spawns('object', Number(id)).filter((s) => s.map === goal.map).flatMap((s) => s.pts.map((p) => point(s.map, p[0], p[1], s.f))));
 			if (!pts.length) continue;
-			const near = Math.min(...[goal, ...(goal.spots || [])].flatMap((g) => pts.map((p) => Math.hypot(p[0] - g.x, p[1] - g.y))));
+			const near = Math.min(...[goal, ...(goal.spots || [])].flatMap((g) => {
+				const q = point(goal.map, g.x, g.y, goal.f || 'l');
+				return pts.map((p) => Math.hypot(p.x - q.x, p.y - q.y));
+			}));
 			if (near > 1 && !AWAY_FROM_ITS_OBJECTS.has(`${guide} ${goal.item}`)) offenders.push(`${guide} collect ${goal.item} @${goal.x},${goal.y} (step ${step.title}) is ${near.toFixed(2)} from its objects`);
 		}
 	}
@@ -1528,4 +1575,69 @@ test(`Phear's report (#395): on Zephras Isle, The Wounds of Betrayal and Standin
 			assert.deepEqual(objectives.filter((oi) => !between.some(({ goal }) => goal.oi === oi)), [], `${guide}: every objective of ${quest} has its goal before the turn-in`);
 		}
 	}
+});
+
+// --- Battleworn Axe (Tazul | Robin, #340): the axes were collected east of
+// Alther's Mill, about ten normal Blackrock spawns that Tazul found too few
+// and too slow to respawn. The camps at the south end of Galardell Valley,
+// east of Stonewatch Keep, hold some forty, with no elite among them. The
+// arrow leads there, on the way down from the gnolls, not to the mill.
+test(`${REDRIDGE}: Tazul's report (#340): the Battleworn Axes lead to the Blackrock camps east of Stonewatch Keep, not to Alther's Mill`, { skip }, () => {
+	data = data || loadData(DATA);
+	const { point } = makeProjector(data.mapFrames);
+	const list = goals(REDRIDGE);
+	const axes = at(list, 'Battleworn Axe', (g) => g.t === 'collect' && g.item === 3014);
+	const { goal } = list[axes];
+	assert.ok(at(list, 'Shadowhide Pendant', (g) => g.t === 'collect' && g.item === 1075) < axes, 'after the Galardell gnolls');
+	const here = point(goal.map, goal.x, goal.y, goal.f || 'l');
+	const near = { normal: 0, elite: 0 };
+	for (const id of Object.keys(data.item(3014).drops.npc)) {
+		const npc = data.npc(Number(id));
+		for (const s of data.spawns('npc', Number(id)).filter((sp) => sp.map === goal.map)) {
+			for (const p of s.pts) {
+				const q = point(s.map, p[0], p[1], s.f);
+				if (Math.hypot(q.wx - here.wx, q.wy - here.wy) < 150) near[npc && npc.rank ? 'elite' : 'normal']++;
+			}
+		}
+	}
+	assert.equal(near.elite, 0, 'no elite axe carrier within 150 yd of the arrow');
+	assert.ok(near.normal >= 20, `at least 20 normal axe carriers within 150 yd (${near.normal})`);
+});
+
+// --- Encroachment (tor, #351): a level 10 quest whose Razormane go up to
+// level 9 was taken at Razor Hill at about 6 and done at 7, before the level
+// 7-8 quests of Tiragarde Keep and the Sen'jin loop.
+
+test(`${DUROTAR}: tor's report (#351): Encroachment is taken after the Tiragarde Keep and Sen'jin, Echo Isles and Kolkar Crag turn-ins`, { skip }, () => {
+	const list = goals(DUROTAR);
+	const encroachment = at(list, 'accept 837 (Encroachment)', is('accept', 837));
+	for (const q of [96822, 784, 791, 830, 817, 818, 826, 808, 786]) {
+		assert.ok(at(list, `turnin ${q}`, is('turnin', q)) < encroachment, `${q} is handed in before Encroachment is taken`);
+	}
+	// The Razormane are killed after it is taken, before it is handed in.
+	const turnin = at(list, 'turnin 837', is('turnin', 837));
+	for (const n of [3111, 3112, 3113, 3114]) {
+		const kill = at(list, `kill ${n}`, (g) => g.t === 'kill' && g.quest === 837 && g.npc === n);
+		assert.ok(encroachment < kill && kill < turnin, `Razormane ${n} is killed between the accept and the turn-in`);
+	}
+});
+
+// --- Hearts of the Lovers (Phyz, #412): QuestieDB lists only Isaac's Heart,
+// so the Ratchet step read the quest log's first line, which is Avelina's
+// Heart, and passed as soon as the Silverpine heart was in the bags.
+// Forever's quest data lists Avelina's Heart first, then Isaac's Heart
+// (corrections.json 65593). With that correction applied, as `data build`
+// does, each heart's goal reads its own line.
+test("forever/class/warlock/incubus-horde.guide: Phyz's report (#412): Avelina's and Isaac's hearts each read their own line of Hearts of the Lovers", { skip }, () => {
+	const corrected = loadData(DATA);
+	const fix = require('../tools/lib/data/corrections.json').quests['65593'];
+	assert.ok(fix, 'corrections.json corrects 65593');
+	Object.assign(corrected.quest(65593), fix.set);
+	const file = path.join(OFFICIAL_DIR, 'forever/class/warlock/incubus-horde.guide');
+	const { guides } = compileSources([{ file, text: fs.readFileSync(file, 'utf8') }], corrected);
+	const list = guides[0].steps.flatMap((step) => step.goals);
+	const heart = (item) => list.find((g) => g.t === 'collect' && g.quest === 65593 && g.item === item);
+	assert.deepEqual(corrected.quest(65593).objectives.map((o) => o.id), [190179, 190180], "Avelina's Heart is the first objective, Isaac's the second");
+	assert.equal(heart(190179).oi, 1, "Avelina's Heart reads line 1");
+	assert.equal(heart(190180).oi, 2, "Isaac's Heart reads line 2");
 });
