@@ -170,6 +170,25 @@ test('secure buttons: the name sits on the chosen side of every button', () => {
 	assert.deepEqual(out[4], at('LEFT', 'RIGHT', 8, 0), 'an unknown value falls back to the right');
 });
 
+test('secure buttons: an Above name sits over a quest item button shown above the target button', () => {
+	const out = run(`
+		local t = PolestarTargetButton
+		local function over() local _, rel = t.Label:GetPoint(1); return rel and rel:GetName() end
+		set("buttonTextSide", "above")
+		q.step({ { t = "kill", target = "Murloc" } })
+		emit({ over() })
+		q.items[900] = { name = "Torch" }
+		q.addItem(0, 1, 900, 1)
+		q.step({ { t = "use", item = 900, quest = 7 }, { t = "kill", target = "Murloc" } })
+		emit({ over() })
+		q.step({ { t = "kill", target = "Gnoll" } })
+		emit({ over() })
+	`);
+	assert.deepEqual(out[0], ['PolestarTargetButton']);
+	assert.deepEqual(out[1], ['PolestarQuestItemButton'], 'clear of the quest item button, not in the gap under it');
+	assert.deepEqual(out[2], ['PolestarTargetButton'], 'back on the target button once the item button goes');
+});
+
 test('secure buttons: a login under combat lockdown (/reload mid-fight) defers every protected call', () => {
 	const out = run(`
 		q.items[900] = { name = "Torch" }

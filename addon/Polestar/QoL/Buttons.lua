@@ -190,10 +190,27 @@ local LABEL_SIDE = {
 	below = { "TOP", "BOTTOM", 0, -4 },
 }
 
+-- Above sits over the shown buttons stacked on top of b (the quest item
+-- button over the target button, the Hearthstone over that), not in the 8 px
+-- gap between them, where it would run into the button above.
 local function placeLabel(b)
 	local a = LABEL_SIDE[ns.Get("qol.buttonTextSide")] or LABEL_SIDE.right
+	local to = b
+	if a == LABEL_SIDE.above and set then
+		local slot, moved = SLOT[b:GetName()], true
+		while moved do
+			moved = false
+			for i = 1, #set do
+				local o = set[i]
+				if SLOT[o:GetName()] == slot + 1 and o:IsShown() then
+					to, slot, moved = o, slot + 1, true
+					break
+				end
+			end
+		end
+	end
 	b.Label:ClearAllPoints()
-	b.Label:SetPoint(a[1], b, a[2], a[3], a[4])
+	b.Label:SetPoint(a[1], to, a[2], a[3], a[4])
 end
 
 local function newButton(name, onEnter)
@@ -690,6 +707,13 @@ local function create()
 	end)
 	Buttons.item, Buttons.hearth, Buttons.target, Buttons.step = itemButton, hearthButton, targetButton, stepButton
 	set = { hearthButton, itemButton, targetButton }
+	-- An Above name moves when a button over it comes or goes.
+	local function placeLabels() for i = 1, #set do placeLabel(set[i]) end end
+	for i = 1, #set do
+		set[i]:HookScript("OnShow", placeLabels)
+		set[i]:HookScript("OnHide", placeLabels)
+	end
+	placeLabels()
 	place()
 end
 
