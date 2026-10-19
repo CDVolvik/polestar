@@ -100,6 +100,11 @@ function Compat.GetBindLocation()
 	return loc
 end
 
+-- The character's money in copper (0 when the client cannot say).
+function Compat.GetMoney()
+	return readable(GetMoney and GetMoney()) or 0
+end
+
 function Compat.IsOnTaxi()
 	return readable(UnitOnTaxi and UnitOnTaxi("player")) and true or false
 end

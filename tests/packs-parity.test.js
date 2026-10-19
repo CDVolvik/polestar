@@ -51,6 +51,8 @@ const CASES = [
 	{ file: 'buy-item', reason: 'buy needs item', lint: /`buy` needs an item id/, goal: '{ t = "buy", itemName = "Refreshing Spring Water" }' },
 	{ file: 'buy-itemname', reason: 'buy needs itemName', lint: /item 999999 is not in data/, goal: '{ t = "buy", item = 999999 }' },
 	{ file: 'level-level', reason: 'level needs level', lint: /malformed level ""/, goal: '{ t = "level" }' },
+	{ file: 'money-money', reason: 'money needs money', lint: /malformed amount ""/, goal: '{ t = "money" }' },
+	{ file: 'task-text', reason: 'task needs text', lint: /`task` needs text/, goal: '{ t = "task" }' },
 	{ file: 'note-text', reason: 'note needs text', lint: /`note` needs text/, goal: '{ t = "note" }' },
 	{ file: 'skill-skill', reason: 'skill needs skill', lint: /`skill` needs a profession and a rank/, goal: '{ t = "skill", level = 75 }' },
 	{ file: 'skill-level', reason: 'skill needs level', lint: /`skill` needs a profession and a rank/, goal: '{ t = "skill", skill = "First Aid" }' },

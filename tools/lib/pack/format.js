@@ -7,23 +7,35 @@ const { header } = require('../generated');
 // reads each format (written into the TOC as X-Polestar-Needs). Format 2
 // adds `group` (docs/PACK_FORMAT.md, "Format 2"); format 4 adds a step's
 // `when`, `label` and `along`, a level goal's `frac` and a `next` option's
-// `when` (`nextWhen`), so a pack is written in it only when its guides use
-// one (formatFor): a pack without stays readable by Polestar 0.2.5.
+// `when` (`nextWhen`); format 5 adds the `money` and `task` goals and the
+// `money` when predicate; a pack is written in the first format its guides
+// need (formatFor): a pack without any stays readable by Polestar 0.2.5.
 const FORMAT = 3;
 const WHEN_FORMAT = 4;
-const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6' };
+const MONEY_TASK_FORMAT = 5;
+const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6', 5: '0.3.0' };
 
 // A step with `label` or `along` (an older Polestar would stop at an along step).
 const usesAlong = (s) => s.label !== undefined || s.along !== undefined;
 
-// A `level` goal with `frac` (a point inside the level) needs format 4 too:
+// A `level` goal with `frac` (a point inside the level) needs format 4:
 // an older Polestar would count it done at the start of the level.
 const usesLevelFrac = (g) => (g.steps || []).some((s) => (s.goals || []).some((goal) => goal.t === 'level' && goal.frac));
 
-// The format a pack's compiled guides need: WHEN_FORMAT when a step of
-// them has `when`, `label` or `along`, a level goal has `frac`, or a `next`
-// option has a `when` (`nextWhen`), else FORMAT.
+// The `money` and `task` goals and the `money` when predicate need format 5:
+// a 0.2.6 client would accept a format-4 pack but refuse these with
+// "unknown verb" or "bad when" rather than "needs Polestar 0.3.0".
+const MONEY_TASK_VERBS = new Set(['money', 'task']);
+const usesMoneyTask = (g) => (g.steps || []).some((s) =>
+	(s.goals || []).some((goal) => MONEY_TASK_VERBS.has(goal.t)) ||
+	(s.when || []).some((p) => p.k === 'money'));
+
+// The format a pack's compiled guides need: MONEY_TASK_FORMAT when a guide
+// uses money/task goals or a money when predicate, WHEN_FORMAT when a step
+// has `when`, `label` or `along`, a level goal has `frac`, or a `next`
+// option has `when` (`nextWhen`), else FORMAT.
 function formatFor(guides) {
+	if ((guides || []).some(usesMoneyTask)) return MONEY_TASK_FORMAT;
 	const uses = (guides || []).some((g) => (g.steps || []).some((s) => (Array.isArray(s.when) && s.when.length) || usesAlong(s)));
 	if (uses || (guides || []).some(usesLevelFrac)) return WHEN_FORMAT;
 	const nextWhen = (guides || []).some((g) => g.nextWhen && Object.keys(g.nextWhen).length);
@@ -75,4 +87,4 @@ function placeholderLicense(license) {
 	return `Licensed under ${license}: ${LICENSE_PLACEHOLDER}.\n`;
 }
 
-module.exports = { FORMAT, WHEN_FORMAT, NEEDS, formatFor, PACK_ID_RE, FOLDER_RE, RESERVED_IDS, GENERATED_MARKER, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX, LICENSE_PLACEHOLDER, ownsGuideId, defaultFolder, placeholderLicense };
+module.exports = { FORMAT, WHEN_FORMAT, MONEY_TASK_FORMAT, NEEDS, formatFor, PACK_ID_RE, FOLDER_RE, RESERVED_IDS, GENERATED_MARKER, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX, LICENSE_PLACEHOLDER, ownsGuideId, defaultFolder, placeholderLicense };

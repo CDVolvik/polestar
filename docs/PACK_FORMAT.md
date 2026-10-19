@@ -253,8 +253,9 @@ texts"); an older Polestar would show them as written, hence the format.
 Format 3 with a step's **`when`**: the conditions checked during play
 (GUIDE_FORMAT.md, "Conditions checked during play"), a step's **`along`** and
 **`label`** (GUIDE_FORMAT.md, "Along the way"), a `level` goal's **`frac`**:
-a point inside the level, and a guide's **`nextWhen`**: conditional hand-offs
-(GUIDE_FORMAT.md, "Conditional hand-offs"). Polestar 0.2.6 and later read it.
+a point inside the level, and a guide's **`nextWhen`**: conditional
+hand-offs (GUIDE_FORMAT.md, "Conditional hand-offs"). Polestar 0.2.6 and
+later read it.
 The compiler writes a pack in format 4 only when its guides use one of them;
 any other pack stays in format 3, so the Polestar it needs does not change. An
 older Polestar would show every conditional step to every character, stop the
@@ -318,6 +319,27 @@ it lists the options; with one option offered it goes on to it without
 asking, with none the guide ends there. Nothing is stored. A `nextWhen` that
 is not a table, a key that is not in `nextChoices` or a malformed predicate
 list refuses the guide.
+
+## Format 5
+
+Format 4 with the **`money`** and **`task`** goals and the **`money`** `when`
+predicate. Polestar 0.3.0 and later read it.
+The compiler writes a pack in format 5 only when its guides use one of them;
+any other pack stays in format 3 or 4. A 0.2.6 client accepts a format-4 pack
+and then refuses a guide with an unknown verb or predicate, so these features
+need their own format rather than joining format 4.
+
+`money` goal: `{ t = "money", money = <copper> }`. Done once the character
+holds at least that many copper; stays done for the rest of its step even if
+spent. The guide window reads "Have at least 1s 50c".
+
+`task` goal: `{ t = "task", text = "<text>" }`. Done only by the player's
+tick; holds its step until then (with `optional = true` it never holds). May
+have coordinates (`map`, `x`, `y`). A goal whose `text` is not a string
+refuses the guide.
+
+`money` when predicate: `{ k = "money", op = "<" | "<=" | ">" | ">=", n = <copper> }`.
+Like the `level` predicate but compares the character's money in copper.
 
 ### `RegisterPack(meta)`
 
@@ -426,6 +448,8 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName`, `candidates` |
 | `vendor` | — | `npc`, `npcName`, `candidates` |
 | `level` | `level` | `frac` (format 4) |
+| `money` | `money`: copper (format 5) | — |
+| `task` | `text` (format 5) | — |
 | `note` | `text` | — |
 | `skill` | `skill`, `level` | `skillLine` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName`, `item`/`itemName`, `candidates` |
@@ -520,7 +544,7 @@ wrap it). The payload is JSON:
 
 | Key | Required | Value |
 |---|---|---|
-| `format` | yes | the guide data's format (above): 4 when a step has `when`, else 3; Polestar refuses a format it does not read |
+| `format` | yes | the guide data's format (above): 5 when the guide uses `money`/`task` goals or a `money` when predicate, 4 when a step has `when`, `along` or `label` or a `level` goal has `frac`, else 3; Polestar refuses a format it does not read |
 | `license` | yes | the licence of the guide, from the pack's `pack.json` |
 | `guide` | yes | one guide exactly as `RegisterGuide(def)` takes it, without `pack`: the keys above, numbers rounded as `Guides.lua` writes them, `preTitles` with the quest ids as the object's keys |
 | `frames` | no | `RegisterMapFrames`'s `era` table for the maps its goals use, by uiMapID. Polestar takes a frame only for a map the guide's goals or their smart targets stand on, and only where no one (Polestar, a community addon, an earlier import) has registered one |
@@ -567,7 +591,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
   `along` and `label`, a `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6
-  and later.
+  and later, format 5 (the `money` and `task` goals, the `money` when
+  predicate) by 0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

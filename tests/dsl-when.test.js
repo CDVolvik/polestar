@@ -72,7 +72,7 @@ test('a malformed `when` is an error at its line, and the step keeps its other l
 		'  when has x5': '`has` needs an item id: has <item> [xN]',
 		'  when has 159 x0': '`has` needs a count of 1 or more',
 		'  when zone': '`zone` needs a name: zone "<Name>"',
-		'  when money<1s': 'unknown `when` predicate "money<1s"',
+		'  when weather<1s': 'unknown `when` predicate "weather<1s"',
 	};
 	for (const [line, message] of Object.entries(bad)) {
 		const text = guideText(['step One', line, '  accept 783']);

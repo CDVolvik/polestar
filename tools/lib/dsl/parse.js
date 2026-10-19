@@ -23,6 +23,7 @@
 const { lexLine } = require('./lexer');
 const { parseConditions, FACTIONS } = require('./conditions');
 const { parseWhen } = require('./when');
+const { readMoney } = require('./money');
 const { parseImagePath, parseImageSize } = require('./images');
 const { levelPoint } = require('../game/xp');
 
@@ -64,6 +65,9 @@ const MODS = {
 	buy: [...COMMON, ...COORDS, 'npc', 'count', 'nearest'],
 	vendor: [...COMMON, ...COORDS, 'npc'],
 	level: [...COMMON],
+	// `money <amount>`: hold that much; `task "<text>"`: done when the player ticks it.
+	money: ['text', 'optional', 'only'],
+	task: ['optional', 'only', ...COORDS],
 	note: ['optional', 'only', ...COORDS],
 	skill: [...COMMON, ...COORDS],
 	learn: [...COMMON, ...COORDS, 'npc', 'item', 'nearest'],
@@ -105,14 +109,6 @@ function readRewardList(tokens, i, word) {
 	}
 	if (!items.length) return { error: `\`${word}\` needs item ids: ${word} <itemId> ["Item name"] [quality] ...` };
 	return { items, next: k };
-}
-
-// `money 1g50s` / `money 7s` / `money 350` (copper) -> copper | null.
-function readMoney(text) {
-	if (INT_RE.test(text)) return Number(text);
-	const m = /^(?:(\d+)g)?(?:(\d+)s)?(?:(\d+)c)?$/i.exec(text);
-	if (!m || !(m[1] || m[2] || m[3])) return null;
-	return Number(m[1] || 0) * 10000 + Number(m[2] || 0) * 100 + Number(m[3] || 0);
 }
 
 // Profession ranks in trainer order (rank 1..4).
@@ -690,6 +686,21 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 			if (p.frac) goal.frac = p.frac;
 			if (p.xp !== undefined) goal.levelXp = p.xp;
 			return i + 1;
+		}
+		case 'money': {
+			const v = t && !t.quoted ? readMoney(t.text) : null;
+			if (v === null || v <= 0) return err(ln, `malformed amount "${t ? t.text : ''}" (expected copper or 1g50s / 7s / 25c)`, '`money` needs an amount: money <amount>'), -1;
+			goal.money = v;
+			return i + 1;
+		}
+		case 'task': {
+			if (!t) return err(ln, '`task` needs text: task "<what to do>"'), -1;
+			if (t.quoted) {
+				goal.text = t.text;
+				return i + 1;
+			}
+			goal.text = line.slice(t.start, lex.end).trim();
+			return toks.length;
 		}
 		case 'note': {
 			if (!t) return err(ln, '`note` needs text'), -1;
