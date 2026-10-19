@@ -287,6 +287,22 @@ test('H3 (NAV_QA): with it installed the target goes as one stop, and every Pole
 	});
 });
 
+// #398 (Rawbowke): a target on the player's own continent, with no route
+// planned, still drew the straight walk to it on the map and the minimap,
+// beside Shortest Path Forever's own route.
+test('no route lines while handing off, for a target on the same continent too', () => {
+	const NEAR = `{ map = 9000, x = 50, y = 40, label = "Testshire well", stepIndex = 1, goalIndex = 1, kind = "goto", r = 8 }`;
+	const script = `
+		nav.setWaypoint(${NEAR})
+		local s = surfaces()
+		emit({ handedOff = N.HandedOff(), lines = s.lines, geometry = N.GetRouteGeometry() ~= nil })
+	`;
+	const [mine] = run(script, { spf: null });
+	assert.deepEqual(mine, { handedOff: false, lines: 1, geometry: true }, 'without it, Polestar draws the walk');
+	const [handed] = run(script);
+	assert.deepEqual(handed, { handedOff: true, lines: 0, geometry: false });
+});
+
 test('mirrors stay out while handing off: no waypoint in its TomTom stand-in, no Blizzard waypoint', () => {
 	const [out] = run(`
 		nav.withTomTom()
