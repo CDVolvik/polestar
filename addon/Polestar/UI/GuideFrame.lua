@@ -624,6 +624,13 @@ local function layoutTab(b, pad)
 	b.Range:SetPoint("LEFT", b.Icon, "RIGHT", 6 + (titleW >= 1 and titleW + TAB_RANGE_GAP or 0), 0)
 end
 
+-- With ui.growUp and ui.barsBottom the tab strip and navigator sit at the
+-- bottom, by the edge the window is pinned to, with the progress foot above
+-- the navigator. Otherwise the order runs strip, navigator, body, foot.
+local function barsBottom()
+	return ns.Get("ui.growUp") and ns.Get("ui.barsBottom") and true or false
+end
+
 local function tabButton(i)
 	local b = tabButtons[i]
 	if b then return b end
@@ -638,8 +645,9 @@ local function tabButton(i)
 	b.Bar = b:CreateTexture(nil, "OVERLAY")
 	b.Bar:SetTexture(Theme.Media("white"))
 	b.Bar:SetHeight(2)
-	b.Bar:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
-	b.Bar:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 0, 0)
+	local edge = barsBottom() and "TOP" or "BOTTOM"
+	b.Bar:SetPoint(edge .. "LEFT", b, edge .. "LEFT", 0, 0)
+	b.Bar:SetPoint(edge .. "RIGHT", b, edge .. "RIGHT", 0, 0)
 	W.Color(b.Bar, "accent")
 	b.Icon = b:CreateTexture(nil, "ARTWORK")
 	b.Icon:SetSize(12, 12)
@@ -1075,13 +1083,6 @@ local function stackJourney(y, width)
 	end
 	jf:Hide()
 	return y
-end
-
--- With ui.growUp and ui.barsBottom the tab strip and navigator sit at the
--- bottom, by the edge the window is pinned to, with the progress foot above
--- the navigator. Otherwise the order runs strip, navigator, body, foot.
-local function barsBottom()
-	return ns.Get("ui.growUp") and ns.Get("ui.barsBottom") and true or false
 end
 
 local function placeBars(showFoot)

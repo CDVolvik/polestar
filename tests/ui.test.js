@@ -447,6 +447,22 @@ test('bar at the bottom needs grow upward; then the tabs, navigator and progress
 	assert.deepEqual(pt(out.back), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'turning it off restores the order');
 });
 
+test('bar at the bottom: a tab opened while it is on has its highlight on the top edge from the render that makes it', () => {
+	const [out] = run(`
+		Polestar.Set("ui.growUp", true)
+		Polestar.Set("ui.barsBottom", true)
+		local points, render = {}, GF.RenderTabs
+		GF.RenderTabs = function(...)
+			render(...)
+			for _, b in ipairs(shownTabs()) do points[#points + 1] = b.Bar:GetPoint(1) end
+		end
+		uistub.openTabs(TABS, 1)
+		GF.RenderTabs = render
+		emit({ points = points })`);
+	assert.ok(out.points.length >= 2, 'the tabs were rendered');
+	for (const p of out.points) assert.equal(p, 'TOPLEFT', 'a new tab\'s highlight sits on the edge next to the navigator');
+});
+
 test('combat: by default the window stays as it is; fade dims it, hide hides it, both restore afterwards', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
