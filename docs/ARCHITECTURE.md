@@ -3861,7 +3861,7 @@ Polestar.Talents.Show()                                     -- SHOW_TALENTS; /po
   `talents build` writes them all into `Builds.lua`, one `T.Register` per
   class, sorted by class. The tool finds each class's tree by its class skill
   line (`CLASSES` in `tools/lib/talents/build.js`) and leaves out a stray
-  copy of a talent far off the grid (1.60.1.70374: Hunter node 104982,
+  copy of a talent far off the grid (1.60.1.70374 and 1.60.1.70450: Hunter node 104982,
   Lightning Reflexes again; Priest node 105865, Holy Specialization again).
 - **Validation.** `Builds.lua` carries the tree the plans were replayed on.
   At run time each node is matched by ID (same rank count and name), else by
