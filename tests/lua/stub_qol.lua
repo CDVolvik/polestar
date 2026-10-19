@@ -124,6 +124,11 @@ function C_DeathInfo.GetCorpseMapPosition(map)
 	return CreateVector2D(x / 100, y / 100)
 end
 
+-- q.auras[spellId] = AuraData for the player's own auras.
+q.auras = {}
+C_UnitAuras = C_UnitAuras or {}
+function C_UnitAuras.GetPlayerAuraBySpellID(id) return q.auras[id] end
+
 ---------------------------------------------------------------------------
 -- Bags and items
 ---------------------------------------------------------------------------
