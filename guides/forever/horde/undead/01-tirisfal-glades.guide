@@ -96,9 +96,13 @@ next forever/horde/02-the-barrens
 # class gate on them, but a Scourge Mage (Mike_, 0.2.3) found neither in the
 # givers' quest windows, and warcraft.wiki.gg calls Hilda a Forsaken paladin
 # trainer: the keep is the Paladin hub. Other classes skip the keep; the
-# Shadowvale elixir bottles (95314) stay for everyone. Hilda and Ephram offer
-# them only once A Righteous Cause (96896, Leonid) is handed in (MadReign_Ltd,
-# Paladin 12, 0.2.5), so Paladins take them after Leonid, a short walk south.
+# Shadowvale elixir bottles (95314) stay for everyone. Both quests need level
+# 10 (Forever's quest data: no prerequisite), and a Paladin reaches the keep
+# around 9 on the west loop: MadReign_Ltd (Paladin, 0.2.5) found Hilda and
+# Ephram without them there, and with them at 12 after A Righteous Cause
+# (96896, Leonid). Paladins take them after Leonid, a short walk south, which
+# is right whether the gate is the level or Leonid's quests; which one it is
+# still needs checking in game.
 #
 # Left out for Paladins: the Bandarion Keep chain (91282-91317, 95803) and A
 # Lesson in Divinity (94427-94441, Redemption) run from Bandarion Keep on the
@@ -538,7 +542,7 @@ step Leonid Barthalomew
 
 step Paladin: Whispering Forest
   only Paladin
-  tip Hilda and Ephram camp at the forest's edge, just south of Leonid. They offer their quests once A Righteous Cause is handed in.
+  tip Hilda and Ephram camp at the forest's edge, just south of Leonid. Their quests need level 10.
   accept 99152                        -- Hilda the Breaker
   accept 99153                        -- Ephram Barbaro
 
