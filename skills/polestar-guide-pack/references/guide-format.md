@@ -133,7 +133,7 @@ Warrior or Paladin).
 `turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
 `subzone "<Name>"`, `bound "<Location>"`; `!` in front of any but `level`
 turns it around. Once the route has passed the step, the outcome stays. A
-pack with `when` (on a step or a `next` line) needs Polestar 0.3.0 or newer.
+pack with `when` (on a step or a `next` line) needs Polestar 0.2.6 or newer.
 
 ## Lint errors that come up most
 
