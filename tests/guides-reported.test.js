@@ -1256,3 +1256,21 @@ test('#246: no NPC or object goal is on a neighbouring zone\'s map where the two
 	}
 	assert.deepEqual([...new Set(offenders)], [], 'goals on the map of a zone Wowhead Forever does not place them in');
 });
+
+// --- Elemental Bracers (Tazul | Robin, #391): the step asked only for the
+// Divined Scroll, which the Divining Scroll makes from five Intact Elemental
+// Bracers. With no goal for the bracers, the target button had no elementals
+// to target and the bracers were not counted. The bracer goal is optional:
+// the Divined Scroll holds the step.
+
+const ASHENVALE_ALLIANCE = 'forever/alliance/06-ashenvale.guide';
+
+test(`Tazul's report: Elemental Bracers counts the five bracers before the Divined Scroll`, { skip }, () => {
+	const list = goals(ASHENVALE_ALLIANCE);
+	const bracers = at(list, 'collect 12220', (g) => g.t === 'collect' && g.item === 12220);
+	const scroll = at(list, 'collect 5455', (g) => g.t === 'collect' && g.item === 5455 && g.quest === 1016);
+	assert.equal(list[bracers].goal.count, 5);
+	assert.equal(list[bracers].goal.quest, undefined, 'counted in the bags: the Divining Scroll uses them up');
+	assert.equal(list[bracers].goal.optional, true, 'a scroll made before the step does not wait on bracers it used up');
+	assert.ok(bracers < scroll && list[bracers].s === list[scroll].s, 'the bracers come first, in the same step');
+});
