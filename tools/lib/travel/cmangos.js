@@ -19,7 +19,9 @@
 // spawn's z (tools/lib/dsl/heights.js), facts like the transport periods; and, for
 // `nav layers hubs`, every
 // creature template's name, faction template, NPC flags, extra flags, rank and
-// level (loadCreatureTemplates, cached as creature_template.json).
+// level (loadCreatureTemplates, cached as creature_template.json); and, for
+// `data build`'s quests.json, each quest's kill, object and item counts
+// (loadQuestCounts, cached as quest_counts.json).
 //
 // The dump (~13 MB gzip, its sha256 pinned, at most MAX_BYTES read) is
 // fetched once into <sources>/cmangos/<rev>/ and only the rows above are
@@ -200,6 +202,55 @@ async function extractCreatureTemplates(lines) {
 	return out;
 }
 
+const SLOTS = [1, 2, 3, 4];
+
+// Lines of the dump -> { quest: { kill: [[npc, count]], object: [[gameobject,
+// count]], item: [[item, count]] } } from quest_template's ReqCreatureOrGOId/
+// Count 1-4 (a negative id is a gameobject) and ReqItemId/Count 1-4, in slot
+// order, the columns found by name. Quests with nothing to count are left out.
+async function extractQuestCounts(lines) {
+	const out = {};
+	let cols = null;
+	let creating = false;
+	for await (const line of lines) {
+		if (line.startsWith('CREATE TABLE `quest_template` (')) {
+			creating = true;
+			cols = [];
+		} else if (creating) {
+			const m = /^\s*`(\w+)`/.exec(line);
+			if (m) cols.push(m[1]);
+			else creating = false;
+		} else if (line.startsWith('INSERT INTO `quest_template` VALUES')) {
+			if (!cols) throw new Error('classic-db: quest_template rows before its CREATE TABLE');
+			const at = (c) => {
+				const i = cols.indexOf(c);
+				if (i < 0) throw new Error(`classic-db: quest_template has no ${c}`);
+				return i;
+			};
+			const entry = at('entry');
+			const kills = SLOTS.map((i) => [at(`ReqCreatureOrGOId${i}`), at(`ReqCreatureOrGOCount${i}`)]);
+			const items = SLOTS.map((i) => [at(`ReqItemId${i}`), at(`ReqItemCount${i}`)]);
+			for (const r of tuples(line)) {
+				const q = { kill: [], object: [], item: [] };
+				for (const [i, c] of kills) {
+					const id = Number(r[i]);
+					const count = Number(r[c]);
+					if (id > 0 && count > 0) q.kill.push([id, count]);
+					else if (id < 0 && count > 0) q.object.push([-id, count]);
+				}
+				for (const [i, c] of items) {
+					const id = Number(r[i]);
+					const count = Number(r[c]);
+					if (id > 0 && count > 0) q.item.push([id, count]);
+				}
+				if (q.kill.length + q.object.length + q.item.length) out[Number(r[entry])] = q;
+			}
+		}
+	}
+	if (!Object.keys(out).length) throw new Error(`classic-db ${DB_REV.slice(0, 8)}: no quest_template rows`);
+	return out;
+}
+
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 
 // The pinned dump, read up to maxBytes, checked against its hash, written atomically.
@@ -282,6 +333,13 @@ async function loadCreatureTemplates({ sourcesDir, offline = false, fetchImpl = 
 	return { rev: DB_REV, url: DB_URL, templates };
 }
 
+// -> { rev, url, counts }: extractQuestCounts' table, cached as
+// quest_counts.json beside the dump. Throws like loadClassicDb.
+async function loadQuestCounts({ sourcesDir, offline = false, fetchImpl = globalThis.fetch, log = () => {}, url = DB_URL, hash = DB_SHA256, maxBytes = MAX_BYTES }) {
+	const counts = await cachedExtract({ sourcesDir, offline, fetchImpl, log, url, hash, maxBytes, name: 'quest_counts.json', extract: extractQuestCounts, write: (data) => `${JSON.stringify(data)}\n` });
+	return { rev: DB_REV, url: DB_URL, counts };
+}
+
 // The reference data source the heights come from: meta.json's entry (`data
 // build`), and the LICENSE-DATA.txt section of a pack whose goals carry z.
 const HEIGHTS_SOURCE = {
@@ -292,7 +350,16 @@ const HEIGHTS_SOURCE = {
 	copyright: 'CMaNGOS (https://github.com/cmangos/classic-db)',
 };
 
+// meta.json's entry when `data build` filled objective counts from quest_template.
+const COUNTS_SOURCE = {
+	name: 'CMaNGOS classic-db: quest objective counts',
+	url: DB_URL,
+	revision: DB_REV,
+	license: 'GPL-3.0; quest objective counts only, used as facts: an objective whose count QuestieDB and pfQuest lack takes the matching quest_template count',
+	copyright: 'CMaNGOS (https://github.com/cmangos/classic-db)',
+};
+
 module.exports = {
-	loadClassicDb, loadSpawnHeights, loadCreatureTemplates, extractLines, extractSpawnHeights, extractCreatureTemplates, serializeSpawnHeights, sqlFields,
-	DB_REV, DB_URL, DB_SHA256, MAX_BYTES, LIFT_ENTRIES, TRAM_ENTRIES, PORTAL_TRIGGERS, HEIGHTS_SOURCE,
+	loadClassicDb, loadSpawnHeights, loadCreatureTemplates, loadQuestCounts, extractLines, extractSpawnHeights, extractCreatureTemplates, extractQuestCounts, serializeSpawnHeights, sqlFields,
+	DB_REV, DB_URL, DB_SHA256, MAX_BYTES, LIFT_ENTRIES, TRAM_ENTRIES, PORTAL_TRIGGERS, HEIGHTS_SOURCE, COUNTS_SOURCE,
 };
