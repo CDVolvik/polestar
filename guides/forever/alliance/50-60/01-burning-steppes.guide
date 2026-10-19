@@ -28,8 +28,8 @@
 #   and Kim'jael. The Ichor of Undeath (about 10% from the Lingering Highborne) is looted in the Eldarath pass the
 #   route already makes for Kim'jael and Tymor. Blood of Morphaz (8257) is left out: its item lies inside the Sunken
 #   Temple. Measured with the simulator scored for a Priest (sim compare scores no class) against leaving the chain
-#   off: about 0.5 h faster to 60 and 0.7 h less grinding for every Alliance Priest start. The simulator's world keeps
-#   one giver per quest (Brother Joshua in Stormwind for 8254), so Rohan was scored by moving it to the Mystic Ward.
+#   off: about 0.5 h faster to 60 and 0.7 h less grinding for every Alliance Priest start, with Cenarion Aid scored at
+#   Rohan, the giver the guide names (Brother Joshua in Stormwind is the first one the data lists).
 # Carried on: Felnok Steelspring (4808) for Everlook, Moontouched Wildkin (978) for Winterspring, The Smoldering
 # Ruins of Thaurissan (3701) for Ironforge at 57.
 # Left out: Ragnar Thunderbrew (4128: the export never turns it in).
@@ -40,6 +40,12 @@ faction Alliance
 levels 51-53
 zone Burning Steppes
 next forever/alliance/50-60/02-felwood
+
+# ---------------------------------------------------------------- Ironforge
+
+step Ironforge
+  zone Ironforge
+  sethome "Ironforge" npc 5111        -- Innkeeper Firebrew: the last guide binds here, so this usually ticks at once
 
 # ---------------------------------------------------------------- Azshara
 
@@ -169,7 +175,7 @@ step Flame Crest
 
 step Thaurissan Relics
   tip The relics are the carved stones scattered through the Ruins of Thaurissan around Flame Crest: click them until the information is recovered.
-  complete 3701
+  interact 153556 quest 3701.1        -- Thaurissan Relic
 
 step The Tablet of the Seven
   tip Read the tablet in the Dark Iron camp among the ruins, south-west of Flame Crest, to copy the transcript.

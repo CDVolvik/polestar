@@ -47,7 +47,8 @@ return {
 	["The violet shards glow just off the road a short way west of {area:321}."] = "보랏빛 파편은 {area:321} 조금 서쪽, 길 바로 옆에서 빛나고 있습니다.",
 
 	-- Step 8: Hammerfall
-	["The orc stronghold at the eastern end of the road. Urda, the wind rider master, stands by the gate."] = "길 동쪽 끝의 오크 요새입니다. 윈드라이더 조련사 우르다는 정문 옆에 서 있습니다.",
+	-- {npc:2851} Urda
+	["The orc stronghold at the eastern end of the road. {npc:2851}, the wind rider master, stands by the gate."] = "길 동쪽 끝의 오크 요새입니다. 윈드라이더 조련사 {npc:2851}는 정문 옆에 서 있습니다.",
 
 	-- Step 9: Highland raptors
 	["Highland raptors"] = "고원랩터",

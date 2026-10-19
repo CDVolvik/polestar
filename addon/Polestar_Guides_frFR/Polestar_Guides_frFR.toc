@@ -20,7 +20,7 @@
 ## Title-zhTW: Polestar 指南 (frFR)
 ## Notes-zhTW: Polestar 指南文字。語言：法語。僅在該語言的用戶端中按需載入。
 ## Author: Polestar
-## Version: 0.2.4
+## Version: 0.2.5
 ## Category: Quests
 ## Group: Polestar
 ## LoadOnDemand: 1

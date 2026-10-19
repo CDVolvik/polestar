@@ -1,5 +1,5 @@
 'use strict';
-// Guide packs, end to end. The packs are built by the CLI into a temp AddOns
+// Community guides, end to end. The packs are built by the CLI into a temp AddOns
 // folder:
 //
 //   acceptance-good                         made by `polestar new --yes` in
@@ -172,7 +172,7 @@ test('beside ours: a row with its credits, its own picker entry, credits in the 
 		local ours = shownText(P.details.Credits)
 		emit({ page = page, picker = picker, credits = credits, ours = ours, next = G.Get("acceptance-good/example").next })`);
 	assert.deepEqual(out.page, { title: 'Acceptance Good', credits: 'Ann Example  ·  0.1.0  ·  CC-BY-4.0', count: '2 guides', on: true, status: false, problems: false });
-	const heading = out.picker.nav.indexOf('# Guide packs');
+	const heading = out.picker.nav.indexOf('# Community guides');
 	assert.ok(heading >= 0, out.picker.nav.join(', '));
 	assert.ok(out.picker.nav.slice(heading).includes('Acceptance Good  ·  Ann Example'), out.picker.nav.join(', '));
 	assert.equal(out.picker.title, 'Acceptance Good');
@@ -290,9 +290,9 @@ test('the welcome greets a new character on a profile that saw the beta notice, 
 		local Wel = UI.Welcome
 		local first = PolestarWelcome ~= nil and PolestarWelcome:IsShown()
 		local pages = {}
-		for i = 1, 3 do
+		for i = 1, 4 do
 			pages[i] = select(4, Wel.Page())
-			if i < 3 then PolestarWelcome.Next:Click() end
+			if i < 4 then PolestarWelcome.Next:Click() end
 		end
 		local next = PolestarWelcome.Next:IsShown()
 		PolestarWelcome.Browse:Click()
@@ -303,7 +303,7 @@ test('the welcome greets a new character on a profile that saw the beta notice, 
 			seen = PolestarDB.welcomeSeen, char = PolestarCharDB.welcomeSeen, old = PolestarDB.betaNoticeSeen or false,
 			reopened = PolestarWelcome:IsShown(), title = select(4, Wel.Page()) })`, { saved });
 	assert.equal(out.first, true);
-	assert.deepEqual(out.pages, ['Hello, Testchar', 'Make it yours', out.guide], 'the last page names the suggested guide');
+	assert.deepEqual(out.pages, ['Hello, Testchar', 'Make it yours', 'Route style', out.guide], 'the last page names the suggested guide');
 	assert.equal(out.next, false, 'the last page has the guide buttons, not Next');
 	assert.equal(out.closed, true);
 	assert.equal(out.seen, 1);
