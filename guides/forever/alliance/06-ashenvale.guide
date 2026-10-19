@@ -121,7 +121,7 @@ step Elune's Grace
 
 step Boat to Auberdine
   zone Darkshore
-  tip From Stormwind Harbor take the boat to Auberdine; Thundris Windweaver stands at the north end of the village. Then ride south along the road through Darkshore.
+  tip From Stormwind Harbor take the boat to Auberdine; Thundris Windweaver stands at the north end of the village. Then head south along the road through Darkshore.
   turnin 97926                                -- Thundris Windweaver: Alexston's reply
   goto 44.4,76.4 "Grove of the Ancients"
 
@@ -166,7 +166,7 @@ step Astranaar
 # ---------------------------------------------------------------- West
 
 step Teronis' Corpse
-  tip Ride west to the shore of Lake Falathim. Teronis lies among the Saltspittle murlocs; any murloc can drop the Glowing Gem.
+  tip Head west to the shore of Lake Falathim. Teronis lies among the Saltspittle murlocs; any murloc can drop the Glowing Gem.
   turnin 991                              -- Teronis' Corpse
   accept 1023
   collect 5463 quest 1023                 -- Glowing Gem
@@ -258,7 +258,7 @@ step Astranaar
 
 step Windshear Crag
   zone Stonetalon Mountains
-  tip Ride south past Mystral Lake into the Talondeep Path tunnel; it comes out in Stonetalon's Windshear Crag. Kaela and Gaxim camp on the Webwinder Path south-west of the crag.
+  tip Head south past Mystral Lake into the Talondeep Path tunnel; it comes out in Stonetalon's Windshear Crag. Kaela and Gaxim camp on the Webwinder Path south-west of the crag.
   turnin 1070                             -- Kaela Shadowspear
   accept 1085
   turnin 1085                             -- Gaxim Rustfizzle
@@ -289,7 +289,7 @@ step Webwinder Path
 
 step To Menethil Harbor
   zone Darkshore
-  hearth "Astranaar"                      -- Hearthstone on cooldown? Ride back north through the Talondeep Path.
+  hearth "Astranaar"                      -- Hearthstone on cooldown? Head back north through the Talondeep Path.
   fly "Auberdine"
   goto 32.4,43.8 "Boat to Menethil Harbor"
 
@@ -434,7 +434,7 @@ step Hearth to Menethil
 
 step Ironforge
   zone Ironforge
-  tip Ride east along the Wetlands road, south through Dun Algaz into Loch Modan and west through the tunnel into Dun Morogh to Ironforge.
+  tip Head east along the Wetlands road, south through Dun Algaz into Loch Modan and west through the tunnel into Dun Morogh to Ironforge.
   getfp "Ironforge" npc 1573              -- Gryth Thurden, in the Great Forge
   turnin 1072                             -- Lomac Gearstrip, Tinker Town
   turnin 968 optional                     -- Only with Book: The Powers Below from Darkshore: Gerrig Bonegrip, the Forlorn Cavern

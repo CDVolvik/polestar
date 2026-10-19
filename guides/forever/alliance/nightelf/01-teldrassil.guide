@@ -534,7 +534,7 @@ step Boat to Stormwind
   zone Darkshore
   tip Take the boat to Stormwind from Auberdine's docks.
   goto 30.76,40.92 "Boat to Stormwind"
-  note From Stormwind Harbor, ride through the city gates into Elwynn Forest and follow the road west to Westfall.
+  note From Stormwind Harbor, head through the city gates into Elwynn Forest and follow the road west to Westfall.
 
 step Defensive Stance
   only Warrior

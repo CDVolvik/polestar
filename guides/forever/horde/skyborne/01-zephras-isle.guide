@@ -468,7 +468,7 @@ step Lotheluum Starbreeze
   accept 94006                        -- Lotheluum Starbreeze
 
 step The East Pylon Watchtower
-  tip Ride north-east to the East Pylon Watchtower. The Al'Aketh camp is just west of it, with Commander Belguilos at its north end. Every cultist can drop a windstone charm.
+  tip Head north-east to the East Pylon Watchtower. The Al'Aketh camp is just west of it, with Commander Belguilos at its north end. Every cultist can drop a windstone charm.
   turnin 93320                        -- Yorana Windyreed
   accept 92642
   accept 92645

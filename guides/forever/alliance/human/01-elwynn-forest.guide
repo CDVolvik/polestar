@@ -573,7 +573,7 @@ step Gakin the Darkbinder
 step Surena Caledon
   only Warlock
   zone Elwynn Forest
-  tip Ride back out through Goldshire and east along the road to the Brackwell Pumpkin Patch. Surena Caledon (level 9) stands by its farmhouse.
+  tip Head back out through Goldshire and east along the road to the Brackwell Pumpkin Patch. Surena Caledon (level 9) stands by its farmhouse.
   collect 6810 quest 1688.1                   -- Surena's Choker: Surena Caledon
 
 step The Binding
@@ -606,7 +606,7 @@ step The Tome of Divinity
 step Henze Faulk
   only Paladin
   zone Elwynn Forest
-  tip Ride back out through Goldshire and east to Stone Cairn Lake. Henze Faulk lies south of the lake: use the Symbol of Life on him. The Defias Rogue Wizards around him carry the Defias Script.
+  tip Head back out through Goldshire and east to Stone Cairn Lake. Henze Faulk lies south of the lake: use the Symbol of Life on him. The Defias Rogue Wizards around him carry the Defias Script.
   complete 1786                               -- Use the Symbol of Life on Henze Faulk
   turnin 1786                                 -- Henze Faulk
   accept 1787

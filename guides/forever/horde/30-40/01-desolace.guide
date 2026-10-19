@@ -150,7 +150,7 @@ step Orgrimmar class quests
 step Ratchet
   only Shaman
   zone The Barrens
-  tip Fly to Ratchet. Islen Waterseer camps on the coast a short ride south of the town.
+  tip Fly to Ratchet. Islen Waterseer camps on the coast a short walk south of the town.
   fly "Ratchet"
   turnin 220                          -- Islen Waterseer
   accept 63
@@ -171,7 +171,7 @@ step Fly to Sun Rock Retreat
 
 step Gizelton caravan
   zone Desolace
-  tip Follow the road south-west out of Sun Rock into Desolace and on south past Nijel's Point. Cork Gizelton's kodo caravan waits by the road north of Kolkar Village; if it has already left, ride on.
+  tip Follow the road south-west out of Sun Rock into Desolace and on south past Nijel's Point. Cork Gizelton's kodo caravan waits by the road north of Kolkar Village; if it has already left, head on.
   accept 5821 optional                -- Cork Gizelton
 
 step Bodyguard for Hire
@@ -200,7 +200,7 @@ step Kodo Roundup
 # ---------------------------------------------------------------- North-east
 
 step Khan Dez'hepah
-  tip Ride north-east to Kolkar Village. Khan Dez'hepah (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health.
+  tip Head north-east to Kolkar Village. Khan Dez'hepah (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health.
   collect 6066 quest 1365
 
 step Sargeron
@@ -211,13 +211,13 @@ step Sargeron
   kill 4675 quest 1434.4
 
 step Thunder Axe Fortress
-  tip Ride west to Thunder Axe Fortress. Beat a Burning Blade cultist down, then use the Burning Gem on it before it dies to fill one Infused Burning Gem. They also drop a Flayed Demon Skin now and then (1-5%); if one drops, read it.
+  tip Head west to Thunder Axe Fortress. Beat a Burning Blade cultist down, then use the Burning Gem on it before it dies to fill one Infused Burning Gem. They also drop a Flayed Demon Skin now and then (1-5%); if one drops, read it.
   collect 6435 quest 1435
   collect 20310 x1 optional
   accept 1480 optional
 
 step Ghost Walker Post
-  tip Ride back south to the post.
+  tip Head back south to the post.
   turnin 1435                         -- Maurin Bonesplitter
   turnin 1480 optional
   accept 1481 optional
@@ -246,13 +246,13 @@ step Ghost Walker Post
 # ---------------------------------------------------------------- The west coast
 
 step Shadowprey Village
-  tip Ride south-west to the troll village on the coast, keeping clear of the Gelkis Village on the way.
+  tip Head south-west to the troll village on the coast, keeping clear of the Gelkis Village on the way.
   getfp "Shadowprey Village"
   accept 5763                         -- Roon Wildmane: for Hemet Nesingwary in Stranglethorn
   accept 6142                         -- Mai'Lahii
 
 step Clam beds
-  tip Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat.
+  tip Head north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat.
   collect 15924 quest 6142
 
 step Slitherblade Oracles
@@ -273,14 +273,14 @@ step Ethel Rethor
   note His next errand is not on this route.
 
 step Ghost Walker Post
-  tip Ride south-east to the post.
+  tip Head south-east to the post.
   turnin 1482 optional                -- Maurin Bonesplitter
   accept 1484 optional
   turnin 1484 optional                -- Takata Steelblade
   note Takata's next errand sends you after a demon lord with an elite guard: skip it.
 
 step Gelkis Village
-  tip Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32.
+  tip Head south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32.
   level 32 -- grind on Gelkis Stampers and Windchasers at the Gelkis Village, Desolace
 
 step Shadowprey Village
@@ -342,7 +342,7 @@ step Tarren Mill
   accept 1361                         -- Krusk: for the Barrens, later on the route
 
 step Daggerspine naga
-  tip Ride south, east of Southshore, down to the coast. The Daggerspine naga line the shore south-east of the town.
+  tip Head south, east of Southshore, down to the coast. The Daggerspine naga line the shore south-east of the town.
   goto 53.0,65.0 "Daggerspine shore"
   collect 3509 quest 515.2 optional
 
@@ -352,7 +352,7 @@ step Torn Fin murlocs
   collect 3510 quest 515.3 optional
 
 step Apothecary Lydon
-  tip Ride back north to Tarren Mill, keeping west of Southshore.
+  tip Head back north to Tarren Mill, keeping west of Southshore.
   turnin 515 optional                 -- Apothecary Lydon
   accept 517 optional
 
@@ -361,7 +361,7 @@ step Shindigger keg
   collect 3517 quest 517 optional @72.0,80.5
 
 step Back to Tarren Mill
-  tip Hearth back (or ride north if it is on cooldown).
+  tip Hearth back (or head north if it is on cooldown).
   hearth "Tarren Mill"
   turnin 517 optional                 -- Apothecary Lydon
   accept 524 optional
@@ -396,7 +396,7 @@ step The Dalaran traitors
 
 step Tarren Mill
   zone Hillsbrad Foothills
-  tip Ride back east to Tarren Mill.
+  tip Head back east to Tarren Mill.
   turnin 533                          -- Krusk
   accept 503
   turnin 552                          -- Novice Thaivand
@@ -408,14 +408,14 @@ step Tarren Mill
 
 step Gol'dir
   zone Alterac Mountains
-  tip Ride north past Valik's camp to Strahnbrad, the Syndicate-held village (35-37). Jailor Borhuin carries the Rusted Iron Key; Gol'dir sits in a cage in the house on the north side.
+  tip Head north past Valik's camp to Strahnbrad, the Syndicate-held village (35-37). Jailor Borhuin carries the Rusted Iron Key; Gol'dir sits in a cage in the house on the north side.
   collect 3704 quest 503.1
   turnin 503                          -- Gol'dir
   accept 506
 
 step Tarren Mill
   zone Hillsbrad Foothills
-  tip Ride back south to Tarren Mill.
+  tip Head back south to Tarren Mill.
   turnin 506                          -- Krusk
 
 step Fly to the Undercity

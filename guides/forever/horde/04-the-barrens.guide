@@ -168,7 +168,7 @@ step The Crossroads
 
 step Dreadmist Peak
   only Tauren,Druid
-  tip Ride north from the Crossroads to Dreadmist Peak and fill the Empty Dreadmist Peak Sampler at the Dreadmist Peak Pool, then back to Tonga Runetotem in the Crossroads. No Herbalism? Hula'mahi beside him sells Earthroot, three at a time until he restocks.
+  tip Head north from the Crossroads to Dreadmist Peak and fill the Empty Dreadmist Peak Sampler at the Dreadmist Peak Pool, then back to Tonga Runetotem in the Crossroads. No Herbalism? Hula'mahi beside him sells Earthroot, three at a time until he restocks.
   collect 15843 quest 6127.1 @48.4,18.9 -- Filled Dreadmist Peak Sampler
   turnin 6127                         -- Tonga Runetotem
   accept 6128
@@ -540,7 +540,7 @@ step Orgrimmar
 step Thunder Bluff
   only Paladin
   zone Thunder Bluff
-  tip Alodan the Hopeful teaches Paladins in Thunder Bluff. You have no flight path there yet: fly to Camp Taurajo, ride west through Mulgore and up a lift, and take the flight path from Tal on the central rise.
+  tip Alodan the Hopeful teaches Paladins in Thunder Bluff. You have no flight path there yet: fly to Camp Taurajo, head west through Mulgore and up a lift, and take the flight path from Tal on the central rise.
   fly "Camp Taurajo"
   getfp "Thunder Bluff" npc 2995      -- Tal
   train class

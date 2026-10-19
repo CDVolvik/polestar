@@ -1556,6 +1556,28 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
 
+// --- "Ride through SW? (I am lvl 12)" (Pynte, #404): riding comes at level
+// 40 (tools/lib/nav/move.js MOUNT_LEVEL), so a guide that starts below it
+// never tells the player to ride somewhere. Riding a boat, zeppelin, tram,
+// lift, airship or flight is fine ("ride it" names the transport just before).
+const RIDING_LEVEL = 40;
+const RIDE_TRANSPORT = /\bride (?:it\b|(?:the |a |on the |up a |down the )?(?:boat|ferry|zeppelin|tram|Deeprun Tram|lift|elevator|airship|flight|hippogryph|gryphon|wind rider|bat|taxi))/gi;
+test("Pynte's report (#404): guides played below riding level never tell you to ride somewhere", { skip }, () => {
+	const offenders = [];
+	for (const guide of allGuides()) {
+		if (guide.startsWith('forever/collectibles/')) continue;
+		const g = compiled(guide);
+		if (!(g.minLevel < RIDING_LEVEL)) continue;
+		for (const step of g.steps) {
+			for (const text of [step.note, ...step.goals.map((goal) => goal.note)]) {
+				if (typeof text !== 'string') continue;
+				if (/\b(?:ride|rides|riding|rode)\b/i.test(text.replace(RIDE_TRANSPORT, ''))) offenders.push(`${guide} (from level ${g.minLevel}), step ${step.title}: ${text}`);
+			}
+		}
+	}
+	assert.deepEqual(offenders, [], 'travel by riding in a guide played before level 40');
+});
+
 // --- Flight to Auberdine (Pynte, #402, #403): Vesprystus flies you to
 // Auberdine for free once you have the quest ("speak with me again when you
 // are ready to fly"), so the guide takes his flight, not the boat. Return to

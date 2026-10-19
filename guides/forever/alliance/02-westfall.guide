@@ -253,7 +253,7 @@ step Back to Sentinel Hill
 step Defensive Stance
   only Human,Warrior
   zone Stormwind City
-  tip Fly or ride to Stormwind. Ilsa Corbin trains warriors in Old Town; Harry Burlguard and Bartleby stand together by the Pig and Whistle Tavern there. Bartleby fights you for his mug.
+  tip Fly or walk to Stormwind. Ilsa Corbin trains warriors in Old Town; Harry Burlguard and Bartleby stand together by the Pig and Whistle Tavern there. Bartleby fights you for his mug.
   accept 1638 npc 5480                        -- Ilsa Corbin
   turnin 1638                                 -- Harry Burlguard
   accept 1639
@@ -267,19 +267,19 @@ step Defensive Stance
 step High Priestess Laurena
   only Human,Priest
   zone Stormwind City
-  tip Fly or ride to Stormwind. High Priestess Laurena is in the Cathedral of Light.
+  tip Fly or walk to Stormwind. High Priestess Laurena is in the Cathedral of Light.
   turnin 5635                                 -- Desperate Prayer
   turnin 94774                                -- Divine Grace
 
 step Shaman training
   only Shaman
   zone Ironforge
-  tip Ride to Stormwind. It has no shaman trainer: take the Deeprun Tram from the Dwarven District to Ironforge, train with Eldrun Stormbreaker, then ride the tram back for the boat.
+  tip Head to Stormwind. It has no shaman trainer: take the Deeprun Tram from the Dwarven District to Ironforge, train with Eldrun Stormbreaker, then ride the tram back for the boat.
   train class
 
 step Stormwind
   zone Stormwind City
-  tip Fly or ride to Stormwind. Trainers: Old Town (Warriors, Rogues), the Cathedral (Paladins, Priests), the Mage Quarter (Mages, Warlocks), the Park (Druids).
+  tip Fly or walk to Stormwind. Trainers: Old Town (Warriors, Rogues), the Cathedral (Paladins, Priests), the Mage Quarter (Mages, Warlocks), the Park (Druids).
   train class only Warrior,Paladin,Hunter,Rogue,Priest,Mage,Warlock,Druid -- Level 12, 14 and 16 spells
   buy 2449 x5 npc 1313 optional only NightElf,Druid -- Earthroot for Gathering the Cure (6123) in Darkshore: Maria Lumere, Alchemy Supplies; herbalists pick it there instead
   turnin 92748 only Dwarf,Gnome,NightElf,Skyborne -- Sprite Jumpsprocket, Dwarven District

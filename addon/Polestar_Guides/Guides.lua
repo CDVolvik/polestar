@@ -189,7 +189,7 @@ do
 				},
 				{
 					title = "{spell:71}",
-					note = "Fly or ride to {zone:1453}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug.",
+					note = "Fly or walk to {zone:1453}. {npc:5480} trains warriors in {object:2100}; {npc:6089} and {npc:6090} stand together by the {object:2152} there. {npc:6090} fights you for his mug.",
 					only = { classes = { "WARRIOR" }, races = { "Human" } },
 					goals = {
 						{ t = "accept", quest = 1638, title = "A Warrior's Training", npc = 5480, npcName = "Ilsa Corbin", minLevel = 10, qlvl = 10, closedBy = { 1679, 1684, 1678, 1683, 1639 }, preTitles = { [1639] = "Bartleby the Drunk", [1678] = "Vejrek", [1679] = "Muren Stormpike", [1683] = "Vorlus Vilehoof", [1684] = "Elanaria" }, map = 1453, x = 80.41, y = 59.8, z = 109.5 },
@@ -205,7 +205,7 @@ do
 				},
 				{
 					title = "{npc:376}",
-					note = "Fly or ride to {zone:1453}. {npc:376} is in the Cathedral of Light.",
+					note = "Fly or walk to {zone:1453}. {npc:376} is in the Cathedral of Light.",
 					only = { classes = { "PRIEST" }, races = { "Human" } },
 					goals = {
 						{ t = "turnin", quest = 5635, title = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, x = 49.53, y = 44.6, z = 109.9, note = "{quest:5635}" },
@@ -214,7 +214,7 @@ do
 				},
 				{
 					title = "Shaman training",
-					note = "Ride to {zone:1453}. It has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the boat.",
+					note = "Head to {zone:1453}. It has no shaman trainer: take the {area:2257} from the {object:28027} to {zone:1455}, train with {npc:258098}, then ride the tram back for the boat.",
 					only = { classes = { "SHAMAN" } },
 					goals = {
 						{ t = "train", class = true, candidates = { { npc = 257446, npcName = "Teo Hammerstorm", map = 1426, x = 28.79, y = 66.18, f = "e", faction = "A", classes = { "SHAMAN" } }, { npc = 258113, npcName = "Ingrid Dunwald", map = 1426, x = 47.58, y = 51.95, f = "e", faction = "A", classes = { "SHAMAN" } }, { npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, x = 47.17, y = 13.37, f = "e", faction = "A", classes = { "SHAMAN" } } } },
@@ -222,7 +222,7 @@ do
 				},
 				{
 					title = "{zone:1453}",
-					note = "Fly or ride to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids).",
+					note = "Fly or walk to {zone:1453}. Trainers: {object:2100} (Warriors, Rogues), the Cathedral (Paladins, Priests), the {object:2101} (Mages, Warlocks), the Park (Druids).",
 					goals = {
 						{ t = "train", class = true, only = { classes = { "WARRIOR", "PALADIN", "HUNTER", "ROGUE", "PRIEST", "MAGE", "WARLOCK", "DRUID" } }, note = "Level 12, 14 and 16 spells", candidates = { { npc = 376, npcName = "High Priestess Laurena", map = 1453, x = 49.53, y = 44.6, z = 109.9, faction = "A", classes = { "PRIEST" } }, { npc = 5492, npcName = "Katherine the Pure", map = 1453, x = 48.48, y = 49.09, z = 106.6, faction = "A", classes = { "PALADIN" } }, { npc = 5515, npcName = "Einris Brightspear", map = 1453, x = 67.35, y = 36.25, z = 95.5, faction = "A", classes = { "HUNTER" } }, { npc = 5505, npcName = "Theridran", map = 1453, x = 36.11, y = 64.39, z = 93.8, faction = "A", classes = { "DRUID" } }, { npc = 5497, npcName = "Jennea Cannon", map = 1453, x = 49.56, y = 85.8, z = 29.7, faction = "A", classes = { "MAGE" } }, { npc = 5495, npcName = "Ursula Deline", map = 1453, x = 39.89, y = 84.19, z = 101.5, faction = "A", classes = { "WARLOCK" } }, { npc = 918, npcName = "Osborne the Night Man", map = 1453, x = 77.43, y = 65.31, z = 101.1, faction = "A", classes = { "ROGUE" } }, { npc = 5480, npcName = "Ilsa Corbin", map = 1453, x = 80.41, y = 59.8, z = 109.5, faction = "A", classes = { "WARRIOR" } }, { npc = 198, npcName = "Khelden Bremen", map = 1429, x = 49.66, y = 39.4, z = 89.5, f = "e", faction = "A", classes = { "MAGE" } }, { npc = 375, npcName = "Priestess Anetta", map = 1429, x = 49.81, y = 39.49, z = 82.1, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 459, npcName = "Drusilla La Salle", map = 1429, x = 49.87, y = 42.65, z = 80.8, f = "e", faction = "A", classes = { "WARLOCK" } }, { npc = 915, npcName = "Jorik Kerridan", map = 1429, x = 50.31, y = 39.92, z = 80.8, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 911, npcName = "Llane Beshere", map = 1429, x = 50.24, y = 42.29, z = 82.3, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 925, npcName = "Brother Sammuel", map = 1429, x = 50.43, y = 42.12, z = 82.3, f = "e", faction = "A", classes = { "PALADIN" } }, { npc = 248415, npcName = "Tordrin Sternblade", map = 1429, x = 51.21, y = 40.8, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 913, npcName = "Lyria Du Lac", map = 1429, x = 41.09, y = 65.77, z = 57.9, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 927, npcName = "Brother Wilhelm", map = 1429, x = 41.1, y = 66.04, z = 57.7, f = "e", faction = "A", classes = { "PALADIN" } }, { npc = 251507, npcName = "Josephine Carson", map = 1429, x = 41.18, y = 66.3, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 377, npcName = "Priestess Josetta", map = 1429, x = 43.28, y = 65.72, z = 63.9, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 328, npcName = "Zaldimar Wefhellt", map = 1429, x = 43.25, y = 66.19, z = 63.9, f = "e", faction = "A", classes = { "MAGE" } }, { npc = 917, npcName = "Keryn Sylvius", map = 1429, x = 43.87, y = 65.94, z = 63.9, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 906, npcName = "Maximillian Crowe", map = 1429, x = 44.39, y = 66.24, z = 49.9, f = "e", faction = "A", classes = { "WARLOCK" } }, { npc = 926, npcName = "Bromos Grummner", map = 1426, x = 28.83, y = 68.33, z = 395.6, f = "e", faction = "A", classes = { "PALADIN" } }, { npc = 916, npcName = "Solm Hargrin", map = 1426, x = 28.37, y = 67.51, z = 395.6, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 895, npcName = "Thorgas Grimson", map = 1426, x = 29.18, y = 67.45, z = 395.6, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 912, npcName = "Thran Khorman", map = 1426, x = 28.83, y = 67.24, z = 395.6, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 837, npcName = "Branstock Khalder", map = 1426, x = 28.6, y = 66.39, z = 392.8, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 944, npcName = "Marryk Nurribit", map = 1426, x = 28.71, y = 66.37, z = 392.9, f = "e", faction = "A", classes = { "MAGE" } }, { npc = 460, npcName = "Alamar Grimm", map = 1426, x = 28.65, y = 66.14, z = 399, f = "e", faction = "A", classes = { "WARLOCK" } }, { npc = 1231, npcName = "Grif Wildheart", map = 1426, x = 45.81, y = 53.04, z = 407.8, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 5612, npcName = "Gimrizz Shadowcog", map = 1426, x = 47.33, y = 53.69, z = 404.4, f = "e", faction = "A", classes = { "WARLOCK" } }, { npc = 1229, npcName = "Granis Swiftaxe", map = 1426, x = 47.36, y = 52.65, z = 399.7, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 1234, npcName = "Hogral Bakkan", map = 1426, x = 47.56, y = 52.61, z = 399.2, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 1226, npcName = "Maxan Anvol", map = 1426, x = 47.34, y = 52.19, z = 399.7, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 1228, npcName = "Magis Sparkmantle", map = 1426, x = 47.5, y = 52.08, z = 403.6, f = "e", faction = "A", classes = { "MAGE" } }, { npc = 1232, npcName = "Azar Stronghammer", map = 1426, x = 47.6, y = 52.07, z = 403.6, f = "e", faction = "A", classes = { "PALADIN" } }, { npc = 1901, npcName = "Kelstrum Stonebreaker", map = 1455, x = 66.97, y = 90.15, z = 507.8, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 5115, npcName = "Daera Brightspear", map = 1455, x = 70.97, y = 89.8, z = 510.4, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 5143, npcName = "Toldren Deepiron", map = 1455, x = 25.21, y = 10.76, z = 501.2, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 7312, npcName = "Dink", map = 1455, x = 27.16, y = 8.57, z = 501.2, f = "e", faction = "A", classes = { "MAGE" } }, { npc = 5149, npcName = "Brandur Ironhammer", map = 1455, x = 23.13, y = 6.14, z = 502.9, f = "e", faction = "A", classes = { "PALADIN" } }, { npc = 5167, npcName = "Fenthwick", map = 1455, x = 51.5, y = 15.33, z = 508.6, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 5173, npcName = "Alexander Calder", map = 1455, x = 50.08, y = 7.45, z = 511.7, f = "e", faction = "A", classes = { "WARLOCK" } }, { npc = 3593, npcName = "Alyissia", map = 1438, x = 59.64, y = 38.44, z = 1329.7, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 3594, npcName = "Frahun Shadewhisper", map = 1438, x = 59.64, y = 38.66, z = 1329.7, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 3595, npcName = "Shanda", map = 1438, x = 59.17, y = 40.44, z = 1346.8, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 3596, npcName = "Ayanna Everstride", map = 1438, x = 58.66, y = 40.45, z = 1381, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 3597, npcName = "Mardant Strongoak", map = 1438, x = 58.63, y = 40.29, z = 1381, f = "e", faction = "A", classes = { "DRUID" } }, { npc = 3598, npcName = "Kyra Windblade", map = 1438, x = 56.22, y = 59.2, z = 1308.9, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 3599, npcName = "Jannok Breezesong", map = 1438, x = 56.38, y = 60.14, z = 1308.9, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 3600, npcName = "Laurna Morninglight", map = 1438, x = 55.56, y = 56.75, z = 1313.9, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 3601, npcName = "Dazalar", map = 1438, x = 56.68, y = 59.49, z = 1308.2, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 3602, npcName = "Kal", map = 1438, x = 55.95, y = 61.56, z = 1293.8, f = "e", faction = "A", classes = { "DRUID" } }, { npc = 4087, npcName = "Arias'ta Bladesinger", map = 1457, x = 58.71, y = 34.9, z = 1330.9, f = "e", faction = "A", classes = { "WARRIOR" } }, { npc = 4090, npcName = "Astarii Starseeker", map = 1457, x = 38.33, y = 80.95, z = 1360.1, f = "e", faction = "A", classes = { "PRIEST" } }, { npc = 4138, npcName = "Jeen'ra Nightrunner", map = 1457, x = 39.72, y = 5.39, z = 1368.9, f = "e", faction = "A", classes = { "HUNTER" } }, { npc = 4163, npcName = "Syurna", map = 1457, x = 36.99, y = 21.91, z = 1295.1, f = "e", faction = "A", classes = { "ROGUE" } }, { npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, x = 35.37, y = 8.4, z = 1340.1, f = "e", faction = "A", classes = { "DRUID" } }, { npc = 251373, npcName = "Xyton Silverwind", map = 2521, x = 41.71, y = 23.36, faction = "AH", classes = { "DRUID" } }, { npc = 251376, npcName = "Tai'ree Farsight", map = 2521, x = 42.46, y = 23.67, faction = "AH", classes = { "HUNTER" } }, { npc = 251379, npcName = "Dorii Brightwhisper", map = 2521, x = 41.57, y = 23.65, faction = "A", classes = { "MAGE" } }, { npc = 251389, npcName = "Akeri Duskblade", map = 2521, x = 43.73, y = 24.3, faction = "AH", classes = { "ROGUE" } }, { npc = 251964, npcName = "Blademaster Ren", map = 2521, x = 43.65, y = 24.17, faction = "AH", classes = { "WARRIOR" } }, { npc = 254086, npcName = "Shenaan Spellwind", map = 2521, x = 44.89, y = 45.26, faction = "AH", classes = { "MAGE" } } } },
 						{ t = "buy", npc = 1313, npcName = "Maria Lumere", item = 2449, itemName = "Earthroot", count = 5, map = 1453, x = 55.9, y = 85.64, z = 98.4, optional = true, only = { classes = { "DRUID" }, races = { "NightElf" } }, note = "{item:2449} for Gathering the Cure (6123) in {zone:1439}: {npc:1313}, Alchemy Supplies; herbalists pick it there instead" },
@@ -814,7 +814,7 @@ do
 				},
 				{
 					title = "{item:15882}",
-					note = "Fly to {area:108} and ride north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then ride east along the road through Elwynn to Redridge.",
+					note = "Fly to {area:108} and head north-west to the coast: the {object:177790} lies on the sea floor off the shore. Then head east along the road through Elwynn to Redridge.",
 					only = { classes = { "DRUID" }, races = { "NightElf" } },
 					goals = {
 						{ t = "fly", location = "Sentinel Hill", node = 4, area = 108 },
@@ -1085,7 +1085,7 @@ do
 				},
 				{
 					title = "{npc:888}",
-					note = "Ride back east along the road to the {area:245}.",
+					note = "Head back east along the road to the {area:245}.",
 					goals = {
 						{ t = "turnin", quest = 245, title = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, x = 45.12, y = 67.03, z = 39.4, f = "e" },
 					},
@@ -1127,7 +1127,7 @@ do
 				},
 				{
 					title = "{npc:289}",
-					note = "Ride west along the road once more.",
+					note = "Head west along the road once more.",
 					goals = {
 						{ t = "turnin", quest = 157, title = "Deliver the Thread", npc = 289, npcName = "Abercrombie", map = 1431, x = 28.11, y = 31.46, z = 38.9, f = "e" },
 						{ t = "accept", quest = 158, title = "Zombie Juice", npc = 289, npcName = "Abercrombie", minLevel = 20, qlvl = 24, pre = { 157 }, preTitles = { [157] = "Deliver the Thread" }, map = 1431, x = 28.11, y = 31.46, z = 38.9, f = "e" },
@@ -1143,7 +1143,7 @@ do
 				},
 				{
 					title = "Back to {area:42}",
-					note = "Ride back east to {area:42}.",
+					note = "Head back east to {area:42}.",
 					goals = {
 						{ t = "turnin", quest = 262, title = "The Shadowy Figure", npc = 265, npcName = "Madame Eva", map = 1431, x = 75.79, y = 45.32, z = 28.1, f = "e" },
 						{ t = "accept", quest = 265, title = "The Shadowy Search Continues", npc = 265, npcName = "Madame Eva", minLevel = 20, qlvl = 25, pre = { 262 }, preTitles = { [262] = "The Shadowy Figure" }, map = 1431, x = 75.79, y = 45.32, z = 28.1, f = "e" },
@@ -1172,7 +1172,7 @@ do
 				},
 				{
 					title = "{npc:289}",
-					note = "Ride west to the hermit once more.",
+					note = "Head west to the hermit once more.",
 					goals = {
 						{ t = "turnin", quest = 159, title = "Juice Delivery", npc = 289, npcName = "Abercrombie", map = 1431, x = 28.11, y = 31.46, z = 38.9, f = "e" },
 						{ t = "accept", quest = 133, title = "Ghoulish Effigy", npc = 289, npcName = "Abercrombie", minLevel = 20, qlvl = 27, pre = { 159 }, preTitles = { [159] = "Juice Delivery" }, map = 1431, x = 28.11, y = 31.46, z = 38.9, f = "e" },
@@ -1208,7 +1208,7 @@ do
 				},
 				{
 					title = "{npc:7024}",
-					note = "Ride west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top.",
+					note = "Head west along the road out of {area:94} into {zone:1436}. {npc:7024} watches {npc:7053}'s tower from the hills just inside the border. The {npc:7051} (level 23) guarding the tower carries its key; Klaven's journal is in the chest at the top.",
 					only = { classes = { "ROGUE" } },
 					goals = {
 						{ t = "turnin", quest = 2360, title = "Mathias and the Defias", npc = 7024, npcName = "Agent Kearnen", map = 1436, x = 68.49, y = 70.08, z = 35.4, f = "e" },
@@ -1219,7 +1219,7 @@ do
 				},
 				{
 					title = "{npc:332}",
-					note = "Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}.",
+					note = "Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}.",
 					only = { classes = { "ROGUE" } },
 					goals = {
 						{ t = "turnin", quest = 2359, title = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, x = 78.31, y = 70.74, z = 109.6, note = "{npc:332}: Poisons, and {item:18160}", rewards = { items = { { item = 18160, itemName = "Recipe: Thistle Tea" } } } },
@@ -1274,7 +1274,7 @@ do
 			author = "Polestar",
 			version = 1,
 			names = { ["area:1021"] = "Thelgen Rock", ["area:1022"] = "Bluegill Marsh", ["area:1025"] = "Green Belt", ["area:1076"] = "Webwinder Path", ["area:118"] = "Whelgar's Excavation Site", ["area:1276"] = "Talondeep Path", ["area:150"] = "Menethil Harbor", ["area:1537"] = "Ironforge", ["area:1658"] = "Cenarion Enclave", ["area:17203"] = "Stormwind Harbor", ["area:205"] = "Dun Modr", ["area:2103"] = "Menethil Keep", ["area:2160"] = "Windshear Mine", ["area:2257"] = "Deeprun Tram", ["area:2361"] = "Nighthaven", ["area:271"] = "Southshore", ["area:411"] = "Bathran's Haunt", ["area:412"] = "Ruins of Ordil'Aran", ["area:413"] = "Maestra's Post", ["area:414"] = "The Zoram Strand", ["area:415"] = "Astranaar", ["area:416"] = "Shrine of Aessina", ["area:419"] = "Howling Vale", ["area:42"] = "Darkshire", ["area:420"] = "Silverwind Refuge", ["area:421"] = "Mystral Lake", ["area:441"] = "Lake Falathim", ["area:442"] = "Auberdine", ["area:448"] = "Grove of the Ancients", ["area:461"] = "Windshear Crag", ["area:702"] = "Rut'theran Village", ["area:836"] = "Dun Algaz", ["area:881"] = "Thandol Span", ["item:12220"] = "Intact Elemental Bracer", ["item:13536"] = "Horn of Awakening", ["item:15885"] = "Pendant of the Sea Lion", ["item:2611"] = "Crude Flint", ["item:5352"] = "Book: The Powers Below", ["item:5366"] = "Glowing Soul Gem", ["item:5424"] = "Ancient Statuette", ["item:5456"] = "Divining Scroll", ["item:5463"] = "Glowing Gem", ["npc:1007"] = "Mosshide Gnoll", ["npc:1010"] = "Mosshide Fenrunner", ["npc:1020"] = "Mottled Raptor", ["npc:1024"] = "Bluegill Murloc", ["npc:1032"] = "Black Ooze", ["npc:1034"] = "Dragonmaw Raider", ["npc:1040"] = "Fen Creeper", ["npc:1071"] = "Longbraid the Grim", ["npc:1078"] = "Ormer Ironbraid", ["npc:1111"] = "Leech Stalker", ["npc:11218"] = "Kerlonian Evershade", ["npc:11219"] = "Liladris Moonriver", ["npc:11401"] = "Priestess Alathea", ["npc:11406"] = "High Priest Rohan", ["npc:11802"] = "Dendrite Starblaze", ["npc:1239"] = "First Mate Fitzsimmons", ["npc:1242"] = "Karl Boran", ["npc:1244"] = "Rethiel the Greenwarden", ["npc:1259"] = "Gobbler", ["npc:1417"] = "Young Wetlands Crocolisk", ["npc:1440"] = "Milton Sheaf", ["npc:1444"] = "Brother Kristoff", ["npc:1573"] = "Gryth Thurden", ["npc:2086"] = "Valstag Ironjaw", ["npc:2092"] = "Pilot Longbeard", ["npc:2093"] = "Einar Stonegrip", ["npc:2094"] = "James Halloran", ["npc:2096"] = "Tarrel Rockweaver", ["npc:2097"] = "Harlo Barnaby", ["npc:2104"] = "Captain Stoutfist", ["npc:210995"] = "Alonso", ["npc:2111"] = "Sida", ["npc:2228"] = "Lieutenant Farren Orinelle", ["npc:258785"] = "High Priestess Mims", ["npc:2786"] = "Gerrig Bonegrip", ["npc:3585"] = "Therysil", ["npc:3649"] = "Thundris Windweaver", ["npc:3664"] = "Ilkrud Magthrull", ["npc:3691"] = "Raene Wolfrunner", ["npc:3846"] = "Talen", ["npc:3885"] = "Sentinel Velene Starstrike", ["npc:3891"] = "Teronis' Corpse", ["npc:3916"] = "Shael'dryn", ["npc:3917"] = "Befouled Water Elemental", ["npc:3987"] = "Dal Bloodclaw", ["npc:4040"] = "Cave Stalker", ["npc:4077"] = "Gaxim Rustfizzle", ["npc:4080"] = "Kaela Shadowspear", ["npc:4081"] = "Lomac Gearstrip", ["npc:4201"] = "Ziz Fizziks", ["npc:4217"] = "Mathrengyl Bearwalker", ["npc:4276"] = "Piznik", ["npc:482"] = "Elling Trias", ["npc:4959"] = "Jorgen", ["npc:4982"] = "Thomas", ["npc:928"] = "Lord Grayson Shadowbreaker", ["object:142151"] = "Sealed Barrel", ["object:171524"] = "Tinker Town", ["object:176370"] = "Boat to Auberdine", ["object:2096"] = "Trade District", ["object:2098"] = "Cathedral Square", ["object:2101"] = "Mage Quarter", ["object:2117"] = "Stormwind Keep", ["object:2164"] = "The Slaughtered Lamb", ["object:259"] = "Half-buried Barrel", ["object:261"] = "Damaged Crate", ["object:28027"] = "Dwarven District", ["object:32362"] = "Mystic Ward", ["object:32372"] = "Great Forge", ["object:32383"] = "Forlorn Cavern", ["object:32386"] = "Hall of Mysteries", ["quest:1009"] = "Ruuzel", ["quest:1010"] = "Bathran's Hair", ["quest:1033"] = "Elune's Tear", ["quest:1034"] = "The Ruins of Stardust", ["quest:337"] = "An Old History Book", ["quest:5061"] = "Aquatic Form", ["quest:5645"] = "Chastise", ["quest:5673"] = "Elune's Grace", ["quest:94819"] = "Contingency Plan", ["quest:98197"] = "Spoils of War", ["spell:18960"] = "Teleport: Moonglade", ["zone:1426"] = "Dun Morogh", ["zone:1431"] = "Duskwood", ["zone:1432"] = "Loch Modan", ["zone:1437"] = "Wetlands", ["zone:1439"] = "Darkshore", ["zone:1440"] = "Ashenvale", ["zone:1442"] = "Stonetalon Mountains", ["zone:1453"] = "Stormwind", ["zone:1455"] = "Ironforge" },
-			written = { ["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "Black Oozes creep through the marsh north of the Green Belt road, west of Einar's camp. Any ooze may hold Sida's bag.", ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Follow the coast north to the Zoram Strand. Talen camps on the beach; Wrathtail nagas fill the shore.", ["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of {npc:1244}; almost every one drops flint."] = "Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of Rethiel; almost every one drops flint.", ["Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Ride south past Mystral Lake into the Talondeep Path tunnel; it comes out in Stonetalon's Windshear Crag. Kaela and Gaxim camp on the Webwinder Path south-west of the crag.", ["{area:1025}"] = "The Green Belt", ["{npc:3664} and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "Ilkrud and his voidwalkers hold the Ruins of Ordil'Aran south of the shrine. Pull his guards first.", ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "Ruuzel walks the northern tip of the Zoram Strand with Wrathtail guards." },
+			written = { ["Black Oozes creep through the marsh north of the {area:1025} road, west of {npc:2093}'s camp. Any ooze may hold {npc:2111}'s bag."] = "Black Oozes creep through the marsh north of the Green Belt road, west of Einar's camp. Any ooze may hold Sida's bag.", ["Follow the coast north to the {area:414}. {npc:3846} camps on the beach; Wrathtail nagas fill the shore."] = "Follow the coast north to the Zoram Strand. Talen camps on the beach; Wrathtail nagas fill the shore.", ["Head south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag."] = "Head south past Mystral Lake into the Talondeep Path tunnel; it comes out in Stonetalon's Windshear Crag. Kaela and Gaxim camp on the Webwinder Path south-west of the crag.", ["Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of {npc:1244}; almost every one drops flint."] = "Mosshide Fenrunners and Mistweavers roam the riverbanks just west and south of Rethiel; almost every one drops flint.", ["{area:1025}"] = "The Green Belt", ["{npc:3664} and his voidwalkers hold the {area:412} south of the shrine. Pull his guards first."] = "Ilkrud and his voidwalkers hold the Ruins of Ordil'Aran south of the shrine. Pull his guards first.", ["{quest:1009} walks the northern tip of the {area:414} with Wrathtail guards."] = "Ruuzel walks the northern tip of the Zoram Strand with Wrathtail guards." },
 			steps = {
 				{
 					title = "{quest:5061}",
@@ -1308,7 +1308,7 @@ do
 				},
 				{
 					title = "{object:176370}",
-					note = "From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then ride south along the road through {zone:1439}.",
+					note = "From {area:17203} take the boat to {area:442}; {npc:3649} stands at the north end of the village. Then head south along the road through {zone:1439}.",
 					goals = {
 						{ t = "turnin", quest = 97926, title = "Making Do", npc = 3649, npcName = "Thundris Windweaver", map = 1439, x = 37.4, y = 40.13, z = 8.3, f = "e", note = "{npc:3649}: Alexston's reply" },
 						{ t = "goto", text = "{area:448}", area = 448, map = 1439, x = 44.4, y = 76.4, f = "e" },
@@ -1364,7 +1364,7 @@ do
 				},
 				{
 					title = "{npc:3891}",
-					note = "Ride west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}.",
+					note = "Head west to the shore of {area:441}. Teronis lies among the Saltspittle murlocs; any murloc can drop the {item:5463}.",
 					goals = {
 						{ t = "turnin", quest = 991, title = "Raene's Cleansing", npc = 3891, npcName = "Teronis' Corpse", map = 1440, x = 20.31, y = 42.33, z = 4.9, f = "e" },
 						{ t = "accept", quest = 1023, title = "Raene's Cleansing", npc = 3891, npcName = "Teronis' Corpse", minLevel = 18, qlvl = 21, pre = { 991 }, preTitles = { [991] = "Raene's Cleansing" }, map = 1440, x = 20.31, y = 42.33, z = 4.9, f = "e" },
@@ -1502,7 +1502,7 @@ do
 				},
 				{
 					title = "{area:461}",
-					note = "Ride south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag.",
+					note = "Head south past {area:421} into the {area:1276} tunnel; it comes out in Stonetalon's {area:461}. {npc:4080} and {npc:4077} camp on the {area:1076} south-west of the crag.",
 					goals = {
 						{ t = "turnin", quest = 1070, title = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, x = 59.9, y = 66.85, z = 63.4, f = "e" },
 						{ t = "accept", quest = 1085, title = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", minLevel = 17, qlvl = 21, map = 1442, x = 59.9, y = 66.85, z = 63.4, f = "e" },
@@ -1543,7 +1543,7 @@ do
 				{
 					title = "To {area:150}",
 					goals = {
-						{ t = "hearth", location = "Astranaar", area = 415, note = "Hearthstone on cooldown? Ride back north through the {area:1276}." },
+						{ t = "hearth", location = "Astranaar", area = 415, note = "Hearthstone on cooldown? Head back north through the {area:1276}." },
 						{ t = "fly", location = "Auberdine", node = 26, area = 442 },
 						{ t = "goto", text = "Boat to {area:150}", map = 1439, x = 32.4, y = 43.8, f = "e" },
 					},
@@ -1760,7 +1760,7 @@ do
 				},
 				{
 					title = "{area:1537}",
-					note = "Ride east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}.",
+					note = "Head east along the {zone:1437} road, south through {area:836} into {zone:1432} and west through the tunnel into {zone:1426} to {area:1537}.",
 					goals = {
 						{ t = "getfp", npc = 1573, npcName = "Gryth Thurden", location = "Ironforge", node = 6, area = 1537, map = 1455, x = 55.5, y = 47.74, z = 502.3, f = "e", note = "{npc:1573}, in the {object:32372}" },
 						{ t = "turnin", quest = 1072, title = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, x = 72.08, y = 51.88, z = 502, f = "e", note = "{npc:4081}, {object:171524}" },
@@ -1929,7 +1929,7 @@ do
 				},
 				{
 					title = "{npc:289}",
-					note = "Ride west along the road; the hermit's shack stands north-east of the {area:492}.",
+					note = "Head west along the road; the hermit's shack stands north-east of the {area:492}.",
 					goals = {
 						{ t = "accept", quest = 134, title = "Ogre Thieves", npc = 289, npcName = "Abercrombie", minLevel = 20, qlvl = 30, pre = { 133 }, preTitles = { [133] = "Ghoulish Effigy" }, map = 1431, x = 28.11, y = 31.46, z = 38.9, f = "e" },
 					},
@@ -1972,7 +1972,7 @@ do
 				},
 				{
 					title = "{area:93}",
-					note = "Ride east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it.",
+					note = "Head east to the ogre mound. {object:119} sits in the camp at its entrance; Splinter Fist ogres guard it.",
 					goals = {
 						{ t = "collect", quest = 134, title = "Ogre Thieves", item = 1349, itemName = "Abercrombie's Crate", oi = 1, map = 1431, x = 33.4, y = 76.3, f = "e", spots = { { x = 33.4, y = 76.3, r = 17, n = 2 } }, from = "Abercrombie's Crate", fromKind = "object", fromId = 119 },
 						{ t = "accept", quest = 96138, title = "Merrick's Bow", item = 281142, itemName = "Merrick's Bow", minLevel = 18, qlvl = 28, optional = true, note = "Only if a {npc:272273} dropped {quest:96138}: right-click it" },
@@ -2095,7 +2095,7 @@ do
 				},
 				{
 					title = "{npc:2104}",
-					note = "Ride back west along the road to {area:150}.",
+					note = "Head back west along the road to {area:150}.",
 					goals = {
 						{ t = "turnin", quest = 464, title = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, x = 9.86, y = 57.49, z = 26.8, f = "e" },
 						{ t = "accept", quest = 98221, title = "From the Ashes", npc = 2104, npcName = "Captain Stoutfist", minLevel = 23, qlvl = 28, map = 1437, x = 9.86, y = 57.49, z = 26.8, f = "e", note = "{quest:98221}: {quest:465} comes after it on Forever" },
@@ -2103,7 +2103,7 @@ do
 				},
 				{
 					title = "{area:1036}",
-					note = "Ride east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too.",
+					note = "Head east again to the Dragonmaw camp. The four sets of Attack Plans lie in the {area:1036}; {npc:2091}, an elite, stands in the camp too.",
 					goals = {
 						{ t = "complete", quest = 98221, title = "From the Ashes", map = 1437, x = 53.5, y = 54.5, f = "e" },
 					},
@@ -2557,7 +2557,7 @@ do
 				},
 				{
 					title = "{quest:1738}",
-					note = "From {area:415} ride north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}.",
+					note = "From {area:415} head north-west into the hills: the {quest:1738} is a glowing tree north of the road to {area:413}. If you took {quest:65602}, the {item:190309} lies in a house among the trees north of {area:413} (26.6,22.0). Then back past {area:415} to the {area:1276}.",
 					only = { classes = { "WARLOCK" } },
 					goals = {
 						{ t = "collect", quest = 1738, title = "Heartswood", item = 6912, itemName = "Heartswood", count = 1, oi = 1, map = 1440, x = 31.55, y = 31.57, f = "e", from = "Heartswood", fromKind = "object", fromId = 93192 },
@@ -3603,7 +3603,7 @@ do
 				},
 				{
 					title = "{npc:2712}",
-					note = "Ride back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}.",
+					note = "Head back north-east past {area:320}; {npc:2712} and {npc:2713} camp in the hills north of {area:314}.",
 					goals = {
 						{ t = "turnin", quest = 659, title = "Hints of a New Plague?", npc = 2712, npcName = "Quae", map = 1417, x = 60.18, y = 53.85, z = 32.9, f = "e" },
 						{ t = "accept", quest = 658, title = "Hints of a New Plague?", npc = 2712, npcName = "Quae", minLevel = 30, qlvl = 36, pre = { 659 }, preTitles = { [659] = "Hints of a New Plague?" }, map = 1417, x = 60.18, y = 53.85, z = 32.9, f = "e" },
@@ -3807,11 +3807,11 @@ do
 			author = "Polestar",
 			version = 1,
 			names = { ["area:144"] = "Thelsamar", ["area:150"] = "Menethil Harbor", ["area:1517"] = "Uldaman", ["area:1877"] = "Valley of Fangs", ["area:1878"] = "Dustbowl", ["area:2405"] = "Ethel Rethor", ["area:2407"] = "Kormek's Hut", ["area:2657"] = "Valley of Bones", ["area:271"] = "Southshore", ["area:342"] = "Camp Boff", ["area:345"] = "Agmond's End", ["area:346"] = "Hammertoe's Digsite", ["area:439"] = "Shimmering Flats", ["area:514"] = "Foothold Citadel", ["area:596"] = "Kodo Graveyard", ["area:602"] = "Mannoroc Coven", ["area:606"] = "Gelkis Village", ["area:607"] = "Valley of Spears", ["area:608"] = "Nijel's Point", ["item:15848"] = "Crate of Ghost Magnets", ["item:2868"] = "Patterned Bronze Bracers", ["item:6245"] = "Karnitol's Satchel", ["npc:11438"] = "Bibbly F'utzbuckle", ["npc:11560"] = "Magrami Spectre", ["npc:11561"] = "Undead Ravager", ["npc:11596"] = "Smeed Scrabblescrew", ["npc:11626"] = "Rigger Gizelton", ["npc:11863"] = "Azore Aldamort", ["npc:12277"] = "Melizza Brimbuzzle", ["npc:12369"] = "Lord Kragaru", ["npc:1470"] = "Ghak Healtouch", ["npc:217590"] = "Flesh Picker", ["npc:2716"] = "Dustbelcher Wyrmhunter", ["npc:2727"] = "Crag Coyote", ["npc:2729"] = "Elder Crag Coyote", ["npc:2735"] = "Lesser Rock Elemental", ["npc:2736"] = "Greater Rock Elemental", ["npc:2745"] = "Ambassador Infernus", ["npc:2785"] = "Theldurin the Lost", ["npc:2786"] = "Gerrig Bonegrip", ["npc:2817"] = "Rigglefuzz", ["npc:2831"] = "Giant Buzzard", ["npc:2860"] = "Sigrun Ironhew", ["npc:2910"] = "Prospector Ryedol", ["npc:2920"] = "Lucien Tosselwrench", ["npc:2921"] = "Lotwil Veriatus", ["npc:3980"] = "Raleigh the Devout", ["npc:4454"] = "Fizzle Brassbolts", ["npc:4618"] = "Martek the Exiled", ["npc:4678"] = "Mana Eater", ["npc:4679"] = "Nether Maiden", ["npc:4680"] = "Doomwarder Captain", ["npc:4685"] = "Ley Hunter", ["npc:4964"] = "Commander Samaul", ["npc:5083"] = "Clerk Lendry", ["npc:5637"] = "Roetten Stonehammer", ["npc:5638"] = "Kreldig Ungor", ["npc:6019"] = "Hornizz Brimbuzzle", ["npc:92"] = "Rock Elemental", ["object:126260"] = "Ancient Chest", ["object:176369"] = "Boat to Theramore", ["object:176751"] = "Kodo Bones", ["object:35251"] = "Karnitol's Chest", ["quest:5943"] = "Gizelton Caravan", ["zone:1418"] = "Badlands", ["zone:1432"] = "Loch Modan", ["zone:1443"] = "Desolace", ["zone:1446"] = "Tanaris", ["zone:1455"] = "Ironforge" },
-			written = { ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}. {npc:11863}'s tower stands on the hill there, on the way to the wreck."] = "Follow the road west across the north of Desolace to the ruins of Ethel Rethor. Azore's tower stands on the hill there, on the way to the wreck.", ["Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Ride west into the Dustbowl; Lotwil works by his machines in the middle of it.", ["The Lesser Rock Elementals wander the {area:1878} west of {npc:2921}."] = "The Lesser Rock Elementals wander the Dustbowl west of Lotwil.", ["The Rock Elementals roam south-east of {npc:2921}; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west.", ["The wrecked ship's chest lies on the shore just west of {npc:11863}'s tower."] = "The wrecked ship's chest lies on the shore just west of Azore's tower.", ["escort {npc:12277} back toward the graveyard"] = "escort Melizza back toward the graveyard", ["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to {npc:11596} at his camp east of the {area:596} afterwards."] = "Rigger Gizelton's caravan stops on the road east of Gelkis Village. Take the quest and walk with the kodos past the Mannoroc Coven, killing the demons that jump them; talk to Smeed at his camp east of the Kodo Graveyard afterwards.", ["{npc:12277} is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "Melizza is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard.", ["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of {npc:11863}'s tower."] = "Lord Kragaru, a centaur chieftain, camps on the north-west coast, north of Azore's tower.", ["{npc:2920}, beside {npc:2921}"] = "Lucien Tosselwrench, beside Lotwil", ["{npc:2921}'s next test needs crafted gear: skip it."] = "Lotwil's next test needs crafted gear: skip it.", ["{npc:4618} and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "Martek and Rigglefuzz camp together in the Valley of Fangs, in the middle of the Badlands.", ["{npc:5638}'s next task, {item:6245}, is a drop on the far coast: skip it."] = "Kreldig's next task, Karnitol's Satchel, is a drop on the far coast: skip it.", ["{npc:6019} stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "Hornizz stands at the edge of the Kodo Graveyard, south-west of Kormek's Hut; Kodo Bones lie among the skeletons. A Flesh Picker crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off." },
+			written = { ["Follow the road west across the north of {zone:1443} to the ruins of {area:2405}. {npc:11863}'s tower stands on the hill there, on the way to the wreck."] = "Follow the road west across the north of Desolace to the ruins of Ethel Rethor. Azore's tower stands on the hill there, on the way to the wreck.", ["Head west into the {area:1878}; {npc:2921} works by his machines in the middle of it."] = "Head west into the Dustbowl; Lotwil works by his machines in the middle of it.", ["The Lesser Rock Elementals wander the {area:1878} west of {npc:2921}."] = "The Lesser Rock Elementals wander the Dustbowl west of Lotwil.", ["The Rock Elementals roam south-east of {npc:2921}; Giant Buzzards and Elder Crag Coyotes share the plain to their west."] = "The Rock Elementals roam south-east of Lotwil; Giant Buzzards and Elder Crag Coyotes share the plain to their west.", ["The wrecked ship's chest lies on the shore just west of {npc:11863}'s tower."] = "The wrecked ship's chest lies on the shore just west of Azore's tower.", ["escort {npc:12277} back toward the graveyard"] = "escort Melizza back toward the graveyard", ["{npc:11626}'s caravan stops on the road east of {area:606}. Take the quest and walk with the kodos past the {area:602}, killing the demons that jump them; talk to {npc:11596} at his camp east of the {area:596} afterwards."] = "Rigger Gizelton's caravan stops on the road east of Gelkis Village. Take the quest and walk with the kodos past the Mannoroc Coven, killing the demons that jump them; talk to Smeed at his camp east of the Kodo Graveyard afterwards.", ["{npc:12277} is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard."] = "Melizza is held in the centaur camp west of the graveyard. Free her and keep her alive on the walk out; she stops by the graveyard.", ["{npc:12369}, a centaur chieftain, camps on the north-west coast, north of {npc:11863}'s tower."] = "Lord Kragaru, a centaur chieftain, camps on the north-west coast, north of Azore's tower.", ["{npc:2920}, beside {npc:2921}"] = "Lucien Tosselwrench, beside Lotwil", ["{npc:2921}'s next test needs crafted gear: skip it."] = "Lotwil's next test needs crafted gear: skip it.", ["{npc:4618} and {npc:2817} camp together in the {area:1877}, in the middle of the {zone:1418}."] = "Martek and Rigglefuzz camp together in the Valley of Fangs, in the middle of the Badlands.", ["{npc:5638}'s next task, {item:6245}, is a drop on the far coast: skip it."] = "Kreldig's next task, Karnitol's Satchel, is a drop on the far coast: skip it.", ["{npc:6019} stands at the edge of the {area:596}, south-west of {area:2407}; {object:176751} lie among the skeletons. A {npc:217590} crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off."] = "Hornizz stands at the edge of the Kodo Graveyard, south-west of Kormek's Hut; Kodo Bones lie among the skeletons. A Flesh Picker crawls about the graveyard: catch one with the Entomology Starter Kit, then tick it off." },
 			steps = {
 				{
 					title = "{area:346}",
-					note = "Ride back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig.",
+					note = "Head back west to the road and follow it south out of {zone:1432} through the pass into the {zone:1418}. {npc:2910} and {npc:2860} camp side by side at the dig.",
 					goals = {
 						{ t = "accept", quest = 719, title = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", minLevel = 35, qlvl = 35, map = 1418, x = 53.42, y = 43.39, z = 279.2, f = "e" },
 						{ t = "accept", quest = 718, title = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", minLevel = 35, qlvl = 38, map = 1418, x = 53.8, y = 43.3, z = 279.4, f = "e" },
@@ -3828,7 +3828,7 @@ do
 				},
 				{
 					title = "The excavation crate",
-					note = "Ride north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres.",
+					note = "Head north-east to the abandoned dig; the supply crate lies there among the Dustbelcher ogres.",
 					goals = {
 						{ t = "collect", quest = 718, title = "Mirages", item = 4629, itemName = "Supply Crate", count = 1, oi = 1, map = 1418, x = 66.6, y = 22, f = "e", from = "Excavation Supply Crate", fromKind = "object", fromId = 2867 },
 					},
@@ -3882,7 +3882,7 @@ do
 				},
 				{
 					title = "{npc:2921}",
-					note = "Ride west into the {area:1878}; {npc:2921} works by his machines in the middle of it.",
+					note = "Head west into the {area:1878}; {npc:2921} works by his machines in the middle of it.",
 					goals = {
 						{ t = "accept", quest = 710, title = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", minLevel = 35, qlvl = 37, map = 1418, x = 25.95, y = 44.87, z = 243.4, f = "e" },
 					},
@@ -3938,7 +3938,7 @@ do
 				},
 				{
 					title = "The {object:126260}",
-					note = "Ride north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room.",
+					note = "Head north-east to the dwarven ruins in the north of the {zone:1418}; the chest sits among the Shadowforge dwarves. {npc:2745} nearby is elite: give him room.",
 					goals = {
 						{ t = "collect", quest = 709, title = "Solution to Doom", item = 4631, itemName = "Tablet of Ryun'eh", count = 1, oi = 1, map = 1418, x = 39.34, y = 18.82, f = "e", from = "Ancient Chest", fromKind = "object", fromId = 126260 },
 					},
@@ -3951,7 +3951,7 @@ do
 				},
 				{
 					title = "{npc:2785}",
-					note = "Ride south to {area:345}.",
+					note = "Head south to {area:345}.",
 					goals = {
 						{ t = "turnin", quest = 709, title = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, x = 51.39, y = 76.87, z = 244.9, f = "e" },
 						{ t = "accept", quest = 727, title = "To Ironforge for Yagyin's Digest", npc = 2785, npcName = "Theldurin the Lost", minLevel = 30, qlvl = 40, pre = { 709 }, preTitles = { [709] = "Solution to Doom" }, map = 1418, x = 51.39, y = 76.87, z = 244.9, f = "e", note = "for {npc:2786} in {zone:1455}: keep it" },
@@ -8953,7 +8953,7 @@ do
 				},
 				{
 					title = "{npc:6177}",
-					note = "Ride back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script.",
+					note = "Head back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script.",
 					only = { classes = { "PALADIN" } },
 					goals = {
 						{ t = "complete", quest = 1783, title = "The Tome of Divinity", note = "Use the {item:6866} on {npc:6177}" },
@@ -9714,7 +9714,7 @@ do
 				},
 				{
 					title = "{npc:881}",
-					note = "Ride back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse.",
+					note = "Head back out through {area:87} and east along the road to the {area:62}. {npc:881} (level 9) stands by its farmhouse.",
 					only = { classes = { "WARLOCK" } },
 					goals = {
 						{ t = "collect", quest = 1688, title = "Surena Caledon", item = 6810, itemName = "Surena's Choker", oi = 1, map = 1429, x = 71.01, y = 80.77, f = "e", note = "{item:6810}: {npc:881}", from = "Surena Caledon", fromKind = "npc", fromId = 881 },
@@ -9753,7 +9753,7 @@ do
 				},
 				{
 					title = "{npc:6172}",
-					note = "Ride back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}.",
+					note = "Head back out through {area:87} and east to {area:86}. {npc:6172} lies south of the lake: use the {item:6866} on him. The Defias Rogue Wizards around him carry the {item:6846}.",
 					only = { classes = { "PALADIN" } },
 					goals = {
 						{ t = "complete", quest = 1786, title = "The Tome of Divinity", note = "Use the {item:6866} on {npc:6172}" },
@@ -10323,7 +10323,7 @@ do
 					note = "Take the boat to {zone:1453} from {area:442}'s docks.",
 					goals = {
 						{ t = "goto", text = "Boat to {zone:1453}", map = 1439, x = 30.76, y = 40.92, f = "e" },
-						{ t = "note", text = "From {area:17203}, ride through the city gates into {zone:1429} and follow the road west to {zone:1436}." },
+						{ t = "note", text = "From {area:17203}, head through the city gates into {zone:1429} and follow the road west to {zone:1436}." },
 					},
 				},
 				{
@@ -11095,7 +11095,7 @@ do
 				},
 				{
 					title = "{item:15882}",
-					note = "Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Ride north-west to the coast: the {object:177790} lies on the sea floor off the shore.",
+					note = "Take the boat from {area:442} to {zone:1453} and fly to {area:108}. Head north-west to the coast: the {object:177790} lies on the sea floor off the shore.",
 					only = { races = { "NightElf" } },
 					goals = {
 						{ t = "fly", location = "Sentinel Hill", node = 4, area = 108 },
@@ -11693,7 +11693,7 @@ do
 				},
 				{
 					title = "{area:445}",
-					note = "Ride north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls.",
+					note = "Head north-east from {area:442} to {area:445} and fill the {item:15844} at the mouth of the cave by the falls.",
 					only = { races = { "NightElf" } },
 					goals = {
 						{ t = "collect", quest = 6122, title = "The Principal Source", item = 15845, itemName = "Filled Cliffspring Falls Sampler", count = 1, oi = 1, map = 1439, x = 54.92, y = 33.31, f = "e", from = "Cliffspring Falls Cave Mouth", fromKind = "object", fromId = 19463 },
@@ -11771,7 +11771,7 @@ do
 				},
 				{
 					title = "{area:384}",
-					note = "From the {area:380} ride north to {area:384} and fill the {item:15842} at the {object:19464}.",
+					note = "From the {area:380} head north to {area:384} and fill the {item:15842} at the {object:19464}.",
 					only = { races = { "Tauren" } },
 					goals = {
 						{ t = "fly", location = "Crossroads", node = 25 },
@@ -12148,7 +12148,7 @@ do
 				},
 				{
 					title = "The {area:96}",
-					note = "Ride east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library.",
+					note = "Head east through {zone:1429} into Redridge. The fallen mage's tower of Ilgalar stands in the east of the zone; the treatise is in his library.",
 					goals = {
 						{ t = "collect", quest = 1938, title = "Ur's Treatise on Shadow Magic", item = 7266, itemName = "Ur's Treatise on Shadow Magic", oi = 1, map = 1433, x = 73.77, y = 47.61, from = "Ur's Treatise on Shadow Magic", fromKind = "object", fromId = 103628 },
 					},
@@ -13060,7 +13060,7 @@ do
 			author = "Polestar",
 			version = 1,
 			names = { ["area:156"] = "Solliden Farmstead", ["area:16602"] = "Bandarion Keep", ["area:172"] = "Fenris Isle", ["area:228"] = "The Sepulcher", ["area:235"] = "Fenris Keep", ["item:267412"] = "Fenris Isle Key", ["item:268484"] = "Moonsilver Blade", ["npc:246378"] = "Danitha Morr", ["npc:248755"] = "Lumina Windsinger", ["npc:248840"] = "Trevan Rol", ["npc:259611"] = "Deathguard Baldren", ["npc:259620"] = "Lumina Windsinger", ["object:566037"] = "Charred Remains", ["quest:91862"] = "Lumina Windsinger", ["zone:1421"] = "Silverpine Forest", ["zone:1458"] = "Undercity" },
-			written = { ["Back to the {area:228}"] = "Back to the Sepulcher", ["Free {npc:248755}"] = "Free Lumina", ["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Once she is clear of Fenris Keep, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road.", ["Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Ride south through Silverpine Forest to the Sepulcher. Trevan Rol stands in the town; Deathguard Baldren keeps watch near its entrance.", ["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "Fenris Isle lies in the lake east of the Sepulcher. The charred remains are on its shore.", ["{npc:259620}, the {area:228}"] = "Lumina Windsinger, the Sepulcher" },
+			written = { ["Back to the {area:228}"] = "Back to the Sepulcher", ["Free {npc:248755}"] = "Free Lumina", ["Head south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance."] = "Head south through Silverpine Forest to the Sepulcher. Trevan Rol stands in the town; Deathguard Baldren keeps watch near its entrance.", ["Once she is clear of {area:235}, {npc:259620} waits for you in the {area:228}. Speak with her again to hear what really happened on the road."] = "Once she is clear of Fenris Keep, Lumina waits for you in the Sepulcher. Speak with her again to hear what really happened on the road.", ["{area:172} lies in the lake east of the {area:228}. The charred remains are on its shore."] = "Fenris Isle lies in the lake east of the Sepulcher. The charred remains are on its shore.", ["{npc:259620}, the {area:228}"] = "Lumina Windsinger, the Sepulcher" },
 			steps = {
 				{
 					title = "{npc:246378}",
@@ -13071,7 +13071,7 @@ do
 				},
 				{
 					title = "{area:228}",
-					note = "Ride south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance.",
+					note = "Head south through {zone:1421} to the {area:228}. {npc:248840} stands in the town; {npc:259611} keeps watch near its entrance.",
 					goals = {
 						{ t = "turnin", quest = 91858, title = "Diplomatic Incident", npc = 248840, npcName = "Trevan Rol", map = 1421, x = 43.34, y = 41.02, f = "e" },
 						{ t = "accept", quest = 91859, title = "A Curious Pair", npc = 248840, npcName = "Trevan Rol", minLevel = 18, qlvl = 22, map = 1421, x = 43.34, y = 41.02, f = "e" },
@@ -13904,7 +13904,7 @@ do
 				},
 				{
 					title = "{npc:332}",
-					note = "Ride north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}.",
+					note = "Head north to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}.",
 					only = { races = { "Human", "Skyborne" } },
 					goals = {
 						{ t = "turnin", quest = 2205, title = "Seek out SI: 7", npc = 332, npcName = "Master Mathias Shaw", map = 1453, x = 78.31, y = 70.74, z = 109.6 },
@@ -13971,7 +13971,7 @@ do
 				},
 				{
 					title = "{npc:4163}",
-					note = "Ride west to {zone:1457}. {npc:4163} stands in the north-west of the city.",
+					note = "Head west to {zone:1457}. {npc:4163} stands in the north-west of the city.",
 					only = { races = { "NightElf" } },
 					goals = {
 						{ t = "turnin", quest = 2241, title = "The Apple Falls", npc = 4163, npcName = "Syurna", map = 1457, x = 36.99, y = 21.91, z = 1295.1, f = "e" },
@@ -14212,7 +14212,7 @@ do
 				},
 				{
 					title = "{npc:6966}",
-					note = "Ride east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}.",
+					note = "Head east through {zone:1429} into Redridge, or fly to {area:69}. {npc:6966} waits on the west side of {area:69} and gives you {item:5060}.",
 					goals = {
 						{ t = "turnin", quest = 2281, title = "Redridge Rendezvous", npc = 6966, npcName = "Lucius", map = 1433, x = 22.97, y = 52.04, z = 64 },
 						{ t = "accept", quest = 2282, title = "Alther's Mill", npc = 6966, npcName = "Lucius", minLevel = 16, qlvl = 20, pre = { 2281 }, preTitles = { [2281] = "Redridge Rendezvous" }, map = 1433, x = 22.97, y = 52.04, z = 64 },
@@ -14258,7 +14258,7 @@ do
 			author = "Polestar",
 			version = 1,
 			names = { ["area:228"] = "Sepulcher", ["area:233"] = "Ambermill", ["area:362"] = "Razor Hill", ["area:392"] = "Ratchet", ["item:5060"] = "Thieves' Tools", ["item:7306"] = "Fenwick's Head", ["item:7309"] = "Dalaran Status Report", ["item:7676"] = "Thistle Tea", ["item:7968"] = "Southsea Treasure", ["item:7970"] = "E.C.A.C.", ["npc:3170"] = "Kaplak", ["npc:3401"] = "Shenthul", ["npc:6467"] = "Mennet Carkad", ["npc:7161"] = "Wrenix the Wretched", ["npc:7166"] = "Wrenix's Gizmotronic Apparatus", ["object:103815"] = "Ambermill Strongbox", ["object:172960"] = "Cleft of Shadow", ["object:172982"] = "Valley of Strength", ["object:36073"] = "Rogues' Quarter", ["quest:1998"] = "Fenwick Thatros", ["quest:2378"] = "Find the Shattered Hand", ["quest:2379"] = "Zando'zan", ["quest:2380"] = "To Orgrimmar!", ["quest:2381"] = "Plundering the Plunderers", ["zone:1411"] = "Durotar", ["zone:1413"] = "Barrens", ["zone:1421"] = "Silverpine Forest", ["zone:1454"] = "Orgrimmar", ["zone:1458"] = "Undercity" },
-			written = { ["Back to {npc:6467}"] = "Back to Mennet", ["Back to {npc:7161}"] = "Back to Wrenix", ["Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Fly or ride to Ratchet on the Barrens coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an E.C.A.C. and Thieves' Tools from the apparatus before you go." },
+			written = { ["Back to {npc:6467}"] = "Back to Mennet", ["Back to {npc:7161}"] = "Back to Wrenix", ["Fly or walk to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go."] = "Fly or walk to Ratchet on the Barrens coast. Wrenix stands in town with his Gizmotronic Apparatus: buy an E.C.A.C. and Thieves' Tools from the apparatus before you go." },
 			steps = {
 				{
 					title = "{quest:2380}",
@@ -14292,7 +14292,7 @@ do
 				},
 				{
 					title = "{npc:7161}",
-					note = "Fly or ride to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go.",
+					note = "Fly or walk to {area:392} on the {zone:1413} coast. {npc:7161} stands in town with his Gizmotronic Apparatus: buy an {item:7970} and {item:5060} from the apparatus before you go.",
 					goals = {
 						{ t = "getfp", location = "Ratchet", node = 80, area = 392, optional = true },
 						{ t = "turnin", quest = 2382, title = "Wrenix of Ratchet", npc = 7161, npcName = "Wrenix the Wretched", map = 1413, x = 63.07, y = 36.32, z = 18, f = "e" },
@@ -14316,7 +14316,7 @@ do
 				},
 				{
 					title = "{quest:1998}",
-					note = "Take the zeppelin from {zone:1454} to the {zone:1458} and ride south into Silverpine. {quest:1998} stands north-east of the {area:228}.",
+					note = "Take the zeppelin from {zone:1454} to the {zone:1458} and head south into Silverpine. {quest:1998} stands north-east of the {area:228}.",
 					only = { races = { "Scourge" } },
 					goals = {
 						{ t = "collect", quest = 1998, title = "Fenwick Thatros", item = 7306, itemName = "Fenwick's Head", oi = 1, map = 1421, x = 59.58, y = 33.94, f = "e", note = "{item:7306}: {quest:1998}", from = "Fenwick Thatros", fromKind = "npc", fromId = 6570 },
@@ -14393,7 +14393,7 @@ do
 				},
 				{
 					title = "{npc:332}",
-					note = "Ride north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}.",
+					note = "Head north through Elwynn to {zone:1453}; Mathias Shaw is at SI:7 in {object:2100}.",
 					goals = {
 						{ t = "turnin", quest = 2359, title = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, x = 78.31, y = 70.74, z = 109.6, note = "{npc:332}: {spell:2842}", rewards = { items = { { item = 18160, itemName = "Recipe: Thistle Tea" } } } },
 						{ t = "accept", quest = 2607, title = "The Touch of Zanzil", npc = 332, npcName = "Master Mathias Shaw", minLevel = 20, qlvl = 20, pre = { 2359 }, preTitles = { [2359] = "Klaven's Tower" }, map = 1453, x = 78.31, y = 70.74, z = 109.6 },
@@ -14468,7 +14468,7 @@ do
 				},
 				{
 					title = "{npc:7233}",
-					note = "Fly to the {area:380} and ride north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you.",
+					note = "Fly to the {area:380} and head north to the Venture Co. tower north of the {area:382}. In sight of the tower, fire the {item:8051} twice, then /salute {npc:7233} before he attacks you.",
 					goals = {
 						{ t = "use", item = 8051, itemName = "Flare Gun", map = 1413, x = 55.4, y = 5.6, f = "e", note = "{item:8051}, twice, in sight of the tower" },
 						{ t = "turnin", quest = 2458, title = "Deep Cover", npc = 7233, npcName = "Taskmaster Fizzule", map = 1413, x = 55.44, y = 5.56, z = 91.8, f = "e", note = "{npc:7233}: {item:8066}", rewards = { items = { { item = 8066, itemName = "Fizzule's Whistle" } } } },
@@ -14497,7 +14497,7 @@ do
 				},
 				{
 					title = "{npc:2391}",
-					note = "Take the zeppelin from {zone:1454} to the {zone:1458} and ride south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure.",
+					note = "Take the zeppelin from {zone:1454} to the {zone:1458} and head south through {zone:1421} to {area:272} in {area:287}. {npc:2391} stands in {area:272}; wait beside him while he brews the cure.",
 					goals = {
 						{ t = "getfp", location = "Tarren Mill", node = 13, area = 272, optional = true },
 						{ t = "turnin", quest = 2479, title = "Hinott's Assistance", npc = 2391, npcName = "Serge Hinott", map = 1424, x = 61.63, y = 19.19, z = 57.6, f = "e" },
@@ -16029,7 +16029,7 @@ do
 				},
 				{
 					title = "{npc:185334}",
-					note = "{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and ride or fly on to {area:392}.",
+					note = "{npc:185334} works in {area:392}, on the {zone:1413} coast. Take the zeppelin to {zone:1411} and walk or fly on to {area:392}.",
 					goals = {
 						{ t = "collect", quest = 65593, title = "Hearts of the Lovers", item = 190180, itemName = "Isaac's Heart", count = 1, oi = 2, map = 1413, x = 61.8, y = 38.42, f = "e", spots = { { x = 61.8, y = 38.4, r = 15, n = 2 } }, from = "Isaac Pearson", fromKind = "npc", fromId = 185334 },
 					},
@@ -16474,7 +16474,7 @@ do
 				},
 				{
 					title = "Hillsbrad Miners",
-					note = "The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and ride south through {zone:1421}.",
+					note = "The Hillsbrad Miners work the mine in the west of {zone:1424}; they drop the {item:7127}. Take the zeppelin from {zone:1454} to {zone:1420} and head south through {zone:1421}.",
 					goals = {
 						{ t = "collect", quest = 1838, title = "Brutal Armor", item = 7127, itemName = "Powdered Azurite", count = 10, oi = 2, map = 1424, x = 30, y = 54.97, f = "e", spots = { { x = 29.7, y = 53.7, r = 74, n = 9 }, { x = 31.9, y = 54.7, r = 22, n = 3 }, { x = 28.2, y = 56.5, r = 53, n = 10 }, { x = 30.9, y = 58.3, r = 46, n = 7 }, { x = 31.8, y = 52.5, r = 23, n = 5 } }, note = "{item:7127} from the Hillsbrad Miners", from = "Hillsbrad Miner", fromKind = "npc", fromFaction = "A", fromId = 2269 },
 					},
@@ -17097,7 +17097,7 @@ do
 				},
 				{
 					title = "{quest:1719}",
-					note = "Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33).",
+					note = "Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33).",
 					goals = {
 						{ t = "turnin", quest = 1718, title = "The Islander", npc = 6236, npcName = "Klannoc Macleod", map = 1413, x = 68.62, y = 49.16, z = 4.3, f = "e" },
 						{ t = "accept", quest = 1719, title = "The Affray", npc = 6236, npcName = "Klannoc Macleod", minLevel = 30, qlvl = 30, pre = { 1718 }, preTitles = { [1718] = "The Islander" }, map = 1413, x = 68.62, y = 49.16, z = 4.3, f = "e" },
@@ -22893,7 +22893,7 @@ do
 				},
 				{
 					title = "{area:384}",
-					note = "Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks.",
+					note = "Head north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks.",
 					only = { classes = { "DRUID" }, races = { "Tauren" } },
 					goals = {
 						{ t = "collect", quest = 6127, title = "The Principal Source", item = 15843, itemName = "Filled Dreadmist Peak Sampler", count = 1, oi = 1, map = 1413, x = 48.4, y = 18.9, f = "e", from = "Dreadmist Peak Pool", fromKind = "object", fromId = 19464 },
@@ -23414,7 +23414,7 @@ do
 				},
 				{
 					title = "{area:1638}",
-					note = "{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise.",
+					note = "{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, head west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise.",
 					only = { classes = { "PALADIN" } },
 					goals = {
 						{ t = "fly", location = "Camp Taurajo", node = 77, area = 378 },
@@ -23584,7 +23584,7 @@ do
 				},
 				{
 					title = "{npc:267214}",
-					note = "On the ride west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it.",
+					note = "On the way west, {npc:267214} is stuck in a ravine south of the main road, south-east of {area:415}. Shadowhorn Stags and Ashenvale Bears roam the woods all around it.",
 					goals = {
 						{ t = "accept", quest = 98251, title = "Never Coming Back", npc = 267214, npcName = "Va'xug Firefure", minLevel = 18, qlvl = 22, map = 1440, x = 40.4, y = 61.5, f = "e" },
 						{ t = "kill", quest = 98251, title = "Never Coming Back", target = "Shadowhorn Stag", npc = 3817, count = 6, oi = 1, map = 1440, x = 39.95, y = 63.48, z = 104.2, f = "e", spots = { { x = 40.1, y = 63.3, z = 104.2, r = 91, n = 5 }, { x = 42.3, y = 59.7, r = 55, n = 3 }, { x = 42.9, y = 68.5, z = 103.7, r = 55, n = 1 }, { x = 40.6, y = 72.9, z = 117.2, r = 55, n = 1 }, { x = 36.8, y = 70.8, r = 80, n = 3 }, { x = 48.8, y = 62.8, r = 55, n = 3 }, { x = 52.2, y = 64.1, z = 77.2, r = 55, n = 1 }, { x = 52.3, y = 56.6, r = 55, n = 1 }, { x = 54.9, y = 53.5, r = 91, n = 7 }, { x = 56.9, y = 57.4, r = 63, n = 3 }, { x = 51.6, y = 45.3, r = 55, n = 2 }, { x = 47.2, y = 52.9, r = 55, n = 2 }, { x = 37.9, y = 61.1, r = 55, n = 3, alt = true }, { x = 38.4, y = 67.1, r = 82, n = 5, alt = true }, { x = 43.2, y = 63.8, r = 102, n = 5, alt = true }, { x = 40.9, y = 69.8, r = 82, n = 5, alt = true }, { x = 45.9, y = 64.8, r = 59, n = 3, alt = true }, { x = 46, y = 60.8, r = 91, n = 5, alt = true }, { x = 48.6, y = 55.9, z = 131.3, r = 55, n = 1, alt = true }, { x = 51.5, y = 53.7, r = 78, n = 4, alt = true }, { x = 50.4, y = 49.3, r = 103, n = 6, alt = true } }, spread = true },
@@ -23602,7 +23602,7 @@ do
 				},
 				{
 					title = "{area:2897}",
-					note = "Ride west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27.",
+					note = "Head west along the main road across {zone:1440}, past {area:415} (Alliance: keep to the road), to the coast. {area:2897} is on the {area:414} in the north-west. Its other quests are for the next visit, at 27.",
 					goals = {
 						{ t = "getfp", location = "Zoram'gar Outpost", node = 58, area = 2897 },
 						{ t = "collect", quest = 6543, title = "The Warsong Reports", item = 16763, itemName = "Warsong Runner Update", oi = 2, map = 1440, x = 12.22, y = 34.22, f = "e", note = "{npc:12863}" },
@@ -23624,7 +23624,7 @@ do
 				},
 				{
 					title = "Back to {npc:8582}",
-					note = "Fly to {area:431} and ride south down the road to the {area:1703}.",
+					note = "Fly to {area:431} and head south down the road to the {area:1703}.",
 					goals = {
 						{ t = "fly", location = "Splintertree Post", node = 61, area = 431 },
 						{ t = "turnin", quest = 6543, title = "The Warsong Reports", npc = 8582, npcName = "Kadrak", map = 1413, x = 48.12, y = 5.42, z = 108.4, f = "e" },
@@ -23632,7 +23632,7 @@ do
 				},
 				{
 					title = "{area:2539}",
-					note = "Ride south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon.",
+					note = "Head south to the {area:380}, then west along the road out of the {zone:1413} into Stonetalon. The troll village of {area:2539} sits at the entrance of the canyon.",
 					goals = {
 						{ t = "accept", quest = 1058, title = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", minLevel = 20, qlvl = 26, map = 1442, x = 74.54, y = 97.94, z = 17.2, f = "e" },
 					},
@@ -23734,14 +23734,14 @@ do
 				},
 				{
 					title = "{area:2539}",
-					note = "Ride back down the {area:1076} to {area:2539}.",
+					note = "Head back down the {area:1076} to {area:2539}.",
 					goals = {
 						{ t = "turnin", quest = 1058, title = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, x = 74.54, y = 97.94, z = 17.2, f = "e" },
 					},
 				},
 				{
 					title = "To the {area:1497}",
-					note = "Ride east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}.",
+					note = "Head east to the {area:380} and fly to {zone:1454}. Take the zeppelin from the towers outside {zone:1454} to {zone:1420}; the {area:1497} lies below the {area:153}. The bat handler is in the {object:36078}.",
 					goals = {
 						{ t = "getfp", location = "Undercity", node = 11, area = 1497 },
 						{ t = "kill", quest = 93739, title = "Exploring the Horde", target = "Lady Sylvanas Windrunner", npc = 10181, oi = 4, map = 1458, x = 58.05, y = 91.79, z = -57.2, f = "e", optional = true, only = { races = { "Skyborne" } }, note = "Speak with {npc:10181}, in the {object:36126}: {quest:93739}" },
@@ -23757,7 +23757,7 @@ do
 				},
 				{
 					title = "{area:231}",
-					note = "If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and ride south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}.",
+					note = "If you already know the {area:272} flight path, fly there and skip to {area:272}. Otherwise fly from the {zone:1458} to the {area:228} and head south down the road past Pyrewood. The Ravenclaw undead haunt the ruins of {area:231} east of the road in the south-east of the forest; a {npc:1973} drops the {item:271343} that leads to the {object:645153}.",
 					goals = {
 						{ t = "accept", quest = 95884, title = "The Offering Stone", item = 271343, itemName = "Note Scrap", minLevel = 20, qlvl = 23, note = "{item:271343}, from a {npc:1973}" },
 						{ t = "turnin", quest = 95884, title = "The Offering Stone", object = 645153, objName = "Offering Stone", map = 1421, x = 58.1, y = 69.8, f = "e" },
@@ -24304,7 +24304,7 @@ do
 				},
 				{
 					title = "{area:1638}",
-					note = "Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, ride west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise.",
+					note = "Fly to {area:1638} if you know the flight path. If not, fly to {area:378}, head west into {zone:1412} past {area:222} to {area:1638} and take its flight path from {npc:2995} on the central rise.",
 					goals = {
 						{ t = "getfp", npc = 2995, npcName = "Tal", location = "Thunder Bluff", node = 22, area = 1638, map = 1456, x = 47, y = 49.83, z = 177, f = "e" },
 						{ t = "kill", quest = 93739, title = "Exploring the Horde", target = "Cairne Bloodhoof", npc = 3057, oi = 3, map = 1456, x = 60.3, y = 51.68, z = 163.9, f = "e", optional = true, only = { races = { "Skyborne" } }, note = "Speak with {npc:3057}, in {area:1638}: {quest:93739}" },
@@ -24609,7 +24609,7 @@ do
 				},
 				{
 					title = "{area:392}",
-					note = "Fly to {area:392}. {npc:5901} camps on the coast a short ride south of the town.",
+					note = "Fly to {area:392}. {npc:5901} camps on the coast a short walk south of the town.",
 					only = { classes = { "SHAMAN" } },
 					goals = {
 						{ t = "fly", location = "Ratchet", node = 80, area = 392 },
@@ -24635,7 +24635,7 @@ do
 				},
 				{
 					title = "Gizelton caravan",
-					note = "Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, ride on.",
+					note = "Follow the road south-west out of Sun Rock into {zone:1443} and on south past {area:608}. {npc:11625}'s kodo caravan waits by the road north of {area:609}; if it has already left, head on.",
 					goals = {
 						{ t = "accept", quest = 5821, title = "Bodyguard for Hire", npc = 11625, npcName = "Cork Gizelton", minLevel = 30, qlvl = 35, map = 1443, x = 66.54, y = 37.51, f = "e", optional = true },
 					},
@@ -24677,7 +24677,7 @@ do
 				},
 				{
 					title = "{quest:1365}",
-					note = "Ride north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health.",
+					note = "Head north-east to {area:609}. {quest:1365} (35) walks among the tents on the east side with a Battle Lord or two (32-33): clear around him, then pull him alone at full health.",
 					goals = {
 						{ t = "collect", quest = 1365, title = "Khan Dez'hepah", item = 6066, itemName = "Khan Dez'hepah's Head", oi = 1, map = 1443, x = 73, y = 47.8, f = "e", spots = { { x = 73.7, y = 47.7, r = 53, n = 3 }, { x = 73.8, y = 43.3, r = 53, n = 4 } }, from = "Khan Dez'hepah", fromKind = "npc", fromId = 5600 },
 					},
@@ -24694,7 +24694,7 @@ do
 				},
 				{
 					title = "{area:599}",
-					note = "Ride west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it.",
+					note = "Head west to {area:599}. Beat a Burning Blade cultist down, then use the {item:6436} on it before it dies to fill one {item:6435}. They also drop a {item:20310} now and then (1-5%); if one drops, read it.",
 					goals = {
 						{ t = "collect", quest = 1435, title = "The Burning of Spirits", item = 6435, itemName = "Infused Burning Gem", count = 15, oi = 1, map = 1443, x = 57.61, y = 26.32, f = "e", spots = { { x = 57.1, y = 25.8, r = 44, n = 6 }, { x = 56.2, y = 22.4, r = 73, n = 11 }, { x = 55.6, y = 29.8, r = 73, n = 15 }, { x = 52.6, y = 32.4, r = 40, n = 3 }, { x = 54.9, y = 71.7, r = 40, n = 1 }, { x = 50.3, y = 72.3, r = 40, n = 1 }, { x = 49.6, y = 77.2, r = 40, n = 1 }, { x = 51.5, y = 81.9, r = 40, n = 1 }, { x = 53.3, y = 79.3, r = 40, n = 2 }, { x = 79.5, y = 81.3, r = 40, n = 1 }, { x = 80.3, y = 77.6, r = 48, n = 7 }, { x = 82.2, y = 80.7, r = 40, n = 3 }, { x = 57.3, y = 28.3, r = 40, n = 2, alt = true }, { x = 55, y = 26.5, r = 65, n = 18, alt = true }, { x = 52.7, y = 29, r = 55, n = 14, alt = true }, { x = 54.4, y = 33.2, r = 40, n = 1, alt = true } }, spread = true },
 						{ t = "collect", item = 20310, itemName = "Flayed Demon Skin", count = 1, map = 1443, x = 57.61, y = 26.32, f = "e", spots = { { x = 57.1, y = 25.8, r = 44, n = 6 }, { x = 57.3, y = 28.3, r = 40, n = 2 }, { x = 55.7, y = 29.8, r = 56, n = 13 }, { x = 55, y = 26.5, r = 65, n = 17 }, { x = 52.8, y = 29.1, r = 68, n = 14 }, { x = 52.6, y = 32.4, r = 40, n = 3 }, { x = 54.4, y = 33.2, r = 40, n = 1 }, { x = 56.2, y = 22.4, r = 73, n = 11 }, { x = 81, y = 76.7, r = 40, n = 1 }, { x = 79.9, y = 78.5, r = 40, n = 3 }, { x = 82.5, y = 81, r = 40, n = 1 } }, spread = true, optional = true },
@@ -24703,7 +24703,7 @@ do
 				},
 				{
 					title = "{area:597}",
-					note = "Ride back south to the post.",
+					note = "Head back south to the post.",
 					goals = {
 						{ t = "turnin", quest = 1435, title = "The Burning of Spirits", npc = 4498, npcName = "Maurin Bonesplitter", map = 1443, x = 52.25, y = 53.44, z = 88.8, f = "e" },
 						{ t = "turnin", quest = 1480, title = "The Corrupter", npc = 4498, npcName = "Maurin Bonesplitter", map = 1443, x = 52.25, y = 53.44, z = 88.8, f = "e", optional = true },
@@ -24740,7 +24740,7 @@ do
 				},
 				{
 					title = "{area:2408}",
-					note = "Ride south-west to the troll village on the coast, keeping clear of the {area:606} on the way.",
+					note = "Head south-west to the troll village on the coast, keeping clear of the {area:606} on the way.",
 					goals = {
 						{ t = "getfp", location = "Shadowprey Village", node = 38, area = 2408 },
 						{ t = "accept", quest = 5763, title = "Hunting in Stranglethorn", npc = 11877, npcName = "Roon Wildmane", minLevel = 28, qlvl = 31, map = 1443, x = 25.05, y = 72.27, z = 33.6, f = "e", note = "{npc:11877}: for {npc:715} in Stranglethorn" },
@@ -24749,7 +24749,7 @@ do
 				},
 				{
 					title = "Clam beds",
-					note = "Ride north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat.",
+					note = "Head north up the coast. Giant Softshell Clams lie in the shallows and the Enraged Reef Crawlers walk the beach; open each clam in your bags for its meat.",
 					goals = {
 						{ t = "collect", quest = 6142, title = "Clam Bait", item = 15924, itemName = "Soft-shelled Clam Meat", count = 10, oi = 1, map = 1443, x = 30.96, y = 35.75, f = "e", spots = { { x = 32.5, y = 33.3, r = 113, n = 6 }, { x = 32.9, y = 26.8, r = 117, n = 5 }, { x = 36, y = 23.4, r = 45, n = 2 } }, from = "Enraged Reef Crawler", fromKind = "npc", fromId = 12347 },
 					},
@@ -24785,7 +24785,7 @@ do
 				},
 				{
 					title = "{area:597}",
-					note = "Ride south-east to the post.",
+					note = "Head south-east to the post.",
 					goals = {
 						{ t = "turnin", quest = 1482, title = "The Corrupter", npc = 4498, npcName = "Maurin Bonesplitter", map = 1443, x = 52.25, y = 53.44, z = 88.8, f = "e", optional = true },
 						{ t = "accept", quest = 1484, title = "The Corrupter", npc = 4498, npcName = "Maurin Bonesplitter", minLevel = 25, qlvl = 35, pre = { 1482 }, preTitles = { [1482] = "The Corrupter" }, map = 1443, x = 52.25, y = 53.44, z = 88.8, f = "e", optional = true },
@@ -24795,7 +24795,7 @@ do
 				},
 				{
 					title = "{area:606}",
-					note = "Ride south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32.",
+					note = "Head south-west towards Shadowprey. The Gelkis centaurs (32-35) around their village are a good camp; fight them until level 32.",
 					goals = {
 						{ t = "level", level = 32, note = "grind on Gelkis Stampers and Windchasers at the {area:606}, {zone:1443}" },
 					},
@@ -24873,7 +24873,7 @@ do
 				},
 				{
 					title = "Daggerspine naga",
-					note = "Ride south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town.",
+					note = "Head south, east of {area:271}, down to the coast. The Daggerspine naga line the shore south-east of the town.",
 					goals = {
 						{ t = "goto", text = "Daggerspine shore", map = 1424, x = 53, y = 65, f = "e" },
 						{ t = "collect", quest = 515, title = "Elixir of Agony", item = 3509, itemName = "Daggerspine Scale", count = 5, oi = 2, map = 1424, x = 52.73, y = 65.51, f = "e", spots = { { x = 52.8, y = 65.7, r = 40, n = 4 }, { x = 54.6, y = 63, r = 40, n = 5 }, { x = 57.6, y = 65.9, r = 46, n = 6 }, { x = 57, y = 72.4, r = 42, n = 4 }, { x = 59.3, y = 72.2, r = 45, n = 5 }, { x = 57.9, y = 76.9, r = 40, n = 3 }, { x = 61.2, y = 76.9, r = 58, n = 8 }, { x = 61.2, y = 81.4, r = 40, n = 2 }, { x = 63.6, y = 83.8, r = 40, n = 3 }, { x = 66.4, y = 85.6, r = 50, n = 8 }, { x = 66.3, y = 80.9, r = 43, n = 6 }, { x = 64.3, y = 78.3, r = 50, n = 6 }, { x = 56.9, y = 68.7, r = 72, n = 7, alt = true } }, spread = true, optional = true, from = "Daggerspine Shorestalker", fromKind = "npc", fromAlso = "Daggerspine Shorehunter", fromId = 2368, fromAlsoId = 2369 },
@@ -24889,7 +24889,7 @@ do
 				},
 				{
 					title = "{npc:2216}",
-					note = "Ride back north to {area:272}, keeping west of {area:271}.",
+					note = "Head back north to {area:272}, keeping west of {area:271}.",
 					goals = {
 						{ t = "turnin", quest = 515, title = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, x = 61.44, y = 19.06, z = 57.6, f = "e", optional = true },
 						{ t = "accept", quest = 517, title = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", minLevel = 24, qlvl = 30, pre = { 515 }, preTitles = { [515] = "Elixir of Agony" }, map = 1424, x = 61.44, y = 19.06, z = 57.6, f = "e", optional = true },
@@ -24904,7 +24904,7 @@ do
 				},
 				{
 					title = "Back to {area:272}",
-					note = "Hearth back (or ride north if it is on cooldown).",
+					note = "Hearth back (or head north if it is on cooldown).",
 					goals = {
 						{ t = "hearth", location = "Tarren Mill", area = 272 },
 						{ t = "turnin", quest = 517, title = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, x = 61.44, y = 19.06, z = 57.6, f = "e", optional = true },
@@ -24947,7 +24947,7 @@ do
 				},
 				{
 					title = "{area:272}",
-					note = "Ride back east to {area:272}.",
+					note = "Head back east to {area:272}.",
 					goals = {
 						{ t = "turnin", quest = 533, title = "Infiltration", npc = 2229, npcName = "Krusk", map = 1424, x = 63.24, y = 20.66, z = 56.3, f = "e" },
 						{ t = "accept", quest = 503, title = "Gol'dir", npc = 2229, npcName = "Krusk", minLevel = 29, qlvl = 36, pre = { 533 }, preTitles = { [533] = "Infiltration" }, map = 1424, x = 63.24, y = 20.66, z = 56.3, f = "e" },
@@ -24959,7 +24959,7 @@ do
 				},
 				{
 					title = "{quest:503}",
-					note = "Ride north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side.",
+					note = "Head north past {quest:535}'s camp to {area:280}, the Syndicate-held village (35-37). {npc:2431} carries the {item:3704}; {quest:503} sits in a cage in the house on the north side.",
 					goals = {
 						{ t = "collect", quest = 503, title = "Gol'dir", item = 3704, itemName = "Rusted Iron Key", oi = 1, map = 1416, x = 61.93, y = 42.57, f = "e", spots = { { x = 61.9, y = 42.6, r = 48, n = 6 } }, from = "Jailor Borhuin", fromKind = "npc", fromId = 2431 },
 						{ t = "turnin", quest = 503, title = "Gol'dir", npc = 2316, npcName = "Gol'dir", map = 1416, x = 59.96, y = 43.74, z = 171.9, f = "e" },
@@ -24968,7 +24968,7 @@ do
 				},
 				{
 					title = "{area:272}",
-					note = "Ride back south to {area:272}.",
+					note = "Head back south to {area:272}.",
 					goals = {
 						{ t = "turnin", quest = 506, title = "Blackmoore's Legacy", npc = 2229, npcName = "Krusk", map = 1424, x = 63.24, y = 20.66, z = 56.3, f = "e" },
 					},
@@ -25031,7 +25031,7 @@ do
 				},
 				{
 					title = "{npc:5901}",
-					note = "Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short ride south of it.",
+					note = "Take the {zone:1454} zeppelin from the tower on the west side of {object:3202} and fly to {area:392}. {npc:5901} camps on the coast a short walk south of it.",
 					only = { classes = { "SHAMAN" } },
 					goals = {
 						{ t = "fly", location = "Ratchet", node = 80, area = 392 },
@@ -25197,7 +25197,7 @@ do
 				},
 				{
 					title = "Fly to {area:35}",
-					note = "Ride south down the coast to {object:3202} and fly to {area:35}.",
+					note = "Head south down the coast to {object:3202} and fly to {area:35}.",
 					goals = {
 						{ t = "fly", location = "Booty Bay", node = 18, area = 35, note = "{npc:1387}" },
 						{ t = "turnin", quest = 575, title = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, x = 28.29, y = 77.59, z = 25.5, f = "e" },
@@ -25274,7 +25274,7 @@ do
 				},
 				{
 					title = "{object:3202}",
-					note = "Ride back south to {object:3202}.",
+					note = "Head back south to {object:3202}.",
 					goals = {
 						{ t = "turnin", quest = 596, title = "Bloody Bone Necklaces", npc = 2519, npcName = "Kin'weelay", map = 1434, x = 32.27, y = 27.71, z = 3.2, f = "e" },
 						{ t = "turnin", quest = 629, title = "The Vile Reef", npc = 2519, npcName = "Kin'weelay", map = 1434, x = 32.27, y = 27.71, z = 3.2, f = "e" },
@@ -25387,7 +25387,7 @@ do
 				},
 				{
 					title = "Venture Co. camp",
-					note = "Ride north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals.",
+					note = "Head north past Nesingwary's camp to the lake. The Venture Co. Geologists (34-36) work the camps along its western shore; they carry the Tumbled Crystals.",
 					goals = {
 						{ t = "collect", quest = 213, title = "Hostile Takeover", item = 4106, itemName = "Tumbled Crystal", count = 8, oi = 1, map = 1434, x = 42.35, y = 22.22, f = "e", spots = { { x = 42.5, y = 22.7, r = 40, n = 2 }, { x = 44, y = 20.7, r = 54, n = 4 }, { x = 44.8, y = 22.8, r = 40, n = 3 }, { x = 46.3, y = 22.1, r = 40, n = 2 }, { x = 46.5, y = 23.9, r = 40, n = 1 }, { x = 45.7, y = 20.4, r = 48, n = 4 }, { x = 46.5, y = 19.2, r = 47, n = 3 }, { x = 47.7, y = 19, r = 40, n = 1 }, { x = 44.8, y = 16.4, r = 40, n = 1 }, { x = 44.2, y = 17.9, r = 40, n = 3 }, { x = 42.7, y = 18.9, r = 40, n = 5 }, { x = 28.4, y = 7.6, r = 54, n = 3 }, { x = 43.6, y = 23, r = 40, n = 3, alt = true } }, spread = true, from = "Venture Co. Geologist", fromKind = "npc", fromId = 1096 },
 					},
@@ -25423,7 +25423,7 @@ do
 			author = "Polestar",
 			version = 1,
 			names = { ["area:150"] = "Menethil Harbor", ["area:1517"] = "Uldaman", ["area:1638"] = "Thunder Bluff", ["area:1639"] = "Elder Rise", ["area:1857"] = "Thoradin's Wall", ["area:1877"] = "Valley of Fangs", ["area:1878"] = "The Dustbowl", ["area:272"] = "Tarren Mill", ["area:313"] = "Northfold Manor", ["area:316"] = "Boulderfist Hall", ["area:317"] = "Witherbark Village", ["area:318"] = "Drywhisker Gorge", ["area:321"] = "Hammerfall", ["area:327"] = "Faldir's Cove", ["area:340"] = "Kargath", ["area:345"] = "Agmond's End", ["area:35"] = "Booty Bay", ["area:380"] = "Crossroads", ["area:386"] = "Forgotten Pools", ["area:392"] = "Ratchet", ["area:439"] = "Shimmering Flats", ["area:720"] = "Fray Island", ["area:75"] = "Stonard", ["area:880"] = "Thandol Span", ["item:2868"] = "Patterned Bronze Bracers", ["item:3713"] = "Soothing Spices", ["item:4495"] = "Bloodstone Amulet", ["item:7848"] = "Rock Elemental Shard", ["npc:11798"] = "Bunthen Plainswind", ["npc:246344"] = "Alodan the Hopeful", ["npc:2487"] = "Fleet Master Seahorn", ["npc:2559"] = "Highland Strider", ["npc:2561"] = "Highland Fleshstalker", ["npc:2562"] = "Boulderfist Ogre", ["npc:2566"] = "Boulderfist Brute", ["npc:2595"] = "Daggerspine Raider", ["npc:260093"] = "Garen Largo", ["npc:2729"] = "Elder Crag Coyote", ["npc:2735"] = "Lesser Rock Elemental", ["npc:2736"] = "Greater Rock Elemental", ["npc:2766"] = "Lolo the Lookout", ["npc:2768"] = "Professor Phizzlethorpe", ["npc:2771"] = "Drum Fel", ["npc:2774"] = "Doctor Draxlegauge", ["npc:2831"] = "Giant Buzzard", ["npc:2920"] = "Lucien Tosselwrench", ["npc:2921"] = "Lotwil Veriatus", ["npc:3033"] = "Turak Runetotem", ["npc:3354"] = "Sorek", ["npc:3389"] = "Regthar Deathgate", ["npc:4618"] = "Martek the Exiled", ["npc:5395"] = "Felgur Twocuts", ["npc:6236"] = "Klannoc Macleod", ["npc:6238"] = "Big Will", ["npc:6868"] = "Jarkal Mossmeld", ["npc:92"] = "Rock Elemental", ["object:126260"] = "Ancient Chest", ["object:138492"] = "Shards of Myzrael", ["object:1661"] = "The Undercity", ["object:172958"] = "Valley of Honor", ["object:180105"] = "Circle of Binding", ["object:2689"] = "Stone of West Binding", ["object:2690"] = "Stone of Outer Binding", ["object:2691"] = "Stone of East Binding", ["object:2701"] = "Iridescent Shards", ["object:2702"] = "Stone of Inner Binding", ["object:3202"] = "Grom'gol", ["object:36070"] = "War Quarter", ["object:36073"] = "Rogues' Quarter", ["object:36082"] = "Magic Quarter", ["quest:1106"] = "Martek the Exiled", ["quest:1361"] = "Regthar Deathgate", ["quest:1719"] = "The Affray", ["quest:678"] = "Call to Arms", ["skill:164"] = "Blacksmithing", ["spell:18960"] = "Teleport: Moonglade", ["spell:2458"] = "Berserker Stance", ["zone:1413"] = "The Barrens", ["zone:1417"] = "Arathi Highlands", ["zone:1418"] = "Badlands", ["zone:1432"] = "Loch Modan", ["zone:1437"] = "Wetlands", ["zone:1443"] = "Desolace", ["zone:1445"] = "Dustwallow Marsh", ["zone:1454"] = "Orgrimmar", ["zone:1458"] = "Undercity" },
-			written = { ["Follow the road north; {npc:4618}'s camp is on the way."] = "Follow the road north; Martek's camp is on the way.", ["Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Ride north up the road from the Crossroads to the Forgotten Pools; Regthar keeps watch on the rise above the water.", ["Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Ride west along the road; Lotwil's camp sits in the Dustbowl halfway to Kargath.", ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards.", ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab.", ["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them.", ["{area:380}"] = "The Crossroads" },
+			written = { ["Follow the road north; {npc:4618}'s camp is on the way."] = "Follow the road north; Martek's camp is on the way.", ["Head north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water."] = "Head north up the road from the Crossroads to the Forgotten Pools; Regthar keeps watch on the rise above the water.", ["Head west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}."] = "Head west along the road; Lotwil's camp sits in the Dustbowl halfway to Kargath.", ["The Elder Crag Coyotes and Giant Buzzards roam the basin south of the {area:1878}. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards."] = "The Elder Crag Coyotes and Giant Buzzards roam the basin south of the Dustbowl. Coyotes drop both the jawbones and the fangs; only the buzzards drop wings and gizzards.", ["The bigger Rock Elementals stand on the slopes north-west of the {area:1878}; each one drops a slab."] = "The bigger Rock Elementals stand on the slopes north-west of the Dustbowl; each one drops a slab.", ["The small elementals drift across the flats just west of {npc:2921}'s camp. Every rock elemental in the zone can drop {npc:6868}'s Rock Elemental Shards: keep them."] = "The small elementals drift across the flats just west of Lotwil's camp. Every rock elemental in the zone can drop Jarkal's Rock Elemental Shards: keep them.", ["{area:380}"] = "The Crossroads" },
 			steps = {
 				{
 					title = "Fly to {object:3202}",
@@ -25459,14 +25459,14 @@ do
 				},
 				{
 					title = "Fly to {area:272}",
-					note = "The zeppelin lands at the towers outside the {zone:1458}: ride down into the city and fly to {area:272}.",
+					note = "The zeppelin lands at the towers outside the {zone:1458}: head down into the city and fly to {area:272}.",
 					goals = {
 						{ t = "fly", location = "Tarren Mill", node = 13, area = 272 },
 					},
 				},
 				{
 					title = "Boulderfist camp",
-					note = "Ride east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}.",
+					note = "Head east out of {area:272} through {area:1857} and follow the road east. The Boulderfist Ogres and Enforcers (32-34) camp south of the road, south-east of {area:313}.",
 					goals = {
 						{ t = "kill", quest = 676, title = "The Hammer May Fall", target = "Boulderfist Ogre", npc = 2562, count = 8, oi = 1, map = 1417, x = 34.45, y = 45, f = "e", spots = { { x = 35.9, y = 43.3, r = 50, n = 6 }, { x = 36.7, y = 46.8, r = 37, n = 3 }, { x = 33.6, y = 48.8, r = 45, n = 4 }, { x = 31.1, y = 46.7, r = 35, n = 2 }, { x = 32.6, y = 40.4, r = 31, n = 3 } } },
 						{ t = "kill", quest = 676, title = "The Hammer May Fall", target = "Boulderfist Enforcer", npc = 2564, count = 10, oi = 2, map = 1417, x = 34.52, y = 44.2, z = 54.1, f = "e", spots = { { x = 33.8, y = 44.6, z = 49.5, r = 34, n = 5 }, { x = 32.2, y = 44.8, z = 39.3, r = 59, n = 11 } } },
@@ -25555,7 +25555,7 @@ do
 				},
 				{
 					title = "{area:327}",
-					note = "Ride south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it.",
+					note = "Head south-west to the goblins' cove on the southern coast. {npc:2766} keeps watch on the cliff above it.",
 					goals = {
 						{ t = "accept", quest = 663, title = "Land Ho!", npc = 2766, npcName = "Lolo the Lookout", minLevel = 35, qlvl = 35, map = 1417, x = 31.78, y = 82.68, z = 6.3, f = "e" },
 						{ t = "turnin", quest = 663, title = "Land Ho!", npc = 2610, npcName = "Shakes O'Breen", map = 1417, x = 32.28, y = 81.38, z = 3.2, f = "e" },
@@ -25604,7 +25604,7 @@ do
 				},
 				{
 					title = "The {object:2690}",
-					note = "Ride north; the outer circle stands in the middle of the highlands.",
+					note = "Head north; the outer circle stands in the middle of the highlands.",
 					goals = {
 						{ t = "collect", quest = 651, title = "Stones of Binding", item = 4485, itemName = "Thundering Key", count = 1, oi = 3, map = 1417, x = 52.04, y = 50.73, f = "e", from = "Stone of Outer Binding", fromKind = "object", fromId = 2690 },
 					},
@@ -25618,7 +25618,7 @@ do
 				},
 				{
 					title = "The {object:2689}",
-					note = "The western circle is near {area:1857}, where you rode in.",
+					note = "The western circle is near {area:1857}, where you came in.",
 					goals = {
 						{ t = "collect", quest = 651, title = "Stones of Binding", item = 4483, itemName = "Burning Key", count = 1, oi = 1, map = 1417, x = 25.46, y = 30.11, f = "e", from = "Stone of West Binding", fromKind = "object", fromId = 2689 },
 					},
@@ -25663,7 +25663,7 @@ do
 				},
 				{
 					title = "Into the {zone:1418}",
-					note = "Ride south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}.",
+					note = "Head south-west out of Arathi over {area:880}, south through the {zone:1437} (keep clear of {area:150}) and east into {zone:1432}; the road leaves {zone:1432} to the south into the {zone:1418}. Follow it south to the goblin camp in the {area:1877}.",
 					goals = {
 						{ t = "goto", text = "{area:1877}", area = 1877, map = 1418, x = 42.3, y = 52.8, f = "e" },
 					},
@@ -25678,7 +25678,7 @@ do
 				},
 				{
 					title = "{area:1878}",
-					note = "Ride west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}.",
+					note = "Head west along the road; {npc:2921}'s camp sits in the {area:1878} halfway to {area:340}.",
 					goals = {
 						{ t = "accept", quest = 710, title = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", minLevel = 35, qlvl = 37, map = 1418, x = 25.95, y = 44.87, z = 243.4, f = "e" },
 					},
@@ -25743,7 +25743,7 @@ do
 				},
 				{
 					title = "{area:340}",
-					note = "Ride north back to {area:340}.",
+					note = "Head north back to {area:340}.",
 					goals = {
 						{ t = "turnin", quest = 1419, title = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, x = 6.49, y = 47.2, z = 278.6, f = "e" },
 						{ t = "turnin", quest = 2258, title = "Badlands Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, x = 2.42, y = 46.06, z = 251.9, f = "e" },
@@ -25794,7 +25794,7 @@ do
 				},
 				{
 					title = "{area:345}",
-					note = "Ride back south down the road, past the {area:1877}.",
+					note = "Head back south down the road, past the {area:1877}.",
 					goals = {
 						{ t = "turnin", quest = 709, title = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, x = 51.39, y = 76.87, z = 244.9, f = "e" },
 					},
@@ -25837,7 +25837,7 @@ do
 				},
 				{
 					title = "{quest:1361}",
-					note = "Ride north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water.",
+					note = "Head north up the road from the {area:380} to the {area:386}; {npc:3389} keeps watch on the rise above the water.",
 					goals = {
 						{ t = "turnin", quest = 1361, title = "Regthar Deathgate", npc = 3389, npcName = "Regthar Deathgate", map = 1413, x = 45.34, y = 28.41, z = 96.5, f = "e" },
 						{ t = "accept", quest = 1362, title = "The Kolkar of Desolace", npc = 3389, npcName = "Regthar Deathgate", minLevel = 30, qlvl = 32, closedBy = { 1365 }, preTitles = { [1365] = "Khan Dez'hepah" }, map = 1413, x = 45.34, y = 28.41, z = 96.5, f = "e", note = "for {npc:5395} in {zone:1443}, in the next guide" },
@@ -25845,7 +25845,7 @@ do
 				},
 				{
 					title = "{area:392}",
-					note = "Ride back south to the {area:380} and fly to {area:392}.",
+					note = "Head back south to the {area:380} and fly to {area:392}.",
 					goals = {
 						{ t = "fly", location = "Ratchet", node = 80, area = 392 },
 						{ t = "sethome", npc = 6791, npcName = "Innkeeper Wiley", location = "Ratchet", area = 392, map = 1413, x = 62.05, y = 39.41, z = 24, f = "e" },
@@ -25855,7 +25855,7 @@ do
 				},
 				{
 					title = "{quest:1719}",
-					note = "Ride south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33).",
+					note = "Head south along the coast from {area:392} to {area:720}. {npc:6236} stands by the arena: step on the grate to start the fight; the challengers come one at a time, then {npc:6238} (33).",
 					only = { classes = { "WARRIOR" } },
 					goals = {
 						{ t = "turnin", quest = 1718, title = "The Islander", npc = 6236, npcName = "Klannoc Macleod", map = 1413, x = 68.62, y = 49.16, z = 4.3, f = "e" },
@@ -25887,7 +25887,7 @@ do
 			author = "Polestar",
 			version = 1,
 			names = { ["area:2302"] = "Quagmire", ["area:2405"] = "Ethel Rethor", ["area:2407"] = "Kormek's Hut", ["area:2408"] = "Shadowprey Village", ["area:2617"] = "Scrabblescrew's Camp", ["area:378"] = "Camp Taurajo", ["area:392"] = "Ratchet", ["area:403"] = "Shady Rest Inn", ["area:496"] = "Brackenwall Village", ["area:497"] = "Swamplight Manor", ["area:499"] = "Darkmist Cavern", ["area:502"] = "Witch Hill", ["area:596"] = "Kodo Graveyard", ["area:597"] = "Ghost Walker Post", ["area:598"] = "Sar'theris Strand", ["area:599"] = "Thunder Axe Fortress", ["area:602"] = "Mannoroc Coven", ["area:607"] = "Valley of Spears", ["item:13542"] = "Demon Box", ["item:14523"] = "Demon Pick", ["item:15848"] = "Crate of Ghost Magnets", ["item:3853"] = "Moonsteel Broadsword", ["npc:11596"] = "Smeed Scrabblescrew", ["npc:11626"] = "Rigger Gizelton", ["npc:11863"] = "Azore Aldamort", ["npc:11876"] = "Demon Spirit", ["npc:12277"] = "Melizza Brimbuzzle", ["npc:12369"] = "Lord Kragaru", ["npc:2519"] = "Kin'weelay", ["npc:4414"] = "Darkfang Venomspitter", ["npc:4503"] = "Mudcrush Durtfeet", ["npc:4654"] = "Maraudine Scout", ["npc:4791"] = "Nazeer Bloodpike", ["npc:4834"] = "Theramore Infiltrator", ["npc:4983"] = "Ogron", ["npc:5395"] = "Felgur Twocuts", ["npc:5412"] = "Gurda Wildmane", ["npc:6019"] = "Hornizz Brimbuzzle", ["npc:6791"] = "Innkeeper Wiley", ["object:20985"] = "Loose Dirt", ["object:3202"] = "Grom'gol", ["quest:1273"] = "Questioning Reethe", ["quest:5581"] = "Portals of the Legion", ["quest:5943"] = "Gizelton Caravan", ["quest:6027"] = "Book of the Ancients", ["quest:93225"] = "Carved Centaur Totems", ["skill:164"] = "Blacksmithing", ["zone:1434"] = "Stranglethorn Vale", ["zone:1443"] = "Desolace", ["zone:1445"] = "Dustwallow Marsh" },
-			written = { ["Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Ride north-east to the Valley of Spears. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley.", ["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "The caravan ends at Smeed's camp on the east side of the Kodo Graveyard.", ["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "Felgur Twocuts and Gurda Wildmane stand in the post just west of Smeed's camp.", ["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "Hornizz waits at the goblin camp on the west side of the Kodo Graveyard.", ["{object:20985}, now that {npc:4791} has read the report"] = "Loose Dirt, now that Nazeer has read the report" },
+			written = { ["Head north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley."] = "Head north-east to the Valley of Spears. Melizza is held in the Maraudine centaur camp; free her and escort her out east of the valley.", ["The caravan ends at {npc:11596}'s camp on the east side of the {area:596}."] = "The caravan ends at Smeed's camp on the east side of the Kodo Graveyard.", ["{npc:5395} and {npc:5412} stand in the post just west of {npc:11596}'s camp."] = "Felgur Twocuts and Gurda Wildmane stand in the post just west of Smeed's camp.", ["{npc:6019} waits at the goblin camp on the west side of the {area:596}."] = "Hornizz waits at the goblin camp on the west side of the Kodo Graveyard.", ["{object:20985}, now that {npc:4791} has read the report"] = "Loose Dirt, now that Nazeer has read the report" },
 			steps = {
 				{
 					title = "Fly to {area:378}",
@@ -25898,7 +25898,7 @@ do
 				},
 				{
 					title = "{area:403}",
-					note = "Ride east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin.",
+					note = "Head east from {area:378} along the road into the marsh. The burned-out {area:403} stands beside it just past the border; the shield, the badge and the hoofprints are in and beside the ruin.",
 					goals = {
 						{ t = "accept", quest = 1251, title = "The Black Shield", object = 20992, objName = "Black Shield", minLevel = 30, qlvl = 35, map = 1445, x = 29.63, y = 48.62, z = 73.3, f = "e" },
 						{ t = "accept", quest = 1268, title = "Suspicious Hoofprints", object = 21015, objName = "Hoofprints", minLevel = 30, qlvl = 35, map = 1445, x = 29.7, y = 47.64, f = "e" },
@@ -25930,7 +25930,7 @@ do
 				},
 				{
 					title = "Stinky Ignatz",
-					note = "Ride north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it.",
+					note = "Head north to {area:502}. Stinky stands at the foot of the hill; escort him while he gathers Bogbean Leaves just south of it.",
 					goals = {
 						{ t = "accept", quest = 1270, title = "Stinky's Escape", npc = 4880, npcName = "\"Stinky\" Ignatz", minLevel = 30, qlvl = 37, map = 1445, x = 46.88, y = 17.52, z = 35.4, f = "e" },
 						{ t = "complete", quest = 1270, title = "Stinky's Escape" },
@@ -25955,7 +25955,7 @@ do
 				},
 				{
 					title = "Darkfang spiders",
-					note = "Ride west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely.",
+					note = "Head west back across the marsh. The Darkfang Venomspitters on the ridges north of Brackenwall drop the venom sacs. Theramore Infiltrators (35-36) sneak through the same woods: they are stealthed, so look closely.",
 					goals = {
 						{ t = "collect", quest = 1322, title = "The Black Shield", item = 5959, itemName = "Acidic Venom Sac", count = 6, oi = 1, map = 1445, x = 56.3, y = 23.8, f = "e", spots = { { x = 56.2, y = 23.5, r = 56, n = 2 }, { x = 52.3, y = 32.7, r = 82, n = 6 }, { x = 45, y = 27.3, r = 56, n = 1 }, { x = 44.6, y = 37.1, r = 56, n = 2 }, { x = 48.5, y = 45.8, r = 90, n = 4 }, { x = 55.3, y = 52.5, r = 75, n = 3 }, { x = 53.2, y = 67, r = 56, n = 3 }, { x = 62.4, y = 38.4, r = 90, n = 6 }, { x = 51.9, y = 14.1, r = 63, n = 4 }, { x = 36.3, y = 13.6, r = 58, n = 2 }, { x = 34.3, y = 28, r = 56, n = 1 }, { x = 34.7, y = 41.8, r = 56, n = 1 }, { x = 56.4, y = 19.4, r = 56, n = 1, alt = true }, { x = 59.4, y = 25.1, r = 56, n = 2, alt = true }, { x = 59.3, y = 22, r = 56, n = 2, alt = true }, { x = 53, y = 23.4, r = 56, n = 2, alt = true }, { x = 60.2, y = 29.8, r = 56, n = 1, alt = true }, { x = 49.6, y = 23.4, r = 56, n = 2, alt = true }, { x = 56.3, y = 34.1, r = 61, n = 3, alt = true }, { x = 49, y = 26.4, r = 61, n = 3, alt = true }, { x = 50.1, y = 30.6, r = 56, n = 1, alt = true }, { x = 57.6, y = 38.7, r = 56, n = 2, alt = true }, { x = 44.1, y = 30.7, r = 56, n = 1, alt = true }, { x = 43.3, y = 21.6, r = 56, n = 3, alt = true }, { x = 41.3, y = 26.1, r = 56, n = 1, alt = true }, { x = 45.9, y = 41.6, r = 64, n = 4, alt = true }, { x = 41.9, y = 12.3, r = 79, n = 4, alt = true }, { x = 40.1, y = 19.9, r = 80, n = 5, alt = true }, { x = 39.8, y = 16.2, r = 56, n = 2, alt = true }, { x = 51, y = 48.6, r = 69, n = 5, alt = true }, { x = 38.2, y = 26.9, r = 56, n = 2, alt = true }, { x = 42.2, y = 43.4, r = 64, n = 6, alt = true }, { x = 40.2, y = 40, r = 56, n = 3, alt = true }, { x = 56.1, y = 56, r = 56, n = 1, alt = true }, { x = 38, y = 42.8, r = 65, n = 3, alt = true }, { x = 54.5, y = 60.4, r = 56, n = 2, alt = true }, { x = 35.4, y = 45.5, r = 76, n = 3, alt = true }, { x = 52.1, y = 62.3, r = 83, n = 5, alt = true }, { x = 55.5, y = 66.7, r = 56, n = 2, alt = true } }, spread = true },
 						{ t = "kill", quest = 1201, title = "Theramore Spies", target = "Theramore Infiltrator", npc = 4834, count = 9, oi = 1, map = 1445, x = 44.04, y = 27.29, z = 37.2, f = "e", spots = { { x = 44, y = 27.3, z = 37.2, r = 57, n = 1 }, { x = 41.6, y = 25.8, r = 57, n = 4 }, { x = 38.9, y = 22.9, r = 57, n = 4 }, { x = 38.2, y = 26.3, r = 57, n = 3 }, { x = 38.1, y = 33.9, z = 42.6, r = 57, n = 1 }, { x = 38, y = 37.4, z = 37.2, r = 57, n = 1 }, { x = 40.6, y = 34.4, r = 57, n = 2 } }, spread = true },
@@ -25982,7 +25982,7 @@ do
 				},
 				{
 					title = "Swamp Eye Jarl",
-					note = "Ride east back to the {area:497}.",
+					note = "Head east back to the {area:497}.",
 					goals = {
 						{ t = "turnin", quest = 1206, title = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, x = 55.44, y = 26.27, z = 34.3, f = "e" },
 						{ t = "accept", quest = 1203, title = "Jarl Needs a Blade", npc = 4792, npcName = "\"Swamp Eye\" Jarl", minLevel = 30, qlvl = 35, pre = { 1206 }, preTitles = { [1206] = "Jarl Needs Eyes" }, map = 1445, x = 55.44, y = 26.27, z = 34.3, f = "e", optional = true, note = "only if you carry a {item:3853} ({skill:164} or the Auction House)" },
@@ -25992,7 +25992,7 @@ do
 				},
 				{
 					title = "{area:496}",
-					note = "Ride back west to Brackenwall with the head.",
+					note = "Head back west to Brackenwall with the head.",
 					goals = {
 						{ t = "turnin", quest = 1239, title = "The Severed Head", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, x = 35.21, y = 30.66, z = 34.5, f = "e" },
 						{ t = "accept", quest = 1240, title = "The Troll Witchdoctor", npc = 4791, npcName = "Nazeer Bloodpike", minLevel = 30, qlvl = 35, pre = { 1239 }, preTitles = { [1239] = "The Severed Head" }, map = 1445, x = 35.21, y = 30.66, z = 34.5, f = "e", note = "For {npc:2519} at {object:3202}, in the next guide" },
@@ -26016,7 +26016,7 @@ do
 				},
 				{
 					title = "{npc:12277}",
-					note = "Ride north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley.",
+					note = "Head north-east to the {area:607}. {npc:12277} is held in the Maraudine centaur camp; free her and escort her out east of the valley.",
 					goals = {
 						{ t = "accept", quest = 6132, title = "Get Me Out of Here!", npc = 12277, npcName = "Melizza Brimbuzzle", minLevel = 34, qlvl = 39, map = 1443, x = 33.95, y = 53.5, z = 111.2, f = "e" },
 						{ t = "complete", quest = 6132, title = "Get Me Out of Here!" },
@@ -26055,7 +26055,7 @@ do
 				},
 				{
 					title = "{area:2407}",
-					note = "Ride north up the road to the hut by the road north of the graveyard.",
+					note = "Head north up the road to the hut by the road north of the graveyard.",
 					goals = {
 						{ t = "accept", quest = 5501, title = "Bone Collector", npc = 11438, npcName = "Bibbly F'utzbuckle", minLevel = 33, qlvl = 39, map = 1443, x = 62.33, y = 38.99, z = 90.4, f = "e" },
 					},
@@ -26089,7 +26089,7 @@ do
 				},
 				{
 					title = "{area:2405}",
-					note = "Ride west to {npc:11863}'s tower at {area:2405} on the north-west coast.",
+					note = "Head west to {npc:11863}'s tower at {area:2405} on the north-west coast.",
 					goals = {
 						{ t = "accept", quest = 6027, title = "Book of the Ancients", npc = 11863, npcName = "Azore Aldamort", minLevel = 30, qlvl = 38, pre = { 5741 }, preTitles = { [5741] = "Sceptre of Light" }, map = 1443, x = 38.88, y = 27.16, z = 75.5, f = "e" },
 					},
@@ -26112,14 +26112,14 @@ do
 				},
 				{
 					title = "Maraudine totems",
-					note = "Ride south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}.",
+					note = "Head south from {area:2405} into the {area:607}. The Maraudine Scouts, Wranglers, Maulers, Windchasers and Marauders (36-39) drop the {quest:93225}.",
 					goals = {
 						{ t = "collect", quest = 93225, title = "Carved Centaur Totems", item = 254432, itemName = "Carved Centaur Totem", count = 5, oi = 1, map = 1443, x = 31.42, y = 51.16, f = "e", spots = { { x = 31, y = 51.6, r = 24, n = 2 }, { x = 30, y = 54.1, r = 68, n = 7 }, { x = 32.5, y = 54.6, r = 46, n = 7 }, { x = 34.3, y = 54.5, r = 55, n = 6 }, { x = 30, y = 58, r = 51, n = 7 }, { x = 34.8, y = 57.4, r = 25, n = 2 }, { x = 31.9, y = 60.2, r = 44, n = 7, alt = true }, { x = 29.8, y = 61.3, r = 49, n = 5, alt = true }, { x = 36, y = 59.1, r = 15, n = 1, alt = true }, { x = 36.3, y = 61.1, r = 50, n = 4, alt = true }, { x = 31, y = 65.8, r = 17, n = 2, alt = true }, { x = 33, y = 65.9, r = 15, n = 1, alt = true }, { x = 39.7, y = 61.4, r = 15, n = 1, alt = true }, { x = 30, y = 67.7, r = 44, n = 3, alt = true } } },
 					},
 				},
 				{
 					title = "{area:2408}",
-					note = "Ride on south-west to Shadowprey.",
+					note = "Head on south-west to Shadowprey.",
 					goals = {
 						{ t = "turnin", quest = 5381, title = "Hand of Iruxos", npc = 11624, npcName = "Taiga Wisemane", map = 1443, x = 25.82, y = 68.21, z = 49.1, f = "e" },
 						{ t = "accept", quest = 5581, title = "Portals of the Legion", npc = 11624, npcName = "Taiga Wisemane", minLevel = 32, qlvl = 38, pre = { 5381 }, preTitles = { [5381] = "Hand of Iruxos" }, map = 1443, x = 25.82, y = 68.21, z = 49.1, f = "e" },
@@ -26128,7 +26128,7 @@ do
 				},
 				{
 					title = "{quest:5581}",
-					note = "Ride east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them.",
+					note = "Head east to {area:602}. Use the Rod of Banishing by each demon portal to close six of them.",
 					goals = {
 						{ t = "goto", text = "{area:602}", area = 602, map = 1443, x = 52, y = 78, f = "e" },
 						{ t = "complete", quest = 5581, title = "Portals of the Legion" },
@@ -26136,7 +26136,7 @@ do
 				},
 				{
 					title = "{area:597}",
-					note = "Ride north from the coven to {npc:5412} at {area:597}.",
+					note = "Head north from the coven to {npc:5412} at {area:597}.",
 					goals = {
 						{ t = "turnin", quest = 93225, title = "Carved Centaur Totems", npc = 5412, npcName = "Gurda Wildmane", map = 1443, x = 56.29, y = 59.68, z = 90, f = "e" },
 					},
@@ -31982,7 +31982,7 @@ do
 				},
 				{
 					title = "The {area:17675}",
-					note = "Ride north-east to the {area:17675}. The Al'Aketh camp is just west of it, with {npc:252666} at its north end. Every cultist can drop a windstone charm.",
+					note = "Head north-east to the {area:17675}. The Al'Aketh camp is just west of it, with {npc:252666} at its north end. Every cultist can drop a windstone charm.",
 					goals = {
 						{ t = "turnin", quest = 93320, title = "Tower Defense", npc = 252378, npcName = "Yorana Windyreed", map = 2521, x = 69.47, y = 67.27 },
 						{ t = "accept", quest = 92642, title = "Disrupting Logistics", npc = 252378, npcName = "Yorana Windyreed", minLevel = 6, qlvl = 11, pre = { 93320 }, preTitles = { [93320] = "Tower Defense" }, map = 2521, x = 69.47, y = 67.27 },
@@ -32843,7 +32843,7 @@ do
 				},
 				{
 					title = "{quest:5932}",
-					note = "Hearth to {area:222} and ride north to {area:1639}.",
+					note = "Hearth to {area:222} and head north to {area:1639}.",
 					only = { classes = { "DRUID" } },
 					goals = {
 						{ t = "hearth", location = "Bloodhoof Village", area = 222 },
@@ -32853,7 +32853,7 @@ do
 				},
 				{
 					title = "{npc:3065}",
-					note = "Ride down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west.",
+					note = "Head down to {area:222} and tame with the {item:15908}: an {npc:2956} on the plains, a {npc:2959} north of the village, a Swoop to the north-west.",
 					only = { classes = { "HUNTER" } },
 					goals = {
 						{ t = "turnin", quest = 6065, title = "The Hunter's Path", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, x = 46.93, y = 59.65, z = -4.5 },
