@@ -470,6 +470,22 @@ describe('QuestieDB merge', () => {
 		assert.deepEqual(q[91901].start, { npc: [256386, 256390], object: [], item: [] });
 	});
 
+	// Forever's quest data shows only one faction's NPC on some shared quests:
+	// Storm, Earth, and Fire (79358) ends at the Horde's Rau Cliffrunner there,
+	// yet the Alliance Shaman chain hands it to Veyric Thunderhame in Arathi.
+	test('corrections.json: Storm, Earth, and Fire ends at both Rau Cliffrunner and Veyric Thunderhame', async () => {
+		const { read } = await build({}, {
+			quests: {
+				79358: { name: 'Storm, Earth, and Fire', questLevel: 40, requiredLevel: 30, startedBy: [[259023]], finishedBy: [[4722, 259023]] },
+			},
+			npcs: {
+				4722: { name: 'Rau Cliffrunner', minLevel: 30, maxLevel: 30, spawns: { 400: [[46.1, 51.7]] }, friendlyToFaction: 'H', npcFlags: 2, questEnds: [79358] },
+				259023: { name: 'Veyric Thunderhame', minLevel: 40, maxLevel: 40, spawns: { 45: [[59.8, 27.6]] }, friendlyToFaction: 'A', npcFlags: 2, questStarts: [79358], questEnds: [79358] },
+			},
+		});
+		assert.deepEqual(read('quests')[79358].end, { npc: [4722, 259023], object: [] });
+	});
+
 	test("objectives come in the game's order: creatures, objects, items, kill credits, the trigger", async () => {
 		const { read } = await build({}, {
 			quests: {
