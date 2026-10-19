@@ -401,8 +401,15 @@ step Vile Fin shore
   tip More Vile Fin murlocs walk the shore just north of the outpost.
   collect 278244 quest 97558.3
 
+# Shadowvale's Lurchers, Mystics and elixir bottles are in the big basement
+# under the ruined house (only a floor and a few pillars left), not on the
+# ground above it: Onrevax's report (#392), and players' notes on quests
+# 95314 and 99152 in Forever's quest data put the way down at 12.9,65.7. Both
+# Shadowvale steps go to the stairs first, so the arrow does not circle the
+# ruins overhead.
 step Shadowvale
-  tip Shadowvale is the hollow at the west edge of the glades. The Shadowvale Lurchers and Mystics drop the bones; the bottles lie on the ground among them, and the Glowing Crystal Fragment is at the south end.
+  tip Shadowvale is the hollow at the west edge of the glades. Go down into the big basement under the ruined house (only a floor and a few pillars left, not the two-storey house): the bottles lie on its floor among the Shadowvale Lurchers and Mystics.
+  goto 12.9,65.7 "the basement under the ruined house"
   collect 268801 quest 95314.1
 
 step Hearth to Brill
@@ -548,7 +555,8 @@ step Paladin: Whispering Forest
 
 step Paladin: Shadowvale
   only Paladin
-  tip Back to Shadowvale, the hollow at the west edge of the glades: the Shadowvale Lurchers and Mystics drop the bones, and the Glowing Crystal Fragment is at the south end.
+  tip Back to Shadowvale and down into the basement under the ruined house: the Shadowvale Lurchers and Mystics there drop the bones, and the Glowing Crystal Fragment is at the basement's south end.
+  goto 12.9,65.7 "the basement under the ruined house"
   collect 286259 quest 99152.1
   collect 286269 quest 99153.1
 
