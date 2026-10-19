@@ -4752,7 +4752,11 @@ observation never overwrites a full one; `source` names `recorder:xp-base`,
 Wowhead's "Experience X instead of Y" notes applied where it still has the old
 value (above). corrections.json `xp` replaces both: Forever about doubled the
 XP of many dungeon quests, and QuestXP still has the Classic value for some
-(issue #394), so those take the XP in-game recordings show. Then, for quests
+(issue #394), so those take the XP shown by in-game evidence dated after the
+1 October 2026 change that halved dungeon quests' extra XP (build 70170; a
+client's quest cache gives difficulty and multiplier, its XP is QuestXP ×
+multiplier, while web databases built from the DB2s give only the Classic
+base). Then, for quests
 still without XP, the Forever web databases
 (`--no-web-xp` skips them; results are cached in
 `data/sources/webxp/quest-xp.json`): wowforevertalents.com (Forever beta client

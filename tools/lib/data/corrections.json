@@ -17,31 +17,13 @@
 			"set": {
 				"xp": 4400
 			},
-			"note": "Crime and Punishment rewards 4,400 XP on Forever; the merged data had 2,100, the pre-Forever value. In-game recordings show 4,400 at full XP (ForeverDB's player captures and Factoruide's in-game collector), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"386": {
-			"set": {
-				"xp": 4200
-			},
-			"note": "What Comes Around... rewards 4,200 XP on Forever; the merged data had 2,000, the pre-Forever value. In-game recordings show 4,200 at full XP (ForeverDB's player captures and Factoruide's in-game collector), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"387": {
-			"set": {
-				"xp": 5550
-			},
-			"note": "Quell the Uprising rewards 5,550 XP on Forever; the merged data had 2,650, the pre-Forever value. In-game recordings show 5,550 at full XP (ForeverDB's player captures and Factoruide's in-game collector), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
+			"note": "Crime and Punishment (The Stockade) rewards 4,400 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,100, the Classic value. Factoruide's database (2026-10-18) has 4,400 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-11 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
 		},
 		"388": {
 			"set": {
 				"xp": 5550
 			},
-			"note": "The Color of Blood rewards 5,550 XP on Forever; the merged data had 2,650, the pre-Forever value. In-game recordings show 5,550 at full XP (ForeverDB's player captures and Factoruide's in-game collector), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"391": {
-			"set": {
-				"xp": 4950
-			},
-			"note": "The Stockade Riots rewards 4,950 XP on Forever; the merged data had 2,950, the pre-Forever value. In-game recordings show 4,950 at full XP (Factoruide's in-game collector), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
+			"note": "The Color of Blood (The Stockade) rewards 5,550 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,650, the Classic value. Factoruide's database (2026-10-18) has 5,550 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
 		},
 		"425": {
 			"set": {
@@ -65,35 +47,11 @@
 			},
 			"note": "Nek'rosh's Gambit (Wetlands, Captain Stoutfist) comes after the Forever quest From the Ashes 98221, not straight after War Banners 464: issue #225 (Lou-Saydus, 2026-10-17, in game at level 29): Stoutfist did not offer 465 with 464 handed in and offered From the Ashes, \"the next quest in the chain after War Banners and before Nek'rosh's Gambit\". Wowhead Forever's quest list marks 465's description reworded. pfQuest and QuestieDB 1.0.5 have the Classic prerequisite 464."
 		},
-		"502": {
-			"set": {
-				"xp": 2900
-			},
-			"note": "Elixir of Pain rewards 2,900 XP on Forever; the merged data had 1,450, the pre-Forever value. In-game recordings show 2,900 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
 		"660": {
 			"set": {
 				"escort": true
 			},
 			"note": "Hints of a New Plague? (Arathi Highlands; Kinelory gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=660 reads \"Protect Kinelory until she returns to Quae\" (checked 2026-10-17), as quests.json does. No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2), as every Classic escort the rule finds does."
-		},
-		"914": {
-			"set": {
-				"xp": 4300
-			},
-			"note": "Leaders of the Fang rewards 4,300 XP on Forever; the merged data had 2,200, the pre-Forever value. In-game recordings show 4,300 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"959": {
-			"set": {
-				"xp": 2650
-			},
-			"note": "Trouble at the Docks rewards 2,650 XP on Forever; the merged data had 1,350, the pre-Forever value. In-game recordings show 2,650 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"962": {
-			"set": {
-				"xp": 3300
-			},
-			"note": "Serpentbloom rewards 3,300 XP on Forever; the merged data had 1,350, the pre-Forever value. In-game recordings show 3,300 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
 		},
 		"994": {
 			"set": {
@@ -101,53 +59,17 @@
 			},
 			"note": "Escape Through Force (Darkshore; Volcor gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=994 reads \"Protect Volcor until you reach the road\" (checked 2026-10-17), as quests.json does. No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2)."
 		},
-		"1013": {
-			"set": {
-				"xp": 5600
-			},
-			"note": "The Book of Ur rewards 5,600 XP on Forever; the merged data had 2,100, the pre-Forever value. In-game recordings show 5,600 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"1014": {
-			"set": {
-				"xp": 8850
-			},
-			"note": "Arugal Must Die rewards 8,850 XP on Forever; the merged data had 3,300, the pre-Forever value. In-game recordings show 8,850 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
 		"1098": {
 			"set": {
 				"xp": 5350
 			},
-			"note": "Deathstalkers in Shadowfang rewards 5,350 XP on Forever; the merged data had 2,000, the pre-Forever value. In-game recordings show 5,350 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
+			"note": "Deathstalkers in Shadowfang (Shadowfang Keep) rewards 5,350 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,000, the Classic value. A Polestar Recorder file from build 1.60.1.70338 (2026-10-12) has a reward of 5,350 XP at level 20 (the quest is level 25), and the game client's quest cache of build 1.60.1.70450 (written 2026-10-17) gives the quest XP difficulty 5 and multiplier 2.675: 2,000 (QuestXP, level 25, difficulty 5) x 2.675 = 5,350. ForeverDB's player captures agree. Issue #394 (dungeon quest XP)."
 		},
-		"1199": {
+		"1486": {
 			"set": {
-				"xp": 6050
+				"xp": 3100
 			},
-			"note": "Twilight Falls rewards 6,050 XP on Forever; the merged data had 2,550, the pre-Forever value. In-game recordings show 6,050 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"1200": {
-			"set": {
-				"xp": 7850
-			},
-			"note": "Blackfathom Villainy rewards 7,850 XP on Forever; the merged data had 1,650, the pre-Forever value. In-game recordings show 7,850 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"1221": {
-			"set": {
-				"xp": 5000
-			},
-			"note": "Blueleaf Tubers rewards 5,000 XP on Forever; the merged data had 2,100, the pre-Forever value. In-game recordings show 5,000 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"1487": {
-			"set": {
-				"xp": 4000
-			},
-			"note": "Deviate Eradication rewards 4,000 XP on Forever; the merged data had 2,050, the pre-Forever value. In-game recordings show 4,000 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"1491": {
-			"set": {
-				"xp": 2650
-			},
-			"note": "Smart Drinks rewards 2,650 XP on Forever; the merged data had 1,350, the pre-Forever value. In-game recordings show 2,650 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
+			"note": "Deviate Hides (Wailing Caverns) rewards 3,100 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 1,600, the Classic value. An in-game screenshot of the quest's reward panel, posted on issue #394 on 2026-10-19 by a level 19 Priest (the quest is level 17, so no level reduction), shows Experience: 3,100."
 		},
 		"1501": {
 			"set": {
@@ -166,12 +88,6 @@
 				"escort": true
 			},
 			"note": "Tooga's Quest (Tanaris; Tooga gives it, Torta takes it) is an escort: Forever's quest data reads \"Show Tooga the way back to his wife, Torta\", objective \"Lead Tooga to Torta\", with a 30 minute timer (checked 2026-10-19). No text says escort and its objective is a kill objective in quests.json, so the compiler's escort rule (tools/lib/dsl/escort.js) misses it. Both Tanaris guides route it."
-		},
-		"1740": {
-			"set": {
-				"xp": 5100
-			},
-			"note": "The Orb of Soran'ruk rewards 5,100 XP on Forever; the merged data had 2,550, the pre-Forever value. In-game recordings show 5,100 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
 		},
 		"1919": {
 			"set": {
@@ -201,13 +117,13 @@
 			"set": {
 				"xp": 5500
 			},
-			"note": "Essential Artificials rewards 5,500 XP on Forever; the merged data had 3,050, the pre-Forever value. In-game recordings show 5,500 at full XP (Factoruide's in-game collector), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
+			"note": "Essential Artificials (Gnomeregan) rewards 5,500 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 3,050, the Classic value. Factoruide's database (2026-10-18) has 5,500 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. Issue #394 (dungeon quest XP)."
 		},
 		"2929": {
 			"set": {
 				"xp": 4950
 			},
-			"note": "The Grand Betrayal rewards 4,950 XP on Forever; the merged data had 2,750, the pre-Forever value. In-game recordings show 4,950 at full XP (Factoruide's in-game collector), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
+			"note": "The Grand Betrayal (Gnomeregan) rewards 4,950 XP on Forever after Blizzard's 1 October 2026 change to dungeon quest XP (beta build 1.60.1.70170, \"50% less extra experience\"); the merged data had 2,750, the Classic value. Factoruide's database (2026-10-18) has 4,950 from a game client's quest cache of a build after the change: the quest is in none of its client caches on 2026-10-10 (builds 69913, from before the change, and 70334), first appears in them on 2026-10-12 (build 70338), and its XP was first read from those caches on 2026-10-14 (builds 69913 and 70374), so the value comes from build 70374 or later; Factoruide's in-game collector had no XP for it. Issue #394 (dungeon quest XP)."
 		},
 		"4492": {
 			"set": {
@@ -227,30 +143,6 @@
 			},
 			"note": "Aquatic Form (Druid Aquatic Form, Alliance) is open to Night Elf and Skyborne Druids: Wowhead Forever https://www.wowhead.com/forever/quest=5061 lists Races [race=4], [race=95] (checked 2026-10-16). The merged data has races 8 (Night Elf only), while Trial of the Sea Lion (272) before it already has Skyborne, so Skyborne druids stopped halfway."
 		},
-		"5722": {
-			"set": {
-				"xp": 1800
-			},
-			"note": "Searching for the Lost Satchel rewards 1,800 XP on Forever; the merged data had 880, the pre-Forever value. In-game recordings show 1,800 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"5723": {
-			"set": {
-				"xp": 2150
-			},
-			"note": "Testing an Enemy's Strength rewards 2,150 XP on Forever; the merged data had 800, the pre-Forever value. In-game recordings show 2,150 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"5725": {
-			"set": {
-				"xp": 2950
-			},
-			"note": "The Power to Destroy... rewards 2,950 XP on Forever; the merged data had 1,450, the pre-Forever value. In-game recordings show 2,950 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"5761": {
-			"set": {
-				"xp": 2350
-			},
-			"note": "Slaying the Beast rewards 2,350 XP on Forever; the merged data had 1,150, the pre-Forever value. In-game recordings show 2,350 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
 		"6123": {
 			"set": {
 				"races": 4294967304
@@ -269,41 +161,11 @@
 			},
 			"note": "Power over Poison (Druid Cure Poison, Alliance) is open to Night Elf and Skyborne Druids: Wowhead Forever https://www.wowhead.com/forever/quest=6125 lists Races [race=4], [race=95] (checked 2026-10-16). The merged data has races 8 (Night Elf only), while 6121 and 6122 before it already have Skyborne."
 		},
-		"6561": {
-			"set": {
-				"xp": 7850
-			},
-			"note": "Blackfathom Villainy rewards 7,850 XP on Forever; the merged data had 1,650, the pre-Forever value. In-game recordings show 7,850 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"6565": {
-			"set": {
-				"xp": 6300
-			},
-			"note": "Allegiance to the Old Gods rewards 6,300 XP on Forever; the merged data had 2,650, the pre-Forever value. In-game recordings show 6,300 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
 		"6641": {
 			"set": {
 				"escort": true
 			},
 			"note": "Vorsha the Lasher (Ashenvale; Muglash gives it) is an escort: Wowhead Forever https://www.wowhead.com/forever/quest=6641 reads \"Keep Muglash safe as he travels to the brazier\" (checked 2026-10-17), as quests.json does. No text says escort, and the compiler's escort rule (tools/lib/dsl/escort.js) needs the word escort in the quest's own text. QuestieDB 1.0.6 questFlags has PARTY_ACCEPT (2)."
-		},
-		"6921": {
-			"set": {
-				"xp": 6550
-			},
-			"note": "Amongst the Ruins rewards 6,550 XP on Forever; the merged data had 2,750, the pre-Forever value. In-game recordings show 6,550 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"6922": {
-			"set": {
-				"xp": 7250
-			},
-			"note": "Baron Aquanis rewards 7,250 XP on Forever; the merged data had 3,050, the pre-Forever value. In-game recordings show 7,250 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"6981": {
-			"set": {
-				"xp": 5150
-			},
-			"note": "The Glowing Shard rewards 5,150 XP on Forever; the merged data had 2,650, the pre-Forever value. In-game recordings show 5,150 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
 		},
 		"7637": {
 			"set": {
@@ -375,18 +237,6 @@
 				]
 			},
 			"note": "Return to Quinn (Again) (Silverpine, Apothecary Renferrel) comes after Wild Eyes 91920: the quest chain on https://foreverchanges.pro/quest/91921, which for quests new in Forever comes from Wowhead's Forever database (checked 2026-10-17) lists it fifth, after Wild Eyes, and its text brings \"the new potion\". QuestieDB 1.0.5 has no prerequisite."
-		},
-		"92401": {
-			"set": {
-				"xp": 4600
-			},
-			"note": "A Frightened Request rewards 4,600 XP on Forever; the merged data had 2,200, an earlier beta value. In-game recordings show 4,600 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table and a private-server database recorded from the beta agree. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"92421": {
-			"set": {
-				"xp": 4600
-			},
-			"note": "Light's Justice rewards 4,600 XP on Forever; the merged data had 2,200, an earlier beta value. In-game recordings show 4,600 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
 		},
 		"92434": {
 			"set": {
@@ -606,18 +456,6 @@
 			},
 			"note": "Call of Fire (Dun Morogh, Dwarf Shaman) lists Fire Tar first, then the Reagent Pouch: Wowhead Forever https://www.wowhead.com/forever/quest=94466, checked 2026-10-16. The merged data has the two the other way round, so `quest 94466.1` named the pouch."
 		},
-		"95204": {
-			"set": {
-				"xp": 5450
-			},
-			"note": "Crest of Lordaeron rewards 5,450 XP on Forever; the merged data had 2,600, an earlier beta value. In-game recordings show 5,450 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
-		"95216": {
-			"set": {
-				"xp": 5450
-			},
-			"note": "The New Plague rewards 5,450 XP on Forever; the merged data had 2,600, an earlier beta value. In-game recordings show 5,450 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
-		},
 		"95495": {
 			"set": {
 				"pre": [
@@ -749,12 +587,6 @@
 				]
 			},
 			"note": "Heart of Disruption (City of Dalaran, Horde) has Blood in the Streets 92434 as its breadcrumb: Wowhead Forever comments on https://www.wowhead.com/forever/quest=96984 (\"Breadcrumb: Blood in the Streets\") and quest=92434 (\"Leads To: Heart of Disruption\"), 2026-10-03, checked 2026-10-15."
-		},
-		"97288": {
-			"set": {
-				"xp": 3450
-			},
-			"note": "Unending Torment rewards 3,450 XP on Forever; the merged data had 1,650, an earlier beta value. In-game recordings show 3,450 at full XP (ForeverDB's player captures), and ForeverLevelingBiS's quest XP table agrees. Checked 2026-10-19 against every Forever source in the local fact check. Issue #394 (dungeon quest XP)."
 		},
 		"97289": {
 			"set": {
