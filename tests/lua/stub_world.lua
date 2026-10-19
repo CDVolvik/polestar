@@ -12,12 +12,12 @@
 --   w.repeatable[308] = true               -- a turn-in never flags it completed
 --   w.complete({ 783, 7 })                 -- already turned in (no events): alts
 --   w.setLevel(4); w.setXP(200); w.addItem(750, 2); w.bind("Goldshire"); w.setZone("Elwynn Forest", "Goldshire")
---   w.gossip(197, { available = { { questID = 7, title = "..." } }, active = { { questID = 783, isComplete = true } } })
+--   w.gossip(197, { available = { { questID = 7, title = "..." } }, active = { { questID = 783, isComplete = true } }, options = { { name = "Train me." } } })
 --   w.questDetail(197, 7, { auto = false, pvp = false, objectives = { 10 } })
 --   w.questProgress(197, 783); w.questComplete(197, 783, { choices = 2, money = 0 })
 --   w.greeting(197, { active = {...}, available = {...} })
 --   w.trainer(911); w.merchant(54); w.taxi(352, "Stormwind, Elwynn"); w.close()
---   w.calls                                -- { { "AcceptQuest", q }, { "GetQuestReward", q, choice }, ... }
+--   w.calls                                -- { { "AcceptQuest", q }, { "GetQuestReward", q, choice }, { "CloseQuest", q }, ... }
 --   w.learnSkill(171, "Alchemy", 1, 75); w.skillUp(171, 50)    -- SKILL_LINES_CHANGED + CHAT_MSG_SKILL
 --   w.learnSpell(2330)                     -- spellbook spell (LEARNED_SPELL_IN_SKILL_LINE, SPELLS_CHANGED)
 --   w.learnRecipe(2330)                    -- profession recipe (NEW_RECIPE_LEARNED)
@@ -205,7 +205,7 @@ end
 function world.gossip(npc, opts)
 	talkTo(npc)
 	opts = opts or {}
-	world.frame = { kind = "gossip", npc = npc, available = opts.available or {}, active = opts.active or {} }
+	world.frame = { kind = "gossip", npc = npc, available = opts.available or {}, active = opts.active or {}, options = opts.options or {} }
 	fire("GOSSIP_SHOW")
 end
 
@@ -497,7 +497,11 @@ end
 function AcceptQuest() acceptOpen("AcceptQuest") end
 function AcknowledgeAutoAcceptQuest() acceptOpen("AcknowledgeAutoAcceptQuest") end
 function DeclineQuest() call("DeclineQuest"); world.close() end
-function CloseQuest() world.close() end
+function CloseQuest()
+	local f = world.frame
+	call("CloseQuest", f and f.questID)
+	world.close()
+end
 
 function IsQuestCompletable()
 	local f = frameOf("progress")
@@ -589,7 +593,18 @@ function C_GossipInfo.SelectActiveQuest(questID)
 	call("C_GossipInfo.SelectActiveQuest", questID)
 	if f and findIn(f.active, questID) then world.questProgress(f.npc, questID) end
 end
-function C_GossipInfo.CloseGossip() world.close() end
+function C_GossipInfo.GetOptions()
+	local f = frameOf("gossip")
+	local out = {}
+	for i, o in ipairs(f and f.options or {}) do
+		out[i] = { name = o.name or ("Option " .. i), gossipOptionID = o.gossipOptionID or i, icon = 0, flags = 0, status = 0 }
+	end
+	return out
+end
+function C_GossipInfo.CloseGossip()
+	call("C_GossipInfo.CloseGossip")
+	world.close()
+end
 
 ---------------------------------------------------------------------------
 -- Client API: skills, spells, reputation, exploration, achievements
