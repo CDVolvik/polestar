@@ -305,6 +305,20 @@ test(`a Priest's report: an event or escort objective holds its step until the q
 	}
 });
 
+// --- Tirisfal (Hotline, a Scourge Paladin, #408): the guide asked them to
+// turn in Rediscovering the Light (90902) without a step to heal the five
+// Injured Deathguard first. The quest data had no objective to hold a step.
+
+test(`Hotline's report: a Paladin heals the Injured Deathguard before turning in Rediscovering the Light`, { skip }, () => {
+	const list = goals(TIRISFAL).filter(forClass('PALADIN'));
+	const accept = at(list, 'accept 90902', is('accept', 90902));
+	const complete = at(list, 'complete 90902', is('complete', 90902));
+	const turnin = at(list, 'turnin 90902', is('turnin', 90902));
+	assert.ok(accept < complete && complete < turnin, 'healing comes between the accept and the turn-in');
+	const step = list[complete].step;
+	assert.ok(list.some((g) => g.step === step && g.goal.t === 'goto' && located(g)), 'the healing step leads to the Injured Deathguard');
+});
+
 // --- Durotar (AndarKerran): A Pain in the Neck (96873) is for enchanters.
 
 // A guide played by the Engine for one character (`who`: race, raceName,

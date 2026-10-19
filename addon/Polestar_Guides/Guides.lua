@@ -32948,6 +32948,15 @@ do
 					},
 				},
 				{
+					title = "{npc:259377}",
+					note = "{quest:90902}: the {npc:259377} lie around the church. Heal five of them with {spell:635}.",
+					only = { classes = { "PALADIN" } },
+					goals = {
+						{ t = "goto", text = "{npc:259377}", map = 1420, x = 31.8, y = 63.9, f = "e" },
+						{ t = "complete", quest = 90902, title = "Rediscovering the Light" },
+					},
+				},
+				{
 					title = "Rattlecages, scavengers and duskbats",
 					note = "Rattlecage Skeletons wander the ruined houses in the north half of {area:154}. Young Scavengers and Duskbats roam all around the village; the Ragged Scavengers and Mangy Duskbats are on its east side.",
 					goals = {
