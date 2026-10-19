@@ -955,6 +955,30 @@ uistub.update()`,
 		],
 	},
 	{
+		file: 'guide-riding.svg',
+		title: 'Riding reminder banner: level 40 with enough gold (Take me there); level 40 short on gold (no button); Warlock class mount route',
+		panels: [
+		{
+			// (a) Human level 40, 112 g → banner with Take me there (cost 1000000)
+			roots: GUIDE,
+			script: `${TABS}; uistub.player.level = 40; function GetMoney() return 1120000 end
+Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000, trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" }, factionID = 72 })`,
+		},
+		{
+			// (b) Human level 40, 43 g → banner without button (cost 1000000 > 430000)
+			roots: GUIDE,
+			script: `${TABS}; uistub.player.level = 40; function GetMoney() return 430000 end
+Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000, trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" }, factionID = 72 })`,
+		},
+		{
+			// (c) Warlock level 40 → Felsteed class mount route (cost 0 = free)
+			roots: GUIDE,
+			script: `${TABS}; uistub.player.level = 40; uistub.player.class = "WARLOCK"; function GetMoney() return 0 end
+Polestar.Fire("RIDING_DUE", { tier = 1, cost = 0, trainer = { map = 1413, x = 62.6, y = 35.5, npcName = "Strahad Farsan" }, classKind = "WARLOCK" })`,
+		},
+		],
+	},
+	{
 		file: 'guide-along.svg',
 		title: 'Along the way: the kobolds and wolf meat of an `along` step under the steps after it; with Up next open',
 		panels: [

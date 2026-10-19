@@ -130,6 +130,8 @@ register(QOL, L["Vendors"], L["Merchants"], {
 register(QOL, L["Vendors"], L["Trainers"], {
 	{ kind = "toggle", key = "qol.trainAll", label = L["Learn new spells"],
 		help = L["Learns every spell a class trainer offers that you can afford, and prints the total. Profession trainers are left alone. Hold Shift to skip."] },
+	{ kind = "toggle", key = "qol.ridingReminder", label = L["Riding reminder"],
+		help = L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] },
 })
 
 register(QOL, L["Trackers"], L["Experience"], {
