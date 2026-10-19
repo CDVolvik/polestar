@@ -88,6 +88,20 @@ test('a turn-in of a quest never accepted is skipped', () => {
 	assert.strictEqual(tl.totals.level, 1);
 });
 
+test('a level goal inside a level grinds to that share of its XP, and one already passed is skipped', () => {
+	// Level 3 takes 1400 XP: halfway is 700 into it.
+	const tl = play(['step Half', '  level 3.5', 'step Again', '  level 3.25', 'step Two', '  level 2']);
+	const [half, again, two] = tl.steps.map((s) => s.goals[0]);
+	assert.strictEqual(half.skip, null);
+	assert.strictEqual(tl.steps[0].levelEnd, 3);
+	assert.strictEqual(tl.steps[0].xpEnd, 700);
+	assert.strictEqual(half.label, 'Reach level 3 (50%)');
+	assert.strictEqual(again.skip, 'already level 3 (25%)');
+	assert.strictEqual(two.skip, 'already level 2');
+	assert.strictEqual(tl.totals.level, 3);
+	assert.strictEqual(tl.totals.xp, 700);
+});
+
 test('`only` and the quest class mask exclude a goal for another class', () => {
 	const tl = play(['step Errands', '  accept 9500 only Hunter', '  accept 9101', '  accept 9201']);
 	const [onlyHunter, hunterQuest, open] = tl.steps[0].goals;

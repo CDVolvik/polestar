@@ -19,7 +19,8 @@
 --                     PLAYER_DEAD unless a self-resurrection or a resurrection
 --                     offer is there, or Hardcore is on. Shift: stay.
 --
--- One GOSSIP_SHOW handler serves the flight master helper first, then skipGossip.
+-- One GOSSIP_SHOW handler serves the flight master helper first, then the
+-- bind helper (Bind.lua), then skipGossip.
 -- Duels live in Social.lua with the other requests.
 
 local ADDON, ns = ...
@@ -90,6 +91,7 @@ end
 
 ns.RegisterEvent("GOSSIP_SHOW", function()
 	if QoL.Flight and QoL.Flight.OnGossip() then return end
+	if QoL.Bind and QoL.Bind.OnGossip() then return end
 	Toggles.SkipGossip()
 end)
 

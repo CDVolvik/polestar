@@ -20,6 +20,7 @@
 const { lexLine } = require('./lexer');
 const { parseConditions, FACTIONS } = require('./conditions');
 const { parseWhen } = require('./when');
+const { levelPoint } = require('../game/xp');
 
 // Slash-separated segments, none empty (an empty one would make a hidden `.lua` file).
 const ID_RE = /^[a-z0-9_-]+(?:\/[a-z0-9_-]+)*$/;
@@ -29,7 +30,9 @@ const COORD_RE = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/;
 
 const HEADER_KEYS = ['guide', 'title', 'levels', 'zone', 'faction', 'race', 'class', 'next', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'author', 'version', 'coords', 'pitch', 'pro', 'con'];
 // Lines inside a step that are not goals.
-const STEP_KEYS = ['zone', 'only', 'tip', 'when'];
+// `loop`: the step's `goto` points are the spawn areas of its kill, collect
+// and interact goals (resolve.js, applyLoop).
+const STEP_KEYS = ['zone', 'only', 'tip', 'when', 'loop'];
 
 // `group [N]`: the goal needs a group (of N players), shown in the guide window.
 const COMMON = ['text', 'optional', 'only', 'group'];
@@ -266,6 +269,10 @@ function parseGuide(text, file, diag) {
 				const w = parseWhen(line.slice(toks[1] ? toks[1].start : lex.end, lex.end));
 				if (w.error) err(ln, w.error, w.hint);
 				else (step.when ||= []).push({ ...w.value, line: ln });
+			} else if (kw === 'loop') {
+				if (toks.length > 1) err(ln, '`loop` takes nothing');
+				else if (step.loop) err(ln, 'duplicate `loop` in step');
+				else step.loop = ln;
 			} else {
 				const tip = unquoteRest(line, lex, 1);
 				if (!tip) {
@@ -598,8 +605,14 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 			return i + 1;
 		}
 		case 'level': {
-			if (!t || t.quoted || !INT_RE.test(t.text) || Number(t.text) < 1) return err(ln, `malformed level "${t ? t.text : ''}"`), -1;
-			goal.level = Number(t.text);
+			// `level 12`, `level 12.5` (halfway through 12) or `level 12+2500`
+			// (2500 XP into 12): level, frac and the XP as written (levelXp).
+			const p = t && !t.quoted ? levelPoint(t.text) : null;
+			if (p && p.error) return err(ln, p.error), -1;
+			if (!p || p.level < 1) return err(ln, `malformed level "${t ? t.text : ''}"`), -1;
+			goal.level = p.level;
+			if (p.frac) goal.frac = p.frac;
+			if (p.xp !== undefined) goal.levelXp = p.xp;
 			return i + 1;
 		}
 		case 'note': {

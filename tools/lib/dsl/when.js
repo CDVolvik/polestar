@@ -6,7 +6,8 @@
 //
 // parseWhen(rest) -> { value } | { error }
 //   rest: the line after `when`, as written. One predicate per `when` line:
-//   level<N  level<=N  level>N  level>=N     the character's level
+//   level<N  level<=N  level>N  level>=N     the character's level; N may be a
+//                                             point inside a level: 12.5, 12+2500
 //   [!]onquest <quest>[,<quest>...]           any of the quests is in the log (! none is)
 //   [!]complete <quest>                       the quest is in the log, ready to turn in
 //   [!]turnedin <quest>                       the quest is handed in
@@ -14,7 +15,9 @@
 //   [!]has <item> [xN]                        the bags hold N (default 1) or more
 //   [!]zone "<Name>"  [!]subzone "<Name>"     the zone or subzone text reads so
 //   [!]bound "<Location>"                     the hearthstone is bound there
-// value = { k, neg?, op?, n?, q?, item?, name? }; `q` is a list for onquest.
+// value = { k, neg?, op?, n?, frac?, q?, item?, name? }; `q` is a list for onquest.
+
+const { levelPoint } = require('../game/xp');
 
 const INT_RE = /^\d+$/;
 const KINDS = ['level', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound'];
@@ -33,12 +36,15 @@ function nameOf(text) {
 function parseWhen(rest) {
 	const text = String(rest || '').trim();
 	if (!text) return { error: '`when` needs a predicate', hint: USAGE };
-	const lv = /^(!?)level\s*(<=|>=|<|>)\s*(\d+)$/i.exec(text);
+	const lv = /^(!?)level\s*(<=|>=|<|>)\s*(\d+(?:\.\d+|\+\d+)?)$/i.exec(text);
 	if (lv) {
 		if (lv[1]) return { error: '`level` takes no `!`: turn the comparison around (`level>=10` for "not below 10")' };
-		const n = Number(lv[3]);
-		if (n < 1 || n > 60) return { error: `level ${n} is out of range (1-60)` };
-		return { value: { k: 'level', op: lv[2], n } };
+		const p = levelPoint(lv[3]);
+		if (p.error) return { error: p.error };
+		if (p.level < 1 || p.level > 60) return { error: `level ${p.level} is out of range (1-60)` };
+		const value = { k: 'level', op: lv[2], n: p.level };
+		if (p.frac) value.frac = p.frac;
+		return { value };
 	}
 	const m = /^(!?)([A-Za-z]+)\b\s*(.*)$/.exec(text);
 	const kind = m ? m[2].toLowerCase() : null;
@@ -75,8 +81,10 @@ function parseWhen(rest) {
 	return { value };
 }
 
-// The levels a `level` predicate admits, as [min, max].
+// The levels a `level` predicate admits, as [min, max]. With `frac` the
+// predicate splits level n, so both sides admit it.
 function levelRange(p) {
+	if (p.frac) return p.op === '<' || p.op === '<=' ? [1, p.n] : [p.n, 60];
 	if (p.op === '<') return [1, p.n - 1];
 	if (p.op === '<=') return [1, p.n];
 	if (p.op === '>') return [p.n + 1, 60];
