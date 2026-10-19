@@ -2103,7 +2103,8 @@ search with it that fails, or whose path's last engine point before the goal
 lies more than 30 yd above or below it, is asked once more without it, and
 that answer stands for the goal (later searches for it, after straying, go
 without it too). A walk to a leg's end with a height of its own (a dock's
-board point) carries that one the same way; walks to other leg ends go
+board point, a tram, zeppelin or portal end's floor: "End heights" below)
+carries that one the same way; walks to other leg ends go
 without a height (docs/NAV_QA.md Z1-Z3). A later walk from a board point
 (off the boat) starts at the deck's height (`from.z`; asked once more with
 neither height when that fails), and the measure into the target gives each
@@ -2389,6 +2390,22 @@ in), then the lower surface; an end with none warns. travel.json carries it
 as the end's `board`, TravelData.lua as the end's tenth field (after its
 AreaTable area). Zeppelin and tram ends stand on their platforms and get
 none.
+
+**End heights.** An end on dry ground gets a height instead
+(`transports.js` `endHeight`; with no grid, none): the surface of its
+column nearest the height of what stands there, within 10 yd, by the same
+region and open rules. That height is the Deeprun Tram's AreaTrigger in
+Stormwind and Ironforge, a portal's AreaTrigger and its classic-db
+destination, or the spawn of the dock NPC an end is placed at (zeppelin
+masters, wharfmasters: `data/forever/spawnz.json`, within 15 yd of the
+end); never a ship's stop (the ship's origin: a zeppelin's lies about 17 yd
+above its tower). Without it the walk ended on the cheapest surface of the
+cell: the roof above the tram's entrance, 417 yd round by the Keep where
+the entrance is 131 yd away (#338), or the foot of Orgrimmar's zeppelin
+tower. travel.json carries it as the end's `z`, TravelData.lua as the
+end's tenth field (a number, where a board point is a table); an end with
+a source height and no surface near it warns (the Undercity tower's top
+under Hin Denburg is not open both ways on the grid).
 
 The crossings file (schema 1, Era map percent):
 

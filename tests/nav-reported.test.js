@@ -20,11 +20,13 @@ function world(map, x, y) {
 	return { c: b.c, x: b.top + ((b.bottom - b.top) * y) / 100, y: b.left + ((b.right - b.left) * x) / 100 };
 }
 
-// The engine's path from `from` to `to` (no heights: the client reports none),
+// The engine's path from `from` to `to` (a height each only when given: the
+// client reports none for the player; a goal or a leg's end may carry one),
 // as { points = { { x, y, z }, ... }, cost } or false when it finds none;
 // profile: "Alliance" | "Horde" (none by default).
 function walk(from, to, profile) {
 	assert.equal(from.c, to.c);
+	const pt = (p) => `{ x = ${p.x}, y = ${p.y}${typeof p.z === 'number' ? `, z = ${p.z}` : ''} }`;
 	const [got] = runAddon({
 		stubs: ['stub_encoding.lua'],
 		addons: ['Polestar_Nav'],
@@ -33,7 +35,7 @@ local Path = Polestar_NavEngine
 local frames = {}
 Path.after = function(fn) frames[#frames + 1] = fn end
 local got = false
-Path.Find(${from.c}, { x = ${from.x}, y = ${from.y} }, { x = ${to.x}, y = ${to.y} }, function(points, cost)
+Path.Find(${from.c}, ${pt(from)}, ${pt(to)}, function(points, cost)
 	if points then
 		got = { points = {}, cost = cost }
 		for i, p in ipairs(points) do got.points[i] = { p.x, p.y, p.z or false } end
@@ -99,4 +101,60 @@ test('Ratchet, the Barrens: the 62 yd walk along the north-east road across the 
 	for (let i = 1; i < pts.length; i++) yards += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
 	const straight = Math.hypot(to.x - from.x, to.y - from.y);
 	assert.ok(yards <= straight * 1.15, `the walk is ${yards.toFixed(1)} yd for ${straight.toFixed(1)} yd straight (${pts.length} points)`);
+});
+
+// The yards a path walks, along the ground (x, y).
+function yardsOf(pts) {
+	let yards = 0;
+	for (let i = 1; i < pts.length; i++) yards += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+	return yards;
+}
+
+// #420 (Fitz, found checking Annie's #350), the Undercity: every walk from the
+// Apothecarium (1458 51.47,56.39, z -61.4) to the Royal Quarter climbed out of
+// the city to the ruins (z +80) and ended in a 485 yd straight line down,
+// 1159 yd: the corridor into the Royal Quarter (1458 46,73 to 49,88) and the
+// quarter itself lie under one of Tirisfal's lakes, and the pack dropped every
+// floor under the lake. The navigation grid walks it in 373 yd indoors.
+test('Undercity: the walk from the Apothecarium to Varimathras stays in the city (#420)', { skip }, () => {
+	const from = { c: 0, x: 1516.99, y: 379.403, z: -61.4 };
+	const to = { c: 0, x: 1287.769, y: 333.545, z: -60 };
+	const got = walk(from, to, 'Horde');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to Varimathras');
+	const yards = yardsOf(pts);
+	assert.ok(yards < 500, `the walk is ${yards.toFixed(0)} yd (${pts.length} points)`);
+	const top = Math.max(...pts.filter((p) => p[2] !== false).map((p) => p[2]));
+	assert.ok(top < -30, `it stays under the ground, never higher than ${top.toFixed(1)}`);
+});
+
+// #338 (Tazul), Stormwind: from the Dwarven District (66.04,39.37, street
+// height 95) the walk to the Deeprun Tram climbed the road towards the Keep and
+// ended on the roof above the tram's entrance, 417 yd: the tram's end had no
+// height, so the engine took the cheapest surface there. The travel data gives
+// the end the entrance's floor (its AreaTrigger's height on the grid), and the
+// walk there is 131 yd, almost straight.
+test('Stormwind: the walk to the Deeprun Tram ends at its entrance, not on the roof above it (#338)', { skip }, () => {
+	const [tram] = runAddon({
+		stubs: ['stub_nav.lua'],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Nav/Nav.xml'] }],
+		script: `
+			for _, t in ipairs(Polestar.Nav.GetTravelData().transports) do
+				if t.id == "tram-stormwind-ironforge" then emit({ c = t.a.c, x = t.a.wx, y = t.a.wy, z = t.a.z or false }) end
+			end`,
+	}).emitted;
+	assert.ok(tram, 'the tram is in the travel data');
+	assert.equal(typeof tram.z, 'number', 'its Stormwind end has a height');
+	const from = { c: 0, x: -8451.868, y: 575.472, z: 95 };
+	const got = walk(from, tram, 'Alliance');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - tram.x, last[1] - tram.y) < 10, 'to the tram');
+	const yards = yardsOf(pts);
+	assert.ok(yards < 150, `the walk is ${yards.toFixed(0)} yd (${pts.length} points)`);
+	const end = pts.filter((p) => p[2] !== false).pop();
+	assert.ok(Math.abs(end[2] - tram.z) < 5, `it ends at the entrance's height (${end[2]}, the entrance ${tram.z})`);
 });
