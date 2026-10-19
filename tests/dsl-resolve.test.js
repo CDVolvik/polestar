@@ -89,9 +89,17 @@ test('a collect names the sources its point and spawn areas belong to (fromNpcs)
 	// nearest spawn is a Diseased Young Wolf's.
 	const linked = goalsOf(['step One', '  accept 33', '  collect 750 quest 33']).goals[1];
 	assert.deepEqual(linked.fromNpcs, [{ npc: 299, npcName: 'Diseased Young Wolf' }, { npc: 69, npcName: 'Timber Wolf' }]);
-	// Hand-placed coordinates name the sources on that map too.
+	// Hand-placed coordinates name the sources standing by the point, the one it
+	// belongs to first, whatever its drop chance: on the Timber Wolf pack the
+	// Timber Wolf leads, on the Diseased Young Wolf's own spawn it does.
 	const placed = goalsOf(['step One', '  collect 750 x4 @45.5,39']).goals[0];
 	assert.deepEqual(placed.fromNpcs, [{ npc: 69, npcName: 'Timber Wolf' }, { npc: 299, npcName: 'Diseased Young Wolf' }]);
+	const onYoung = goalsOf(['step One', '  collect 750 x4 @46,38']).goals[0];
+	assert.deepEqual(onYoung.fromNpcs, [{ npc: 299, npcName: 'Diseased Young Wolf' }, { npc: 69, npcName: 'Timber Wolf' }]);
+	// A source that spawns nowhere near the point is not one of its mobs: from
+	// the southern Timber Wolves the Young Wolf's only spawn is 300 yd away.
+	const south = goalsOf(['step One', '  collect 750 x4 @43,50']).goals[0];
+	assert.deepEqual(south.fromNpcs, [{ npc: 69, npcName: 'Timber Wolf' }]);
 	// Only a `collect` carries them: a kill goal already names its target.
 	assert.equal(goalsOf(['step One', '  kill 6']).goals[0].fromNpcs, undefined);
 });

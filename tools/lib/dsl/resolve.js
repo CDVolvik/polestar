@@ -175,6 +175,22 @@ function sourceNpcs(data, first, sources) {
 	return out.length ? out : undefined;
 }
 
+// The sources a hand-placed point stands among: those with a spawn within
+// `near` yards of it (handSpots' own test for a point the data knows),
+// nearest spawn first. The point is the author's, so the creature it belongs
+// to is the nearest one, not the best dropper pickSpawn would have chosen.
+// -> [{ kind, id, chance? }]
+function pointSources(data, sources, map, f, x, y, near) {
+	const out = [];
+	for (const src of sources) {
+		let d = Infinity;
+		for (const p of spawnPointsOf(data, [src], map, f)) d = Math.min(d, distance(data, map, p[0], p[1], x, y));
+		if (d <= near) out.push({ src, d });
+	}
+	out.sort((a, b) => a.d - b.d);
+	return out.map((o) => o.src);
+}
+
 // Sources ([{ kind, id, chance? }]) that elites (group.js isElite) and normal
 // sources (a non-elite npc hostile to one of `sides`, or an object) both drop
 // at 1% or more (any chance when none drops it at 1%, or none has a chance).
@@ -1387,7 +1403,10 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			const sources = onMap(data, all, goal.map, dropSides).on.map((o) => o.cand);
 			const near = !area ? SPAWN_CHECK_YARDS : sources.length && sources.every((s) => gatherNode(data, s)) ? Infinity : SPREAD_YARDS;
 			setIf(goal, 'spots', handSpots(data, sources, goal.map, goal.f, goal.x, goal.y, near));
-			if (v === 'collect') setIf(goal, 'fromNpcs', sourceNpcs(data, c, sources));
+			if (v === 'collect') {
+				const own = pointSources(data, sources, goal.map, goal.f, goal.x, goal.y, near);
+				setIf(goal, 'fromNpcs', sourceNpcs(data, own[0], own));
+			}
 		}
 	}
 	if (g.r !== undefined) goal.r = g.r;
