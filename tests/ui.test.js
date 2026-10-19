@@ -802,6 +802,38 @@ test('the header menu: picker, new tab, compact, transparent, lock; destructive 
 	assert.equal(out.pickerAfter, false, 'one dialog at a time');
 });
 
+// The catch-up (GUIDE_PLACED, fired for a guide just opened): the window
+// shows each step before the one placed in turn, in full, then that one; not
+// for a single step. The Engine's step never moves.
+test('the catch-up shows every step up to the one placed, each time a guide opened is placed', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 4)
+		local nav, Count = GF.parts.nav, GF.parts.nav.Steps.Count
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local rolling = { GF.catchingUp, GF.ShownStep() }
+		stub.advance(0.6)
+		GF.Render()
+		local mid = { count = Count:GetText(), shown = GF.ShownStep(), engine = Polestar.Engine.GetStepIndex() }
+		stub.advance(3)
+		local done = { GF.catchingUp or false, Count:GetText(), GF.parts.card:GetAlpha(), GF.ShownStep() }
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 4, {})
+		local again = GF.catchingUp ~= nil
+		stub.advance(3)
+		Polestar.Fire("GUIDE_PLACED", uistub.elwynn, 2, {})
+		local single = GF.catchingUp ~= nil
+		emit({ rolling = rolling, mid = mid, done = done, again = again, single = single })`);
+	assert.deepEqual(out.rolling, ['steps', 1], 'it starts on step 1');
+	assert.ok(out.mid.shown >= 1 && out.mid.shown <= 3, `a step gone over is shown in full (${out.mid.shown})`);
+	assert.equal(out.mid.count, `${out.mid.shown} / ${out.done[1].split(' / ')[1]}`);
+	assert.equal(out.mid.engine, 4, 'the Engine stays on the step placed');
+	assert.equal(out.done[0], false);
+	assert.match(out.done[1], /^4 \/ \d+$/);
+	assert.equal(out.done[2], 1);
+	assert.equal(out.done[3], 4);
+	assert.equal(out.again, true, 'the guide opened again: it goes over the steps again');
+	assert.equal(out.single, false, 'a single step passed: nothing rolls');
+});
+
 test('profession, reputation and achievement goals: own colours, icons, progress bars', () => {
 	const [prof, repRows, rep] = run(`
 		local function snapshot()
