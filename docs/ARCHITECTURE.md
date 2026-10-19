@@ -840,14 +840,14 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `talk` | `npc`, `npcName` | — | gossip/quest frame opened with that NPC during this step; else manual |
 | `interact` | `object`, `objName` | `quest`, `oi` | objective state if `quest` (the line named after the object, else `oi`); else manual |
 | `use` | `item`, `itemName` | `quest`, `oi` | objective state if `quest`; else manual |
-| `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it |
+| `sethome` | `location` | `npc`, `npcName`, `area` | bound at the goal's inn (`npc`'s, else the inn `location` names, in Nav/Travel.lua's data), by any of: the inn Travel finds for `GetBindLocation()` (`Nav.BoundInn`: the innkeeper learned at bind time in `flags.inn`, else the inn whose `area` the client names so, else its names); `GetBindLocation()` equal to the client's name of that inn's or the goal's `area` (`Compat.GetAreaName`); last, equal to `location` (case-insensitive). Binding at that innkeeper during the step latches it. `Engine.IsSethomeInnkeeper(goal, npc)` says whether `npc` is that innkeeper (for `sethome nearest`, one of its candidates); QoL's bind helper asks it |
 | `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual; latched once it lands in its live step |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` | with `node`: that taxi node among the known ones (`flags.taxi`, recorded by Nav/Travel.lua from the flight map); without: taxi map opened at a flight master of that name (persisted in `flags.fp`); else manual |
 | `fly` | `location` | `area`, `node` | as `hearth`, including the in-step latch (`node`: the flight point, named in the client's language where no `area` names the place) |
 | `train` | — | `npc`, `npcName`, `text` | trainer window opened during this step, else manual |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName` | item count ≥ `count` (default 1) |
 | `vendor` | — | `npc`, `npcName`, `text` | merchant window opened during this step, else manual |
-| `level` | `level` | — | player level ≥ `level` |
+| `level` | `level` | `frac` | player level > `level`, or = `level` with XP / XPMax ≥ `frac` (no `frac`: level ≥ `level`) |
 | `note` | `text` | — | never blocks (informational) |
 | `skill` | `skill` (name), `level` | `skillLine` | skill rank ≥ `level` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName` (trainer), `item` (recipe item) | spell known |
@@ -1098,7 +1098,9 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `ResetProgress` forgets them; a pack update moves them with the steps
   (`Own.remap`). The live state they read already re-evaluates the guide
   (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
-  `HEARTHSTONE_BOUND`).
+  `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`). A `level` predicate with `frac`
+  (`when level>=12.5`) compares the level plus the share of it done
+  (XP / XPMax) with `n + frac`.
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is
@@ -3277,6 +3279,38 @@ Polestar.QoL.Rewards.best, .reason                -- auto-pick's settled answer 
   hovered choice through `Polestar.Hooks`. Gear's "Best pick" line
   (`gear.pickTooltip`) appears only when its pick is an upgrade, so it never
   contradicts the coin. `gear.rewards` is the guide window's pick line only.
+
+### Binding at the guide's inn — QoL, asks the Engine
+
+`QoL/Bind.lua`, behind `qol.autoBind` (Quality of Life → Travel →
+Hearthstone; off by default, as it binds for the player). It does one thing:
+while the active tab's current step has an open `sethome` goal, it binds the
+Hearthstone at the innkeeper that goal names, and nowhere else.
+
+```lua
+Polestar.QoL.Bind.Wanted(npc) -> bool        -- an open sethome goal of the current step binds at npc (Engine.IsSethomeInnkeeper), and the character is not bound at that innkeeper's inn (Nav.BoundInn)
+Polestar.QoL.Bind.BinderOption(options) -> option | nil  -- the gossip's bind option: icon or overrideIconID 132052 (BinderGossipIcon)
+Polestar.QoL.Bind.OnGossip() -> bool         -- GOSSIP_SHOW (Toggles.lua: after the flight helper, before skipGossip): picked the bind option
+```
+
+- **Gossip.** At such an innkeeper, the bind option is picked by its icon,
+  never its text (`QoL.SelectGossip`: by `gossipOptionID`, else
+  `orderIndex`). Not with Shift held, and not while the gossip has a quest to
+  pick up or hand in (`QoL.HasQuestBusiness`, which the flight helper shares):
+  the quest automation goes first and the gossip shows again after it.
+- **Confirmation.** Picking the option fires `CONFIRM_BINDER(areaName)`,
+  registered only while the setting is on (`QoL.WhileOn`). While the
+  innkeeper (`"npc"`, else the last gossip's NPC: the client may have closed
+  the gossip) is still `Wanted`, whether the helper or the player picked the
+  option, and Shift was held neither at that gossip nor now, it answers as the
+  popup's Accept does
+  (`C_PlayerInteractionManager.ConfirmationInteraction(Enum.PlayerInteractionType.Binder)`,
+  then `ClearInteraction(Binder)`; Blizzard_StaticPopup_Game
+  GameDialogDefs.lua), closes the "CONFIRM_BINDER" popup on the next frame
+  (`QoL.ClosePopup`, as for summons; left to the player under the gamepad
+  interface style) and prints "Bound your Hearthstone to <area>.". The
+  Engine completes the goal from the bind as it does for one by hand
+  (`HEARTHSTONE_BOUND`).
 
 ### Guide level on the XP bar — QoL/XPMark
 

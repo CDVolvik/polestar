@@ -86,6 +86,11 @@ register(QOL, L["Travel"], L["Flight masters"], {
 		help = L["Marks where the travel route flies next on the flight map. You still choose the flight."] },
 })
 
+register(QOL, L["Travel"], L["Hearthstone"], {
+	{ kind = "toggle", key = "qol.autoBind", label = L["Set your home at the guide's inn"],
+		help = L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] },
+})
+
 register(QOL, L["Travel"], L["Death"], {
 	{ kind = "toggle", key = "qol.deathHelper", label = L["Corpse or Spirit Healer"],
 		help = L["As a ghost, points the arrow at the faster way back: your corpse or the nearest Spirit Healer."] },

@@ -78,18 +78,7 @@ local function nextFrame(fn)
 	if C_Timer and C_Timer.After then C_Timer.After(0, fn) else fn() end
 end
 
--- Close a static popup the way its own button would; `mark` is a field its
--- OnHide reads to know it was answered.
-local function closePopup(which, mark)
-	nextFrame(function()
-		if gamepadUI() or not StaticPopup_Hide then return end
-		if mark and StaticPopup_FindVisible then
-			local dialog = StaticPopup_FindVisible(which)
-			if dialog then dialog[mark] = 1 end
-		end
-		StaticPopup_Hide(which)
-	end)
-end
+local closePopup = QoL.ClosePopup
 
 local function inCombat(unit)
 	return UnitAffectingCombat and UnitAffectingCombat(unit) and true or false

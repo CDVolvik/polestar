@@ -375,7 +375,7 @@ for _, list in ipairs({
 		{ L["Rares"], { L["When a rare shows up"], L["How rares are noticed"], L["History"] } },
 	}),
 	declare(QOL, "qualityoflife", "qol-toggles", 60, L["Small conveniences: travel, invitations, merchants and trackers."], {
-		{ L["Travel"], { L["Flight masters"], L["Flight timer"], L["Death"] } },
+		{ L["Travel"], { L["Flight masters"], L["Hearthstone"], L["Flight timer"], L["Death"] } },
 		{ L["Social"], { L["Requests"], L["Blocking"] } },
 		{ L["Vendors"], { L["Merchants"] } },
 		{ L["Trackers"], { L["Experience"], L["Instances"], L["Instance limits"] } },

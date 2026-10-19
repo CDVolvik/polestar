@@ -102,6 +102,7 @@ L["Kill %s for %s"] = "Убить %s и добыть %s"
 L["Collect %s from %s"] = "Собрать %s с %s"
 L["Riding"] = "Верховая езда"
 L["Grey, kept: opens %s"] = "Серое, оставлено: открывает %s"
+-- L["level and share of it: %d (%d%%)"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."
@@ -745,6 +746,9 @@ L["Start this session's XP per hour from zero."] = "Начать отсчет о
 -- L["Scale of the quest item, Hearthstone, target and rare buttons. Drag one to move them all."] = ""
 L["Guide level on the XP bar"] = "Уровень гайда на полосе опыта"
 L["A mark at the end of the game's XP bar with the level the guide wants you to reach before it moves on, and how many levels away that is when it is more than one."] = "Отметка в конце полосы опыта игры с уровнем, которого гайд просит достичь, прежде чем идти дальше, и сколько уровней до него, если больше одного."
+-- L["Hearthstone"] = ""
+-- L["Set your home at the guide's inn"] = ""
+-- L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Только Альянс"
@@ -2262,6 +2266,10 @@ L["Guides someone shared with you, as an import string or a community addon."] =
 -- QoL/XPMark.lua
 L["Guide: %d"] = "Гайд: %d"
 L["Guide: %d (%d levels)"] = "Гайд: %d (уровней: %d)"
+
+-- QoL/Bind.lua
+-- L["Bound your Hearthstone to %s."] = ""
+-- L["Bound your Hearthstone."] = ""
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."

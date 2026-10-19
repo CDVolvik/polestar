@@ -206,6 +206,8 @@ end
 local WHEN_OPS = { ["<"] = true, ["<="] = true, [">"] = true, [">="] = true }
 local WHEN_QUEST = { complete = true, turnedin = true, available = true }
 local WHEN_PLACE = { zone = true, subzone = true, bound = true }
+-- A point inside a level (format 4): the share of it done, strictly between 0 and 1.
+local function isFrac(v) return isNum(v) and v > 0 and v < 1 end
 local function checkWhen(list)
 	if list == nil then return true end
 	if type(list) ~= "table" or #list == 0 then return false end
@@ -215,6 +217,7 @@ local function checkWhen(list)
 		local k = p.k
 		if k == "level" then
 			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
+			if p.frac ~= nil and not isFrac(p.frac) then return false end
 		elseif k == "onquest" then
 			if type(p.q) ~= "table" or #p.q == 0 then return false end
 			for j = 1, #p.q do
@@ -274,6 +277,7 @@ local function checkGoal(goal)
 	if goal.count ~= nil and not isNum(goal.count) then return "bad count" end
 	if goal.text ~= nil and type(goal.text) ~= "string" then return "bad text" end
 	if goal.t == "rep" and (goal.standing < 1 or goal.standing > 8) then return "standing outside 1-8" end
+	if goal.t == "level" and goal.frac ~= nil and not isFrac(goal.frac) then return "bad frac" end
 	for _, key in ipairs(KEYS.goalNumbers) do
 		if goal[key] ~= nil and not isNum(goal[key]) then return "bad " .. key end
 	end

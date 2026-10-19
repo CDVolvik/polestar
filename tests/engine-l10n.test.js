@@ -194,6 +194,28 @@ Polestar.RegisterGuide({ id = "test/names", pack = "test", title = "Names", fact
 	assert.deepEqual(en, { trail: [1, 2, 3, 4], text: 'Hearth to Darkshire' });
 });
 
+test("the innkeeper a sethome binds at: its npc, else its location's inn's innkeeper, else a nearest candidate (QoL's bind helper asks the same)", () => {
+	const [out] = run('enUS', {
+		script: `
+			local I = E.IsSethomeInnkeeper
+			local named = { t = "sethome", npc = 6790, location = "Darkshire" }
+			local byPlace = { t = "sethome", location = "Darkshire" }
+			local unknown = { t = "sethome", location = "Nowhere" }
+			local nearest = { t = "sethome", candidates = { { npc = 3934 }, { npc = 6790 } } }
+			emit({
+				named = { I(named, 6790), I(named, 295) },
+				byPlace = { I(byPlace, 6790), I(byPlace, 295) },
+				unknown = I(unknown, 6790),
+				nearest = { I(nearest, 6790), I(nearest, 295) },
+				noNpc = I(named, nil),
+				notSethome = I({ t = "talk", npc = 6790 }, 6790),
+			})`,
+	});
+	assert.deepEqual(out, {
+		named: [true, false], byPlace: [true, false], unknown: false, nearest: [true, false], noNpc: false, notSethome: false,
+	});
+});
+
 // A goto labelled with a cave's subzone (compile gives it the area, #105) at
 // the cave's mouth, then one labelled with its zone; Durotar's frame as the
 // client places it (data/forever/map-frames.json).

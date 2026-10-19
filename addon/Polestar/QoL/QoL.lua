@@ -57,6 +57,7 @@ local defaults = {
 	rewardEquip = false,     -- wear what a turn-in gives when it is an upgrade
 	flightAutoOpen = true,
 	flightHighlight = true,
+	autoBind = false,        -- bind the Hearthstone at the step's innkeeper
 	deathHelper = true,
 	instantQuestText = true,
 	skipGossip = true,
@@ -233,6 +234,56 @@ function QoL.OnStep(fn)
 	ns.On("STEP_UPDATED", fn)
 	ns.On("GUIDE_CHANGED", fn)
 	ns.On("TABS_CHANGED", fn)
+end
+
+---------------------------------------------------------------------------
+-- Gossip and Blizzard's dialogs, for the helpers that answer them
+---------------------------------------------------------------------------
+
+-- The open gossip offers a quest to pick up or one to hand in: the quest
+-- automation goes first, so a helper leaves such a gossip alone.
+function QoL.HasQuestBusiness()
+	local G = C_GossipInfo
+	if not G then return false end
+	if (G.GetNumAvailableQuests and G.GetNumAvailableQuests() or 0) > 0 then return true end
+	if G.GetActiveQuests then
+		local active = G.GetActiveQuests() or {}
+		for i = 1, #active do
+			if active[i].isComplete then return true end
+		end
+	end
+	return false
+end
+
+-- Picks a gossip option by its ID, else its order index; false when the
+-- client offers neither.
+function QoL.SelectGossip(opt)
+	local G = C_GossipInfo
+	if opt.gossipOptionID and G and G.SelectOption then
+		G.SelectOption(opt.gossipOptionID)
+	elseif G and G.SelectOptionByIndex then
+		G.SelectOptionByIndex(opt.orderIndex)
+	else
+		return false
+	end
+	return true
+end
+
+-- Answering through the API leaves Blizzard's dialog up, so it is closed on
+-- the next frame, after Blizzard's own handler has shown it; `mark` is a
+-- field its OnHide reads to know it was answered. Under Forever's Gamepad
+-- interface style (ns.GamepadUI, Core/Init.lua) dialogs belong to the
+-- gamepad focus system and are left for the player to dismiss.
+function QoL.ClosePopup(which, mark)
+	local function close()
+		if ns.GamepadUI() or not StaticPopup_Hide then return end
+		if mark and StaticPopup_FindVisible then
+			local dialog = StaticPopup_FindVisible(which)
+			if dialog then dialog[mark] = 1 end
+		end
+		StaticPopup_Hide(which)
+	end
+	if C_Timer and C_Timer.After then C_Timer.After(0, close) else close() end
 end
 
 ---------------------------------------------------------------------------
