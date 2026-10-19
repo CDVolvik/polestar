@@ -107,10 +107,10 @@ step Auberdine
 
 step The beach
   tip Tide Crawlers scuttle along the shore below the village; Buzzbox 827 stands on the beach just south of the docks. Darkshore Threshers swim in the shallows. The Beached Sea Creature lies on the shore just south of the village.
-  collect 5385 quest 983                      -- Crawler Legs
+  collect 5385 quest 983 @35.6,47.1           -- Crawler Legs
   turnin 983                                  -- Buzzbox 827
   accept 1001
-  collect 5412 quest 1001                     -- Thresher Eyes
+  collect 5412 quest 1001 @33.8,38.4          -- Thresher Eyes
   collect 12242 quest 3524                    -- Sea Creature Bones
   collect 12238 quest 1141 optional @36.1,44.9 -- Darkshore Grouper: fish from the pier
 
