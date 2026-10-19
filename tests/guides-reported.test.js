@@ -1818,3 +1818,17 @@ test("forever/class/warlock/incubus-horde.guide: Phyz's report (#412): Avelina's
 	assert.equal(heart(190179).oi, 1, "Avelina's Heart reads line 1");
 	assert.equal(heart(190180).oi, 2, "Isaac's Heart reads line 2");
 });
+
+// --- Making Do (Nittepitte, #453): Baros Alexston offers Making Do only to a
+// player who handed him Expanding Horizons (97914), taken at the end of
+// Darkshore. The project data has no prerequisite for it, and the sources
+// disagree, so the accept and its turn-in in Ashenvale are optional: a
+// player without Expanding Horizons is not held at Baros or Thundris.
+test(`Nittepitte's report (#453): Making Do is optional in Redridge and Ashenvale, and taken only after Expanding Horizons is handed in`, { skip }, () => {
+	const list = goals(REDRIDGE);
+	const take = at(list, 'accept 97926', is('accept', 97926));
+	assert.ok(list[take].goal.optional, 'accept 97926 is optional');
+	assert.ok(at(list, 'turnin 97914', is('turnin', 97914)) < take, 'Expanding Horizons is handed in first');
+	const ashenvale = goals('forever/alliance/06-ashenvale.guide');
+	assert.ok(ashenvale[at(ashenvale, 'turnin 97926', is('turnin', 97926))].goal.optional, 'turnin 97926 is optional');
+});

@@ -122,7 +122,7 @@ step Elune's Grace
 step Boat to Auberdine
   zone Darkshore
   tip From Stormwind Harbor take the boat to Auberdine; Thundris Windweaver stands at the north end of the village. Then head south along the road through Darkshore.
-  turnin 97926                                -- Thundris Windweaver: Alexston's reply
+  turnin 97926 optional                       -- Thundris Windweaver: Alexston's reply, if you took it in Stormwind
   goto 44.4,76.4 "Grove of the Ancients"
 
 step Kerlonian Evershade
