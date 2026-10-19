@@ -13,6 +13,7 @@
 //   [!]turnedin <quest>                       the quest is handed in
 //   [!]available <quest>                      the quest can be taken now
 //   [!]has <item> [xN]                        the bags hold N (default 1) or more
+//   [!]upgrade <item>                         Polestar's gear advice rates the item an upgrade
 //   [!]zone "<Name>"  [!]subzone "<Name>"     the zone or subzone text reads so
 //   [!]bound "<Location>"                     the hearthstone is bound there
 //   [!]dungeon "<Name>"                       the player chose to run that dungeon
@@ -24,12 +25,12 @@ const { levelPoint } = require('../game/xp');
 const { readMoney } = require('./money');
 
 const INT_RE = /^\d+$/;
-const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound', 'dungeon', 'done'];
+const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'upgrade', 'zone', 'subzone', 'bound', 'dungeon', 'done'];
 // A step label, as parse.js reads `label <name>`.
 const LABEL_RE = /^[A-Za-z0-9_-]+$/;
 const QUEST_ONE = new Set(['complete', 'turnedin', 'available']);
 const PLACE = new Set(['zone', 'subzone', 'bound']);
-const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>", [!]done <label>`;
+const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]upgrade <item>, [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>", [!]done <label>`;
 
 // A name written quoted or bare: `"Razor Hill"` or `Razor Hill`.
 function nameOf(text) {
@@ -86,6 +87,11 @@ function parseWhen(rest) {
 		const n = h[2] !== undefined ? Number(h[2]) : 1;
 		if (n < 1) return { error: '`has` needs a count of 1 or more' };
 		value.n = n;
+		return { value };
+	}
+	if (kind === 'upgrade') {
+		if (!INT_RE.test(args) || Number(args) <= 0) return { error: '`upgrade` needs one item id: upgrade <item>' };
+		value.item = Number(args);
 		return { value };
 	}
 	if (kind === 'done') {

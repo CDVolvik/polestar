@@ -1094,7 +1094,9 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   else as written), the dungeons the player chose to run
   (`Engine.DungeonChosen(map)`: `CharState().dungeons[map]`, set by
   `Engine.ChooseDungeon(map, on)` from the Options' "Dungeons in leveling
-  guides", none by default; a predicate without `map` never holds). `stepApplies` reads them, so such a step counts as one
+  guides", none by default; a predicate without `map` never holds), and
+  Polestar's gear advice on an item (`Own.isUpgrade`: `Gear.IsUpgrade`,
+  counted as an upgrade when the advice is off or cannot judge the item). `stepApplies` reads them, so such a step counts as one
   for other characters while they fail, and a turn-in whose only accept sits
   there goes with it (`orphaned`). When the route moves past a step
   (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a
@@ -1108,7 +1110,7 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `ResetProgress` forgets them; a pack update moves them with the steps
   (`Own.remap`). The live state they read already re-evaluates the guide
   (quest log, `BAG_UPDATE_DELAYED`, zone changes, `PLAYER_LEVEL_UP`,
-  `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`, `PLAYER_MONEY`), and `Engine.ChooseDungeon`
+  `PLAYER_XP_UPDATE`, `HEARTHSTONE_BOUND`, `PLAYER_MONEY`, `GEAR_UPDATED`), and `Engine.ChooseDungeon`
   asks for an update itself. A `level` predicate with `frac`
   (`when level>=12.5`) compares the level plus the share of it done
   (XP / XPMax) with `n + frac`.
