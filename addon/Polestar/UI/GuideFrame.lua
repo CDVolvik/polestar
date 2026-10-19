@@ -624,6 +624,13 @@ local function layoutTab(b, pad)
 	b.Range:SetPoint("LEFT", b.Icon, "RIGHT", 6 + (titleW >= 1 and titleW + TAB_RANGE_GAP or 0), 0)
 end
 
+-- With ui.growUp and ui.barsBottom the tab strip and navigator sit at the
+-- bottom, by the edge the window is pinned to, with the progress foot above
+-- the navigator. Otherwise the order runs strip, navigator, body, foot.
+local function barsBottom()
+	return ns.Get("ui.growUp") and ns.Get("ui.barsBottom") and true or false
+end
+
 local function tabButton(i)
 	local b = tabButtons[i]
 	if b then return b end
@@ -638,8 +645,9 @@ local function tabButton(i)
 	b.Bar = b:CreateTexture(nil, "OVERLAY")
 	b.Bar:SetTexture(Theme.Media("white"))
 	b.Bar:SetHeight(2)
-	b.Bar:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
-	b.Bar:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 0, 0)
+	local edge = barsBottom() and "TOP" or "BOTTOM"
+	b.Bar:SetPoint(edge .. "LEFT", b, edge .. "LEFT", 0, 0)
+	b.Bar:SetPoint(edge .. "RIGHT", b, edge .. "RIGHT", 0, 0)
 	W.Color(b.Bar, "accent")
 	b.Icon = b:CreateTexture(nil, "ARTWORK")
 	b.Icon:SetSize(12, 12)
@@ -1077,6 +1085,50 @@ local function stackJourney(y, width)
 	return y
 end
 
+local function placeBars(showFoot)
+	local flip = barsBottom()
+	strip:ClearAllPoints()
+	nav:ClearAllPoints()
+	body:ClearAllPoints()
+	foot:ClearAllPoints()
+	band:ClearAllPoints()
+	strip.Rule:ClearAllPoints()
+	nav.Rule:ClearAllPoints()
+	local edge = flip and "TOP" or "BOTTOM"
+	strip.Rule:SetPoint(edge .. "LEFT", strip, edge .. "LEFT", 0, 0)
+	strip.Rule:SetPoint(edge .. "RIGHT", strip, edge .. "RIGHT", 0, 0)
+	nav.Rule:SetPoint(edge .. "LEFT", nav, edge .. "LEFT", 0, 0)
+	nav.Rule:SetPoint(edge .. "RIGHT", nav, edge .. "RIGHT", 0, 0)
+	if flip then
+		strip:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 0, 0)
+		strip:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", 0, 0)
+		nav:SetPoint("BOTTOMLEFT", strip, "TOPLEFT", 0, 0)
+		nav:SetPoint("BOTTOMRIGHT", strip, "TOPRIGHT", 0, 0)
+		foot:SetPoint("BOTTOMLEFT", nav, "TOPLEFT", 0, 0)
+		foot:SetPoint("BOTTOMRIGHT", nav, "TOPRIGHT", 0, 0)
+		body:SetPoint("TOPLEFT", F, "TOPLEFT", 0, 0)
+		body:SetPoint("TOPRIGHT", F, "TOPRIGHT", 0, 0)
+		band:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 1, 1)
+		band:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", -1, 1)
+	else
+		strip:SetPoint("TOPLEFT", F, "TOPLEFT", 0, 0)
+		strip:SetPoint("TOPRIGHT", F, "TOPRIGHT", 0, 0)
+		nav:SetPoint("TOPLEFT", strip, "BOTTOMLEFT", 0, 0)
+		nav:SetPoint("TOPRIGHT", strip, "BOTTOMRIGHT", 0, 0)
+		body:SetPoint("TOPLEFT", nav, "BOTTOMLEFT", 0, 0)
+		body:SetPoint("TOPRIGHT", nav, "BOTTOMRIGHT", 0, 0)
+		foot:SetPoint("BOTTOMLEFT", F, "BOTTOMLEFT", 0, 0)
+		foot:SetPoint("BOTTOMRIGHT", F, "BOTTOMRIGHT", 0, 0)
+		band:SetPoint("TOPLEFT", F, "TOPLEFT", 1, -1)
+		band:SetPoint("TOPRIGHT", F, "TOPRIGHT", -1, -1)
+	end
+	for _, b in ipairs(tabButtons) do
+		b.Bar:ClearAllPoints()
+		b.Bar:SetPoint(edge .. "LEFT", b, edge .. "LEFT", 0, 0)
+		b.Bar:SetPoint(edge .. "RIGHT", b, edge .. "RIGHT", 0, 0)
+	end
+end
+
 function GF.Layout()
 	if not F then return end
 	local width = F:GetWidth()
@@ -1127,8 +1179,11 @@ function GF.Layout()
 	foot:SetShown(showFoot)
 	local stripH = showStrip and TAB_H or 0
 	F:SetHeight(floor(stripH + NAV_H + y + (showFoot and PROG_H or 0) + 0.5))
+	placeBars(showFoot)
 	band:SetHeight(stripH + NAV_H)
-	band:SetTexCoord(Theme.BandCoords(width - 2, stripH + NAV_H, 30))
+	local x0, x1, y0, y1 = Theme.BandCoords(width - 2, stripH + NAV_H, 30)
+	if barsBottom() then y0, y1 = y1, y0 end
+	band:SetTexCoord(x0, x1, y0, y1)
 	if showStrip then GF.RenderTabs() end
 	GF.PaintProgress(false)
 end
@@ -1792,7 +1847,8 @@ local APPLY = {
 	["ui.width"] = function() GF.ApplyWidth() end,
 	["ui.pos"] = function() GF.ApplyPosition() end,
 	-- Re-pin by the other corner where the window stands now, so it does not jump.
-	["ui.growUp"] = function() GF.SavePosition() end,
+	["ui.growUp"] = function() GF.SavePosition(); GF.Layout() end,
+	["ui.barsBottom"] = function() GF.Layout() end,
 	["ui.upcoming"] = function() GF.Render() end,
 	["ui.upcomingOpen"] = function() GF.Render() end,
 	["ui.showNotes"] = function() GF.Render() end,

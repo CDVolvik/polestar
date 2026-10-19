@@ -944,6 +944,8 @@ L["The skin's arrow"] = "Der Pfeil des Designs"
 -- L["In dungeons"] = ""
 -- L["What the window does in dungeons and raids. /polestar or the key binding opens it there until you leave."] = ""
 -- L["Line style"] = ""
+-- L["Bar at the bottom"] = ""
+-- L["With Grow upward, put the tabs and the step bar at the bottom edge, next to where the window is pinned."] = ""
 
 -- UI/Dungeons.lua
 L["Ready to turn in"] = "Bereit zur Abgabe"

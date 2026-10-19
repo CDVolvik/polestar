@@ -429,6 +429,40 @@ test('grow upward pins the window by its bottom-left; turning it on or off keeps
 	assert.equal(out.offPoint[0], 'TOPLEFT');
 });
 
+test('bar at the bottom needs grow upward; then the tabs, navigator and progress stack at the bottom', () => {
+	const [out] = run(`
+		uistub.setGuide(uistub.elwynn, 3)
+		local function at() return { strip = { GF.parts.strip:GetPoint(1) }, foot = { GF.parts.foot:GetPoint(1) }, nav = { GF.parts.nav:GetPoint(1) } } end
+		local normal = at()
+		Polestar.Set("ui.barsBottom", true)
+		local withoutGrow = at()
+		Polestar.Set("ui.growUp", true)
+		local flipped = at()
+		Polestar.Set("ui.barsBottom", false)
+		emit({ normal = normal, withoutGrow = withoutGrow, flipped = flipped, back = at() })`);
+	const pt = (o) => [o.strip[0], o.foot[2], o.nav[0]];
+	assert.deepEqual(pt(out.normal), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'default: tabs on top, foot at the bottom');
+	assert.deepEqual(pt(out.withoutGrow), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'without grow upward the option changes nothing');
+	assert.deepEqual(pt(out.flipped), ['BOTTOMLEFT', 'TOPLEFT', 'BOTTOMLEFT'], 'flipped: tabs at the bottom, the navigator and the foot stacked above them');
+	assert.deepEqual(pt(out.back), ['TOPLEFT', 'BOTTOMLEFT', 'TOPLEFT'], 'turning it off restores the order');
+});
+
+test('bar at the bottom: a tab opened while it is on has its highlight on the top edge from the render that makes it', () => {
+	const [out] = run(`
+		Polestar.Set("ui.growUp", true)
+		Polestar.Set("ui.barsBottom", true)
+		local points, render = {}, GF.RenderTabs
+		GF.RenderTabs = function(...)
+			render(...)
+			for _, b in ipairs(shownTabs()) do points[#points + 1] = b.Bar:GetPoint(1) end
+		end
+		uistub.openTabs(TABS, 1)
+		GF.RenderTabs = render
+		emit({ points = points })`);
+	assert.ok(out.points.length >= 2, 'the tabs were rendered');
+	for (const p of out.points) assert.equal(p, 'TOPLEFT', 'a new tab\'s highlight sits on the edge next to the navigator');
+});
+
 test('combat: by default the window stays as it is; fade dims it, hide hides it, both restore afterwards', () => {
 	const [out] = run(`
 		uistub.setGuide(uistub.elwynn, 3)
