@@ -17,6 +17,7 @@
 
 <p align="center">
   On <a href="https://www.curseforge.com/wow/addons/polestar-guides"><b>CurseForge</b></a>, or from the Releases page. Questions, feedback and bug reports: join the <a href="https://discord.gg/vMbee6F2e9"><b>Polestar Discord</b></a>.
+  Polestar is free; if it saves you a few hours, you can <a href="https://ko-fi.com/0xfitz"><b>buy me a coffee</b></a>.
 </p>
 
 <p align="center">
@@ -26,6 +27,7 @@
   <a href="https://github.com/fitzforge/polestar/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/fitzforge/polestar/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://discord.gg/vMbee6F2e9"><img alt="Discord: join the Polestar community" src="https://img.shields.io/badge/Discord-join_us-5865f2?style=flat-square&logo=discord&logoColor=white&labelColor=232a3f"></a>
   <a href="https://www.curseforge.com/wow/addons/polestar-guides"><img alt="CurseForge: Polestar Guides" src="https://img.shields.io/badge/CurseForge-Polestar_Guides-f16436?style=flat-square&logo=curseforge&logoColor=white&labelColor=232a3f"></a>
+  <a href="https://ko-fi.com/0xfitz"><img alt="Ko-fi: buy me a coffee" src="https://img.shields.io/badge/Ko--fi-buy_me_a_coffee-ff5e5b?style=flat-square&logo=kofi&logoColor=white&labelColor=232a3f"></a>
 </p>
 
 <p align="center">
@@ -245,8 +247,11 @@ map. Renders of every window and state, drawn without the game, are in
   takes you there, routed like any goal; Alt-click works over map icons.
   Click the spot again to let it go.
 - **Nearby services.** `/polestar near repair` (trainer, a profession,
-  class, reagents, vendor, innkeeper, bank, auction, flight, stable) points
-  the arrow at the quickest one to reach; the map's tracking menu lists them.
+  class, weapon, reagents, vendor, innkeeper, bank, auction, flight, stable)
+  points the arrow at the quickest one to reach; the map's tracking menu and
+  the guide window's Nearby services button list them, the button with a
+  page of the weapons a weapon master can teach you. Once you get there,
+  the arrow is back on the guide.
 - **Other addons' waypoints** (Options, Integrations, TomTom). Without TomTom, "Let other addons set
   waypoints" (off by default) lets addons that set TomTom waypoints point
   Polestar's arrow and makes `/way` work; addons that expect TomTom's own
@@ -324,6 +329,8 @@ guides you there instead.
 - **On the game's reward panel** every choice that is an upgrade gets a green
   arrow, the one to take is framed, and a coin marks the one that sells for
   most. Turn-in goals name the best reward.
+- **In your bags** every item that is an upgrade gets the same green arrow,
+  in the game's bags and in Baganator.
 
 ### Lookup, Dungeons and Rares
 

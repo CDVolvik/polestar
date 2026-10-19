@@ -89,7 +89,7 @@ lift landings from Polestar_Nav's `Chokepoints.lua`).
 |---|---|---|
 | K1 | Every step has a name; without a subzone, the kind and the zone ("the bridge in Loch Modan"), never "Unknown" | `tests/nav-spf.test.js`, `tests/ui-journey.test.js`, `tests/nav-e2e.test.js` (a cave step from the shipped `Chokepoints.lua`), `tests/navmesh-chokepoints.test.js` |
 | K2 | The walk is split once per plan, never per frame: ten position updates along a leg change only the times | `tests/nav-spf.test.js`, `tests/ui-journey.test.js` |
-| K3 | A lift says "leaves in about M:SS" until a ride has timed it, then "leaves in M:SS"; walks, gates, bridges, caves and passes carry no wait | `tests/nav-spf.test.js`, `tests/nav-transit.test.js`, `tests/ui-journey.test.js` |
+| K3 | A lift says "average wait M:SS" until a ride has timed it, then "leaves in M:SS"; walks, gates, bridges, caves and passes carry no wait | `tests/nav-spf.test.js`, `tests/nav-transit.test.js`, `tests/ui-journey.test.js` |
 | K4 | A lift's top or bottom comes from the path's direction, not the player's height | `tests/nav-spf.test.js` |
 | K5 | A chokepoint snaps to the nearest point on the path and splits only there, so no leg runs out and back | `tests/nav-spf.test.js` |
 | K6 | The steps of a split walk add up exactly to the walk's time | `tests/nav-spf.test.js` |

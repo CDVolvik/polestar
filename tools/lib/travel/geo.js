@@ -70,18 +70,21 @@ class Frames {
 }
 
 // Pick the map for a world point: a map in `prefer` (e.g. where the matching
-// NPC spawns) when it holds the point, then a map whose name appears in
-// `label` ("Thelsamar, Loch Modan"), then the smallest.
+// NPC spawns), then the exact location named before the comma in `label`,
+// then the region after it, then the smallest containing map. A flight
+// master listed on both city and region maps belongs to the named city.
 function placePoint(frames, c, wx, wy, { prefer = [], label = '' } = {}) {
 	const cands = frames.containing(c, wx, wy);
 	if (!cands.length) return null;
 	// "Tarren Mill, Hillsbrad" names its zone after the comma, sometimes shortened.
 	const comma = String(label).indexOf(',');
+	const location = (comma >= 0 ? String(label).slice(0, comma) : String(label)).trim().toLowerCase();
 	const suffix = comma >= 0 ? String(label).slice(comma + 1).trim().toLowerCase() : '';
 	const score = (cand) => {
 		let s = 0;
-		if (prefer.includes(cand.map)) s += 2;
+		if (prefer.includes(cand.map)) s += 4;
 		const name = frames.name(cand.map);
+		if (name && location && name.toLowerCase() === location) s += 2;
 		if (name && suffix && name.toLowerCase().startsWith(suffix)) s += 1;
 		return s;
 	};
