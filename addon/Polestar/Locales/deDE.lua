@@ -1049,10 +1049,6 @@ L["Search dungeons"] = "Dungeons suchen"
 L["The map can't open in combat: press Show on map again when it ends."] = "Die Karte lässt sich im Kampf nicht öffnen: Klicke nach dem Kampf erneut auf „Auf der Karte zeigen“."
 -- L["If you finish the quests here"] = ""
 -- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
--- L["%s XP at your level"] = ""
--- L["If you finish this quest and the chain before it"] = ""
--- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
--- L["%s XP with its chain"] = ""
 
 -- UI/Lookup.lua
 L["Mount"] = "Reittier"
@@ -2154,7 +2150,6 @@ L["Halo"] = "Halo"
 L["Hearth"] = "Herd"
 L["Blizzard"] = "Blizzard"
 L["Classic"] = "Classic"
--- L["WoW Forever"] = ""
 
 -- QoL/Buttons.lua
 -- L["Click again for the next name. Shift-drag to move."] = ""
