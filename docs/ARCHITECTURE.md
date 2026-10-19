@@ -2366,7 +2366,12 @@ committed, written by `node tools/polestar.js travel import --carbonite
 connections (GPL-3.0; `tools/lib/travel/carbonite.js`): its walks between
 two zones of one continent, both ways unless Carbonite marks one way, every
 end with a 30 yd arrival radius (Carbonite gives none); its boats, zeppelins,
-tram and portals are TravelData's own transports and are left out. `travel
+tram and portals are TravelData's own transports and are left out. Its
+`open` pairs are not Carbonite's: borders the navigation grid finds walkable
+along their length (`nav aids` open pairs; Elwynn Forest and Duskwood,
+Duskwood and Westfall, whose river the walking engine swims), so a walk
+across them is not sent round to a road crossing (#371, #421); a re-import
+keeps them and its `source` says so. `travel
 build --shipped none` builds without them (the test fixtures). An optional
 local crossings file, `data/local/crossings.json` (gitignored), adds to them:
 the build validates it and writes it into the local data addon
