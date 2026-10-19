@@ -549,7 +549,8 @@ end
 local GUIDE = {
 	forever = function(f, kit)
 		-- /polestar skintest <n>: temporary variants for Fitz to verify in game.
-		-- a = cover on edge frame (BORDER 1 on o covers inner bleed from same level)
+		-- a = edge frame at f's level (BELOW content at f+1); cover at BORDER 1
+		--     on edge hides inner bleed while content draws above it.
 		-- b = out={0,0,0,0}: slim flush to window edge, no outer protrusion
 		-- c = original rc1 (inset 3, BACKGROUND)
 		-- default = body BORDER 1, inset 0, out {3,3,3,3} (attempt 2)
@@ -566,10 +567,14 @@ local GUIDE = {
 		local o = child(f, "edge", 6)
 		o:EnableMouse(false)
 		o:SetAllPoints(f)
+		if bvar == "a" then
+			-- Drop edge frame to f's own level. Content child frames default to
+			-- f:GetFrameLevel()+1, so they draw above edge+cover. The slim's
+			-- outer bronze line extends outside f and is unaffected.
+			o:SetFrameLevel(f:GetFrameLevel())
+		end
 		sliced(f, "slim", kit, kit.slim, o, out, "BORDER", 0, true)
 		if bvar == "a" then
-			-- Cover on the edge frame (same level as slim) at BORDER 1 covers
-			-- the inner bleed; outer bronze line (outside f) remains visible.
 			local cv = o:CreateTexture(nil, "BORDER", nil, 1)
 			cv:SetTexture(Theme.Media("white"))
 			cv:SetVertexColor(0, 0, 0, 0.96 * opacity(f))
