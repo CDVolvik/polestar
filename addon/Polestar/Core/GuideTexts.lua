@@ -44,7 +44,7 @@ local GuideTexts = {}
 ns.GuideTexts = GuideTexts
 
 local type, pairs, ipairs, tonumber, next = type, pairs, ipairs, tonumber, next
-local find, sub, upper = string.find, string.sub, string.upper
+local find, sub, upper, concat = string.find, string.sub, string.upper, table.concat
 
 local ENGLISH = { enUS = true, enGB = true }
 local locale = (GetLocale and GetLocale()) or "enUS"
@@ -89,21 +89,30 @@ local function localName(kind, id, en)
 	return ns.Names.Cached(kind, id)
 end
 
+-- Stop filling once output passes this many bytes; prevents token-fill blow-up
+-- from adversarial import strings (2× the per-text cap in Import.LIMITS.text).
+local FILL_CAP = 8192
+
 local function fill(s, names, live)
 	if not find(s, "{", 1, true) then return s end
-	local out, at = "", 1
+	local parts, n, at, total = {}, 0, 1, 0
 	while true do
 		local a, b, kind, id = find(s, "{(%l+):(%d+)}", at)
 		if not a then break end
-		out = out .. sub(s, at, a - 1)
+		local prefix = sub(s, at, a - 1)
+		n = n + 1; parts[n] = prefix; total = total + #prefix
 		local en = names[kind .. ":" .. id]
 		local name = en and live and not english and localName(kind, tonumber(id), en) or nil
-		if valid(name) then out = out .. name
-		elseif en then out = out .. en
-		else out = out .. sub(s, a, b) end -- not a token of this guide: left as written
+		local token
+		if valid(name) then token = name
+		elseif en then token = en
+		else token = sub(s, a, b) end
+		n = n + 1; parts[n] = token; total = total + #token
 		at = b + 1
+		if total >= FILL_CAP then break end
 	end
-	return out .. sub(s, at)
+	n = n + 1; parts[n] = sub(s, at)
+	return concat(parts, "", 1, n)
 end
 
 local function render(def, entry, en, live)

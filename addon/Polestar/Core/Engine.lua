@@ -942,7 +942,6 @@ local picks = setmetatable({}, { __mode = "k" }) -- goal -> { list = { candidate
 local UNMEASURED = 1e9
 local PLANNED = 8
 local RUN_SPEED = 7 -- yards per second, unmounted
-
 -- Farm spots (`collect … nearest`): seconds to farm the items still missing
 -- there, and how many levels the spot's weakest mobs are above the player
 -- (3 or more: too high).

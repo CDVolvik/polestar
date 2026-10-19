@@ -74,7 +74,7 @@ ns.RegisterCommand("guide", function(rest)
 	local id = rest and rest:match("^%s*(%S+)")
 	if not id then
 		local g = Engine.GetGuide()
-		ns.Print(g and (L["Current guide: %s (%s)"]):format(g.title, g.id) or L["No guide selected."])
+		ns.Print(g and (L["Current guide: %s (%s)"]):format(g.title, ns.EscapeText(g.id)) or L["No guide selected."])
 		return
 	end
 	-- Guide ids are lower-case; an exact match still wins.

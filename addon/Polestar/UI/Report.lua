@@ -150,7 +150,7 @@ local function guideLines(d, on)
 	end
 	local G = ns.Guides
 	local pack = guide.pack and G and G.Pack and G.Pack(guide.pack)
-	local line = (L["Guide: %s (%s)"]):format(on.title, tostring(guide.id))
+	local line = (L["Guide: %s (%s)"]):format(on.title, plain(tostring(guide.id)))
 	if pack then line = line .. SEP .. (L["pack %s"]):format(plain(pack.title or pack.id) .. (pack.version and (" " .. plain(pack.version)) or "")) end
 	out[#out + 1] = cut(line)
 	if not view then

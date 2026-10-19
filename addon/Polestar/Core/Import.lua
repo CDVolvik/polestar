@@ -42,10 +42,13 @@ ns.Import = Import
 
 local PACK = "imported"
 -- The caps tools/lib/pack/importstring.js applies (a test holds them equal):
--- characters in a string, steps in its guide, bytes of the payload, and
--- bytes in any one text or key of it (a title, a note, a name token): the
--- texts are filled in token by token, so a long one costs time to show.
-local LIMITS = { length = 50000, steps = 60, payload = 262144, text = 4096 }
+-- characters in a string, steps in its guide, bytes of the payload, bytes in
+-- any one text or key of it, bytes in any names/written value (a token's
+-- English game name, capped at a game-name length), goals per step and
+-- candidates per goal (limits from the largest our own compiler emits; large
+-- enough that our own guides are never refused, tight enough to prevent
+-- route-planner blow-up from imported strings).
+local LIMITS = { length = 50000, steps = 60, payload = 262144, text = 4096, names = 128, goals = 100, candidates = 128 }
 Import.LIMITS = LIMITS
 
 ns.RegisterPack({ id = PACK, imported = true, title = L["Imported"] })
@@ -56,7 +59,10 @@ ns.RegisterPack({ id = PACK, imported = true, title = L["Imported"] })
 ---------------------------------------------------------------------------
 
 local MAX_DEPTH = 12
-local ESCAPES = { [34] = '"', [92] = "\\", [47] = "/", [98] = "\b", [102] = "\f", [110] = "\n", [114] = "\r", [116] = "\t" }
+-- Only the two control characters the compiler and guide authors write: newline
+-- and tab. Backspace, form-feed and carriage-return (\b \f \r) are refused;
+-- so are \u0000-\u001F other than \n (0x0A) and \t (0x09).
+local ESCAPES = { [34] = '"', [92] = "\\", [47] = "/", [110] = "\n", [116] = "\t" }
 
 local function utf8(cp)
 	if cp < 0x80 then return char(cp) end
@@ -89,6 +95,8 @@ local function parseJSON(s)
 				local h = sub(s, j + 2, j + 5)
 				if not find(h, "^%x%x%x%x$") then fail("bad escape") end
 				local cp, after = tonumber(h, 16), j + 6
+				-- Refuse NUL and non-printable control chars other than \n / \t.
+				if cp < 0x20 and cp ~= 0x09 and cp ~= 0x0A then fail("control character in a string") end
 				if cp >= 0xD800 and cp <= 0xDBFF then
 					local low = sub(s, j + 6, j + 11)
 					if not find(low, "^\\u[dD][c-fC-F]%x%x$") then fail("bad surrogate") end
@@ -196,7 +204,7 @@ Import.ParseJSON = parseJSON
 -- refuses the string. Built fresh: nothing of the parsed tree is kept.
 ---------------------------------------------------------------------------
 
-local S, N, B, NS, NL, BS = "s", "n", "b", "ns", "nl", "bs" -- string, number, boolean, number or string, number or list of numbers, boolean or string
+local S, N, B, NS, NL, BS, SM = "s", "n", "b", "ns", "nl", "bs", "sm" -- string, number, boolean, number or string, number or list of numbers, boolean or string, short string (names cap)
 local function list(of) return { list = of } end
 local function rec(fields) return { rec = fields } end
 local LS, LN = list(S), list(N)
@@ -230,7 +238,7 @@ local GUIDE = rec({
 	id = S, title = S, faction = S, races = LS, classes = LS, minLevel = N, maxLevel = N, category = S, folder = S, keywords = LS,
 	collects = LN, reward = list(rec({ item = N, itemName = S, quality = N, choice = B, spell = N, spellName = S, text = S })),
 	why = S, zone = N, zoneName = S, next = S, nextChoices = LS, nextWhen = { map = list(WHEN) }, pitch = S, pros = LS, cons = LS, author = S, version = N, group = B,
-	names = { map = S }, written = { map = S }, steps = list(STEP),
+	names = { map = SM }, written = { map = SM }, steps = list(STEP),
 })
 local PAYLOAD = rec({ format = N, license = S, guide = GUIDE, frames = { idmap = rec({ c = N, left = N, right = N, top = N, bottom = N }) } })
 
@@ -254,7 +262,8 @@ local function finite(v) return type(v) == "number" and v == v and v ~= huge and
 -- key or value that does not fit.
 local function build(v, spec, where)
 	if type(v) == "string" and #v > LIMITS.text and (spec == S or spec == NS or spec == BS) then error({ field = where, long = true }, 0) end
-	if spec == S then
+	if type(v) == "string" and #v > LIMITS.names and spec == SM then error({ field = where, long = true }, 0) end
+	if spec == S or spec == SM then
 		if type(v) == "string" then return v end
 	elseif spec == N then
 		if finite(v) then return v end
@@ -365,6 +374,10 @@ local function check(entry)
 	if type(id) ~= "string" or not Guides.OwnsId(PACK, id) then
 		return (L["Its guide id %s must start with its author's own id, as in yendi/cozy-sleeping-bag."]):format(escape(tostring(id)))
 	end
+	-- Require the full id to be pack-id/guide-slug, both segments safe pack ids.
+	if not id:match("^[a-z0-9][a-z0-9%-]*/[a-z0-9][a-z0-9%-]*$") then
+		return (L["Its guide id %s must start with its author's own id, as in yendi/cozy-sleeping-bag."]):format(escape(id))
+	end
 	local prefix = id:match("^([^/]+)/")
 	local holder = Guides.Pack(prefix)
 	if holder and not holder.imported then
@@ -378,6 +391,51 @@ local function check(entry)
 	for _, t in ipairs(ahead) do
 		if not (Guides.OwnsId("guides", t) or t == id or stored(t)) then
 			return (L["It leads on to %s, which is neither one of Polestar's guides nor an imported one: import that guide first."]):format(escape(t))
+		end
+	end
+	-- Import-specific structural caps: goals per step, candidates per goal,
+	-- at most one direct turn-in per quest per step (finding 3), and frame
+	-- bounds sanity (finding 6).
+	for i, step in ipairs(g.steps or {}) do
+		if #(step.goals or {}) > LIMITS.goals then
+			return (L["Its guide has %d goals in step %d; an import string holds %d per step at most."]):format(#step.goals, i, LIMITS.goals)
+		end
+		local directSeen = {}
+		for _, goal in ipairs(step.goals or {}) do
+			if goal.candidates and #goal.candidates > LIMITS.candidates then
+				return (L["Its guide has %d candidates in a goal; an import string holds %d per goal at most."]):format(#goal.candidates, LIMITS.candidates)
+			end
+			-- Finding 3: at most one direct turn-in per quest per step.
+			if goal.t == "turnin" and goal.direct and goal.quest then
+				if directSeen[goal.quest] then
+					return (L["Its guide has more than one direct turn-in for quest %d in step %d."]):format(goal.quest, i)
+				end
+				directSeen[goal.quest] = true
+			end
+			-- Finding 6: candidate x/y in 0-100.
+			for _, c in ipairs(goal.candidates or {}) do
+				if c.x ~= nil and (c.x < 0 or c.x > 100 or c.y < 0 or c.y > 100) then
+					return (L["Its guide has a candidate coordinate outside 0-100."]):format()
+				end
+			end
+			for _, sp in ipairs(goal.spots or {}) do
+				if sp.x ~= nil and (sp.x < 0 or sp.x > 100 or sp.y < 0 or sp.y > 100) then
+					return (L["Its guide has a spot coordinate outside 0-100."]):format()
+				end
+			end
+		end
+	end
+	-- Finding 6: map frames must not be degenerate or huge.
+	for _, frame in pairs(entry.frames or {}) do
+		if type(frame) == "table" then
+			local l, r, t, b, c = frame.left, frame.right, frame.top, frame.bottom, frame.c
+			if type(l) ~= "number" or type(r) ~= "number" or type(t) ~= "number" or type(b) ~= "number" or type(c) ~= "number" then
+				return L["Its guide has a map frame with missing fields."]
+			end
+			if l == r or t == b then return L["Its guide has a degenerate map frame (zero extent)."] end
+			if math.abs(l) >= 1e6 or math.abs(r) >= 1e6 or math.abs(t) >= 1e6 or math.abs(b) >= 1e6 then
+				return L["Its guide has a map frame with out-of-range coordinates."]
+			end
 		end
 	end
 	local err = Guides.Validate(g)
@@ -448,15 +506,23 @@ function Import.Preview(text)
 	local g = entry.guide
 	local have = stored(g.id)
 	local state = "new"
+	local authorChanged, licenseChanged = false, false
 	if have then
 		local v, h = versionOf(g), versionOf(have.guide)
 		state = v > h and "update" or v == h and "same" or "older"
+		-- Finding 7: warn when the incoming string changes who wrote or licensed
+		-- the guide; anyone can publish a higher version of someone else's import.
+		if state == "update" then
+			authorChanged = g.author ~= (type(have.guide) == "table" and have.guide.author)
+			licenseChanged = entry.license ~= (type(have) == "table" and have.license)
+		end
 	end
 	local c = shown(g)
 	return {
 		entry = entry, id = g.id, title = escape(c.title or g.id), author = g.author and escape(g.author) or nil,
 		version = g.version, steps = #g.steps, minLevel = g.minLevel, maxLevel = g.maxLevel, faction = g.faction,
 		license = escape(entry.license), state = state, have = have and versionOf(have.guide) or nil,
+		authorChanged = authorChanged or nil, licenseChanged = licenseChanged or nil,
 	}
 end
 
@@ -531,7 +597,16 @@ function Import.List()
 	for id, e in pairs(store(false) or {}) do
 		if type(id) == "string" and type(e) == "table" and type(e.guide) == "table" then
 			local g = Guides.Get(id)
-			local title = g and g.pack == PACK and g.title or (type(e.guide.title) == "string" and escape(shown(e.guide).title or id)) or escape(id)
+			-- For a stored guide that registered successfully use its live title;
+			-- for one that did not, use the raw title without calling Prepare
+			-- (which can error on a malformed or downgraded entry and break the
+			-- layout so Delete never draws).
+			local title
+			if g and g.pack == PACK then
+				title = g.title
+			else
+				title = type(e.guide.title) == "string" and escape(e.guide.title) or escape(id)
+			end
 			out[#out + 1] = {
 				id = id, title = title, author = type(e.guide.author) == "string" and escape(e.guide.author) or nil,
 				version = tonumber(e.guide.version), license = type(e.license) == "string" and escape(e.license) or nil,
@@ -570,4 +645,30 @@ function Import.Load()
 	end
 end
 
-ns.RegisterCommand("import", function() ns.Fire("SHOW_IMPORT") end, L["Open the Import page: guides shared as text"])
+ns.RegisterCommand("import", function(rest)
+	local sub = rest and rest:match("^%s*(%S+)")
+	if sub == "clear" then
+		local t = store(false)
+		if not t or not next(t) then
+			ns.Print(L["No imported guides to remove."])
+			return
+		end
+		local ids = {}
+		for id in pairs(t) do if type(id) == "string" then ids[#ids + 1] = id end end
+		for _, id in ipairs(ids) do Import.Delete(id) end
+		ns.Print((L["Removed %d imported guide(s)."]):format(#ids))
+	elseif sub == "delete" then
+		local id = rest:match("^%s*%S+%s+(.-)%s*$")
+		if not id or id == "" then
+			ns.Print(L["Usage: /polestar import delete <guide-id>"])
+			return
+		end
+		if Import.Delete(id) then
+			ns.Print((L["Removed imported guide %s."]):format(escape(id)))
+		else
+			ns.Print((L["No imported guide with id %s."]):format(escape(id)))
+		end
+	else
+		ns.Fire("SHOW_IMPORT")
+	end
+end, L["Open the Import page; import clear / import delete <id>: remove imports"])
