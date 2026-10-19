@@ -139,10 +139,12 @@ function Compat.InCombat()
 	return readable(UnitAffectingCombat and UnitAffectingCombat("player")) and true or false
 end
 
+-- -> inside, instanceType ("party", "raid", "pvp", ...; nil outside)
 function Compat.IsInInstance()
 	if not IsInInstance then return false end
-	local inside = IsInInstance()
-	return inside and true or false
+	local inside, kind = IsInInstance()
+	if not inside then return false end
+	return true, kind
 end
 
 -- The client's indoor state (the minimap's indoor zoom): true indoors, false
@@ -234,6 +236,19 @@ function Compat.GetQuestObjectives(questID)
 		out[i] = { text = o.text or "", type = o.type or "", finished = finished, numFulfilled = cur, numRequired = req }
 	end
 	return out
+end
+
+-- A quest-log objective line's label: its text without the counts
+-- ("Kobold Vermin slain: 3/10", "Linen Cloth: 2/6", on some clients "3/10
+-- Kobold Vermin slain"), the name an objective is matched on (the guide's
+-- objective goals, Engine; the quest tracker's lines). A line of counts alone
+-- (" slain: 0/8", ": 0/1") has no name yet: "".
+function Compat.ObjectiveLabel(text)
+	if type(text) ~= "string" then return "" end
+	local s = text:gsub("^%s*%d+%s*/%s*%d+%s+", ""):gsub("%s*:%s*%d+%s*/%s*%d+%s*$", "")
+	s = s:gsub("^%s+", ""):gsub("%s+$", "")
+	if s == "slain" then return "" end
+	return (s:gsub("%s+slain$", ""))
 end
 
 function Compat.GetQuestTitle(questID)
@@ -530,6 +545,24 @@ function Compat.GetPlayerMapPosition()
 	return map, x * 100, y * 100
 end
 
+-- Where the player stands, as guide lines ready to paste into a step: the
+-- map (`zone map <uiMapID>`) and a goal there (`goto x,y live`, two decimals
+-- like the compiler writes), then `x,y live` for the hint; nil where the
+-- game gives no position. The client reports live-frame coordinates, and
+-- typed coordinates are read in the Era frame unless marked, so the goal
+-- modifier `live` goes with them (Forever moved some zones). /polestar where
+-- and the report window's right spot (UI/Report.lua).
+-- Not in the Compat table: it reads ns.Compat at the call, so a test's fake
+-- Compat gives it the position.
+function ns.WhereLines()
+	local C = ns.Compat
+	local map, x, y
+	if C and C.GetPlayerMapPosition then map, x, y = C.GetPlayerMapPosition() end
+	if not (map and x and y) then return nil end
+	local xy = ("%.2f,%.2f live"):format(x, y)
+	return { ("zone map %d"):format(map), "goto " .. xy }, xy
+end
+
 local function liveToWorld(map, x, y)
 	if not (C_Map and C_Map.GetWorldPosFromMapPos) then return nil end
 	local c, pos = C_Map.GetWorldPosFromMapPos(map, vec(x / 100, y / 100))
@@ -663,6 +696,16 @@ function Compat.GetSkillRank(skillLineOrName)
 		end
 	end
 	return nil
+end
+
+-- A spell the character has, weapon skills included (Forever's spellbook
+-- check says no for those; IsPlayerSpell answers): true, false, or nil when
+-- the client cannot tell.
+function Compat.IsPlayerSpell(spellID)
+	if not (spellID and IsPlayerSpell) then return nil end
+	local ok, known = pcall(IsPlayerSpell, spellID)
+	if not ok then return nil end
+	return known and true or false
 end
 
 -- Spells in the spellbook, and profession recipes (which are not).
