@@ -4758,7 +4758,9 @@ XP of many dungeon quests, and QuestXP still has the Classic value for some
 1 October 2026 change that halved dungeon quests' extra XP (build 70170; a
 client's quest cache gives difficulty and multiplier, its XP is QuestXP ×
 multiplier, while web databases built from the DB2s give only the Classic
-base). Then, for quests
+base), or an undated capture at the dated post-change rate (XP / base) of a
+quest in the same dungeon: the extra XP was twice as much before the change,
+so such a value can't be a pre-change one. Then, for quests
 still without XP, the Forever web databases
 (`--no-web-xp` skips them; results are cached in
 `data/sources/webxp/quest-xp.json`): wowforevertalents.com (Forever beta client
