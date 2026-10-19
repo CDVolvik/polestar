@@ -111,6 +111,7 @@ Step directives:
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
 | `when <predicate>` | The step applies only while the predicate holds when the route reaches it; several `when` lines must all hold. See "Conditions checked during play". |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
+| `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals instead of a path to walk: see "Spawn areas", Loop. |
 
 A step must contain at least one goal.
 
@@ -265,7 +266,7 @@ ID"), and Polestar compares the game's own name for it, then the name you
 wrote.
 
 A pack with a `when` anywhere is written in pack format 4, which Polestar
-0.3.0 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
+0.2.6 and later read (docs/PACK_FORMAT.md); a pack without stays readable by
 older versions.
 
 ## What the compiler fills in
@@ -398,6 +399,27 @@ gets no `spots`.
   where the data does not (Forever moved it) and gets no `spots`. A route
   through gathering nodes lists every node place of the zone wherever its
   point lies.
+- **Loop** (a step with a `loop` line, for a search the data does not shape
+  the way you want: a circuit through camps, round a lake): the step's `goto`
+  points, in order, become the spawn areas of each of its `kill`, `collect`
+  and `interact` goals that has no `@x,y` of its own and picks no place at
+  runtime (`nearest`), with `spread = true`. The goal's point is the first
+  goto, the spots are exactly the gotos (no alternatives, no spawn count `n`),
+  each as wide as its goto's `r` (default 30 yd), and the gotos leave the
+  step (their labels with them), so the player searches the points one after
+  another as in an area objective. Compile-time
+  only: the compiled step has no `loop`. It is an error when the step has
+  fewer than two gotos, gotos on different maps or frames, an `optional` or
+  `only` goto, or no goal to place.
+
+  ```
+  step Kobold camps
+    loop
+    goto 47.6,35.1
+    goto 49.0,32.4 r 20
+    goto 52.3,26.8
+    kill 6 x10 quest 7.1
+  ```
 
 See docs/ARCHITECTURE.md, Smart logic, "Spawn areas".
 
