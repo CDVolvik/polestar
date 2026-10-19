@@ -310,6 +310,37 @@ test('EllesmereUI: an optional scheme and follow toggles, never a lock', () => {
 	assert.deepEqual(out.refollow, ['Interface\\AddOns\\EllesmereUI\\media\\fonts\\Expressway.ttf', 13, '']);
 });
 
+test('EllesmereUI font: a refresh sets the text again a frame later, so a string drawn at login is not left blank', () => {
+	const [out] = run(`
+		local fs = UIParent:CreateFontString()
+		T.Font(fs, "body")
+		fs:SetText("Innkeeper Heather")
+		local sets = 0
+		local set = fs.SetText
+		fs.SetText = function(self, ...) sets = sets + 1 return set(self, ...) end
+		T.Refresh()
+		stub.advance(0.1)
+		local ownFont = sets
+		Polestar.Set("ui.matchFont", true)
+		stub.advance(0.1)
+		sets = 0
+		T.Refresh()
+		local sameFrame = sets
+		stub.advance(0.1)
+		local later = sets - sameFrame
+		sets = 0
+		T.Refresh()
+		T.Refresh()
+		local syncTwo = sets
+		stub.advance(0.1)
+		emit({ ownFont = ownFont, sameFrame = sameFrame, later = later, twiceLater = sets - syncTwo, text = fs:GetText() })`, { before: 'stub.withEllesmere()' });
+	assert.equal(out.ownFont, 2, 'without EllesmereUI\'s font the one re-set stands, nothing is queued');
+	assert.equal(out.sameFrame, 2, 'the refresh sets the text again at once');
+	assert.equal(out.later, 2, 'and once more a frame later');
+	assert.equal(out.twiceLater, 2, 'refreshes in one frame share one later pass');
+	assert.equal(out.text, 'Innkeeper Heather');
+});
+
 // The class colour as the accent: it follows the player's class, lifted until
 // it reads as text (shaman blue is too dark on the night grounds as it is),
 // and it is one source among three: your own colour, your class's,
