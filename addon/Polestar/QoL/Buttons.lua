@@ -12,8 +12,9 @@
 --     (Polestar.QuestDB; none without it), never one left from another quest.
 --   Hearthstone: while the current step has an open `hearth` goal.
 --   Target: /targetexact for the current step's kill targets and the mobs
---     that drop its collect items (Polestar.QuestDB when loaded); every click
---     moves the next name to the front.
+--     that drop its collect items: the ones the guide sends you to for that
+--     goal (`fromNpcs`), then the item's own droppers (Polestar.QuestDB when
+--     loaded); every click moves the next name to the front.
 --   Step key: no button on screen, only a binding: the first open goal it can
 --     act on, in guide order (a use goal's item, a hearth goal's Hearthstone,
 --     a kill or collect's mobs, an NPC goal's NPC by name), else the quest
@@ -443,11 +444,26 @@ function Buttons.TargetNames(view, raw)
 				-- /targetexact needs the name as the client writes it.
 				local N = ns.Names
 				addName((N and N.Npc(rg.npc or gv.npc)) or rg.target or gv.subject)
-			elseif gv.t == "collect" and qdb then
-				if gv.quest and rg.oi and QDB.GetObjectiveMobs then
-					addDroppers(QDB.GetObjectiveMobs(gv.quest, rg.oi))
-				elseif (gv.item or rg.item) and QDB.GetItemDroppers then
-					addDroppers(QDB.GetItemDroppers(gv.item or rg.item))
+			elseif gv.t == "collect" then
+				-- The mobs the arrow leads to come first: the farm spot the engine
+				-- chose (`collect … nearest`), then the guide's own sources for this
+				-- point (`fromNpcs`). The item's droppers follow, and stand alone for
+				-- a goal with neither: they are ranked by drop chance over the whole
+				-- world, so for an item many creatures drop the best of them are
+				-- mostly in other zones.
+				local N = ns.Names
+				local npc = gv.npc or rg.npc
+				if npc then addName((N and N.Npc(npc)) or gv.npcName or rg.npcName) end
+				local src = rg.fromNpcs or gv.fromNpcs
+				for i = 1, src and #src or 0 do
+					addName((N and N.Npc(src[i].npc)) or src[i].npcName)
+				end
+				if qdb then
+					if gv.quest and rg.oi and QDB.GetObjectiveMobs then
+						addDroppers(QDB.GetObjectiveMobs(gv.quest, rg.oi))
+					elseif (gv.item or rg.item) and QDB.GetItemDroppers then
+						addDroppers(QDB.GetItemDroppers(gv.item or rg.item))
+					end
 				end
 			end
 		end

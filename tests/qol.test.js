@@ -227,6 +227,54 @@ test('target button: kill targets and QuestDB droppers, preferred name last, eac
 	assert.deepEqual(out[6], ['nil', false]);
 });
 
+test('target button: a collect names the mobs the arrow leads to first (#356), then the item\'s droppers', () => {
+	const out = run(`
+		local B = Polestar.QoL.Buttons
+		local t = PolestarTargetButton
+		local function names()
+			local out = {}
+			for i, n in ipairs(B.TargetNames()) do out[i] = n end
+			return out
+		end
+		Polestar.QuestDB = {
+			IsLoaded = function() return true end,
+			-- The item's droppers, ranked by drop chance over the whole world:
+			-- none of Small Spider Leg's best five is in Teldrassil.
+			GetObjectiveMobs = function(quest, oi) if quest == 7 and oi == 1 then return { "Mother Fang", "Cliff Lurker", "Mist Creeper" } end end,
+			GetItemDroppers = function(item) if item == 5465 then return { { name = "Mother Fang" }, { name = "Cliff Lurker" } } end end,
+		}
+		Polestar.Fire("QUESTDB_LOADED")
+		stub.runTimers()
+		-- The guide's own sources for this point come first, the one the point
+		-- belongs to leading; the item's droppers follow.
+		q.step({ { t = "collect", item = 5465, itemName = "Small Spider Leg", quest = 7, oi = 1,
+			fromNpcs = { { npc = 1998, npcName = "Webwood Lurker" }, { npc = 2001, npcName = "Giant Webwood Spider" } } } })
+		emit({ names(), t.Label:GetText() })
+		-- A farm spot the engine chose (\`collect … nearest\`) comes before them.
+		q.step({ { t = "collect", item = 5465, itemName = "Small Spider Leg", npc = 30, npcName = "Forest Spider",
+			fromNpcs = { { npc = 1998, npcName = "Webwood Lurker" } } } })
+		emit({ names(), t.Label:GetText() })
+		-- Without either, the item's droppers alone, as before.
+		q.step({ { t = "collect", item = 5465, itemName = "Small Spider Leg", quest = 7, oi = 1 } })
+		emit({ names(), t.Label:GetText() })
+		-- A name a guide pack could use to smuggle a second macro line is passed over.
+		q.step({ { t = "collect", item = 5465, itemName = "Small Spider Leg",
+			fromNpcs = { { npc = 1998, npcName = "Webwood Lurker\\n/run X()" }, { npc = 2001, npcName = "Giant Webwood Spider" } } } })
+		emit({ names(), t:GetAttribute("macrotext") })
+		-- Without the quest database the guide's own sources still name the mobs.
+		Polestar.QuestDB = nil
+		q.step({ { t = "collect", item = 5465, itemName = "Small Spider Leg", quest = 7, oi = 1,
+			fromNpcs = { { npc = 1998, npcName = "Webwood Lurker" } } } })
+		emit(names())
+	`);
+	assert.deepEqual(out[0], [['Webwood Lurker', 'Giant Webwood Spider', 'Mother Fang', 'Cliff Lurker', 'Mist Creeper'], 'Webwood Lurker']);
+	assert.deepEqual(out[1], [['Forest Spider', 'Webwood Lurker', 'Mother Fang', 'Cliff Lurker'], 'Forest Spider']);
+	assert.deepEqual(out[2], [['Mother Fang', 'Cliff Lurker', 'Mist Creeper'], 'Mother Fang']);
+	assert.deepEqual(out[3][0], ['Giant Webwood Spider', 'Mother Fang', 'Cliff Lurker'], 'the name with a line break is passed over');
+	assert.ok(!out[3][1].includes('/run X()'), 'and never reaches the macro');
+	assert.deepEqual(out[4], ['Webwood Lurker']);
+});
+
 test('step key: one binding does the step\'s next action, the NPC, the quest item, the mobs or the Hearthstone, in guide order', () => {
 	const out = run(`
 		local s = PolestarStepButton
