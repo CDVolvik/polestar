@@ -75,9 +75,6 @@ next forever/alliance/07-thousand-needles
 # Cloak of the Divine Storm: the Class guide
 # forever/class/paladin/cloak-of-the-divine-storm.
 #
-# Warriors: Dragonslayer's Helm and Shield (78132-78134, Alonso at Mystral
-# Lake) are Warrior-only: their own step, only Warrior.
-#
 # Left out (the export accepts them but never turns them in): Journey to
 # Stonetalon Peak (1056), Pridewings of Stonetalon (1134), Mage Summoner
 # (1017), Supplies to Auberdine (976), Further Instructions (1094), The Day
@@ -235,19 +232,18 @@ step The Foulweald
   kill 3743 quest 1025                    -- Foulweald Warrior
 
 step Mystral Lake
-  tip Sentinel Velene Starstrike stands at the Silverwind Refuge on the east shore of Mystral Lake. Befouled Water Elementals wade in the lake.
+  tip Sentinel Velene Starstrike stands at the Silverwind Refuge on the east shore of Mystral Lake; Alonso camps on its west shore. Befouled Water Elementals wade in the lake between them.
   accept 1016                             -- Sentinel Velene Starstrike
   collect 5455 quest 1016 @46.6,69.6      -- Kill the elementals for 5 Intact Elemental Bracers, then use the Divining Scroll
   turnin 1016
 
 step Alonso
-  only Warrior
-  tip Alonso camps on the west shore of Mystral Lake.
-  accept 78132                            -- Alonso
+  goto 42.4,70 "Alonso"
+  accept 78132 optional                   -- Alonso may not offer these to every class; if he doesn't, carry on.
   turnin 78132
-  accept 78133
+  accept 78133 optional
   turnin 78133
-  accept 78134
+  accept 78134 optional
   turnin 78134
 
 step The Ruins of Stardust
