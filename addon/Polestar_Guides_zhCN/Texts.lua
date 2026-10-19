@@ -3675,7 +3675,6 @@ t.guides["forever/horde/04-the-barrens"] = (function() return {
 		["{npc:14242}, up in the tree just east of {npc:3341}"] = "{npc:14242}，在{npc:3341}正东的树上",
 		["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "{npc:209797}在{area:392}码头外的港湾里游动。{npc:209797}是精英：建议组队。",
 		["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}的{npc:2391}教授毒药：留着它",
-		["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119}和他的水兵守着{npc:261366}南边被毁的商队。",
 		["{npc:3238}, on the plain between {npc:3341} and the ridge"] = "{npc:3238}，在{npc:3341}与山脊之间的平原上",
 		["{npc:3341} waits in a small camp further south, on the road toward {area:359}."] = "{npc:3341}在更南边通往{area:359}的道路旁的一个小营地里等候。",
 		["{npc:3389} stands at the Kolkar watch post just west of the {area:380}."] = "{npc:3389}站在{area:380}正西的科卡尔哨所。",

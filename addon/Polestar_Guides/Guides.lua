@@ -23085,7 +23085,7 @@ do
 				},
 				{
 					title = "{quest:95621}",
-					note = "{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}.",
+					note = "{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}. The marines are linked: pulling one calls the rest. Pull from the edge and run; they leash short, so you can thin the camp one at a time before tackling the Corporal.",
 					goals = {
 						{ t = "collect", quest = 95621, title = "Trouble in the Valley", item = 270151, itemName = "Benedict's Orders", oi = 1, map = 1413, x = 41.8, y = 15.6, f = "e", from = "Corporal Adamore", fromKind = "npc", fromId = 262119 },
 					},

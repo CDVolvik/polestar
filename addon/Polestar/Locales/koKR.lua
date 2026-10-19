@@ -172,6 +172,7 @@ L["Halo"] = "후광"
 L["Hearth"] = "화롯가"
 L["Blizzard"] = "블리자드"
 L["Classic"] = "클래식"
+-- L["WoW Forever"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "클릭하여 복사"
@@ -748,6 +749,8 @@ L["A mark at the end of the game's XP bar with the level the guide wants you to 
 L["Hearthstone"] = "귀환석"
 L["Set your home at the guide's inn"] = "가이드 여관에서 귀환 위치 설정"
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "해당 단계에서 귀환 위치를 설정하고 여관주인과 대화하면 그곳에 귀환석이 묶입니다. 다른 여관에서는 묶지 않습니다. Shift를 눌러 건너뛰세요."
+-- L["Riding reminder"] = ""
+-- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "얼라이언스 전용"
@@ -1016,6 +1019,21 @@ L["%s (from level %d)"] = "%s (%d레벨부터)"
 L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = "가장 가까운 상인, 수리, 여관, 비행 조련사 또는 전문가를 화살표로 가리킵니다."
 -- L["Picture of this spot"] = ""
 L["Along the way"] = "가는 길에"
+-- L["Level 40: class mount (Warlock)"] = ""
+-- L["Summon Felsteed quest chain (Strahad Farsan, Ratchet); riding trainer otherwise."] = ""
+-- L["Level 40: class mount (Paladin)"] = ""
+-- L["Tome of Nobility quest chain (Lord Grayson Shadowbreaker, Stormwind); riding trainer otherwise."] = ""
+-- L["Level 40: you can learn to ride"] = ""
+-- L["Level 60: Journeyman Riding"] = ""
+-- L["Apprentice Riding"] = ""
+-- L["Journeyman Riding"] = ""
+-- L["100 g"] = ""
+-- L["1,000 g"] = ""
+-- L["Honored: %d g"] = ""
+-- L["10% off at Honored"] = ""
+-- L["You have %d g."] = ""
+-- L["Take me there"] = ""
+-- L["Riding trainer"] = ""
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "%s행 승강기"

@@ -3675,7 +3675,6 @@ t.guides["forever/horde/04-the-barrens"] = (function() return {
 		["{npc:14242}, up in the tree just east of {npc:3341}"] = "{npc:14242}, {npc:3341} 바로 동쪽 나무 위",
 		["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "{npc:209797}은(는) {area:392} 부두 바로 앞 항구에서 헤엄칩니다. {npc:209797}은(는) 정예이므로 파티를 권장합니다.",
 		["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{area:272}의 {npc:2391}이(가) 독 조제를 가르칩니다: 보관하세요",
-		["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119}와(과) 해병들이 {npc:261366} 남쪽의 부서진 대상단을 차지하고 있습니다.",
 		["{npc:3238}, on the plain between {npc:3341} and the ridge"] = "{npc:3238}, {npc:3341}와(과) 능선 사이 평원",
 		["{npc:3341} waits in a small camp further south, on the road toward {area:359}."] = "{npc:3341}은(는) 더 남쪽, {area:359}(으)로 가는 길가의 작은 야영지에서 기다립니다.",
 		["{npc:3389} stands at the Kolkar watch post just west of the {area:380}."] = "{npc:3389}은(는) {area:380} 바로 서쪽의 콜카르일족 감시 초소에 있습니다.",

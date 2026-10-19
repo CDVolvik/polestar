@@ -172,6 +172,7 @@ L["Halo"] = "Halo"
 L["Hearth"] = "Lareira"
 L["Blizzard"] = "Blizzard"
 L["Classic"] = "Classic"
+-- L["WoW Forever"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Clique para copiar"
@@ -748,6 +749,8 @@ L["A mark at the end of the game's XP bar with the level the guide wants you to 
 L["Hearthstone"] = "Pedra de Regresso"
 L["Set your home at the guide's inn"] = "Definir sua casa na estalagem da guia"
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "Quando a etapa define sua casa e você fala com o estalajadeiro, vincula sua Pedra de Regresso lá. Nunca em outra estalagem. Segure Shift para pular."
+-- L["Riding reminder"] = ""
+-- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Só Aliança"
@@ -1016,6 +1019,21 @@ L["%s (from level %d)"] = "%s (a partir do nível %d)"
 L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = "Aponta a seta para o vendedor, o reparo, a estalagem, o mestre de voo ou o instrutor mais próximo."
 -- L["Picture of this spot"] = ""
 L["Along the way"] = "No caminho"
+-- L["Level 40: class mount (Warlock)"] = ""
+-- L["Summon Felsteed quest chain (Strahad Farsan, Ratchet); riding trainer otherwise."] = ""
+-- L["Level 40: class mount (Paladin)"] = ""
+-- L["Tome of Nobility quest chain (Lord Grayson Shadowbreaker, Stormwind); riding trainer otherwise."] = ""
+-- L["Level 40: you can learn to ride"] = ""
+-- L["Level 60: Journeyman Riding"] = ""
+-- L["Apprentice Riding"] = ""
+-- L["Journeyman Riding"] = ""
+-- L["100 g"] = ""
+-- L["1,000 g"] = ""
+-- L["Honored: %d g"] = ""
+-- L["10% off at Honored"] = ""
+-- L["You have %d g."] = ""
+-- L["Take me there"] = ""
+-- L["Riding trainer"] = ""
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Elevador para %s"

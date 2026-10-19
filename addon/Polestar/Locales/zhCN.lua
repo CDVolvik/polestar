@@ -172,6 +172,7 @@ L["Halo"] = "光环"
 L["Hearth"] = "炉边"
 L["Blizzard"] = "暴雪"
 L["Classic"] = "经典"
+-- L["WoW Forever"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "点击复制"
@@ -748,6 +749,8 @@ L["A mark at the end of the game's XP bar with the level the guide wants you to 
 L["Hearthstone"] = "炉石"
 L["Set your home at the guide's inn"] = "在指南旅店绑定炉石"
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "当步骤要求您绑定住所并与旅店老板交谈时，将炉石绑定在此处。不会在其他旅店执行。按住Shift可跳过。"
+-- L["Riding reminder"] = ""
+-- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "仅限联盟"
@@ -1016,6 +1019,21 @@ L["%s (from level %d)"] = "%s（%d级起）"
 L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = "让箭头指向最近的商人、修理、旅店、飞行管理员或训练师。"
 -- L["Picture of this spot"] = ""
 L["Along the way"] = "顺路完成"
+-- L["Level 40: class mount (Warlock)"] = ""
+-- L["Summon Felsteed quest chain (Strahad Farsan, Ratchet); riding trainer otherwise."] = ""
+-- L["Level 40: class mount (Paladin)"] = ""
+-- L["Tome of Nobility quest chain (Lord Grayson Shadowbreaker, Stormwind); riding trainer otherwise."] = ""
+-- L["Level 40: you can learn to ride"] = ""
+-- L["Level 60: Journeyman Riding"] = ""
+-- L["Apprentice Riding"] = ""
+-- L["Journeyman Riding"] = ""
+-- L["100 g"] = ""
+-- L["1,000 g"] = ""
+-- L["Honored: %d g"] = ""
+-- L["10% off at Honored"] = ""
+-- L["You have %d g."] = ""
+-- L["Take me there"] = ""
+-- L["Riding trainer"] = ""
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "乘升降梯前往%s"

@@ -3675,7 +3675,6 @@ t.guides["forever/horde/04-the-barrens"] = (function() return {
 		["{npc:14242}, up in the tree just east of {npc:3341}"] = "{npc:14242}, arriba en el árbol justo al este de {npc:3341}",
 		["{npc:209797} swims in the harbour just off {area:392}'s docks. {npc:209797} is elite: grouping up is advised."] = "{npc:209797} nada en el puerto, justo frente a los muelles de {area:392}. {npc:209797} es de élite: se recomienda ir en grupo.",
 		["{npc:2391} in {area:272} teaches Poisons: keep it"] = "{npc:2391}, en {area:272}, enseña Venenos: guárdala",
-		["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119} y sus marinos defienden la caravana destrozada al sur de {npc:261366}.",
 		["{npc:3238}, on the plain between {npc:3341} and the ridge"] = "{npc:3238}, en la llanura entre {npc:3341} y la cresta",
 		["{npc:3341} waits in a small camp further south, on the road toward {area:359}."] = "{npc:3341} espera en un pequeño campamento más al sur, en el camino hacia {area:359}.",
 		["{npc:3389} stands at the Kolkar watch post just west of the {area:380}."] = "{npc:3389} está en el puesto de vigilancia de los Kolkar, justo al oeste de {area:380}.",

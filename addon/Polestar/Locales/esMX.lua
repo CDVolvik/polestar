@@ -639,6 +639,8 @@ L["A mark at the end of the game's XP bar with the level the guide wants you to 
 L["Hearthstone"] = "Piedra de hogar"
 L["Set your home at the guide's inn"] = "Establecer tu hogar en la posada de la guía"
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "Cuando el paso establece tu hogar y hablas con el tabernero, vincula tu Piedra de hogar allí. Nunca en otra posada. Mantén Shift para omitir."
+-- L["Riding reminder"] = ""
+-- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
 
 -- QoL/QoL.lua
 L["%dh %02dm"] = "%dh %02dm"
@@ -874,6 +876,7 @@ L["Halo"] = "Halo"
 L["Hearth"] = "Hogar"
 L["Blizzard"] = "Blizzard"
 L["Classic"] = "Classic"
+-- L["WoW Forever"] = ""
 
 -- Theme/Widgets.lua
 L["Click to copy"] = "Haz clic para copiar"
@@ -1120,6 +1123,21 @@ L["After the run: a guide to where this dungeon's quests are turned in, and the 
 -- L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer."] = ""
 -- L["Picture of this spot"] = ""
 L["Along the way"] = "De camino"
+-- L["Level 40: class mount (Warlock)"] = ""
+-- L["Summon Felsteed quest chain (Strahad Farsan, Ratchet); riding trainer otherwise."] = ""
+-- L["Level 40: class mount (Paladin)"] = ""
+-- L["Tome of Nobility quest chain (Lord Grayson Shadowbreaker, Stormwind); riding trainer otherwise."] = ""
+-- L["Level 40: you can learn to ride"] = ""
+-- L["Level 60: Journeyman Riding"] = ""
+-- L["Apprentice Riding"] = ""
+-- L["Journeyman Riding"] = ""
+-- L["100 g"] = ""
+-- L["1,000 g"] = ""
+-- L["Honored: %d g"] = ""
+-- L["10% off at Honored"] = ""
+-- L["You have %d g."] = ""
+-- L["Take me there"] = ""
+-- L["Riding trainer"] = ""
 
 -- UI/Lookup.lua
 L["Loading the Codex\226\128\166"] = "Cargando el Codex…"
