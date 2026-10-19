@@ -36,6 +36,7 @@ const { emitPack, packOrder, ADDON, SCHEMA } = require('./pack');
 const { instanceFacts, buildInstances, curatedEntrances, loadEntranceTable } = require('./instances');
 const { loadWowhead, chanceOf } = require('./wowhead');
 const { blockingPrereqs } = require('../data/prereqs');
+const { isEscort } = require('../dsl/escort');
 
 const { ROOT, DATA, SOURCES } = require('../paths');
 const { CLASSES, FACTION_RACES } = require('../game/races');
@@ -112,10 +113,12 @@ function round1(v) {
 
 // A quest objective for the Codex. An event (explore an area, a scripted
 // moment) has no spawns to place it by, so it keeps the place quests.json
-// gives it, when it has one (the area trigger's).
-function objectiveOf(o) {
+// gives it, when it has one (the area trigger's). Not an escort's
+// (dsl/escort.js): its place is where the walk ends, and the arrow belongs
+// at its start, the giver, as in the compiled guides (#256).
+function objectiveOf(o, escort) {
 	const out = { type: o.type, id: o.id ?? null, count: o.count ?? null, text: o.text ?? null };
-	if (o.type === 'event' && int(o.map) && Number.isFinite(o.x) && Number.isFinite(o.y)) {
+	if (o.type === 'event' && !escort && int(o.map) && Number.isFinite(o.x) && Number.isFinite(o.y)) {
 		out.map = int(o.map);
 		out.x = round1(o.x);
 		out.y = round1(o.y);
@@ -1203,7 +1206,7 @@ function mergeCodex(inputs) {
 				classes: int(q.classes),
 				start: { npc: (q.start && q.start.npc) || [], object: (q.start && q.start.object) || [], item: (q.start && q.start.item) || [] },
 				end: { npc: (q.end && q.end.npc) || [], object: (q.end && q.end.object) || [] },
-				objectives: (q.objectives || []).filter((o) => ['kill', 'item', 'object', 'event'].includes(o.type)).map(objectiveOf),
+				objectives: (q.objectives || []).filter((o) => ['kill', 'item', 'object', 'event'].includes(o.type)).map((o) => objectiveOf(o, isEscort(q))),
 				...prereqs(q),
 				zone: int(q.zone),
 				rewards,
