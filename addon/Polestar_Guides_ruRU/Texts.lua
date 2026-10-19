@@ -5423,6 +5423,10 @@ t.guides["forever/legacy/legacy-challenges"] = (function() return {
 		["{npc:16033} offers it once {quest:8996} is turned in"] = "{npc:16033} выдает его после сдачи задания {quest:8996}",
 		["{npc:16073}, inside Upper Blackrock Spire after Mea Culpa (no spawn in the data: the arrow leads to {npc:16033}'s {area:254})"] = "{npc:16073} – в верхней части Вершины Черной горы, после задания «Mea Culpa» (в данных нет точки появления: стрелка ведет к NPC {npc:16033}, {area:254})",
 } end)()
+t.guides["forever/miscellaneous/library-books"] = (function() return {
+		["Library Books"] = "Книги для библиотеки",
+		["Lost books and scrolls all over the world: each pays experience at the library, and enough of them earn a {quest:78150} reward."] = "По всему миру разбросаны книги и свитки. За них библиотека даёт опыт, а за достаточное количество — награду {quest:78150}.",
+} end)()
 t.guides["forever/professions/alchemy"] = (function() return {
 		["Apprentice {skill:171}"] = "{skill:171}: Ученик",
 		["Artisan needs character level 35 and {skill:171} 200; it raises the cap to 300. Materials for 225-300 are worth about 7g 80s in all."] = "Ранг «Искусник» требует уровня персонажа 35 и навыка {skill:171} 200; предел становится 300. Материалы на 225-300 стоят всего около 7з 80с.",

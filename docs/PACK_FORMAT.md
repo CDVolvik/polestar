@@ -225,10 +225,10 @@ has nothing for the character.
 
 ## Format 3
 
-The format the compiler writes for a pack whose steps have no `when`,
-`along` or `label` and whose `level` goals have no `frac` (format 4, below).
-Format 2 is format 1 with the two `group` keys (a guide's and a goal's) and a
-guide's `reward` and `why`, marked
+The format the compiler writes for a pack whose guides have no `when` (on a
+step or a `next` option), `along` or `label`, and whose `level` goals have no
+`frac` (format 4, below). Format 2 is format 1 with the two `group`
+keys (a guide's and a goal's) and a guide's `reward` and `why`, marked
 "format 2" below; Polestar 0.2.4 and later read it. Format 3 is format 2
 with **name tokens** in the texts and a guide's `names`, marked "format 3"
 below; Polestar 0.2.5 and later read it. A format 1 or 2 pack is the same
@@ -252,13 +252,14 @@ texts"); an older Polestar would show them as written, hence the format.
 
 Format 3 with a step's **`when`**: the conditions checked during play
 (GUIDE_FORMAT.md, "Conditions checked during play"), a step's **`along`** and
-**`label`** (GUIDE_FORMAT.md, "Along the way"), and a `level` goal's
-**`frac`**: a point inside the level. Polestar 0.2.6 and later read it. The
-compiler writes a pack in format 4 only when its guides use one of them; any
-other pack stays in format 3, so the Polestar it needs does not change. An
+**`label`** (GUIDE_FORMAT.md, "Along the way"), a `level` goal's **`frac`**:
+a point inside the level, and a guide's **`nextWhen`**: conditional hand-offs
+(GUIDE_FORMAT.md, "Conditional hand-offs"). Polestar 0.2.6 and later read it.
+The compiler writes a pack in format 4 only when its guides use one of them;
+any other pack stays in format 3, so the Polestar it needs does not change. An
 older Polestar would show every conditional step to every character, stop the
-route at every along step and count `level 12.5` done at level 12
-(it ignores keys it does not know), hence the format.
+route at every along step, count `level 12.5` done at level 12 and offer every
+`next` option (it ignores keys it does not know), hence the format.
 
 `when` is a list of predicates, each a table with its kind `k`, `neg = true`
 to turn it around, and the kind's keys; a step applies while all of them
@@ -304,6 +305,16 @@ asks for, a number with 0 < frac < 1: `{ t = "level", level = 12, frac = 0.5 }`
 is done at level 12 with XP / XPMax >= 0.5, or at any later level. A goal's
 `frac` outside that refuses the guide ("bad frac"); a `level` predicate's,
 "bad when".
+
+`nextWhen` maps a `next` option to its predicates, the same tables as a
+step's `when`: `{ ["joe-routes/barrens-early"] = { { k = "level", op = "<", n = 12 } } }`.
+Every key must be one of `nextChoices`, which the compiler writes whenever
+`nextWhen` is there, even for one option. Polestar offers an option only
+while its predicates hold, checked on the character's live state each time
+it lists the options; with one option offered it goes on to it without
+asking, with none the guide ends there. Nothing is stored. A `nextWhen` that
+is not a table, a key that is not in `nextChoices` or a malformed predicate
+list refuses the guide.
 
 ### `RegisterPack(meta)`
 
@@ -364,7 +375,8 @@ Guide keys (the compiler writes them in this order):
 | `why` | no | format 2: one line on why the goal is worth doing, shown under the reward |
 | `zone`, `zoneName` | no | the default zone's uiMapID and name |
 | `next` | no | the id of the guide that follows: one of the pack's or one of Polestar's |
-| `nextChoices` | no | list of guide ids offered as a route choice (the first is the default) |
+| `nextChoices` | no | list of guide ids offered as a route choice (the first is the default); with `nextWhen`, every option, even one |
+| `nextWhen` | no | format 4: `{ [<guide id>] = { <predicate>, ... } }`, an option of `nextChoices` offered only while its predicates hold (Format 4, above) |
 | `pitch` | no | one line for the route choice card |
 | `pros`, `cons` | no | lists of short lines under the pitch |
 | `author` | no | string; the compiler writes the pack's author when the guide names none |
@@ -551,7 +563,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   into the TOC as `X-Polestar-Needs`. Format 1 is read by Polestar 0.1.0 and
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
-  `along` and `label`, a `level` goal's `frac`) by 0.2.6 and later.
+  `along` and `label`, a `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6
+  and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

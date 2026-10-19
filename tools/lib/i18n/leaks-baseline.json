@@ -37546,13 +37546,6 @@
 				],
 				"english": "Vayn Moongaze"
 			},
-			"npc:255699": {
-				"reason": "no-source",
-				"scenes": [
-					"lookup"
-				],
-				"english": "Lordaeron Captain"
-			},
 			"npc:255853": {
 				"reason": "no-source",
 				"scenes": [

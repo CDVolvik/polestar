@@ -65,7 +65,7 @@ Every line before the first `step`.
 | `faction` | no | `Alliance` or `Horde` |
 | `race` | no | comma list (see Conditions) |
 | `class` | no | comma list |
-| `next` | no | id of the guide that follows, or several ids separated by commas: a **route choice**. The player picks where to level next in the "Choose your path" window; the first id is the author's default. Every option must be the guide's own faction. |
+| `next` | no | id of the guide that follows, or several ids separated by commas: a **route choice**. The player picks where to level next in the "Choose your path" window; the first id is the author's default. Every option must be the guide's own faction. Repeatable: each line adds its guides in order, and `next <id> when <predicate>` offers that guide only while the predicate holds at the hand-off (see "Conditional hand-offs"). |
 | `category` | no | default `Leveling`; others: `Class` (class quest chains, mounts and weapons; pair with a `class` header), `Professions`, `Reputation`, `Legacy`, `Exploration`, `Collectibles`, `Miscellaneous` (side chains and collections that fit no other category: the Cozy Sleeping Bag), `Dungeons` |
 | `folder` | no | the guide menu folder this guide is listed under, any category (e.g. `Mounts · Level 40`, `Companion pets · Vendors`). Guides sharing a folder sort by faction (yours first), then level. Without it: the category's folder (Leveling: by faction and level band). |
 | `keywords` | no | comma list of extra words the guide menu search matches (e.g. the colours a mount guide covers); an empty entry is an error, a repeated one a warning |
@@ -268,9 +268,32 @@ compiler gives each its area ID where the data names one (see "Places by
 ID"), and Polestar compares the game's own name for it, then the name you
 wrote.
 
-A pack with a `when` anywhere, or a `level` goal inside a level
-(`level 12.5`), is written in pack format 4, which Polestar 0.2.6 and later
-read (docs/PACK_FORMAT.md); a pack without stays readable by older versions.
+### Conditional hand-offs
+
+`next <id> when <predicate>` makes one `next` option conditional: one guide,
+one predicate from the table above, one line per guide (naming a guide twice
+is an error, so an option has one condition). `next` lines repeat, each adding
+its guides in order; one without `when` is always offered, and the comma form
+works as before.
+
+```
+guide joe-routes/durotar
+next joe-routes/barrens-early when level<12
+next forever/horde/02-the-barrens
+```
+
+Polestar checks the condition on the character as they are when it lists the
+options: at the end of the guide, that decides where it goes. An option whose
+`when` does not hold is left out of the "Choose your path" window, the guide
+menu's "Next" line, `/polestar path` and a route change. With one option left
+Polestar goes on to it without asking; with none the guide ends there, like a
+guide without `next`. Nothing is stored: the condition is checked again each
+time. A subzone is looked up in the zone where the guide ends.
+
+A pack with a `when` anywhere (on a step or a `next` option), or a `level`
+goal inside a level (`level 12.5`), is written in pack format 4, which
+Polestar 0.2.6 and later read (docs/PACK_FORMAT.md); a pack without stays
+readable by older versions.
 
 ## Along the way
 
@@ -958,7 +981,9 @@ next forever/alliance/02-westfall
 Lint and playtest load Polestar's guides beside yours, so the handover is
 checked and played: a hand-over that does not land on our guide with
 something to do, or lands on one that does not apply to the character
-(`no Human can follow it`), is reported as stuck at the hand-over. Turn-ins
+(`no Human can follow it`), is reported as stuck at the hand-over. An option
+with `when` that does not hold when the played guide ends is no hand-over;
+with none offered the guide ends there. Turn-ins
 in our guide of quests your guide accepted count too.
 
 ### With an AI assistant

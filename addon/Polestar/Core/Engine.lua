@@ -123,15 +123,28 @@ end
 
 -- Every accept of a guide and of the guides after it (`next`, every route
 -- choice), and each quest's prerequisite lists: { accepts, pres }. Cached
--- per guide.
+-- per guide. A `next` option whose `when` can no longer hold
+-- (Own.optionClosed) is left out; one that may still hold at the hand-off
+-- stays, and the cache is built again once it is closed.
 local chainNeedsCache = setmetatable({}, { __mode = "k" })
 function Own.chainOf(g)
 	local c = chainNeedsCache[g]
-	if c and c.chain then return c.chain end
+	if c and c.chain then
+		local stale = false
+		for _, o in ipairs(c.open) do
+			if Own.optionClosed(o.from, o.id) then
+				stale = true
+				break
+			end
+		end
+		if not stale then return c.chain end
+		c = nil
+	end
 	if not c then
 		c = {}
 		chainNeedsCache[g] = c
 	end
+	local open = {}
 	local pres, accepts = {}, {}
 	local seenIds, queue, head = {}, { g }, 1
 	while queue[head] and head <= 200 do
@@ -156,12 +169,15 @@ function Own.chainOf(g)
 				end
 			end
 			for _, id in ipairs(cur.nextChoices or { cur.next }) do
-				local nxt = Guides.Get(id)
-				if nxt then queue[#queue + 1] = nxt end
+				if not Own.optionClosed(cur, id) then
+					if cur.nextWhen and cur.nextWhen[id] then open[#open + 1] = { from = cur, id = id } end
+					local nxt = Guides.Get(id)
+					if nxt then queue[#queue + 1] = nxt end
+				end
 			end
 		end
 	end
-	c.chain = { accepts = accepts, pres = pres }
+	c.chain, c.open = { accepts = accepts, pres = pres }, open
 	return c.chain
 end
 
@@ -506,6 +522,34 @@ function Own.whenFails(step)
 		if not Own.predicateHolds(p) then return p end
 	end
 	return nil
+end
+
+-- A `next` option's `when` (from.nextWhen[id], format 4): whether it holds
+-- now. Checked each time Polestar lists the options (routeOptions,
+-- ChooseRoute, Engine.RouteOffered: Guides.OfferedBy, the guide menu), on
+-- the character as they are then: at the hand-off, that decides the route.
+function Own.optionHolds(from, id)
+	local list = from.nextWhen and from.nextWhen[id]
+	if not list then return true end
+	if not player then refreshPlayer() end
+	for _, p in ipairs(list) do
+		if not Own.predicateHolds(p) then return false end
+	end
+	return true
+end
+
+-- A `next` option whose `when` can no longer hold, whatever the character
+-- does: a `level<N` or `level<=N` they are past, or `!turnedin` of a quest
+-- handed in. Any other may hold by the hand-off.
+function Own.optionClosed(from, id)
+	local list = from.nextWhen and from.nextWhen[id]
+	if not list then return false end
+	local level = player and player.level
+	for _, p in ipairs(list) do
+		if p.k == "level" and level and ((p.op == "<" and level >= p.n) or (p.op == "<=" and level > p.n)) then return true end
+		if p.k == "turnedin" and p.neg and questDone(p.q) then return true end
+	end
+	return false
 end
 
 -- The loaded guide's step numbers by step table, built once per guide.
@@ -3067,7 +3111,9 @@ local pendingChoices = {} -- ROUTE_CHOICE from-guide ids, fired at the end of th
 -- "recommended", the recommended one; otherwise the finished guide stays in
 -- its tab and ROUTE_CHOICE(fromId) asks the UI. Recommended: an option the
 -- character has not outlevelled, then the quickest to reach from where they
--- stand (1-minute bands), then the author's order.
+-- stand (1-minute bands), then the author's order. An option with `when`
+-- (`nextWhen`) is offered only while it holds (Own.optionHolds): with one
+-- option left the Engine continues to it, with none the guide ends there.
 ---------------------------------------------------------------------------
 
 local ROUTE_TIE = 60 -- seconds of travel that count as a tie
@@ -3078,7 +3124,8 @@ local function routesTable()
 	return s.routes
 end
 
--- The options of `from` that fit the character, in the author's order:
+-- The options of `from` that fit the character and are offered now (their
+-- `when`, if any, holds), in the author's order:
 -- { guide = g, outleveled = bool }.
 local function routeOptions(from)
 	local list = {}
@@ -3087,7 +3134,7 @@ local function routeOptions(from)
 	local level = player.level or 1
 	for _, id in ipairs(from.nextChoices) do
 		local g = Guides.Get(id)
-		if g and Guides.GuideMatches(g, player) then
+		if g and Guides.GuideMatches(g, player) and Own.optionHolds(from, id) then
 			list[#list + 1] = { guide = g, outleveled = (g.maxLevel ~= nil and level >= g.maxLevel) }
 		end
 	end
@@ -3816,7 +3863,7 @@ function Engine.ChooseRoute(fromId, toId)
 	if not (from and to and from.nextChoices) then return false end
 	local offered = false
 	for _, id in ipairs(from.nextChoices) do
-		if id == toId then offered = true end
+		if id == toId then offered = Own.optionHolds(from, id) end
 	end
 	if not offered then return false end
 	routesTable()[fromId] = toId
@@ -3855,6 +3902,30 @@ function Engine.PendingRouteChoice()
 	if not player then refreshPlayer() end
 	local _, asks = routeNext(guide)
 	return asks and guide.id or nil
+end
+
+-- Whether `fromId`'s `next` offers `toId` now: one of its guides, and its
+-- `when`, if any, holds (Own.optionHolds). Guides.OfferedBy and the guide
+-- menu ask this.
+function Engine.RouteOffered(fromId, toId)
+	local from = fromId and Guides.Get(fromId)
+	if not (from and toId) then return false end
+	local listed = from.next == toId
+	for _, id in ipairs(from.nextChoices or NONE) do
+		if id == toId then listed = true end
+	end
+	return listed and Own.optionHolds(from, toId)
+end
+
+-- The guide Polestar goes on with after `fromId` now (as at its hand-off),
+-- or nil: none is offered, or the player has to choose first.
+function Engine.NextGuide(fromId)
+	local from = fromId and Guides.Get(fromId)
+	if not from then return nil end
+	if not player then refreshPlayer() end
+	local id, asks = routeNext(from)
+	if asks then return nil end
+	return id
 end
 
 -- The choice that offers guide `id` to this character (to change route), or nil.
