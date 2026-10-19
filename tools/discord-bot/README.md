@@ -16,6 +16,7 @@ sequenceDiagram
   P->>D: follow-up in the thread
   B->>G: comment on the issue
   G->>D: first pull request for the issue: "a fix is open", tag In progress (Action)
+  G->>D: needs-info: the maintainer's question, answered in the thread (Action)
   G->>D: closed: "fixed" / "not changing" / "duplicate", tag, lock (Action)
   G->>D: release published: "the fix is out in 0.2.x" (Action)
   G->>D: prerelease published: testers pinged in their channel (Action)
@@ -27,6 +28,7 @@ sequenceDiagram
 | The reporter writes again in the thread (text, screenshots, a new report) | the bot | nothing; it becomes a comment on the issue. Other people's replies stay on Discord |
 | The reporter edits the post's first message | the bot | nothing; the issue body is written again |
 | A pull request addresses the issue for the first time (its title names `#N`, or it says `closes`/`fixes`/`resolves #N`) | `pr-links.yml` | ping: "A fix for this is open (#M). It still has to be reviewed; we'll tell you here when it's fixed.", tag **In progress**. Once per issue: more pull requests, edits and closes tell the thread nothing. On GitHub the issue gets one comment listing its pull requests, kept up to date, and the label `has-pr` (CONTRIBUTING.md, "Before you start") |
+| Issue labelled **needs-info** | `discord-issue-sync.yml` | ping: "We need a little more to go on with this one", quoting the maintainer's last comment on the issue, and "Please answer here in the thread". The answer comes back to the issue as a follow-up. Tags unchanged |
 | Issue closed as **completed** (button, or `Fixes #N` in a commit) | `discord-issue-sync.yml` | ping: "This is fixed and will ship in the next Polestar update", tag **Fixed**, thread locked |
 | Issue closed as **not planned** | the same | ping: "We've decided not to change this one" (or, from `/close`, "No change is needed here", "We couldn't reproduce this one", "We're closing this one without a fix for now"), quoting your last comment on the issue as the reason; tag **Won't fix**, locked |
 | Issue closed as **duplicate** | the same | ping: "already reported, tracked in #M" (from a `Duplicate of #M` comment); tag **Duplicate**, locked |

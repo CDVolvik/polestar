@@ -149,3 +149,20 @@ test('the reporter hears a fix is open in their thread, which is tagged In progr
 	assert.deepEqual(last.users, ['u1']);
 	assert.deepEqual(discord.channels.get('1001').applied_tags, ['t-questing', 't-progress']);
 });
+
+test('needs-info asks the reporter the maintainer\'s question in their thread, without the bot\'s own comments', async () => {
+	const discord = fakeDiscord();
+	const github = fakeGitHub();
+	const sync = createSync({ discord, github, media: fakeMedia(), config: { forumId: FORUM, botId: BOT }, log: quietLog, sleep: async () => {} });
+	discord.post('1001', { content: fs.readFileSync(path.join(__dirname, 'fixtures', 'discord', 'elwynn-trainer.md'), 'utf8'), tags: ['t-questing'] });
+	await sync.newPost('1001');
+	await github.comment(1, 'Which class were you playing, and could you type `/polestar where` at the trainer?');
+	await github.comment(1, `${ISSUE_MARK}\n**Pull requests for this issue**\n\n- #9 by @a, into \`next\``);
+	const sent = discord.sent.length;
+	const { onIssue } = require('../tools/discord-bot/lib/notify');
+	assert.equal(await onIssue({ discord, github, event: { action: 'labeled', label: { name: 'triage' }, issue: github.issues[0] }, forumId: FORUM, log: quietLog }), false);
+	assert.equal(await onIssue({ discord, github, event: { action: 'labeled', label: { name: 'needs-info' }, issue: github.issues[0] }, forumId: FORUM, log: quietLog }), true);
+	assert.equal(discord.sent.length, sent + 1);
+	assert.match(discord.sent.at(-1).content, /^<@u1> We need a little more to go on with this one:\n> Which class were you playing/);
+	assert.deepEqual(discord.channels.get('1001').applied_tags, ['t-questing', 't-tracked'], 'the status tag stays');
+});
