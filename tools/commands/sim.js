@@ -8,6 +8,8 @@ const { fmtH, fmtHM, table } = require('../lib/sim/report');
 const usage = `usage: node tools/polestar.js sim <command> [options]
 
   sim world   [--faction F] [--rebuild]               build/cache the world model (data/sim/world-<faction>.json)
+  sim walks   [--faction F] [--radius Y] [--workers W]  route the world's walks with the walking router
+              (data/sim/walks-<faction>.json; run, robust, compare, bench and consensus use them)
   sim calibrate [--fdj DIR]                            fit parameters to quest data and recordings
   sim run     --faction F [--race R] [--class C] [--paths N] [--workers W] [--seed S] [--dungeons]
               [--jobs J] [--anneal A] [--max-paths M]
@@ -43,11 +45,14 @@ options:
   --anneal <n>       run: annealing evaluations per job (default 6000)
   --max-paths <n>    run: hard cap on evaluated routes (default 3x --paths)
   --dungeons         run/robust/consensus: the dungeon-inclusive family (needs data/forever/dungeons.json)
+  --radius <yards>   walks: route every pair of points up to this far apart (default 4000)
+  --no-walks         run/robust/compare/bench/consensus: walk the straight line × detour even
+                     when data/sim/walks-<faction>.json is there
   --offline          never download the QuestXP table
   --quiet            less output`;
 
-const VALUE = new Set(['faction', 'race', 'class', 'paths', 'workers', 'seed', 'draws', 'top', 'result', 'out', 'data', 'sim', 'fdj', 'guides', 'pack', 'to', 'band', 'jobs', 'anneal', 'max-paths', 'evals']);
-const FLAGS = new Set(['rebuild', 'offline', 'quiet', 'help', 'dungeons', 'with-optional']);
+const VALUE = new Set(['faction', 'race', 'class', 'paths', 'workers', 'seed', 'draws', 'top', 'result', 'out', 'data', 'sim', 'fdj', 'guides', 'pack', 'to', 'band', 'jobs', 'anneal', 'max-paths', 'evals', 'radius']);
+const FLAGS = new Set(['rebuild', 'offline', 'quiet', 'help', 'dungeons', 'with-optional', 'no-walks']);
 
 function parseArgs(argv) {
 	const out = { _: [] };
@@ -77,6 +82,7 @@ function common(args) {
 	if (args.sim) o.simDir = path.resolve(args.sim);
 	if (args.offline) o.offline = true;
 	if (args.band) o.bandWidth = Number(args.band);
+	if (args['no-walks']) o.walks = false;
 	o.log = args.quiet ? () => {} : (m) => console.error(m);
 	return o;
 }
@@ -126,6 +132,23 @@ async function run(argv) {
 				if (world.solo) console.log(`  solo filter: ${Object.entries(world.solo.counts).map(([k, n]) => `${n} ${k}`).join(', ')}; ${world.solo.repeatNoXp} repeatables without a recorded reward give no XP; instance areas from client build ${world.solo.instanceAreas || 'none (dungeons.json only)'}`);
 				for (const w of world.warnings || []) console.log(`  warning: ${w}`);
 				console.log(`  ${path.relative(process.cwd(), worldFile)}`);
+			}
+			return 0;
+		}
+		if (cmd === 'walks') {
+			const { buildWalks, writeWalks } = require('../lib/sim/walks');
+			const factions = args.faction ? [sim.normFaction(args.faction)] : ['Horde', 'Alliance'];
+			for (const faction of factions) {
+				const { world } = await sim.loadWorld({ ...o, faction, walks: false });
+				const t0 = Date.now();
+				const doc = await buildWalks(world, {
+					log: o.log,
+					radius: args.radius ? Number(args.radius) : undefined,
+					workers: args.workers ? Number(args.workers) : undefined,
+				});
+				const file = writeWalks(o.simDir || sim.DEFAULTS.simDir, doc);
+				console.log(`${faction}: ${doc.points} points, ${doc.pairs.length / 3} routed walks within ${doc.radius} yd (${doc.style}) in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
+				console.log(`  ${path.relative(process.cwd(), file)}`);
 			}
 			return 0;
 		}
