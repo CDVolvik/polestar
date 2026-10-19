@@ -3280,9 +3280,10 @@ local function evaluate()
 	end
 	useActive()
 	evaluateLoaded(true)
-	-- Out-levelled: once per guide per session, once the guide is placed (a
-	-- catch-up may pass it whole first).
-	if guide and guide.maxLevel and (player.level or 1) >= guide.maxLevel + 2 and not outleveled[guide.id] and not placing then
+	-- Out-levelled: once per guide per session; for a guide the catch-up may
+	-- pass whole for the player (Own.opened, autoChain), once it is placed.
+	local mayPass = placing and autoChain and Own.opened[guide and guide.id or ""] and ns.Get("behavior.skipGrey")
+	if guide and guide.maxLevel and (player.level or 1) >= guide.maxLevel + 2 and not outleveled[guide.id] and not mayPass then
 		outleveled[guide.id] = true
 		local suggested = Guides.Suggest()
 		ns.Fire("GUIDE_OUTLEVELED", guide.id, suggested ~= guide.id and suggested or nil)
