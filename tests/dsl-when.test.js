@@ -135,6 +135,33 @@ test('the resolver warns about ids the data lacks, a zone the game never names, 
 	]);
 });
 
+test('a step with `when onquest Q` or `when complete Q` hands Q in without an accept in the chain', () => {
+	for (const guard of ['when onquest 783', 'when onquest 7, 783', 'when complete 783']) {
+		const r = compile(guideText(['step Hand it in if you have it', `  ${guard}`, '  turnin 783']));
+		assert.deepEqual(r.errors, [], `${guard}\n${r.text}`);
+	}
+	// Negated, or for another quest, it is no stand-in.
+	for (const guard of ['when !onquest 783', 'when onquest 7']) {
+		const r = compile(guideText(['step Hand it in', `  ${guard}`, '  turnin 783']));
+		assert.equal(r.errors.length, 1, guard);
+		assert.match(r.errors[0], /turnin` for quest 783 that is never accepted earlier/);
+	}
+});
+
+test('a turn-in after accepts only in steps with `when` warns; one with a guard of its own, or an unconditional accept, does not', () => {
+	const lines = (turnin) => ['step One', '  when level<3', '  accept 783', 'step Two', ...turnin];
+	const warned = (r) => r.warnings.filter((w) => w.includes('accepted earlier only in steps with `when`'));
+	const text = guideText(lines(['  turnin 783']));
+	const r = compile(text);
+	assert.deepEqual(r.errors, [], r.text);
+	assert.deepEqual(warned(r), [
+		`test.guide:${lineOf(text, '  turnin 783')}: \`turnin\` for quest 783 (A Threat Within), which is accepted earlier only in steps with \`when\`: characters who pass those steps never see this turn-in. Give it the same \`when\` or a \`when onquest 783\``,
+	]);
+	assert.deepEqual(warned(compile(guideText(lines(['  when onquest 783', '  turnin 783'])))), []);
+	assert.deepEqual(warned(compile(guideText(lines(['  when level<3', '  turnin 783'])))), []);
+	assert.deepEqual(warned(compile(guideText([...lines([]).slice(0, 4), '  accept 783', '  turnin 783']))), []);
+});
+
 test('the emitted step carries `when` before its goals, in a fixed key order', () => {
 	const r = compile(guideText(['step Two', '  when !onquest 783,7', '  when has 159 x2', '  when level<6', '  accept 783']));
 	assert.deepEqual(r.errors, [], r.text);

@@ -245,6 +245,12 @@ While its `when` fails, a step counts as one that does not apply: like a step
 for another class, it never holds the guide, and a turn-in whose only accept
 is in such a step goes with it.
 
+A step with `when onquest Q` (or `when complete Q`) can hand in Q with no
+`accept Q` before it: "hand it in if you picked it up elsewhere". A `turnin`
+whose quest is accepted earlier only in steps with `when` warns: characters
+who passed those steps never see it, so give it the same `when` or a
+`when onquest`.
+
 Zone, subzone and bind location names work on every client language: the
 compiler gives each its area ID where the data names one (see "Places by
 ID"), and Polestar compares the game's own name for it, then the name you
