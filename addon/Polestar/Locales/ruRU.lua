@@ -103,6 +103,7 @@ L["Collect %s from %s"] = "Собрать %s с %s"
 L["Riding"] = "Верховая езда"
 L["Grey, kept: opens %s"] = "Серое, оставлено: открывает %s"
 -- L["level and share of it: %d (%d%%)"] = ""
+-- L["Have at least"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."

@@ -258,12 +258,7 @@ end
 
 -- "1g 50s" from copper.
 local function money(copper)
-	local g, s, c = math.floor(copper / 10000), math.floor(copper / 100) % 100, copper % 100
-	local parts = {}
-	if g > 0 then parts[#parts + 1] = g .. "g" end
-	if s > 0 then parts[#parts + 1] = s .. "s" end
-	if c > 0 then parts[#parts + 1] = c .. "c" end
-	return table.concat(parts, " ")
+	return ns.MoneyText(copper)
 end
 
 -- An item name in its quality colour: the client's quality when the item is

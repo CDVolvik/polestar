@@ -104,6 +104,7 @@ L["Collect %s from %s"] = "Ramasser %s sur %s"
 L["Riding"] = "Monte"
 L["Grey, kept: opens %s"] = "Grise, conservée : débloque %s"
 -- L["level and share of it: %d (%d%%)"] = ""
+-- L["Have at least"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Prendre %s ferme %s pour de bon."

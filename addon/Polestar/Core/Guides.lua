@@ -153,6 +153,8 @@ local REQUIRED = {
 	buy = { item = isNum, itemName = isStr },
 	vendor = {},
 	level = { level = isNum },
+	money = { money = isNum },
+	task = { text = isStr },
 	note = { text = isStr },
 	skill = { skill = isStr, level = isNum },
 	learn = { spell = isNum, spellName = isStr },
@@ -218,6 +220,8 @@ local function checkWhen(list)
 		if k == "level" then
 			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
 			if p.frac ~= nil and not isFrac(p.frac) then return false end
+		elseif k == "money" then
+			if not (WHEN_OPS[p.op] and isNum(p.n)) then return false end
 		elseif k == "onquest" then
 			if type(p.q) ~= "table" or #p.q == 0 then return false end
 			for j = 1, #p.q do

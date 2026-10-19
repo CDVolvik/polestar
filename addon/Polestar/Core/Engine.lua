@@ -491,6 +491,9 @@ function Own.predicateHolds(p)
 			n = n + p.frac
 		end
 		return (op == "<" and level < n) or (op == "<=" and level <= n) or (op == ">" and level > n) or (op == ">=" and level >= n)
+	elseif k == "money" then
+		local money, n, op = C.GetMoney(), p.n, p.op
+		return (op == "<" and money < n) or (op == "<=" and money <= n) or (op == ">" and money > n) or (op == ">=" and money >= n)
 	elseif k == "onquest" then
 		for _, q in ipairs(p.q) do
 			if C.IsOnQuest(q) then
@@ -876,7 +879,7 @@ function Own.findGate(g, level)
 	return nil
 end
 
-local MANUAL = { talk = true, hearth = true, getfp = true, fly = true, train = true, vendor = true }
+local MANUAL = { talk = true, hearth = true, getfp = true, fly = true, train = true, vendor = true, task = true }
 
 -- Whether the client can answer for a feature (Compat.Supports); a missing
 -- API turns the goal into a manual check-off instead of a dead end.
@@ -1221,7 +1224,7 @@ local function latchable(goal)
 	local t = goal.t
 	return t == "goto" or t == "explore" or t == "sethome" or t == "hearth" or t == "fly" or t == "getfp"
 		or t == "buy" or (t == "collect" and not goal.quest) or (t == "craft" and craftMode(goal) == "count")
-		or (t == "train" and goal.class == true)
+		or (t == "train" and goal.class == true) or t == "money"
 end
 
 -- Check-offs and latched results share CharState().manual[guideId]["s:g"].
@@ -1518,6 +1521,11 @@ goalDone = function(s, g, goal)
 	elseif t == "talk" or t == "train" or t == "vendor" then
 		-- Interactions during the step are stored as check-offs (see latch).
 		return false
+	elseif t == "task" then
+		-- Done only by the player's tick (checked above).
+		return false
+	elseif t == "money" then
+		return C.GetMoney() >= (goal.money or 0)
 	elseif t == "sethome" then
 		-- `sethome nearest` has no location: binding during the step latches it.
 		if not goal.location then return false end
@@ -1598,7 +1606,7 @@ end
 -- their own step so using the items up does not reopen it.
 local function isBagCount(goal)
 	return goal.t == "buy" or (goal.t == "collect" and not goal.quest)
-		or (goal.t == "craft" and craftMode(goal) == "count")
+		or (goal.t == "craft" and craftMode(goal) == "count") or goal.t == "money"
 end
 
 -- Quest goals checked live from the quest log.
@@ -2238,8 +2246,10 @@ local function describe(goal)
 			if c and c.text ~= "" then detail = c.text end
 		end
 		return L["Complete"], goal.achievementName, "achievement", detail
+	elseif t == "money" then
+		return L["Have at least"], ns.MoneyText(goal.money or 0), "text", nil
 	end
-	return "", goal.text or "", "text", nil -- note
+	return "", goal.text or "", "text", nil -- note, task
 end
 
 -- Goals whose count shows as a progress bar instead of in the text.
@@ -4327,7 +4337,7 @@ local function onUpdateEvent() requestUpdate() end
 -- skips any a client build does not know.
 for _, event in ipairs({
 	"QUEST_ACCEPTED", "QUEST_REMOVED", "QUEST_LOG_UPDATE", "QUEST_WATCH_UPDATE",
-	"BAG_UPDATE_DELAYED", "PLAYER_ENTERING_WORLD",
+	"BAG_UPDATE_DELAYED", "PLAYER_ENTERING_WORLD", "PLAYER_MONEY",
 	-- level (a point inside a level: `level 12.5`)
 	"PLAYER_XP_UPDATE",
 	-- skill / craft

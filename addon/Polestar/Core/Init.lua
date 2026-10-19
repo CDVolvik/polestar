@@ -52,6 +52,18 @@ function ns.LC(context, text)
 	return rawget(L, context .. ": " .. text) or text
 end
 
+-- An amount of copper as the guide window writes it: "1g 50s", "7s", "25c"
+-- (parts that are zero left out; "0c" for none).
+function ns.MoneyText(copper)
+	copper = math.floor(copper or 0)
+	local g, s, c = math.floor(copper / 10000), math.floor(copper / 100) % 100, copper % 100
+	local parts = {}
+	if g > 0 then parts[#parts + 1] = g .. "g" end
+	if s > 0 then parts[#parts + 1] = s .. "s" end
+	if c > 0 then parts[#parts + 1] = c .. "c" end
+	return #parts > 0 and table.concat(parts, " ") or "0c"
+end
+
 -- The interface's translations made with AI (tools/lib/i18n/locales.js,
 -- status "ai"; tests/i18n.test.js keeps the two lists equal).
 ns.AI_LOCALES = { koKR = true, ptBR = true, ruRU = true, zhCN = true, zhTW = true }

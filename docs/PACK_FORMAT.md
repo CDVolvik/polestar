@@ -253,13 +253,15 @@ texts"); an older Polestar would show them as written, hence the format.
 Format 3 with a step's **`when`**: the conditions checked during play
 (GUIDE_FORMAT.md, "Conditions checked during play"), a step's **`along`** and
 **`label`** (GUIDE_FORMAT.md, "Along the way"), a `level` goal's **`frac`**:
-a point inside the level, and a guide's **`nextWhen`**: conditional hand-offs
-(GUIDE_FORMAT.md, "Conditional hand-offs"). Polestar 0.2.6 and later read it.
+a point inside the level, the **`money`** and **`task`** goals, and a guide's
+**`nextWhen`**: conditional hand-offs (GUIDE_FORMAT.md, "Conditional
+hand-offs"). Polestar 0.2.6 and later read it.
 The compiler writes a pack in format 4 only when its guides use one of them;
 any other pack stays in format 3, so the Polestar it needs does not change. An
 older Polestar would show every conditional step to every character, stop the
 route at every along step, count `level 12.5` done at level 12 and offer every
-`next` option (it ignores keys it does not know), hence the format.
+`next` option (it ignores keys it does not know), and refuse a guide with a
+`money` or `task` goal (a verb it does not know), hence the format.
 
 `when` is a list of predicates, each a table with its kind `k`, `neg = true`
 to turn it around, and the kind's keys; a step applies while all of them
@@ -268,6 +270,7 @@ hold:
 | `k` | Keys | Holds when |
 |---|---|---|
 | `"level"` | `op` (`"<"`, `"<="`, `">"`, `">="`), `n`; optional `frac` (0 < frac < 1) | the character's level compares so with `n`; with `frac`, the level plus the share of it done (XP / XPMax) compares so with `n + frac` |
+| `"money"` | `op` (`"<"`, `"<="`, `">"`, `">="`), `n`: copper | the character's money compares so with `n` |
 | `"onquest"` | `q`: a list of quest ids | any of them is in the log |
 | `"complete"` | `q` | the quest is in the log, ready to turn in |
 | `"turnedin"` | `q` | the quest is handed in |
@@ -423,6 +426,8 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName`, `candidates` |
 | `vendor` | — | `npc`, `npcName`, `candidates` |
 | `level` | `level` | `frac` (format 4) |
+| `money` | `money`: copper (format 4) | — |
+| `task` | `text` (format 4) | — |
 | `note` | `text` | — |
 | `skill` | `skill`, `level` | `skillLine` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName`, `item`/`itemName`, `candidates` |

@@ -15,15 +15,17 @@
 //   [!]has <item> [xN]                        the bags hold N (default 1) or more
 //   [!]zone "<Name>"  [!]subzone "<Name>"     the zone or subzone text reads so
 //   [!]bound "<Location>"                     the hearthstone is bound there
+//   money<A  money<=A  money>A  money>=A     the character's money; A as copper or 1g50s / 7s / 25c
 // value = { k, neg?, op?, n?, frac?, q?, item?, name? }; `q` is a list for onquest.
 
 const { levelPoint } = require('../game/xp');
+const { readMoney } = require('./money');
 
 const INT_RE = /^\d+$/;
-const KINDS = ['level', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound'];
+const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound'];
 const QUEST_ONE = new Set(['complete', 'turnedin', 'available']);
 const PLACE = new Set(['zone', 'subzone', 'bound']);
-const USAGE = `predicates: level<N, level>=N, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>"`;
+const USAGE = `predicates: level<N, level>=N, money>=1s,[!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>"`;
 
 // A name written quoted or bare: `"Razor Hill"` or `Razor Hill`.
 function nameOf(text) {
@@ -46,6 +48,13 @@ function parseWhen(rest) {
 		if (p.frac) value.frac = p.frac;
 		return { value };
 	}
+	const mo = /^(!?)money\s*(<=|>=|<|>)\s*(\S+)$/i.exec(text);
+	if (mo) {
+		if (mo[1]) return { error: '`money` takes no `!`: turn the comparison around (`money<1s` for "not 1s or more")' };
+		const n = readMoney(mo[3]);
+		if (n === null) return { error: `malformed amount "${mo[3]}" (expected copper or 1g50s / 7s / 25c)` };
+		return { value: { k: 'money', op: mo[2], n } };
+	}
 	const m = /^(!?)([A-Za-z]+)\b\s*(.*)$/.exec(text);
 	const kind = m ? m[2].toLowerCase() : null;
 	if (!kind || !KINDS.includes(kind)) return { error: `unknown \`when\` predicate "${text.split(/\s+/)[0]}"`, hint: USAGE };
@@ -54,6 +63,7 @@ function parseWhen(rest) {
 	const value = { k: kind };
 	if (neg) value.neg = true;
 	if (kind === 'level') return { error: 'malformed `level` predicate (expected level<N, level<=N, level>N or level>=N)' };
+	if (kind === 'money') return { error: 'malformed `money` predicate (expected money<A, money<=A, money>A or money>=A, A as copper or 1g50s / 7s / 25c)' };
 	if (kind === 'onquest') {
 		const ids = args.split(/\s*,\s*|\s+/).filter(Boolean);
 		if (!ids.length || !ids.every((id) => INT_RE.test(id) && Number(id) > 0)) return { error: '`onquest` needs quest ids: onquest <quest>[,<quest>...]' };
