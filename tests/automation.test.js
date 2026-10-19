@@ -269,6 +269,7 @@ Polestar.RegisterGuide({
 			w.gossip(1373, { available = { { questID = 308 } } }); flush()
 			w.questProgress(1373, 308, { completable = true }); flush()
 			local first = #w.calls
+			stub.advance(5) -- a later visit, not the window the game opens after the turn-in (#360)
 			w.gossip(1373, { available = { { questID = 308 } } }); flush(); w.close()
 			w.questProgress(1373, 308, { completable = true }); flush(); w.close()
 			w.greeting(1373, { available = { { questID = 308 } } }); flush(); w.close()
