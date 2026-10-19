@@ -9915,7 +9915,7 @@ do
 				{
 					title = "{area:257}",
 					goals = {
-						{ t = "goto", text = "{area:257}", area = 257, map = 1438, x = 57, y = 32, f = "e" },
+						{ t = "goto", text = "{area:257}", area = 257, map = 1438, x = 56.69, y = 31.29, f = "e" },
 					},
 				},
 				{
@@ -10068,7 +10068,7 @@ do
 				{
 					title = "{area:258}'s mouth",
 					goals = {
-						{ t = "goto", text = "{area:258}", area = 258, map = 1438, x = 54, y = 52, f = "e" },
+						{ t = "goto", text = "{area:258}", area = 258, map = 1438, x = 54.59, y = 52.12, f = "e" },
 					},
 				},
 				{
