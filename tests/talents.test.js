@@ -63,9 +63,11 @@ emit(T.Replay(d, { key = "k", picks = { { order = 1, node = 3, rank = 1 } } })[1
 
 // Every class's plans in Builds.lua: three specs, 51 picks each, legal under the snapshot.
 const CLASS_SPECS = {
+	DRUID: ['Balance', 'Feral Combat', 'Restoration'],
 	MAGE: ['Arcane', 'Fire', 'Frost'],
 	PALADIN: ['Holy', 'Protection', 'Retribution'],
 	ROGUE: ['Assassination', 'Combat', 'Subtlety'],
+	SHAMAN: ['Elemental', 'Enhancement', 'Restoration'],
 	WARLOCK: ['Affliction', 'Demonology', 'Destruction'],
 	WARRIOR: ['Arms', 'Fury', 'Protection'],
 };
