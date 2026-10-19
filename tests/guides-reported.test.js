@@ -89,6 +89,23 @@ test(`${DUROTAR}: Tom's report: Cutting Teeth is turned in and Sting of the Scor
 	for (const q of [789, 4402]) assert.ok(at(list, `the objective of ${q}`, (g) => g.t === 'collect' && g.quest === q) < back, `${q}'s objective is done before the Den`);
 });
 
+// --- Durotar (tor, #352): Securing the Lines is a level 11 quest, so Rezlak
+// and Thunder Ridge come after the south loop, with Fizzle Darkstorm.
+
+test(`${DUROTAR}: tor's report: Securing the Lines is taken after the Sen'jin, Echo Isles and Kolkar Crag turn-ins, on Fizzle Darkstorm's visit`, { skip }, () => {
+	const list = goals(DUROTAR);
+	const securing = at(list, 'accept 835 (Securing the Lines)', is('accept', 835));
+	// 835 is level 11 against level 9-10 mobs: the south's level 8 quests are
+	// handed in before it is taken, not left waiting for 11.
+	for (const q of [817, 818, 826, 808, 786]) {
+		assert.ok(at(list, `turnin ${q}`, is('turnin', q)) < securing, `${q} is handed in before Securing the Lines is taken`);
+	}
+	// Rezlak's pair rides along with Fizzle Darkstorm (806) on the same ridge:
+	// taken after 806 is accepted, done before it is handed in.
+	assert.ok(at(list, 'accept 806 (Fizzle Darkstorm)', is('accept', 806)) < at(list, 'accept 834 (Rezlak)', is('accept', 834)), '834 is taken after 806');
+	assert.ok(at(list, 'turnin 835', is('turnin', 835)) < at(list, 'turnin 806', is('turnin', 806)), '835 is done before 806 is handed in');
+});
+
 // --- Caves (Tom): the arrow leads to a cave's mouth before anyone inside it.
 
 // The Den: Kzan Thornslash stands at the back of the cave, behind Gornek just inside it.
@@ -1430,6 +1447,50 @@ test('Zerkness\'s and Ioney\'s reports (#383, #396): every player is led to Alon
 			}
 		} finally {
 			pack.dispose();
+		}
+	}
+});
+
+// --- The Barrens (Fitz, #273): Savannah Lion Hides drop from the Patriarchs
+// in the Dry Hills and from the Matriarchs by Ratchet, but the Sprung Traps
+// the same step needs are all in the Dry Hills. The hide arrow stays there.
+test('forever/horde/04-the-barrens.guide: Fitz\'s report (#273): the Savannah Lion Hide arrow stays in the Dry Hills with the traps, never by Ratchet', { skip }, () => {
+	const list = goals('forever/horde/04-the-barrens.guide');
+	for (const quest of [95494, 95507]) {
+		const { goal } = list[at(list, `the Dry Hills collect for ${quest}`, is('collect', quest))];
+		for (const p of [goal, ...(goal.spots || [])]) {
+			const where = `${goal.itemName} at ${p.x},${p.y}`;
+			assert.ok(p.x >= 40 && p.x <= 52 && p.y >= 10 && p.y <= 22, `${where} is in the Dry Hills`);
+			assert.ok(Math.hypot(p.x - 60, p.y - 33) > 10, `${where} is not near Ratchet's Matriarchs (60,33)`);
+		}
+	}
+});
+
+// Avtom (#280): "Kill Ribchaser (rare) or Redridge Brute for Iron Pike" led to
+// the Redridge Mongrels' camp, where no Brute stands. Ribchaser, a rare, shares
+// the Mongrels' spawn points and drops the quest's Iron Pike and Iron Rivet at
+// 80%, the common Brutes, Mystics, Bashers and Drudgers at 65%: the highest
+// chance put the rare first and the arrow led to its camp. A rare is passed
+// over for the common droppers beside it, as elites are.
+
+test(`${REDRIDGE}: Avtom's report (#280): Iron Pike and Iron Rivet lead to the gnolls that drop them, not to the rare Ribchaser's camp among the Mongrels`, { skip }, () => {
+	const list = goals(REDRIDGE);
+	const ribchaser = 14271;
+	const camp = data.spawns('npc', ribchaser).filter((s) => s.map === 1433).flatMap((s) => s.pts);
+	assert.ok(camp.length, 'Ribchaser spawns in Redridge Mountains');
+	for (const item of [2856, 1013]) {
+		const i = at(list, `item ${item}`, (g) => g.t === 'collect' && g.quest === 89 && g.item === item);
+		const g = list[i].goal;
+		assert.notEqual(g.from, 'Ribchaser', `item ${item} names a common dropper, not the rare`);
+		assert.notEqual(g.fromAlso, 'Ribchaser');
+		assert.equal(g.fromRank, undefined, `item ${item} names a common dropper (rank ${g.fromRank})`);
+		const dropper = new Set(Object.keys(data.item(item).drops.npc).map(Number).filter((id) => id !== ribchaser));
+		const spawns = [...dropper].flatMap((id) => data.spawns('npc', id).filter((s) => s.map === 1433).flatMap((s) => s.pts));
+		const near = (a, pts, r) => pts.some(([x, y]) => yards({ map: 1433, x: a.x, y: a.y }, { map: 1433, x, y }) <= r);
+		const points = [g, ...(g.spots || []).filter((s) => !s.alt)];
+		for (const p of points) {
+			assert.ok(!near(p, camp, 60), `item ${item}: ${p.x},${p.y} is in Ribchaser's camp`);
+			assert.ok(near(p, spawns, 120), `item ${item}: ${p.x},${p.y} is by a common dropper`);
 		}
 	}
 });
