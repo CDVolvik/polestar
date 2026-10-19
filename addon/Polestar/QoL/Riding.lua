@@ -1,9 +1,9 @@
 -- Riding reminder: at levels 40 and 60, if the character has not yet learned
--- riding (or the higher tier at 60), prints one note in chat per tier with
--- the cost, the Honored discount and the current balance, then offers the
--- arrow to the race's riding trainer.  When the player cannot afford it yet
--- the module watches PLAYER_MONEY and offers the arrow the first time they
--- can, once per tier (its own per-character flag).
+-- riding (or the higher tier at 60), fires a RIDING_DUE event once per tier
+-- with trainer location, cost info, and optional class-mount routing.
+-- GuideFrame handles display.  When the player cannot afford it yet the module
+-- watches PLAYER_MONEY and fires RIDING_MONEY so the banner can refresh the
+-- affordability button live, once per tier (its own per-character flag).
 --
 -- Class routes (tier 1 / level 40 only):
 --   WARLOCK: Strahad Farsan, Ratchet (Summon Felsteed chain 3631/4489 or
@@ -16,7 +16,7 @@
 --
 -- Quest 4490 (Warlock chain) and 4486 (Paladin chain) both show "skill: null"
 -- in data/forever – whether they also grant the riding skill is not confirmed
--- from the data; the note therefore says "your class mount comes from this
+-- from the data; the notice therefore says "your class mount comes from this
 -- quest; riding trainer otherwise" and the arrow is set regardless of gold
 -- so the player can investigate for themselves.
 --
@@ -36,11 +36,14 @@
 --   Skyborne Alliance (High Order) 2779 · Skyborne Horde (Windshapers) 2778
 --
 -- Per-character state in PolestarCharDB.flags:
---   ridingReminder40 / ridingReminder60 — note printed for tier
---   ridingArrow40    / ridingArrow60    — arrow pointed for tier
+--   ridingReminder40 / ridingReminder60 — RIDING_DUE fired for tier
+--   ridingArrow40    / ridingArrow60    — resolved (OnResolve called) for tier
 --
---   Riding.Check(level)      called on PLAYER_LEVEL_UP and PLAYER_ENTERING_WORLD
---   Riding.HasRiding(tier)   pure predicate, for tests
+-- Public API:
+--   Riding.Check(level)              called on PLAYER_LEVEL_UP / PLAYER_ENTERING_WORLD
+--   Riding.HasRiding(tier)           pure predicate, for tests
+--   Riding.EffectiveCost(tier, fID)  cost after Honored discount (copper)
+--   Riding.OnResolve(tier)           called by GuideFrame on banner dismiss
 
 local ADDON, ns = ...
 local L = ns.L
@@ -82,21 +85,21 @@ end
 ---------------------------------------------------------------------------
 
 local TRAINERS = {
-	Orc      = { map = 1454, x = 69.4,  y = 13.1,  name = "Kildar",               faction = 76  },
-	Troll    = { map = 1411, x = 55.3,  y = 75.5,  name = "Xar'Ti",               faction = 530 },
-	Tauren   = { map = 1412, x = 46.8,  y = 62.0,  name = "Kar Stormsinger",       faction = 81  },
-	Scourge  = { map = 1420, x = 60.1,  y = 52.6,  name = "Velma Warnam",          faction = 68  },
-	Human    = { map = 1429, x = 84.3,  y = 64.9,  name = "Randal Hunter",         faction = 72  },
-	NightElf = { map = 1438, x = 25.3,  y = 50.2,  name = "Jartsam",              faction = 69  },
-	Dwarf    = { map = 1426, x = 63.7,  y = 50.1,  name = "Ultham Ironhorn",       faction = 47  },
-	Gnome    = { map = 1426, x = 49.2,  y = 48.1,  name = "Binjy Featherwhistle", faction = 54  },
+	Orc      = { map = 1454, x = 69.4,  y = 13.1,  npcName = "Kildar",               faction = 76  },
+	Troll    = { map = 1411, x = 55.3,  y = 75.5,  npcName = "Xar'Ti",               faction = 530 },
+	Tauren   = { map = 1412, x = 46.8,  y = 62.0,  npcName = "Kar Stormsinger",       faction = 81  },
+	Scourge  = { map = 1420, x = 60.1,  y = 52.6,  npcName = "Velma Warnam",          faction = 68  },
+	Human    = { map = 1429, x = 84.3,  y = 64.9,  npcName = "Randal Hunter",         faction = 72  },
+	NightElf = { map = 1438, x = 25.3,  y = 50.2,  npcName = "Jartsam",              faction = 69  },
+	Dwarf    = { map = 1426, x = 63.7,  y = 50.1,  npcName = "Ultham Ironhorn",       faction = 47  },
+	Gnome    = { map = 1426, x = 49.2,  y = 48.1,  npcName = "Binjy Featherwhistle", faction = 54  },
 }
 local TRAINERS_SKYBORNE = {
-	Alliance = { map = 2521, x = 53.5, y = 80.5, name = "Genn Fairweather", faction = 2779 },
-	Horde    = { map = 2521, x = 53.5, y = 80.5, name = "Genn Fairweather", faction = 2778 },
+	Alliance = { map = 2521, x = 53.5, y = 80.5, npcName = "Genn Fairweather", faction = 2779 },
+	Horde    = { map = 2521, x = 53.5, y = 80.5, npcName = "Genn Fairweather", faction = 2778 },
 }
-local STRAHAD = { map = 1413, x = 62.6, y = 35.5, name = "Strahad Farsan" }
-local GRAYSON = { map = 1453, x = 48.43, y = 50.22, name = "Lord Grayson Shadowbreaker" }
+local STRAHAD = { map = 1413, x = 62.6,  y = 35.5,  npcName = "Strahad Farsan"             }
+local GRAYSON = { map = 1453, x = 48.43, y = 50.22, npcName = "Lord Grayson Shadowbreaker"  }
 
 local function trainerFor(race, faction)
 	if race == "Skyborne" then return TRAINERS_SKYBORNE[faction] end
@@ -119,6 +122,12 @@ local function effectiveCost(tier, factionID)
 		end
 	end
 	return base
+end
+
+-- Public: effective cost after Honored discount (copper).  Used by GuideFrame
+-- to compute affordability live without duplicating the discount logic.
+function Riding.EffectiveCost(tier, factionID)
+	return effectiveCost(tier, factionID)
 end
 
 local function isHonored(factionID)
@@ -165,11 +174,11 @@ local function noteSeen(tier)  return ns.CharState().flags[NOTE_FLAGS[tier]]  ==
 local function arrowSeen(tier) return ns.CharState().flags[ARROW_FLAGS[tier]] == true end
 
 ---------------------------------------------------------------------------
--- PLAYER_MONEY watcher: points the arrow once the player can afford riding
+-- PLAYER_MONEY watcher: fires RIDING_MONEY while any tier banner is pending
 ---------------------------------------------------------------------------
 
-local moneyPending = {}    -- tier -> true when watching for that tier's arrow
-local moneyRegistered = false
+local ridingMoneyWatch = {}   -- tier -> true while watching for that tier
+local moneyRegistered  = false
 
 local onMoney  -- forward declaration
 
@@ -180,58 +189,39 @@ local function unregisterMoney()
 	end
 end
 
--- Try to fire the deferred arrow for one tier.  Called from onMoney and from
--- Check (when the note is already shown but the arrow was never set).
-local function tryArrow(tier)
-	-- Drop stale entries cheaply.
-	if arrowSeen(tier) or not QoL.On("ridingReminder") or Riding.HasRiding(tier) then
-		moneyPending[tier] = nil
-		return
-	end
-	local info = ns.Compat.GetPlayerInfo()
-	local race    = info and info.race    or ""
-	local class   = info and info.class   or ""
-	local faction = info and info.faction or ""
-	local classNpc, _, classKind = classRoute(class, faction, tier)
-	local trainer = classNpc or trainerFor(race, faction)
-	if not trainer then moneyPending[tier] = nil; return end
-
-	local canFire
-	if classKind then
-		canFire = true  -- class-mount route: always offer arrow regardless of gold
-	else
-		local factionID = trainer.faction
-		canFire = Client.Money() >= effectiveCost(tier, factionID)
-	end
-
-	if canFire then
-		markArrow(tier)
-		moneyPending[tier] = nil
-		local N = ns.Nav
-		if N and N.SetTarget then
-			N.SetTarget(trainer.map, trainer.x, trainer.y, trainer.name)
-			ns.Print(format(L["Arrow: %s."], trainer.name))
-		end
-	end
+local function stopMoneyWatch(tier)
+	ridingMoneyWatch[tier] = nil
+	if not next(ridingMoneyWatch) then unregisterMoney() end
 end
 
-onMoney = function()
-	-- Early out: nothing pending.
-	if not next(moneyPending) then unregisterMoney(); return end
-	local any = false
-	for tier in pairs(moneyPending) do
-		tryArrow(tier)
-		if moneyPending[tier] then any = true end
-	end
-	if not any then unregisterMoney() end
-end
-
-local function watchMoney(tier)
-	moneyPending[tier] = true
+local function startMoneyWatch(tier)
+	ridingMoneyWatch[tier] = true
 	if not moneyRegistered then
 		ns.RegisterEvent("PLAYER_MONEY", onMoney)
 		moneyRegistered = true
 	end
+end
+
+onMoney = function()
+	if not next(ridingMoneyWatch) then unregisterMoney(); return end
+	-- Prune stale entries (tier resolved or riding learned since last check).
+	for tier in pairs(ridingMoneyWatch) do
+		if arrowSeen(tier) or Riding.HasRiding(tier) then
+			ridingMoneyWatch[tier] = nil
+		end
+	end
+	if not next(ridingMoneyWatch) then unregisterMoney(); return end
+	-- Let GuideFrame re-render the banner's affordability button.
+	ns.Fire("RIDING_MONEY")
+end
+
+---------------------------------------------------------------------------
+-- Resolve (called by GuideFrame on banner dismiss or "Take me there")
+---------------------------------------------------------------------------
+
+function Riding.OnResolve(tier)
+	markArrow(tier)
+	stopMoneyWatch(tier)
 end
 
 ---------------------------------------------------------------------------
@@ -251,16 +241,15 @@ function Riding.Check(level)
 	local tier = tierForLevel(level)
 	if not tier then return end
 
-	-- Already handled both note and arrow for this tier.
-	if noteSeen(tier) and arrowSeen(tier) then return end
+	-- Already resolved for this tier; ensure watcher is clean and bail.
+	if arrowSeen(tier) then
+		stopMoneyWatch(tier)
+		return
+	end
 
-	-- Already learned.
+	-- Already learned (may have been learned since last session).
 	if Riding.HasRiding(tier) then
-		-- Clear any pending watch (learned since last session).
-		if moneyPending[tier] then
-			moneyPending[tier] = nil
-			if not next(moneyPending) then unregisterMoney() end
-		end
+		stopMoneyWatch(tier)
 		return
 	end
 
@@ -270,45 +259,37 @@ function Riding.Check(level)
 	local faction = info and info.faction or ""
 
 	local classNpc, classFaction, classKind = classRoute(class, faction, tier)
-	local trainer = classNpc or trainerFor(race, faction)
+	local trainer   = classNpc or trainerFor(race, faction)
 	local factionID = classNpc and classFaction or (trainer and trainer.faction)
 
-	-- Print note (once per tier).
+	-- Fire RIDING_DUE once per tier to bring up the banner.
 	if not noteSeen(tier) then
 		markNote(tier)
-		local msg
-		if classKind == "WARLOCK" then
-			msg = L["Riding: your class mount comes from the Summon Felsteed quest chain (Strahad Farsan, Ratchet); the riding trainer otherwise."]
-		elseif classKind == "PALADIN" then
-			msg = L["Riding: your class mount comes from the Tome of Nobility quest chain (Lord Grayson Shadowbreaker, Stormwind); the riding trainer otherwise."]
-		else
-			local tierName = tier == 1 and L["Apprentice Riding"] or L["Journeyman Riding"]
-			local baseGold = tier == 1 and L["100 g"] or L["1,000 g"]
-			msg = format(L["Riding reminder: %s costs %s."], tierName, baseGold)
-			if factionID and isHonored(factionID) then
-				msg = msg .. " " .. L["(Honored: 10% off)"]
-			elseif factionID then
-				msg = msg .. " " .. L["(10% off at Honored with the home faction)"]
-			end
-			msg = msg .. " " .. format(L["You have %s."], QoL.Money(Client.Money()))
+		-- Build a trainer sub-table; copy fields so the notice is immutable.
+		local trainerNotice
+		if trainer then
+			trainerNotice = {
+				map     = trainer.map,
+				x       = trainer.x,
+				y       = trainer.y,
+				npcName = trainer.npcName,
+				faction = trainer.faction,
+			}
 		end
-		ns.Print(msg)
+		local notice = {
+			tier      = tier,
+			trainer   = trainerNotice,
+			classKind = classKind,
+			factionID = factionID,
+			cost      = classKind and 0 or effectiveCost(tier, factionID),
+		}
+		ns.Fire("RIDING_DUE", notice)
 	end
 
-	-- Set arrow (once per tier).
-	if not arrowSeen(tier) then
-		if classKind then
-			-- Free-mount route: offer arrow regardless of gold.
-			tryArrow(tier)
-		else
-			local cost = effectiveCost(tier, factionID)
-			if Client.Money() >= cost then
-				tryArrow(tier)
-			else
-				-- Watch money until affordable.
-				watchMoney(tier)
-			end
-		end
+	-- Watch money for normal (non-class-mount) tiers so GuideFrame can toggle
+	-- the "Take me there" button as the player's balance changes.
+	if classKind == nil and not ridingMoneyWatch[tier] then
+		startMoneyWatch(tier)
 	end
 end
 

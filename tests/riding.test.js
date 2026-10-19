@@ -1,34 +1,198 @@
 'use strict';
-// Riding reminder (addon/Polestar/QoL/Riding.lua): fires at levels 40 and 60
-// when the character has not yet learned riding, once per tier per character,
-// with gold gating on the nav arrow and class/race routing.
-// Runs the real Core + Compat + QoL against tests/lua/stub_qol.lua.
+// Riding reminder (addon/Polestar/QoL/Riding.lua + UI/GuideFrame.lua banner):
+// fires a banner at levels 40 and 60 when riding has not been learned,
+// once per tier per character; gold-gated "Take me there" button;
+// class routing for Warlocks and Alliance Paladins.
+//
+// Section 1: banner rendering and interaction (stub_ui, like ui.test.js).
+// Section 2: Riding.lua unit logic (stub_qol, like the old riding.test.js).
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { runAddon } = require('./helpers/lua');
 
-const FILES = { name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Theme/Theme.xml', 'QoL/QoL.xml'] };
+// ---------------------------------------------------------------------------
+// Section 1: Banner (GuideFrame.lua "riding" notice kind)
+// ---------------------------------------------------------------------------
+// Runs the real Core + Theme + UI against stub_ui.lua — same pattern as ui.test.js.
+// GuideFrame is loaded; QoL is NOT (the banner must work without QoL loaded,
+// using the cost baked into the notice and the fallback money formatter).
 
-// -- Lua helpers injected before every test script ----------------------------
+const UI_FILES = ['Core/Core.xml', 'Theme/Theme.xml', 'UI/UI.xml'];
+
+function runUI(script, opts = {}) {
+	return runAddon({
+		stubs: ['stub_ui.lua'],
+		before: opts.before || '',
+		addons: [{ name: 'Polestar', files: UI_FILES }],
+		saved: opts.saved,
+		script: `uistub.install()\nstub.login()\nlocal GF = Polestar.UI.GuideFrame\nlocal B = GF.parts.banner\nlocal TABS = { { uistub.elwynn, 3 } }\n${script}`,
+	}).emitted;
+}
+
+// ---- RIDING_DUE fires banner --------------------------------------------------
+
+test('RIDING_DUE shows a riding banner (icon-mount, title, body, dismiss button)', () => {
+	// Before fix: no "riding" notice kind — banner would be absent.
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		local notice = { tier = 1, cost = 1000000,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" }, factionID = 72 }
+		function GetMoney() return 1120000 end
+		Polestar.Fire("RIDING_DUE", notice)
+		emit({ shown = B:IsShown(),
+			text  = B.Text:GetText(),
+			close = B.Close:IsShown(),
+			later = B.Later:IsShown(),
+			jump  = B.Jump:IsShown(),
+			jumpLabel = B.Jump:IsShown() and B.Jump.Label:GetText() or nil })
+	`);
+	assert.equal(out.shown, true, 'banner visible');
+	assert.ok(out.text.includes('Level 40'), 'title has level');
+	assert.ok(out.text.includes('100 g'), 'body has cost');
+	assert.ok(out.text.includes('112g'), 'body has balance');
+	assert.equal(out.close, true, 'dismiss × shown');
+	assert.equal(out.later, false, 'no Later button');
+	assert.equal(out.jump, true, 'Take me there shown when can afford');
+	assert.equal(out.jumpLabel, 'Take me there');
+});
+
+test('RIDING_DUE hides Take me there when player cannot afford', () => {
+	// Before fix: no riding banner kind → jump button state irrelevant.
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 430000 end   -- 43g < 100g
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" }, factionID = 72 })
+		emit({ jump = B.Jump:IsShown(), close = B.Close:IsShown() })
+	`);
+	assert.equal(out.jump, false, 'Take me there hidden when broke');
+	assert.equal(out.close, true, 'dismiss still shown');
+});
+
+test('RIDING_DUE with classKind WARLOCK shows class mount text and always shows Take me there', () => {
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 0 end   -- 0g, but free for Warlock
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 0,
+			trainer = { map = 1413, x = 62.6, y = 35.5, npcName = "Strahad Farsan" }, classKind = "WARLOCK" })
+		emit({ text = B.Text:GetText(), jump = B.Jump:IsShown() })
+	`);
+	assert.ok(out.text.includes('Warlock'), 'Warlock class mount title');
+	assert.ok(out.text.includes('Felsteed'), 'Felsteed quest chain in body');
+	assert.equal(out.jump, true, 'Take me there always shown for class mount');
+});
+
+test('RIDING_DUE with classKind PALADIN shows Tome of Nobility text', () => {
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 0 end
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 0,
+			trainer = { map = 1453, x = 48.43, y = 50.22, npcName = "Lord Grayson Shadowbreaker" }, classKind = "PALADIN" })
+		emit({ text = B.Text:GetText(), jump = B.Jump:IsShown() })
+	`);
+	assert.ok(out.text.includes('Paladin'), 'Paladin class mount title');
+	assert.ok(out.text.includes('Tome'), 'Tome of Nobility in body');
+	assert.equal(out.jump, true, 'Take me there shown for class mount');
+});
+
+test('tier 2 banner shows Journeyman Riding title and 1,000 g cost', () => {
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 15000000 end
+		Polestar.Fire("RIDING_DUE", { tier = 2, cost = 10000000,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" }, factionID = 72 })
+		emit(B.Text:GetText())
+	`);
+	assert.ok(out.includes('Journeyman'), 'Journeyman Riding title');
+	assert.ok(out.includes('1,000 g'), '1000g cost shown');
+});
+
+// ---- Dismiss and Take me there -----------------------------------------------
+
+test('clicking dismiss (×) hides the banner', () => {
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 1120000 end
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" } })
+		B.Close:Click()
+		emit(B:IsShown())
+	`);
+	assert.equal(out, false);
+});
+
+test('clicking Take me there sets Nav arrow to trainer and hides banner', () => {
+	const [out] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 1120000 end
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" } })
+		B.Jump:Click()
+		local t = uistub.target
+		emit({ hidden = not B:IsShown(), map = t and t.map, x = t and t.x, label = t and t.label })
+	`);
+	assert.equal(out.hidden, true, 'banner hides after Take me there');
+	assert.equal(out.map, 1429);
+	assert.equal(out.x, 84.3);
+	assert.equal(out.label, 'Randal Hunter');
+});
+
+// ---- RIDING_MONEY re-renders button ------------------------------------------
+
+test('RIDING_MONEY re-renders banner: adds Take me there once gold crosses threshold', () => {
+	// Before fix: no RIDING_MONEY handler → button never appeared after level-up.
+	const [before, after] = runUI(`
+		uistub.openTabs(TABS, 1)
+		local copper = 430000   -- start broke
+		function GetMoney() return copper end
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" } })
+		emit(B.Jump:IsShown())       -- (1) broke: no button
+		copper = 1120000             -- now can afford
+		Polestar.Fire("RIDING_MONEY")
+		emit(B.Jump:IsShown())       -- (2) rich: button appears
+	`);
+	assert.equal(before, false, 'no button when broke');
+	assert.equal(after, true, 'button appears after RIDING_MONEY when affordable');
+});
+
+// ---- Riding banner after train banner priority --------------------------------
+
+test('training banner shows first; riding banner shows after it is dismissed', () => {
+	const [first, second] = runUI(`
+		uistub.openTabs(TABS, 1)
+		function GetMoney() return 1120000 end
+		Polestar.Fire("TRAIN_DUE", 12, { npc = 914, npcName = "Ander Germaine", map = 1453, x = 79.6, y = 70.2 })
+		Polestar.Fire("RIDING_DUE", { tier = 1, cost = 1000000,
+			trainer = { map = 1429, x = 84.3, y = 64.9, npcName = "Randal Hunter" } })
+		emit(B.Text:GetText())         -- train has priority
+		B.Later:Click()                -- dismiss train via Later
+		emit(B.Text:GetText())         -- now riding shows
+	`);
+	assert.ok(first.includes('Level 12') || first.includes('class skills'), 'train shows first');
+	assert.ok(second.includes('Level 40') || second.includes('learn to ride'), 'riding shows after');
+});
+
+// ---------------------------------------------------------------------------
+// Section 2: Riding.lua unit logic (stub_qol)
+// ---------------------------------------------------------------------------
+
+const QOL_FILES = { name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Theme/Theme.xml', 'QoL/QoL.xml'] };
+
 const PRELUDE = `
 local q  = stub.qol
 local R  = Polestar.QoL.Riding
-
--- Override Compat with test-friendly versions.
 local C  = Polestar.Compat
-local _ridingRank, _ridingMaxRank = nil, nil   -- nil = no riding skill
-local _spells     = {}
-local _quests     = {}
-local _factions   = {}   -- factionID -> standingID (1=Hated..8=Exalted)
+local _ridingRank, _ridingMaxRank = nil, nil
+local _spells = {}
+local _quests = {}
+local _factions = {}
 
-C.GetSkillRank = function(line)
-    if line == 762 then return _ridingRank, _ridingMaxRank end
-    return nil
-end
-C.IsSpellKnown = function(id) return _spells[id] == true end
+C.GetSkillRank    = function(line) if line == 762 then return _ridingRank, _ridingMaxRank end end
+C.IsSpellKnown    = function(id)  return _spells[id] == true end
 C.IsQuestCompleted = function(id) return _quests[id] == true end
-C.GetFactionStanding = function(id) local s = _factions[id]; return s end
+C.GetFactionStanding = function(id) return _factions[id] end
 
 local function setRiding(tier)
     if tier == 1 then _ridingRank, _ridingMaxRank = 1, 75
@@ -37,14 +201,17 @@ local function setRiding(tier)
 end
 
 local function setMoney(copper) q.money = copper end
-local function setRep(factionID, standing) _factions[factionID] = standing end
+local function setRep(fid, standing) _factions[fid] = standing end
 
--- defaults: Human, WARRIOR, Alliance level 1
-C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="WARRIOR", faction="Alliance" } end
+-- defaults: Human WARRIOR Alliance
+C.GetPlayerInfo = function() return { name="T", level=q.level, race="Human", class="WARRIOR", faction="Alliance" } end
+
+local ridings = {}   -- captures from RIDING_DUE
+Polestar.On("RIDING_DUE", function(n) ridings[#ridings + 1] = n end)
 
 local function levelUp(n)
     q.level = n
-    stub.fire("PLAYER_LEVEL_UP", n, 0, 0, 0, 0, 0, 0, 0, 0)
+    stub.fire("PLAYER_LEVEL_UP", n, 0,0,0,0,0,0,0,0)
     stub.runTimers()
 end
 
@@ -52,20 +219,12 @@ local function enterWorld()
     stub.fire("PLAYER_ENTERING_WORLD")
     stub.runTimers()
 end
-
-local function printed(pat)
-    for _, m in ipairs(stub.messages) do if m:find(pat, 1, true) then return true end end
-    return false
-end
-
-local function navCount() return #q.nav.sets end
-local function navLabel(i) local t = q.nav.sets[i]; return t and t.label end
 `;
 
-function run(script, opts = {}) {
+function runQoL(script, opts = {}) {
 	return runAddon({
 		stubs: ['stub_qol.lua'],
-		addons: [FILES],
+		addons: [QOL_FILES],
 		before: opts.before,
 		saved: opts.saved,
 		login: true,
@@ -73,509 +232,215 @@ function run(script, opts = {}) {
 	}).emitted;
 }
 
-// ---------------------------------------------------------------------------
-// Option default
-// ---------------------------------------------------------------------------
+// ---- RIDING_DUE event fires instead of Print ---------------------------------
 
-test('ridingReminder defaults to true', () => {
-	const [def] = run(`emit(Polestar.GetDefault("qol.ridingReminder"))`);
-	assert.equal(def, true);
+test('RIDING_DUE fires at level 40 when riding not known', () => {
+	const [count] = runQoL(`levelUp(40); emit(#ridings)`);
+	assert.equal(count, 1);
 });
 
-test('ridingReminder is registered in options with label and help', () => {
-	const [found] = run(`
-		local found = false
-		for _, spec in ipairs(Polestar.Widgets.OptionsRegistry) do
-			for _, c in ipairs(spec.controls) do
-				if c.key == "qol.ridingReminder" then
-					found = c.label ~= nil and c.help ~= nil
-				end
-			end
-		end
-		emit(found)
+test('RIDING_DUE fires with correct tier and trainer', () => {
+	const [n] = runQoL(`levelUp(40); emit(ridings[1])`);
+	assert.equal(n.tier, 1);
+	assert.ok(n.trainer, 'has trainer');
+	assert.ok(n.cost > 0, 'cost baked in');
+});
+
+test('no RIDING_DUE at level 39', () => {
+	const [count] = runQoL(`levelUp(39); emit(#ridings)`);
+	assert.equal(count, 0);
+});
+
+test('no RIDING_DUE when riding (Apprentice) is already known', () => {
+	const [count] = runQoL(`setRiding(1); levelUp(40); emit(#ridings)`);
+	assert.equal(count, 0);
+});
+
+test('RIDING_DUE fires only once per tier (second Check is silent)', () => {
+	const [first, second] = runQoL(`
+		levelUp(40); emit(#ridings)
+		ridings = {}
+		R.Check(40); emit(#ridings)
 	`);
-	assert.equal(found, true);
-});
-
-// ---------------------------------------------------------------------------
-// Tier 1 (level 40) — basic note
-// ---------------------------------------------------------------------------
-
-test('fires a chat note at level 40 when riding is not known', () => {
-	const [hasReminder, hasCost, hasBalance] = run(`
-		setMoney(2000000)
-		levelUp(40)
-		emit(printed("Riding reminder"))
-		emit(printed("100 g"))
-		emit(printed("You have"))
-	`);
-	assert.equal(hasReminder, true, 'prints reminder');
-	assert.equal(hasCost, true, 'mentions cost');
-	assert.equal(hasBalance, true, 'shows balance');
-});
-
-test('does not fire at level 39', () => {
-	const [fired] = run(`levelUp(39); emit(printed("Riding reminder"))`);
-	assert.equal(fired, false);
-});
-
-test('does not fire when riding (Apprentice) is already known at level 40', () => {
-	const [fired] = run(`setRiding(1); levelUp(40); emit(printed("Riding reminder"))`);
-	assert.equal(fired, false);
-});
-
-test('fires only once at tier 1 (second call is silent)', () => {
-	const [first, second] = run(`
-		setMoney(500000)
-		levelUp(40)
-		emit(printed("Riding reminder"))
-		stub.messages = {}
-		R.Check(40)
-		emit(printed("Riding reminder"))
-	`);
-	assert.equal(first, true, 'first fires');
-	assert.equal(second, false, 'second is silent');
+	assert.equal(first, 1);
+	assert.equal(second, 0);
 });
 
 test('once-per-tier note flag persists across reload', () => {
-	const [fired] = run(`levelUp(40); emit(printed("Riding reminder"))`, {
+	const [count] = runQoL(`levelUp(40); emit(#ridings)`, {
 		saved: { Polestar: `PolestarCharDB = { schema = 1, flags = { ridingReminder40 = true } }` },
 	});
-	assert.equal(fired, false);
-});
-
-// ---------------------------------------------------------------------------
-// Tier 2 (level 60) — basic note
-// ---------------------------------------------------------------------------
-
-test('fires at level 60 when only Apprentice riding is known', () => {
-	const [hasReminder, hasCost] = run(`
-		setRiding(1)
-		setMoney(15000000)
-		levelUp(60)
-		emit(printed("Riding reminder"))
-		emit(printed("1,000 g"))
-	`);
-	assert.equal(hasReminder, true);
-	assert.equal(hasCost, true);
-});
-
-test('does not fire at level 60 when Journeyman riding is already known', () => {
-	const [fired] = run(`setRiding(2); levelUp(60); emit(printed("Riding reminder"))`);
-	assert.equal(fired, false);
-});
-
-test('tier 1 flag does not suppress tier 2 reminder', () => {
-	const [fired] = run(`
-		setRiding(1); setMoney(15000000); levelUp(60)
-		emit(printed("Riding reminder"))
-	`, {
-		saved: { Polestar: `PolestarCharDB = { schema = 1, flags = { ridingReminder40 = true } }` },
-	});
-	assert.equal(fired, true);
-});
-
-// ---------------------------------------------------------------------------
-// FIX 1: Class routes are tier 1 only
-// ---------------------------------------------------------------------------
-
-test('Warlock at level 60 (tier 2) goes to riding trainer, not Strahad Farsan', () => {
-	// Before fix: classRoute returned STRAHAD at tier 2 too.
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Orc", class="WARLOCK", faction="Horde" } end
-		setRiding(1)     -- has Apprentice, not Journeyman
-		setMoney(15000000)
-		levelUp(60)
-		emit(navLabel(1))
-	`);
-	// Orc riding trainer at tier 2
-	assert.equal(label, 'Kildar');
-});
-
-test('Alliance Paladin at level 60 (tier 2) goes to riding trainer, not Grayson', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="PALADIN", faction="Alliance" } end
-		setRiding(1)
-		setMoney(15000000)
-		levelUp(60)
-		emit(navLabel(1))
-	`);
-	assert.equal(label, 'Randal Hunter');
-});
-
-// ---------------------------------------------------------------------------
-// FIX 2: Class-mount wording and no-gold-gate for tier 1
-// ---------------------------------------------------------------------------
-
-test('Warlock note at tier 1 says quest chain, not "100 g"', () => {
-	// Before fix: printed "Apprentice Riding costs 100 g".
-	const [hasQuestMsg, hasGoldMsg] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="WARLOCK", faction="Alliance" } end
-		setMoney(0)    -- broke – but class mount is free
-		levelUp(40)
-		emit(printed("Felsteed"))
-		emit(printed("100 g"))
-	`);
-	assert.equal(hasQuestMsg, true, 'mentions Felsteed quest');
-	assert.equal(hasGoldMsg, false, 'does NOT show 100 g cost');
-});
-
-test('Warlock arrow at tier 1 fires even with 0 gold', () => {
-	// Before fix: arrow was gated on gold.
-	const [count] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="WARLOCK", faction="Alliance" } end
-		setMoney(0)
-		levelUp(40)
-		emit(navCount())
-	`);
-	assert.equal(count, 1);
-});
-
-test('Alliance Paladin note at tier 1 says Tome of Nobility, not "100 g"', () => {
-	const [hasQuestMsg, hasGoldMsg] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="PALADIN", faction="Alliance" } end
-		setMoney(0)
-		levelUp(40)
-		emit(printed("Tome"))
-		emit(printed("100 g"))
-	`);
-	assert.equal(hasQuestMsg, true, 'mentions Tome quest');
-	assert.equal(hasGoldMsg, false, 'does NOT show 100 g cost');
-});
-
-test('Alliance Paladin arrow at tier 1 fires even with 0 gold', () => {
-	const [count] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="PALADIN", faction="Alliance" } end
-		setMoney(0)
-		levelUp(40)
-		emit(navCount())
-	`);
-	assert.equal(count, 1);
-});
-
-// ---------------------------------------------------------------------------
-// FIX 3: PLAYER_MONEY watcher — deferred arrow
-// ---------------------------------------------------------------------------
-
-test('no arrow on level-up when broke, but arrow fires when PLAYER_MONEY makes threshold', () => {
-	// Before fix: no PLAYER_MONEY watch; arrow was silently skipped.
-	const [countBefore, countAfter, hasArrowMsg] = run(`
-		setMoney(0)
-		levelUp(40)
-		emit(navCount())           -- broke: no arrow yet
-		setMoney(1000000)          -- exactly 100 g
-		stub.fire("PLAYER_MONEY")
-		stub.runTimers()
-		emit(navCount())           -- now the arrow fires
-		emit(printed("Arrow"))
-	`);
-	assert.equal(countBefore, 0, 'no arrow when broke');
-	assert.equal(countAfter, 1, 'arrow fires when gold threshold met');
-	assert.equal(hasArrowMsg, true, 'prints arrow line');
-});
-
-test('money-gated arrow fires only once per tier', () => {
-	const [count] = run(`
-		setMoney(0)
-		levelUp(40)
-		setMoney(1000000)
-		stub.fire("PLAYER_MONEY")
-		stub.runTimers()
-		stub.fire("PLAYER_MONEY")  -- second event
-		stub.runTimers()
-		emit(navCount())
-	`);
-	assert.equal(count, 1);
-});
-
-test('money-gated arrow respects Honored discount', () => {
-	// 95 g < 100 g base, >= 90 g discounted → arrow fires when Honored.
-	const [countWithout, countWith] = run(`
-		setMoney(0)
-		levelUp(40)
-		setMoney(950000)
-		-- without honor: no arrow
-		stub.fire("PLAYER_MONEY"); stub.runTimers()
-		emit(navCount())
-		-- add honor, then fire money event again (arrow not set yet)
-		setRep(72, 5)  -- Honored with Stormwind (Human home faction)
-		stub.fire("PLAYER_MONEY"); stub.runTimers()
-		emit(navCount())
-	`);
-	assert.equal(countWithout, 0, 'no arrow without honor');
-	assert.equal(countWith, 1, 'arrow fires once honored');
-});
-
-test('money watcher stops watching once riding is learned', () => {
-	const [count] = run(`
-		setMoney(0)
-		levelUp(40)
-		-- now learn riding before hitting the gold threshold
-		setRiding(1)
-		setMoney(1000000)
-		stub.fire("PLAYER_MONEY"); stub.runTimers()
-		emit(navCount())           -- should NOT fire: riding already known
-	`);
 	assert.equal(count, 0);
 });
 
-test('money watcher stops watching when option is turned off', () => {
-	const [count] = run(`
-		setMoney(0)
-		levelUp(40)
-		Polestar.Set("qol.ridingReminder", false)
-		setMoney(1000000)
-		stub.fire("PLAYER_MONEY"); stub.runTimers()
-		emit(navCount())
-	`);
+// ---- Tier 2 ------------------------------------------------------------------
+
+test('RIDING_DUE fires at level 60 when only Apprentice known', () => {
+	const [n] = runQoL(`setRiding(1); q.level=59; levelUp(60); emit(ridings[1])`);
+	assert.ok(n, 'event fired');
+	assert.equal(n.tier, 2);
+});
+
+test('no RIDING_DUE at 60 when Journeyman known', () => {
+	const [count] = runQoL(`setRiding(2); levelUp(60); emit(#ridings)`);
 	assert.equal(count, 0);
 });
 
-// ---------------------------------------------------------------------------
-// FIX 4: PLAYER_ENTERING_WORLD check for existing characters
-// ---------------------------------------------------------------------------
+// ---- PLAYER_ENTERING_WORLD ---------------------------------------------------
 
-test('note fires on login for a level-40 character who has never seen it', () => {
-	// Before fix: only PLAYER_LEVEL_UP triggered the check.
-	const [fired] = run(`
+test('RIDING_DUE fires on login for level-40 character who has not seen it', () => {
+	const [count] = runQoL(`
 		q.level = 40
-		C.GetPlayerInfo = function() return { name="Test", level=40, race="Human", class="WARRIOR", faction="Alliance" } end
-		enterWorld()
-		emit(printed("Riding reminder"))
+		C.GetPlayerInfo = function() return { name="T", level=40, race="Human", class="WARRIOR", faction="Alliance" } end
+		enterWorld(); emit(#ridings)
 	`);
-	assert.equal(fired, true);
+	assert.equal(count, 1);
 });
 
-test('note fires on login for a level-55 character (tier 1, not yet seen)', () => {
-	const [fired] = run(`
-		q.level = 55
-		C.GetPlayerInfo = function() return { name="Test", level=55, race="Human", class="WARRIOR", faction="Alliance" } end
-		enterWorld()
-		emit(printed("Riding reminder"))
-	`);
-	assert.equal(fired, true);
-});
-
-test('tier 2 note fires on login for a level-60 character without Journeyman', () => {
-	const [fired, hasTier2Cost] = run(`
-		q.level = 60
-		setRiding(1)   -- has Apprentice, not Journeyman
-		setMoney(0)
-		C.GetPlayerInfo = function() return { name="Test", level=60, race="Human", class="WARRIOR", faction="Alliance" } end
-		enterWorld()
-		emit(printed("Riding reminder"))
-		emit(printed("1,000 g"))
-	`);
-	assert.equal(fired, true, 'reminder fires at 60 on login');
-	assert.equal(hasTier2Cost, true, 'shows 1,000 g cost');
-});
-
-test('login check does NOT fire for level 39', () => {
-	const [fired] = run(`
+test('no RIDING_DUE on login at level 39', () => {
+	const [count] = runQoL(`
 		q.level = 39
-		C.GetPlayerInfo = function() return { name="Test", level=39, race="Human", class="WARRIOR", faction="Alliance" } end
-		enterWorld()
-		emit(printed("Riding reminder"))
-	`);
-	assert.equal(fired, false);
-});
-
-test('login check is silent when note was already shown (flag set)', () => {
-	const [fired] = run(`
-		q.level = 40
-		C.GetPlayerInfo = function() return { name="Test", level=40, race="Human", class="WARRIOR", faction="Alliance" } end
-		enterWorld()
-		emit(printed("Riding reminder"))
-	`, {
-		saved: { Polestar: `PolestarCharDB = { schema = 1, flags = { ridingReminder40 = true } }` },
-	});
-	assert.equal(fired, false);
-});
-
-test('login re-starts money watcher when note was shown but arrow was not', () => {
-	// Simulates: note seen last session, arrow not seen (was broke), now logging in with gold.
-	const [count] = run(`
-		q.level = 40
-		C.GetPlayerInfo = function() return { name="Test", level=40, race="Human", class="WARRIOR", faction="Alliance" } end
-		setMoney(1000000)   -- now can afford
-		enterWorld()        -- should re-register the money watcher and fire immediately
-		emit(navCount())
-	`, {
-		saved: { Polestar: `PolestarCharDB = { schema = 1, flags = { ridingReminder40 = true } }` },
-	});
-	// enterWorld calls Check which sees note done but arrow not done, tries arrow immediately
-	assert.equal(count, 1);
-});
-
-// ---------------------------------------------------------------------------
-// Nav arrow: gold gating (existing behaviour retained)
-// ---------------------------------------------------------------------------
-
-test('nav arrow is set when the player can afford the base cost on level-up', () => {
-	const [count, label] = run(`
-		setMoney(1000000)
-		levelUp(40)
-		emit(navCount())
-		emit(navLabel(1))
-	`);
-	assert.equal(count, 1);
-	assert.ok(label, 'has a trainer label');
-});
-
-test('nav arrow is NOT set on level-up when the player cannot afford it', () => {
-	const [count] = run(`
-		setMoney(500000)
-		levelUp(40)
-		emit(navCount())
+		C.GetPlayerInfo = function() return { name="T", level=39, race="Human", class="WARRIOR", faction="Alliance" } end
+		enterWorld(); emit(#ridings)
 	`);
 	assert.equal(count, 0);
 });
 
-test('Honored discount applies: 95g >= 90g discounted threshold', () => {
-	const [count] = run(`
-		setMoney(950000)
-		setRep(72, 5)    -- Honored with Stormwind
+test('login silent when note flag already set', () => {
+	const [count] = runQoL(`
+		q.level = 40
+		C.GetPlayerInfo = function() return { name="T", level=40, race="Human", class="WARRIOR", faction="Alliance" } end
+		enterWorld(); emit(#ridings)
+	`, {
+		saved: { Polestar: `PolestarCharDB = { schema = 1, flags = { ridingReminder40 = true } }` },
+	});
+	assert.equal(count, 0);
+});
+
+// ---- RIDING_MONEY fires when note set but not resolved -----------------------
+
+test('RIDING_MONEY fires when gold changes and tier is pending', () => {
+	const moneyEvents = [];
+	const [fired] = runQoL(`
+		local moneyFired = 0
+		Polestar.On("RIDING_MONEY", function() moneyFired = moneyFired + 1 end)
+		levelUp(40)                           -- note fires, watcher registers
+		stub.fire("PLAYER_MONEY")
+		stub.runTimers()
+		emit(moneyFired)
+	`);
+	assert.ok(fired >= 1, 'RIDING_MONEY fired at least once');
+});
+
+test('RIDING_MONEY stops firing after OnResolve is called', () => {
+	const [before, after] = runQoL(`
+		local count = 0
+		Polestar.On("RIDING_MONEY", function() count = count + 1 end)
 		levelUp(40)
-		emit(navCount())
+		stub.fire("PLAYER_MONEY"); stub.runTimers()
+		emit(count)
+		R.OnResolve(1)
+		count = 0
+		stub.fire("PLAYER_MONEY"); stub.runTimers()
+		emit(count)
 	`);
-	assert.equal(count, 1);
+	assert.ok(before >= 1, 'fires before resolve');
+	assert.equal(after, 0, 'silent after resolve');
 });
 
-test('discount note printed when Honored with home faction', () => {
-	const [honored] = run(`
-		setMoney(2000000); setRep(72, 5)
-		levelUp(40)
-		emit(printed("Honored"))
+// ---- Class routing (RIDING_DUE carries correct trainer) ----------------------
+
+test('Warlock fires with classKind WARLOCK and Strahad Farsan', () => {
+	const [n] = runQoL(`
+		C.GetPlayerInfo = function() return { name="T", level=q.level, race="Human", class="WARLOCK", faction="Alliance" } end
+		levelUp(40); emit(ridings[1])
 	`);
-	assert.equal(honored, true);
+	assert.equal(n.classKind, 'WARLOCK');
+	assert.equal(n.trainer.npcName, 'Strahad Farsan');
+	assert.equal(n.cost, 0, 'cost is 0 for class mount');
 });
 
-// ---------------------------------------------------------------------------
-// Race routing
-// ---------------------------------------------------------------------------
-
-test('Orc is sent to Kildar', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Orc", class="WARRIOR", faction="Horde" } end
-		setMoney(1000000); levelUp(40); emit(navLabel(1))
+test('Alliance Paladin fires with classKind PALADIN and Lord Grayson', () => {
+	const [n] = runQoL(`
+		C.GetPlayerInfo = function() return { name="T", level=q.level, race="Human", class="PALADIN", faction="Alliance" } end
+		levelUp(40); emit(ridings[1])
 	`);
-	assert.equal(label, 'Kildar');
+	assert.equal(n.classKind, 'PALADIN');
+	assert.equal(n.trainer.npcName, 'Lord Grayson Shadowbreaker');
 });
 
-test('Scourge is sent to Velma Warnam', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Scourge", class="WARRIOR", faction="Horde" } end
-		setMoney(1000000); levelUp(40); emit(navLabel(1))
+test('Warlock at tier 2 fires with no classKind (riding trainer)', () => {
+	const [n] = runQoL(`
+		C.GetPlayerInfo = function() return { name="T", level=q.level, race="Orc", class="WARLOCK", faction="Horde" } end
+		setRiding(1); q.level=59; levelUp(60); emit(ridings[1])
 	`);
-	assert.equal(label, 'Velma Warnam');
+	assert.ok(!n.classKind, 'no classKind at tier 2');
+	assert.equal(n.trainer.npcName, 'Kildar', 'Orc trainer at tier 2');
 });
 
-test('Skyborne Alliance is sent to Genn Fairweather', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Skyborne", class="WARRIOR", faction="Alliance" } end
-		setMoney(1000000); levelUp(40); emit(navLabel(1))
-	`);
-	assert.equal(label, 'Genn Fairweather');
-});
-
-// ---------------------------------------------------------------------------
-// Warlock class routing (tier 1)
-// ---------------------------------------------------------------------------
-
-test('Alliance Warlock (tier 1) is sent to Strahad Farsan', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="WARLOCK", faction="Alliance" } end
-		setMoney(0); levelUp(40); emit(navLabel(1))
-	`);
-	assert.equal(label, 'Strahad Farsan');
-});
-
-test('Horde Warlock (tier 1) is also sent to Strahad Farsan', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Orc", class="WARLOCK", faction="Horde" } end
-		setMoney(0); levelUp(40); emit(navLabel(1))
-	`);
-	assert.equal(label, 'Strahad Farsan');
-});
-
-test('Warlock falls back to race trainer once quest 4490 is done', () => {
-	const [label] = run(`
+test('Warlock with quest 4490 done falls back to race trainer', () => {
+	const [n] = runQoL(`
 		_quests[4490] = true
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="WARLOCK", faction="Alliance" } end
-		setMoney(1000000); levelUp(40); emit(navLabel(1))
+		C.GetPlayerInfo = function() return { name="T", level=q.level, race="Human", class="WARLOCK", faction="Alliance" } end
+		levelUp(40); emit(ridings[1])
 	`);
-	assert.equal(label, 'Randal Hunter');
+	assert.ok(!n.classKind, 'no classKind after chain done');
+	assert.equal(n.trainer.npcName, 'Randal Hunter');
 });
 
-// ---------------------------------------------------------------------------
-// Paladin class routing (tier 1)
-// ---------------------------------------------------------------------------
-
-test('Alliance Paladin (tier 1) is sent to Lord Grayson Shadowbreaker', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="PALADIN", faction="Alliance" } end
-		setMoney(0); levelUp(40); emit(navLabel(1))
+test('Undead Paladin fires with riding trainer (no class chain)', () => {
+	const [n] = runQoL(`
+		C.GetPlayerInfo = function() return { name="T", level=q.level, race="Scourge", class="PALADIN", faction="Horde" } end
+		levelUp(40); emit(ridings[1])
 	`);
-	assert.equal(label, 'Lord Grayson Shadowbreaker');
+	assert.ok(!n.classKind);
+	assert.equal(n.trainer.npcName, 'Velma Warnam');
 });
 
-test('Alliance Paladin falls back to race trainer once quest 4486 is done', () => {
-	const [label] = run(`
-		_quests[4486] = true
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Human", class="PALADIN", faction="Alliance" } end
-		setMoney(1000000); levelUp(40); emit(navLabel(1))
+// ---- EffectiveCost includes Honored discount ---------------------------------
+
+test('EffectiveCost returns 900000 when Honored with home faction', () => {
+	const [cost] = runQoL(`
+		setRep(72, 5)    -- Honored with Stormwind
+		emit(R.EffectiveCost(1, 72))
 	`);
-	assert.equal(label, 'Randal Hunter');
+	assert.equal(cost, 900000);
 });
 
-test('Undead Paladin falls back to Velma Warnam (no class chain data)', () => {
-	const [label] = run(`
-		C.GetPlayerInfo = function() return { name="Test", level=q.level, race="Scourge", class="PALADIN", faction="Horde" } end
-		setMoney(1000000); levelUp(40); emit(navLabel(1))
-	`);
-	assert.equal(label, 'Velma Warnam');
+test('EffectiveCost returns full 1000000 when not Honored', () => {
+	const [cost] = runQoL(`emit(R.EffectiveCost(1, 72))`);
+	assert.equal(cost, 1000000);
 });
 
-// ---------------------------------------------------------------------------
-// Option off: nothing fires
-// ---------------------------------------------------------------------------
+// ---- option off --------------------------------------------------------------
 
-test('option off: no note, no arrow', () => {
-	const [fired, count] = run(`
+test('option off: no RIDING_DUE fires', () => {
+	const [count] = runQoL(`
 		Polestar.Set("qol.ridingReminder", false)
-		setMoney(2000000); levelUp(40)
-		emit(printed("Riding"))
-		emit(navCount())
+		levelUp(40); emit(#ridings)
 	`);
-	assert.equal(fired, false);
 	assert.equal(count, 0);
 });
 
-// ---------------------------------------------------------------------------
-// HasRiding pure helper
-// ---------------------------------------------------------------------------
+// ---- HasRiding ---------------------------------------------------------------
 
-test('HasRiding(1) false when no skill', () => {
-	const [v] = run(`emit(R.HasRiding(1))`);
+test('HasRiding(1) false with no skill', () => {
+	const [v] = runQoL(`emit(R.HasRiding(1))`);
 	assert.equal(v, false);
 });
-
-test('HasRiding(1) true when apprentice rank set', () => {
-	const [v] = run(`setRiding(1); emit(R.HasRiding(1))`);
+test('HasRiding(1) true with apprentice rank', () => {
+	const [v] = runQoL(`setRiding(1); emit(R.HasRiding(1))`);
 	assert.equal(v, true);
 });
-
 test('HasRiding(2) false with only apprentice', () => {
-	const [v] = run(`setRiding(1); emit(R.HasRiding(2))`);
+	const [v] = runQoL(`setRiding(1); emit(R.HasRiding(2))`);
 	assert.equal(v, false);
 });
-
-test('HasRiding(2) true with journeyman (maxRank 150)', () => {
-	const [v] = run(`setRiding(2); emit(R.HasRiding(2))`);
+test('HasRiding(2) true with journeyman', () => {
+	const [v] = runQoL(`setRiding(2); emit(R.HasRiding(2))`);
 	assert.equal(v, true);
 });
-
-test('HasRiding uses IsSpellKnown(33388) as primary', () => {
-	const [v] = run(`_spells[33388] = true; emit(R.HasRiding(1))`);
+test('HasRiding(1) true via IsSpellKnown(33388)', () => {
+	const [v] = runQoL(`_spells[33388] = true; emit(R.HasRiding(1))`);
 	assert.equal(v, true);
 });

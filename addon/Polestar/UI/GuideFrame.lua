@@ -799,7 +799,7 @@ end
 ---------------------------------------------------------------------------
 
 local SKIPPED_SECONDS = 20 -- how long the "Skipped …" notices stay
-local notices = { stepSkip = nil, skipped = nil, away = nil, outlevel = nil, train = nil }
+local notices = { stepSkip = nil, skipped = nil, away = nil, outlevel = nil, train = nil, riding = nil }
 GF.notices = notices
 
 -- The step on screen when it is not the live step: { guideId, index, live,
@@ -834,6 +834,7 @@ local function bannerNotice()
 	local o = notices.outlevel
 	if o and g ~= nil and g.id == o.guideId then return "outlevel", o end
 	if notices.train then return "train", notices.train end
+	if notices.riding then return "riding", notices.riding end
 	return nil
 end
 GF.BannerNotice = bannerNotice
@@ -926,7 +927,7 @@ function GF.LayoutBanner(width)
 		n.choiceFrom = n.to and E and E.RouteChoiceFor and E.RouteChoiceFor(n.to) or nil
 		placeLink(banner.Jump, n.choiceFrom and L["Choose where to level next"] or string.format(L["Jump to %s"], n.title or ""), 0, -4)
 		banner.Close:Show()
-	else
+	elseif kind == "train" then
 		banner.Icon:SetTexture(Theme.Media("icon-train"))
 		local class = UI.PlayerClass and UI.PlayerClass() or nil
 		local parts = { string.format(L["Level %d"], n.level or 0),
@@ -937,6 +938,56 @@ function GF.LayoutBanner(width)
 		local w = placeLink(banner.Jump, L["Show"], 0, -4)
 		placeLink(banner.Later, L["Later"], w + 10, -4)
 		banner.Close:Hide()
+	elseif kind == "riding" then
+		banner.Icon:SetTexture(Theme.Media("icon-mount"))
+		local copper = GetMoney and GetMoney() or 0
+		-- Money string: prefer QoL.Money; fall back to simple g/s/c.
+		local Q = ns.QoL
+		local moneyStr
+		if Q and Q.Money then
+			moneyStr = Q.Money(copper)
+		else
+			local g, s, c = floor(copper / 10000), floor(copper / 100) % 100, copper % 100
+			if g > 0 then moneyStr = s > 0 and string.format("%dg %ds", g, s) or string.format("%dg", g)
+			elseif s > 0 then moneyStr = c > 0 and string.format("%ds %dc", s, c) or string.format("%ds", s)
+			else moneyStr = string.format("%dc", c) end
+		end
+		-- Affordability from pre-computed cost in the notice (class mounts are free).
+		local cost = n.cost or 0
+		local canAfford = n.classKind ~= nil or copper >= cost
+		local DOT = "  \194\183  "
+		local title, body
+		if n.classKind == "WARLOCK" then
+			title = L["Level 40: class mount (Warlock)"]
+			body  = L["Summon Felsteed quest chain (Strahad Farsan, Ratchet); riding trainer otherwise."]
+		elseif n.classKind == "PALADIN" then
+			title = L["Level 40: class mount (Paladin)"]
+			body  = L["Tome of Nobility quest chain (Lord Grayson Shadowbreaker, Stormwind); riding trainer otherwise."]
+		else
+			title = n.tier == 1 and L["Level 40: you can learn to ride"] or L["Level 60: Journeyman Riding"]
+			local tierName = n.tier == 1 and L["Apprentice Riding"] or L["Journeyman Riding"]
+			local baseGold = n.tier == 1 and L["100 g"] or L["1,000 g"]
+			local bodyParts = { tierName .. DOT .. baseGold }
+			local C = ns.Compat
+			if n.factionID and C and C.GetFactionStanding then
+				local standing = C.GetFactionStanding(n.factionID)
+				if standing and standing >= 5 then
+					bodyParts[#bodyParts + 1] = L["Honored: 10% off"]
+				elseif standing then
+					bodyParts[#bodyParts + 1] = L["10% off at Honored"]
+				end
+			end
+			bodyParts[#bodyParts + 1] = string.format(L["You have %s."], moneyStr)
+			body = table.concat(bodyParts, DOT)
+		end
+		banner.Text:SetText(title .. "\n" .. body)
+		if canAfford then
+			placeLink(banner.Jump, L["Take me there"], 0, -4)
+		else
+			banner.Jump:Hide()
+		end
+		banner.Later:Hide()
+		banner.Close:Show()
 	end
 	local h = floor(9 + banner.Text:GetStringHeight() + 4 + 18 + 9 + 0.5)
 	banner:SetHeight(h)
@@ -972,6 +1023,14 @@ function GF.TakeBanner()
 		if t and t.map and t.x and nav2 and nav2.SetTarget then
 			nav2.SetTarget(t.map, t.x, t.y, t.npcName or L["Class trainer"], t.f, "trainer", t.z)
 		end
+	elseif kind == "riding" then
+		notices.riding = nil
+		local t, nav2 = n.trainer, ns.Nav
+		if t and t.map and t.x and nav2 and nav2.SetTarget then
+			nav2.SetTarget(t.map, t.x, t.y, t.npcName or L["Riding trainer"], t.f, "trainer")
+		end
+		local R = ns.QoL and ns.QoL.Riding
+		if R and R.OnResolve then R.OnResolve(n.tier) end
 	end
 	GF.Layout()
 end
@@ -983,7 +1042,10 @@ function GF.DismissBanner()
 	if kind == "trip" then
 		ns.Nav.nearby.EndTrip()
 	elseif kind == "away" then
-		notices.away = n.guideId .. ":" .. n.index
+	elseif kind == "riding" then
+		local R = ns.QoL and ns.QoL.Riding
+		if R and R.OnResolve then R.OnResolve(n.tier) end
+		notices.riding = nil
 	elseif kind then
 		notices[kind] = nil
 	end
@@ -2899,6 +2961,19 @@ ns.On("TRAIN_DUE", function(level, trainer)
 	if not F then return end
 	notices.train = { level = level, trainer = type(trainer) == "table" and trainer or nil }
 	if ns.IsLoggedIn() then GF.Layout() end
+end)
+
+-- RIDING_DUE(notice): player can learn riding; show the banner until resolved.
+ns.On("RIDING_DUE", function(notice)
+	if not F then return end
+	notices.riding = notice
+	if ns.IsLoggedIn() then GF.Layout() end
+end)
+
+-- RIDING_MONEY: player's gold changed while a riding banner is pending; re-render
+-- so the "Take me there" button appears/disappears based on affordability.
+ns.On("RIDING_MONEY", function()
+	if F and notices.riding and ns.IsLoggedIn() then GF.Layout() end
 end)
 
 -- CLASS_TRAINED(level): the character visited their class trainer; the
