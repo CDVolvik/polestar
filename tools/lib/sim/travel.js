@@ -1,7 +1,9 @@
 'use strict';
 // Travel between two points (docs/SIMULATION.md §1 "Travel graph"):
-// walking (straight line × the continent's detour factor) or walk to a
-// transport node + the network + walk from a node, whichever is cheaper.
+// walking or walk to a transport node + the network + walk from a node,
+// whichever is cheaper. A walk is the walking router's when `sim walks` has
+// routed it (tools/lib/sim/walks.js; × routeMul), else the straight line ×
+// the continent's detour factor.
 // The network: flights between known flight paths, boats/zeppelins/trams
 // (average wait + ride) and walking between nodes of the same landmass.
 // All-pairs shortest times over the nodes are kept per known-flight-path set
@@ -30,13 +32,42 @@ class Travel {
 		this.cache = new Map();
 		this.crossCache = new Map();
 		this.NP = run.ptList ? run.ptList.length : 0;
+		this.NW = run.world ? run.world.points.length : 0;
 		// Flight-path bit -> node.
 		this.fpNode = [];
 		for (let n = 0; n < run.N; n++) if (run.fpBit[n] >= 0) this.fpNode[run.fpBit[n]] = n;
 		// Taxi edges by node.
 		this.taxiFrom = Array.from({ length: run.N }, () => []);
 		for (const [a, b, sec] of run.taxi) this.taxiFrom[a].push([b, sec]);
+		// Walking yards between nodes and from each point to its nearest nodes:
+		// routed where known, else the straight line × detour.
+		const N = run.N;
+		this.nodeWalk = new Float64Array(N * N).fill(Infinity);
+		for (let i = 0; i < N; i++) {
+			for (let j = 0; j < N; j++) {
+				if (i === j || run.nodeR[i] !== run.nodeR[j]) continue;
+				const r = this.routed(run.nodeW[i], run.nodeW[j]);
+				this.nodeWalk[i * N + j] = r !== undefined ? r : Math.hypot(run.nodeX[i] - run.nodeX[j], run.nodeY[i] - run.nodeY[j]) * this.t.detour(run.nodeC[i]);
+			}
+		}
+		this.nearWalk = new Float64Array(this.NP * NEAR_K);
+		for (let a = 0; a < this.NP; a++) {
+			for (let k = 0; k < NEAR_K; k++) {
+				const n = run.pNear[a * NEAR_K + k];
+				if (n < 0) break;
+				const r = this.routed(run.ptList[a], run.nodeW[n]);
+				this.nearWalk[a * NEAR_K + k] = r !== undefined ? r : run.pNearD[a * NEAR_K + k] * this.t.detour(run.pC[a]);
+			}
+		}
 		this.base = [this.baseMatrix(false), this.baseMatrix(true)];
+	}
+
+	// Routed yards between world points a and b (× routeMul), or undefined.
+	routed(a, b) {
+		const w = this.run.walks;
+		if (!w) return undefined;
+		const r = w.get(a * this.NW + b);
+		return r === undefined ? undefined : r * this.t.p.routeMul;
 	}
 
 	speed(mounted) {
@@ -53,8 +84,7 @@ class Travel {
 			D[i * N + i] = 0;
 			for (let j = 0; j < N; j++) {
 				if (i === j || run.nodeR[i] !== run.nodeR[j]) continue;
-				const d = Math.hypot(run.nodeX[i] - run.nodeX[j], run.nodeY[i] - run.nodeY[j]);
-				D[i * N + j] = (d * this.t.detour(run.nodeC[i])) / v;
+				D[i * N + j] = this.nodeWalk[i * N + j] / v;
 			}
 		}
 		for (const [a, b, ride, wait] of run.rides) {
@@ -181,8 +211,11 @@ class Travel {
 		let walk = Infinity;
 		if (run.pR[a] === run.pR[b]) {
 			const d = Math.hypot(run.pX[a] - run.pX[b], run.pY[a] - run.pY[b]);
-			walk = (d * this.t.detour(run.pC[a])) / v;
-			if (d < SHORT) {
+			const ry = run.walkRun ? run.walkRun[a * this.NP + b] : -1;
+			const r = ry >= 0 ? ry * this.t.p.routeMul : undefined;
+			walk = (r !== undefined ? r : d * this.t.detour(run.pC[a])) / v;
+			// A short walk always wins; a short line round a cliff is not short.
+			if ((r !== undefined ? r : d) < SHORT) {
 				this.lastMode = 0;
 				return walk;
 			}
@@ -202,24 +235,22 @@ class Travel {
 		const N = this.N;
 		const ka = a * NEAR_K;
 		const kb = b * NEAR_K;
-		const da = this.t.detour(run.pC[a]) / v;
-		const db = this.t.detour(run.pC[b]) / v;
 		for (let i = 0; i < NEAR_K; i++) {
 			const ni = run.pNear[ka + i];
 			if (ni < 0) break;
-			const wi = run.pNearD[ka + i] * da;
+			const wi = this.nearWalk[ka + i] / v;
 			if (wi >= best) continue;
 			for (let j = 0; j < NEAR_K; j++) {
 				const nj = run.pNear[kb + j];
 				if (nj < 0) break;
 				const dn = D[ni * N + nj];
-				const c = wi + dn + run.pNearD[kb + j] * db;
+				const c = wi + dn + this.nearWalk[kb + j] / v;
 				if (c < best) {
 					// A "network" path that only walks between nodes is a walk
 					// (never cheaper than the direct one, which carries the
 					// travel-safety cost): it does not count.
 					if (ni === nj) continue;
-					if (run.nodeR[ni] === run.nodeR[nj] && dn >= (Math.hypot(run.nodeX[ni] - run.nodeX[nj], run.nodeY[ni] - run.nodeY[nj]) * this.t.detour(run.nodeC[ni])) / v - 0.05) continue;
+					if (run.nodeR[ni] === run.nodeR[nj] && dn >= this.nodeWalk[ni * N + nj] / v - 0.05) continue;
 					best = c;
 					this.lastMode = 1;
 				}
