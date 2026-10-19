@@ -27,7 +27,8 @@
 //   hubs     quest givers/enders clustered at 150 yd, with fp/inn/trainers
 //   quests   [{ id, title, level, minLevel, races, classes, pre, preAll, excl, ...,
 //              giver, ender, accept: {pt, work}, tasks: [{pt, work}],
-//              gName, eName (giver/ender names), gPos, ePos ({map, x, y} map percent) }]
+//              gName, eName (giver/ender names), gPos, ePos ({map, x, y} map percent),
+//              gAlt?, eAlt? (every friendly giver/ender, { 'npc:<id>': pt }, when more than one) }]
 //   packages [{ key, zone, zoneName, band, quests, steps: [[kind, quest, task, pt]] }]
 //   grind    { spacing: [yards by mob level] }
 //   starts   { Race: { zone, pt, quest } }
@@ -37,7 +38,8 @@
 //            filled from neighbours up to 3 cells): the travel-safety check
 //            samples walking legs on it (docs/SIMULATION.md §1)
 // Work items: [kind, a, b, c, d]
-//   ['kill', mobLevel, count, elite(0/1), spacingYards]   count may be fractional (expected kills)
+//   ['kill', mobLevel, count, elite(0/1), spacingYards, npcId]   count may be fractional (expected kills);
+//                        npcId: the mob killed (shared kill credit, evaluate.js)
 //   ['use', count]       object uses
 //   ['escort']           fixed-duration event
 //   ['buy']              vendor purchase
@@ -53,7 +55,7 @@ const SOLO = require('./solo');
 const { blockingPrereqs } = require('../data/prereqs');
 const { CLASS_BY_FILE, FACTION_RACES, SKYBORNE_BIT, hasBit } = require('../game/races');
 
-const BUILDER_VERSION = 18;
+const BUILDER_VERSION = 20;
 
 const FACTION_BIT = { Alliance: 1, Horde: 2 };
 const PROFESSION_SORTS = new Set([24, 101, 121, 181, 182, 201, 264, 304, 324]);
@@ -84,13 +86,13 @@ const DUP_R = 10; // yards: one spawn recorded on two overlapping zone maps
 const VOTE_R = 150; // yards: cell of the zone vote (spawn records per map around a spot)
 const HUB_R = 150; // yards: givers/enders this close form one hub
 const NEAR_HUB = 200; // yards: a flight master or inn this close belongs to the hub
-// Quest log size. Forever's client accepts 40 quests
+// Quest log size: Forever's client accepts 40 quests
 // (Constants.QuestLogConsts.MAXIMUM_NUM_QUESTS_LOG_CAN_ACCEPT = 40 for its
 // Camelot game type, Blizzard_APIDocumentationGenerated/QuestConstantsDocumentation.lua;
-// its quest log shows N/40), but the published results were searched at 20,
-// which only splits a zone's quest package (one: Alliance Elwynn Forest 6-10).
-// 40 lands in 0.2.5 with the next world and new searches (issue #30).
-const MAX_OPEN = 20;
+// its quest log shows N/40; issue #30). The results up to 0.2.5 were searched
+// at 20. A world option (opts.maxOpen): the cached world records it and is
+// rebuilt when it differs.
+const MAX_OPEN = 40;
 const MIN_START_DROP = 1; // % drop chance for a quest-starting item to count
 // % assumed for an item drop (objective or quest-starting item) without a
 // recorded rate (Forever creatures in items.json drops with chance null);
@@ -277,6 +279,7 @@ function buildWorld(data, opts = {}) {
 	const faction = opts.faction;
 	if (!FACTION_RACES[faction]) throw new Error(`faction must be Alliance or Horde (got ${faction})`);
 	const bandWidth = opts.bandWidth || 5;
+	const maxOpen = opts.maxOpen || MAX_OPEN;
 	const warnings = [];
 	const frames = (data['map-frames'] && data['map-frames'].era) || {};
 	// Live-frame (Forever) bounds: for spawns flagged f "l" and maps without an Era frame.
@@ -602,7 +605,7 @@ function buildWorld(data, opts = {}) {
 				gName = `${best.item.name || 'item'} (drop: ${best.e.name})`;
 				gPos = posOf(s);
 				const n = 100 / Math.min(100, best.chance);
-				accept = { pt: s.pt, work: best.kind === 'npc' ? [['kill', npcLevel(best.e.raw, level), n, ELITE_RANKS.has(best.e.raw.rank) ? 1 : 0, s.spacing]] : [['use', n]] };
+				accept = { pt: s.pt, work: best.kind === 'npc' ? [['kill', npcLevel(best.e.raw, level), n, ELITE_RANKS.has(best.e.raw.rank) ? 1 : 0, s.spacing, best.e.id]] : [['use', n]] };
 			}
 		}
 		// A starting item handed over by another quest's turn-in (the data has
@@ -656,6 +659,24 @@ function buildWorld(data, opts = {}) {
 			else ex('no located turn-in');
 			continue;
 		}
+		// Every friendly giver and ender by entity ("npc:5489"), kept when there
+		// is more than one: a guide that names one (`accept 8254 npc 11406`) is
+		// scored there (sequence.js). The route search keeps giver and ender.
+		const alts = (list, anchor) => {
+			const out = {};
+			let n = 0;
+			for (const kind of ['npc', 'object']) {
+				for (const eid of list[kind] || []) {
+					const e = sites(kind, eid);
+					if (!e || !e.friendly) continue;
+					out[`${kind}:${eid}`] = bestSite(e, anchor(e)).pt;
+					n++;
+				}
+			}
+			return n > 1 ? out : null;
+		};
+		const gAlt = alts(start, (e) => (e.sites.length > 1 ? endAnchor() : null));
+		const eAlt = alts(end, () => giver);
 		// Objectives.
 		const objs = Array.isArray(raw.objectives) ? raw.objectives : [];
 		const located = [];
@@ -703,7 +724,7 @@ function buildWorld(data, opts = {}) {
 					break;
 				}
 				if (el) elite = true;
-				located.push({ pt: s.pt, work: ['kill', npcLevel(e.raw, level), count, el, s.spacing] });
+				located.push({ pt: s.pt, work: ['kill', npcLevel(e.raw, level), count, el, s.spacing, e.id] });
 			} else if (o.type === 'object') {
 				const e = sites('object', o.id);
 				if (!e) {
@@ -777,7 +798,7 @@ function buildWorld(data, opts = {}) {
 					else if (best.kind === 'npc') {
 						const el = ELITE_RANKS.has(best.e.raw.rank) ? 1 : 0;
 						if (el) elite = true;
-						located.push({ pt: best.s.pt, work: ['kill', npcLevel(best.e.raw, level), n, el, best.s.spacing] });
+						located.push({ pt: best.s.pt, work: ['kill', npcLevel(best.e.raw, level), n, el, best.s.spacing, best.e.id] });
 					} else located.push({ pt: best.s.pt, work: ['use', n] });
 				} else {
 					// The friendly vendor nearest the giver (same landmass first).
@@ -876,6 +897,8 @@ function buildWorld(data, opts = {}) {
 			elite,
 			gName, eName, gPos, ePos,
 		};
+		if (gAlt) q.gAlt = gAlt;
+		if (eAlt) q.eAlt = eAlt;
 		if (startFrom != null) q.startFrom = startFrom;
 		if (raw.parent != null) q.inLog = Number(raw.parent);
 		byId.set(id, q);
@@ -1139,12 +1162,12 @@ function buildWorld(data, opts = {}) {
 	for (const k of keys) {
 		const g = groups.get(k);
 		const order = planOrder(g.steps, { dist: (a, b) => dist(a, b) });
-		// Split when more than MAX_OPEN quests would be open at once.
+		// Split when more than maxOpen quests would be open at once.
 		const chunks = [];
 		let cur = [];
 		let open = 0;
 		for (const s of order) {
-			if (s.kind === 'accept' && open >= MAX_OPEN) {
+			if (s.kind === 'accept' && open >= maxOpen) {
 				chunks.push(cur);
 				cur = [];
 				open = 0;
@@ -1341,6 +1364,7 @@ function buildWorld(data, opts = {}) {
 		schema: 1,
 		faction,
 		bandWidth,
+		maxOpen,
 		points,
 		nodes,
 		taxi,
@@ -1381,18 +1405,18 @@ function loadSimData(dataDir, sourcesDir = null) {
 
 // Cached world, rebuilt when the reference data (meta/travel/trainers/
 // dungeons, the client instance tables) or the builder changed.
-// opts: { dataDir, sourcesDir, simDir, faction, rebuild, questXp, log }
+// opts: { dataDir, sourcesDir, simDir, faction, rebuild, questXp, log, bandWidth, maxOpen }
 function getWorld(opts) {
 	const file = worldFile(opts.simDir, opts.faction);
 	const hash = dataHash(opts.dataDir, opts.sourcesDir);
 	if (!opts.rebuild && fs.existsSync(file)) {
 		const w = JSON.parse(fs.readFileSync(file, 'utf8'));
-		if (w.dataHash === hash && w.bandWidth === (opts.bandWidth || 5)) return w;
+		if (w.dataHash === hash && w.bandWidth === (opts.bandWidth || 5) && w.maxOpen === (opts.maxOpen || MAX_OPEN)) return w;
 	}
 	if (opts.log) opts.log(`building world model for ${opts.faction}...`);
 	const data = opts.data || loadSimData(opts.dataDir, opts.sourcesDir);
 	if (!data.questAreas && opts.log) opts.log('  warning: no cached Forever Map/AreaTable: the solo filter knows instances from dungeons.json only');
-	const w = buildWorld(data, { faction: opts.faction, bandWidth: opts.bandWidth, extraStarts: opts.extraStarts });
+	const w = buildWorld(data, { faction: opts.faction, bandWidth: opts.bandWidth, maxOpen: opts.maxOpen, extraStarts: opts.extraStarts });
 	w.dataHash = hash;
 	w.questXp = opts.questXp;
 	fs.mkdirSync(opts.simDir, { recursive: true });
