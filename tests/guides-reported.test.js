@@ -1508,3 +1508,24 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	assert.equal(list[reports].step, list[at(list, 'accept 6543', is('accept', 6543))].step, 'opened on the Kadrak step');
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
+
+// --- Thendal Grove (Alx-Ryan, #363): the guide walked you to Rorian, up the
+// watchtower a few steps from Elatrell, then floated you back down to Rorian.
+// The tower comes first now: The Anchors of Zephras and Falling With Style
+// (both need level 2 and nothing else), then the Walk on Air glide down to
+// Rorian, who takes Harmony in Balance and Falling With Style on one visit.
+// Falling With Style has no objectives: it is only handed in.
+
+test(`Alx-Ryan's report (#363): on Zephras Isle, the watchtower quests come before Rorian, who takes Harmony in Balance and Falling With Style on one visit`, { skip }, () => {
+	for (const guide of [ZEPHRAS_ALLIANCE, ZEPHRAS_HORDE]) {
+		const list = goals(guide);
+		const harmony = at(list, `${guide}: turnin 92461`, is('turnin', 92461));
+		const falling = at(list, `${guide}: turnin 92474`, is('turnin', 92474));
+		for (const quest of [94414, 92474]) assert.ok(at(list, `${guide}: accept ${quest}`, is('accept', quest)) < harmony, `${guide}: ${quest} is taken on the tower before Harmony in Balance is handed in`);
+		assert.ok(at(list, `${guide}: turnin 94414`, is('turnin', 94414)) < harmony, `${guide}: The Anchors of Zephras is done before Rorian`);
+		assert.equal(Math.abs(falling - harmony), 1, `${guide}: Harmony in Balance and Falling With Style are handed in one after the other`);
+		assert.equal(list[falling].s, list[harmony].s, `${guide}: on the same step`);
+		assert.equal(list[falling].goal.npc, list[harmony].goal.npc, `${guide}: to the same NPC, Rorian`);
+		assert.deepEqual(list.filter(({ goal }) => goal.quest === 92474 && goal.t === 'complete').map(({ s }) => s), [], `${guide}: no complete goal for a quest with no objectives`);
+	}
+});
