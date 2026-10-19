@@ -82,8 +82,8 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `buy <item> ["Name"]` | Buy an item; `nearest` picks the closest vendor selling it | `npc`, `xN`, `nearest` |
 | `vendor nearest` / `vendor <npc>` | Sell and repair | `npc` |
 | `level <N>` | Reach level N, grinding if need be; `level 12.5` is halfway through 12, `level 12+2500` 2500 XP into it (whole percent; the pack then needs Polestar 0.2.6) | no place modifiers |
-| `money <amount>` | Hold that much money (`1g50s`, `7s`, `25c` or copper); stays done for the rest of the step (Polestar 0.2.6) | no place modifiers, no `group` |
-| `task "<text>"` | Something Polestar cannot see; the player ticks it, and it holds the step until then unless `optional` (Polestar 0.2.6). With modifiers, quote the text | no `"text"`, no `group` |
+| `money <amount>` | Hold that much money (`1g50s`, `7s`, `25c` or copper); stays done for the rest of the step (Polestar 0.3.0) | no place modifiers, no `group` |
+| `task "<text>"` | Something Polestar cannot see; the player ticks it, and it holds the step until then unless `optional` (Polestar 0.3.0). With modifiers, quote the text | no `"text"`, no `group` |
 | `note <text>` | A line of information; never holds the step. With `only`, quote the text | no `"text"`, no `group` |
 | `skill <Profession> <N>` | Reach skill N (`"First Aid"` quoted) | |
 | `learn <spell> ["Name"]` | Learn a recipe or spell | `npc`, `item`, `nearest` |
@@ -139,7 +139,8 @@ Warrior or Paladin).
 `turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
 `subzone "<Name>"`, `bound "<Location>"`; `!` in front of any but `level`
 and `money` turns it around. Once the route has passed the step, the outcome stays. A
-pack with `when` (on a step or a `next` line), `along`, `label`, `money` or `task` needs Polestar 0.2.6 or newer.
+pack with `when` (on a step or a `next` line), `along` or `label` needs Polestar 0.2.6; with
+`money` or `task` goals, or a `when money` predicate, needs Polestar 0.3.0.
 
 ## Lint errors that come up most
 

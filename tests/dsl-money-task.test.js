@@ -13,7 +13,7 @@ const { parseWhen } = require('../tools/lib/dsl/when');
 const { readMoney } = require('../tools/lib/dsl/money');
 const { Diagnostics } = require('../tools/lib/dsl/diag');
 const { emitGuides } = require('../tools/lib/dsl/emit');
-const { formatFor, FORMAT, WHEN_FORMAT } = require('../tools/lib/pack/format');
+const { formatFor, FORMAT, WHEN_FORMAT, MONEY_TASK_FORMAT } = require('../tools/lib/pack/format');
 const { readManifest } = require('../tools/lib/pack/manifest');
 const { compileProject } = require('../tools/lib/dsl/project');
 const { compile, guideText, lineOf, plain, DATA_DIR } = require('./helpers/dsl');
@@ -97,13 +97,19 @@ test('the planner writes money and task goals back as the parser reads them', ()
 	assert.equal(line('task "Logout skip" only Hunter'), 'task "Logout skip" only Hunter');
 });
 
-test('a pack with a money or task goal is written in format 4', () => {
+test('a pack with a money or task goal, or a `when money` predicate, is written in format 5', () => {
 	const mini = path.join(__dirname, 'fixtures', 'packs', 'mini');
 	const { manifest } = readManifest(mini);
 	const { guides } = compileProject({ packDir: mini, manifest, dataDir: DATA_DIR });
 	assert.equal(formatFor(guides), FORMAT);
 	for (const goal of [{ t: 'money', money: 100 }, { t: 'task', text: 'Do it' }]) {
 		const copy = guides.map((g) => ({ ...g, steps: g.steps.map((s, i) => (i === 0 ? { ...s, goals: [...s.goals, goal] } : s)) }));
-		assert.equal(formatFor(copy), WHEN_FORMAT, goal.t);
+		assert.equal(formatFor(copy), MONEY_TASK_FORMAT, goal.t);
 	}
+	// `when money` also needs format 5
+	const withWhenMoney = guides.map((g) => ({ ...g, steps: g.steps.map((s, i) => (i === 0 ? { ...s, when: [{ k: 'money', op: '>=', n: 100 }] } : s)) }));
+	assert.equal(formatFor(withWhenMoney), MONEY_TASK_FORMAT, 'when money');
+	// `when level` stays format 4
+	const withWhenLevel = guides.map((g) => ({ ...g, steps: g.steps.map((s, i) => (i === 0 ? { ...s, when: [{ k: 'level', op: '>=', n: 10 }] } : s)) }));
+	assert.equal(formatFor(withWhenLevel), WHEN_FORMAT, 'when level stays format 4');
 });

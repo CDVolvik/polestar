@@ -98,7 +98,6 @@ L["Complete"] = "Abschließen"
 L["Riding"] = "Reiten"
 L["Grey, kept: opens %s"] = "Grau, behalten: öffnet %s"
 -- L["level and share of it: %d (%d%%)"] = ""
--- L["Have at least"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Benötigt Polestar %s oder neuer."
@@ -2149,7 +2148,6 @@ L["Shortest Path Forever's arrow, route and journey take you to each goal. Poles
 -- Theme/Theme.lua
 L["Halo"] = "Halo"
 L["Hearth"] = "Herd"
-L["WoW Forever"] = "WoW Forever"
 L["Blizzard"] = "Blizzard"
 L["Classic"] = "Classic"
 
@@ -2339,3 +2337,4 @@ L["Bound your Hearthstone."] = "Ruhestein gebunden."
 -- L["Scale of the quest item, Hearthstone and target buttons. Drag one to move them all."] = "Größe von Questgegenstand-, Ruhestein- und Ziel-Button. Zieh einen, um alle zu verschieben."
 -- L["Route"] = "Route"
 -- L["Open the Import page: guides shared as text"] = "Seite „Import“ öffnen: als Text geteilte Guides"
+-- L["WoW Forever"] = "WoW Forever"

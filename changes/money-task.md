@@ -5,5 +5,5 @@ section: authors
   that much and stays done for the rest of its step ("loot until you can
   afford it"), `task "Tame a Venomtail Scorpid"` holds the step until the
   player ticks it, for what Polestar cannot see, and `when money>=1s` makes a
-  step depend on the money held. A pack using them is written in pack format 4
-  (Polestar 0.2.6).
+  step depend on the money held. A pack using them is written in pack format 5
+  (Polestar 0.3.0).
