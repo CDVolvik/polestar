@@ -1556,6 +1556,27 @@ test('forever/horde/05-stonetalon-mountains.guide: Hotline\'s report (#278): the
 	for (const update of [16764, 16765, 16763]) assert.ok(reports < at(list, `update ${update}`, (g) => g.t === 'collect' && g.item === update), `a report is in the bags before update ${update}`);
 });
 
+// --- The Wounds of Betrayal (Phear, #395): the Alliance Zephras Isle guide
+// wrote it as a bare `complete`, which has no place, so the step had no arrow
+// into the Nightfang Den; the Horde guide points at the druids and Jorel.
+// Standing Our Ground was the same. Each objective of these quests is its own
+// goal with a place, before the turn-in, in both guides.
+
+test(`Phear's report (#395): on Zephras Isle, The Wounds of Betrayal and Standing Our Ground lead to each objective, in both guides`, { skip }, () => {
+	data = data || loadData(DATA);
+	for (const guide of [ZEPHRAS_ALLIANCE, ZEPHRAS_HORDE]) {
+		const list = goals(guide);
+		for (const quest of [94489, 92693]) {
+			const take = at(list, `${guide}: accept ${quest}`, is('accept', quest));
+			const give = at(list, `${guide}: turnin ${quest}`, is('turnin', quest));
+			const between = list.slice(take + 1, give).filter(({ goal }) => goal.quest === quest);
+			assert.deepEqual(between.filter((x) => !located(x)).map(({ goal }) => goal.t), [], `${guide}: every goal of ${quest} has a place for the arrow`);
+			const objectives = data.quest(quest).objectives.map((_, i) => i + 1);
+			assert.deepEqual(objectives.filter((oi) => !between.some(({ goal }) => goal.oi === oi)), [], `${guide}: every objective of ${quest} has its goal before the turn-in`);
+		}
+	}
+});
+
 // --- Battleworn Axe (Tazul | Robin, #340): the axes were collected east of
 // Alther's Mill, about ten normal Blackrock spawns that Tazul found too few
 // and too slow to respawn. The camps at the south end of Galardell Valley,
