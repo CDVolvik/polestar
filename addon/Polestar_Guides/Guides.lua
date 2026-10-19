@@ -544,7 +544,7 @@ do
 				},
 				{
 					title = "The northern Blackwood camp",
-					note = "The furbolg camp south of the {area:456} keeps its Nut, Fruit and Grain Stores by the bonfires. With a sample of each and the {item:12347} in your bags, use the bowl by the bonfire closest to the river: it summons Xabraxxis, the satyr corruptor, and the {item:12355} lies in his Demon Bag.",
+					note = "The furbolg camp south of the {area:456} keeps its Nut, Fruit and Grain Stores by the bonfires. With a sample of each and the {item:12347} in your bags (the {item:12346} is filled at the {object:174795}), use the bowl by the bonfire closest to the river: it summons Xabraxxis, the satyr corruptor, and the {item:12355} lies in his Demon Bag.",
 					goals = {
 						{ t = "collect", item = 12343, itemName = "Blackwood Nut Sample", map = 1439, x = 51.83, y = 33.5, f = "e", from = "Blackwood Nut Stores", fromKind = "object", fromId = 175329 },
 						{ t = "collect", item = 12341, itemName = "Blackwood Fruit Sample", map = 1439, x = 52.86, y = 33.42, f = "e", from = "Blackwood Fruit Stores", fromKind = "object", fromId = 175330 },
