@@ -32,16 +32,7 @@ git fetch origin
 git switch -c fix/<short-name> origin/next
 ```
 
-A fix players need in the coming patch (only `guides/`, the recompiled
-`addon/Polestar_Guides/`, `tests/guides-*.test.js`,
-`tools/lib/data/corrections.json` and its changelog fragment in `changes/`)
-still goes to `next`: say so in the description, and the maintainer adds
-the `backport` label after it merges, which opens the patch pull request on
-its own. Never open a pull request against a `hotfix/` branch or `main`.
-
-A patch fix has to work with the released addon. If it needs an addon or
-tools change that is only on `next`, it waits for the feature release.
-Never base a branch on `main`.
+Every fix goes to `next`. Never open a pull request against `main`.
 
 ## 2. Find the step and read why it is there
 
@@ -115,8 +106,7 @@ never sees the goals it contains.
   polestar changelog check
   ```
 
-  The same fragment works on `next` and on a `hotfix/` branch; the release
-  puts it under its version.
+  The release puts it under its version.
 - One change per commit. The message is written for the player:
   "Westfall: turn in at Sentinel Hill before the farms", not "fix step 13".
 

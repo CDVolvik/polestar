@@ -1,4 +1,4 @@
-<!-- Base branch: every pull request goes to next, never main or a hotfix branch. A guide fix players need in the coming patch gets the backport label from the maintainer after it merges. See CONTRIBUTING.md, "Branches". -->
+<!-- Base branch: every pull request goes to next, never main. See CONTRIBUTING.md, "Branches". -->
 
 ## Issues
 

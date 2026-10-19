@@ -1,16 +1,11 @@
 name: PR base
 
-# Every pull request goes to `next`; never to `main`. A `hotfix/<version>`
-# branch takes only the backport workflow's pull requests (a fix merged into
-# `next` and labelled `backport`) and the maintainers' own, and those may
-# change only what a patch release carries (`release scope` has the list).
-# CONTRIBUTING.md "Branches" has the rules.
+# Every pull request goes to `next`. `main` is never a base: it moves only
+# when a release is made (fast-forward to `next`, then tagged). See
+# CONTRIBUTING.md, "Branches".
 #
-# This runs on pull_request_target so it can be a required check for pull
-# requests from forks too. It never checks out or runs the pull request's
-# code: the scope check comes from the default branch, and the pull
-# request's files come from the API. Editing a pull request (a new base
-# included) runs it again.
+# This runs on pull_request_target so it is a required check for forks too.
+# It never checks out or runs the pull request's code.
 
 on:
   pull_request_target:
@@ -28,7 +23,7 @@ jobs:
   base:
     name: Base branch
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     env:
       BASE: ${{ github.event.pull_request.base.ref }}
     steps:
@@ -44,17 +39,10 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
-      # The author comes from the event payload through env, never written
-      # into the script itself.
-      - name: Not a contributor pull request to hotfix
-        if: startsWith(github.event.pull_request.base.ref, 'hotfix/')
-        env:
-          AUTHOR: ${{ github.event.pull_request.user.login }}
-          ASSOCIATION: ${{ github.event.pull_request.author_association }}
+      - name: Not something else
+        if: github.event.pull_request.base.ref != 'main' && github.event.pull_request.base.ref != 'next'
         run: |
-          case "$ASSOCIATION" in OWNER|MEMBER|COLLABORATOR) exit 0 ;; esac
-          if [ "$AUTHOR" = "github-actions[bot]" ]; then exit 0; fi
-          msg="Pull requests go to next; if this fix belongs in the coming patch, the maintainer adds the backport label after it merges and a patch PR opens on its own. Change the base to next."
+          msg="Pull requests go to next. Change the base to next (CONTRIBUTING.md, \"Branches\")."
           echo "::error::$msg"
           {
             echo "## Base branch: $BASE"
@@ -63,54 +51,8 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
-      - uses: actions/checkout@v5
-        if: startsWith(github.event.pull_request.base.ref, 'hotfix/')
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          persist-credentials: false
-
-      - uses: actions/setup-node@v5
-        if: startsWith(github.event.pull_request.base.ref, 'hotfix/')
-        with:
-          node-version: 24
-
-      # A rename counts with both its paths: moving a file out of the allowed
-      # paths changes the place it came from too.
-      - name: Patch scope
-        if: startsWith(github.event.pull_request.base.ref, 'hotfix/')
-        env:
-          GH_TOKEN: ${{ github.token }}
-          NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${NUMBER}/files" \
-            --jq '.[] | .filename, (.previous_filename // empty)' > "$RUNNER_TEMP/files.txt"
-          status=0
-          node tools/polestar.js release scope --files - < "$RUNNER_TEMP/files.txt" > "$RUNNER_TEMP/offenders.txt" || status=$?
-          if [ "$status" -eq 0 ]; then
-            {
-              echo "## Base branch: $BASE"
-              echo
-              echo "Every changed file is one a patch release may carry."
-            } >> "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
-          if [ "$status" -ne 1 ]; then
-            echo "::error::release scope exited with $status"
-            exit "$status"
-          fi
-          echo "::error::This pull request goes to $BASE, a patch release, which carries only guide fixes. These files belong on next (CONTRIBUTING.md, \"Branches\"):"
-          sed 's/^/  /' "$RUNNER_TEMP/offenders.txt"
-          {
-            echo "## Base branch: $BASE"
-            echo
-            echo "A patch release carries only the guides, the compiled guides, their tests, the data corrections and the changelog. These files belong on \`next\`: move them to a pull request there, or change this one's base to \`next\`. CONTRIBUTING.md, \"Branches\", has the rules."
-            echo
-            sed 's/.*/- `&`/' "$RUNNER_TEMP/offenders.txt"
-          } >> "$GITHUB_STEP_SUMMARY"
-          exit 1
-
       - name: Next
-        if: github.event.pull_request.base.ref != 'main' && !startsWith(github.event.pull_request.base.ref, 'hotfix/')
+        if: github.event.pull_request.base.ref == 'next'
         run: |
           {
             echo "## Base branch: $BASE"

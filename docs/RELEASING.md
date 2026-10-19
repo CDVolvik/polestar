@@ -49,17 +49,11 @@ Polestar (Lookup, Dungeons and Rares read it): `pack` stops when
 `Polestar_Codex` is not built, or was built with `--local-extras`, or names
 one of those three among its sources.
 
-## Two kinds of release
-
-| Release | Version | Carries | Built from | Steps |
-|---|---|---|---|---|
-| Feature | `0.x.0` | everything on `next`: the addon, the tools, the data addons, guides | a full data build | [Steps](#steps) |
-| Patch | `0.x.y` | guide fixes for the latest release, nothing else | the last release's data addons, the guides recompiled | [Patch releases](#patch-releases) |
-
-A feature release may go out first as release candidates, `0.3.0-rc.1`,
-`-rc.2` and so on, for testers: see [Release candidates](#release-candidates).
-CONTRIBUTING.md ("Branches") tells contributors which branch a pull
-request goes to.
+All releases are built from `next`. A patch release (`x.y.Z`) is a smaller,
+sooner release following the same steps with a patch version bump.
+A feature release may go out as release candidates first; see
+[Release candidates](#release-candidates). CONTRIBUTING.md ("Branches") tells
+contributors which branch pull requests go to.
 
 ## After merging contributor PRs
 
@@ -89,9 +83,7 @@ version throughout.
    (the data build reads its tables and installed addons). Work and pull
    requests for the coming release collect on `next` (the default branch,
    pushed as it goes); `main` holds the latest release and moves only in
-   step 7. Releases come in batches, when the maintainer decides. If a
-   `hotfix/` branch holds fixes that were never released, merge it into
-   `next` first, then delete it.
+   step 7. Releases come in batches, when the maintainer decides.
 
 2. Set the version and rebuild the data, the data addons and the guides:
 
@@ -217,117 +209,12 @@ version throughout.
     refresh the project description: the steps and settings are in
     [docs/curseforge/README.md](curseforge/README.md).
 
-11. Cut the next patch's branch from the new tag and push it, so backported
-    guide fixes for this release have a base:
-
-    ```sh
-    git switch -c hotfix/0.2.1 v0.2.0 && git push -u origin hotfix/0.2.1 && git switch next
-    ```
 
 ## Patch releases
 
-A patch ships guide fixes on top of the latest release without the full
-data build. Its branch, `hotfix/<version>`, is cut from the release's tag
-(step 11 above). Contributors never open pull requests there: every fix
-goes to `next`, and the ones the patch should carry arrive as backport
-pull requests (below). The `Base branch` check refuses a pull request into
-a `hotfix/` branch from anyone but the backport workflow and the
-maintainers, and one that changes anything a patch may not carry. The
-example is `0.2.5` after `0.2.4`.
-
-The patch is built with the release's own tools, which the branch has, and
-run by `release patch` from a `next` checkout, which has the reference data
-and the release tooling. Work in a worktree of the branch:
-
-1. Check out the branch beside this one and run the patch build:
-
-   ```sh
-   git fetch origin
-   git worktree add ../polestar-0.2.5 origin/hotfix/0.2.5 -B hotfix/0.2.5
-   node tools/polestar.js release patch 0.2.5 --root ../polestar-0.2.5
-   ```
-
-   In the worktree it checks that the branch holds only what a patch may
-   carry (`release scope`: the guides, the compiled guides, their tests,
-   the data corrections, the changelog and its fragments), puts back the
-   data addons the last release shipped (from its GitHub release, or
-   `--zip <file>`), sets the version, lints and compiles with that
-   checkout's tools and this checkout's `data/forever`, then lists the
-   compiled guides that differ from the release. It stops when:
-
-   - the branch has a path a patch may not carry: that change belongs on
-     `next` and in a feature release;
-   - `tools/lib/data/corrections.json` changed: run
-     `node tools/polestar.js data build` in the worktree, then again with
-     `--data-built`;
-   - a compiled guide changed though its source did not: this checkout's
-     `data/forever` was built from newer data than the release's; the same
-     fix, `data build` in the worktree and `--data-built`.
-
-   When the fixes bring a quest, NPC or object id the release did not have,
-   rerun `codex build` in the worktree (the Codex reads our guides) and,
-   once the release ships `Polestar_Names_<locale>`, `i18n names`.
-
-2. In the worktree, run steps 3 to 6 above: the suite, pack, the zip smoke
-   test and the in-game gate. In the game, play the steps the fixes changed.
-   The suite reads the worktree's own `data/`, which a new worktree lacks;
-   unless you ran `data build` there, link this checkout's for it
-   (`ln -s "$PWD/data/forever" ../polestar-0.2.5/data/forever` from the
-   `next` checkout), so the tests that need data run instead of skipping.
-
-3. Assemble the patch's changelog, commit, bring `main` up to the branch,
-   tag and push:
-
-   ```sh
-   cd ../polestar-0.2.5
-   node ../polestar/tools/polestar.js changelog build 0.2.5 --root .
-   git add CHANGELOG.md changes package.json guides/pack.json addon/Polestar addon/Polestar_Guides addon/Polestar_ItemDB addon/Polestar_Nav addon/Polestar_Recorder
-   git commit -m "Release: 0.2.5"
-   git push origin hotfix/0.2.5
-   git fetch origin main && git push origin hotfix/0.2.5:main
-   git tag -a v0.2.5 -m "Polestar 0.2.5" hotfix/0.2.5 && git push origin v0.2.5
-   ```
-
-   (`../polestar` stands for the `next` checkout.) Pushing the branch to
-   `main` is a fast-forward: the branch was cut from the release `main`
-   holds.
-
-4. Check that the issues the patch fixes are closed before publishing:
-   their fixes merged into `next` with "closes #N", so GitHub closed them
-   then. Close any that are still open, as completed; the release workflow
-   tells the Discord threads of issues closed by the time the release is
-   published.
-
-5. Steps 8 to 10 above, with `release notes 0.2.5 --root .`: the notes, the
-   GitHub release, CurseForge.
-
-6. Publishing the release opens a pull request merging `main` into `next`
-   (`.github/workflows/merge-back.yml`). Merge it with a merge commit, never
-   a squash. It can stop on `addon/Polestar_Guides/Guides.lua`, which both
-   branches regenerate: resolve it locally, taking `next`'s side, then run
-   `node tools/polestar.js compile` on `next` and commit the result with the
-   merge. The version files take `0.2.5`; the next feature release sets its
-   own in step 2. Pull requests opened by a workflow start no checks:
-   close and reopen it to run them.
-
-   A release runs the workflows of its tagged commit. Patches cut from a
-   release older than these workflows (every 0.2.x patch) run without
-   them: run "Merge back" and "Discord release notes" by hand, from `next`,
-   with the patch's tag (Actions, the workflow, Run workflow).
-
-7. Remove the worktree, delete `hotfix/0.2.5` on GitHub and cut
-   `hotfix/0.2.6` from `v0.2.5`, as in step 11.
-
-## Fixes merged into `next` that a patch should carry
-
-This is how a patch gets its fixes. Contributors open every guide fix
-against `next`; one that belongs in the coming patch gets the `backport`
-label, before or after the merge. `.github/workflows/backport.yml` then
-opens a pull request cherry-picking it onto the one open `hotfix/` branch
-(it comments instead when there is none, or several). That pull request
-goes through the same review and `Base branch` check as any other; close
-and reopen it to start its checks. A fix that needs anything `next` has
-and the release lacks is not a patch fix: leave the label off.
+A patch release (`x.y.Z`) uses the same steps as a feature release, with a
+patch version bump. Every fix goes to `next` first; a patch release is just
+a sooner release from `next`.
 
 ## Branch rules
 
@@ -336,12 +223,10 @@ GitHub's rulesets for the repository, under Settings, Rules:
 | Branch | Rules |
 |---|---|
 | `next` | changes by pull request only, with `Tests` and `Base branch` passing; no force push, no deletion |
-| `hotfix/**` | changes by pull request only, with `Tests` and `Base branch` passing; only maintainers create one; no force push |
 | `main` | only maintainers update it; no force push, no deletion |
 
-Repository admins bypass all three, which the release steps rely on (the
-pushes of steps 7 and 11, and of patch step 3). Branches are deleted when
-their pull request merges.
+Repository admins bypass both, which the release steps rely on (the
+pushes of step 7). Branches are deleted when their pull request merges.
 
 ## Release candidates
 

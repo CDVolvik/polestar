@@ -75,10 +75,10 @@ const issueBody = (gh, n, mark) => (gh.store.get(n) || []).filter((c) => c.body.
 
 test('two pull requests on one issue: one comment listing both, and each is warned about the other', async () => {
 	const gh = fakeRepo([{ number: 302, state: 'open' }, { number: 316, state: 'open', pull_request: {} }, { number: 321, state: 'open', pull_request: {} }]);
-	const pulls = [pr(316, 'b7216309-jpg', 'hotfix/0.2.6', 'Fixes #302'), pr(321, 'CDVolvik', 'hotfix/0.2.6', 'Fixes #302 (XooVe).')];
+	const pulls = [pr(316, 'b7216309-jpg', 'next', 'Fixes #302'), pr(321, 'CDVolvik', 'next', 'Fixes #302 (XooVe).')];
 	await update({ github: gh, pulls, touched: [302], defaultBranch: 'next' });
 	const [body] = issueBody(gh, 302, ISSUE_MARK);
-	assert.match(body, /- #316 by @b7216309-jpg, into `hotfix\/0\.2\.6`\n- #321 by @CDVolvik/);
+	assert.match(body, /- #316 by @b7216309-jpg, into `next`\n- #321 by @CDVolvik/);
 	assert.match(body, /2 pull requests are open/);
 	assert.deepEqual([...gh.labels.get(302)], ['has-pr']);
 	assert.match(issueBody(gh, 316, OVERLAP_MARK)[0], /#302: also #321 by @CDVolvik/);
@@ -93,21 +93,21 @@ test('two pull requests on one issue: one comment listing both, and each is warn
 	assert.deepEqual(gh.writes, []);
 });
 
-test('a merge into the hotfix branch stays on the issue after the pull request is gone, and the overlap clears', async () => {
+test('a merge into next stays on the issue after the pull request is gone, and the overlap clears', async () => {
 	const gh = fakeRepo([{ number: 302, state: 'open' }, { number: 316, state: 'open', pull_request: {} }, { number: 321, state: 'open', pull_request: {} }]);
-	const both = [pr(316, 'b7216309-jpg', 'hotfix/0.2.6', 'Fixes #302'), pr(321, 'CDVolvik', 'hotfix/0.2.6', 'Fixes #302')];
+	const both = [pr(316, 'b7216309-jpg', 'next', 'Fixes #302'), pr(321, 'CDVolvik', 'next', 'Fixes #302')];
 	await update({ github: gh, pulls: both, touched: [302], defaultBranch: 'next' });
 
-	const left = [pr(316, 'b7216309-jpg', 'hotfix/0.2.6', 'Fixes #302', ['overlap'])];
-	await update({ github: gh, pulls: left, touched: [302], closed: { number: 321, merged: true, base: 'hotfix/0.2.6', user: 'CDVolvik' }, defaultBranch: 'next' });
+	const left = [pr(316, 'b7216309-jpg', 'next', 'Fixes #302', ['overlap'])];
+	await update({ github: gh, pulls: left, touched: [302], closed: { number: 321, merged: true, base: 'next', user: 'CDVolvik' }, defaultBranch: 'next' });
 	const bodies = issueBody(gh, 302, ISSUE_MARK);
 	assert.equal(bodies.length, 1, 'the comment is edited, not repeated');
-	assert.match(bodies[0], /- #316 by @b7216309-jpg, into `hotfix\/0\.2\.6`\n- #321 by @CDVolvik, merged into `hotfix\/0\.2\.6`; it ships in the next patch/);
+	assert.match(bodies[0], /- #316 by @b7216309-jpg, into `next`\n- #321 by @CDVolvik, merged into `next`; it ships in the next release/);
 	assert.match(issueBody(gh, 316, OVERLAP_MARK)[0], /No other open pull request addresses the same issue now/);
 	assert.ok(!gh.labels.get(316).has('overlap'));
 
 	// The other is closed unmerged: the merge is still listed, and the label says so.
-	await update({ github: gh, pulls: [], touched: [302], closed: { number: 316, merged: false, base: 'hotfix/0.2.6', user: 'b7216309-jpg' }, defaultBranch: 'next' });
+	await update({ github: gh, pulls: [], touched: [302], closed: { number: 316, merged: false, base: 'next', user: 'b7216309-jpg' }, defaultBranch: 'next' });
 	const last = issueBody(gh, 302, ISSUE_MARK)[0];
 	assert.doesNotMatch(last, /#316/);
 	assert.match(last, /#321 by @CDVolvik, merged/);

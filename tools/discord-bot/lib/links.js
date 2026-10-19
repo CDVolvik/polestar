@@ -66,10 +66,8 @@ const who = (pr) => `#${pr.number} by @${pr.user}`;
 
 function mergedLine(m, defaultBranch) {
 	const where = m.base === defaultBranch
-		? `merged into \`${m.base}\`; it ships in the next feature release`
-		: m.base.startsWith('hotfix/')
-			? `merged into \`${m.base}\`; it ships in the next patch, and this issue closes then`
-			: `merged into \`${m.base}\``;
+		? `merged into \`${m.base}\`; it ships in the next release`
+		: `merged into \`${m.base}\``;
 	return `- ${who(m)}, ${where} <!-- merged:${m.number}:${m.base}:${m.user} -->`;
 }
 
