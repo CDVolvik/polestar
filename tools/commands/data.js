@@ -16,7 +16,9 @@ data/recordings/*.json. Precedence: recordings > questie-forever > pfQuest.
 Also spawnz.json: every NPC and object spawn's height on Eastern Kingdoms and
 Kalimdor from CMaNGOS classic-db (GPL-3.0, facts), which the compiler gives
 goals at an NPC or object; with --offline and no cached dump it is left out
-with a warning. Downloads are cached under data/sources/.
+with a warning. The same dump's quest_template gives the objective counts
+QuestieDB and pfQuest lack (left null without it, with a warning).
+Downloads are cached under data/sources/.
 
 options:
   --offline            use cached sources only (no git, no HTTP)
