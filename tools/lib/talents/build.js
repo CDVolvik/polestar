@@ -57,7 +57,7 @@ const REQUIRED = 3; // TraitEdge.Type of an arrow that must be met
 
 // A stray copy of a talent: a node with the same spell as another node of its
 // tree, placed far off the tree's grid (more than STRAY_FAR times the other
-// nodes' furthest PosX or PosY). In 1.60.1.70374 the Hunter tree has Lightning
+// nodes' furthest PosX or PosY). In 1.60.1.70374 and 1.60.1.70450 the Hunter tree has Lightning
 // Reflexes twice (node 104982 at PosX 102800, ten times the real one's 10280)
 // and the Priest tree Holy Specialization twice (node 105865 at PosY 21300,
 // below the Shadow column). Kept, they would make a fourth spec column or an

@@ -1,0 +1,70 @@
+name: Pull requests on issues
+
+# Shows on every issue which pull requests address it, so two people don't
+# fix the same thing without knowing: one comment per issue, kept up to date,
+# and the label has-pr (fix-merged once a fix is merged but the issue waits
+# for its release). A pull request whose issue already has another open pull
+# request gets a comment naming it and the label overlap. An issue filed from
+# the Discord #bugs forum tells the player in their thread, once, that a fix
+# is open, and tags the thread In progress. A pull request addresses an
+# issue when its title names it (#N) or its description says "closes #N",
+# "fixes #N" or "resolves #N" (CONTRIBUTING.md, "Before you start").
+#
+# This runs on pull_request_target so it can comment on pull requests from
+# forks. It checks out the default branch's bot, never the pull request's
+# code, and reads the pull request only as text from the API.
+#
+# Run it by hand (Actions, "Pull requests on issues", Run workflow) to bring
+# every open pull request's issues up to date at once; dry run prints what it
+# would write.
+
+on:
+  pull_request_target:
+    types: [opened, edited, reopened, closed, ready_for_review, converted_to_draft]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Print what would be written, write nothing
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+# One at a time: two runs editing the same issue's comment would race.
+concurrency:
+  group: pr-links
+
+jobs:
+  links:
+    name: Pull requests on issues
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          sparse-checkout: tools/discord-bot
+          persist-credentials: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Event
+        if: github.event_name == 'pull_request_target'
+        run: node tools/discord-bot/links.js event
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_FORUM_ID: ${{ vars.DISCORD_FORUM_ID }}
+
+      - name: Sweep
+        if: github.event_name == 'workflow_dispatch'
+        run: node tools/discord-bot/links.js sweep ${{ inputs.dry_run && '--dry-run' || '' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_FORUM_ID: ${{ vars.DISCORD_FORUM_ID }}

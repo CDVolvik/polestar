@@ -12,7 +12,7 @@ skip with a reason.
 
 | File | Contents |
 |---|---|
-| `Polestar-<version>.zip` | `Polestar` (with `LICENSE` and a player `README.txt`), `Polestar_Guides`, always `Polestar_Nav` (Shortest Path Forever's walking router and maps by Cillian Berragan, with its own GPL-3.0-or-later `LICENSE`, `CREDITS.md` and `UPSTREAM.json`; `nav check` must pass), `Polestar_QuestDB` / `Polestar_ItemDB` when built, and always `Polestar_Codex` (with its `LICENSE-DATA.txt`) |
+| `Polestar-<version>.zip` | `Polestar` (with `LICENSE` and a player `README.txt`), `Polestar_Guides`, always `Polestar_Nav` (Polestar's walking router, started from Shortest Path Forever by Cillian Berragan, and Polestar's walking maps with `PACK.json`, its own GPL-3.0-or-later `LICENSE` and `CREDITS.md`; `nav check` must pass), `Polestar_QuestDB` / `Polestar_ItemDB` when built, and always `Polestar_Codex` (with its `LICENSE-DATA.txt`) |
 | `Polestar_Recorder-<version>.zip` | `Polestar_Recorder` (optional, with `LICENSE`) |
 | `SHA256SUMS` | checksums of both zips, in the format `sha256sum -c` reads |
 
@@ -20,7 +20,7 @@ Addon folders sit at the top level of each zip, so a player (or an addon
 manager) extracts straight into `Interface/AddOns/`. The zips are
 reproducible: the same sources give byte-identical archives.
 
-Guide packs are packed by their authors with `polestar pack` in the pack
+Community addons are packed by their authors with `polestar pack` in the pack
 folder (`<pack>/dist/<folder>-<version>.zip`, version from its `pack.json`);
 see docs/PACKS.md.
 
@@ -42,7 +42,7 @@ follow `x.y.z`; `0.x` releases are betas.
 
 Feature releases are built from the full local data build of the steps below.
 [THIRD_PARTY.md](../THIRD_PARTY.md) ("Distributing Polestar") lists what
-that puts in the zip: QuestieDB facts in the guide pack, `Polestar_QuestDB`
+that puts in the zip: QuestieDB facts in `Polestar_Guides`, `Polestar_QuestDB`
 and `Polestar_Codex`, nothing from AtlasLoot, RareScanner or DungeonJournal,
 and never the zone crossings pack (`pack` leaves it out). The Codex is part of
 Polestar (Lookup, Dungeons and Rares read it): `pack` stops when
@@ -99,7 +99,7 @@ version throughout.
    rm -rf dist && node tools/polestar.js pack
    (cd dist && sha256sum -c SHA256SUMS)
    unzip -l dist/Polestar-0.2.0.zip      # Polestar_Codex/ with its LICENSE-DATA.txt, and Polestar_Nav/ with its LICENSE and CREDITS.md, are listed
-   node tools/polestar.js nav check      # Polestar_Nav matches its UPSTREAM.json
+   node tools/polestar.js nav check      # Polestar_Nav's walking maps match its PACK.json
    ```
 
 5. Smoke-test the zips as a player gets them: unpack both into an empty

@@ -16,6 +16,7 @@ const PRIORS = {
 	mountMul: [1.6, 0, 1.6, 1.6, 'mounted speed multiplier'],
 	detour0: [1.35, 0.12, 1.05, 2, 'walking detour factor, Eastern Kingdoms (path / straight line)'],
 	detour1: [1.3, 0.12, 1.05, 2, 'walking detour factor, Kalimdor'],
+	routeMul: [1, 0.05, 0.9, 1.3, 'routed walk (sim walks) / the walking router\'s yards: a player strays a little from the drawn line'],
 	killSec1: [11, 3, 6, 30, 'seconds per kill incl. downtime at level 1 (equal-level mob)'],
 	killSec60: [30, 6, 15, 60, 'seconds per kill incl. downtime at level 60'],
 	killUp: [0.1, 0.04, 0, 0.3, 'kill time +share per mob level above the player'],
@@ -38,6 +39,9 @@ const PRIORS = {
 	grindEff: [0.7, 0.12, 0.35, 1.1, 'grinding XP rate / formula rate at the best site (respawns, competition, bag trips)'],
 	grindWeight: [2.5, 0, 2.5, 2.5, 'policy, not a measurement: an hour of grinding counts as this many hours when routes are compared, so a route grinds only where no quest is nearly as good (reported times stay real)'],
 	zoneChange: [450, 0, 450, 450, 'policy, not a measurement: seconds a move into another zone counts when routes are compared, so a route takes a hub\'s quests and does them in one go and switches zones only when it is clearly worth it (reported times stay real)'],
+	zoneReturn: [0, 0, 0, 0, 'policy, not a measurement: seconds a move back into a zone the route was in earlier (and left) counts when routes are compared; 0 in the time objective, see OBJECTIVES (reported times stay real)'],
+	spotReturn: [0, 0, 0, 0, 'policy, not a measurement: seconds work again at a spot (250 yd cell) worked earlier, after leaving it by more than 600 yd, counts when routes are compared; 0 in the time objective, see OBJECTIVES (reported times stay real)'],
+	wastedAccept: [0, 0, 0, 0, 'policy, not a measurement: seconds each quest accepted and never handed in (abandoned for a full log, or still in the log at 60) counts when routes are compared; 0 in the time objective, see OBJECTIVES (reported times stay real)'],
 	gateGap: [2, 0, 2, 2, 'levels a character grinds to reach a quest\'s minimum level; further above, the quest is not available yet'],
 	dangerGap: [5, 0, 5, 5, 'most levels a quest may be above the character (red quests are not attempted)'],
 	deathRisk: [300, 150, 0, 1200, 'seconds lost per walking crossing of a zone whose mobs are 5+ levels above the character (deaths, corpse runs, detours)'],
@@ -54,6 +58,50 @@ const CLASS_FACTOR = {
 	Warrior: 1.15, Paladin: 1.1, Hunter: 0.8, Rogue: 1.0, Priest: 1.05,
 	Shaman: 1.0, Mage: 0.9, Warlock: 0.85, Druid: 1.0,
 };
+
+// What the search optimises (`sim run --objective`): overrides of the policy
+// parameters above (mean = lo = hi). time: the fastest route to 60 as the
+// priors have it. smooth: fewer zone switches, returns into zones left
+// earlier and returns to spots already worked, at some cost in time.
+// smooth also counts grinding more (4 instead of 2.5): grinding never moves,
+// so with the return penalties alone the search ground instead of questing
+// (Horde Orc, 200k routes: 52 h of grinding against 9 h under time, 131 h
+// to 60; at 4, 29 h and 127 h, with a third of the zone returns). smooth
+// also counts each quest accepted and never handed in (abandoned for a full
+// log or left in it at 60): taking a quest only to drop it is not smooth
+// (Horde Orc, 100k routes with walks: 42 abandoned, 63 never handed in).
+const OBJECTIVES = {
+	time: {},
+	smooth: { zoneChange: 900, zoneReturn: 1800, spotReturn: 900, grindWeight: 4, wastedAccept: 600 },
+};
+
+function objectiveName(o) {
+	const k = o == null || o === '' ? 'time' : String(o).toLowerCase();
+	if (!OBJECTIVES[k]) throw new Error(`--objective must be ${Object.keys(OBJECTIVES).join(' or ')} (got ${o})`);
+	return k;
+}
+
+// `--param key=value` (repeatable) -> { key: number }; unknown keys and
+// non-numbers are errors.
+function parseOverrides(list) {
+	const out = {};
+	for (const s of [].concat(list || [])) {
+		const m = /^([A-Za-z0-9]+)=(.+)$/.exec(String(s));
+		if (!m) throw new Error(`--param must be key=value (got ${s})`);
+		if (!PRIORS[m[1]]) throw new Error(`--param: unknown parameter ${m[1]} (known: ${Object.keys(PRIORS).join(', ')})`);
+		const v = Number(m[2]);
+		if (!Number.isFinite(v)) throw new Error(`--param ${m[1]}: ${m[2]} is not a number`);
+		out[m[1]] = v;
+	}
+	return out;
+}
+
+// `--tag <name>`: a suffix for result file names (variants of one search).
+function tagName(t) {
+	if (t == null || t === '') return null;
+	if (!/^[A-Za-z0-9_-]+$/.test(String(t))) throw new Error(`--tag must be letters, digits, - or _ (got ${t})`);
+	return String(t);
+}
 
 const NAMES = Object.keys(PRIORS);
 
@@ -83,8 +131,10 @@ function saveParamsFile(simDir, doc) {
 	fs.renameSync(`${file}.tmp`, file);
 }
 
-// Priors with calibration applied and the class prior: { name: { mean, sd, lo, hi } }.
-function effective(doc, cls = null) {
+// Priors with calibration applied, the class prior, the objective's policy
+// overrides and then `--param` overrides (each fixed: mean = lo = hi, sd 0):
+// { name: { mean, sd, lo, hi } }.
+function effective(doc, cls = null, objective = 'time', overrides = {}) {
 	const out = {};
 	const cal = (doc && doc.calibrated) || {};
 	for (const [k, [mean, sd, lo, hi]] of Object.entries(PRIORS)) {
@@ -92,6 +142,11 @@ function effective(doc, cls = null) {
 		out[k] = { mean: c && Number.isFinite(c.mean) ? c.mean : mean, sd: c && Number.isFinite(c.sd) ? c.sd : sd, lo, hi };
 	}
 	if (cls && CLASS_FACTOR[cls] != null) out.classFactor = { ...out.classFactor, mean: CLASS_FACTOR[cls] };
+	for (const [k, v] of Object.entries(OBJECTIVES[objectiveName(objective)])) out[k] = { mean: v, sd: 0, lo: v, hi: v };
+	for (const [k, v] of Object.entries(overrides || {})) {
+		if (!out[k]) throw new Error(`unknown parameter ${k}`);
+		out[k] = { mean: v, sd: 0, lo: v, hi: v };
+	}
 	return out;
 }
 
@@ -122,5 +177,5 @@ function draws(eff, k, seed) {
 }
 
 module.exports = {
-	PRIORS, NAMES, CLASS_FACTOR, priorTable, paramsFile, loadParamsFile, saveParamsFile, effective, means, sample, draws,
+	PRIORS, NAMES, CLASS_FACTOR, OBJECTIVES, objectiveName, parseOverrides, tagName, priorTable, paramsFile, loadParamsFile, saveParamsFile, effective, means, sample, draws,
 };

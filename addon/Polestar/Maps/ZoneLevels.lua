@@ -16,7 +16,7 @@ M.RegisterZoneLevels({
 	[1417] = { 31, 39, 47.9, 52.1 }, -- Arathi Highlands
 	[1418] = { 36, 43, 42.5, 56.6 }, -- Badlands
 	[1419] = { 45, 54, 52.8, 34.8 }, -- Blasted Lands
-	[1420] = { 1, 11, 48.9, 56 }, -- Tirisfal Glades
+	[1420] = { 1, 10, 48.6, 55.9 }, -- Tirisfal Glades
 	[1421] = { 11, 19, 55.3, 27.3 }, -- Silverpine Forest
 	[1422] = { 51, 57, 47.9, 56.2 }, -- Western Plaguelands
 	[1423] = { 54, 59, 43.8, 35.6 }, -- Eastern Plaguelands
@@ -50,6 +50,6 @@ M.RegisterZoneLevels({
 	[1451] = { 55, 60, 39.7, 43.2 }, -- Silithus
 	[1452] = { 54, 59, 57.8, 38 }, -- Winterspring
 	[2482] = { 56, 60, 43.9, 55 }, -- Mount Hyjal
-	[2521] = { 2, 10, 55, 53.9 }, -- Zephras Isle
+	[2521] = { 2, 10, 54.6, 54.2 }, -- Zephras Isle
 	[2548] = { 37, 57, 63.5, 55.9 }, -- Riverglades
 })
