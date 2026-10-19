@@ -13,14 +13,14 @@
 		"0": {
 			"chokepoints": 391,
 			"clusters": 736,
-			"floors": 1265792,
+			"floors": 1265831,
 			"nodes": 62034,
 			"edges": 202775,
 			"components": 2391,
 			"clampedCosts": 0,
 			"maxDegree": 61,
-			"rawBytes": 25187551,
-			"packedBytes": 14911800,
+			"rawBytes": 25187936,
+			"packedBytes": 14912044,
 			"files": 30,
 			"hubs": 100,
 			"classes": {
@@ -28,10 +28,10 @@
 				"road": 173912,
 				"gentle": 430134,
 				"steep": 2826011,
-				"indoor": 270937,
+				"indoor": 271009,
 				"city": 89185,
 				"allianceHub": 223065,
-				"hordeHub": 91314
+				"hordeHub": 91386
 			},
 			"roads": {
 				"strong": 292233,
@@ -138,7 +138,7 @@
 		"Nav/Nav0_24.lua": "823070b26c49742d08b2d82511062d7ebf83bd4fa9ca4b0a5692ebb3bcb687c9",
 		"Nav/Nav0_25.lua": "69b903e56307538f2609f0d2496aa006afe837c4d9630c5d0e82399d70d173b7",
 		"Nav/Nav0_26.lua": "fb5ad19e364ec6555656425e43ca98d46adbd1fe4267167b4803063e713d89a3",
-		"Nav/Nav0_27.lua": "7a4a453b92849185d8442909c402d37f117d22e99ae8c00995ba6d2704824362",
+		"Nav/Nav0_27.lua": "452944066efdf0155c310979a2ffdfcaaaa5c489d67dcf5b2a263839ff2d49bb",
 		"Nav/Nav0_28.lua": "b234c74d69a8bb69210df96d1012e9c815ea94502897bbce3ba4f5e12501ddf4",
 		"Nav/Nav0_29.lua": "a914bf8583055856e13b7cdd66f3680468192bfabeebd998bc7b31688c2ac091",
 		"Nav/Nav1.lua": "b39566d5c8be036d455eff1a74f55bff5a29e474432e991141dd331ca1862ad2",
