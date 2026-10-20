@@ -83,7 +83,7 @@
   back to Ironforge from Thelsamar with Honor Students.
 - Dungeons: a chip beside a dungeon's name says how far its quests take you,
   or the level recommended for its quests; hovering it shows the XP, a bar of the
-  levels it spans and which quests were counted (thanks Max).
+  levels it spans and which quests were counted (thanks mcclaskiem).
 - 18 dungeon quests count the XP Forever gives, not the old Classic amount:
   Wailing Caverns (Deviate Hides 3,100, Trouble at the Docks, Smart Drinks,
   Deviate Eradication and three more), Shadowfang Keep, The Stockade and
@@ -159,7 +159,7 @@
   level, counting its quests and an estimate of the kills it asks for; below
   the guide's level the chip shows its recommended level. Hovering the
   chip shows the XP, a bar of the levels it spans and what was counted, in
-  your chosen font, skin and colours (thanks Max).
+  your chosen font, skin and colours (thanks mcclaskiem).
 - With Shortest Path Forever guiding, Polestar no longer draws its own line to
   a target on the same continent on the map and minimap, so only one route
   shows (thanks Rawbowke, #398).

@@ -10,7 +10,7 @@ return {
 	-- {area:380} Crossroads · {npc:8582} Kadrak · {area:1703} Mor'shan Rampart · {zone:1440} Ashenvale · {item:16783} Bundle of Reports
 	["From the {area:380} follow the road north. {npc:8582} stands on the watch tower of the {area:1703} where the road enters {zone:1440}. Open the {item:16783} he gives you."] = "从{area:380}沿道路向北。{npc:8582}站在道路进入{zone:1440}处{area:1703}的瞭望塔上。打开他给你的{item:16783}。",
 	-- {item:16746} Warsong Report · {item:16783} Bundle of Reports
-	["{item:16746}, from the {item:16783}"] = "",
+	["{item:16746}, from the {item:16783}"] = "{item:16746}，从{item:16783}中取得",
 
 	-- Step 2: Warsong Scout
 	-- {npc:12862} Warsong Scout

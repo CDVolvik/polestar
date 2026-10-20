@@ -44,7 +44,7 @@ return {
 
 	-- Step 8: Dragonmaw Gates
 	-- {area:1038} Dragonmaw Gates · {npc:271338} Ados · {item:279996} Goaz Stone
-	["North-east to the {area:1038}: {npc:271338} stands at the gates (use the {item:279996})."] = "",
+	["North-east to the {area:1038}: {npc:271338} stands at the gates (use the {item:279996})."] = "向东北前往{area:1038}：{npc:271338}站在大门口，使用{item:279996}。",
 
 	-- Step 9: Whelps, raptors and Neru
 	-- {npc:271458} Neru
@@ -162,7 +162,7 @@ return {
 	["{npc:2708} is in the {object:2164}; {npc:211033} near the canal; {npc:5081} south of the {object:2101}."] = "{npc:2708}在{object:2164}；{npc:211033}在运河附近；{npc:5081}在{object:2101}南边。",
 	-- {npc:211033} Garion Wendell
 	-- plural, as words: Library Books = {object:386691} Library Book
-	["{npc:211033}: only offered once you have handed in library books (the Library Books guide)"] = "",
+	["{npc:211033}: only offered once you have handed in library books (the Library Books guide)"] = "{npc:211033}：交过图书馆书籍后才会提供此任务，详见《图书馆藏书》指南",
 
 	-- Step 36: Druid training
 	["Druid training"] = "德鲁伊训练",
