@@ -125,15 +125,16 @@ local function unscored(G, probe, id)
 end
 
 -- Read the shown choices (the quest giver's panel, or the quest log's when
--- fromLog). complete = every link, price and enabled gear verdict known.
+-- fromLog). complete = every link, price and enabled gear verdict known;
+-- priced = every link and price known (the coin needs no gear verdict).
 function Rewards.ReadChoices(fromLog)
 	local n = numChoices(fromLog)
-	local list, complete = {}, true
+	local list, complete, priced = {}, true, true
 	local G = gear()
 	for i = 1, n do
 		local link, count, itemID = choiceInfo(i, fromLog)
 		local price = Client.SellPrice(link or itemID)
-		if not link or price == nil then complete = false end
+		if not link or price == nil then complete, priced = false, false end
 		local stack = (count and count > 0) and count or 1
 		local c = { index = i, link = link, itemID = itemID, count = count or 1, value = (price or 0) * stack }
 		-- Gear can judge an uncached choice from its ID (ItemDB stats).
@@ -152,7 +153,7 @@ function Rewards.ReadChoices(fromLog)
 		end
 		list[i] = c
 	end
-	return list, complete
+	return list, complete, priced
 end
 
 ---------------------------------------------------------------------------
@@ -294,7 +295,7 @@ function Rewards.Mark()
 	local frame = rewardsFrame()
 	if not frame then return nil end
 	local fromLog = QuestInfoFrame and QuestInfoFrame.questLog and true or false
-	local choices, complete = Rewards.ReadChoices(fromLog)
+	local choices, complete, priced = Rewards.ReadChoices(fromLog)
 	if #choices == 0 then return nil end
 	-- The best waits for complete item data, or for auto-pick's settled answer.
 	local best, reason
@@ -309,7 +310,7 @@ function Rewards.Mark()
 	end
 	-- The coin: the highest vendor value, once every price is known.
 	local top = 0
-	if #choices >= 2 and complete then
+	if #choices >= 2 and priced then
 		for _, c in pairs(choices) do
 			if c.value > top then top = c.value end
 		end

@@ -1790,6 +1790,24 @@ test('rewards: auto-pick leaves the choice to the player when a price is still u
 	assert.deepEqual(arrived, [2], 'with every price known, the most valuable is taken');
 });
 
+test('rewards: an unsettled gear verdict keeps the coin on the most valuable reward and picks nothing', () => {
+	const [out, picks] = run(`${MARKS}
+		q.items[11] = { name = "Cloak", price = 120 }
+		q.items[12] = { name = "Potion", price = 50 }
+		q.choices = { { id = 11 }, { id = 12 } }
+		-- Gear is on but has no comparison yet for either choice.
+		Polestar.Gear = { IsEnabled = function() return true end, CompareToEquipped = function() return nil end, IsUpgrade = function() return false, nil end }
+		q.questComplete(); stub.advance(5)          -- every retry spent
+		emit(marks())
+		emit(#calls("GetQuestReward"))
+	`);
+	assert.deepEqual(out, [
+		{ badge: false, coin: true, best: false, onIcon: true },
+		{ badge: false, coin: false, best: false },
+	], 'every link and price is known: the coin needs no gear verdict; the frame does');
+	assert.equal(picks, 0);
+});
+
 test('rewards: auto-pick never takes a reward while a link is missing, with or without retry timers', () => {
 	const [noLink, noTimers] = run(`
 		q.items[11] = { name = "Cloak", price = 120 }
