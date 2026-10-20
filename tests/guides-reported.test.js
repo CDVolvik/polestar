@@ -1653,6 +1653,26 @@ test('forever/horde/04-the-barrens.guide: Fitz\'s report (#273): the Savannah Li
 	}
 });
 
+// Fitz's report (#274): Sunscale Scytheclaws roam the Dry Hills among the
+// lions, but the step there did not remind you of Raptor Horns (865) when the
+// horns were still short. The step carries the horns too, in the Dry Hills;
+// a horn goal already met is done, and one for a quest never taken drops out.
+
+test('forever/horde/04-the-barrens.guide: Fitz\'s report (#274): the Dry Hills step also collects the Raptor Horns, in the Dry Hills, before the Ratchet turn-in', { skip }, () => {
+	const list = goals('forever/horde/04-the-barrens.guide');
+	const hills = list.findIndex(({ step, goal }) => step.title === 'The Dry Hills' && is('collect', 95494)(goal));
+	assert.ok(hills >= 0, 'the Dry Hills step is in the guide');
+	const horns = list.findIndex(({ s, goal }) => s === list[hills].s && is('collect', 865)(goal));
+	assert.ok(horns >= 0, 'the Dry Hills step collects the Raptor Horns');
+	const { goal } = list[horns];
+	assert.equal(goal.item, 5055, 'Intact Raptor Horn');
+	// The arrow's spots; the alternatives (alt) are only marked on the map.
+	for (const p of [goal, ...(goal.spots || []).filter((spot) => !spot.alt)]) {
+		assert.ok(p.x >= 40 && p.x <= 52 && p.y >= 10 && p.y <= 22, `the horns' arrow at ${p.x},${p.y} is in the Dry Hills`);
+	}
+	assert.ok(horns < at(list, 'the Raptor Horns turn-in', is('turnin', 865)), 'before the horns are handed in at Ratchet');
+});
+
 // Avtom (#280): "Kill Ribchaser (rare) or Redridge Brute for Iron Pike" led to
 // the Redridge Mongrels' camp, where no Brute stands. Ribchaser, a rare, shares
 // the Mongrels' spawn points and drops the quest's Iron Pike and Iron Rivet at
