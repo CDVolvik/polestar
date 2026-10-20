@@ -2734,6 +2734,17 @@
 			},
 			"note": "Thunderhorn's Report (Mulgore, Mull Thunderhorn) comes after Wildmane Cleansing 760: Wowhead Forever's Series box on https://www.wowhead.com/forever/quest=98435 lists \"1. Wildmane Cleansing; 2. Thunderhorn's Report\" (checked 2026-10-16). Issue #51. QuestieDB 1.0.5 has no prerequisite."
 		},
+		"98815": {
+			"set": {
+				"pre": [
+					484
+				],
+				"preAny": [
+					484
+				]
+			},
+			"note": "Highland Hides (Wetlands, James Halloran) is offered only once Young Crocolisk Skins 484, from the same NPC, is handed in: two players' in-game notes on the quest in Forever's quest data (2026-10-02, 2026-10-18) and issue #533 (level 27: Halloran offered the prerequisite instead of 98815). Checked 2026-10-20. Other sources put 98815 beside Daily Delivery 469 instead; no player report backs that. QuestieDB has no prerequisite."
+		},
 		"98823": {
 			"set": {
 				"pre": [
