@@ -139,6 +139,8 @@ local REQUIRED = {
 	accept = { quest = isNum, title = isStr },
 	turnin = { quest = isNum, title = isStr },
 	complete = { quest = isNum, title = isStr },
+	abandon = { quest = isNum, title = isStr },
+	destroy = { item = isNum, itemName = isStr },
 	kill = { target = isStr },
 	collect = { item = isNum, itemName = isStr },
 	["goto"] = { map = isNum, x = isNum, y = isNum },
@@ -470,7 +472,7 @@ Guides.Validate = validate
 ---------------------------------------------------------------------------
 
 -- Every format Polestar has shipped (docs/PACK_FORMAT.md, "Versioning").
-Guides.FORMATS = { [1] = true, [2] = true, [3] = true, [4] = true, [5] = true }
+Guides.FORMATS = { [1] = true, [2] = true, [3] = true, [4] = true, [5] = true, [6] = true }
 Guides.RESERVED = { guides = true, forever = true, lookup = true, draft = true, polestar = true, imported = true }
 local OFFICIAL_ADDON = "Polestar_Guides"
 local REQUIRED_META = { "addon", "title", "author", "version", "license" }

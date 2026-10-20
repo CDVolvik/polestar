@@ -153,7 +153,7 @@ test('installed packs: on, broken, turned off, not loaded, too new, never regist
 			stub.addonMeta.EmptyAddon = toc("empty", "Empty")
 			stub.addonMeta.Off = toc("off", "Switched Off", { Title = "Polestar Community: Switched Off" })
 			stub.addonMeta.Old = toc("old", "Old Pack", { Title = "Polestar Pack: Old Pack" })
-			stub.addonMeta.Future = toc("future", "Future Pack", { ["X-Polestar-Format"] = "6", ["X-Polestar-Needs"] = "0.4.0" })
+			stub.addonMeta.Future = toc("future", "Future Pack", { ["X-Polestar-Format"] = "7", ["X-Polestar-Needs"] = "0.4.0" })
 			stub.addonMeta.Crash = toc("crash", "Crashing Pack")`,
 	});
 	const by = Object.fromEntries(out.rows.map((r) => [r.addon, r]));

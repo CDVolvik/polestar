@@ -481,14 +481,17 @@ function validateGuides(guides, data, diag) {
 		return out;
 	};
 
-	// Accept and turn-in goals with the characters they apply to, per guide.
+	// Accept, turn-in and abandon goals with the characters they apply to, per guide.
+	// An abandon ends the quest for the guide like a turn-in, but leaves it neither in the log nor done.
+	const QUEST_ENDS = new Set(['accept', 'turnin', 'abandon']);
+	const closes = (goal) => goal.t === 'turnin' || goal.t === 'abandon';
 	const questGoalMemo = new Map();
 	const questGoals = (g) => {
 		if (!questGoalMemo.has(g.id)) {
 			const gl = guideLayer(g);
 			const list = [];
 			for (const { step, goal } of goalsOf(g)) {
-				if (goal.quest === undefined || (goal.t !== 'accept' && goal.t !== 'turnin')) continue;
+				if (goal.quest === undefined || !QUEST_ENDS.has(goal.t)) continue;
 				list.push({ goal, chars: characters([gl, step._only, goal._only], data.quest(goal.quest)) });
 			}
 			questGoalMemo.set(g.id, list);
@@ -514,7 +517,7 @@ function validateGuides(guides, data, diag) {
 		let out = null;
 		if (after) {
 			out = new Set(after);
-			for (const t of questGoals(h)) if (t.goal.t === 'turnin' && t.goal.quest === q) for (const k of t.chars) out.add(k);
+			for (const t of questGoals(h)) if (closes(t.goal) && t.goal.quest === q) for (const k of t.chars) out.add(k);
 		}
 		coveredMemo.set(key, out);
 		return out;
@@ -542,7 +545,7 @@ function validateGuides(guides, data, diag) {
 				if (goal.t === 'turnin') turnedIn.add(goal.quest);
 				if (goal.t === 'learn') learned.add(goal.spell);
 			}
-			for (const t of questGoals(a)) take(t);
+			for (const t of questGoals(a)) if (t.goal.t !== 'abandon') take(t);
 		}
 		const own = new Map(questGoals(g).map((t) => [t.goal, t]));
 		// Quests handed in straight from the NPC's window (`turnin <id> direct`),
@@ -666,7 +669,7 @@ function validateGuides(guides, data, diag) {
 		qg.forEach((a, i) => {
 			if (a.goal.t !== 'accept' || a.goal.optional || !a.chars.size) return;
 			let open = a.chars;
-			for (const t of qg.slice(i + 1)) if (t.goal.t === 'turnin' && t.goal.quest === a.goal.quest) open = minus(open, t.chars);
+			for (const t of qg.slice(i + 1)) if (closes(t.goal) && t.goal.quest === a.goal.quest) open = minus(open, t.chars);
 			if (!open.size) return;
 			const name = questName(data, a.goal.quest, a.goal.title);
 			const some = (left) => (left.size < a.chars.size ? ' for some of the characters it applies to' : '');

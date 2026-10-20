@@ -592,6 +592,10 @@ local function act(i, g, r)
 		w.turnIn(q)
 	elseif t == "complete" then
 		if w.log[q] then w.finish(q) end
+	elseif t == "abandon" then
+		if w.log[q] then w.abandon(q) end
+	elseif t == "destroy" then
+		if g.item then w.removeItem(g.item) end
 	elseif q and g.oi and (t == "kill" or t == "collect" or t == "use" or t == "interact") then
 		if w.log[q] then
 			local o = w.log[q].objectives[g.oi]
