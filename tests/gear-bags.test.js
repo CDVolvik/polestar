@@ -186,3 +186,26 @@ test('Baganator loaded after Polestar: the widget registers as it loads, once', 
 	assert.equal(before, 0);
 	assert.equal(after, 1);
 });
+
+test('the client\'s bags: an item for an empty slot gets the arrow even when the weights give it no value; a loss, a later-level item and a filled slot do not', () => {
+	const [out] = run(`${BAGS}
+		-- The wrist slot is empty. A warrior's weights give spell hit nothing.
+		local function wrist(id, req, stat, n)
+			g.defineItem("item:" .. id, { equipLoc = "INVTYPE_WRIST", classID = 4, subclassID = 3, minLevel = req, stats = { [stat] = n } })
+		end
+		wrist(8001, 10, "ITEM_MOD_HIT_SPELL_RATING_SHORT", 2) -- worth nothing, no loss
+		wrist(8002, 10, "ITEM_MOD_STRENGTH_SHORT", -5) -- a loss
+		wrist(8003, 40, "ITEM_MOD_HIT_SPELL_RATING_SHORT", 2) -- for a later level
+		g.bag(0, 5, "item:8001"); g.bag(0, 6, "item:8002"); g.bag(0, 7, "item:8003")
+		g.openBag(0)
+		local empty = arrows(0)
+		local verdict = { G.IsUpgrade("item:8001"), G.FillsEmptySlot("item:8001") }
+		wrist(8005, 10, "ITEM_MOD_STRENGTH_SHORT", 1)
+		g.equip(9, "item:8005")
+		stub.advance(0.25)
+		emit({ empty = empty, verdict = verdict, filled = arrows(0) })
+	`);
+	assert.deepEqual(out.empty, [1, 4, 5], 'the helm and the cloak as before, and the zero-value bracer; not the loss, not the level 40 one');
+	assert.deepEqual(out.verdict, [false, true], 'IsUpgrade is unchanged: no gain, no upgrade');
+	assert.deepEqual(out.filled, [1, 4], 'with the slot filled, the zero-value bracer is no upgrade');
+});

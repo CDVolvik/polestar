@@ -2,7 +2,9 @@
 -- (QoL/Rewards.lua) on every item in the bags that Gear.IsUpgrade calls an
 -- upgrade, so the bags show at a glance what the tooltip's comparison line
 -- (Gear/Tooltip.lua) says on hover (gear.bagArrows, on by default; nothing
--- with gear advice off). The verdict is this character's, as on the tooltip.
+-- with gear advice off). An item that fits an empty slot and is worth nothing
+-- under the weights, but no loss, gets the arrow too (Gear.FillsEmptySlot), as
+-- the tooltip's "upgrade (empty slot)" says. The verdict is this character's.
 --
 --   Gear.Bags.IsUpgrade(link) -> bool   -- the verdict an arrow shows
 --   Gear.Bags.Redraw()                  -- repaint the shown bags now
@@ -49,7 +51,7 @@ end
 
 function Bags.IsUpgrade(link)
 	if type(link) ~= "string" or not Bags.IsOn() then return false end
-	return Gear.IsUpgrade(link) and true or false
+	return (Gear.IsUpgrade(link) or Gear.FillsEmptySlot(link)) and true or false
 end
 
 local function media()
