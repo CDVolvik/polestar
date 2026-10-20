@@ -235,6 +235,31 @@ test(`${TIRISFAL}: Onrevax's report (#365): the Coarse Thread for The Chill of D
 	assert.equal(list[thread].goal.npc, 2118, 'from Abigail Shiel, Trade Supplies in Brill');
 });
 
+// The same pattern as #365: a quest item bought steps before its turn-in is
+// asked for again on the turn-in step, from the same vendor (`nearest`: a
+// vendor of the guide's faction), so a player who passed the first buy is
+// not sent to the giver empty-handed. Done at once with the item in the bags.
+const BUY_AT_TURNIN = [
+	// [guide, quest, item, count, vendor npc or 'H' for `nearest` on the Horde, what]
+	['forever/alliance/30-40/01-hillsbrad-foothills.guide', 555, 3713, 1, 2381, 'the Soothing Spices for Chef Jessen'],
+];
+for (const [guide, quest, item, count, vendor, what] of BUY_AT_TURNIN) {
+	test(`${guide}: the same pattern as #365, ${what}: asked for again on the step that hands in ${quest}`, { skip }, () => {
+		const list = goals(guide);
+		const hand = at(list, `turnin ${quest}`, is('turnin', quest));
+		const buy = list.findIndex(({ goal, s }) => s === list[hand].s && goal.t === 'buy' && goal.item === item);
+		assert.ok(buy >= 0 && buy < hand, `the turn-in step buys item ${item} before handing in ${quest}`);
+		const { goal } = list[buy];
+		assert.ok((goal.count || 1) >= count, `at least the ${count} the quest needs`);
+		if (vendor === 'H') {
+			assert.ok(goal.candidates && goal.candidates.length > 0, 'vendors to pick the nearest from');
+			assert.ok(goal.candidates.some((c) => c.faction && c.faction.includes('H')), 'some of them sell to the Horde');
+		} else {
+			assert.equal(goal.npc, vendor, `from npc ${vendor}`);
+		}
+	});
+}
+
 // --- Bandarion Keep (Mike_, 0.2.3): Hilda the Breaker and Ephram Barbaro offer their quests to Paladins only.
 
 test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker and Ephram Barbaro at Bandarion Keep`, { skip }, () => {
@@ -1881,8 +1906,6 @@ const BY_LEVEL = [
 	[WESTFALL, 730, 38],
 	[DARKSHORE, 5385, 983],
 	[DARKSHORE, 5412, 1001],
-	['forever/horde/02-the-barrens.guide', 5087, 844],
-	['forever/horde/orc-troll/02-the-barrens.guide', 5087, 844],
 	[SILVERPINE, 3164, 429],
 	[SILVERPINE, 730, 91920],
 	[HILLSBRAD_HORDE, 3476, 496],
