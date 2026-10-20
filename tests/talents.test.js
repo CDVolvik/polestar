@@ -32,6 +32,30 @@ function run(script, { files = CORE, stubs = [] } = {}) {
 
 // ------------------------------------------------------------ the plans
 
+test('talent labels use the client spell name before the English snapshot when the live tree is unavailable', () => {
+	const [out] = run(`
+local id = next(data.nodes)
+local n = data.nodes[id]
+C_Spell = C_Spell or {}
+C_Spell.GetSpellName = function(spell) if spell == n.spell then return "客户端天赋" end end
+local first = T.NodeName(data, id)
+local pick = T.PickText(data, { node = id, rank = 1 })
+local live = T.NodeName(data, id, { names = { [id] = "实时天赋" } })
+C_Spell.GetSpellName = function() return nil end
+GetSpellInfo = function(spell) if spell == n.spell then return "旧版接口天赋" end end
+local legacy = T.NodeName(data, id)
+GetSpellInfo = function() return nil end
+local missing = T.NodeName(data, id)
+C_Spell.GetSpellName = function() error("spell cache not ready") end
+GetSpellInfo = function() error("spell cache not ready") end
+emit({ first, pick, live, legacy, missing, T.NodeName(data, id), n.name, n.max })`);
+	assert.equal(out[0], '客户端天赋');
+	assert.equal(out[1], `客户端天赋 1/${out[7]}`);
+	assert.deepEqual(out.slice(2, 4), ['实时天赋', '旧版接口天赋']);
+	assert.equal(out[4], out[6], 'unknown spell names retain the snapshot');
+	assert.equal(out[5], out[6], 'unavailable client APIs retain the snapshot');
+});
+
 test('Builds.lua: three Paladin plans, 51 picks each, every one legal under the snapshot', () => {
 	const [out] = run(`
 local o = { prereq = data.prereq, tree = data.tree, specs = data.specs, plans = {} }

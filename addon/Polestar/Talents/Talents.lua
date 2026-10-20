@@ -389,10 +389,16 @@ function T.Queue()
 	if C_Timer and C_Timer.After then C_Timer.After(0, run) else run() end
 end
 
--- A plan node's name: the client's (its language) when the live tree has
--- the talent, else the snapshot's.
+-- A plan node's name: the live tree's, then the client's spell name even
+-- before the tree loads, then the snapshot's.
 function T.NodeName(data, id, valid)
-	return valid and valid.names[id] or data.nodes[id].name
+	local n = data.nodes[id]
+	local name = valid and valid.names[id]
+	if not name and n.spell then
+		name = C_Spell and C_Spell.GetSpellName and call(C_Spell.GetSpellName, n.spell)
+		name = name or GetSpellInfo and call(GetSpellInfo, n.spell)
+	end
+	return name or n.name
 end
 
 -- The plan's text for a pick: "Seal of Command 1/1".
