@@ -3524,7 +3524,12 @@ taken, such as Klockmort's Essentials once Essential Artificials is; each
 accept carries `closedBy` too, so the Engine passes it once taken on the way),
 open by max(level, the dungeon's lowest level), picked up outside from an NPC or object
 (not from an item, not inside), and not a follow-up of another quest of the
-page; each with its open prerequisites (`Lookup.QuestChain`: all of `pre`, one
+page -- unless the quests before it here are errands (no objectives, any
+standing they name held, given (not by an item) and turned in outside by an
+NPC or object this character may use: Hamuul Runetotem and Nara Wildmane
+before Leaders of the Fang), which are then done on the way as its prerequisites; a quest done on the way
+to another is neither a take of its own nor carried; each with its open
+prerequisites (`Lookup.QuestChain`: all of `pre`, one
 of `preAny` this character can take, in the order they are done). The giver
 is `Dungeons.Giver(pq, from)`: the page keeps one (the Codex's first), so a
 quest several NPCs give goes to the one of the character's side nearest the
