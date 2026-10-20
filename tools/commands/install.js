@@ -12,7 +12,7 @@ const { parseArgs, resolvePath, printDiagnostics, plural } = require('../lib/cli
 const { LOCALE_CODES } = require('../lib/i18n/locales');
 const { releaseAddons, packDirRefusal, textsDirRefusal, textsAddon, writePackDir } = require('../lib/dsl/project');
 const { ROOT } = require('../lib/paths');
-const { detectAddonsDirs, pickAddonsDir, isDir } = require('../lib/addons');
+const { detectAddonsDirs, isDir } = require('../lib/addons');
 const { PACK_OPTIONS, PACK_USAGE, otherPack, noDataConflict, noDataCache, buildPack, folderIn } = require('../lib/pack/build');
 
 // Data addons built locally from inputs that may not be redistributed
