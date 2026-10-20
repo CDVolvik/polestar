@@ -10,7 +10,7 @@ return {
 	-- {zone:1436} Westfall
 	["Follow the road from Elwynn into {zone:1436}: the Furlbrows sit by their burned farm, the first one on the road. Collect the oats from the Sacks of Oats in the fields as you go."] = "沿道路从艾尔文森林进入{zone:1436}：法布隆夫妇坐在被烧毁的农场旁，就是道路边第一座农场。沿途从田里的燕麦袋中收集燕麦。",
 	-- {npc:237} Farmer Furlbrow · {npc:963} Deputy Rainer
-	["{npc:237}; Humans took it from {npc:963} in Elwynn"] = "{npc:237}；人类在艾尔文从{npc:963}那里拿走了它",
+	["{npc:237}; Humans took it from {npc:963} in Elwynn"] = "{npc:237}；人类角色已在艾尔文森林从{npc:963}处接取此任务",
 	-- {item:1972} Westfall Deed
 	["Only if you looted a {item:1972} in Elwynn: right-click it"] = "仅当你在艾尔文森林拾取了{item:1972}：右键点击它",
 	["Sacks of Oats"] = "一袋燕麦",
@@ -18,7 +18,7 @@ return {
 	-- Step 2: Saldean's Farm
 	-- {npc:233} Farmer Saldean · {npc:235} Salma Saldean · {npc:253395} Ozwin Ironsprocket
 	-- plural, as words: Young Goretusks = {npc:454} Young Goretusk
-	["South along the road, past the fork. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west. Young Goretusks and Fleshrippers roam the fields around the farm: start on livers and the stew's meat on the way."] = "沿路向南，过了岔路口。{npc:233}站在屋外，{npc:235}在屋里，{npc:253395}在西边的谷仓里。幼年怖牙和撕皮鸟在农场周围的田野游荡：顺路收集肝脏和炖肉用的肉。",
+	["South along the road, past the fork. {npc:233} stands outside, {npc:235} in the house, {npc:253395} in the barn to the west. Young Goretusks and Fleshrippers roam the fields around the farm: start on livers and the stew's meat on the way."] = "沿路向南，过了岔路口。{npc:233}站在屋外，{npc:235}在屋里，{npc:253395}在西边的谷仓里。幼年血牙野猪和碎尸鸟在农场周围的田野游荡：顺路收集肝脏和炖肉用的肉。",
 
 	-- Step 3: Sentinel Hill
 	-- {npc:234} Gryan Stoutmantle · {npc:821} Captain Danuvin · {npc:491} Quartermaster Lewis · {npc:878} Scout Galiaan · {npc:523} Thor
@@ -56,7 +56,7 @@ return {
 	["The gnoll hills"] = "豺狼人山丘",
 	-- {area:111} Jangolode Mine · {area:916} The Jansen Stead
 	-- plural, as words: Riverpaw Gnolls = {npc:117} Riverpaw Gnoll
-	["Riverpaw Gnolls and Scouts (level 11-13) roam the hills south of the coast, from above {area:111} east to the {area:916}. The gnolls further south and west are 13-19: stay in the north hills."] = "{npc:117}和河爪斥候（11-13级）在海岸南边的山丘上游荡，从{area:111}上方一直到东边的{area:916}。更南边和西边的狗头人是13-19级：待在北边的山丘。",
+	["Riverpaw Gnolls and Scouts (level 11-13) roam the hills south of the coast, from above {area:111} east to the {area:916}. The gnolls further south and west are 13-19: stay in the north hills."] = "{npc:117}和河爪斥候（11-13级）在海岸南边的山丘上游荡，从{area:111}上方一直到东边的{area:916}。更南边和西边的豺狼人是13-19级：待在北边的山丘。",
 	-- plural, as words: Gnoll Paws = {item:725} Gnoll Paw
 	["Gnoll Paws"] = "{item:725}",
 

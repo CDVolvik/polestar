@@ -307,7 +307,14 @@
 					],
 					"object": []
 				},
-				"objectives": [],
+				"objectives": [
+					{
+						"type": "item",
+						"id": 5442,
+						"count": null,
+						"text": "Head of Arugal"
+					}
+				],
 				"pre": [
 					1011
 				],

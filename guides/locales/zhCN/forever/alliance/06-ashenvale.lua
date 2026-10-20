@@ -93,7 +93,7 @@ return {
 
 	-- Step 25: Alonso
 	-- {npc:210995} Alonso
-	["{npc:210995} may not offer these to every class; if he doesn't, carry on."] = "",
+	["{npc:210995} may not offer these to every class; if he doesn't, carry on."] = "{npc:210995}可能不会向所有职业提供这些任务；如果没有，就继续路线。",
 
 	-- Step 26: The Ruins of Stardust
 	["West of Mystral Lake, the stardust bushes grow among the ruins."] = "在密斯特拉湖以西，星尘覆盖的草丛生长在废墟中。",

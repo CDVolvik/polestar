@@ -6,7 +6,7 @@ local L = ns.L
 
 T.Register({
 	class = "DRUID", tree = 1089, prereq = "full",
-	source = "ForeverDB through level 30, Polestar after", url = "https://foreverdb.net/class/Druid/talents",
+	source = L["ForeverDB through level 30, Polestar after"], url = "https://foreverdb.net/class/Druid/talents",
 	summary = L["Level as Feral Combat: Cat Form for quick kills, Bear Form for tough pulls, and no drinking. Balance kills from range with roots and Starfire; Restoration heals any dungeon and quests slowly with Wrath."],
 	specs = { "Balance", "Feral Combat", "Restoration" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -209,7 +209,7 @@ T.Register({
 
 T.Register({
 	class = "HUNTER", tree = 1091, prereq = "full",
-	source = "Polestar, with ForeverDB's builds to level 20", url = "https://foreverdb.net/class/Hunter/talents",
+	source = L["Polestar, with ForeverDB's builds to level 20"], url = "https://foreverdb.net/class/Hunter/talents",
 	summary = L["Level as Beast Mastery: your pet tanks and does much of the damage, so you rarely stop. Marksmanship hits harder from range with Careful Aim and Sniper Shot; Survival fights in melee with Predator's Edge and Lacerating Strikes."],
 	specs = { "Beast Mastery", "Marksmanship", "Survival" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -407,7 +407,7 @@ T.Register({
 
 T.Register({
 	class = "MAGE", tree = 1112, prereq = "full",
-	source = "Polestar, with ForeverDB's talent data", url = "https://foreverdb.net/class/Mage/talents",
+	source = L["Polestar, with ForeverDB's talent data"], url = "https://foreverdb.net/class/Mage/talents",
 	summary = L["Level as Frost (the safest: slows, freezes and Ice Barrier) or Fire (more damage, with Pyroblast openers and Blast Wave). Arcane builds around Arcane Blast and Arcane Power and wants more mana between pulls."],
 	specs = { "Arcane", "Fire", "Frost" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -617,7 +617,7 @@ T.Register({
 
 T.Register({
 	class = "PALADIN", tree = 1100, prereq = "full",
-	source = "ForeverDB", url = "https://foreverdb.net/class/Paladin/talents",
+	source = L["ForeverDB"], url = "https://foreverdb.net/class/Paladin/talents",
 	summary = L["Level as Retribution (quickest solo, with a two-hander and Seal of Command) or Protection (safe group pulls, dungeon-tank ready). Holy suits raids; it can level through its melee build, more slowly, if you want to heal dungeons on the way."],
 	specs = { "Holy", "Protection", "Retribution" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -823,7 +823,7 @@ T.Register({
 
 T.Register({
 	class = "PRIEST", tree = 1114, prereq = "full",
-	source = "Polestar, with ForeverDB's talent data", url = "https://foreverdb.net/class/Priest/talents",
+	source = L["Polestar, with ForeverDB's talent data"], url = "https://foreverdb.net/class/Priest/talents",
 	summary = L["Level as Shadow (Spirit Tap, Mind Flay, Shadowform) for the fastest kills and least drinking. Discipline levels with Smite and Penance behind a strong shield; Holy is the dungeon healer and slower alone."],
 	specs = { "Discipline", "Holy", "Shadow" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -1023,7 +1023,7 @@ T.Register({
 
 T.Register({
 	class = "ROGUE", tree = 1111, prereq = "full",
-	source = "ForeverDB's leveling builds, adapted to level 30", url = "https://foreverdb.net/class/Rogue/talents",
+	source = L["ForeverDB's leveling builds, adapted to level 30"], url = "https://foreverdb.net/class/Rogue/talents",
 	summary = L["Level as Combat with a sword (Riposte, Blade Flurry, Adrenaline Rush) for the steadiest kills, or Assassination with daggers and poisons (Mutilate). Subtlety's Hemorrhage plan suits stealth openers and is slower solo."],
 	specs = { "Assassination", "Combat", "Subtlety" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -1229,7 +1229,7 @@ T.Register({
 
 T.Register({
 	class = "SHAMAN", tree = 1082, prereq = "full",
-	source = "Polestar, with ForeverDB's talent data", url = "https://foreverdb.net/class/Shaman/talents",
+	source = L["Polestar, with ForeverDB's talent data"], url = "https://foreverdb.net/class/Shaman/talents",
 	summary = L["Level as Enhancement (Flurry, Stormstrike, Maelstrom Weapon) for steady melee with few rests, or Elemental (Lightning Overload, Lava Burst) to kill from range. Restoration heals dungeons well and levels slowly alone."],
 	specs = { "Elemental", "Enhancement", "Restoration" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -1429,7 +1429,7 @@ T.Register({
 
 T.Register({
 	class = "WARLOCK", tree = 1116, prereq = "full",
-	source = "ForeverDB through level 30, Polestar after", url = "https://foreverdb.net/class/Warlock/talents",
+	source = L["ForeverDB through level 30, Polestar after"], url = "https://foreverdb.net/class/Warlock/talents",
 	summary = L["Level as Affliction (instant Corruption, Siphon Life, drains) or Demonology (a tougher Voidwalker, Soul Link) for the fewest deaths. Destruction hits hardest with Conflagrate and Incinerate but needs more rest."],
 	specs = { "Affliction", "Demonology", "Destruction" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }
@@ -1628,7 +1628,7 @@ T.Register({
 
 T.Register({
 	class = "WARRIOR", tree = 1117, prereq = "full",
-	source = "ForeverDB's leveling builds, adapted to level 30", url = "https://foreverdb.net/class/Warrior/talents",
+	source = L["ForeverDB's leveling builds, adapted to level 30"], url = "https://foreverdb.net/class/Warrior/talents",
 	summary = L["Level as Arms with a two-hander (Mortal Strike, Sweeping Strikes) or Fury (Enrage, Death Wish, then Flurry and Bloodthirst with two weapons). Protection is slower alone but ready to tank any dungeon on the way."],
 	specs = { "Arms", "Fury", "Protection" },
 	-- node = { entry, max ranks, spell, spec column, row, column, name }

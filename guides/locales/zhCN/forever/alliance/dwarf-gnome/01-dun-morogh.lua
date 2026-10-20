@@ -89,7 +89,7 @@ return {
 	["{npc:836}, inside {area:77}"] = "{npc:836}，在{area:77}里面",
 	["Level 4 spells, before Gozwin's camp"] = "4级法术，在去戈兹温营地之前",
 	-- {npc:8416} Felix Whindlebolt
-	["{npc:8416}, at the door on the way out"] = "",
+	["{npc:8416}, at the door on the way out"] = "{npc:8416}，离开时在门口找他",
 
 	-- Step 13: Grund and Gozwin
 	-- {npc:2756} Grund Drokda · {npc:8416} Felix Whindlebolt · {area:77} Anvilmar · {npc:269075} Snow Leopard Prowler
@@ -126,24 +126,24 @@ return {
 	["Follow the road through the tunnel and north-east to {area:131}. Kill the Crag Boars on the way: their ribs drop before you have {npc:1267}'s quest and count toward it. Start outside: {npc:1252} and Eric's campfire are in front of the {area:2102}."] = "",
 
 	-- Step 19: The Great Outdoors
-	["Sit by Eric's campfire (type /sit) and wait for the buff."] = "",
+	["Sit by Eric's campfire (type /sit) and wait for the buff."] = "坐在艾瑞克的营火旁（输入 /sit），等待获得增益效果。",
 
 	-- Step 20: Tharek Blackstone
 	-- {npc:1872} Tharek Blackstone
-	["{npc:1872} works the forge west of the distillery."] = "",
+	["{npc:1872} works the forge west of the distillery."] = "{npc:1872}在酒厂西边的熔炉旁工作。",
 
 	-- Step 21: Thunderbrew Distillery
 	-- {npc:6806} Tannok Frosthammer · {npc:1226} Maxan Anvol · {npc:1267} Ragnar Thunderbrew · {npc:1699} Gremlock Pilsnor · {skill:185} Cooking
-	["Then go in: {npc:6806}, the innkeeper, {npc:1226} and {npc:1267}. {npc:1699}'s {skill:185} lesson waits for the return with the ribs, when the copper is there for it."] = "",
+	["Then go in: {npc:6806}, the innkeeper, {npc:1226} and {npc:1267}. {npc:1699}'s {skill:185} lesson waits for the return with the ribs, when the copper is there for it."] = "然后进屋找旅店老板{npc:6806}、{npc:1226}和{npc:1267}。带排骨回来时再找{npc:1699}学习{skill:185}，届时已有足够的铜币支付学费。",
 	-- {item:2894} Rhapsody Malt · {npc:1247} Innkeeper Belm
 	["{item:2894}, from {npc:1247}"] = "{item:2894}，来自{npc:1247}",
-	["Last: some classes' trainers stand outside"] = "",
+	["Last: some classes' trainers stand outside"] = "最后处理屋外的职业训练师：部分职业的训练师站在外面",
 
 	-- Step 22: Steelgrill's Depot
 	-- {area:131} Kharanos · {zone:1455} Ironforge
 	["Follow the road north-east from {area:131} to the depot below the {zone:1455} road."] = "沿道路从{area:131}向东北到{zone:1455}道路下方的钢架补给站。",
 	-- {npc:1694} Loslor Rudge
-	["{npc:1694}, beside him"] = "",
+	["{npc:1694}, beside him"] = "{npc:1694}，在他旁边",
 
 	-- Step 23: Boars and bears
 	["Boars and bears"] = "野猪和熊",
@@ -153,19 +153,19 @@ return {
 
 	-- Step 24: Kharanos
 	-- {npc:1699} Gremlock Pilsnor · {skill:185} Cooking · {npc:1267} Ragnar Thunderbrew
-	["Back in the distillery: {npc:1699} teaches {skill:185}, then the ribs go to {npc:1267}."] = "",
+	["Back in the distillery: {npc:1699} teaches {skill:185}, then the ribs go to {npc:1267}."] = "回到酒厂，先找{npc:1699}学习{skill:185}，再把排骨交给{npc:1267}。",
 	-- {npc:1699} Gremlock Pilsnor
-	["{npc:1699}: Camping 101 asks you to learn it"] = "",
+	["{npc:1699}: Camping 101 asks you to learn it"] = "{npc:1699}：《露营入门》要求学习这项技能",
 	-- {npc:1699} Gremlock Pilsnor
 	["Speak with {npc:1699}"] = "与{npc:1699}交谈",
 
 	-- Step 26: Mountaineer Gretchen
 	-- {area:136} Grizzled Den · {area:131} Kharanos
-	["Gretchen camps just outside the {area:136}, the wendigo cave south-west of {area:131}."] = "",
+	["Gretchen camps just outside the {area:136}, the wendigo cave south-west of {area:131}."] = "这位巡山人在{area:136}外扎营；那是{area:131}西南边的雪怪洞穴。",
 
 	-- Step 27: The Grizzled Den
 	-- {object:460004} Mountaineer Cornelius (no name in this language: may be words)
-	["Flintfire's shipments lie on the cave floor, and {object:460004} is missing somewhere inside."] = "",
+	["Flintfire's shipments lie on the cave floor, and {object:460004} is missing somewhere inside."] = "燧火的货物散落在洞穴地面上，{object:460004}也遗失在洞穴内的某处。",
 
 	-- Step 29: Rumbleshot's Ammo
 	-- {object:176785} Ammo Crate · {npc:271546} Mountaineer Gretchen · {area:136} Grizzled Den · {npc:1243} Hegnar Rumbleshot
@@ -183,20 +183,20 @@ return {
 
 	-- Step 31: Brewnall Village
 	-- {area:137} Brewnall Village · {area:131} Kharanos · {npc:8508} Gretta Ganter · {npc:1374} Rejold Barleybrew · {npc:1375} Marleth Barleybrew
-	["{area:137} sits on the lake west of {area:131}. {npc:8508}'s dock is the first stop; {npc:1374} and {npc:1375} are in the village beyond it."] = "",
+	["{area:137} sits on the lake west of {area:131}. {npc:8508}'s dock is the first stop; {npc:1374} and {npc:1375} are in the village beyond it."] = "{area:137}位于{area:131}西边的湖畔。先去{npc:8508}所在的码头，再到后面的村子找{npc:1374}和{npc:1375}。",
 	-- {npc:8508} Gretta Ganter
-	["{npc:8508}, on the dock"] = "",
+	["{npc:8508}, on the dock"] = "{npc:8508}，在码头上",
 	-- {npc:1196} Ice Claw Bear
-	["{npc:1196}, on the way to the Hold"] = "",
+	["{npc:1196}, on the way to the Hold"] = "{npc:1196}，前往据点的路上顺手击杀",
 	-- {npc:1127} Elder Crag Boar
-	["{npc:1127}, on the way"] = "",
+	["{npc:1127}, on the way"] = "{npc:1127}，沿途击杀",
 	-- {npc:1201} Snow Leopard
-	["{npc:1201}, on the way"] = "",
+	["{npc:1201}, on the way"] = "{npc:1201}，沿途击杀",
 
 	-- Step 32: Frostmane Hold
 	-- {area:135} Frostmane Hold · {area:137} Brewnall Village · {npc:1374} Rejold Barleybrew
 	-- plural, as words: Ice Claw Bears = {npc:1196} Ice Claw Bear · Elder Crag Boars = {npc:1127} Elder Crag Boar · Snow Leopards = {npc:1201} Snow Leopard
-	["{area:135} is the troll cave in the hills south-west of {area:137}. Ice Claw Bears, Elder Crag Boars and Snow Leopards you kill on the way count for {npc:1374}. Kill Headhunters at its mouth and walk through to its far end."] = "",
+	["{area:135} is the troll cave in the hills south-west of {area:137}. Ice Claw Bears, Elder Crag Boars and Snow Leopards you kill on the way count for {npc:1374}. Kill Headhunters at its mouth and walk through to its far end."] = "{area:135}是{area:137}西南边山丘里的巨魔洞穴。沿途击杀的冰爪熊、老峭壁野猪和雪豹都计入{npc:1374}的任务。先击杀洞口的猎头者，再穿过洞穴走到另一端。",
 
 	-- Step 33: Gnomes, bears and leopards
 	["Gnomes, bears and leopards"] = "侏儒、熊和雪豹",
@@ -222,7 +222,7 @@ return {
 	-- {object:270} Unguarded Thunder Ale Barrel
 	["The {object:270} in the distillery"] = "酒厂里的{object:270}",
 	-- {npc:1252} Senir Whitebeard · {npc:1274} Senator Barin Redstone · {zone:1455} Ironforge
-	["{npc:1252}: {npc:1274} in {zone:1455} takes it"] = "",
+	["{npc:1252}: {npc:1274} in {zone:1455} takes it"] = "{npc:1252}：交给{zone:1455}的{npc:1274}",
 
 	-- Step 38: Misty Pine Refuge
 	-- {area:138} Misty Pine Refuge
@@ -235,15 +235,15 @@ return {
 	-- Step 41: Treacherous Cold
 	-- {quest:99160} Rime's Wrath
 	-- plural, as words: Minor Ice Elementals = {npc:276003} Minor Ice Elemental
-	["The three rifles lie in the snow around the frozen lake by the refuge. Minor Ice Elementals drift around the lake and along the way: kill them as you go for {quest:99160}."] = "",
+	["The three rifles lie in the snow around the frozen lake by the refuge. Minor Ice Elementals drift around the lake and along the way: kill them as you go for {quest:99160}."] = "三把步枪散落在避难所旁冰冻湖面的积雪中。小型冰元素在湖边及沿途游荡，顺手击杀以完成{quest:99160}。",
 	-- {npc:276003} Minor Ice Elemental
-	["{npc:276003}, on the way"] = "",
+	["{npc:276003}, on the way"] = "{npc:276003}，沿途击杀",
 
 	-- Step 42: Rime's Wrath
 	-- plural, as words: Minor Ice Elementals = {npc:276003} Minor Ice Elemental
-	["Finish off the Minor Ice Elementals around the small lake just west of the refuge if you are still short."] = "",
+	["Finish off the Minor Ice Elementals around the small lake just west of the refuge if you are still short."] = "如果数量还不够，就在避难所西边不远的小湖周围补齐小型冰元素。",
 	-- {npc:276003} Minor Ice Elemental
-	["{npc:276003}, around the small lake"] = "",
+	["{npc:276003}, around the small lake"] = "{npc:276003}，在小湖周围",
 
 	-- Step 44: Avala's Core
 	-- {item:286325} Avala's Core
@@ -318,7 +318,7 @@ return {
 	["Spies and Bonesnappers"] = "间谍和断骨者",
 	-- {area:212} Helm's Bed Lake · {item:274268} Dark Iron Map
 	-- plural, as words: Rockjaw Bonesnappers = {npc:1117} Rockjaw Bonesnapper
-	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore, on the way east to the South Gate. One spy drops the {item:274268}."] = "",
+	["Rockjaw Bonesnappers prowl the quarry and {area:212}; Dark Iron Spies sneak around the lake shore, on the way east to the South Gate. One spy drops the {item:274268}."] = "{npc:1117}在采掘场和{area:212}游荡；向东前往南门的途中，黑铁间谍潜伏在湖岸附近。其中一个间谍会掉落{item:274268}。",
 
 	-- Step 62: South Gate Outpost
 	-- {area:806} South Gate Outpost · {zone:1432} Loch Modan
@@ -362,19 +362,19 @@ return {
 
 	-- Step 70: Tundra MacGrann
 	-- {npc:1266} Tundra MacGrann · {area:801} Chill Breeze Valley · {npc:1271} Old Icebeard
-	["{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave, north-east of his camp. {npc:1271} is an elite yeti: wait out of sight until he wanders off on his patrol, then take the meats and leave before he comes back. You don't need to fight him."] = "",
+	["{npc:1266} camps in {area:801}, south of Brewnall. His meats are in the locker in {npc:1271}'s cave, north-east of his camp. {npc:1271} is an elite yeti: wait out of sight until he wanders off on his patrol, then take the meats and leave before he comes back. You don't need to fight him."] = "{npc:1266}在烈酒村南边的{area:801}扎营。肉在其营地东北边、{npc:1271}洞穴里的储物箱中。{npc:1271}是精英雪怪：先躲在视野外，等他巡逻走远，再拿肉离开，赶在他返回前撤出，不必与他战斗。",
 	-- {item:2667} MacGrann's Dried Meats
 	["{item:2667}: the meat locker"] = "{item:2667}：肉柜",
 
 	-- Step 71: The Tome of Divinity
 	-- {zone:1455} Ironforge · {object:32362} Mystic Ward · {npc:5149} Brandur Ironhammer · {npc:6179} Tiza Battleforge · {npc:6178} Muiredon Battleforge · {object:32386} Hall of Mysteries · {npc:6175} John Turner · {item:2589} Linen Cloth · {zone:1426} Dun Morogh
-	["Follow the road up to {zone:1455} and take the {object:32362}: {npc:5149}, {npc:6179} and {npc:6178} are in the {object:32386}, {npc:6179} and {npc:6178} on its upper floor: the stairs up start just north-east of {npc:5149}. {npc:6175}, a beggar, wanders the city. He asks for ten {item:2589}: the troggs and trolls of {zone:1426} drop it, and the Auction House sells it."] = "",
+	["Follow the road up to {zone:1455} and take the {object:32362}: {npc:5149}, {npc:6179} and {npc:6178} are in the {object:32386}, {npc:6179} and {npc:6178} on its upper floor: the stairs up start just north-east of {npc:5149}. {npc:6175}, a beggar, wanders the city. He asks for ten {item:2589}: the troggs and trolls of {zone:1426} drop it, and the Auction House sells it."] = "沿道路上山进入{zone:1455}，乘坐{object:32362}。{npc:5149}、{npc:6179}和{npc:6178}都在{object:32386}；{npc:6179}和{npc:6178}在楼上，上楼的楼梯位于{npc:5149}东北边不远处。乞丐{npc:6175}会在城里走动，他需要10块{item:2589}；{zone:1426}的穴居人和巨魔会掉落，拍卖行也可购买。",
 	-- {quest:2997} Tome of Divinity
 	["From the {quest:2997} she gives you"] = "从她给你的{quest:2997}获得",
 
 	-- Step 72: Narm Faulk
 	-- {zone:1455} Ironforge · {area:212} Helm's Bed Lake · {npc:6177} Narm Faulk · {item:6866} Symbol of Life
-	["Head back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "",
+	["Head back out of {zone:1455} and east along the road to {area:212}. {npc:6177} lies dead by its shore: use the {item:6866} on him. The Dark Iron Spies sneaking around the lake carry the script."] = "离开{zone:1455}，沿道路向东到{area:212}。{npc:6177}的尸体在湖岸边，对他使用{item:6866}。湖边潜行的黑铁间谍会掉落手稿。",
 	-- {item:6866} Symbol of Life · {npc:6177} Narm Faulk
 	["Use the {item:6866} on {npc:6177}"] = "对{npc:6177}使用{item:6866}",
 	-- {item:6847} Dark Iron Script
@@ -382,15 +382,15 @@ return {
 
 	-- Step 73: Honor Students
 	-- {area:1537} Ironforge · {zone:1432} Loch Modan · {area:144} Thelsamar · {npc:1681} Brock Stoneseeker · {area:2101} Stoutlager Inn
-	["Instead of walking back up to {area:1537}, go east through the South Gate tunnel into {zone:1432} and follow the road north to {area:144}. {npc:1681} stands on the east side of town, past the {area:2101}; his errand pays for a flight back to {area:1537}."] = "",
+	["Instead of walking back up to {area:1537}, go east through the South Gate tunnel into {zone:1432} and follow the road north to {area:144}. {npc:1681} stands on the east side of town, past the {area:2101}; his errand pays for a flight back to {area:1537}."] = "接下来向东穿过南门隧道进入{zone:1432}，再沿道路向北到{area:144}，可以省去步行返回{area:1537}的上山路。{npc:1681}站在镇子东侧、{area:2101}的另一边；他的差事会提供飞回{area:1537}的路费。",
 	-- {npc:1572} Thorgrum Borrelson
-	["{npc:1572}, the gryphon master"] = "",
+	["{npc:1572}, the gryphon master"] = "{npc:1572}，狮鹫管理员",
 
 	-- Step 74: Golnir Bouldertoe
 	-- {npc:4256} Golnir Bouldertoe · {object:32372} Great Forge
-	["{npc:4256}, in the {object:32372}"] = "",
+	["{npc:4256}, in the {object:32372}"] = "{npc:4256}，在{object:32372}里",
 	-- {npc:1573} Gryth Thurden
-	["{npc:1573}, the gryphon master where you landed"] = "",
+	["{npc:1573}, the gryphon master where you landed"] = "{npc:1573}，落地处的狮鹫管理员",
 
 	-- Step 75: Muiredon Battleforge
 	-- {npc:6179} Tiza Battleforge
@@ -410,7 +410,7 @@ return {
 	-- {zone:1455} Ironforge · {area:2257} Deeprun Tram · {object:171524} Tinker Town · {zone:1453} Stormwind
 	["Follow the road up to {zone:1455} and train with your class trainer. The {area:2257} leaves from {object:171524}, in the east of the city. Ride it to {zone:1453}."] = "沿道路上到{zone:1455}，找你的职业训练师学习。{area:2257}从城市东部的{object:171524}出发。乘它前往{zone:1453}。",
 	-- {npc:1274} Senator Barin Redstone · {object:171709} High Seat
-	["{npc:1274}, in the {object:171709} with King Magni"] = "",
+	["{npc:1274}, in the {object:171709} with King Magni"] = "{npc:1274}，在{object:171709}里，和麦格尼国王在一起",
 	-- {object:660964} Misplaced Packages · {object:171524} Tinker Town
 	["{object:660964}, by the mailbox in {object:171524}"] = "{object:660964}，在{object:171524}的邮箱旁",
 	-- {npc:258098} Eldrun Stormbreaker · {object:32372} Great Forge

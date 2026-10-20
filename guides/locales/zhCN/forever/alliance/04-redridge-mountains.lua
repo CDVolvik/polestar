@@ -65,7 +65,7 @@ return {
 	["Gnolls toward {area:1002}"] = "前往{area:1002}方向的豺狼人",
 	-- {area:1002} Three Corners
 	-- plural, as words: Redridge Mongrels = {npc:423} Redridge Mongrel · Redridge Thrashers = {npc:712} Redridge Thrasher · Redridge Brutes = {npc:426} Redridge Brute · Iron Pikes = {item:2856} Iron Pike · Dire Condors = {npc:428} Dire Condor · Great Goretusks = {npc:547} Great Goretusk
-	["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Redridge Brutes, for the Iron Pikes and Rivets, hold the hills further north; Dire Condors and Great Goretusks roam the hills east of them."] = "",
+	["Redridge Mongrels and other gnolls hold the hills east of {area:1002}, north of the road; Redridge Thrashers prowl among them, Poachers camp south of the road. Redridge Brutes, for the Iron Pikes and Rivets, hold the hills further north; Dire Condors and Great Goretusks roam the hills east of them."] = "{npc:423}和其他豺狼人占据着{area:1002}以东、道路以北的山丘；{npc:712}在其中游荡，赤脊山偷猎者在道路南边扎营。掉落{item:2856}和铁铆钉的{npc:426}在更北边的山丘；{npc:428}和{npc:547}在它们东边的山丘游荡。",
 	-- {item:280911} Spiked Collar
 	-- plural, as words: Redridge Thrashers = {npc:712} Redridge Thrasher
 	["{item:280911}: Redridge Thrashers"] = "{item:280911}：赤脊山鞭笞者",
@@ -88,7 +88,7 @@ return {
 
 	-- Step 14: Alther's Mill
 	-- plural, as words: Greater Tarantulas = {npc:505} Greater Tarantula
-	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake."] = "",
+	["Greater Tarantulas crawl on the slopes around the mill north-east of the lake."] = "巨型狼蛛在湖东北边伐木场周围的山坡上爬行。",
 
 	-- Step 15: Galardell Valley
 	-- {npc:703} Lieutenant Fangore · {area:2099} Stonewatch Keep
@@ -97,9 +97,9 @@ return {
 	["{item:1075}: any Shadowhide gnoll"] = "{item:1075}：任何暗皮豺狼人",
 
 	-- Step 16: Blackrock camps
-	["Blackrock camps"] = "",
+	["Blackrock camps"] = "黑石营地",
 	-- {area:2099} Stonewatch Keep
-	["South down the valley's east side to the Blackrock camps east of {area:2099}. Renegades, Grunts and Outrunners fill them; keep east of the keep, whose orcs are elite."] = "",
+	["South down the valley's east side to the Blackrock camps east of {area:2099}. Renegades, Grunts and Outrunners fill them; keep east of the keep, whose orcs are elite."] = "沿山谷东侧向南，前往{area:2099}东边的黑石营地。营地里有黑石叛节者、步兵和前锋；保持在要塞东边，要塞里的兽人都是精英。",
 
 	-- Step 17: Back to Lakeshire
 	-- {area:69} Lakeshire

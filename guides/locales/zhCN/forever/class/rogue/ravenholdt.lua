@@ -20,8 +20,8 @@ return {
 
 	-- Step 2: Ravenholdt Manor
 	-- {area:272} Tarren Mill · {area:271} Southshore · {zone:1416} Alterac Mountains
-	["Horde fly to {area:272}, Alliance to {area:271}. The manor hides in the hills east of {area:272}, up a path into the {zone:1416}; the Rite of Cunning is passing its way in."] = "部落飞往{area:272}，联盟飞往{area:271}。庄园隐藏在{area:272}东边的山丘中，沿小路进入{zone:1416}；Rite of Cunning是进入的通行方式。",
-	["Rite of Cunning"] = "Rite of Cunning",
+	["Horde fly to {area:272}, Alliance to {area:271}. The manor hides in the hills east of {area:272}, up a path into the {zone:1416}; the Rite of Cunning is passing its way in."] = "部落飞往{area:272}，联盟飞往{area:271}。庄园隐藏在{area:272}东边的山丘中，沿小路进入{zone:1416}；前往庄园的途中会接受狡诈仪式的考验。",
+	["Rite of Cunning"] = "狡诈仪式",
 	-- {npc:6766} Ravenholdt Guard · {quest:6701} Syndicate Emblems
 	["{npc:6766}: {quest:6701}, repeatable"] = "{npc:6766}：{quest:6701}，可重复",
 
