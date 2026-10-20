@@ -85,11 +85,11 @@ end
 E = Polestar.Engine
 `;
 
-function run({ guides = NORTHSHIRE, before = '', saved, script, login = true }) {
+function run({ guides = NORTHSHIRE, before = '', saved, script, login = true, addons = [CORE] }) {
 	return runAddon({
 		stubs: ['stub_world.lua'],
 		before: WORLD + before,
-		addons: [CORE],
+		addons,
 		saved,
 		script: `${TEST_PACK}
 ${TEST_SOURCE}\n${guides}\n${RECORDER}\n${login ? 'stub.login()' : ''}\n${script}`,
@@ -1326,17 +1326,23 @@ test('an objective goal reads the quest-log line named after its target, not the
 	assert.deepEqual(bait.map((g) => g.slice(0, 2)), [[5, 18], [2, 6]]);
 });
 
-// A pack's `collect` of an item the quest uses up, bound to a line that is not
-// an item objective (#538): the Sunscale Feather goes on the Scytheclaw nests,
-// and quest 905's lines are the three nest visits. The line never counts the
-// feather, so the bags do; using it up on a nest does not reopen the step.
-const FEATHER = `
+// A pack's `collect` of an item its quest uses without asking for it, bound to
+// one of the quest's lines (#538): the Sunscale Feather goes on the
+// Scytheclaw nests (quest 905's lines are the three visits), the Fresh Zhevra
+// Carcass lures Ishamuhale (quest 882's one line is his Fang). No line counts
+// either item, so the bags do; the Fang still reads its line.
+const USED_ITEMS = `
 Polestar.RegisterGuide({
-	id = "test/feather", pack = "test", title = "The Barrens", faction = "Horde", minLevel = 10, maxLevel = 20, zone = 1413,
+	id = "test/used", pack = "test", title = "The Barrens", faction = "Horde", minLevel = 10, maxLevel = 20, zone = 1413,
 	steps = {
 		{ title = "A feather", goals = {
 			{ t = "accept", quest = 905, title = "The Angry Scytheclaws", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, x = 52.23, y = 31.01 },
 			{ t = "collect", quest = 905, title = "The Angry Scytheclaws", item = 5165, itemName = "Sunscale Feather", oi = 1, map = 1413, x = 59.48, y = 45.18 },
+		} },
+		{ title = "Ishamuhale", goals = {
+			{ t = "accept", quest = 882, title = "Ishamuhale", npc = 3387, npcName = "Jorn Skyseer", map = 1413, x = 44.86, y = 59.14 },
+			{ t = "collect", quest = 882, title = "Ishamuhale", item = 10338, itemName = "Fresh Zhevra Carcass", oi = 1, map = 1413, x = 46.83, y = 63.16 },
+			{ t = "collect", quest = 882, title = "Ishamuhale", item = 5101, itemName = "Ishamuhale's Fang", oi = 1, map = 1413, x = 60.0, y = 32.0 },
 		} },
 		{ title = "The nests", goals = {
 			{ t = "interact", quest = 905, title = "The Angry Scytheclaws", object = 6907, objName = "Blue Raptor Nest", oi = 1, map = 1413, x = 52.6, y = 46.11 },
@@ -1344,34 +1350,68 @@ Polestar.RegisterGuide({
 	},
 })
 `;
+const USED_DB = `
+Polestar.QuestDB.AddData("meta", { schema = 1 })
+Polestar.QuestDB.AddData("quests", {
+	[905] = { "The Angry Scytheclaws", 17, 10, nil, nil, 2, 3338, 3338, nil, 881, nil, { 3, 6907, nil, 3, 6908, nil, 3, 6906 }, 1413, nil, nil, nil, nil, 2, 5165 },
+	[882] = { "Ishamuhale", 19, 10, nil, nil, 2, 3387, 3387, nil, nil, nil, { 2, 5101 }, 1413, nil, nil, nil, nil, 2, 10338 },
+})
+`;
+const NESTS = `{ { text = "Blue Raptor Nest visited: 0/1", type = "object" }, { text = "Yellow Raptor Nest visited: 0/1", type = "object" }, { text = "Red Raptor Nest visited: 0/1", type = "object" } }`;
 
-test('a quest collect whose quest log has no item line counts the bags once the quest is taken, and stays done once the item is used (#538)', () => {
+test('a quest collect of an item the quest uses without asking for it counts the bags once the quest is taken, and stays done once the item is used (#538)', () => {
 	const out = run({
-		guides: NORTHSHIRE + FEATHER,
+		guides: NORTHSHIRE + USED_ITEMS,
+		addons: ['Polestar'],
 		script: `
 			local w = stub.world
-			E.SetGuide("test/feather"); flush()
-			local goal = E.GetGuide().steps[1].goals[2]
-			local function state()
-				local g = E.GetStepView(1).goals[2]
-				return { E.GetStepIndex(), g.status, E.ObjectiveLine(goal) or false }
+			${USED_DB}
+			E.SetGuide("test/used"); flush()
+			local steps = E.GetGuide().steps
+			local feather, carcass, fang = steps[1].goals[2], steps[2].goals[2], steps[2].goals[3]
+			local function state(s, g, goal)
+				return { E.GetStepIndex(), E.GetStepView(s).goals[g].status, E.ObjectiveLine(goal) or false }
 			end
 			w.addItem(5165, 1); flush()
-			emit(state())
-			w.accept(905, { { text = "Blue Raptor Nest visited: 0/1", type = "object" }, { text = "Yellow Raptor Nest visited: 0/1", type = "object" }, { text = "Red Raptor Nest visited: 0/1", type = "object" } }); flush()
-			emit(state())
+			emit(state(1, 2, feather))
+			w.accept(905, ${NESTS}); flush()
+			emit(state(1, 2, feather))
 			w.addItem(5165, -1); flush()
-			emit(state())
+			emit(state(1, 2, feather))
+			w.accept(882, { { text = "Ishamuhale's Fang: 0/1", type = "item" } }); w.addItem(10338, 1); flush()
+			emit(state(2, 2, carcass))
+			emit(state(2, 3, fang))
+			w.progress(882, 1, 1); flush()
+			emit(state(2, 3, fang))
 		`,
 	});
 	assert.deepEqual(out, [
-		// The quest not taken: its lines are unknown, the step waits on the quest log.
-		[1, 'active', 1],
-		// Taken, no item line: the feather in the bags does it, and party counts have no line to read.
+		// The quest not taken: the feather waits on it, though it is in the bags.
+		[1, 'active', false],
+		// Taken: the feather in the bags does it, and party counts have no line to read.
 		[2, 'done', false],
 		// The feather used on a nest: the step stays done.
 		[2, 'done', false],
+		// The carcass counts the bags, though its line is an item line (the Fang's).
+		[2, 'done', false],
+		// The Fang, an objective, reads its line.
+		[2, 'active', 1],
+		[3, 'done', 1],
 	]);
+});
+
+test('without the quest database a quest collect reads its quest-log line as before', () => {
+	const out = run({
+		guides: NORTHSHIRE + USED_ITEMS,
+		addons: ['Polestar'],
+		script: `
+			local w = stub.world
+			E.SetGuide("test/used"); flush()
+			w.addItem(5165, 1); w.accept(905, ${NESTS}); flush()
+			emit({ E.GetStepIndex(), E.GetStepView(1).goals[2].status })
+		`,
+	});
+	assert.deepEqual(out, [[1, 'active']]);
 });
 
 test('an objective goal keeps its compiled position when no line names its target', () => {

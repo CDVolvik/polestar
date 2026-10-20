@@ -1344,29 +1344,16 @@ function Engine.ObjectiveLine(goal)
 	return objs and Own.objectiveLine(goal, objs) or goal.oi
 end
 
--- Whether quest `collect` goal `goal` counts the bags: the quest log has no
--- item line, so none counts the item (#538: a pack's Sunscale Feather, which
--- the quest uses on the nests, bound to "Blue Raptor Nest visited"). Known
--- once the quest is in the log with every line's type filled in, then kept
--- for the session: the step latches like a bag count, and the lines are gone
--- once the quest is turned in. (On Own: the main chunk is at 200 locals.)
-Own.bagLine = setmetatable({}, { __mode = "k" })
+-- Whether quest `collect` goal `goal` counts the bags: the quest uses its
+-- item without asking for it (QuestDB.UsesOnly), so no quest-log line counts
+-- it, whichever line the goal was bound to (#538: a pack's Sunscale Feather
+-- on "Blue Raptor Nest visited", its Fresh Zhevra Carcass on "Ishamuhale's
+-- Fang"). Without the quest database (every quest feature off) the goal
+-- reads its line. (On Own: the main chunk is at 200 locals.)
 function Own.bagCollect(goal)
-	if goal.t ~= "collect" or not goal.quest or not goal.oi then return false end
-	local known = Own.bagLine[goal]
-	if known ~= nil then return known end
-	local C = Compat()
-	if not C.IsOnQuest(goal.quest) then return false end
-	local objs = C.GetQuestObjectives(goal.quest)
-	if not objs then return false end
-	known = true
-	for i = 1, #objs do
-		local kind = objs[i].type
-		if not kind or kind == "" then return false end
-		if kind == "item" then known = false end
-	end
-	Own.bagLine[goal] = known
-	return known
+	if goal.t ~= "collect" or not goal.quest or not goal.item then return false end
+	local Q = ns.QuestDB
+	return Q and Q.IsLoaded() and Q.UsesOnly(goal.quest, goal.item) or false
 end
 
 -- Objective goals: done when objective `oi` (its line, Own.objectiveLine) is
@@ -4401,6 +4388,8 @@ for _, event in ipairs({
 }) do
 	ns.RegisterEvent(event, onUpdateEvent)
 end
+-- The quest database says which quest collects count the bags (Own.bagCollect).
+ns.On("QUESTDB_LOADED", onUpdateEvent)
 
 -- Where the player is changed enough to re-pick candidates: a zone change or
 -- landing (control comes back after a flight).
