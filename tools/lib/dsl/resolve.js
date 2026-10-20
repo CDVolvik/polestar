@@ -1431,6 +1431,14 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			goal.location = g.location;
 			placeWarning(v, g.location);
 			break;
+		case 'enter':
+			// A zone or an area the game names: its area ID (goalArea) makes the check the client's language.
+			goal.location = g.location;
+			// Without the client's area table (no `sources` beside the data) an area name cannot be checked.
+			if (data.areas && !data.zoneNamed(g.location) && !data.areas.byName.has(g.location.trim().toLowerCase())) {
+				warn(ln, `enter "${g.location}": no zone or area has that name; the game never reports it, so the goal never checks off by itself`, 'write the place as the game names it (`polestar find --kind zone <text>`)');
+			}
+			break;
 		case 'buy': {
 			goal.item = g.item;
 			goal.itemName = requireName('item', g.item, g.itemName, 'Item name') || undefined;

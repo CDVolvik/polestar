@@ -48,6 +48,7 @@ const CASES = [
 	{ file: 'hearth-location', reason: 'hearth needs location', lint: /`hearth` needs a "Location"/, goal: '{ t = "hearth" }' },
 	{ file: 'getfp-location', reason: 'getfp needs location', lint: /`getfp` needs a "Location"/, goal: '{ t = "getfp" }' },
 	{ file: 'fly-location', reason: 'fly needs location', lint: /`fly` needs a "Location"/, goal: '{ t = "fly" }' },
+	{ file: 'enter-location', reason: 'enter needs location', lint: /`enter` needs a "Location"/, goal: '{ t = "enter" }' },
 	{ file: 'buy-item', reason: 'buy needs item', lint: /`buy` needs an item id/, goal: '{ t = "buy", itemName = "Refreshing Spring Water" }' },
 	{ file: 'buy-itemname', reason: 'buy needs itemName', lint: /item 999999 is not in data/, goal: '{ t = "buy", item = 999999 }' },
 	{ file: 'level-level', reason: 'level needs level', lint: /malformed level ""/, goal: '{ t = "level" }' },

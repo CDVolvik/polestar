@@ -77,6 +77,7 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `use <item> ["Name"]` | Use an item | `quest` |
 | `sethome "<Location>"` / `sethome nearest` | Bind the hearthstone at an inn (`polestar find --kind inn`) | `npc` |
 | `hearth "<Location>"` | Use the hearthstone; done on landing there | no place modifiers |
+| `enter "<Place>"` | Be in that zone or area (the zone or subzone text; Polestar 0.3.0) | `@x,y` only points the arrow |
 | `getfp "<Flight point>"` | Learn a flight path (`polestar find --kind flight`) | `npc` |
 | `fly "<Town>"` | Take a flight; done on landing | no place modifiers |
 | `train class` / `train <npc>` / `train <Profession> [Rank]` | Visit a trainer: the nearest of the player's class, that one, or the nearest of a profession | `npc` |
@@ -144,7 +145,7 @@ first, so `!dungeon "<Name>"` is the solo route), `done <label>` (the labelled
 step was completed, not skipped or jumped over; not on a `next` line); `!` in front of any but
 `level` and `money` turns it around. Once the route has passed the step, the
 outcome stays. A pack with `when` (on a step or a `next` line), `along` or
-`label` needs Polestar 0.2.6; with `money` or `task` goals, a `when money`,
+`label` needs Polestar 0.2.6; with `money`, `task` or `enter` goals, a `when money`,
 `when dungeon` or `when done` predicate, or `skipto`, needs Polestar 0.3.0.
 
 ## Lint errors that come up most

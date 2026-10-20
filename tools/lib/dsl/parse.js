@@ -64,6 +64,8 @@ const MODS = {
 	hearth: [...COMMON],
 	getfp: [...COMMON, ...COORDS, 'npc'],
 	fly: [...COMMON],
+	// `enter "<Place>"`: be in that zone or area (the zone or subzone text); coordinates only point the arrow.
+	enter: [...COMMON, ...COORDS],
 	train: [...COMMON, ...COORDS, 'npc'],
 	buy: [...COMMON, ...COORDS, 'npc', 'count', 'nearest'],
 	vendor: [...COMMON, ...COORDS, 'npc'],
@@ -682,7 +684,8 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 		case 'sethome':
 		case 'hearth':
 		case 'getfp':
-		case 'fly': {
+		case 'fly':
+		case 'enter': {
 			if (!t) return err(ln, `\`${verb}\` needs a "Location"${verb === 'sethome' ? ' or `nearest`' : ''}`), -1;
 			if (verb === 'sethome' && !t.quoted && t.text.toLowerCase() === 'nearest') {
 				goal.nearest = true;

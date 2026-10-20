@@ -621,7 +621,7 @@ local function act(i, g, r)
 		w.merchant(g.npc or 1); w.close()
 	elseif t == "sethome" then
 		w.bind(g.subject or g.npcName or "Inn")
-	elseif t == "hearth" or t == "fly" then
+	elseif t == "hearth" or t == "fly" or t == "enter" then
 		w.setZone(g.subject, g.subject)
 	elseif t == "level" then
 		w.setLevel(math.max(w.level, tonumber((g.subject or ""):match("%d+")) or (w.level + 1)))

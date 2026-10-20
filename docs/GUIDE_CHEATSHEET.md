@@ -70,6 +70,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `hearth "<Location>"` | Use the hearthstone; done on landing there | `hearth "Goldshire"` |
 | `getfp "<Flight point>"` | Learn a flight path from its flight master | `getfp "Stormwind"` |
 | `fly "<Town>"` | Take a flight; done on landing there | `fly "Stormwind"` |
+| `enter "<Place>"` | Be in that zone or area (the zone or subzone text); `@x,y` points the arrow (needs Polestar 0.3.0) | `enter "Goldshire"` |
 
 `polestar find --kind inn` and `polestar find --kind flight` list the names
 `sethome`, `hearth`, `getfp` and `fly` take.

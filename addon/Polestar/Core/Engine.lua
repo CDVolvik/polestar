@@ -1226,7 +1226,7 @@ end
 -- back; quest goals stay live on purpose (abandoning reopens the step).
 local function latchable(goal)
 	local t = goal.t
-	return t == "goto" or t == "explore" or t == "sethome" or t == "hearth" or t == "fly" or t == "getfp"
+	return t == "goto" or t == "explore" or t == "sethome" or t == "hearth" or t == "fly" or t == "getfp" or t == "enter"
 		or t == "buy" or (t == "collect" and (not goal.quest or Own.bagCollect(goal))) or (t == "craft" and craftMode(goal) == "count")
 		or (t == "train" and goal.class == true) or t == "money"
 end
@@ -1563,6 +1563,9 @@ goalDone = function(s, g, goal)
 		local loc, areaName = C.GetBindLocation(), C.GetAreaName
 		if areaName and (same(loc, areaName(want and want.area)) or same(loc, areaName(goal.area))) then return true end
 		return same(loc, goal.location)
+	elseif t == "enter" then
+		-- In the zone or area: its zone or subzone text (inPlace).
+		return inPlace(goal)
 	elseif t == "hearth" or t == "fly" then
 		if inPlace(goal) then return true end
 		-- Done once any later goal of the step is, like goto: a hearth followed
@@ -2048,7 +2051,7 @@ local function latchInStep(s, live)
 	if not stepApplies(step) then return end
 	for g, goal in ipairs(step.goals) do
 		local t = goal.t
-		if (isBagCount(goal) or (live and (t == "fly" or t == "hearth"))) and goalApplies(goal) and not checked(s, g) and goalDone(s, g, goal) then
+		if (isBagCount(goal) or (live and (t == "fly" or t == "hearth" or t == "enter"))) and goalApplies(goal) and not checked(s, g) and goalDone(s, g, goal) then
 			manualFor(guide.id, true)[s .. ":" .. g] = true
 		end
 	end
@@ -2280,6 +2283,8 @@ local function describe(goal)
 		return L["Set your home at"], npcName or L["the nearest inn"], npcName and "npc" or "text", nil
 	elseif t == "hearth" then
 		return L["Hearth to"], place or goal.location, "place", nil
+	elseif t == "enter" then
+		return L["Go to"], place or goal.location, "place", nil
 	elseif t == "getfp" then
 		return L["Get the flight path at"], place or N.Taxi(goal.node) or goal.location, "place", fmt(L["from %s"], N.Npc(goal.npc) or goal.npcName)
 	elseif t == "fly" then

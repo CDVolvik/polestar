@@ -149,6 +149,7 @@ local REQUIRED = {
 	hearth = { location = isStr },
 	getfp = { location = isStr },
 	fly = { location = isStr },
+	enter = { location = isStr },
 	train = {},
 	buy = { item = isNum, itemName = isStr },
 	vendor = {},
