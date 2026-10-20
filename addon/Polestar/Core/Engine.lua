@@ -531,6 +531,9 @@ function Own.predicateHolds(p)
 		ok = p.map ~= nil and Engine.DungeonChosen(p.map)
 	elseif k == "done" then
 		ok = Own.labelDone(p.label)
+	elseif k == "skill" then
+		-- Not learned reads as rank 0, so `!skill Herbalism 1` is "has no Herbalism".
+		ok = (C.GetSkillRank and C.GetSkillRank(p.skillLine or p.name) or 0) >= p.n
 	end
 	if p.neg then return not ok end
 	return ok

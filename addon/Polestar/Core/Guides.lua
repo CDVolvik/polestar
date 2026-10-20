@@ -236,6 +236,9 @@ local function checkWhen(list)
 		elseif k == "done" then
 			-- A step label (format 5); validate checks it names a step of the guide.
 			if not isStr(p.label) then return false end
+		elseif k == "skill" then
+			-- A profession by name, with its skill line when the compiler knew it (format 5).
+			if not (isStr(p.name) and isNum(p.n) and (p.skillLine == nil or isNum(p.skillLine))) then return false end
 		elseif not (WHEN_PLACE[k] and isStr(p.name)) then
 			return false
 		end

@@ -1094,9 +1094,11 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   else as written), the dungeons the player chose to run
   (`Engine.DungeonChosen(map)`: `CharState().dungeons[map]`, set by
   `Engine.ChooseDungeon(map, on)` from the Options' "Dungeons in leveling
-  guides", none by default; a predicate without `map` never holds), and
+  guides", none by default; a predicate without `map` never holds),
   Polestar's gear advice on an item (`Own.isUpgrade`: `Gear.IsUpgrade`,
-  counted as an upgrade when the advice is off or cannot judge the item). `stepApplies` reads them, so such a step counts as one
+  counted as an upgrade when the advice is off or cannot judge the item), and
+  a profession's rank (`Compat.GetSkillRank` by skill line, else by name;
+  not learned is 0). `stepApplies` reads them, so such a step counts as one
   for other characters while they fail, and a turn-in whose only accept sits
   there goes with it (`orphaned`). When the route moves past a step
   (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a

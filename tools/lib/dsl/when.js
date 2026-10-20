@@ -19,18 +19,19 @@
 //   [!]dungeon "<Name>"                       the player chose to run that dungeon
 //   money<A  money<=A  money>A  money>=A     the character's money; A as copper or 1g50s / 7s / 25c
 //   [!]done <label>                           the step so labelled was completed, not skipped
+//   [!]skill <Profession> <N>                 the profession's skill rank is N or more
 // value = { k, neg?, op?, n?, frac?, q?, item?, name?, label? }; `q` is a list for onquest.
 
 const { levelPoint } = require('../game/xp');
 const { readMoney } = require('./money');
 
 const INT_RE = /^\d+$/;
-const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'upgrade', 'zone', 'subzone', 'bound', 'dungeon', 'done'];
+const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'upgrade', 'zone', 'subzone', 'bound', 'dungeon', 'done', 'skill'];
 // A step label, as parse.js reads `label <name>`.
 const LABEL_RE = /^[A-Za-z0-9_-]+$/;
 const QUEST_ONE = new Set(['complete', 'turnedin', 'available']);
 const PLACE = new Set(['zone', 'subzone', 'bound']);
-const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]upgrade <item>, [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>", [!]done <label>`;
+const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]upgrade <item>, [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>", [!]done <label>, [!]skill <Profession> <N>`;
 
 // A name written quoted or bare: `"Razor Hill"` or `Razor Hill`.
 function nameOf(text) {
@@ -97,6 +98,14 @@ function parseWhen(rest) {
 	if (kind === 'done') {
 		if (!LABEL_RE.test(args)) return { error: '`done` needs a step label: done <label>' };
 		value.label = args;
+		return { value };
+	}
+	if (kind === 'skill') {
+		const s = /^(?:"((?:[^"\\]|\\.)*)"|([^"]+?))\s+(\d+)$/.exec(args);
+		const name = s && (s[1] !== undefined ? s[1].replace(/\\(["\\])/g, '$1') : s[2]).trim();
+		if (!name || Number(s[3]) < 1) return { error: '`skill` needs a profession and a rank of 1 or more: skill <Profession> <N>' };
+		value.name = name;
+		value.n = Number(s[3]);
 		return { value };
 	}
 	// zone, subzone, bound, dungeon
