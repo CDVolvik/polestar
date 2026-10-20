@@ -1345,6 +1345,10 @@ L["The map can't open in combat: press Show on map again when it ends."] = "La c
 L["Search dungeons"] = "Chercher un donjon"
 -- L["If you finish the quests here"] = ""
 -- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
+-- L["%s XP at your level"] = ""
+-- L["If you finish this quest and the chain before it"] = ""
+-- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
+-- L["%s XP with its chain"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Ici même"

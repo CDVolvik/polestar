@@ -1065,6 +1065,10 @@ L["Search dungeons"] = "Dungeons suchen"
 L["The map can't open in combat: press Show on map again when it ends."] = "Die Karte lässt sich im Kampf nicht öffnen: Klicke nach dem Kampf erneut auf „Auf der Karte zeigen“."
 L["If you finish the quests here"] = "Wenn du die Quests hier abschließt"
 L["You are level %d. Level %d is recommended for the quests here; from there:"] = "Du bist Stufe %d. Für die Quests hier wird Stufe %d empfohlen; ab dort:"
+-- L["%s XP at your level"] = ""
+-- L["If you finish this quest and the chain before it"] = ""
+-- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
+-- L["%s XP with its chain"] = ""
 
 -- UI/Lookup.lua
 L["Mount"] = "Reittier"
