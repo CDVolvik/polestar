@@ -2234,6 +2234,21 @@ test(`${TELDRASSIL}: Pynte's report (#327): the Timberling Seed arrow stays roun
 	assert.ok(yards(goal, denalan) <= 150, `the arrow at ${goal.x},${goal.y} is by Denalan, not ${Math.round(yards(goal, denalan))} yd off`);
 });
 
+// --- Teldrassil (#555): Soft Saber Pelts (87288) accepted from Aldia on first Dolanaar
+// stop so both Nightsaber quests are done in one east loop
+test(`${TELDRASSIL}: #555: Soft Saber Pelts accept comes before Zenn's Bidding turn-in, so both Nightsaber quests share the first east loop`, { skip }, () => {
+	const list = goals(TELDRASSIL);
+	const accept87288 = list.find(({ goal }) => goal.t === 'accept' && goal.quest === 87288);
+	const turnin488 = list.find(({ goal }) => goal.t === 'turnin' && goal.quest === 488);
+	assert.ok(accept87288, 'accept 87288 is in the guide');
+	assert.ok(accept87288.s < turnin488.s, 'accept 87288 (Soft Saber Pelts) comes before turnin 488 (Zenn\'s Bidding), not after it');
+	// Both collect goals are in the same step
+	const coll488 = list.find(({ goal }) => goal.t === 'collect' && goal.quest === 488 && goal.item === 3409);
+	const coll87288 = list.find(({ goal }) => goal.t === 'collect' && goal.quest === 87288);
+	assert.ok(coll87288, 'collect 280087 quest 87288.1 is in the guide');
+	assert.equal(coll488.s, coll87288.s, 'Nightsaber Fang (488.1) and Nightsaber Pelt (87288.1) are in the same step');
+});
+
 test('#327: Pirate Hats Ahoy! names every pirate that drops the hat, not the Southsea Kidnapper alone, in both guides', { skip }, () => {
 	for (const guide of [TANARIS_ALLIANCE, 'forever/horde/40-50/02-feralas.guide']) {
 		const list = goals(guide);
