@@ -5,10 +5,11 @@
 // parseGuide(text, file, diag) -> guide | null
 //   guide = { file, id, line, header: { ... }, lines: { <headerKey>: line, pros: [line], cons: [line], rewards: [line], nextOf: { <id>: line } }, steps: [step] }
 //   (header.next: the `next` guide ids in order; header.nextWhen: { <id>: predicate with its line } for `next <id> when ...`)
-//   step  = { line, title, only, tip, image?, when?: [predicate], label?, along?, goals: [goal] }
+//   step  = { line, title, only, tip, image?, when?: [predicate], label?, along?, skipto?, goals: [goal] }
 //   (image: { path, ext, w, h, line }, images.js parseImagePath; w/h null unless written)
 //   (when: tools/lib/dsl/when.js predicates, each with its line; only on a step that has one;
-//   label: the step's name; along: true, or the label `along until` names; labelLine/alongLine: their lines)
+//   label: the step's name; along: true, or the label `along until` names; labelLine/alongLine: their lines;
+//   skipto: [{ to, when: predicate, line }], the step's `skipto <label> when <predicate>` lines in order)
 //   goal  = { line, verb, zone, note, ...positional/modifier fields }
 // `zone` on a goal is the zone spec in effect ({ name } | { map }, with line),
 // shared by every goal under the same header/step `zone` line.
@@ -39,7 +40,9 @@ const HEADER_KEYS = ['guide', 'title', 'levels', 'zone', 'faction', 'race', 'cla
 // Lines inside a step that are not goals.
 // `loop`: the step's `goto` points are the spawn areas of its kill, collect
 // and interact goals (resolve.js, applyLoop).
-const STEP_KEYS = ['zone', 'only', 'tip', 'image', 'when', 'label', 'along', 'loop'];
+// `skipto <label> when <predicate>`: when the route reaches the step and the
+// predicate holds, it jumps to the labelled step (resolve.js, checkLabels).
+const STEP_KEYS = ['zone', 'only', 'tip', 'image', 'when', 'label', 'along', 'skipto', 'loop'];
 
 // `group [N]`: the goal needs a group (of N players), shown in the guide window.
 const COMMON = ['text', 'optional', 'only', 'group'];
@@ -317,6 +320,19 @@ function parseGuide(text, file, diag) {
 					continue;
 				}
 				step.alongLine = ln;
+			} else if (kw === 'skipto') {
+				const usage = '`skipto` needs a label and a predicate: skipto <label> when <predicate>';
+				if (toks.length < 4 || toks[1].quoted || toks[2].quoted || toks[2].text.toLowerCase() !== 'when') {
+					err(ln, usage);
+					continue;
+				}
+				if (!LABEL_RE.test(toks[1].text)) {
+					err(ln, `malformed label "${toks[1].text}" (letters, digits, - and _)`);
+					continue;
+				}
+				const w = parseWhen(line.slice(toks[3].start, lex.end));
+				if (w.error) err(ln, `\`skipto\`: ${w.error}`, w.hint);
+				else (step.skipto ||= []).push({ to: toks[1].text, when: { ...w.value, line: ln }, line: ln });
 			} else if (kw === 'image') {
 				parseImage(step, toks, ln, err);
 			} else if (kw === 'loop') {

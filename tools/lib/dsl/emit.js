@@ -8,11 +8,11 @@ const { header } = require('../generated');
 
 const GUIDE_KEYS = ['id', 'pack', 'title', 'faction', 'races', 'classes', 'minLevel', 'maxLevel', 'category', 'folder', 'keywords', 'collects', 'reward', 'why', 'zone', 'zoneName', 'next', 'nextChoices', 'nextWhen', 'pitch', 'pros', 'cons', 'author', 'version', 'group', 'names', 'written', 'steps'];
 // `image` follows note, so a step without one is emitted as before.
-const STEP_KEYS = ['title', 'note', 'image', 'label', 'only', 'when', 'along', 'goals'];
+const STEP_KEYS = ['title', 'note', 'image', 'label', 'only', 'when', 'along', 'skipto', 'goals'];
 // A step's picture: its path in the pack's addon folder (no extension) and its size in pixels.
 const IMAGE_KEYS = ['file', 'w', 'h'];
 // A step's `when` predicates and a `next` option's (`nextWhen`, format 4), in this key order.
-const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'frac', 'q', 'item', 'name', 'area', 'map', 'minLevel', 'pre', 'preAll', 'closedBy'];
+const WHEN_KEYS = ['k', 'neg', 'op', 'n', 'frac', 'q', 'item', 'name', 'label', 'area', 'map', 'minLevel', 'pre', 'preAll', 'closedBy'];
 // Keys only the profession/reputation/exploration/achievement verbs use sit
 // where no other goal has a value, so adding them left older output unchanged.
 // `z` (heights.js) follows y, `node` and `area` (places.js) precede map: a
@@ -134,6 +134,8 @@ function emitGuide(guide, sourceRel) {
 					} else if (sk === 'only') out.push(`\t\t\t\t\tonly = ${inline(sv, ONLY_KEYS)},`);
 					else if (sk === 'image') out.push(`\t\t\t\t\timage = ${inline(sv, IMAGE_KEYS)},`);
 					else if (sk === 'when') out.push(`\t\t\t\t\twhen = ${list(sv, WHEN_KEYS)},`);
+					// `skipto` (format 5): each jump's label, then its one predicate.
+					else if (sk === 'skipto') out.push(`\t\t\t\t\tskipto = { ${sv.map((k) => `{ to = ${luaString(k.to)}, when = ${inline(k.when, WHEN_KEYS)} }`).join(', ')} },`);
 					else out.push(`\t\t\t\t\t${sk} = ${scalar(sv)},`);
 				}
 				out.push('\t\t\t\t},');
@@ -199,6 +201,7 @@ function guideData(guide) {
 					else if (sk === 'only') s.only = dataInline(sv, ONLY_KEYS);
 					else if (sk === 'image') s.image = dataInline(sv, IMAGE_KEYS);
 					else if (sk === 'when') s.when = dataList(sv, WHEN_KEYS);
+					else if (sk === 'skipto') s.skipto = sv.map((k) => ({ to: k.to, when: dataInline(k.when, WHEN_KEYS) }));
 					else s[sk] = dataScalar(sv);
 				}
 				return s;

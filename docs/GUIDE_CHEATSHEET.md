@@ -46,7 +46,8 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `only <condition>, ...` | Inside a step: the step is only for matching characters | `only Hunter` |
 | `when <predicate>` | Inside a step: the step is only for characters in that state when the route gets there (see Conditions checked during play) | `when level<6` |
 | `along [until <label>]` | Inside a step: the route never stops there; its goals are done along the way, listed under the next steps until done (or until the labelled step) | `along until camp` |
-| `label <name>` | Inside a step: names it for an `along until` before it | `label camp` |
+| `skipto <label> when <predicate>` | Inside a step: if the predicate holds when the route gets there, this step and the ones up to the labelled step are skipped, for good (GUIDE_FORMAT, "Jumps"; needs Polestar 0.3.0) | `skipto camp when turnedin 783` |
+| `label <name>` | Inside a step: names it for an `along until` or `skipto` before it, or a `when done` | `label camp` |
 | `loop` | Inside a step: its `goto` points are the places to search, in order, for the step's kill, collect and interact goals without `@x,y` | `loop` |
 | `note <text>` | A line of information; never holds the player up | `note The camp is busy at night.` |
 | `level <N>` | Reach level N, grinding if need be | `level 2` |
@@ -162,6 +163,7 @@ the outcome stays.
 | `when zone "<Name>"` / `when subzone "<Name>"` | the player is there | `when subzone "Goldshire"` |
 | `when bound "<Location>"` | the hearthstone is bound there | `when !bound "Goldshire"` |
 | `when dungeon "<Name>"` | the player chose to run that dungeon (Options, Discovery, Dungeons; all off at first); `!dungeon` is the route without it (needs Polestar 0.3.0) | `when dungeon "Ragefire Chasm"` |
+| `when done <label>` | the labelled step of this guide was completed, not skipped or jumped over; not on a `next` line (needs Polestar 0.3.0) | `when done camp` |
 
 ## Route choices and optional steps
 

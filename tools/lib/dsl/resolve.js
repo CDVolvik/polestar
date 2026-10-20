@@ -681,7 +681,11 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		const endZone = resolveZone((lastStep && lastStep.zone) || (lastGoal && lastGoal.zone)) || hz;
 		guide.nextWhen = {};
 		for (const id of h.next) {
-			if (h.nextWhen[id]) guide.nextWhen[id] = resolveWhen([h.nextWhen[id]], endZone ? endZone.id : null, null, data, warn);
+			const p = h.nextWhen[id];
+			if (!p) continue;
+			// `done` names a step of the guide being played; the options are also listed from other guides.
+			if (p.k === 'done') err(p.line, '`done` checks a step of the guide being played: it cannot decide a `next` option', 'use a predicate on the character, such as `turnedin <quest>`');
+			else guide.nextWhen[id] = resolveWhen([p], endZone ? endZone.id : null, null, data, warn);
 		}
 	}
 	setIf(guide, 'pitch', h.pitch);
@@ -755,6 +759,8 @@ function resolveGuide(ast, data, diag, opts = {}) {
 		setIf(step, 'when', resolveWhen(s.when, stepZone ? stepZone.id : null, h.levels ? [h.levels.min, h.levels.max] : null, data, warn));
 		setIf(step, 'label', s.label);
 		setIf(step, 'along', s.along);
+		// `skipto <label> when <predicate>`: { to, when } in the step's order, `when` one predicate.
+		if (s.skipto) step.skipto = s.skipto.map((k) => ({ to: k.to, when: resolveWhen([k.when], stepZone ? stepZone.id : null, null, data, warn)[0] }));
 		step.goals = [];
 		hidden(step, '_line', s.line);
 		hidden(step, '_only', s.only);
@@ -828,9 +834,10 @@ function resolveGuide(ast, data, diag, opts = {}) {
 	return guide;
 }
 
-// Step labels are guide-wide: each names one step, and `along until <label>`
-// names a step after its own (ast.steps and the compiled steps share their
-// indexes).
+// Step labels are guide-wide: each names one step, `along until <label>` and
+// `skipto <label>` name a step after their own, and `done <label>` (in a
+// step's `when` or a `skipto`) names any step of the guide (ast.steps and the
+// compiled steps share their indexes).
 function checkLabels(steps, err) {
 	const labels = new Map(); // name -> { index, line }
 	steps.forEach((s, i) => {
@@ -843,6 +850,16 @@ function checkLabels(steps, err) {
 		const t = labels.get(s.along);
 		if (!t) err(s.alongLine, `unknown label "${s.along}"`, 'name it on a later step with `label <name>`');
 		else if (t.index <= i) err(s.alongLine, `\`along until ${s.along}\` must name a later step (the label is on line ${t.line})`);
+	});
+	steps.forEach((s, i) => {
+		for (const k of s.skipto || []) {
+			const t = labels.get(k.to);
+			if (!t) err(k.line, `unknown label "${k.to}"`, 'name it on a later step with `label <name>`');
+			else if (t.index <= i) err(k.line, `\`skipto ${k.to}\` must name a later step (the label is on line ${t.line})`);
+		}
+		for (const p of [...(s.when || []), ...(s.skipto || []).map((k) => k.when)]) {
+			if (p.k === 'done' && !labels.has(p.label)) err(p.line, `unknown label "${p.label}"`, 'name a step with `label <name>`');
+		}
 	});
 }
 
@@ -954,6 +971,9 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 				else if (data.areas) warn(p.line, `subzone "${p.name}" names no single area${z && z.name ? ` in ${z.name}` : ''}: the predicate compares the subzone text as written, in English only`);
 				break;
 			}
+			case 'done':
+				w.label = p.label;
+				break;
 			case 'dungeon': {
 				w.name = p.name;
 				const run = dungeonNamed(data, p.name);
@@ -987,7 +1007,7 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 	const key = (p) => JSON.stringify({ ...p, neg: undefined, line: undefined });
 	for (const p of list) {
 		if (p.k !== 'level' && list.some((o) => o !== p && !!o.neg !== !!p.neg && key(o) === key(p))) {
-			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : p.k === 'dungeon' ? 'dungeon' : 'place'}: no character sees it`);
+			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : p.k === 'dungeon' ? 'dungeon' : p.k === 'done' ? 'step' : 'place'}: no character sees it`);
 			break;
 		}
 	}

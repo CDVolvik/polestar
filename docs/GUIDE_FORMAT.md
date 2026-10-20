@@ -111,7 +111,8 @@ Step directives:
 | `only <cond>[,<cond>...]` | The step applies only to matching characters. |
 | `when <predicate>` | The step applies only while the predicate holds when the route reaches it; several `when` lines must all hold. See "Conditions checked during play". |
 | `along [until <label>]` | The route never stops at the step: its goals are done along the way, listed under the steps after it. See "Along the way". |
-| `label <name>` | Names the step, for an `along until` before it. |
+| `label <name>` | Names the step, for an `along until` or `skipto` before it, or a `when done` anywhere in the guide. |
+| `skipto <label> when <predicate>` | When the route reaches the step and the predicate holds, it skips this step and the ones after it up to the labelled step; several lines may follow one another, and the first that holds decides. See "Jumps". |
 | `tip <text>` | Player-facing step note (compiled to `step.note`). |
 | `image <path> [<w>x<h>]` | A picture shown in the guide window under the step's tip, while the tip is open, scaled to the window's width (at most 160 high): a screenshot of a spot that is hard to find, such as a cave mouth. `<path>` is the file's place in the pack folder, `/` between folders (`media/fargodeep-mine.tga`), a `.tga` or `.blp` file; without the extension the `.tga`, else the `.blp`. The file ships in the pack's addon folder at that path. `<w>x<h>` is the size it is drawn at (only the ratio counts: `512x256` is twice as wide as high); without it the compiler reads the file's own. One per step; a step with no `tip` reads "Picture of this spot" above it. See "Pictures" in the Cookbook. |
 | `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals instead of a path to walk: see "Spawn areas", Loop. |
@@ -244,6 +245,7 @@ step Back to Gornek
 | `subzone "<Name>"` | the subzone text reads so |
 | `bound "<Location>"` | the hearthstone is bound there (a bind location, as for `sethome`) |
 | `dungeon "<Name>"` | the character chose to run that dungeon (see "Dungeon steps" below) |
+| `done <label>` | the step carrying `label <label>` in this guide was completed: it applies, its goals are done, and it was not skipped by the player, a failed `when` or a `skipto` jump (see "Jumps"); not on a `next` line |
 
 `!` in front of any predicate but `level` turns it around: `!onquest 788`
 holds while the quest is not in the log, `!has 159 x5` while the bags hold
@@ -374,6 +376,58 @@ A label names one step: letters, digits, `-` and `_`, in the case written
 (`label Camp` is not `camp`), once per guide.
 
 A pack with `along` or `label` is written in pack format 4, like `when`.
+
+## Jumps
+
+`skipto <label> when <predicate>` lets a guide skip a block of steps that
+are no longer needed: the player already handed in the follow-up quest, so
+fetching its item is pointless. When the route reaches the step and the
+predicate holds, the step and every step after it up to the one carrying
+`label <label>` are skipped for the character, and the route goes on at the
+labelled step. The predicate is one from the table in "Conditions checked
+during play"; a step may have several `skipto` lines, and the first whose
+predicate holds decides. The label must be on a later step of the same guide.
+
+```
+step Ask about the letter
+  skipto camp when turnedin 1235
+  accept 1234
+
+step Fetch the letter
+  collect 5678 quest 1234.1
+
+step The camp
+  label camp
+  turnin 1234
+```
+
+If quest 1235 is already handed in when the route reaches "Ask about the
+letter", the route goes straight to "The camp", and both steps before it read
+as skipped.
+
+**The jump is checked once and kept.** Unlike `when`, which keeps
+checking a step until the route passes it, `skipto` is checked when the route
+arrives at its step (once the quest log can be read after login). A step
+passed some other way, done ahead of time, never jumps. The jumped steps are
+saved for the character with the steps the player skipped, so the jump does
+not undo itself when the predicate stops holding. The player can unskip any
+of them like a skipped step; the step carrying the `skipto` then takes no
+jump again. Resetting the guide's progress forgets the jump.
+
+`when done <label>` makes a step depend on whether another step was really
+done: true once the labelled step applies, its goals are done and it was not
+skipped (by the player, a failed `when` or a jump). The label may be on any
+step of the guide, before or after. An along step counts by its own goals.
+
+```
+step Bonus for those who met Willem
+  when done willem
+  turnin 783
+```
+
+A pack with `skipto` or a `done` predicate is written in pack format 5
+(Polestar 0.3.0 and later): Polestar 0.2.6 would refuse `done` and never
+take a jump.
 
 ## What the compiler fills in
 
@@ -653,8 +707,10 @@ Errors:
   `achieve` always needs its quoted name
 - `rep` standing outside 1–8 / Hated–Exalted; `craft` with both `xN` and `until`
 - empty quoted strings (names, titles, labels, notes)
-- a step label used twice in a guide, an `along until` naming no label, or a
-  label on its own step or an earlier one
+- a step label used twice in a guide, an `along until` or `skipto` naming no
+  label, or a label on its own step or an earlier one; a `when done` naming no
+  label of the guide, or `done` on a `next` line
+- a `skipto` line without a label, `when` and one predicate
 - `era`/`live` on a goal without typed coordinates
 - an `image` path that is absolute, leaves the pack folder (`..`), uses `\`,
   names a file other than `.tga` or `.blp`, or has a character other than

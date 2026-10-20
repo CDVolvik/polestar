@@ -233,6 +233,9 @@ local function checkWhen(list)
 			if not isNum(p.item) then return false end
 		elseif k == "dungeon" then
 			if not (isStr(p.name) and (p.map == nil or isNum(p.map))) then return false end
+		elseif k == "done" then
+			-- A step label (format 5); validate checks it names a step of the guide.
+			if not isStr(p.label) then return false end
 		elseif not (WHEN_PLACE[k] and isStr(p.name)) then
 			return false
 		end
@@ -407,6 +410,10 @@ local function validate(def)
 				if def.nextChoices[i] == id then listed = true end
 			end
 			if not (listed and list ~= nil and checkWhen(list)) then return "bad nextWhen" end
+			-- `done` checks a step of the guide being played, not of the one offering the option.
+			for i = 1, #list do
+				if list[i].k == "done" then return "bad nextWhen" end
+			end
 		end
 	end
 	-- A step's `label` (format 4) names it, once per guide; `along` is true or
@@ -432,6 +439,23 @@ local function validate(def)
 		local along = step.along
 		if along ~= nil and along ~= true and not (isStr(along) and (labelAt[along] or 0) > s) then
 			return ("step %d: bad along"):format(s)
+		end
+		-- `skipto` (format 5): jumps { to = a later step's label, when = one predicate }.
+		if step.skipto ~= nil then
+			if type(step.skipto) ~= "table" or #step.skipto == 0 then return ("step %d: bad skipto"):format(s) end
+			for _, k in ipairs(step.skipto) do
+				if type(k) ~= "table" or not (isStr(k.to) and (labelAt[k.to] or 0) > s) or type(k.when) ~= "table"
+					or not checkWhen({ k.when }) then
+					return ("step %d: bad skipto"):format(s)
+				end
+			end
+		end
+		-- `done <label>` names a step of this guide.
+		for _, p in ipairs(step.when or {}) do
+			if p.k == "done" and not labelAt[p.label] then return ("step %d: bad when"):format(s) end
+		end
+		for _, k in ipairs(step.skipto or {}) do
+			if k.when.k == "done" and not labelAt[k.when.label] then return ("step %d: bad skipto"):format(s) end
 		end
 	end
 	return nil
