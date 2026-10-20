@@ -166,6 +166,7 @@ the outcome stays.
 | `when dungeon "<Name>"` | the player chose to run that dungeon (Options, Discovery, Dungeons; all off at first); `!dungeon` is the route without it (needs Polestar 0.3.0) | `when dungeon "Ragefire Chasm"` |
 | `when done <label>` | the labelled step of this guide was completed, not skipped or jumped over; not on a `next` line (needs Polestar 0.3.0) | `when done camp` |
 | `when skill <Profession> <N>` | the profession's rank is N or more; not learned counts as 0 (needs Polestar 0.3.0) | `when !skill Cooking 50` |
+| `when cooldown item <item>` / `when cooldown spell <spell>` | the item or spell is on cooldown, the global cooldown aside (needs Polestar 0.3.0) | `when !cooldown item 6948` |
 
 ## Route choices and optional steps
 

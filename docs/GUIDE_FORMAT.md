@@ -248,6 +248,7 @@ step Back to Gornek
 | `dungeon "<Name>"` | the character chose to run that dungeon (see "Dungeon steps" below) |
 | `done <label>` | the step carrying `label <label>` in this guide was completed: it applies, its goals are done, and it was not skipped by the player, a failed `when` or a `skipto` jump (see "Jumps"); not on a `next` line |
 | `skill <Profession> <N>` | the character's rank in that profession is N (1 or more) or higher, the profession named as for the `skill` goal (`when skill Cooking 50`, `when skill "First Aid" 1`); one not learned counts as rank 0, so `!skill Herbalism 1` holds while the character has no Herbalism |
+| `cooldown item <item>`, `cooldown spell <spell>` | the item or spell is on cooldown, the global cooldown aside: `when !cooldown item 6948` while the Hearthstone is ready. Polestar looks again when the cooldown runs out |
 
 `!` in front of any predicate but `level` turns it around: `!onquest 788`
 holds while the quest is not in the log, `!has 159 x5` while the bags hold
@@ -348,9 +349,9 @@ time. A subzone is looked up in the zone where the guide ends.
 A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
 Polestar 0.2.6 and later read. A `when money`, `when dungeon`, `when
-upgrade` or `when skill` predicate (above) writes format 5 (Polestar 0.3.0
-and later), because 0.2.6 knows `when` but not those predicates; `money` and
-`task` goals also need format 5
+upgrade`, `when skill` or `when cooldown` predicate (above) writes format 5
+(Polestar 0.3.0 and later), because 0.2.6 knows `when` but not those
+predicates; `money` and `task` goals also need format 5
 (docs/PACK_FORMAT.md).
 
 ## Along the way

@@ -1096,9 +1096,12 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `Engine.ChooseDungeon(map, on)` from the Options' "Dungeons in leveling
   guides", none by default; a predicate without `map` never holds),
   Polestar's gear advice on an item (`Own.isUpgrade`: `Gear.IsUpgrade`,
-  counted as an upgrade when the advice is off or cannot judge the item), and
-  a profession's rank (`Compat.GetSkillRank` by skill line, else by name;
-  not learned is 0). `stepApplies` reads them, so such a step counts as one
+  counted as an upgrade when the advice is off or cannot judge the item), a
+  profession's rank (`Compat.GetSkillRank` by skill line, else by name; not
+  learned is 0), and an item or spell on cooldown (`Own.onCooldown`: longer
+  than the global cooldown and not run out; it times an update for when it
+  ends, and `BAG_UPDATE_COOLDOWN`/`SPELL_UPDATE_COOLDOWN` update once a guide
+  has asked). `stepApplies` reads them, so such a step counts as one
   for other characters while they fail, and a turn-in whose only accept sits
   there goes with it (`orphaned`). When the route moves past a step
   (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a

@@ -20,18 +20,20 @@
 //   money<A  money<=A  money>A  money>=A     the character's money; A as copper or 1g50s / 7s / 25c
 //   [!]done <label>                           the step so labelled was completed, not skipped
 //   [!]skill <Profession> <N>                 the profession's skill rank is N or more
-// value = { k, neg?, op?, n?, frac?, q?, item?, name?, label? }; `q` is a list for onquest.
+//   [!]cooldown item <item>                   the item (or spell) is on cooldown, the global
+//   [!]cooldown spell <spell>                 cooldown aside
+// value = { k, neg?, op?, n?, frac?, q?, item?, spell?, name?, label? }; `q` is a list for onquest.
 
 const { levelPoint } = require('../game/xp');
 const { readMoney } = require('./money');
 
 const INT_RE = /^\d+$/;
-const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'upgrade', 'zone', 'subzone', 'bound', 'dungeon', 'done', 'skill'];
+const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'upgrade', 'zone', 'subzone', 'bound', 'dungeon', 'done', 'skill', 'cooldown'];
 // A step label, as parse.js reads `label <name>`.
 const LABEL_RE = /^[A-Za-z0-9_-]+$/;
 const QUEST_ONE = new Set(['complete', 'turnedin', 'available']);
 const PLACE = new Set(['zone', 'subzone', 'bound']);
-const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]upgrade <item>, [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>", [!]done <label>, [!]skill <Profession> <N>`;
+const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]upgrade <item>, [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>", [!]done <label>, [!]skill <Profession> <N>, [!]cooldown item <item>, [!]cooldown spell <spell>`;
 
 // A name written quoted or bare: `"Razor Hill"` or `Razor Hill`.
 function nameOf(text) {
@@ -106,6 +108,12 @@ function parseWhen(rest) {
 		if (!name || Number(s[3]) < 1) return { error: '`skill` needs a profession and a rank of 1 or more: skill <Profession> <N>' };
 		value.name = name;
 		value.n = Number(s[3]);
+		return { value };
+	}
+	if (kind === 'cooldown') {
+		const c = /^(item|spell)\s+(\d+)$/i.exec(args);
+		if (!c || Number(c[2]) <= 0) return { error: '`cooldown` needs an item or spell id: cooldown item <item> or cooldown spell <spell>' };
+		value[c[1].toLowerCase()] = Number(c[2]);
 		return { value };
 	}
 	// zone, subzone, bound, dungeon
