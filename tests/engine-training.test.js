@@ -76,6 +76,17 @@ test('an Undead in the Barrens is reminded at 12, with the nearest Horde warrior
 	assert.equal(out.saved, 12);
 });
 
+test('a warlock at the Crossroads is reminded with Strahad Farsan in Ratchet, not Orgrimmar', () => {
+	const [out] = run({
+		saved: { Polestar: 'PolestarCharDB = { schema = 1, classTrainLevel = 16 }' },
+		pre: 'stub.world.race, stub.world.raceName, stub.world.class, stub.world.level = "Orc", "Orc", "WARLOCK", 18',
+		script: `
+			Polestar.Engine.SetGuide("test/barrens"); stub.advance(0.5)
+			emit({ npc = DUE[1] and DUE[1].npc, trainer = Polestar.Engine.IsClassTrainer(6251) })`,
+	});
+	assert.deepEqual(out, { npc: 6251, trainer: true });
+});
+
 test('no reminder when the guide trains the class within its next steps, on odd levels, on first sight, or when off', () => {
 	// The open guide sends warriors to their trainer two steps ahead.
 	const soon = run({

@@ -5,7 +5,7 @@
 //   record   recorded `trainer` events, tagged with the recording character's
 //            class (npcs seen by exactly one class, never profession trainers)
 //   curated  the name list below: capital and starting-town class trainers,
-//            resolved to npc ids by name on the expected map in npcs.json, so
+//            and a few untitled ones out in the world, resolved to npc ids by name on the expected map in npcs.json, so
 //            every entry is verified against the data's spawns
 //
 // trainers.json = { "<npcId>": { id, name, classes: [classFile], sources: [...] } }
@@ -33,6 +33,7 @@ const DUROTAR = 1411;
 const MULGORE = 1412;
 const TIRISFAL = 1420;
 const ZEPHRAS = 2521;
+const BARRENS = 1413;
 
 // [classFile, name, uiMapID]
 const CURATED = [
@@ -268,6 +269,8 @@ const CURATED = [
 	['DRUID', 'Xyton Silverwind', ZEPHRAS],
 	['DRUID', 'Lotheluum Starbreeze', ZEPHRAS],
 	['DRUID', 'Naeluna Swiftmend', ZEPHRAS],
+	// Trainers with no <… Trainer> tag, seen training in the game.
+	['WARLOCK', 'Strahad Farsan', BARRENS],
 ];
 
 function nameKey(s) {
