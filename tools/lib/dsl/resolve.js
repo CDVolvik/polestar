@@ -1596,10 +1596,18 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 					right ? `write \`quest ${g.quest}.${right}\`, or \`quest ${g.quest}\` to take the index from the ${noun}` : `its objectives: ${listed()}`,
 				);
 			}
+			// An item the quest uses without counting it (Sunscale Feather on the
+			// Scytheclaw nests, #538): no line of the quest log counts it, so
+			// only the bags can say it is there.
+			const used = v === 'collect' && id !== undefined && ((q.requiredItems || []).includes(id) || q.sourceItem === id);
+			const bagHint = `the quest uses item ${id} without counting it: drop \`quest ${g.quest}${oi !== undefined ? `.${oi}` : ''}\` so the step counts it in the bags`;
+			if (named && v === 'collect' && named.kind !== 'item') {
+				warn(ln, `${objectiveLabel(g.quest, named).replace(/^(\S+) = /, 'quest $1 is ')}, not an item`, used ? bagHint : `its objectives: ${listed()}`);
+			}
 			if (oi === undefined) {
 				if (id !== undefined) oi = objectiveFor(q, kind, id) || undefined;
 				if (oi === undefined && q.objectives.length) {
-					warn(ln, `quest ${g.quest} has no objective for this ${v === 'kill' ? 'npc' : v === 'interact' ? 'object' : 'item'}; write \`quest ${g.quest}.<objective>\``, `its objectives: ${listed()}`);
+					warn(ln, `quest ${g.quest} has no objective for this ${v === 'kill' ? 'npc' : v === 'interact' ? 'object' : 'item'}${used ? '' : `; write \`quest ${g.quest}.<objective>\``}`, used ? bagHint : `its objectives: ${listed()}`);
 				}
 			}
 			if (oi !== undefined && g.count === undefined && (v === 'kill' || v === 'collect')) {

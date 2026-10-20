@@ -130,7 +130,7 @@ A step must contain at least one goal.
 | `turnin` | `<questId> ["Title"]` | Turn-in NPC/object from data. |
 | `complete` | `<questId> ["Title"]` | Finish all objectives. |
 | `kill` | `<npcId>` or `"Target name"` | Pair with `quest Q.O` to track a quest objective. |
-| `collect` | `<itemId> ["Item name"]` | Pair with `quest Q.O`; otherwise tracked by bag count `xN`. `npc <id>` names the NPC who hands the item over, for an item nothing drops and no data lists a source for (a quest report given in a gossip window): the target button then has someone to target, and the point is that NPC's spawn unless you place it. `collect <item> xN nearest` (no `quest`) compiles to farm spots: clusters of normal or rare mobs that drop the item at 2% or more, outside towns and guard posts, each with the zone's safety (`A`/`H` faction zone, `AH` contested), mob level range, items per kill and spawn count; at most 16 per continent, spread over safety and 10-level bands. The engine picks one by the player's level, faction and travel time. |
+| `collect` | `<itemId> ["Item name"]` | Pair with `quest Q.O` when the item is one of the quest's objectives; otherwise tracked by bag count `xN` (an item the quest only uses). `npc <id>` names the NPC who hands the item over, for an item nothing drops and no data lists a source for (a quest report given in a gossip window): the target button then has someone to target, and the point is that NPC's spawn unless you place it. `collect <item> xN nearest` (no `quest`) compiles to farm spots: clusters of normal or rare mobs that drop the item at 2% or more, outside towns and guard posts, each with the zone's safety (`A`/`H` faction zone, `AH` contested), mob level range, items per kill and spawn count; at most 16 per continent, spread over safety and 10-level bands. The engine picks one by the player's level, faction and travel time. |
 | `goto` | `<x>,<y> ["Label"]` | Coordinates are mandatory here. A label that is a subzone's name as the game spells it (`"Fargodeep Mine"`, not `"Fargodeep Mine's mouth"`) gets its area ("Places by ID"); at a cave's or mine's mouth the goto then also counts as arrived once the player walks into it past the point (in that subzone and indoors). |
 | `talk` | `<npcId>` | |
 | `interact` | `<objectId>` | Click a game object. |
@@ -715,6 +715,10 @@ Warnings:
 - `quest Q.O` past the quest's objectives (the warning lists them as
   `7.1 = kill Kobold Vermin x10`), or an objective goal whose target is none
   of the quest's objectives
+- a `collect … quest Q.O` whose objective is not an item (a nest to visit):
+  the quest log never counts the item there. For an item the quest uses
+  without counting it (a feather for the nests), drop `quest` so the step
+  counts the bags (the addon also falls back to the bags while playing)
 - a `craft` before any `learn` of that spell earlier in the chain (free starter
   recipes excepted); `until <N>` past the recipe's grey skill
 - a coordinate on a map other than the step's zone that the guide never sets as
