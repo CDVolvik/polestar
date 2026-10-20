@@ -223,7 +223,7 @@ function luaStr(s) {
 function emitRegister(facts, source, builds, prereq = PREREQ_RULE) {
 	const L = ['T.Register({'];
 	L.push(`\tclass = ${luaStr(source.class)}, tree = ${facts.treeID}, prereq = ${luaStr(prereq)},`);
-	L.push(`\tsource = ${luaStr(source.source)}, url = ${luaStr(source.sourceUrl)},`);
+	L.push(`\tsource = L[${luaStr(source.source)}], url = ${luaStr(source.sourceUrl)},`);
 	L.push(`\tsummary = L[${luaStr(source.summary)}],`);
 	L.push(`\tspecs = { ${source.order.map(luaStr).join(', ')} },`);
 	L.push('\t-- node = { entry, max ranks, spell, spec column, row, column, name }');
