@@ -200,7 +200,7 @@ step Gan'rul Bloodeye
 
 step Shenthul
   only Rogue
-  tip Shenthul stands in the Cleft of Shadow. Target him and type /salute to finish The Shattered Salute.
+  tip Shenthul stands in the Cleft of Shadow. Target him and type /salute to finish The Shattered Salute. Before leaving town, learn Lockpicking and bring {item:5060}; practise before attempting the tower lockbox. Keep the {item:8051} supplied with Deep Cover. Gallywix is elite, so arrange help or leave that optional part for later.
   accept 2460
   complete 2460
   turnin 2460
@@ -300,13 +300,13 @@ step The Escape
 
 step Taskmaster Fizzule
   only Rogue
-  tip Fizzule runs the Venture Co. camp at the east end of the Sludge Fen. He attacks strangers: target him and /salute before he does.
+  tip Fizzule is by the Venture Co. tower north of the Sludge Fen. Use {item:8051} to fire TWO flares before approaching him, then target him and /salute. Keep that order: he attacks strangers who have not signalled first.
   turnin 2458
   accept 2478 optional
 
 step Mission: Possible But Not Probable
   only Rogue
-  tip Stay stealthed: Foreman Silixiz carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised.
+  tip Pickpocket Foreman Silixiz for the tower key before opening the lockbox. Gallywix and his lockbox are at the top; the key does not open that box, which still needs Lockpicking. Gallywix is elite: grouping up is advised. If you postpone this optional job, resume it in the Class guide Poisons (Horde).
   goto 54.8,5.6 "Venture Co. tower" optional
   collect 8072 quest 2478.5 optional
   kill 7310 quest 2478.1 optional

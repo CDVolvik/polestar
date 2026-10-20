@@ -71,6 +71,14 @@ const everyone = ({ step, goal }) => !step.only && !goal.only;
 // Goals a character of this class does (an `only` naming classes on the goal or its step must list it).
 const forClass = (cls) => ({ step, goal }) => [step.only, goal.only].every((o) => !o || !o.classes || o.classes.includes(cls));
 
+test('Horde poisons: the mainline contact instructions use the supplied flare gun before saluting Fizzule', { skip }, () => {
+	const list = goals('forever/horde/04-the-barrens.guide');
+	const contact = list[at(list, 'contact Fizzule', is('turnin', 2458))].step;
+	const flare = contact.note.indexOf('{item:8051}');
+	assert.ok(flare >= 0 && flare < contact.note.indexOf('/salute'), 'signal with the quest item before saluting');
+	assert.match(contact.note, /\bTWO\b.*flares/i, 'the quest requires two signals');
+});
+
 // Yards between two compiled points on one map (Era frame).
 function yards(a, b) {
 	const f = data.eraFrame(a.map);

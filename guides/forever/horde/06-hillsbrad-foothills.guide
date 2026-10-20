@@ -98,12 +98,12 @@ step Tarren Mill
 
 step Serge Hinott
   only Rogue
-  tip Only if Gallywix fell in the Barrens (Mission: Possible But Not Probable): Serge Hinott stands in Tarren Mill. Wait beside him while he brews the cure, then take your reward: Poisons.
+  tip After returning Mission: Possible But Not Probable to Shenthul, bring Hinott's Assistance to Serge Hinott in Tarren Mill. Stay beside him until the brewing objective completes, then hand in the follow-up to learn Poisons. Finish it even if the Zanzil poison has already been removed; removing the debuff alone does not teach the skill.
   turnin 2479 optional                -- Serge Hinott
   accept 2480 optional
   complete 2480 optional
   turnin 2480 optional                -- Serge Hinott: Poisons
-  note "No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."
+  note "Poison chain unfinished? Resume your current stage in the Class guide Poisons (Horde); completed quests do not need restarting. Arrange a group for Gallywix, finish the Hinott follow-up, then return to this leveling guide."
 
 # ---------------------------------------------------------------- West: the hills and Hillsbrad Fields
 

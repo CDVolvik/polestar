@@ -76,8 +76,8 @@ return {
 	["{npc:5909}, a few steps away"] = "{npc:5909}，就在幾步之外",
 
 	-- Step 14: Shenthul
-	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
-	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}站在{object:172960}。選取他並輸入 /salute 以完成{quest:2460}。",
+	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute · {item:5060} Thieves' Tools · {item:8051} Flare Gun · {quest:2458} Deep Cover
+	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}. Before leaving town, learn Lockpicking and bring {item:5060}; practise before attempting the tower lockbox. Keep the {item:8051} supplied with {quest:2458}. Gallywix is elite, so arrange help or leave that optional part for later."] = "",
 	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} Sludge Fen
 	["{quest:2458}: {npc:7233}, by the {area:382}"] = "{quest:2458}：{npc:7233}，在{area:382}旁",
 
@@ -142,12 +142,12 @@ return {
 	["Wizzlecrank drives his shredder out of the camp: stay with him and kill whatever attacks him. {npc:3442} takes it in {area:392}."] = "伐木機的主人會駕駛它離開營地：跟著他，擊殺任何攻擊他的東西。{area:392}的{npc:3442}接受繳交。",
 
 	-- Step 31: Taskmaster Fizzule
-	-- {area:382} Sludge Fen
-	["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "工頭費蘇勒管理{area:382}東端的風險投資公司營地。他會攻擊陌生人：在他動手前選取他並 /salute。",
+	-- {area:382} Sludge Fen · {item:8051} Flare Gun
+	["Fizzule is by the Venture Co. tower north of the {area:382}. Use {item:8051} to fire TWO flares before approaching him, then target him and /salute. Keep that order: he attacks strangers who have not signalled first."] = "",
 
 	-- Step 32: Mission: Possible But Not Probable
 	-- {npc:7287} Foreman Silixiz
-	["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "保持潛行：{npc:7287}身上帶著塔的鑰匙；加里維克斯和他的帶鎖箱在塔頂。加里維克斯是精英：建議組隊。",
+	["Pickpocket {npc:7287} for the tower key before opening the lockbox. Gallywix and his lockbox are at the top; the key does not open that box, which still needs Lockpicking. Gallywix is elite: grouping up is advised. If you postpone this optional job, resume it in the Class guide Poisons (Horde)."] = "",
 	["Venture Co. tower"] = "風險投資公司的塔",
 
 	-- Step 33: Boulder Lode Mine
@@ -319,10 +319,13 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bruuz"] = "布魯茲",
+	-- ["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "工頭費蘇勒管理{area:382}東端的風險投資公司營地。他會攻擊陌生人：在他動手前選取他並 /salute。",
 	-- ["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "從{area:380}向北騎到{area:384}，在{object:19464}裝滿{item:15842}，然後回{area:380}找{npc:3448}。沒有{skill:182}？他旁邊的{npc:3490}出售{item:2449}，每次三個，賣完要等補貨。",
+	-- ["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "保持潛行：{npc:7287}身上帶著塔的鑰匙；加里維克斯和他的帶鎖箱在塔頂。加里維克斯是精英：建議組隊。",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}在{area:382}北緣，風險投資公司的塔旁。裡面有{quest:30}所需的{item:15883}。",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}的{npc:2391}教授{spell:2842}：先留著",
 	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344}在{area:1638}訓練聖騎士。你還沒有那裡的飛行路線：飛往{area:378}，向西騎過{zone:1412}並搭升降梯上去，在中央高台向{npc:2995}學習飛行路線。",
+	-- ["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}站在{object:172960}。選取他並輸入 /salute 以完成{quest:2460}。",
 }

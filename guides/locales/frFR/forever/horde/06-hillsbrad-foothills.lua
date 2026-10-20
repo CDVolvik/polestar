@@ -19,11 +19,11 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "Remplissez l'{item:7768} au {object:107045} à côté de l'auberge",
 
 	-- Step 2: Serge Hinott
-	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Seulement si Gallywix est tombé dans les {zone:1413} (Mission : possible mais non probable) : {npc:2391} se trouve à {area:272}. Attendez près de lui pendant qu'il prépare le remède, puis prenez votre récompense : Poisons.",
+	-- {quest:2479} Hinott's Assistance · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["After returning Mission: Possible But Not Probable to Shenthul, bring {quest:2479} to {npc:2391} in {area:272}. Stay beside him until the brewing objective completes, then hand in the follow-up to learn Poisons. Finish it even if the Zanzil poison has already been removed; removing the debuff alone does not teach the skill."] = "",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391} : Poisons",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Pas encore de Gallywix ? Le guide de classe Poisons (Horde) reprend la suite depuis Shenthul, avec un groupe pour Gallywix.",
+	["Poison chain unfinished? Resume your current stage in the Class guide Poisons (Horde); completed quests do not need restarting. Arrange a group for Gallywix, finish the Hinott follow-up, then return to this leveling guide."] = "",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "Ours, rampemousses et lions",
@@ -139,8 +139,9 @@ return {
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}, près des quais de {area:392}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Pas encore de Gallywix ? Le guide de classe Poisons (Horde) reprend la suite depuis Shenthul, avec un groupe pour Gallywix.",
 	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Pas encore de Gallywix ? Le guide de classe {spell:2842} (Horde) refait la suite depuis Shenthul, avec un groupe pour Gallywix.",
-	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Seulement si Gallywix est tombé dans {zone:1413} (Mission : possible mais non probable) : {npc:2391} se trouve à {area:272}. Attendez près de lui pendant qu'il prépare le remède, puis prenez votre récompense : Poisons.",
+	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Seulement si Gallywix est tombé dans les {zone:1413} (Mission : possible mais non probable) : {npc:2391} se trouve à {area:272}. Attendez près de lui pendant qu'il prépare le remède, puis prenez votre récompense : Poisons.",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "Seulement si Gallywix est tombé dans {zone:1413} (Mission : possible mais non probable) : {npc:2391} se tient à {area:272}. Attendez à côté de lui pendant qu'il prépare le remède, puis prenez votre récompense : {spell:2842}.",
 	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "La forge se trouve au centre du village de {area:287}. {npc:2404} et ses apprentis y travaillent ; le {item:3564} est empilé à côté. {npc:2449} arpente la rue au nord.",
 	-- ["You arrive bound at the {area:272} inn. Everyone stands around the town square."] = "Vous arrivez lié à l'auberge de {area:272}. Tout le monde se tient autour de la place du village.",

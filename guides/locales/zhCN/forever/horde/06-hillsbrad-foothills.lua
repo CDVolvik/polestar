@@ -19,11 +19,11 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "在旅店旁的{object:107045}装满{item:7768}",
 
 	-- Step 2: Serge Hinott
-	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "仅当你已在{zone:1413}击败加里维克斯（申苏尔的潜行者任务线）时：{npc:2391}站在{area:272}。在他调制解药时在旁边等候，然后领取奖励：毒药。",
+	-- {quest:2479} Hinott's Assistance · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["After returning Mission: Possible But Not Probable to Shenthul, bring {quest:2479} to {npc:2391} in {area:272}. Stay beside him until the brewing objective completes, then hand in the follow-up to learn Poisons. Finish it even if the Zanzil poison has already been removed; removing the debuff alone does not teach the skill."] = "向申苏尔交付“不可能完成的任务”后，带着“{quest:2479}”来{area:272}找{npc:2391}。留在他身边，等制药目标完成后再交后续任务，学会毒药。即使赞吉尔之触已经被解除，也要完成这一步；单纯解掉负面效果不会学会毒药。",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391}：毒药",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "还没击败加里维克斯？职业指南“毒药（部落）”会从申苏尔处重新带你做这条任务线，并组队击败加里维克斯。",
+	["Poison chain unfinished? Resume your current stage in the Class guide Poisons (Horde); completed quests do not need restarting. Arrange a group for Gallywix, finish the Hinott follow-up, then return to this leveling guide."] = "毒药任务线尚未完成的话，可从职业指南“毒药（部落）”中的当前阶段继续，无需重做已交的任务。找队伍处理加里维克斯并完成希诺特的后续，再回当前练级指南。",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "熊、食苔蛛和山地狮",
@@ -139,7 +139,9 @@ return {
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}，在{area:392}的码头旁",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "还没击败加里维克斯？职业指南“毒药（部落）”会从申苏尔处重新带你做这条任务线，并组队击败加里维克斯。",
 	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "还没击败加里维克斯？职业指南{spell:2842}（部落）会从申苏尔处重新带你做这条任务线，并组队击败加里维克斯。",
+	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "仅当你已在{zone:1413}击败加里维克斯（申苏尔的潜行者任务线）时：{npc:2391}站在{area:272}。在他调制解药时在旁边等候，然后领取奖励：毒药。",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "仅当你已在{zone:1413}击败加里维克斯（申苏尔的潜行者任务线）时：{npc:2391}站在{area:272}。在他调制解药时在旁边等候，然后领取奖励：{spell:2842}。",
 	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "铁匠铺在{area:287}镇中央。{npc:2404}和他的希尔斯布莱德见习铁匠在熔炉旁干活；{item:3564}堆在旁边。{npc:2449}在它北边的街上走动。",
 	-- ["You arrive bound at the {area:272} inn. Everyone stands around the town square."] = "你抵达时炉石已绑定在{area:272}的旅店。所有人都站在镇广场周围。",

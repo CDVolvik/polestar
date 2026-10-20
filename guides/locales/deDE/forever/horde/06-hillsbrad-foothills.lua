@@ -19,11 +19,11 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "Füll den {item:7768} am {object:107045} neben dem Gasthaus",
 
 	-- Step 2: Serge Hinott
-	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Nur wenn Gallywix im {zone:1413} gefallen ist (Mission: möglich, aber nicht sehr wahrscheinlich): {npc:2391} steht in {area:272}. Warte bei ihm, während er das Heilmittel braut, und hol dir dann deine Belohnung: Gifte.",
+	-- {quest:2479} Hinott's Assistance · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["After returning Mission: Possible But Not Probable to Shenthul, bring {quest:2479} to {npc:2391} in {area:272}. Stay beside him until the brewing objective completes, then hand in the follow-up to learn Poisons. Finish it even if the Zanzil poison has already been removed; removing the debuff alone does not teach the skill."] = "",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391}: Gifte",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Noch kein Gallywix? Der Klassenguide Gifte (Horde) führt die Questreihe ab Shenthul erneut, mit einer Gruppe für Gallywix.",
+	["Poison chain unfinished? Resume your current stage in the Class guide Poisons (Horde); completed quests do not need restarting. Arrange a group for Gallywix, finish the Hinott follow-up, then return to this leveling guide."] = "",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "Bären, Krabbler und Löwen",
@@ -139,7 +139,9 @@ return {
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}, bei den Docks in {area:392}",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Noch kein Gallywix? Der Klassenguide Gifte (Horde) führt die Questreihe ab Shenthul erneut, mit einer Gruppe für Gallywix.",
 	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Noch kein Gallywix? Der Klassenguide {spell:2842} (Horde) führt die Questreihe ab Shenthul erneut, mit einer Gruppe für Gallywix.",
+	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Nur wenn Gallywix im {zone:1413} gefallen ist (Mission: möglich, aber nicht sehr wahrscheinlich): {npc:2391} steht in {area:272}. Warte bei ihm, während er das Heilmittel braut, und hol dir dann deine Belohnung: Gifte.",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "Nur wenn Gallywix im {zone:1413} gefallen ist (Mission: möglich, aber nicht sehr wahrscheinlich): {npc:2391} steht in {area:272}. Warte bei ihm, während er das Heilmittel braut, und hol dir dann deine Belohnung: {spell:2842}.",
 	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "Die Schmiede steht mitten im Ort {area:287}. {npc:2404} und seine Lehrlinge arbeiten an der Esse; die {item:3564} ist daneben gestapelt. {npc:2449} läuft die Straße nördlich davon entlang.",
 	-- ["You arrive bound at the {area:272} inn. Everyone stands around the town square."] = "Du kommst gebunden am Gasthaus von {area:272} an. Alle stehen rund um den Dorfplatz.",
