@@ -219,3 +219,102 @@ test('the client\'s bags: an item the class cannot use gets no empty-slot arrow 
 	`);
 	assert.deepEqual(out, { arrows: [1, 4], fills: false });
 });
+
+// EllesmereUI Bags' item overlay API (EllesmereUIBags/EUI_Bags_Slots.lua):
+// RegisterItemOverlayIcon(name, fn(button, data)) runs on every painted slot;
+// the arrow goes on the button's _textOverlay; RefreshInventory repaints.
+const ELLESMERE = `
+EUI_Bags = { itemOverlayIcons = {}, refreshes = 0, shown = true }
+function EUI_Bags.RegisterItemOverlayIcon(name, fn) EUI_Bags.itemOverlayIcons[name] = fn end
+function EUI_Bags:IsShown() return self.shown end
+function EUI_Bags:RefreshInventory() self.refreshes = self.refreshes + 1 end
+function slot(link, bag, n)
+	local button = CreateFrame("Button", nil, UIParent)
+	button._textOverlay = CreateFrame("Frame", nil, button)
+	return button, { bag = bag, slot = n, itemLink = link }
+end
+function paint(button, data) EUI_Bags.itemOverlayIcons.Polestar(button, data) end
+function shown(button)
+	for _, r in ipairs(button._textOverlay.regions) do
+		if type(r.texture) == "string" and r.texture:find("qol%-upgrade$") then return r:IsShown() end
+	end
+	return false
+end`;
+
+test('EllesmereUI Bags: a painter puts the arrow bottom-left on the slot\'s overlay for upgrades, and takes it off when the verdict changes', () => {
+	const [reg, verdicts, look, after] = run(
+		`${BAGS}
+		emit({ names = keys(EUI_Bags.itemOverlayIcons) })
+		local a, da = slot("item:9002", 0, 1)
+		local b, db = slot("item:9004", 0, 2)
+		local c = slot(nil, 0, 0)
+		paint(a, da); paint(b, db); paint(c, {})
+		emit({ shown(a), shown(b), shown(c) })
+		local r
+		for _, x in ipairs(a._textOverlay.regions) do if x.texture then r = x end end
+		emit({ size = { r:GetSize() }, layer = r.layer, point = r.points[1].point })
+		g.equip(1, "item:9006")
+		paint(a, da)
+		emit(shown(a))
+	`,
+		{ before: ELLESMERE },
+	);
+	assert.deepEqual(reg, { names: 'Polestar' });
+	assert.deepEqual(verdicts, [true, false, false]);
+	assert.deepEqual(look, { size: [20, 20], layer: 'OVERLAY', point: 'BOTTOMLEFT' });
+	assert.equal(after, false, 'a better piece worn: the same slot is no upgrade');
+});
+
+test('EllesmereUI Bags: the link comes from the bag slot when the data has none; the setting and gear advice off take the arrow off', () => {
+	const [fromSlot, off, disabled] = run(
+		`${BAGS}
+		local a, da = slot(nil, 0, 1)
+		paint(a, da)
+		emit(shown(a))
+		Polestar.Set("gear.bagArrows", false)
+		paint(a, da)
+		emit(shown(a))
+		Polestar.Set("gear.bagArrows", true)
+		Polestar.Set("gear.enabled", false)
+		paint(a, da)
+		emit(shown(a))
+	`,
+		{ before: ELLESMERE },
+	);
+	assert.equal(fromSlot, true);
+	assert.equal(off, false);
+	assert.equal(disabled, false);
+});
+
+test('EllesmereUI Bags: new verdicts repaint its window once per burst, only while it is shown and out of combat', () => {
+	const [refreshes] = run(
+		`${BAGS}
+		g.equip(1, "item:9006"); g.equip(1, "item:9001")
+		stub.advance(0.25)
+		local burst = EUI_Bags.refreshes
+		EUI_Bags.shown = false
+		g.equip(1, "item:9006")
+		stub.advance(0.25)
+		local hidden = EUI_Bags.refreshes
+		EUI_Bags.shown = true
+		stub.inCombat = true
+		g.equip(1, "item:9001")
+		stub.advance(0.25)
+		emit({ burst = burst, hidden = hidden, combat = EUI_Bags.refreshes })
+	`,
+		{ before: ELLESMERE },
+	);
+	assert.deepEqual(refreshes, { burst: 1, hidden: 1, combat: 1 });
+});
+
+test('EllesmereUI Bags loaded after Polestar: the painter registers as it loads, once', () => {
+	const [before, after] = run(`
+		emit(EUI_Bags == nil)
+		${ELLESMERE}
+		stub.addonLoaded("EllesmereUIBags")
+		stub.addonLoaded("EllesmereUIBags")
+		emit(keys(EUI_Bags.itemOverlayIcons))
+	`);
+	assert.equal(before, true);
+	assert.equal(after, 'Polestar');
+});

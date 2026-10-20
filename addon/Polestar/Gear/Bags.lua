@@ -9,7 +9,7 @@
 --   Gear.Bags.IsUpgrade(link) -> bool   -- the verdict an arrow shows
 --   Gear.Bags.Redraw()                  -- repaint the shown bags now
 --
--- Two bag views:
+-- Three bag views:
 --   * The client's bags (Blizzard_UIPanels_Game Mainline ContainerFrame.lua,
 --     which Forever loads): each container frame's UpdateItems is post-hooked
 --     on the frame itself (ContainerFrameMixin's functions are copied onto
@@ -26,6 +26,15 @@
 --   * Baganator: a corner widget (top-left, first), the way Baganator shows
 --     Pawn's arrow; it hides and places the arrow itself. Registered as this
 --     file loads when Baganator is in, else when it loads.
+--   * EllesmereUI Bags (EllesmereUIBags), which replaces the client's bag
+--     frames, so there is nothing to hook: it runs the painters registered with
+--     EUI_Bags.RegisterItemOverlayIcon(name, fn(button, data)) on every slot it
+--     paints (grid and list, bags, reagent bag and bank). The arrow is a texture
+--     on the button's _textOverlay, bottom-left: top-left is where it shows
+--     the item's level (btn.ItemLevelText), which the arrow would cover, and
+--     bottom-right is its own Pawn arrow's. Registered as this file loads when
+--     it is in, else when EllesmereUIBags loads; GEAR_UPDATED asks it to
+--     repaint.
 --
 -- New verdicts (GEAR_UPDATED: equipment, bags, level, spec, item data, gear
 -- settings) repaint the shown bags at most once every REDRAW seconds.
@@ -172,12 +181,72 @@ end
 if not registerBaganator() then ns.RegisterEvent("ADDON_LOADED", onAddonLoaded) end
 
 ---------------------------------------------------------------------------
+-- EllesmereUI Bags
+---------------------------------------------------------------------------
+
+local ELLESMERE = "Polestar" -- the painter's name in EUI_Bags.itemOverlayIcons
+local ellesmere = false
+local marks = setmetatable({}, { __mode = "k" }) -- item button -> arrow texture
+
+local function ellesmereAPI()
+	local B = _G.EUI_Bags
+	if type(B) == "table" and type(B.RegisterItemOverlayIcon) == "function" then return B end
+	return nil
+end
+
+-- data = { bag, slot, info, itemLink }, valid during the call only.
+local function paintEllesmere(button, data)
+	local link
+	if type(data) == "table" then
+		link = data.itemLink
+		if not link and data.bag and data.slot and data.slot > 0 then link = Gear.Client.BagLink(data.bag, data.slot) end
+	end
+	local t = marks[button]
+	if link and Bags.IsUpgrade(link) then
+		if not t then
+			local host = button._textOverlay or button
+			t = host:CreateTexture(nil, "OVERLAY", nil, LAYER)
+			t:SetSize(BADGE, BADGE)
+			t:SetPoint("BOTTOMLEFT", host, "BOTTOMLEFT", 0, 0)
+			t:SetTexture(media())
+			paint(t)
+			marks[button] = t
+		end
+		t:Show()
+	elseif t then
+		t:Hide()
+	end
+end
+
+local function registerEllesmere()
+	if ellesmere then return true end
+	local B = ellesmereAPI()
+	if not B then return false end
+	ellesmere = true
+	B.RegisterItemOverlayIcon(ELLESMERE, paintEllesmere)
+	return true
+end
+
+local function onEllesmereLoaded(_, name)
+	if name == "EllesmereUIBags" and registerEllesmere() then
+		ns.UnregisterEvent("ADDON_LOADED", onEllesmereLoaded)
+	end
+end
+
+if not registerEllesmere() then ns.RegisterEvent("ADDON_LOADED", onEllesmereLoaded) end
+
+---------------------------------------------------------------------------
 -- Keeping the arrows fresh
 ---------------------------------------------------------------------------
 
 function Bags.Redraw()
 	for _, f in ipairs(containerFrames()) do
 		if hooked[f] and f:IsShown() then onUpdateItems(f) end
+	end
+	local E = ellesmere and ellesmereAPI()
+	if E and E.IsShown and E:IsShown() and type(E.RefreshInventory) == "function"
+		and not (InCombatLockdown and InCombatLockdown()) then
+		E:RefreshInventory()
 	end
 	local API = baganator and baganatorAPI()
 	if API and API.RequestItemButtonsRefresh and (not API.IsCornerWidgetActive or API.IsCornerWidgetActive(WIDGET)) then
