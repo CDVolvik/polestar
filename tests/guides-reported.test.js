@@ -2315,3 +2315,22 @@ emit(out)`,
 	assert.ok(yards(alliance[0].goal, { map: 1413, x: 40.2, y: 24.88 }) <= 30, "it is the reporter's safe spot");
 	assert.equal(horde.length, 0, 'Horde get none');
 });
+
+// Syrael (#575): "Collect the ghost plasma is in the wrong spot, it shows the
+// same spot as for the collect the kodo bone quest above it." The Horde guide
+// had a bare `complete 6134` in the Kodo Graveyard step, so it had no place
+// and the step showed the bones' point; the Magrami Spectres the Crate of
+// Ghost Magnets draws are in the Valley of Bones, where the report finished
+// the quest (63.77,91.60). The ghosts now come on the Mannoroc Coven trip,
+// and Hornizz is handed the plasm afterwards.
+
+test('forever/horde/30-40/04-dustwallow-marsh.guide: Syrael\'s report (#575): the ghost-o-plasm points at the Valley of Bones, after the Kodo Graveyard', { skip }, () => {
+	const list = goals('forever/horde/30-40/04-dustwallow-marsh.guide');
+	const plasm = at(list, 'collect 15849 (Ghost-o-plasm)', (g) => g.t === 'collect' && g.quest === 6134 && g.item === 15849);
+	const { goal } = list[plasm];
+	const finished = { map: 1443, x: 63.77, y: 91.6 };
+	assert.equal(goal.map, 1443, 'the goal is on Desolace');
+	assert.ok(yards(goal, finished) <= 200, `the arrow at ${goal.x},${goal.y} is in the Valley of Bones, not ${Math.round(yards(goal, finished))} yd off`);
+	assert.ok(at(list, 'collect 13703 (Kodo Bone)', (g) => g.t === 'collect' && g.quest === 5501) < plasm, 'the kodo bones come first');
+	assert.ok(plasm < at(list, 'turnin 6134', is('turnin', 6134)), 'the plasm is collected before Hornizz is handed it');
+});
