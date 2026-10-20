@@ -3785,6 +3785,12 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   `why`, "Guide data"), progress, pitch, pros and cons, a favourite
   star, "Load guide" and "Open in new tab". Selecting never loads; the buttons,
   a double-click or Enter do.
+  `UI.Picker.ShowQuest(questID)` opens this search with the client's quest
+  title, matching the exact ID in applicable guide goals. Its details put
+  those steps and their tips before the pitch; selecting loads nothing.
+  `UI/QuestLinks.lua` adds this action to the native quest log and objective
+  tracker menus through `Menu.ModifyMenu`, only with the keyboard and mouse
+  interface. It works without the Codex; only installed guides are searched.
   Its search also lists Codex matches under the guides (`UI.LookupRows`,
   `UI.LookupCount`, `UI.LookupTotal` from `UI/Lookup.lua`): an "In the
   Codex" folder with up to three per kind and a "Look up everything" line;
