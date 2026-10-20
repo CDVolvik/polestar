@@ -70,8 +70,7 @@ step Erion Shadewhisper
 
 step Renzik "The Shiv"
   zone Stormwind City
-  note Learn Lockpicking from a rogue trainer before opening the practice locks.
-  tip Renzik stands beside Master Mathias Shaw at SI:7 in Old Town. Dwarves and Gnomes take the Deeprun Tram from Ironforge; Night Elves take the boat from Auberdine to Stormwind Harbor.
+  tip Renzik stands beside Master Mathias Shaw at SI:7 in Old Town. Dwarves and Gnomes take the Deeprun Tram from Ironforge; Night Elves take the boat from Auberdine to Stormwind Harbor. Learn Lockpicking from a rogue trainer before leaving for Redridge.
   turnin 2300 only Human,Skyborne             -- Renzik "The Shiv"
   turnin 2298 only Dwarf,Gnome
   turnin 2260 only NightElf
@@ -86,8 +85,7 @@ step Lucius
   accept 2282
 
 step Alther's Mill
-  tip Alther's Mill stands east of Lakeshire, up off the road. Open Lucius's Lockbox there.
-  note Keep the {item:5060} supplied by {npc:6966} in your bags. Clear nearby spiders before practicing; lower-level rogues should bring help if the boxes are guarded. Use the practice locks until the quest lock is within your current skill, then recover the token. If useful practice remains, do it before returning to town; stop when the locks no longer improve your skill.
+  tip Alther's Mill stands east of Lakeshire, up off the road. Open Lucius's Lockbox there. Keep the {item:5060} supplied by {npc:6966} in your bags. Clear nearby spiders before practicing; lower-level rogues should bring help if the boxes are guarded. Use the practice locks until the quest lock is within your current skill, then recover the token. If useful practice remains, do it before returning to town; stop when the locks no longer improve your skill.
   collect 7871 quest 2282.1                   -- Token of Thievery: Lucius's Lockbox
 
 step Back to Lucius
