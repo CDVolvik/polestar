@@ -18,7 +18,7 @@ return {
 	-- {area:16635} Thendal Village
 	["Back to {area:16635}"] = "返回{area:16635}",
 	-- {npc:257554} Halaan Hawk-Eye · {npc:263113} Myriaal Mistwake · {npc:251368} Elatrell Featherlight
-	["{npc:257554} and {npc:263113} stand at the top of the watchtower, a few steps north-east of {npc:251368}."] = "",
+	["{npc:257554} and {npc:263113} stand at the top of the watchtower, a few steps north-east of {npc:251368}."] = "{npc:257554}和{npc:263113}站在瞭望塔顶层，就在{npc:251368}东北边几步远处。",
 	-- {npc:257554} Halaan Hawk-Eye
 	["talk to {npc:257554}"] = "与{npc:257554}交谈",
 
@@ -26,7 +26,7 @@ return {
 	-- {npc:251361} Rorian the Dayseeker
 	["{npc:251361}'s errands"] = "{npc:251361}的差事",
 	-- {spell:1259416} Walk on Air · {npc:251361} Rorian the Dayseeker
-	["Jump off the top of the watchtower and use {spell:1259416} to float down to {npc:251361}, west of the tower."] = "",
+	["Jump off the top of the watchtower and use {spell:1259416} to float down to {npc:251361}, west of the tower."] = "从瞭望塔顶跳下，使用{spell:1259416}缓缓落到塔西边的{npc:251361}身旁。",
 	-- {npc:251361} Rorian the Dayseeker · {item:4100} Crumpled Note
 	["{npc:251361}: the {item:4100}"] = "{npc:251361}：{item:4100}",
 	-- {npc:251361} Rorian the Dayseeker
@@ -234,7 +234,7 @@ return {
 	-- Step 44: Enchanted Gyrozephyr
 	-- {object:616466} Construct Parts (no name in this language: may be words) · {area:16624} Shen'dar Village · {area:16625} Windsong Lake · {npc:252800} Aamelia Windfield
 	-- plural, as words: Enchanted Gyrozephyrs = {item:260883} Enchanted Gyrozephyr
-	["The last {object:616466}, the Enchanted Gyrozephyrs, lie far to the north, east of {area:16624} and south-west of {area:16625}. Then head back south-west to {npc:252800} at the orchard."] = "",
+	["The last {object:616466}, the Enchanted Gyrozephyrs, lie far to the north, east of {area:16624} and south-west of {area:16625}. Then head back south-west to {npc:252800} at the orchard."] = "最后一批{object:616466}，也就是{item:260883}，在很远的北边，位于{area:16624}以东、{area:16625}西南。收集后向西南返回果园找{npc:252800}。",
 
 	-- Step 45: Standing Our Ground
 	-- {npc:252800} Aamelia Windfield

@@ -123,7 +123,7 @@ return {
 
 	-- Step 26: Trouble in the Valley
 	-- {npc:262119} Corporal Adamore · {npc:261366} Walton
-	["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119}和他的水兵守着{npc:261366}南边被毁的商队。",
+	["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}. The marines are linked: pulling one calls the rest. Pull from the edge and run; they leash short, so you can thin the camp one at a time before tackling the Corporal."] = "{npc:262119}和他的水兵守着{npc:261366}南边被毁的商队。这些水兵会互相联动，拉到一个会引来其余敌人。从边缘引怪后拉开距离，它们脱战距离较短，可以逐个清理营地，再对付下士。",
 
 	-- Step 27: Walton
 	-- {npc:261366} Walton · {npc:261367} Terry Longdrink · {area:21} Kul Tiras
@@ -328,4 +328,5 @@ return {
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}的{npc:2391}教授{spell:2842}：留着它",
 	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344}在{area:1638}训练圣骑士。你还没有那里的飞行路线：飞往{area:378}，向西骑马穿过{zone:1412}，乘升降梯上去，在中央高台的{npc:2995}处开通飞行路线。",
 	-- ["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}站在{object:172960}。选中他并输入 /salute 来完成{quest:2460}。",
+	-- ["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119}和他的水兵守着{npc:261366}南边被毁的商队。",
 }

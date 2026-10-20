@@ -2197,6 +2197,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "精神鞭打是你此後的主要傷害和減速技能；強化精神鞭打使其傷害更高。"
 L["Vampiric Embrace heals you from your Shadow damage."] = "吸血鬼的擁抱通過你的暗影傷害治療你。"
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "暗影形態是終極技能：更多暗影傷害，同時受到更少的物理傷害。"
+-- L["ForeverDB through level 30, Polestar after"] = ""
+-- L["Polestar, with ForeverDB's builds to level 20"] = ""
+-- L["Polestar, with ForeverDB's talent data"] = ""
+-- L["ForeverDB"] = ""
+-- L["ForeverDB's leveling builds, adapted to level 30"] = ""
 
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "交由 Shortest Path Forever 導引"

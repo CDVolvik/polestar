@@ -2196,6 +2196,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "El Desgarro mental es tu principal daño y ralentización desde aquí; el Desgarro mental mejorado lo hace golpear más fuerte."
 L["Vampiric Embrace heals you from your Shadow damage."] = "El Abrazo vampírico te cura con tu daño de Sombras."
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "La Forma sombría es el capstone: más daño de Sombras y menos daño físico recibido."
+-- L["ForeverDB through level 30, Polestar after"] = ""
+-- L["Polestar, with ForeverDB's builds to level 20"] = ""
+-- L["Polestar, with ForeverDB's talent data"] = ""
+-- L["ForeverDB"] = ""
+-- L["ForeverDB's leveling builds, adapted to level 30"] = ""
 
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "Ceder la guía a Shortest Path Forever"

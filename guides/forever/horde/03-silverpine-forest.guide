@@ -347,6 +347,6 @@ step Valley of Wisdom
   turnin 95350 only Skyborne          -- Thrall, inside Grommash Hold
   accept 98024 only Skyborne          -- Keep it: Thork at the Crossroads
   accept 93739 only Skyborne optional -- Thrall: Exploring the Horde, a tour of the Horde's leaders
-  kill 3230 quest 93739.1 only Skyborne optional -- Speak with Nazgrel, in Grommash Hold
-  kill 10540 quest 93739.2 only Skyborne optional -- Speak with Vol'jin, in Grommash Hold
+  kill 3230 quest 93739.1 "Talk to Nazgrel" only Skyborne optional -- Speak with Nazgrel, in Grommash Hold
+  kill 10540 quest 93739.2 "Talk to Vol'jin" only Skyborne optional -- Speak with Vol'jin, in Grommash Hold
   train class only Warrior,Hunter,Rogue,Priest,Shaman,Mage,Warlock

@@ -370,6 +370,30 @@ test(`${DUN_MOROGH}: thmastin's report: Camping 101: Cooking waits for the retur
 	assert.equal(list[camping].step, list[at(list, 'turnin 384 (Beer Basted Boar Ribs)', is('turnin', 384))].step, 'on the same visit as the ribs');
 });
 
+test(`EpicTibbles's report (#532): an objective that is talking to someone reads "Talk to", not "Kill": Zarrin in Teldrassil and the Skyborne visits to the Horde leaders`, { skip }, () => {
+	// The data counts these as kill credit on the NPC, so the goal stays a
+	// `kill` tracking the objective; its text is what the guide window shows.
+	const talks = [
+		[TELDRASSIL, 96634, 1, 'Zarrin'],
+		['forever/horde/03-silverpine-forest.guide', 93739, 1, 'Nazgrel'],
+		['forever/horde/03-silverpine-forest.guide', 93739, 2, "Vol'jin"],
+		[STONETALON, 93739, 4, 'Lady Sylvanas Windrunner'],
+		[ASHENVALE_HORDE, 93739, 3, 'Cairne Bloodhoof'],
+	];
+	for (const [guide, quest, oi, name] of talks) {
+		const { goal } = goals(guide)[at(goals(guide), `${quest}.${oi} (${name})`, (g) => g.t === 'kill' && g.quest === quest && g.oi === oi)];
+		assert.equal(goal.text, `Talk to ${name}`, `${guide}: ${name}`);
+	}
+	// Every kill goal whose note says to speak with someone says so itself.
+	for (const guide of allGuides()) {
+		for (const { goal } of goals(guide)) {
+			if (goal.t === 'kill' && /^Speak with /.test(goal.note || '')) {
+				assert.match(goal.text || '', /^Talk to /, `${guide}: ${goal.note}`);
+			}
+		}
+	}
+});
+
 test(`${DUN_MOROGH}: thmastin's report: The Reports is taken from Senir with Frostmane Hold and handed to the senator on the way to the tram`, { skip }, () => {
 	const list = goals(DUN_MOROGH);
 	const accept = at(list, 'accept 291 (The Reports)', is('accept', 291));

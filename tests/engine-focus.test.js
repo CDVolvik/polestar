@@ -350,9 +350,10 @@ test('smart candidates group by the chosen NPC', () => {
 test('GuideFocus gives the live-frame position of the first goal on the guide zone', () => {
 	const [out] = run({
 		guides: GUIDE + `
-			Polestar.RegisterMapFrames({ era = { [1413] = { c = 1, left = 1100, right = -900, top = 1100, bottom = -2900 } } }, "test")
-			Polestar.RegisterGuide({ id = "test/era", pack = "test", title = "Era", faction = "Horde", minLevel = 1, maxLevel = 60, zone = 1413, steps = {
-				{ goals = { { t = "goto", map = 1411, x = 10, y = 10 }, { t = "goto", map = 1413, x = 50, y = 50, f = "e" } } } } })
+			stub.world.addMap(1441, { name = "Thousand Needles", c = 1, left = 1000, right = -1000, top = 1000, bottom = -3000 })
+			Polestar.RegisterMapFrames({ era = { [1441] = { c = 1, left = 1100, right = -900, top = 1100, bottom = -2900 } } }, "test")
+			Polestar.RegisterGuide({ id = "test/era", pack = "test", title = "Era", faction = "Horde", minLevel = 1, maxLevel = 60, zone = 1441, steps = {
+				{ goals = { { t = "goto", map = 1411, x = 10, y = 10 }, { t = "goto", map = 1441, x = 50, y = 50, f = "e" } } } } })
 		`,
 		script: `
 			local x, y = E.GuideFocus("test/xr")
