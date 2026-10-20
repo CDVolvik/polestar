@@ -434,6 +434,8 @@ step Lake Al'Ameth
   collect 286017 quest 99050.1                -- Dewy Lasher Frond
 
 step Dolanaar again
+  buy 3371 x1 npc 3614                        -- Empty Vial from Narret Shadowgrove, beside Byancie
+  buy 159 x1 npc 6736                         -- Refreshing Spring Water from Innkeeper Keldamyr, for Byancie
   turnin 99050                                -- Byancie
   accept 99073
 

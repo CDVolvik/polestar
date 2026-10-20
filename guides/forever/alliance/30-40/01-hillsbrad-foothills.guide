@@ -258,6 +258,7 @@ step Hillsbrad's town hall
 
 step Southshore
   turnin 98059                        -- Captain McManus
+  buy 3713 x1 npc 2381                -- Soothing Spices, from Micha Yance
   turnin 555                          -- Chef Jessen
   turnin 511                          -- Loremaster Dibbs
   accept 514
