@@ -27,7 +27,7 @@ return {
 	-- {npc:2082} Gilshalan Windwalker
 	["{npc:2082}, on the tree's ramp"] = "{npc:2082}，在巨树的坡道上",
 	-- {npc:3595} Shanda
-	["{npc:3595}: in at the tree's front entrance and up the ramp"] = "",
+	["{npc:3595}: in at the tree's front entrance and up the ramp"] = "{npc:3595}：从树的正面入口进去，沿斜坡上楼",
 	-- {quest:97979} The Goddess Provides · {spell:1259799} Elune's Light · {npc:3595} Shanda
 	["{quest:97979}: cast {spell:1259799} and Shadowmeld, then hand it back to {npc:3595}"] = "{quest:97979}：施放{spell:1259799}和影遁，然后交还给{npc:3595}",
 	-- {npc:8583} Dirania Silvershine
@@ -50,7 +50,7 @@ return {
 	-- {npc:3594} Frahun Shadewhisper
 	["{npc:3594}, the rogue trainer"] = "{npc:3594}，潜行者训练师",
 	-- {npc:3595} Shanda
-	["{npc:3595}, the priest trainer: in at the tree's front entrance and up the ramp"] = "",
+	["{npc:3595}, the priest trainer: in at the tree's front entrance and up the ramp"] = "{npc:3595}是牧师训练师：从树的正面入口进去，沿斜坡上楼",
 	-- {npc:3597} Mardant Strongoak · {area:256} Aldrassil
 	["{npc:3597}, the druid trainer at {area:256}"] = "{npc:3597}，{area:256}的德鲁伊训练师",
 
@@ -280,27 +280,27 @@ return {
 
 	-- Step 43: Rut'theran Village
 	-- {area:702} Rut'theran Village · {npc:10118} Nessa Shadowsong · {npc:3838} Vesprystus · {quest:6342} Flight to Auberdine · {area:442} Auberdine · {npc:4200} Laird
-	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs. Once you have {quest:6342}, talk to {npc:3838} again and choose the flight to {area:442}: it is free and lands beside {npc:4200}. If the flight map opens instead, close it and talk to him again holding Shift."] = "",
+	["Take the portal down to {area:702}. {npc:10118} stands on the dock, {npc:3838} by the hippogryphs. Once you have {quest:6342}, talk to {npc:3838} again and choose the flight to {area:442}: it is free and lands beside {npc:4200}. If the flight map opens instead, close it and talk to him again holding Shift."] = "通过传送门下到{area:702}。{npc:10118}站在码头上，{npc:3838}在角鹰兽旁。接到{quest:6342}后，再次与{npc:3838}交谈，选择飞往{area:442}：这趟免费，落地就在{npc:4200}旁边。如果打开的是飞行地图，先关闭，再按住 Shift 与他交谈。",
 	-- {npc:3838} Vesprystus · {quest:6342} Flight to Auberdine
-	["talk to {npc:3838} again: free with {quest:6342}"] = "",
+	["talk to {npc:3838} again: free with {quest:6342}"] = "再次与{npc:3838}交谈：持有{quest:6342}时免费",
 
 	-- Step 44: Auberdine
 	-- {npc:3841} Caylais Moonfeather · {npc:4200} Laird
-	["Learn the flight path from {npc:3841} where you land. {npc:4200}'s fish stall is just north of her, by the docks."] = "",
+	["Learn the flight path from {npc:3841} where you land. {npc:4200}'s fish stall is just north of her, by the docks."] = "落地后向{npc:3841}学习飞行路线。{npc:4200}的鱼摊就在她北边不远处，靠近码头。",
 
 	-- Step 45: Return to Nessa
 	-- {area:702} Rut'theran Village · {npc:3841} Caylais Moonfeather · {item:16263} Laird's Response · {npc:10118} Nessa Shadowsong · {area:442} Auberdine
-	["Fly back to {area:702} from {npc:3841}, hand {item:16263} to {npc:10118} on the dock, then fly back to {area:442} for the boat."] = "",
+	["Fly back to {area:702} from {npc:3841}, hand {item:16263} to {npc:10118} on the dock, then fly back to {area:442} for the boat."] = "从{npc:3841}处飞回{area:702}，把{item:16263}交给码头上的{npc:10118}，然后飞回{area:442}乘船。",
 
 	-- Step 46: Moonglade
 	-- {spell:18960} Teleport: Moonglade · {npc:11802} Dendrite Starblaze · {area:2361} Nighthaven · {quest:5929} Great Bear Spirit · {area:493} Moonglade · {area:702} Rut'theran Village · {area:442} Auberdine
-	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "",
+	["Cast {spell:18960}. {npc:11802} is in {area:2361}; the {quest:5929} sits in the woods to the north-west. Learn the {area:493} flight path in {area:2361} and fly to {area:702} (by way of {area:442})."] = "施放{spell:18960}。{npc:11802}在{area:2361}；{quest:5929}所需的目标位于西北边的树林里。在{area:2361}学习{area:493}的飞行路线，然后经{area:442}飞到{area:702}。",
 	-- {quest:5929} Great Bear Spirit
 	["Speak with the {quest:5929}"] = "与{quest:5929}交谈",
 
 	-- Step 47: Back to Darnassus
 	-- {npc:10118} Nessa Shadowsong · {npc:4217} Mathrengyl Bearwalker · {area:1658} Cenarion Enclave
-	["{npc:10118} stands on the Rut'theran dock where you land. Then take the portal up to {npc:4217} in the {area:1658}."] = "",
+	["{npc:10118} stands on the Rut'theran dock where you land. Then take the portal up to {npc:4217} in the {area:1658}."] = "落地后，{npc:10118}就在鲁瑟兰村码头上。随后通过传送门上去，到{area:1658}找{npc:4217}。",
 
 	-- Step 48: The Moonkin Stone
 	-- {object:177525} Moonkin Stone
@@ -316,7 +316,7 @@ return {
 	-- {zone:1453} Stormwind
 	["Boat to {zone:1453}"] = "乘船前往{zone:1453}",
 	-- {zone:1453} Stormwind · {area:442} Auberdine
-	["Take the boat to {zone:1453} from {area:442}'s docks."] = "",
+	["Take the boat to {zone:1453} from {area:442}'s docks."] = "从{area:442}码头乘船前往{zone:1453}。",
 	-- {area:17203} Stormwind Harbor · {zone:1429} Elwynn Forest · {zone:1436} Westfall
 	["From {area:17203}, head through the city gates into {zone:1429} and follow the road west to {zone:1436}."] = "",
 

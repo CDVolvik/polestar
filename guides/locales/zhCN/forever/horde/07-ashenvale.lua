@@ -57,7 +57,7 @@ return {
 	-- {npc:210995} Alonso · {area:421} Mystral Lake
 	["{npc:210995}, a Forever addition, stands on the west shore of {area:421} with three quick Dragonslayer quests."] = "{npc:210995}是Forever新增的NPC，站在{area:421}西岸，有三个简短的屠龙者任务。",
 	-- {npc:210995} Alonso
-	["{npc:210995} may not offer these to every class; if he doesn't, carry on."] = "",
+	["{npc:210995} may not offer these to every class; if he doesn't, carry on."] = "{npc:210995}可能不会向所有职业提供这些任务；如果没有，就继续路线。",
 
 	-- Step 12: Tideress
 	-- {npc:12759} Tideress · {area:421} Mystral Lake · {item:16408} Befouled Water Globe
