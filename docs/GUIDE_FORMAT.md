@@ -717,8 +717,10 @@ Warnings:
   of the quest's objectives
 - a `collect … quest Q.O` whose objective is not an item (a nest to visit):
   the quest log never counts the item there. For an item the quest uses
-  without counting it (a feather for the nests), drop `quest` so the step
-  counts the bags (the addon also falls back to the bags while playing)
+  without counting it (a feather for the nests, a carcass that lures a
+  beast), here or on another item's objective, drop `quest` so the step
+  counts the bags (while the quest database is loaded, the addon counts the
+  bags for such an item anyway)
 - a `craft` before any `learn` of that spell earlier in the chain (free starter
   recipes excepted); `until <N>` past the recipe's grey skill
 - a coordinate on a map other than the step's zone that the guide never sets as
