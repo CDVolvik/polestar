@@ -49,6 +49,12 @@ test('every Class guide parses, is category Class for a class, and says what it 
 	}
 });
 
+test('every Alliance lockpicking origin reaches the preparation reminder before leaving for Redridge', () => {
+	const g = byRel('forever/class/rogue/certificate-of-thievery.guide');
+	const preparation = g.ast.steps.find((s) => s.goals.some((o) => o.verb === 'note'));
+	assert.ok(preparation && preparation.goals.some((o) => o.verb === 'accept' && o.quest === 2281), 'training advice belongs at the shared city visit');
+});
+
 test('titles name the goal: the Warlock chains the maintainer asked about read as what they give', () => {
 	const titles = new Map(GUIDES.map((g) => [g.rel, g.ast.header.title]));
 	assert.equal(titles.get(DREADSTEED), 'Warlock Dreadsteed');

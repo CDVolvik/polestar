@@ -25,6 +25,7 @@ return {
 	-- Step 6: Renzik "The Shiv"
 	-- {npc:6946} Renzik "The Shiv" · {npc:332} Master Mathias Shaw · {quest:2300} SI:7 · {object:2100} Old Town · {area:2257} Deeprun Tram · {zone:1455} Ironforge · {area:442} Auberdine · {area:17203} Stormwind Harbor
 	["{npc:6946} stands beside {npc:332} at {quest:2300} in {object:2100}. Dwarves and Gnomes take the {area:2257} from {zone:1455}; Night Elves take the boat from {area:442} to {area:17203}."] = "{npc:6946}站在{object:2100}{quest:2300}的{npc:332}身旁。矮人和侏儒从{zone:1455}乘{area:2257}；暗夜精灵从{area:442}乘船前往{area:17203}。",
+	["Learn Lockpicking from a rogue trainer before opening the practice locks."] = "打开练习锁前，先向潜行者训练师学会开锁。",
 
 	-- Step 7: Lucius
 	-- {zone:1429} Elwynn Forest · {area:69} Lakeshire · {npc:6966} Lucius · {item:5060} Thieves' Tools
@@ -33,6 +34,8 @@ return {
 	-- Step 8: Alther's Mill
 	-- {quest:2282} Alther's Mill · {area:69} Lakeshire · {object:121264} Lucius's Lockbox
 	["{quest:2282} stands east of {area:69}, up off the road. Open {object:121264} there."] = "{quest:2282}位于{area:69}东边，道路上方。在那里打开{object:121264}。",
+	-- {item:5060} Thieves' Tools · {npc:6966} Lucius
+	["Keep the {item:5060} supplied by {npc:6966} in your bags. Clear nearby spiders before practicing; lower-level rogues should bring help if the boxes are guarded. Use the practice locks until the quest lock is within your current skill, then recover the token. If useful practice remains, do it before returning to town; stop when the locks no longer improve your skill."] = "把{npc:6966}给你的{item:5060}留在背包里。练锁前先处理附近的蜘蛛；低等级时如果箱子有怪守着，建议找人帮忙。先用练习锁提高技能，达到当前任务锁的要求后再取出徽记。回城前可顺手继续练习，但锁已经不能提升技能时就不用继续了。",
 
 	-- Step 9: Back to Lucius
 	-- {npc:6966} Lucius
