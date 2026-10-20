@@ -19,13 +19,13 @@ return {
 	-- {area:16622} Thendal Grove
 	["Back to {area:16622}"] = "回到{area:16622}",
 	-- {npc:257554} Halaan Hawk-Eye · {npc:263113} Myriaal Mistwake · {npc:251368} Elatrell Featherlight
-	["{npc:257554} and {npc:263113} stand at the top of the watchtower, a few steps north-east of {npc:251368}."] = "",
+	["{npc:257554} and {npc:263113} stand at the top of the watchtower, a few steps north-east of {npc:251368}."] = "{npc:257554}和{npc:263113}站在瞭望塔顶层，就在{npc:251368}东北边几步远处。",
 	-- {npc:257554} Halaan Hawk-Eye
 	["Listen to {npc:257554}"] = "聆听{npc:257554}",
 
 	-- Step 4: Rorian the Dayseeker
 	-- {spell:1259416} Walk on Air · {npc:251361} Rorian the Dayseeker
-	["Jump off the top of the watchtower and use {spell:1259416} to float down to {npc:251361}, west of the tower."] = "",
+	["Jump off the top of the watchtower and use {spell:1259416} to float down to {npc:251361}, west of the tower."] = "从瞭望塔顶跳下，使用{spell:1259416}缓缓落到塔西边的{npc:251361}身旁。",
 	-- {npc:251361} Rorian the Dayseeker · {item:4100} Crumpled Note
 	["{npc:251361}: the {item:4100}"] = "{npc:251361}：{item:4100}",
 	-- {npc:251964} Blademaster Ren
@@ -189,7 +189,7 @@ return {
 	-- Step 34: Standing our ground
 	["Standing our ground"] = "坚守阵地",
 	-- {npc:252800} Aamelia Windfield
-	["Tell {npc:252800} you're ready"] = "",
+	["Tell {npc:252800} you're ready"] = "告诉{npc:252800}你准备好了",
 
 	-- Step 35: Valanaar turn-ins
 	-- {area:16638} Valanaar
@@ -272,10 +272,10 @@ return {
 
 	-- Step 49: Vayn Moongaze
 	-- {npc:254151} Vayn Moongaze · {npc:258130} Jorel Windsinger · {npc:258134} Naaleos Leafwhisper · {npc:257944} Elegael Thornpaw · {npc:253622} Commander Haalien · {quest:94490} Ripped Missive · {quest:94489} The Wounds of Betrayal
-	["{npc:254151}, {npc:258130} and {npc:258134} are north-east of {npc:257944}; {npc:253622} stands east of them. Haalien also drops a {quest:94490}. For {quest:94489}, enter the Nightfang Den, heal 7 injured druids and find {npc:258130}."] = "",
-	["Heal the injured druids in the Nightfang Den"] = "",
+	["{npc:254151}, {npc:258130} and {npc:258134} are north-east of {npc:257944}; {npc:253622} stands east of them. Haalien also drops a {quest:94490}. For {quest:94489}, enter the Nightfang Den, heal 7 injured druids and find {npc:258130}."] = "{npc:254151}、{npc:258130}和{npc:258134}在{npc:257944}东北边；{npc:253622}站在他们东边。这名指挥官还会掉落{quest:94490}。完成{quest:94489}时，进入夜牙巢穴，治疗7名受伤的德鲁伊并找到{npc:258130}。",
+	["Heal the injured druids in the Nightfang Den"] = "治疗夜牙巢穴内受伤的德鲁伊",
 	-- {npc:258130} Jorel Windsinger
-	["Find {npc:258130}"] = "",
+	["Find {npc:258130}"] = "找到{npc:258130}",
 
 	-- Step 50: Elegael Thornpaw, the missive
 	-- {npc:257944} Elegael Thornpaw
