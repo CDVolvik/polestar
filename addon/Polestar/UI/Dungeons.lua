@@ -31,9 +31,11 @@
 --   objective, where it starts and ends (each with a pin that sets the
 --   arrow; the whole Starts line is a link to the giver, or to the first
 --   prerequisite still to do), the chain before it (one line per quest,
---   each with its own pin)
+--   each with its own pin; hovering one shows that quest's levels, state,
+--   objective, start and end, rewards and its XP at the character's level)
 --   and the rewards (item icons in quality borders, "Choose one", XP, money,
---   reputation). Item hover shows the game's tooltip (Gear adds its upgrade
+--   reputation; after a chain still to do, a chip of what the quest and its
+--   chain are worth, Dungeons.ChainXP, with the levels panel on hover). Item hover shows the game's tooltip (Gear adds its upgrade
 --   line there); modified clicks link or try it on.
 --   Attunement: per attunement or key (Dungeons.Attunements) its name, this
 --   character's state (Done, "Not in your bags" for a key whose chain is
@@ -420,11 +422,68 @@ local function head(i)
 	return h
 end
 
+-- A quest's XP, money and reputation rewards, as chip texts.
+local function rewardExtras(rw)
+	local extras = {}
+	if rw.xp and rw.xp > 0 then extras[#extras + 1] = format(L["%s XP"], thousands(rw.xp)) end
+	local m = rw.money and money(rw.money)
+	if m then extras[#extras + 1] = m end
+	for _, r in ipairs(rw.rep or {}) do
+		if r.value and r.value ~= 0 then
+			extras[#extras + 1] = format(r.value > 0 and "+%d %s" or "%d %s", r.value, factionName(r.faction, r.name) or L["Reputation"])
+		end
+	end
+	return extras
+end
+
+-- A chain quest's details on hover: levels, this character's state, the
+-- objective, where it starts and ends, its rewards, and its XP at the
+-- character's level when the client gives less.
+local function chainEnter(self)
+	local q = self.psQuest
+	if not q then return end
+	local lines = {}
+	local meta = {}
+	if q.level then meta[#meta + 1] = format(L["Level %d"], q.level) end
+	if q.minLevel then meta[#meta + 1] = format(L["Requires level %d"], q.minLevel) end
+	if #meta > 0 then lines[#lines + 1] = concat(meta, DOT) end
+	local stateText, kind = stateChip(questState(q, self.psLevel or 1), q)
+	if stateText then
+		local r, g, b = Theme.Color(kind == "success" and "success" or "textDim")
+		lines[#lines + 1] = { stateText, r, g, b }
+	end
+	local obj = D().ObjectiveText(q)
+	if obj then lines[#lines + 1] = obj end
+	lines[#lines + 1] = { left = L["Starts"], right = pointText(startOf(q, ns.PlayerPoint())) }
+	if q.finish then lines[#lines + 1] = { left = L["Ends"], right = pointText(q.finish) } end
+	local rw = q.rewards or {}
+	local extras = rewardExtras(rw)
+	if #extras > 0 then lines[#lines + 1] = { left = L["Rewards"], right = concat(extras, DOT) } end
+	for _, it in ipairs(rw.items or {}) do
+		local name = (type(it.id) == "number" and ns.Names.Item(it.id)) or it.name
+		if name then
+			lines[#lines + 1] = { left = it.choice and L["Choose one"] or L["You get"], right = "|c" .. Theme.Hex("item") .. name .. "|r" }
+		end
+	end
+	local Lv = ns.Levels
+	if Lv and type(rw.xp) == "number" and rw.xp > 0 and q.level then
+		local part = Lv.Share(self.psLevel or 1, q.level)
+		if part < 1 then
+			local r, g, b = Theme.Color("warning")
+			lines[#lines + 1] = { format(L["%s XP at your level"], thousands(floor(rw.xp * part + 0.5))), r, g, b }
+		end
+	end
+	W.Tooltip(self, "ANCHOR_TOP", q.title or (L["Quest"] .. " " .. tostring(q.id)), lines)
+end
+
 local function chainRow(b, i)
 	local r = b.Chains[i]
 	if r then return r end
 	r = CreateFrame("Frame", nil, b)
 	r:SetHeight(CHAIN_H)
+	r:EnableMouse(true)
+	r:SetScript("OnEnter", chainEnter)
+	r:SetScript("OnLeave", W.HideTip)
 	-- A done step is checked; the others get a quiet bullet (the title's
 	-- difficulty colour already speaks).
 	r.Glyph = W.Tex(r, "ARTWORK", "circle", "textMuted")
@@ -488,6 +547,8 @@ local function block(i)
 	if b then return b end
 	b = CreateFrame("Frame", nil, pg.Body)
 	b.Chains, b.Tiles, b.Chips = {}, {}, {}
+	-- What the quest and the chain before it are worth (UI/LevelTip.lua).
+	b.ChainXP = UI.LevelTip.Chip(b, hub)
 	b.Glyph = W.Tex(b, "ARTWORK", "icon-accept", "quest")
 	b.Glyph:SetSize(14, 14)
 	b.Glyph:SetPoint("CENTER", b, "TOPLEFT", GUT, -30)
@@ -1186,19 +1247,6 @@ end
 -- Where each part of a quest block goes, from the data alone (the objective
 -- measured on one shared string), so every block is placed before any is
 -- drawn and only the ones in view are.
-local function rewardExtras(rw)
-	local extras = {}
-	if rw.xp and rw.xp > 0 then extras[#extras + 1] = format(L["%s XP"], thousands(rw.xp)) end
-	local m = rw.money and money(rw.money)
-	if m then extras[#extras + 1] = m end
-	for _, r in ipairs(rw.rep or {}) do
-		if r.value and r.value ~= 0 then
-			extras[#extras + 1] = format(r.value > 0 and "+%d %s" or "%d %s", r.value, factionName(r.faction, r.name) or L["Reputation"])
-		end
-	end
-	return extras
-end
-
 local function tilesPer()
 	return max(1, floor((mainWidth() - VALUE_X - PAD + TILE_GAP) / (TILE_W + TILE_GAP)))
 end
@@ -1264,7 +1312,14 @@ local function plan(q, key)
 		y = y + tilesHeight(nGet) + 10
 	end
 	p.extras = rewardExtras(rw)
-	if #p.extras > 0 then
+	-- The chain's worth, while one of its quests is still to do.
+	local C, open = ns.Compat, false
+	for _, cid in ipairs(q.chain or {}) do
+		if not (C and C.IsQuestCompleted and C.IsQuestCompleted(cid)) then open = true end
+	end
+	local cs = open and D().ChainXP and D().ChainXP(key, q.id) or nil
+	p.chainXP = cs and not cs.maxed and cs.xp > 0 and cs or nil
+	if #p.extras > 0 or p.chainXP then
 		p.more = y
 		y = y + W.CHIP_H + 4
 	end
@@ -1465,6 +1520,7 @@ local function paintQuest(b, q, p, top, plevel, key)
 			r.Title:SetWidth(tw)
 			r.Sub:SetWidth(max(40, min(floor(r.Sub:GetStringWidth() + 1), room - tw - 10)))
 			r.Pin.psPoint, r.Pin.psLabel = st, st and st.name
+			r.psQuest, r.psLevel = cq, plevel
 			W.SetIconState(r.Pin, false, canGuide(st))
 			r:Show()
 			y = y + CHAIN_H
@@ -1489,6 +1545,16 @@ local function paintQuest(b, q, p, top, plevel, key)
 		x = x + w + 6
 	end
 	hidePool(b.Chips, #p.extras + 1)
+	local cs = p.chainXP
+	local cw = UI.LevelTip.Set(b.ChainXP, cs, cs and {
+		head = L["If you finish this quest and the chain before it"],
+		need = L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"],
+		chip = format(L["%s XP with its chain"], thousands(cs.xp)),
+	} or nil)
+	if cw then
+		b.ChainXP:ClearAllPoints()
+		b.ChainXP:SetPoint("TOPLEFT", b, "TOPLEFT", x, -p.more)
+	end
 	b:Show()
 end
 
