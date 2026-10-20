@@ -795,7 +795,9 @@ function GF.RenderTabs()
 end
 
 ---------------------------------------------------------------------------
--- Banners: the step the player just skipped, with its undo; why the guide
+-- Banners: the group quest the live step waits on (`when group`: Skip it,
+-- the default, or Do it with a group; it cannot be dismissed); the step the
+-- player just skipped, with its undo; why the guide
 -- just moved past a quest (while that step's guide and next step are on
 -- screen); the step on screen when it is not the live one (skipped: unskip
 -- it; looked at with ‹ ›: back to the live step); then the out-levelled offer
@@ -830,6 +832,9 @@ local function bannerNotice()
 	-- On the way to a nearby service (Nav/Nearby.lua): the way back first.
 	local t = nearbyTrip()
 	if t then return "trip", t end
+	local gq, gtitle
+	if E and E.GroupQuestion then gq, gtitle = E.GroupQuestion() end
+	if gq then return "group", { quest = gq, title = gtitle } end
 	local k = notices.stepSkip
 	if k and g ~= nil and g.id == k.guideId and (not view or view.index ~= k.step) then return "stepSkip", k end
 	local s = notices.skipped
@@ -887,6 +892,7 @@ end
 function GF.LayoutBanner(width)
 	local kind, n = bannerNotice()
 	banner.psKind = kind
+	banner.Jump.psDefault = kind == "group" or nil -- the gamepad's first focus (UI/GamepadGuide.lua)
 	banner.Text:SetWidth(width - PAD * 2 - 21 - 24)
 	banner.Later:Hide()
 	if kind == "skipped" then
@@ -901,6 +907,13 @@ function GF.LayoutBanner(width)
 		local h = floor(9 + banner.Text:GetStringHeight() + 9 + 0.5)
 		banner:SetHeight(h)
 		return h
+	elseif kind == "group" then
+		banner.Icon:SetTexture(Theme.Media("icon-kill"))
+		banner.Text:SetText(string.format(L["Group quest: %s"], n.title or "") .. "\n" .. L["It needs a group. Skip it and the guide keeps to the solo route."])
+		-- Skip is the default answer: the accent link, the banner's main action.
+		local w = placeLink(banner.Jump, L["Skip it"], 0, -4)
+		placeLink(banner.Later, L["Do it with a group"], w + 10, -4)
+		banner.Close:Hide()
 	elseif kind == "stepSkip" then
 		banner.Icon:SetTexture(Theme.Media("skip"))
 		local what = string.format(L["Step %d"], n.step)
@@ -998,6 +1011,8 @@ function GF.TakeBanner()
 	local E = Engine()
 	if kind == "trip" then
 		ns.Nav.nearby.EndTrip()
+	elseif kind == "group" then
+		if E and E.AnswerGroup then E.AnswerGroup(n.quest, "skip") end
 	elseif kind == "stepSkip" then
 		notices.stepSkip = nil
 		if E and E.Unskip then E.Unskip(n.step) end
@@ -1031,13 +1046,27 @@ function GF.TakeBanner()
 	GF.Layout()
 end
 
+-- The banner's second action: Do it with a group for a group quest, else
+-- Later (dismiss).
+function GF.LaterBanner()
+	local kind, n = bannerNotice()
+	local E = Engine()
+	if kind == "group" then
+		if E and E.AnswerGroup then E.AnswerGroup(n.quest, "do") end
+		GF.Layout()
+	else
+		GF.DismissBanner()
+	end
+end
+
 -- Dismiss the visible notice (training: until the next due level; a step on
 -- screen that is not the live one: until another step is).
 function GF.DismissBanner()
 	local kind, n = bannerNotice()
 	if kind == "trip" then
 		ns.Nav.nearby.EndTrip()
-	elseif kind == "away" then
+	elseif kind == "away" or kind == "group" then
+		-- a group quest is answered, never dismissed
 	elseif kind == "riding" then
 		local R = ns.QoL and ns.QoL.Riding
 		if R and R.OnResolve then R.OnResolve(n.tier) end
@@ -1282,6 +1311,7 @@ function GF.Layout()
 		banner:Show()
 	else
 		banner:Hide()
+		banner.Jump.psDefault = nil
 	end
 	if state == "steps" then
 		local h = layoutCard(width)
@@ -2683,7 +2713,7 @@ local function build()
 	banner.Later:SetHeight(18)
 	banner.Later.Label = T(banner.Later, "label", "textDim")
 	banner.Later.Label:SetPoint("LEFT", banner.Later, "LEFT", 0, 0)
-	banner.Later:SetScript("OnClick", function() GF.DismissBanner() end)
+	banner.Later:SetScript("OnClick", function() GF.LaterBanner() end)
 	banner.Later:SetScript("OnEnter", function(self) W.Color(self.Label, "text"); GF.HoverIn() end)
 	banner.Later:SetScript("OnLeave", function(self) W.Color(self.Label, "textDim") end)
 	-- A 12px glyph in a 24px target, centred where the old 18px one sat.

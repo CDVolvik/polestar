@@ -145,12 +145,14 @@ first, so `!dungeon "<Name>"` is the solo route), `done <label>` (the labelled
 step was completed, not skipped or jumped over; not on a `next` line),
 `skill <Profession> <N>` (the profession's rank is N or more; not learned is
 0), `cooldown item <item>` / `cooldown spell <spell>` (on cooldown, the global
-cooldown aside); `!` in front of any but
+cooldown aside), `group <quest>` (the player chose to do that group quest;
+unanswered, the route waits and asks; on the accept step, `!group` for a solo
+way; not on `next` or `skipto`); `!` in front of any but
 `level` and `money` turns it around. Once the route has passed the step, the
 outcome stays. A pack with `when` (on a step or a `next` line), `along` or
 `label` needs Polestar 0.2.6; with `money` or `task` goals, a `when money`,
-`when dungeon`, `when upgrade`, `when done`, `when skill` or `when cooldown`
-predicate, or `skipto`, needs Polestar 0.3.0.
+`when dungeon`, `when upgrade`, `when done`, `when skill`, `when cooldown` or
+`when group` predicate, or `skipto`, needs Polestar 0.3.0.
 
 ## Lint errors that come up most
 

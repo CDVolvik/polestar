@@ -570,6 +570,20 @@ function Engine.ChooseDungeon(map, on)
 	record("ChooseDungeon", map, on)
 	Polestar.CharState().dungeons[map] = on and true or nil
 end
+-- Group quests (`when group`): uistub.groupQuestion = { quest, title } is the
+-- one the live step waits on until answered; answers per character
+-- (CharState().groupQuests).
+uistub.groupQuestion = nil
+function Engine.GroupQuestion()
+	local g = uistub.groupQuestion
+	if not g or Polestar.CharState().groupQuests[g.quest] ~= nil then return nil end
+	return g.quest, g.title
+end
+function Engine.GroupAnswer(q) return Polestar.CharState().groupQuests[q] end
+function Engine.AnswerGroup(q, answer)
+	record("AnswerGroup", q, answer)
+	Polestar.CharState().groupQuests[q] = answer
+end
 -- Candidate goals: the next-best trainer/vendor/inn.
 function Engine.CycleCandidate(s, g)
 	record("CycleCandidate", s, g)

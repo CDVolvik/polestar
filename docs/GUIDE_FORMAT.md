@@ -249,6 +249,7 @@ step Back to Gornek
 | `done <label>` | the step carrying `label <label>` in this guide was completed: it applies, its goals are done, and it was not skipped by the player, a failed `when` or a `skipto` jump (see "Jumps"); not on a `next` line |
 | `skill <Profession> <N>` | the character's rank in that profession is N (1 or more) or higher, the profession named as for the `skill` goal (`when skill Cooking 50`, `when skill "First Aid" 1`); one not learned counts as rank 0, so `!skill Herbalism 1` holds while the character has no Herbalism |
 | `cooldown item <item>`, `cooldown spell <spell>` | the item or spell is on cooldown, the global cooldown aside: `when !cooldown item 6948` while the Hearthstone is ready. Polestar looks again when the cooldown runs out |
+| `group <quest>` | the player chose to do that group quest; `!group` holds when they chose to skip it. Until they answer, the route waits at the step and asks (see "Group quests" below); not on a `next` line or a `skipto` |
 
 `!` in front of any predicate but `level` turns it around: `!onquest 788`
 holds while the quest is not in the log, `!has 159 x5` while the bags hold
@@ -324,6 +325,42 @@ the outcome is stored once the route has passed the step: a sword step
 skipped because the character wore something better does not come back
 later. The item id is checked against the data, as for `has`.
 
+**Group quests.** `when group <quest>` is for a quest that needs a group (an
+elite, an escort): the player decides whether to do it. When the route
+reaches a step with `when group <quest>` or `when !group <quest>` and the
+player has not answered for that quest yet, the route waits there and the
+guide window asks: "Skip it" (the default, the solo route) or "Do it with a
+group". Quest automation leaves the quest alone until then. The answer is
+kept per character, once per quest, for every guide; Options, Discovery,
+Group quests lists them and changes an answer until the route has passed
+the step. "Do it" makes `when group` hold and `when !group` fail; "Skip it"
+the other way round.
+
+Put `when group` on the quest's accept step: when it fails, the quest's
+turn-in and objective goals later in the guide go with it, as for any
+accept that does not apply. A solo way to the same objective is a step with
+`when !group`:
+
+```
+step Arachnophobia
+  when group 6284
+  accept 6284
+
+step Anaya's Pendant, the solo way
+  when !group 963
+  complete 963
+
+step Anaya's Pendant with a group
+  when group 963
+  complete 963 group 3
+```
+
+The answer is never taken from the quest log: a player may have the quest
+and still choose the solo way. An `along` step does not wait; it applies
+until the answer says otherwise. `group` cannot be used on a `next` line or
+a `skipto`, where there is no step to ask at. The quest id is checked
+against the data.
+
 ### Conditional hand-offs
 
 `next <id> when <predicate>` makes one `next` option conditional: one guide,
@@ -349,9 +386,9 @@ time. A subzone is looked up in the zone where the guide ends.
 A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
 Polestar 0.2.6 and later read. A `when money`, `when dungeon`, `when
-upgrade`, `when skill` or `when cooldown` predicate (above) writes format 5
-(Polestar 0.3.0 and later), because 0.2.6 knows `when` but not those
-predicates; `money` and `task` goals also need format 5
+upgrade`, `when skill`, `when cooldown` or `when group` predicate (above)
+writes format 5 (Polestar 0.3.0 and later), because 0.2.6 knows `when` but
+not those predicates; `money` and `task` goals also need format 5
 (docs/PACK_FORMAT.md).
 
 ## Along the way
