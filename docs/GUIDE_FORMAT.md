@@ -333,7 +333,9 @@ guide window asks: "Skip it" (the default, the solo route) or "Do it with a
 group". Quest automation leaves the quest alone until then. The answer is
 kept per character, once per quest, for every guide; Options, Discovery,
 Group quests lists them and changes an answer until the route has passed
-the step. "Do it" makes `when group` hold and `when !group` fail; "Skip it"
+the step. Options, Guide, Automation, "Group quests" answers every quest the
+player has not answered one by one: ask at each (the default), do them all,
+or skip them all; then the route never waits. "Do it" makes `when group` hold and `when !group` fail; "Skip it"
 the other way round.
 
 Put `when group` on the quest's accept step: when it fails, the quest's
