@@ -1344,6 +1344,10 @@ L["The map can't open in combat: press Show on map again when it ends."] = "O ma
 L["Search dungeons"] = "Buscar masmorras"
 -- L["If you finish the quests here"] = ""
 -- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
+-- L["%s XP at your level"] = ""
+-- L["If you finish this quest and the chain before it"] = ""
+-- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
+-- L["%s XP with its chain"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Bem aqui"
@@ -2197,6 +2201,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "Dilaceração Mental é seu principal dano e lentidão daqui em diante; Dilaceração Mental Melhorada a faz acertar mais forte."
 L["Vampiric Embrace heals you from your Shadow damage."] = "Abraço Vampírico cura você com seu dano de Sombra."
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "Forma das Sombras é o capstone: mais dano de Sombra e menos dano físico recebido."
+-- L["ForeverDB through level 30, Polestar after"] = ""
+-- L["Polestar, with ForeverDB's builds to level 20"] = ""
+-- L["Polestar, with ForeverDB's talent data"] = ""
+-- L["ForeverDB"] = ""
+-- L["ForeverDB's leveling builds, adapted to level 30"] = ""
 
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "Passar a guia ao Shortest Path Forever"

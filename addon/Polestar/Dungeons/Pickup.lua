@@ -13,8 +13,14 @@
 --       Essential Artificials is; counted in `done`),
 --       open now or by the dungeon's lowest level, picked up outside from a
 --       giver (not from an item, not inside), not a follow-up of another quest
---       of this page; pre: the open prerequisites, in the order they are done
---       (all of `pre`, one of `preAny`: Lookup.QuestChain).
+--       of this page -- unless the quests before it here are errands (no
+--       objectives, any standing they name held, given (not by an item) and
+--       turned in outside by an NPC or object this character may use: Hamuul
+--       Runetotem and Nara Wildmane before Leaders of the Fang), which are
+--       then done on the way as its prerequisites; pre: the open
+--       prerequisites, in the order they are done
+--       (all of `pre`, one of `preAny`: Lookup.QuestChain). A quest done on
+--       the way to another is neither a take of its own nor carried.
 --       carried: the page's quests already in the log. giver: a point
 --       { kind, id, name, map, x, y, f }. Each accept carries the page's
 --       `closedBy`, so the Engine passes it once taken on the way.
@@ -122,6 +128,28 @@ end
 
 local NOT_YOURS = { faction = true, race = true, class = true }
 
+-- Whether a chain quest is an errand: nothing to do but talk (no
+-- objectives, and any standing it names already held), given (not by an
+-- item) and turned in outside by an NPC or object this character may use
+-- (Wailing Caverns' Hamuul Runetotem and Nara Wildmane, Thunder Bluff before
+-- Leaders of the Fang). Such a quest does not block the one after it even
+-- when it is also on this page; it is done on the way instead. One an item
+-- starts (Nefarian's head, a note that drops inside) is not one.
+local function errand(r, from, p)
+	if #(r.objectives or {}) > 0 then return false end
+	if r.repFaction and r.repStanding
+		and (tonumber((ns.Compat.GetFactionStanding(r.repFaction))) or 4) < r.repStanding then
+		return false
+	end
+	local st = r.start
+	if not st or (st.item and st.item[1]) then return false end
+	local Lk = LK()
+	local g = Lk.QuestEnd(st, from, p)
+	if not (g and g.spawn and not g.hostile) then return false end
+	local e = Lk.QuestEnd(r["end"], g.spawn, p)
+	return (e and e.spawn and not e.hostile) and true or false
+end
+
 -- Why a page quest is not for this character (faction, race, class) | nil.
 local function notYours(pq, rec, p)
 	if rec then
@@ -164,9 +192,10 @@ function Dungeons.PickupPlan(key)
 					local chain, truncated = Lk.QuestChain(pq.id, p)
 					for i = 1, #chain - 1 do
 						local r = chain[i]
-						-- A follow-up of another quest here is taken after the run;
-						-- a prerequisite this character can never take blocks it.
-						if onPage[r.id] or NOT_YOURS[Lk.QuestBlock(r, p)] then ok = false end
+						-- A follow-up of another quest here is taken after the
+						-- run, unless it is an errand done on the way; a
+						-- prerequisite this character can never take blocks it.
+						if (onPage[r.id] and not errand(r, from, p)) or NOT_YOURS[Lk.QuestBlock(r, p)] then ok = false end
 						pre[#pre + 1] = r
 					end
 					pre.truncated = truncated
@@ -174,6 +203,24 @@ function Dungeons.PickupPlan(key)
 				if ok then plan.take[#plan.take + 1] = { quest = pq, rec = rec, giver = giver, pre = pre } end
 			end
 		end
+	end
+	-- A quest done on the way to a later one (its prerequisite, an errand
+	-- of this page) is neither a take of its own nor carried.
+	local onTheWay = {}
+	for _, t in ipairs(plan.take) do
+		for _, r in ipairs(t.pre) do onTheWay[r.id] = true end
+	end
+	if next(onTheWay) then
+		local take = {}
+		for _, t in ipairs(plan.take) do
+			if not onTheWay[t.quest.id] then take[#take + 1] = t end
+		end
+		plan.take = take
+		local carried = {}
+		for _, pq in ipairs(plan.carried) do
+			if not onTheWay[pq.id] then carried[#carried + 1] = pq end
+		end
+		plan.carried = carried
 	end
 	return plan
 end

@@ -11,7 +11,8 @@
 --
 --   LevelTip.Chip(parent, host) -> chip   -- host: the window the panel opens on
 --   LevelTip.Set(chip, summary, texts) -> width | nil   -- nil (hidden): nothing to show
---       texts = { head = "If you finish this guide", need = "You are level %d. Level %d is recommended ...; from there:" }
+--       texts = { head = "If you finish this guide", need = "You are level %d. Level %d is recommended ...; from there:",
+--         chip = words of its own for the chip (a quest chain's "1,640 XP with its chain"), else the levels }
 --   LevelTip.Show(chip) ; LevelTip.Hide() ; LevelTip.Frame() -> the panel | nil
 --   LevelTip.Text(levels) -> "+1.3 levels" | "+25% of a level"
 --
@@ -299,6 +300,8 @@ end
 -- level in the warning colour.
 local function paintChip(c)
 	local s = c.psXP
+	local own = c.psTexts and c.psTexts.chip
+	if own then return W.SetChip(c, own, s.below and "warning" or "accent") end
 	if s.below then return W.SetChip(c, format(L["Recommended: level %d"], s.below), "warning") end
 	return W.SetChip(c, LevelTip.Text(s.levels), "accent")
 end

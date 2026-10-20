@@ -130,6 +130,30 @@ test('Undercity: the walk from the Apothecarium to Varimathras stays in the city
 	assert.ok(top < -30, `it stays under the ground, never higher than ${top.toFixed(1)}`);
 });
 
+// #541 (Deadshot), Stormwind, Alliance: from the Trade District (1453
+// 68.48,75.35 live, street height 107) to Jennea Cannon in the Wizard's
+// Sanctum (the guide's goal: 49.56,85.80 live, z 29.7) the arrow ran a
+// straight line along the city walls, 369 yd. The client gives no height
+// for the player, so the walk may start on any storey under them: it takes
+// the terrain buried under the streets (75 yd under the Trade District, 59.5
+// under the Mage Quarter) and joins the Sanctum's lower floors from it. The
+// navigation grid walks the streets, 489 yd, never under 87 yd. Open: the
+// maps keep that terrain walkable.
+test('Stormwind: the walk from the Trade District to Jennea Cannon keeps to the streets, not the terrain under them (#541)', { skip, todo: 'open: the maps still walk the terrain under the city' }, () => {
+	const from = { c: 0, x: -8868.639, y: 533.077 };
+	const to = { c: 0, x: -8989.686, y: 861.813, z: 29.7 };
+	const got = walk(from, to, 'Alliance');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to Jennea Cannon');
+	// Outside the Sanctum (40 yd round her), every point stands on a street.
+	for (const [x, y, z] of pts) {
+		if (z === false || Math.hypot(x - to.x, y - to.y) < 40) continue;
+		assert.ok(z > 85, `the walk passes ${x.toFixed(1)},${y.toFixed(1)} at ${z} yd, under the streets (${pts.length} points, ${Math.round(yardsOf(pts))} yd)`);
+	}
+});
+
 // #338 (Tazul), Stormwind: from the Dwarven District (66.04,39.37, street
 // height 95) the walk to the Deeprun Tram climbed the road towards the Keep and
 // ended on the roof above the tram's entrance, 417 yd: the tram's end had no
@@ -157,4 +181,56 @@ test('Stormwind: the walk to the Deeprun Tram ends at its entrance, not on the r
 	assert.ok(yards < 150, `the walk is ${yards.toFixed(0)} yd (${pts.length} points)`);
 	const end = pts.filter((p) => p[2] !== false).pop();
 	assert.ok(Math.abs(end[2] - tram.z) < 5, `it ends at the entrance's height (${end[2]}, the entrance ${tram.z})`);
+});
+
+// #540 (EpicTibbles), Teldrassil, Alliance: from 1438 42.10,56.59 to The
+// Sleeping Druid at Ban'ethil Barrow Den (44.94,61.59) the arrow led up the
+// hill in front of the player, which they could not climb. The client's
+// terrain there rises from 1364 to 1403 yd in the first 40 yd at 51 to 62
+// degrees, and the walk goes straight up it (and up two more faces past it,
+// 56 to 61 degrees). Open: on the grid, nothing joins the ground below to
+// the Barrow Den's hilltop but faces over 50 degrees, so the pack opens the
+// gentlest of them as the only way up; whether the client walks them is #98's.
+test('Teldrassil: the walk from 42.10,56.59 to The Sleeping Druid does not climb the face in front of the player (#540)', { skip, todo: 'open: the maps still climb the face (#98)' }, () => {
+	const from = world(1438, 42.1, 56.59);
+	const to = world(1438, 44.94, 61.59);
+	const got = walk(from, to, 'Alliance');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to The Sleeping Druid');
+	// The face's middle: the ground at 1380 yd, its triangles 53 to 56 degrees.
+	const face = world(1438, 42.22, 56.29);
+	const off = offPath(pts, face);
+	assert.ok(off > 3, `the path passes ${off.toFixed(1)} yd from the face's middle (${pts.length} points, ${Math.round(yardsOf(pts))} yd)`);
+});
+
+// #314 (Tac), Stormwind, Alliance: from the shore north-west of the city
+// (1415 41.08,62.23) to Grimand Elmore in the Dwarven District (1453
+// 59.73,33.78, his spawn; the report cut the target's coordinates short) the
+// walk crossed the cliffs and rocky ground just north-west of the walls, which
+// the player could not climb. The maps cross them above the city's map (1453
+// 30 to 52 across, -16 to 6 down): up from 70 to 162 yd at 50 to 59 degrees,
+// then 24 yd down at 58 degrees into the city. Open, one of #98's slopes.
+test('Stormwind: the walk from the shore north-west of the city to Grimand Elmore does not cross the cliffs north-west of the walls (#314)', { skip, todo: 'open: the maps still cross the cliffs (#98)' }, () => {
+	const from = world(1415, 41.08, 62.23);
+	const to = world(1453, 59.73, 33.78);
+	const got = walk(from, to, 'Alliance');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to Grimand Elmore');
+	const a = world(1453, 30, -16);
+	const b = world(1453, 52, 6);
+	const inside = (x, y) => x <= a.x && x >= b.x && y <= a.y && y >= b.y;
+	for (let i = 1; i < pts.length; i++) {
+		const [ax, ay] = pts[i - 1];
+		const [bx, by] = pts[i];
+		const steps = Math.ceil(Math.hypot(bx - ax, by - ay) / 2);
+		for (let s = 0; s <= steps; s++) {
+			const x = ax + ((bx - ax) * s) / steps;
+			const y = ay + ((by - ay) * s) / steps;
+			assert.ok(!inside(x, y), `the leg from ${ax.toFixed(1)},${ay.toFixed(1)} to ${bx.toFixed(1)},${by.toFixed(1)} crosses the cliffs (${pts.length} points, ${Math.round(yardsOf(pts))} yd)`);
+		}
+	}
 });

@@ -76,8 +76,8 @@ return {
 	["{npc:5909}, a few steps away"] = "{npc:5909}, в нескольких шагах",
 
 	-- Step 14: Shenthul
-	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
-	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401} стоит здесь: {object:172960}. Выберите его целью и введите /salute, чтобы выполнить задание {quest:2460}.",
+	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute · {item:5060} Thieves' Tools · {item:8051} Flare Gun · {quest:2458} Deep Cover
+	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}. Before leaving town, learn Lockpicking and bring {item:5060}; practise before attempting the tower lockbox. Keep the {item:8051} supplied with {quest:2458}. Gallywix is elite, so arrange help or leave that optional part for later."] = "",
 	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} Sludge Fen
 	["{quest:2458}: {npc:7233}, by the {area:382}"] = "{quest:2458}: {npc:7233}, у места {area:382}",
 
@@ -142,12 +142,12 @@ return {
 	["Wizzlecrank drives his shredder out of the camp: stay with him and kill whatever attacks him. {npc:3442} takes it in {area:392}."] = "Он выводит свой крошшер из лагеря: держитесь рядом и убивайте всех, кто на него нападает. Задание принимает {npc:3442} ({area:392}).",
 
 	-- Step 31: Taskmaster Fizzule
-	-- {area:382} Sludge Fen
-	["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "Физзул руководит лагерем Торговой компании в восточном конце места {area:382}. Он нападает на чужаков: выберите его целью и введите /salute, пока он не напал.",
+	-- {area:382} Sludge Fen · {item:8051} Flare Gun
+	["Fizzule is by the Venture Co. tower north of the {area:382}. Use {item:8051} to fire TWO flares before approaching him, then target him and /salute. Keep that order: he attacks strangers who have not signalled first."] = "",
 
 	-- Step 32: Mission: Possible But Not Probable
 	-- {npc:7287} Foreman Silixiz
-	["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "Оставайтесь незаметными: ключ от башни – у NPC {npc:7287}; Нервотреп и его денежный ящик – наверху. Нервотреп – элита: лучше собрать группу.",
+	["Pickpocket {npc:7287} for the tower key before opening the lockbox. Gallywix and his lockbox are at the top; the key does not open that box, which still needs Lockpicking. Gallywix is elite: grouping up is advised. If you postpone this optional job, resume it in the Class guide Poisons (Horde)."] = "",
 	["Venture Co. tower"] = "Башня Торговой компании",
 
 	-- Step 33: Boulder Lode Mine
@@ -319,10 +319,13 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bruuz"] = "Брууз",
+	-- ["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "Физзул руководит лагерем Торговой компании в восточном конце места {area:382}. Он нападает на чужаков: выберите его целью и введите /salute, пока он не напал.",
 	-- ["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "Езжайте на север от места {area:380}. Цель: {area:384}. Наполните {item:15842} ({object:19464}), затем назад: {npc:3448} ({area:380}). Нет навыка {skill:182}? {npc:3490} рядом с ним продает {item:2449} – по три штуки, пока не обновит запас.",
+	-- ["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "Оставайтесь незаметными: ключ от башни – у NPC {npc:7287}; Нервотреп и его денежный ящик – наверху. Нервотреп – элита: лучше собрать группу.",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790} лежит у северного края места {area:382}, у башни Торговой компании. В нем – {item:15883} для задания {quest:30}.",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{npc:2391} ({area:272}) обучает: {spell:2842} – сохраните задание",
 	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344} обучает паладинов ({area:1638}). Маршрута полета туда у вас еще нет: летите сюда: {area:378}, езжайте на запад через зону {zone:1412}, поднимитесь на подъемнике и получите маршрут полета у NPC {npc:2995} на центральном возвышении.",
+	-- ["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401} стоит здесь: {object:172960}. Выберите его целью и введите /salute, чтобы выполнить задание {quest:2460}.",
 }

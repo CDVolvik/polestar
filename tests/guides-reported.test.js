@@ -71,6 +71,14 @@ const everyone = ({ step, goal }) => !step.only && !goal.only;
 // Goals a character of this class does (an `only` naming classes on the goal or its step must list it).
 const forClass = (cls) => ({ step, goal }) => [step.only, goal.only].every((o) => !o || !o.classes || o.classes.includes(cls));
 
+test('Horde poisons: the mainline contact instructions use the supplied flare gun before saluting Fizzule', { skip }, () => {
+	const list = goals('forever/horde/04-the-barrens.guide');
+	const contact = list[at(list, 'contact Fizzule', is('turnin', 2458))].step;
+	const flare = contact.note.indexOf('{item:8051}');
+	assert.ok(flare >= 0 && flare < contact.note.indexOf('/salute'), 'signal with the quest item before saluting');
+	assert.match(contact.note, /\bTWO\b.*flares/i, 'the quest requires two signals');
+});
+
 // Yards between two compiled points on one map (Era frame).
 function yards(a, b) {
 	const f = data.eraFrame(a.map);
@@ -235,6 +243,37 @@ test(`${TIRISFAL}: Onrevax's report (#365): the Coarse Thread for The Chill of D
 	assert.equal(list[thread].goal.npc, 2118, 'from Abigail Shiel, Trade Supplies in Brill');
 });
 
+// The same pattern as #365: a quest item bought steps before its turn-in is
+// asked for again on the turn-in step, from the same vendor (`nearest`: a
+// vendor of the guide's faction), so a player who passed the first buy is
+// not sent to the giver empty-handed. Done at once with the item in the bags.
+const BUY_AT_TURNIN = [
+	// [guide, quest, item, count, vendor npc or 'H' for `nearest` on the Horde, what]
+	['forever/alliance/30-40/01-hillsbrad-foothills.guide', 555, 3713, 1, 2381, 'the Soothing Spices for Chef Jessen'],
+	['forever/alliance/40-50/01-stranglethorn-vale.guide', 1218, 3713, 3, 4897, 'the Soothing Spices for "Swamp Eye" Jarl, from Theramore'],
+	['forever/horde/30-40/04-dustwallow-marsh.guide', 1218, 3713, 3, 'H', 'the Soothing Spices for "Swamp Eye" Jarl, bought in Ratchet in the Arathi guide'],
+	[TELDRASSIL, 99050, 3371, 1, 3614, 'the Empty Vial for Byancie'],
+	[TELDRASSIL, 99050, 159, 1, 6736, 'the Refreshing Spring Water for Byancie'],
+	['forever/collectibles/mounts/alliance/paladin-charger.guide', 7645, 13724, 20, 10857, 'the Enriched Manna Biscuits for Merideth Carlson, from Chillwind Camp'],
+	['forever/collectibles/mounts/neutral/warlock-dreadsteed.guide', 7625, 18687, 1, 14522, "the Xorothian Stardust for Gorzeeki Wildeyes, from Ur'dan in Felwood"],
+];
+for (const [guide, quest, item, count, vendor, what] of BUY_AT_TURNIN) {
+	test(`${guide}: the same pattern as #365, ${what}: asked for again on the step that hands in ${quest}`, { skip }, () => {
+		const list = goals(guide);
+		const hand = at(list, `turnin ${quest}`, is('turnin', quest));
+		const buy = list.findIndex(({ goal, s }) => s === list[hand].s && goal.t === 'buy' && goal.item === item);
+		assert.ok(buy >= 0 && buy < hand, `the turn-in step buys item ${item} before handing in ${quest}`);
+		const { goal } = list[buy];
+		assert.ok((goal.count || 1) >= count, `at least the ${count} the quest needs`);
+		if (vendor === 'H') {
+			assert.ok(goal.candidates && goal.candidates.length > 0, 'vendors to pick the nearest from');
+			assert.ok(goal.candidates.some((c) => c.faction && c.faction.includes('H')), 'some of them sell to the Horde');
+		} else {
+			assert.equal(goal.npc, vendor, `from npc ${vendor}`);
+		}
+	});
+}
+
 // --- Bandarion Keep (Mike_, 0.2.3): Hilda the Breaker and Ephram Barbaro offer their quests to Paladins only.
 
 test(`${TIRISFAL}: Mike_'s report: only Paladins are sent to Hilda the Breaker and Ephram Barbaro at Bandarion Keep`, { skip }, () => {
@@ -360,6 +399,60 @@ test(`${DUN_MOROGH}: thmastin's report: Camping 101: Cooking waits for the retur
 	assert.ok(lesson < camping, 'Gremlock teaches Cooking before taking the quest');
 	assert.ok(at(list, 'Crag Boar Rib', (g) => g.t === 'collect' && g.item === 2886) < lesson, 'on the return with the ribs, not on arrival');
 	assert.equal(list[camping].step, list[at(list, 'turnin 384 (Beer Basted Boar Ribs)', is('turnin', 384))].step, 'on the same visit as the ribs');
+});
+
+test(`EpicTibbles's report (#532): an objective that is talking to someone reads "Talk to", not "Kill": Zarrin in Teldrassil and the Skyborne visits to the Horde leaders`, { skip }, () => {
+	// The data counts these as kill credit on the NPC, so the goal stays a
+	// `kill` tracking the objective; its text is what the guide window shows.
+	const talks = [
+		[TELDRASSIL, 96634, 1, 'Zarrin'],
+		['forever/horde/03-silverpine-forest.guide', 93739, 1, 'Nazgrel'],
+		['forever/horde/03-silverpine-forest.guide', 93739, 2, "Vol'jin"],
+		[STONETALON, 93739, 4, 'Lady Sylvanas Windrunner'],
+		[ASHENVALE_HORDE, 93739, 3, 'Cairne Bloodhoof'],
+	];
+	for (const [guide, quest, oi, name] of talks) {
+		const { goal } = goals(guide)[at(goals(guide), `${quest}.${oi} (${name})`, (g) => g.t === 'kill' && g.quest === quest && g.oi === oi)];
+		assert.equal(goal.text, `Talk to ${name}`, `${guide}: ${name}`);
+	}
+	// Every kill goal whose note says to speak with someone says so itself.
+	for (const guide of allGuides()) {
+		for (const { goal } of goals(guide)) {
+			if (goal.t === 'kill' && /^Speak with /.test(goal.note || '')) {
+				assert.match(goal.text || '', /^Talk to /, `${guide}: ${goal.note}`);
+			}
+		}
+	}
+});
+
+test(`EpicTibbles's report (#565): a Hunter's Taming the Beast beast reads "Tame", not "Kill", in every guide`, { skip }, () => {
+	// The data counts the tame as kill credit on the beast, so the goal stays
+	// a `kill` tracking the objective; its text is what the guide window shows.
+	data = data || loadData(DATA);
+	const tames = [
+		[TELDRASSIL, 6063, 'Webwood Lurker'],
+		[DUN_MOROGH, 6064, 'Large Crag Boar'],
+		[ELWYNN, 94792, 'Rockhide Boar'],
+		['forever/alliance/skyborne/01-zephras-isle.guide', 94978, 'Windsong Crawler'],
+		[MULGORE, 6061, 'Adult Plainstrider'],
+		[DUROTAR, 6062, 'Dire Mottled Boar'],
+	];
+	for (const [guide, quest, name] of tames) {
+		const { goal } = goals(guide)[at(goals(guide), `${quest}.1 (${name})`, (g) => g.t === 'kill' && g.quest === quest && g.oi === 1)];
+		assert.equal(goal.text, `Tame ${name}`, `${guide}: ${name}`);
+	}
+	// Every kill goal on a Taming Rod objective says so itself.
+	let seen = 0;
+	for (const guide of allGuides()) {
+		for (const { goal } of goals(guide)) {
+			const q = goal.t === 'kill' && goal.quest && data.quests[goal.quest];
+			if (q && /Taming Rod to tame/.test(q.objectiveText || '')) {
+				assert.match(goal.text || '', /^Tame /, `${guide}: ${goal.quest}.${goal.oi}`);
+				seen++;
+			}
+		}
+	}
+	assert.ok(seen >= 21, `the seven Hunter starting guides' 21 tames (found ${seen})`);
 });
 
 test(`${DUN_MOROGH}: thmastin's report: The Reports is taken from Senir with Frostmane Hold and handed to the senator on the way to the tram`, { skip }, () => {
@@ -1654,6 +1747,26 @@ test('forever/horde/04-the-barrens.guide: Fitz\'s report (#273): the Savannah Li
 	}
 });
 
+// Fitz's report (#274): Sunscale Scytheclaws roam the Dry Hills among the
+// lions, but the step there did not remind you of Raptor Horns (865) when the
+// horns were still short. The step carries the horns too, in the Dry Hills;
+// a horn goal already met is done, and one for a quest never taken drops out.
+
+test('forever/horde/04-the-barrens.guide: Fitz\'s report (#274): the Dry Hills step also collects the Raptor Horns, in the Dry Hills, before the Ratchet turn-in', { skip }, () => {
+	const list = goals('forever/horde/04-the-barrens.guide');
+	const hills = list.findIndex(({ step, goal }) => step.title === 'The Dry Hills' && is('collect', 95494)(goal));
+	assert.ok(hills >= 0, 'the Dry Hills step is in the guide');
+	const horns = list.findIndex(({ s, goal }) => s === list[hills].s && is('collect', 865)(goal));
+	assert.ok(horns >= 0, 'the Dry Hills step collects the Raptor Horns');
+	const { goal } = list[horns];
+	assert.equal(goal.item, 5055, 'Intact Raptor Horn');
+	// The arrow's spots; the alternatives (alt) are only marked on the map.
+	for (const p of [goal, ...(goal.spots || []).filter((spot) => !spot.alt)]) {
+		assert.ok(p.x >= 40 && p.x <= 52 && p.y >= 10 && p.y <= 22, `the horns' arrow at ${p.x},${p.y} is in the Dry Hills`);
+	}
+	assert.ok(horns < at(list, 'the Raptor Horns turn-in', is('turnin', 865)), 'before the horns are handed in at Ratchet');
+});
+
 // Avtom (#280): "Kill Ribchaser (rare) or Redridge Brute for Iron Pike" led to
 // the Redridge Mongrels' camp, where no Brute stands. Ribchaser, a rare, shares
 // the Mongrels' spawn points and drops the quest's Iron Pike and Iron Rivet at
@@ -2108,6 +2221,22 @@ test(`Nittepitte's report (#453): Making Do is optional in Redridge and Ashenval
 	assert.ok(ashenvale[at(ashenvale, 'turnin 97926', is('turnin', 97926))].goal.optional, 'turnin 97926 is optional');
 });
 
+// Ioney (#524): "quest not available from Tarrel Rockweaver until completing
+// 'Unrequited Love' first, which was in the questlog from earlier." Hollee's
+// note (98461, Forever) is handed to Tarrel before he gives In Search of the
+// Excavation Team (305); both are optional, so a player without the note is
+// not held.
+
+test(`${ASHENVALE}: Ioney's report (#524): Unrequited Love is handed to Tarrel Rockweaver before In Search of the Excavation Team, and taken in Auberdine before the boat`, { skip }, () => {
+	const list = goals(ASHENVALE);
+	const take = at(list, 'accept 98461', is('accept', 98461));
+	const give = at(list, 'turnin 98461', is('turnin', 98461));
+	const excavation = at(list, 'accept 305', is('accept', 305));
+	assert.ok(take < give && give < excavation, 'the note is taken, then handed in, then 305 is taken');
+	assert.equal(list[give].s, list[excavation].s, 'the hand-in is in the same Menethil step as 305');
+	assert.ok(list[take].goal.optional && list[give].goal.optional, 'both goals are optional');
+});
+
 // Pynte (#327): "Timberling Seeds quest points me to the north of Teldrassil
 // instead of just around the quest giver." XrayAlpha's diagnosis: QuestieDB's
 // server drop table gives the Elder Timberling (level 10) 100% for the seed and
@@ -2138,4 +2267,76 @@ test('#327: Pirate Hats Ahoy! names every pirate that drops the hat, not the Sou
 		for (const pirate of [7855, 7856, 7857, 7858]) assert.ok(ids.includes(pirate), `${guide}: pirate ${pirate} is among the droppers (${ids.join(', ')})`);
 		assert.notEqual(goal.from, 'Southsea Kidnapper', `${guide}: the goal does not send the player after the Kidnapper alone`);
 	}
+});
+
+// Deadshot (#560): "Location for the furbolg camp showing way off of the
+// location needed to satisfy the quest." QuestieDB lists four furbolg camps
+// for How Big a Threat? (984); the data build kept the first, at 50.9,34.7
+// north-east of Auberdine, so the quest's map marker sat 1,200 yards from the
+// camp by the bears where the report completed it (39.77,57.07), and the
+// guide's bare `complete 984` had no place of its own. The data now keeps the
+// camp nearest the giver (data-questie.test.js) and the guide places the goal
+// at that camp (39.9,53.9; pfQuest's area trigger 232).
+
+test('forever/alliance/03-darkshore.guide: Deadshot\'s report (#560): How Big a Threat? points at the furbolg camp by the bears, not the one north-east of Auberdine', { skip }, () => {
+	const list = goals('forever/alliance/03-darkshore.guide');
+	const { goal } = list[at(list, 'complete 984', is('complete', 984))];
+	const completed = { map: 1439, x: 39.77, y: 57.07 };
+	assert.equal(goal.map, 1439, 'the goal is on Darkshore');
+	assert.ok(yards(goal, completed) <= 200, `the arrow at ${goal.x},${goal.y} is by the camp the report completed at, not ${Math.round(yards(goal, completed))} yd off`);
+});
+
+// dgc1980 (#563), Alliance: on Cozy Sleeping Bag's Stonetalon step the arrow
+// pointed straight from the Barrens (1413 42.08,32.49) at the path into the
+// Stonetalon hills, a line through Honor's Stand, the Horde post on the road
+// west. Alliance now go by the reporter's safe spot north of it
+// (40.20,24.88; 1413's Era and live frames are the same). The post is the
+// shipped walking maps' hostile hub, so the straight arrow of every leg, from
+// the report's spot to the safe spot and on to the path, keeps out of it.
+
+test("forever/miscellaneous/cozy-sleeping-bag.guide: dgc1980's report (#563): Alliance go round Honor's Stand on the way to Stonetalon, Horde go straight", { skip }, () => {
+	const list = goals('forever/miscellaneous/cozy-sleeping-bag.guide');
+	const hills = at(list, 'the path into the hills', (g) => g.t === 'goto' && g.map === 1442);
+	const step = list[hills].s;
+	const before = list.filter(({ s, goal }, i) => s === step && i < hills && goal.t === 'goto');
+	const alliance = before.filter(({ goal }) => !goal.only || (goal.only.factions || []).includes('Alliance'));
+	const horde = before.filter(({ goal }) => !goal.only || (goal.only.factions || []).includes('Horde'));
+	const [hubs] = runAddon({
+		stubs: ['stub_encoding.lua'],
+		addons: ['Polestar_Nav'],
+		script: `
+local out = {}
+for _, h in ipairs(PolestarPathData[1].hubs) do
+	if h.id == "horde-honors-stand" then
+		for i, d in ipairs(h.disks) do out[i] = { d[1], d[2], d[3] } end
+	end
+end
+emit(out)`,
+	}).emitted;
+	assert.ok(hubs.length > 0, "the walking maps know Honor's Stand");
+	// A map point in the world frame the maps use: x north, y west.
+	const world = ({ map, x, y }) => {
+		const f = data.eraFrame(map);
+		return { x: f.top + ((f.bottom - f.top) * y) / 100, y: f.left + ((f.right - f.left) * x) / 100 };
+	};
+	// How far (yd) the line from a to b stays outside the hub's disks.
+	const clear = (a, b) => {
+		const [p, q] = [world(a), world(b)];
+		const dx = q.x - p.x;
+		const dy = q.y - p.y;
+		const l2 = dx * dx + dy * dy;
+		return Math.min(...hubs.map(([x, y, r]) => {
+			const t = Math.max(0, Math.min(1, ((x - p.x) * dx + (y - p.y) * dy) / l2));
+			return Math.hypot(p.x + dx * t - x, p.y + dy * t - y) - r;
+		}));
+	};
+	const stops = [{ map: 1413, x: 42.08, y: 32.49 }, ...alliance.map(({ goal }) => goal), list[hills].goal];
+	for (let i = 1; i < stops.length; i++) {
+		const [a, b] = [stops[i - 1], stops[i]];
+		const off = clear(a, b);
+		assert.ok(off > 50, `the arrow from ${a.x},${a.y} to ${b.x},${b.y} (map ${b.map}) passes ${Math.round(off)} yd outside Honor's Stand`);
+	}
+	assert.equal(alliance.length, 1, 'Alliance get one waypoint before the path');
+	assert.ok(yards(alliance[0].goal, { map: 1413, x: 40.2, y: 24.88 }) <= 30, "it is the reporter's safe spot");
+	assert.equal(horde.length, 0, 'Horde get none');
 });

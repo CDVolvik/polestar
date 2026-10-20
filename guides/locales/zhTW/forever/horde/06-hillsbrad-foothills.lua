@@ -19,11 +19,11 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "在旅店旁的{object:107045}裝滿{item:7768}",
 
 	-- Step 2: Serge Hinott
-	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "只有在你已於{zone:1413}擊敗加里維克斯時（基本不可能的任務）：{npc:2391}站在{area:272}。在他旁邊等他調製解藥，然後領取獎勵：毒藥。",
+	-- {quest:2479} Hinott's Assistance · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["After returning Mission: Possible But Not Probable to Shenthul, bring {quest:2479} to {npc:2391} in {area:272}. Stay beside him until the brewing objective completes, then hand in the follow-up to learn Poisons. Finish it even if the Zanzil poison has already been removed; removing the debuff alone does not teach the skill."] = "",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391}：毒藥",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "還沒打倒加里維克斯？職業指南「毒藥（部落）」會從申蘇爾那裡重新跑這條任務鏈，並組隊對付加里維克斯。",
+	["Poison chain unfinished? Resume your current stage in the Class guide Poisons (Horde); completed quests do not need restarting. Arrange a group for Gallywix, finish the Hinott follow-up, then return to this leveling guide."] = "",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "熊、食苔蛛和山地獅",
@@ -139,7 +139,9 @@ return {
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}，在{area:392}的碼頭旁",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "還沒打倒加里維克斯？職業指南「毒藥（部落）」會從申蘇爾那裡重新跑這條任務鏈，並組隊對付加里維克斯。",
 	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "還沒打倒加里維克斯？職業指南{spell:2842}（部落）會從申蘇爾那裡重新跑這條任務鏈，並組隊對付加里維克斯。",
+	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "只有在你已於{zone:1413}擊敗加里維克斯時（基本不可能的任務）：{npc:2391}站在{area:272}。在他旁邊等他調製解藥，然後領取獎勵：毒藥。",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "只有在你已於{zone:1413}擊敗加里維克斯時（基本不可能的任務）：{npc:2391}站在{area:272}。在他旁邊等他調製解藥，然後領取獎勵：{spell:2842}。",
 	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "鐵匠鋪位於{area:287}鎮中央。{npc:2404}和他的學徒在熔爐邊工作；{item:3564}堆在旁邊。{npc:2449}在鐵匠鋪北邊的街上走動。",
 	-- ["You arrive bound at the {area:272} inn. Everyone stands around the town square."] = "你抵達時綁定在{area:272}的旅店。所有人都站在鎮上廣場周圍。",

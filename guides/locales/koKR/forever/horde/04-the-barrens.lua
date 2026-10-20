@@ -76,8 +76,8 @@ return {
 	["{npc:5909}, a few steps away"] = "{npc:5909}, 몇 걸음 떨어진 곳",
 
 	-- Step 14: Shenthul
-	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
-	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}은(는) {object:172960}에 있습니다. 그를 대상으로 지정하고 /salute를 입력해 {quest:2460}을(를) 완료하십시오.",
+	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute · {item:5060} Thieves' Tools · {item:8051} Flare Gun · {quest:2458} Deep Cover
+	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}. Before leaving town, learn Lockpicking and bring {item:5060}; practise before attempting the tower lockbox. Keep the {item:8051} supplied with {quest:2458}. Gallywix is elite, so arrange help or leave that optional part for later."] = "",
 	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} Sludge Fen
 	["{quest:2458}: {npc:7233}, by the {area:382}"] = "{quest:2458}: {area:382} 옆의 {npc:7233}",
 
@@ -142,12 +142,12 @@ return {
 	["Wizzlecrank drives his shredder out of the camp: stay with him and kill whatever attacks him. {npc:3442} takes it in {area:392}."] = "위즐크랭크가 벌목기를 몰고 야영지를 빠져나갑니다. 함께 있으면서 공격하는 적을 처치하십시오. {area:392}의 {npc:3442}이(가) 받습니다.",
 
 	-- Step 31: Taskmaster Fizzule
-	-- {area:382} Sludge Fen
-	["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "피줄은 {area:382} 동쪽 끝의 투자개발회사 야영지를 운영합니다. 낯선 이를 공격하니 먼저 대상으로 지정하고 /salute를 하십시오.",
+	-- {area:382} Sludge Fen · {item:8051} Flare Gun
+	["Fizzule is by the Venture Co. tower north of the {area:382}. Use {item:8051} to fire TWO flares before approaching him, then target him and /salute. Keep that order: he attacks strangers who have not signalled first."] = "",
 
 	-- Step 32: Mission: Possible But Not Probable
 	-- {npc:7287} Foreman Silixiz
-	["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "은신을 유지하십시오. {npc:7287}이(가) 탑 열쇠를 가지고 있으며, 갤리윅스와 금고는 꼭대기에 있습니다. 갤리윅스는 정예이므로 파티를 권장합니다.",
+	["Pickpocket {npc:7287} for the tower key before opening the lockbox. Gallywix and his lockbox are at the top; the key does not open that box, which still needs Lockpicking. Gallywix is elite: grouping up is advised. If you postpone this optional job, resume it in the Class guide Poisons (Horde)."] = "",
 	["Venture Co. tower"] = "투자개발회사 탑",
 
 	-- Step 33: Boulder Lode Mine
@@ -319,10 +319,13 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bruuz"] = "브루즈",
+	-- ["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "피줄은 {area:382} 동쪽 끝의 투자개발회사 야영지를 운영합니다. 낯선 이를 공격하니 먼저 대상으로 지정하고 /salute를 하십시오.",
 	-- ["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "{area:380}에서 북쪽 {area:384}(으)로 가서 {object:19464}에서 {item:15842}을(를) 채운 뒤, {area:380}의 {npc:3448}에게 돌아가십시오. {skill:182}이(가) 없다면 옆의 {npc:3490}이(가) {item:2449}을(를) 판매합니다. 재입고될 때까지 한 번에 세 개입니다.",
+	-- ["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "은신을 유지하십시오. {npc:7287}이(가) 탑 열쇠를 가지고 있으며, 갤리윅스와 금고는 꼭대기에 있습니다. 갤리윅스는 정예이므로 파티를 권장합니다.",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}은(는) {area:382} 북쪽 가장자리, 투자개발회사 탑 옆에 있습니다. {quest:30}용 {item:15883}이(가) 들어 있습니다.",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}의 {npc:2391}이(가) {spell:2842}을(를) 가르칩니다: 보관하세요",
 	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344}은(는) {area:1638}에서 성기사를 가르칩니다. 아직 그곳 비행 경로가 없으니 {area:378}(으)로 비행한 뒤 서쪽으로 {zone:1412}을(를) 지나 승강기를 타고 올라가, 중앙 언덕의 {npc:2995}에게서 비행 경로를 얻으십시오.",
+	-- ["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}은(는) {object:172960}에 있습니다. 그를 대상으로 지정하고 /salute를 입력해 {quest:2460}을(를) 완료하십시오.",
 }

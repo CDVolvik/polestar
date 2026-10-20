@@ -36,6 +36,7 @@ one error, unless --no-data says to build without it.
 
 options:
   --dest <dir>          the Interface/AddOns folder (default: the one install finds)
+  --client <folder-or-flavor>  build into one detected client (e.g. _forever_, wowf, beta)
   --no-game             do not write into AddOns (lint, and the playground)
   --play                also start the playground with the pack loaded (client
                         art and SavedVariables folder as play finds them)
@@ -53,7 +54,7 @@ function watched(rel) {
 }
 
 async function run(argv, env = process.env) {
-	const { opts, positional, error } = parseArgs(argv, { flags: ['--no-game', '--play', '--no-data'], options: ['--dest', '--port', ...PACK_OPTIONS] });
+	const { opts, positional, error } = parseArgs(argv, { flags: ['--no-game', '--play', '--no-data'], options: ['--dest', '--port', '--client', ...PACK_OPTIONS] });
 	if (opts.help) {
 		console.log(usage);
 		return 0;
@@ -61,7 +62,7 @@ async function run(argv, env = process.env) {
 	const port = opts.port === undefined ? 8077 : Number(opts.port);
 	const usageError =
 		error ||
-		(opts.noGame && opts.dest ? '--dest and --no-game cannot be used together' : null) ||
+		(opts.noGame && (opts.dest || opts.client) ? `--${opts.dest ? 'dest' : 'client'} and --no-game cannot be used together` : null) ||
 		(!Number.isInteger(port) || port < 0 || port > 65535 ? '--port needs a port number' : null) ||
 		noDataConflict(opts);
 	if (usageError) {
@@ -90,16 +91,18 @@ async function run(argv, env = process.env) {
 		return 1;
 	}
 	const packDir = first.dir;
-	let addons = null;
+	let addonsDirs = [];
 	if (!opts.noGame) {
 		const dest = chooseDest(opts, env, env.HOME || os.homedir());
 		if (dest.error) {
 			console.error(`${dest.error}\n(or pass --no-game to build without the game)`);
 			return 1;
 		}
-		addons = dest.dir;
-		console.log(`dev: building into ${addons} (${dest.how})`);
-		if (dest.create && !isDir(addons)) fs.mkdirSync(addons, { recursive: true });
+		for (const d of dest.dirs || [dest]) {
+			if (d.create && !isDir(d.dir)) fs.mkdirSync(d.dir, { recursive: true });
+			console.log(`dev: building into ${d.dir} (${d.how})`);
+			addonsDirs.push(d.dir);
+		}
 	}
 	// The reference data is read once; its warnings (missing core files or
 	// context data, as lint prints them) are added to every build's diagnostics.
@@ -131,9 +134,9 @@ async function run(argv, env = process.env) {
 		const { manifest, files } = built;
 		lastImporter = packImporter(built);
 		const summary = `${plural(built.guides.length, 'guide')}, ${plural(built.diag.warnings.length, 'warning')}`;
-		if (addons) {
+		for (const addonsDir of addonsDirs) {
 			try {
-				const target = folderIn(addons, manifest.folder);
+				const target = folderIn(addonsDir, manifest.folder);
 				const isNew = !fs.existsSync(path.join(target, `${manifest.folder}.toc`));
 				writePackDir(target, files);
 				console.log(`dev: built ${summary} into ${target}`);
@@ -141,7 +144,8 @@ async function run(argv, env = process.env) {
 			} catch (e) {
 				console.error(`dev: ${e.message}`);
 			}
-		} else {
+		}
+		if (!addonsDirs.length) {
 			console.log(`dev: built ${summary} (not written: --no-game)`);
 		}
 		if (playRoot) {

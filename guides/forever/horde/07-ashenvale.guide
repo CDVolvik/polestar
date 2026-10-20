@@ -255,7 +255,7 @@ step Thunder Bluff
   zone Thunder Bluff
   tip Fly to Thunder Bluff if you know the flight path. If not, fly to Camp Taurajo, head west into Mulgore past Bloodhoof Village to Thunder Bluff and take its flight path from Tal on the central rise.
   getfp "Thunder Bluff" npc 2995      -- Tal
-  kill 3057 quest 93739.3 only Skyborne optional -- Speak with Cairne Bloodhoof, in Thunder Bluff: Exploring the Horde
+  kill 3057 quest 93739.3 "Talk to Cairne Bloodhoof" only Skyborne optional -- Speak with Cairne Bloodhoof, in Thunder Bluff: Exploring the Horde
 
 step The Earthen Ring
   zone Mulgore

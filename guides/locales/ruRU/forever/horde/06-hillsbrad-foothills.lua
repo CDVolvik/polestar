@@ -19,11 +19,11 @@ return {
 	["Fill the {item:7768} at the {object:107045} beside the inn"] = "Наполните {item:7768} у колодца рядом с таверной: {object:107045}",
 
 	-- Step 2: Serge Hinott
-	-- {zone:1413} The Barrens · {npc:2391} Serge Hinott · {area:272} Tarren Mill
-	["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Только если Нервотреп пал в {zone:1413} («Миссия: выполнима, но с трудом»): {npc:2391} стоит здесь: {area:272}. Подождите рядом, пока он варит лекарство, затем заберите награду: Яды.",
+	-- {quest:2479} Hinott's Assistance · {npc:2391} Serge Hinott · {area:272} Tarren Mill
+	["After returning Mission: Possible But Not Probable to Shenthul, bring {quest:2479} to {npc:2391} in {area:272}. Stay beside him until the brewing objective completes, then hand in the follow-up to learn Poisons. Finish it even if the Zanzil poison has already been removed; removing the debuff alone does not teach the skill."] = "",
 	-- {npc:2391} Serge Hinott
 	["{npc:2391}: Poisons"] = "{npc:2391}: Яды",
-	["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Нервотреп еще жив? Классовый гайд «Яды (Орда)» снова проводит цепочку от Шентула, с группой для Нервотрепа.",
+	["Poison chain unfinished? Resume your current stage in the Class guide Poisons (Horde); completed quests do not need restarting. Arrange a group for Gallywix, finish the Hinott follow-up, then return to this leveling guide."] = "",
 
 	-- Step 3: Bears, creepers and lions
 	["Bears, creepers and lions"] = "Медведи, ползуны и львы",
@@ -139,7 +139,9 @@ return {
 	["{npc:3442}, by the docks in {area:392}"] = "{npc:3442}, у причалов ({area:392})",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["No Gallywix yet? The Class guide Poisons (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Нервотреп еще жив? Классовый гайд «Яды (Орда)» снова проводит цепочку от Шентула, с группой для Нервотрепа.",
 	-- ["No Gallywix yet? The Class guide {spell:2842} (Horde) runs the chain from Shenthul again, with a group for Gallywix."] = "Нервотреп еще жив? Классовый гайд «{spell:2842} (Орда)» снова проводит цепочку от Шентула, с группой для Нервотрепа.",
+	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: Poisons."] = "Только если Нервотреп пал в {zone:1413} («Миссия: выполнима, но с трудом»): {npc:2391} стоит здесь: {area:272}. Подождите рядом, пока он варит лекарство, затем заберите награду: Яды.",
 	-- ["Only if Gallywix fell in the {zone:1413} (Mission: Possible But Not Probable): {npc:2391} stands in {area:272}. Wait beside him while he brews the cure, then take your reward: {spell:2842}."] = "Только если Нервотреп пал в зоне {zone:1413} («Миссия: выполнима, но с трудом»): {npc:2391} стоит здесь: {area:272}. Подождите рядом, пока он варит лекарство, затем заберите награду: {spell:2842}.",
 	-- ["The smithy stands in the middle of {area:287} town. {npc:2404} and his apprentices work at the forge; the {item:3564} is stacked beside it. {npc:2449} walks the street north of it."] = "Кузница стоит в центре городка {area:287}. {npc:2404} и его подмастерья работают у горна; {item:3564} сложена рядом. {npc:2449} ходит по улице к северу от нее.",
 	-- ["You arrive bound at the {area:272} inn. Everyone stands around the town square."] = "Вы прибываете в таверну, где привязан ваш камень: {area:272}. Все стоят вокруг городской площади.",

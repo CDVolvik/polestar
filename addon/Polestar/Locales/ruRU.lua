@@ -1344,6 +1344,10 @@ L["The map can't open in combat: press Show on map again when it ends."] = "Ка
 L["Search dungeons"] = "Поиск подземелий"
 -- L["If you finish the quests here"] = ""
 -- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
+-- L["%s XP at your level"] = ""
+-- L["If you finish this quest and the chain before it"] = ""
+-- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
+-- L["%s XP with its chain"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "Прямо здесь"
@@ -2197,6 +2201,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "Ментальный разрыв — ваш основной урон и замедление отныне; Улучшенный ментальный разрыв делает его сильнее."
 L["Vampiric Embrace heals you from your Shadow damage."] = "Вампирские объятия исцеляют вас от вашего урона Тьмой."
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "Форма тени — вершина ветки: больше урона Тьмой и меньше полученного физического урона."
+L["ForeverDB through level 30, Polestar after"] = "ForeverDB до 30-го уровня, далее Polestar"
+L["Polestar, with ForeverDB's builds to level 20"] = "Polestar, с планами ForeverDB до 20-го уровня"
+L["Polestar, with ForeverDB's talent data"] = "Polestar, с данными о талантах ForeverDB"
+L["ForeverDB"] = "ForeverDB"
+L["ForeverDB's leveling builds, adapted to level 30"] = "Планы прокачки ForeverDB, адаптированные до 30-го уровня"
 
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "Передать ведение Shortest Path Forever"

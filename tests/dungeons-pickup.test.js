@@ -257,6 +257,112 @@ emit({ take = take, closedBy = closedBy })`;
 	}
 });
 
+test('errands on the page before a dungeon quest are done on the way (#519: Hamuul Runetotem and Nara Wildmane before Leaders of the Fang)', () => {
+	const c = structuredClone(codex);
+	const i = structuredClone(inputs);
+	const npc = (id, name, map, x, y) => ({
+		id, name, level: 30, levelMax: null, faction: 'H', rare: false, elite: false, boss: false,
+		instance: null, roles: [], spawns: [{ map, x, y, f: 'e' }],
+	});
+	c.npcs[90410] = npc(90410, 'Giver One', 1421, 40, 40);
+	c.npcs[90411] = npc(90411, 'Giver Two', 1421, 45, 45);
+	c.npcs[90412] = npc(90412, 'Giver Three', 1421, 50, 50);
+	const quest = (id, title, giver, ender, pre, objectives) => ({
+		id, title, level: 25, minLevel: 18, faction: 'H', races: null, classes: null,
+		start: { npc: [giver], object: [], item: [] }, end: { npc: [ender], object: [] },
+		objectives: objectives || [], pre: pre || [], zone: 1421, rewards: [], choices: [], preAny: [],
+	});
+	// A: off the page, with objectives, already done. B and C: errands on
+	// the page (no objectives), each turned in at the next giver. D: the
+	// dungeon quest itself, with objectives, after C.
+	c.quests[90400] = quest(90400, 'An Earlier Errand', 90410, 90410, [], [{ type: 'kill', id: 90420, count: 1, text: 'Test Mob' }]);
+	c.quests[90401] = quest(90401, 'Hamuul Runetotem', 90410, 90411, [90400], []);
+	c.quests[90402] = quest(90402, 'Nara Wildmane', 90411, 90412, [90401], []);
+	c.quests[90403] = quest(90403, 'Leaders of the Fang', 90412, 90412, [90402], [{ type: 'item', id: 90421, count: 1, text: 'Gem of Test' }]);
+	i.forever.quests[90401] = { area: 209 };
+	i.forever.quests[90402] = { area: 209 };
+	i.forever.quests[90403] = { area: 209 };
+	const own = writeCodexPack(c, { extraFiles: emitJournal(buildJournal(i, c)) });
+	const script = `
+local plan = D.PickupPlan("${KEY}")
+local take, carried = {}, {}
+for _, t in ipairs(plan.take) do if t.quest.id >= 90400 then take[#take + 1] = t.quest.id end end
+for _, q in ipairs(plan.carried) do if q.id >= 90400 then carried[#carried + 1] = q.id end end
+local pre = {}
+for _, t in ipairs(plan.take) do
+	if t.quest.id == 90403 then for _, r in ipairs(t.pre) do pre[#pre + 1] = r.id end end
+end
+local def = D.PickupGuide("${KEY}")
+local steps, notes = {}, {}
+for _, s in ipairs(def.steps) do
+	local verbs = {}
+	for _, g in ipairs(s.goals) do
+		if g.quest and g.quest >= 90400 then verbs[#verbs + 1] = g.t .. ":" .. g.quest end
+		if g.t == "note" then notes[#notes + 1] = g.text end
+	end
+	if #verbs > 0 then steps[#steps + 1] = table.concat(verbs, " ") end
+end
+emit({ take = take, carried = carried, pre = pre, steps = steps, notes = notes })`;
+	try {
+		const [open] = run(script, { codexPack: own, done: [1098, 90400] });
+		assert.deepEqual(open.take, [90403], 'the errands ahead of it are not takes of their own');
+		assert.deepEqual(open.pre, [90401, 90402], "Leaders of the Fang's open prerequisites: Hamuul Runetotem, Nara Wildmane");
+		assert.deepEqual(open.steps, ['accept:90401 turnin:90401', 'accept:90402 turnin:90402', 'accept:90403'],
+			'both errands done on the way, then the giver of Leaders of the Fang, before the entrance');
+
+		const [withLog] = run(script, { codexPack: own, done: [1098, 90400], log: [1013, 90401] });
+		assert.deepEqual(withLog.take, [90403]);
+		assert.deepEqual(withLog.carried, {}, 'Hamuul Runetotem is done on the way, not carried');
+		assert.ok(!withLog.notes.some((n) => n.includes('Hamuul Runetotem')), 'no "In your log already" note for it at the entrance');
+
+		// A variant where Nara Wildmane's turn-in has no spawn (inside): it no
+		// longer qualifies as an errand, so it blocks Leaders of the Fang again.
+		const c2 = structuredClone(c);
+		c2.npcs[90413] = npc(90413, 'Inside NPC', 1421, 50, 50);
+		c2.npcs[90413].spawns = [];
+		c2.quests[90402] = quest(90402, 'Nara Wildmane', 90411, 90413, [90401], []);
+		const inside = writeCodexPack(c2, { extraFiles: emitJournal(buildJournal(i, c2)) });
+		try {
+			const [blocked] = run(script, { codexPack: inside, done: [1098, 90400] });
+			assert.deepEqual(blocked.take, [90402], 'Nara Wildmane turns in nowhere reachable: it no longer clears the way for Leaders of the Fang, though it is still takeable on its own');
+		} finally {
+			inside.cleanup();
+		}
+
+		// A variant where an item starts Nara Wildmane (as Nefarian's head
+		// starts The Lord of Blackrock), a giver listed beside it: no errand
+		// either, though it asks for nothing, so it still blocks Leaders of
+		// the Fang.
+		const c3 = structuredClone(c);
+		c3.quests[90402].start = { npc: [90411], object: [], item: [90422] };
+		const byItem = writeCodexPack(c3, { extraFiles: emitJournal(buildJournal(i, c3)) });
+		try {
+			const [blocked] = run(script, { codexPack: byItem, done: [1098, 90400] });
+			assert.ok(!blocked.take.includes(90403), 'an item starts Nara Wildmane: Leaders of the Fang is left for after the run');
+		} finally {
+			byItem.cleanup();
+		}
+
+		// A variant where Nara Wildmane needs Honored (as Strength of Mount
+		// Mugamba needs Zandalar standing): no errand for a character below
+		// it, one for a character who has it.
+		const c4 = structuredClone(c);
+		c4.quests[90402].repFaction = 270;
+		c4.quests[90402].repStanding = 6;
+		const byRep = writeCodexPack(c4, { extraFiles: emitJournal(buildJournal(i, c4)) });
+		try {
+			const [friendly] = run(`stub.world.setRep(270, "Zandalar Tribe", 5, 3000, 3000, 9000)\n${script}`, { codexPack: byRep, done: [1098, 90400] });
+			assert.ok(!friendly.take.includes(90403), 'Friendly, not Honored: Leaders of the Fang is left for after the run');
+			const [honored] = run(`stub.world.setRep(270, "Zandalar Tribe", 6, 9000, 9000, 21000)\n${script}`, { codexPack: byRep, done: [1098, 90400] });
+			assert.deepEqual(honored.take, [90403], 'Honored: Nara Wildmane is an errand again');
+		} finally {
+			byRep.cleanup();
+		}
+	} finally {
+		own.cleanup();
+	}
+});
+
 // Travel between the fixture's zones by the way a player goes (seconds):
 // Undercity and Silverpine are next door, the Barrens a zeppelin away.
 const ZONE_TRAVEL = `

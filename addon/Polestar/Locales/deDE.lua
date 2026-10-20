@@ -1065,6 +1065,10 @@ L["Search dungeons"] = "Dungeons suchen"
 L["The map can't open in combat: press Show on map again when it ends."] = "Die Karte lässt sich im Kampf nicht öffnen: Klicke nach dem Kampf erneut auf „Auf der Karte zeigen“."
 L["If you finish the quests here"] = "Wenn du die Quests hier abschließt"
 L["You are level %d. Level %d is recommended for the quests here; from there:"] = "Du bist Stufe %d. Für die Quests hier wird Stufe %d empfohlen; ab dort:"
+-- L["%s XP at your level"] = ""
+-- L["If you finish this quest and the chain before it"] = ""
+-- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
+-- L["%s XP with its chain"] = ""
 
 -- UI/Lookup.lua
 L["Mount"] = "Reittier"
@@ -2137,6 +2141,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "Gedankenzermalmen ist ab hier dein Haupt-Schaden und deine Verlangsamung; Verbessertes Gedankenzermalmen lässt es härter treffen."
 L["Vampiric Embrace heals you from your Shadow damage."] = "Vampirische Umarmung heilt dich durch deinen Schattenschaden."
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "Schattengestalt ist der Höhepunkt: mehr Schattenschaden und weniger erlittener physischer Schaden."
+-- L["ForeverDB through level 30, Polestar after"] = ""
+-- L["Polestar, with ForeverDB's builds to level 20"] = ""
+-- L["Polestar, with ForeverDB's talent data"] = ""
+-- L["ForeverDB"] = ""
+-- L["ForeverDB's leveling builds, adapted to level 30"] = ""
 
 -- Dungeons/Dungeons.lua
 L["Kill %d %s"] = "Töte %d %s"

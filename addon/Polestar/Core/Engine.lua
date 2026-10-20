@@ -516,6 +516,8 @@ function Own.predicateHolds(p)
 		ok = Own.samePlace(C.GetBindLocation(), p)
 	elseif k == "dungeon" then
 		ok = p.map ~= nil and Engine.DungeonChosen(p.map)
+	elseif k == "done" then
+		ok = Own.labelDone(p.label)
 	end
 	if p.neg then return not ok end
 	return ok
@@ -1225,7 +1227,7 @@ end
 local function latchable(goal)
 	local t = goal.t
 	return t == "goto" or t == "explore" or t == "sethome" or t == "hearth" or t == "fly" or t == "getfp"
-		or t == "buy" or (t == "collect" and not goal.quest) or (t == "craft" and craftMode(goal) == "count")
+		or t == "buy" or (t == "collect" and (not goal.quest or Own.bagCollect(goal))) or (t == "craft" and craftMode(goal) == "count")
 		or (t == "train" and goal.class == true) or t == "money"
 end
 
@@ -1335,11 +1337,25 @@ end
 -- The quest-log line (an index into Compat.GetQuestObjectives) objective goal
 -- `goal` reads, as Own.objectiveLine picks it; its `oi` while the quest is not in
 -- the log. Party sync reads members' counts by it: theirs come in the same
--- game order.
+-- game order. Nil for a goal that counts the bags (Own.bagCollect): no line
+-- counts its item.
 function Engine.ObjectiveLine(goal)
 	if type(goal) ~= "table" or not goal.quest or not goal.oi then return goal and goal.oi end
+	if Own.bagCollect(goal) then return nil end
 	local objs = Compat().GetQuestObjectives(goal.quest)
 	return objs and Own.objectiveLine(goal, objs) or goal.oi
+end
+
+-- Whether quest `collect` goal `goal` counts the bags: the quest uses its
+-- item without asking for it (QuestDB.UsesOnly), so no quest-log line counts
+-- it, whichever line the goal was bound to (#538: a pack's Sunscale Feather
+-- on "Blue Raptor Nest visited", its Fresh Zhevra Carcass on "Ishamuhale's
+-- Fang"). Without the quest database (every quest feature off) the goal
+-- reads its line. (On Own: the main chunk is at 200 locals.)
+function Own.bagCollect(goal)
+	if goal.t ~= "collect" or not goal.quest or not goal.item then return false end
+	local Q = ns.QuestDB
+	return Q and Q.IsLoaded() and Q.UsesOnly(goal.quest, goal.item) or false
 end
 
 -- Objective goals: done when objective `oi` (its line, Own.objectiveLine) is
@@ -1484,7 +1500,11 @@ goalDone = function(s, g, goal)
 		if goal.quest then return objectiveState(goal) end
 		return false
 	elseif t == "collect" then
-		if goal.quest then return objectiveState(goal) end
+		if goal.quest then
+			if not (Own.bagCollect(goal) and C.IsOnQuest(goal.quest)) then return objectiveState(goal) end
+			if C.IsQuestReadyForTurnIn(goal.quest) then return true end
+			return countState(goal)
+		end
 		if Own.starterTaken(s, g, goal) then return true end
 		return countState(goal)
 	elseif t == "buy" then
@@ -1594,8 +1614,8 @@ local function blocks(goal)
 	return goal.t ~= "note" and not goal.optional
 end
 
-local function stepDone(s)
-	if guide.steps[s].along then return true end -- the route passes over it (Own.alongListed)
+-- Every goal of step s that holds the route is done (or cannot be done).
+function Own.goalsDone(s)
 	local goals = guide.steps[s].goals
 	for g = 1, #goals do
 		local goal = goals[g]
@@ -1604,10 +1624,29 @@ local function stepDone(s)
 	return true
 end
 
+local function stepDone(s)
+	if guide.steps[s].along then return true end -- the route passes over it (Own.alongListed)
+	return Own.goalsDone(s)
+end
+
+-- `when done <label>` (format 5): the step so labelled applies and its goals
+-- are done, and it was not skipped (by the player, a failed `when` or a
+-- `skipto` jump). An along step counts by its own goals. A step whose own
+-- `when` asks, through other steps, whether it is done is not (Own.asking).
+Own.asking = {}
+function Own.labelDone(label)
+	local s = guide and Own.marksOf().labels[label]
+	if not s or isSkipped(s) or Own.asking[s] then return false end
+	Own.asking[s] = true
+	local ok = stepApplies(guide.steps[s]) and Own.goalsDone(s)
+	Own.asking[s] = nil
+	return ok
+end
+
 -- Bag-count goals (non-quest buy/collect, count-mode craft), latched within
 -- their own step so using the items up does not reopen it.
 local function isBagCount(goal)
-	return goal.t == "buy" or (goal.t == "collect" and not goal.quest)
+	return goal.t == "buy" or (goal.t == "collect" and (not goal.quest or Own.bagCollect(goal)))
 		or (goal.t == "craft" and craftMode(goal) == "count") or goal.t == "money"
 end
 
@@ -1924,15 +1963,56 @@ local function place()
 	end
 end
 
+-- `skipto` jumps (format 5; docs/GUIDE_FORMAT.md, "Jumps"): the route has
+-- reached step s. The first of its jumps whose predicate holds skips s and
+-- every step up to the labelled one for the character, saved as "jump" in
+-- CharState().skipped next to the player's skips, so the jump does not undo
+-- itself when the predicate turns false later; Unskip brings a step back. A
+-- step skipped already keeps its skip. Not before the quest log
+-- can be read (a `!turnedin` would hold on an empty log), nor for a step the
+-- player brought back (Own.keep). True if the route jumped.
+function Own.jump(s)
+	local step = guide.steps[s]
+	if not (step.skipto and logReady) then return false end
+	local kept = ns.CharState().when[guide.id]
+	if kept and kept[s] then return false end
+	for _, k in ipairs(step.skipto) do
+		local to = Own.marksOf().labels[k.to]
+		if to and to > s and Own.predicateHolds(k.when) then
+			local sk = skippedFor(guide.id, true)
+			for t = s, to - 1 do
+				if not sk[t] then sk[t] = "jump" end
+			end
+			return true
+		end
+	end
+	return false
+end
+
+-- The player brought step s back (Unskip, Goto): a step with `when` applies
+-- from now on, whatever its predicates, and one with `skipto` takes no jump
+-- (CharState().when[guideId][s]).
+function Own.keep(s)
+	local step = guide.steps[s]
+	if not (step and (step.when or step.skipto)) then return end
+	local held = ns.CharState().when
+	held[guide.id] = held[guide.id] or {}
+	held[guide.id][s] = true
+end
+
 -- First applicable, not skipped, not done step, after placing the tab when
 -- it was just loaded (place). During play soft steps hold as usual, so a
--- quest taken out of order never jumps a training stop.
+-- quest taken out of order never jumps a training stop. A step the route
+-- reaches may jump ahead (Own.jump).
 local function computeCurrent()
 	if placing then place() end
 	local steps = guide.steps
 	local sk = skippedFor(guide.id)
 	for s = 1, #steps do
-		if stepApplies(steps[s]) and not (sk and sk[s]) and not stepDone(s) then return s end
+		if stepApplies(steps[s]) and not (sk and sk[s]) and not stepDone(s) then
+			if not Own.jump(s) then return s end
+			sk = skippedFor(guide.id)
+		end
 	end
 	return nil
 end
@@ -2176,7 +2256,8 @@ local function describe(goal)
 	elseif t == "complete" then
 		return L["Complete"], questTitle(goal), "quest", nil
 	elseif t == "kill" then
-		return L["Kill"], N.Npc(goal.npc) or goal.target, "npc", goal.quest and fmt(L["for %s"], questTitle(goal)) or nil
+		-- `tame`: kill credit for taming the beast (a Lookup guide's Taming the Beast).
+		return goal.tame and L["Tame"] or L["Kill"], N.Npc(goal.npc) or goal.target, "npc", goal.quest and fmt(L["for %s"], questTitle(goal)) or nil
 	elseif t == "collect" then
 		local item = N.Item(goal.item) or goal.itemName
 		if goal.quest then return L["Collect"], item, "item", fmt(L["for %s"], questTitle(goal)) end
@@ -4158,12 +4239,7 @@ function Engine.Unskip(i)
 	placing = nil
 	sk[i] = nil
 	if not next(sk) then ns.CharState().skipped[guide.id] = nil end
-	-- A step with `when` unskipped applies from now on, whatever its predicates.
-	if guide.steps[i] and guide.steps[i].when then
-		local held = ns.CharState().when
-		held[guide.id] = held[guide.id] or {}
-		held[guide.id][i] = true
-	end
+	Own.keep(i)
 	evaluate()
 	return true
 end
@@ -4189,7 +4265,11 @@ function Engine.Goto(i)
 	if not stepApplies(guide.steps[i]) then return end
 	placing = nil
 	local sk = skippedFor(guide.id)
-	if sk then sk[i] = nil end
+	if sk and sk[i] then
+		sk[i] = nil
+		-- A jumped step looked at again takes no jump, or the route would jump straight back.
+		if guide.steps[i].skipto then Own.keep(i) end
+	end
 	local comp = computeCurrent()
 	-- Leaving the open step backwards forgets its in-step latches.
 	if comp and i < comp and current and current == comp then clearInStep(current) end
@@ -4370,6 +4450,8 @@ for _, event in ipairs({
 }) do
 	ns.RegisterEvent(event, onUpdateEvent)
 end
+-- The quest database says which quest collects count the bags (Own.bagCollect).
+ns.On("QUESTDB_LOADED", onUpdateEvent)
 
 -- Where the player is changed enough to re-pick candidates: a zone change or
 -- landing (control comes back after a flight).

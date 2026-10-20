@@ -76,8 +76,8 @@ return {
 	["{npc:5909}, a few steps away"] = "{npc:5909}, à quelques pas",
 
 	-- Step 14: Shenthul
-	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
-	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401} se tient dans la {object:172960}. Ciblez-le et tapez /salute pour terminer {quest:2460}.",
+	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute · {item:5060} Thieves' Tools · {item:8051} Flare Gun · {quest:2458} Deep Cover
+	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}. Before leaving town, learn Lockpicking and bring {item:5060}; practise before attempting the tower lockbox. Keep the {item:8051} supplied with {quest:2458}. Gallywix is elite, so arrange help or leave that optional part for later."] = "",
 	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} Sludge Fen
 	["{quest:2458}: {npc:7233}, by the {area:382}"] = "{quest:2458} : {npc:7233}, près de la {area:382}",
 
@@ -142,12 +142,12 @@ return {
 	["Wizzlecrank drives his shredder out of the camp: stay with him and kill whatever attacks him. {npc:3442} takes it in {area:392}."] = "Le Pilote Wizzlecrank sort du camp avec son déchiqueteur : restez avec lui et tuez tout ce qui l'attaque. {npc:3442} le récupère à {area:392}.",
 
 	-- Step 31: Taskmaster Fizzule
-	-- {area:382} Sludge Fen
-	["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "Fizzule dirige le camp de la KapitalRisk à l'extrémité est de la {area:382}. Il attaque les inconnus : ciblez-le et faites /salute avant lui.",
+	-- {area:382} Sludge Fen · {item:8051} Flare Gun
+	["Fizzule is by the Venture Co. tower north of the {area:382}. Use {item:8051} to fire TWO flares before approaching him, then target him and /salute. Keep that order: he attacks strangers who have not signalled first."] = "",
 
 	-- Step 32: Mission: Possible But Not Probable
 	-- {npc:7287} Foreman Silixiz
-	["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "Restez camouflé : {npc:7287} porte la clé de la tour ; Gallywix et son coffret sont au sommet. Gallywix est élite : il est conseillé de se grouper.",
+	["Pickpocket {npc:7287} for the tower key before opening the lockbox. Gallywix and his lockbox are at the top; the key does not open that box, which still needs Lockpicking. Gallywix is elite: grouping up is advised. If you postpone this optional job, resume it in the Class guide Poisons (Horde)."] = "",
 	["Venture Co. tower"] = "Tour de la KapitalRisk",
 
 	-- Step 33: Boulder Lode Mine
@@ -319,7 +319,9 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bruuz"] = "Bruuz",
+	-- ["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "Fizzule dirige le camp de la KapitalRisk à l'extrémité est de la {area:382}. Il attaque les inconnus : ciblez-le et faites /salute avant lui.",
 	-- ["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "Allez au nord de {area:380} jusqu'au {area:384} et remplissez l'{item:15842} au {object:19464}, puis revenez voir {npc:3448} à {area:380}. Pas d'{skill:182} ? {npc:3490}, à côté de lui, vend de la {item:2449}, trois à la fois jusqu'au réassort.",
+	-- ["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "Restez camouflé : {npc:7287} porte la clé de la tour ; Gallywix et son coffret sont au sommet. Gallywix est élite : il est conseillé de se grouper.",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "La {object:177790} se trouve au bord nord de la {area:382}, près de la tour de la KapitalRisk. Elle contient le {item:15883} pour {quest:30}.",
@@ -329,4 +331,5 @@ return {
 	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344} forme les paladins aux {area:1638}. Vous n'y avez pas encore de trajet aérien : volez jusqu'au {area:378}, traversez {zone:1412} vers l'ouest, montez par un ascenseur et prenez le trajet aérien auprès de {npc:2995} sur le plateau central.",
 	-- ["{npc:3033}: Cat Form"] = "{npc:3033} : Forme de félin",
 	-- ["{npc:3033}: Cure Poison"] = "{npc:3033} : Guérison du poison",
+	-- ["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401} se tient dans la {object:172960}. Ciblez-le et tapez /salute pour terminer {quest:2460}.",
 }

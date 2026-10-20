@@ -229,6 +229,59 @@ test('The levels chip below the quests\' level: it says the recommended level; t
 	assert.doesNotMatch(out.notes, /kills/, 'a dungeon page counts its quests only');
 });
 
+test('A quest with a chain still to do: a chip after its rewards says what the quest and its chain are worth, with the levels panel on hover', () => {
+	const [open, done] = run(`
+		-- Nara Wildmane (650 XP) comes before Leaders of the Fang (2,350 XP).
+		done[1490] = nil
+		Polestar.Dungeons.Open("wailing-caverns")
+		local b = block(914)
+		local c = b.ChainXP
+		c:GetScript("OnEnter")(c)
+		local t = Polestar.UI.LevelTip.Frame()
+		emit({ shown = c:IsShown(), text = c.Text:GetText(), head = t.Head:GetText(), xp = t.XP:GetText(), notes = t.Notes:GetText(),
+			after = select(4, c:GetPoint(1)) > select(4, b.Chips[1]:GetPoint(1)), own = b.Chips[1].Text:GetText(),
+			plain = block(1486).ChainXP:IsShown() })
+		c:GetScript("OnLeave")(c)
+		done[1490] = true
+		DS.Open("deadmines"); DS.Open("wailing-caverns")
+		emit(block(914).ChainXP:IsShown())`);
+	assert.equal(open.shown, true);
+	assert.equal(open.text, '3,000 XP with its chain');
+	assert.equal(open.own, '2,350 XP', 'the quest\'s own XP chip stays');
+	assert.equal(open.after, true, 'after the reward chips');
+	assert.equal(open.head, 'If you finish this quest and the chain before it');
+	assert.equal(open.xp, '3,000 XP');
+	assert.equal(open.notes, '2 quests for you, not done yet.');
+	assert.equal(open.plain, false, 'a quest with no chain has none');
+	assert.equal(done, false, 'the chain done: the quest\'s own XP says it all');
+});
+
+test('Hovering a quest in a chain shows its levels, state, objective, start and end, rewards, and its XP at your level when that is less', () => {
+	const [at20, at27] = run(`
+		local function hover()
+			local r = block(914).Chains[1]
+			r:GetScript("OnEnter")(r)
+			local lines = {}
+			for i, l in ipairs(GameTooltip.lines) do lines[i] = plain(l) end
+			return { owner = GameTooltip:GetOwner() == r, lines = lines }
+		end
+		Polestar.Dungeons.Open("wailing-caverns")
+		emit(hover())
+		uistub.player.level = 27
+		DS.Open("deadmines"); DS.Open("wailing-caverns")
+		emit(hover())`);
+	assert.equal(at20.owner, true, 'the tooltip is the row\'s');
+	const text = at20.lines.join('\n');
+	assert.match(text, /^Nara Wildmane/);
+	assert.match(text, /Level 20 {2}· {2}Requires level 16/);
+	assert.match(text, /\nDone\n/, 'this character has done it');
+	assert.match(text, /Starts \| /);
+	assert.match(text, /Rewards \| 650 XP/);
+	assert.doesNotMatch(text, /at your level/, 'at 20 the level 20 quest gives its full XP');
+	// At 27 the level 20 quest is 7 below: 60%.
+	assert.match(at27.lines.join('\n'), /390 XP at your level/);
+});
+
 test('A page with quests to pick up: "Pick up the quests" is the primary action, the entrance second; with none left, "Nothing to pick up" says why', () => {
 	const [open, none] = run(`
 		local printed = {}

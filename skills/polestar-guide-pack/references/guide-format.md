@@ -54,7 +54,8 @@ every goal in it that is not `optional` is; its goals are open together.
 | `only <condition>, ...` | The step is only for matching characters |
 | `when <predicate>` | The step is only for characters in that state when the route gets there; several lines must all hold (see Conditions) |
 | `along [until <label>]` | The route never stops at the step: its goals (quest objectives, bag counts) are done along the way, listed under the next steps until done, or until the step with that label |
-| `label <name>` | Names the step for an `along until` before it (letters, digits, `-`, `_`; once per guide) |
+| `label <name>` | Names the step for an `along until` or `skipto` before it, or a `when done` (letters, digits, `-`, `_`; once per guide) |
+| `skipto <label> when <predicate>` | If the predicate (as for `when`) holds when the route reaches the step, this step and the ones up to the labelled later step are skipped for good; several lines, the first that holds decides |
 | `loop` | The step's `goto` points, in order, are the places to search for its kill, collect and interact goals without `@x,y` (at least two, one map) |
 
 ## Goals
@@ -139,11 +140,12 @@ Warrior or Paladin).
 `turnedin <quest>`, `available <quest>`, `has <item> [xN]`, `zone "<Name>"`,
 `subzone "<Name>"`, `bound "<Location>"`, `dungeon "<Name>"` (the player
 chose to run that dungeon in Options, Discovery, Dungeons; all are off at
-first, so `!dungeon "<Name>"` is the solo route); `!` in front of any but
+first, so `!dungeon "<Name>"` is the solo route), `done <label>` (the labelled
+step was completed, not skipped or jumped over; not on a `next` line); `!` in front of any but
 `level` and `money` turns it around. Once the route has passed the step, the
 outcome stays. A pack with `when` (on a step or a `next` line), `along` or
-`label` needs Polestar 0.2.6; with `money` or `task` goals, or a `when money`
-or `when dungeon` predicate, needs Polestar 0.3.0.
+`label` needs Polestar 0.2.6; with `money` or `task` goals, a `when money`,
+`when dungeon` or `when done` predicate, or `skipto`, needs Polestar 0.3.0.
 
 ## Lint errors that come up most
 

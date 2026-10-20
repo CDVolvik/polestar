@@ -53,10 +53,11 @@ function readFlavor(dir) {
 }
 
 // A client folder is Forever when its .flavor.info says so: "_forever_"
-// folders carry a wow_forever* flavor; during beta Forever is "_classic_beta_"
-// with flavor wow_classic_beta.
+// folders carry a wow_forever* flavor or the stress-test product code "wowf";
+// during beta Forever is "_classic_beta_" with flavor wow_classic_beta.
 function foreverKind(name, flavor) {
 	if (!flavor) return null;
+	if (flavor === 'wowf') return 'forever';
 	if (/forever/i.test(flavor)) return 'forever';
 	if (name === '_classic_beta_' && flavor === 'wow_classic_beta') return 'beta';
 	return null;
@@ -112,7 +113,7 @@ function wowDirs(home = os.homedir(), native = {}) {
 	return out.filter(isDir);
 }
 
-// -> [{ addons, client, kind, flavor }] for every Forever client found in
+// -> [{ addons, client, name, kind, flavor }] for every Forever client found in
 // wowDirs: a client folder counts when its .flavor.info says Forever.
 function detectAddonsDirs(home = os.homedir(), native = {}) {
 	const out = [];
@@ -131,7 +132,7 @@ function detectAddonsDirs(home = os.homedir(), native = {}) {
 			}
 			if (seen.has(real)) continue;
 			seen.add(real);
-			out.push({ addons: path.join(client, 'Interface', 'AddOns'), client, kind, flavor: readFlavor(client) });
+			out.push({ addons: path.join(client, 'Interface', 'AddOns'), client, name, kind, flavor: readFlavor(client) });
 		}
 	}
 	return out;

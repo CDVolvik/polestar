@@ -12,7 +12,7 @@ const { parseArgs, resolvePath, printDiagnostics, plural } = require('../lib/cli
 const { LOCALE_CODES } = require('../lib/i18n/locales');
 const { releaseAddons, packDirRefusal, textsDirRefusal, textsAddon, writePackDir } = require('../lib/dsl/project');
 const { ROOT } = require('../lib/paths');
-const { detectAddonsDirs, pickAddonsDir, isDir } = require('../lib/addons');
+const { detectAddonsDirs, isDir } = require('../lib/addons');
 const { PACK_OPTIONS, PACK_USAGE, otherPack, noDataConflict, noDataCache, buildPack, folderIn } = require('../lib/pack/build');
 
 // Data addons built locally from inputs that may not be redistributed
@@ -41,31 +41,44 @@ Destination, first match wins:
                            folder, and native installs (C:\\Program Files (x86)\\World of
                            Warcraft on Windows, /Applications/World of Warcraft on macOS);
                            a "_forever_" or "_classic_beta_" client folder whose
-                           .flavor.info names Forever (wow_forever*) or the classic beta
+                           .flavor.info names Forever (wow_forever*, wowf) or the classic beta;
+                           without --dest, $WOW_FOREVER_ADDONS or --client, every detected
+                           Forever client is installed into (one line per client)
 
 options:
   --link        symlink the folders instead of copying (edit, then /reload)
   --recorder    also install Polestar_Recorder
+  --client <folder-or-flavor>  install into one detected client (e.g. _forever_, wowf, beta)
   --dry-run     print what would happen, change nothing
   --addons <dir>  source folder holding the addons (default addon/)
   --no-data     a pack only: build it without reference data (every
                 quest title, NPC name and place given in the guide)
 ${PACK_USAGE}`;
 
-// -> { dir, how } or { error }. `native` ({ platform, root }, tools/lib/addons.js
-// nativeWowDir) is passed to detectAddonsDirs; tests inject it.
+// -> { dir, how, create? } for a single destination (--dest, $WOW_FOREVER_ADDONS, --client,
+// or a single auto-detected client), { dirs: [{ dir, how, create }] } for multiple
+// auto-detected clients (install into all), or { error }. `native` ({ platform, root },
+// tools/lib/addons.js nativeWowDir) is passed to detectAddonsDirs; tests inject it.
 function chooseDest(opts, env = process.env, home = os.homedir(), native = {}) {
 	if (opts.dest) return isDir(opts.dest) ? { dir: path.resolve(opts.dest), how: '--dest' } : { error: `--dest ${opts.dest} is not a folder` };
 	if (env.WOW_FOREVER_ADDONS) {
 		const d = env.WOW_FOREVER_ADDONS;
 		return isDir(d) ? { dir: path.resolve(d), how: '$WOW_FOREVER_ADDONS' } : { error: `$WOW_FOREVER_ADDONS (${d}) is not a folder` };
 	}
-	const { pick, several } = pickAddonsDir(detectAddonsDirs(home, native));
-	if (several) return { error: `several Forever clients found; choose one with --dest:\n${several.map((f) => `  ${f.addons}`).join('\n')}` };
-	if (!pick) {
-		return { error: 'no World of Warcraft: Forever client found (under your home folder or a native install); pass --dest <.../Interface/AddOns> or set $WOW_FOREVER_ADDONS' };
+	const found = detectAddonsDirs(home, native);
+	if (!found.length) return { error: 'no World of Warcraft: Forever client found (under your home folder or a native install); pass --dest <.../Interface/AddOns> or set $WOW_FOREVER_ADDONS' };
+	if (opts.client) {
+		const q = opts.client;
+		const matches = found.filter((f) => f.name === q || f.flavor === q || f.kind === q);
+		if (!matches.length) return { error: `--client ${q}: no client found; detected: ${found.map((f) => `${f.name} (${f.flavor})`).join(', ')}` };
+		const c = matches[0];
+		return { dir: c.addons, how: `--client ${q}, ${c.name} (${c.flavor})`, create: true };
 	}
-	return { dir: pick.addons, how: `auto-detected, flavor ${pick.flavor}`, create: true };
+	if (found.length === 1) {
+		const c = found[0];
+		return { dir: c.addons, how: `auto-detected, ${c.name} (${c.flavor})`, create: true };
+	}
+	return { dirs: found.map((c) => ({ dir: c.addons, how: `auto-detected ${c.name} (${c.flavor})`, create: true })) };
 }
 
 function removePath(p) {
@@ -151,21 +164,26 @@ function hasCompiledGuides(dir) {
 	}
 }
 
-// Install folders [{ src, name, owned? }] into the chosen destination.
-// `prepare()` (unless --dry-run) runs after every check passed, before anything
-// is installed; it returns an error message or null. `ctx`: { env, native } (see run).
-// `drop`: { drop: [folder name], owned(target) -> bool }, folders removed
-// from the destination where owned says they are ours to remove.
+// Install folders [{ src, name, owned? }] into the chosen destination(s).
+// chooseDest may return { dirs } (multiple auto-detected clients: install into all)
+// or { dir } (single). `prepare()` (unless --dry-run) runs once after every check
+// passed, before anything is installed; it returns an error message or null.
+// `ctx`: { env, native } (see run). `drop`: { drop: [folder name], owned(target) -> bool },
+// folders removed from the destination where owned says they are ours to remove.
 function installFolders(folders, opts, ctx, prepare = null, drop = null) {
 	const dest = chooseDest(opts, ctx.env, ctx.env.HOME || os.homedir(), ctx.native);
 	if (dest.error) {
 		console.error(dest.error);
 		return 1;
 	}
-	const unsafe = folders.map((f) => unsafeTarget(f.src, dest.dir, f.name, f.owned)).filter(Boolean);
-	if (unsafe.length) {
-		for (const msg of unsafe) console.error(`refusing to install: ${msg}`);
-		return 1;
+	const dests = dest.dirs || [dest];
+	// Safety-check every destination before writing anything.
+	for (const d of dests) {
+		const unsafe = folders.map((f) => unsafeTarget(f.src, d.dir, f.name, f.owned)).filter(Boolean);
+		if (unsafe.length) {
+			for (const msg of unsafe) console.error(`refusing to install: ${msg}`);
+			return 1;
+		}
 	}
 	const verb = opts.link ? 'link' : 'copy';
 	if (prepare && !opts.dryRun) {
@@ -175,26 +193,28 @@ function installFolders(folders, opts, ctx, prepare = null, drop = null) {
 			return 1;
 		}
 	}
-	console.log(`${opts.dryRun ? 'would install' : 'installing'} into ${dest.dir} (${dest.how})`);
-	if (dest.create && !isDir(dest.dir)) {
-		console.log(`  ${opts.dryRun ? 'would create' : 'creating'} ${dest.dir}`);
-		if (!opts.dryRun) fs.mkdirSync(dest.dir, { recursive: true });
-	}
-	for (const { src, name } of folders) {
-		const target = path.join(dest.dir, name);
-		const action = `${exists(target) ? 'replace' : 'add'} ${name} (${verb} from ${src})`;
-		if (opts.dryRun) {
-			console.log(`  would ${action}`);
-			continue;
+	for (const d of dests) {
+		console.log(`${opts.dryRun ? 'would install' : 'installing'} into ${d.dir} (${d.how})`);
+		if (d.create && !isDir(d.dir)) {
+			console.log(`  ${opts.dryRun ? 'would create' : 'creating'} ${d.dir}`);
+			if (!opts.dryRun) fs.mkdirSync(d.dir, { recursive: true });
 		}
-		installOne(src, dest.dir, name, !!opts.link);
-		console.log(`  ${action.replace(/^replace/, 'replaced').replace(/^add/, 'added')}`);
-	}
-	for (const name of (drop && drop.drop) || []) {
-		const target = path.join(dest.dir, name);
-		if (!exists(target) || !drop.owned(target)) continue;
-		console.log(`  ${opts.dryRun ? 'would remove' : 'removed'} ${name} (the pack no longer translates that language)`);
-		if (!opts.dryRun) removePath(target);
+		for (const { src, name } of folders) {
+			const target = path.join(d.dir, name);
+			const action = `${exists(target) ? 'replace' : 'add'} ${name} (${verb} from ${src})`;
+			if (opts.dryRun) {
+				console.log(`  would ${action}`);
+				continue;
+			}
+			installOne(src, d.dir, name, !!opts.link);
+			console.log(`  ${action.replace(/^replace/, 'replaced').replace(/^add/, 'added')}`);
+		}
+		for (const name of (drop && drop.drop) || []) {
+			const target = path.join(d.dir, name);
+			if (!exists(target) || !drop.owned(target)) continue;
+			console.log(`  ${opts.dryRun ? 'would remove' : 'removed'} ${name} (the pack no longer translates that language)`);
+			if (!opts.dryRun) removePath(target);
+		}
 	}
 	return 0;
 }
@@ -245,7 +265,7 @@ function installPack(other, opts, ctx) {
 // native install in tests, so a test never reaches a real game folder.
 async function run(argv, env = process.env, native = {}) {
 	const ctx = { env, native };
-	const { opts, positional, error } = parseArgs(argv, { flags: ['--link', '--recorder', '--dry-run', '--no-data'], options: ['--dest', '--addons', ...PACK_OPTIONS] });
+	const { opts, positional, error } = parseArgs(argv, { flags: ['--link', '--recorder', '--dry-run', '--no-data'], options: ['--dest', '--addons', '--client', ...PACK_OPTIONS] });
 	if (opts.help) {
 		console.log(usage);
 		return 0;

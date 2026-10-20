@@ -456,7 +456,7 @@ function ns.CharState()
 	if s.schema == nil then s.schema = 1 end
 	if type(s.manual) ~= "table" then s.manual = {} end
 	if type(s.skipped) ~= "table" then s.skipped = {} end
-	-- Per guide, per step: true when its `when` held as the route passed it, or it was unskipped (Engine.lua, Own.latchWhen; a failed one is stored in `skipped`).
+	-- Per guide, per step: true when its `when` held as the route passed it, or it was unskipped (Engine.lua, Own.latchWhen, Own.keep; a failed one is stored in `skipped`); an unskipped step's `skipto` takes no jump.
 	if type(s.when) ~= "table" then s.when = {} end
 	-- Map id -> true: the dungeons the player chose to run in leveling guides (`when dungeon`; Engine.ChooseDungeon).
 	if type(s.dungeons) ~= "table" then s.dungeons = {} end

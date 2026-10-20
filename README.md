@@ -63,7 +63,8 @@
    (`Polestar`, `Polestar_Guides`, `Polestar_QuestDB`, `Polestar_ItemDB`) sit
    directly inside it:
    `World of Warcraft/_classic_beta_/Interface/AddOns/` on the beta client,
-   `_forever_` instead of `_classic_beta_` from launch.
+   `_forever_/Interface/AddOns/` on the `_forever_` client. The same zip
+   works for both; if you have both clients installed, unzip into each one.
 3. **Restart the game completely** (a `/reload` does not load new addons) and
    log in. The guide window opens with a guide for your race, level and zone:
    follow the arrow, and the goals tick themselves off as you play.

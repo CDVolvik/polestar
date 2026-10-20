@@ -1344,6 +1344,10 @@ L["The map can't open in combat: press Show on map again when it ends."] = "戰�
 L["Search dungeons"] = "搜尋地城"
 -- L["If you finish the quests here"] = ""
 -- L["You are level %d. Level %d is recommended for the quests here; from there:"] = ""
+-- L["%s XP at your level"] = ""
+-- L["If you finish this quest and the chain before it"] = ""
+-- L["You are level %d. Level %d is recommended for the first quest in this chain; from there:"] = ""
+-- L["%s XP with its chain"] = ""
 
 -- UI/RouteChoice.lua
 L["Right here"] = "就在這裡"
@@ -2197,6 +2201,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "精神鞭打是你此後的主要傷害和減速技能；強化精神鞭打使其傷害更高。"
 L["Vampiric Embrace heals you from your Shadow damage."] = "吸血鬼的擁抱通過你的暗影傷害治療你。"
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "暗影形態是終極技能：更多暗影傷害，同時受到更少的物理傷害。"
+-- L["ForeverDB through level 30, Polestar after"] = ""
+-- L["Polestar, with ForeverDB's builds to level 20"] = ""
+-- L["Polestar, with ForeverDB's talent data"] = ""
+-- L["ForeverDB"] = ""
+-- L["ForeverDB's leveling builds, adapted to level 30"] = ""
 
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "交由 Shortest Path Forever 導引"
