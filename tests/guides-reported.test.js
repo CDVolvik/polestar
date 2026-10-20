@@ -1457,6 +1457,31 @@ test(`${ELWYNN}: Syfin's report (#221): Croaky's Head is an optional extra; Ridg
 	}
 });
 
+// --- Elwynn (zeike, #553): the Gold Pickup Schedule that starts The Collector
+// (123) drops from Gruff Swiftbite, a rare (86%; the Runts and Outrunners of
+// Riverpaw Gnoll Bounty 3%). The step waits for the armbands, not for him.
+// Without The Collector taken, its turn-in is not the player's, and the
+// Manhunt (147) step after it (`when turnedin 123`) takes Manhunt's ring and
+// turn-in with it. With 123, Dughan holds for both, and Manhunt's own
+// turn-in step (`when onquest 147`) applies once it is taken.
+test(`${ELWYNN}: zeike's report (#553): Forest's Edge does not wait for the rare Gruff Swiftbite; The Collector and Manhunt follow only the Schedule`, { skip }, () => {
+	const list = goals(ELWYNN);
+	const edge = list.filter(({ goal }) => goal.item === 1307 || (goal.t === 'accept' && goal.quest === 123));
+	assert.deepEqual(edge.map(({ goal }) => [goal.t, goal.optional]), [['collect', true], ['accept', true]]);
+	const s = edge[0].s;
+	assert.ok(list.some(({ s: n, goal }) => n === s && goal.t === 'collect' && goal.quest === 11 && !goal.optional), 'the armbands hold the step');
+	const human = { race: 'Human', raceName: 'Human', faction: 'Alliance', cls: 'MAGE', className: 'Mage', level: 11 };
+	assert.deepEqual(questGoalStatus(ELWYNN, 123, human), ['accept pending', 'turnin na']);
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human), ['accept na', 'collect na', 'turnin na']);
+	const took = { after: 'stub.world.accept(123, {})' };
+	assert.deepEqual(questGoalStatus(ELWYNN, 123, human, took), ['accept done', 'turnin pending']);
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human, took), ['accept na', 'collect na', 'turnin na']);
+	const handed = { after: 'stub.world.accept(123, {}); stub.world.turnIn(123)' };
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human, handed), ['accept pending', 'collect pending', 'turnin na']);
+	const manhunt = { after: 'stub.world.accept(123, {}); stub.world.turnIn(123); stub.world.accept(147, {})' };
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human, manhunt), ['accept done', 'collect pending', 'turnin pending']);
+});
+
 // --- A goal on a neighbour's map (#246): Kadrak stands at the Mor'shan
 // Rampart, in the Barrens (Wowhead Forever; AreaTable puts the Rampart, 1703,
 // under the Barrens), where the Barrens and Ashenvale maps overlap. The step's
