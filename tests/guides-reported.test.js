@@ -244,6 +244,10 @@ const BUY_AT_TURNIN = [
 	['forever/alliance/30-40/01-hillsbrad-foothills.guide', 555, 3713, 1, 2381, 'the Soothing Spices for Chef Jessen'],
 	['forever/alliance/40-50/01-stranglethorn-vale.guide', 1218, 3713, 3, 4897, 'the Soothing Spices for "Swamp Eye" Jarl, from Theramore'],
 	['forever/horde/30-40/04-dustwallow-marsh.guide', 1218, 3713, 3, 'H', 'the Soothing Spices for "Swamp Eye" Jarl, bought in Ratchet in the Arathi guide'],
+	[TELDRASSIL, 99050, 3371, 1, 3614, 'the Empty Vial for Byancie'],
+	[TELDRASSIL, 99050, 159, 1, 6736, 'the Refreshing Spring Water for Byancie'],
+	['forever/collectibles/mounts/alliance/paladin-charger.guide', 7645, 13724, 20, 10857, 'the Enriched Manna Biscuits for Merideth Carlson, from Chillwind Camp'],
+	['forever/collectibles/mounts/neutral/warlock-dreadsteed.guide', 7625, 18687, 1, 14522, "the Xorothian Stardust for Gorzeeki Wildeyes, from Ur'dan in Felwood"],
 ];
 for (const [guide, quest, item, count, vendor, what] of BUY_AT_TURNIN) {
 	test(`${guide}: the same pattern as #365, ${what}: asked for again on the step that hands in ${quest}`, { skip }, () => {
@@ -1908,6 +1912,8 @@ const BY_LEVEL = [
 	[WESTFALL, 730, 38],
 	[DARKSHORE, 5385, 983],
 	[DARKSHORE, 5412, 1001],
+	['forever/horde/02-the-barrens.guide', 5087, 844],
+	['forever/horde/orc-troll/02-the-barrens.guide', 5087, 844],
 	[SILVERPINE, 3164, 429],
 	[SILVERPINE, 730, 91920],
 	[HILLSBRAD_HORDE, 3476, 496],
