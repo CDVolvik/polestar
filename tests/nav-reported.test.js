@@ -158,3 +158,25 @@ test('Stormwind: the walk to the Deeprun Tram ends at its entrance, not on the r
 	const end = pts.filter((p) => p[2] !== false).pop();
 	assert.ok(Math.abs(end[2] - tram.z) < 5, `it ends at the entrance's height (${end[2]}, the entrance ${tram.z})`);
 });
+
+// #540 (EpicTibbles), Teldrassil, Alliance: from 1438 42.10,56.59 to The
+// Sleeping Druid at Ban'ethil Barrow Den (44.94,61.59) the arrow led up the
+// hill in front of the player, which they could not climb. The client's
+// terrain there rises from 1364 to 1403 yd in the first 40 yd at 51 to 62
+// degrees, and the walk goes straight up it (and up two more faces past it,
+// 56 to 61 degrees). Open: on the grid, nothing joins the ground below to
+// the Barrow Den's hilltop but faces over 50 degrees, so the pack opens the
+// gentlest of them as the only way up; whether the client walks them is #98's.
+test('Teldrassil: the walk from 42.10,56.59 to The Sleeping Druid does not climb the face in front of the player (#540)', { skip, todo: 'open: the maps still climb the face (#98)' }, () => {
+	const from = world(1438, 42.1, 56.59);
+	const to = world(1438, 44.94, 61.59);
+	const got = walk(from, to, 'Alliance');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to The Sleeping Druid');
+	// The face's middle: the ground at 1380 yd, its triangles 53 to 56 degrees.
+	const face = world(1438, 42.22, 56.29);
+	const off = offPath(pts, face);
+	assert.ok(off > 3, `the path passes ${off.toFixed(1)} yd from the face's middle (${pts.length} points, ${Math.round(yardsOf(pts))} yd)`);
+});
