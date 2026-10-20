@@ -380,14 +380,6 @@ Own.offered = {}
 -- one table per accept goal.
 Own.preMarks = setmetatable({}, { __mode = "k" })
 
--- Per quest, a goal's unavailable mark or nil. Known in advance when an
--- accept of the quest in this guide is closed for good (reason "closed"): one
--- of its `closedBy` (the quest a breadcrumb leads to, or one exclusive with
--- it) is in the log or done, so the giver never offers it again. Else the mark
--- its giver's window left this session. Else, also known in advance, "pre":
--- the accept lacks a prerequisite the route no longer brings (Own.preBlocked),
--- a mark that goes the moment that prerequisite is done. `depth`: how far
--- Own.coming has followed a chain of prerequisites.
 -- Quests the player skipped (Engine.SkipQuest): saved per character by quest
 -- id (CharState().skippedQuests), so in every guide. Until the quest is
 -- done, each of its goals (accept, objectives, turn-in) reads as skipped,
@@ -416,6 +408,16 @@ function Own.skipMark(goal)
 	return m
 end
 
+-- Per quest, a goal's unavailable mark or nil. First, a quest the player
+-- skipped (Own.questSkipped) reads as "skipped" until it is done, even in the
+-- log. Known in advance when an accept of the quest in this guide is closed
+-- for good (reason "closed"): one of its `closedBy` (the quest a breadcrumb
+-- leads to, or one exclusive with it) is in the log or done, so the giver
+-- never offers it again. Else the mark its giver's window left this session.
+-- Else, also known in advance, "pre": the accept lacks a prerequisite the
+-- route no longer brings (Own.preBlocked), a mark that goes the moment that
+-- prerequisite is done. `depth`: how far Own.coming has followed a chain of
+-- prerequisites.
 local function unavailableFor(goal, depth)
 	local q = goal.quest
 	if not q then return nil end
