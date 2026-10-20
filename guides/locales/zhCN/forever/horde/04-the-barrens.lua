@@ -76,8 +76,8 @@ return {
 	["{npc:5909}, a few steps away"] = "{npc:5909}，就在几步之外",
 
 	-- Step 14: Shenthul
-	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute
-	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}站在{object:172960}。选中他并输入 /salute 来完成{quest:2460}。",
+	-- {npc:3401} Shenthul · {object:172960} Cleft of Shadow · {quest:2460} The Shattered Salute · {item:5060} Thieves' Tools · {item:8051} Flare Gun · {quest:2458} Deep Cover
+	["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}. Before leaving town, learn Lockpicking and bring {item:5060}; practise before attempting the tower lockbox. Keep the {item:8051} supplied with {quest:2458}. Gallywix is elite, so arrange help or leave that optional part for later."] = "{npc:3401}位于{object:172960}。选中他并输入/salute，完成{quest:2460}。离城前先学会开锁并带上{item:5060}，前往塔顶保险箱前先练习开锁。保留{quest:2458}任务提供的{item:8051}。加里维克斯是精英，可先找帮手，或稍后再做这段自选任务。",
 	-- {quest:2458} Deep Cover · {npc:7233} Taskmaster Fizzule · {area:382} Sludge Fen
 	["{quest:2458}: {npc:7233}, by the {area:382}"] = "{quest:2458}：{npc:7233}，在{area:382}旁",
 
@@ -142,12 +142,12 @@ return {
 	["Wizzlecrank drives his shredder out of the camp: stay with him and kill whatever attacks him. {npc:3442} takes it in {area:392}."] = "维兹克兰克驾驶伐木机离开营地：跟着他，杀死所有攻击他的敌人。在{area:392}向{npc:3442}交还。",
 
 	-- Step 31: Taskmaster Fizzule
-	-- {area:382} Sludge Fen
-	["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "费苏勒管理着{area:382}东端的风险投资公司营地。他会攻击陌生人：在他动手前选中他并 /salute。",
+	-- {area:382} Sludge Fen · {item:8051} Flare Gun
+	["Fizzule is by the Venture Co. tower north of the {area:382}. Use {item:8051} to fire TWO flares before approaching him, then target him and /salute. Keep that order: he attacks strangers who have not signalled first."] = "菲兹尔位于{area:382}以北的风险投资公司塔楼附近。先用{item:8051}发射两次信号弹，再靠近、选中他并输入/salute。务必按此顺序操作，没有先打信号就靠近会被他攻击。",
 
 	-- Step 32: Mission: Possible But Not Probable
 	-- {npc:7287} Foreman Silixiz
-	["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "保持潜行：{npc:7287}带着塔的钥匙；加里维克斯和他的保险箱在塔顶。加里维克斯是精英：建议组队。",
+	["Pickpocket {npc:7287} for the tower key before opening the lockbox. Gallywix and his lockbox are at the top; the key does not open that box, which still needs Lockpicking. Gallywix is elite: grouping up is advised. If you postpone this optional job, resume it in the Class guide Poisons (Horde)."] = "打开保险箱前，先从{npc:7287}身上偷取塔楼钥匙。加里维克斯和他的保险箱在塔顶；这把钥匙打不开该保险箱，仍需开锁技能。加里维克斯是精英，建议组队。这段自选工作可以稍后从职业指南“毒药（部落）”继续。",
 	["Venture Co. tower"] = "风险投资公司的塔",
 
 	-- Step 33: Boulder Lode Mine
@@ -319,11 +319,14 @@ return {
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
 	-- ["Bruuz"] = "布鲁兹",
+	-- ["Fizzule runs the Venture Co. camp at the east end of the {area:382}. He attacks strangers: target him and /salute before he does."] = "费苏勒管理着{area:382}东端的风险投资公司营地。他会攻击陌生人：在他动手前选中他并 /salute。",
 	-- ["Ride north from the {area:380} to {area:384} and fill the {item:15842} at the {object:19464}, then back to {npc:3448} in the {area:380}. No {skill:182}? {npc:3490} beside him sells {item:2449}, three at a time until he restocks."] = "从{area:380}向北骑到{area:384}，在{object:19464}装满{item:15842}，然后回到{area:380}找{npc:3448}。没有{skill:182}？他旁边的{npc:3490}出售{item:2449}，每次三个，之后要等他补货。",
+	-- ["Stay stealthed: {npc:7287} carries the key to the tower; Gallywix and his lockbox are at the top. Gallywix is elite: grouping up is advised."] = "保持潜行：{npc:7287}带着塔的钥匙；加里维克斯和他的保险箱在塔顶。加里维克斯是精英：建议组队。",
 	-- ["The {area:380}"] = "{area:380}",
 	-- ["The {area:383}"] = "{area:383}",
 	-- ["The {object:177790} lies at the north edge of the {area:382}, by the Venture Co. tower. It holds the {item:15883} for {quest:30}."] = "{object:177790}位于{area:382}北缘、风险投资公司的塔旁。里面装着{quest:30}所需的{item:15883}。",
 	-- ["{npc:2391} in {area:272} teaches {spell:2842}: keep it"] = "{area:272}的{npc:2391}教授{spell:2842}：留着它",
 	-- ["{npc:246344} teaches Paladins in {area:1638}. You have no flight path there yet: fly to {area:378}, ride west through {zone:1412} and up a lift, and take the flight path from {npc:2995} on the central rise."] = "{npc:246344}在{area:1638}训练圣骑士。你还没有那里的飞行路线：飞往{area:378}，向西骑马穿过{zone:1412}，乘升降梯上去，在中央高台的{npc:2995}处开通飞行路线。",
+	-- ["{npc:3401} stands in the {object:172960}. Target him and type /salute to finish {quest:2460}."] = "{npc:3401}站在{object:172960}。选中他并输入 /salute 来完成{quest:2460}。",
 	-- ["{npc:262119} and his marines hold the wrecked caravan south of {npc:261366}."] = "{npc:262119}和他的水兵守着{npc:261366}南边被毁的商队。",
 }
