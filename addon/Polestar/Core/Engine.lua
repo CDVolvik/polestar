@@ -4362,6 +4362,17 @@ function Engine.SkipQuest(questID, on)
 	refreshPlayer()
 	placing = nil
 	evaluate()
+	-- PLAYER_SKIPPED_QUEST(questID, title): the guide window offers the undo.
+	if on ~= false then
+		local title
+		for _, step in ipairs(guide and guide.steps or NONE) do
+			for _, goal in ipairs(step.goals) do
+				if goal.quest == questID and goal.title then title = goal.title break end
+			end
+			if title then break end
+		end
+		ns.Fire("PLAYER_SKIPPED_QUEST", questID, title)
+	end
 	return true
 end
 
