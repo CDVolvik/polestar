@@ -129,6 +129,7 @@ step Mirefin murlocs
 step Swamp Eye Jarl
   tip Jarl lives in the Swamplight Manor south-east of Witch Hill.
   accept 1218                         -- "Swamp Eye" Jarl
+  buy 3713 x3 nearest                 -- Soothing Spices, for "Swamp Eye" Jarl
   turnin 1218
   accept 1238                         -- Loose Dirt, beside the manor
   accept 1206
