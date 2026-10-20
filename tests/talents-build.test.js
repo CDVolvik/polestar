@@ -8,6 +8,8 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { luaToJson } = require('../tools/lib/lua');
+const { tmpdir } = require('./helpers/tmp');
 const { treeFacts, resolveBuild, replay, buildTalents, buildAllTalents, emitLua, PREREQ_RULE, TABLES, CLASSES } = require('../tools/lib/talents/build');
 
 // Two columns of a made-up Paladin tree: A (3 ranks) -> B (arrow, 1 rank),
@@ -98,6 +100,22 @@ test('buildTalents: the Lua names its rule, the snapshot and each plan, notes by
 	assert.match(r.lua, /edges = \{ \{ 1, 2 \} \},/);
 	assert.match(r.lua, /\{ 1, 1 \}, \{ 1, 2 \},/);
 	assert.match(r.lua, /\[10\] = L\["Say \\"hi\\""\],/);
+});
+
+test('generated talent sources read the locale while keeping the attribution URL', () => {
+	const src = { ...SOURCE, source: "Example's leveling plans", builds: [{ key: 'one', spec: 'One', split: '1/0', link: 'L', picks: [pick(10, 'One', 'Alpha', 1)] }] };
+	const r = buildTalents(src, tables(), { header: '-- H' });
+	assert.deepEqual(r.errors, []);
+	const file = path.join(tmpdir(), 'talent-source.lua');
+	fs.writeFileSync(file, r.lua);
+	const out = luaToJson({ expr: `
+local captured
+local ns = { L = setmetatable({ ["Example's leveling plans"] = "本地化来源" }, { __index = function(_, k) return k end }),
+  Talents = { Register = function(data) captured = data end } }
+local ok, err = __polestar_loaddata(${JSON.stringify(file)}, "Polestar", ns)
+assert(ok, err)
+return { source = captured.source, url = captured.url }` });
+	assert.deepEqual(out, { source: '本地化来源', url: SOURCE.sourceUrl });
 });
 
 test('treeFacts: a stray copy of a talent far off the grid is left out; a talent on the grid is kept', () => {

@@ -2137,6 +2137,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "Gedankenzermalmen ist ab hier dein Haupt-Schaden und deine Verlangsamung; Verbessertes Gedankenzermalmen lässt es härter treffen."
 L["Vampiric Embrace heals you from your Shadow damage."] = "Vampirische Umarmung heilt dich durch deinen Schattenschaden."
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "Schattengestalt ist der Höhepunkt: mehr Schattenschaden und weniger erlittener physischer Schaden."
+-- L["ForeverDB through level 30, Polestar after"] = ""
+-- L["Polestar, with ForeverDB's builds to level 20"] = ""
+-- L["Polestar, with ForeverDB's talent data"] = ""
+-- L["ForeverDB"] = ""
+-- L["ForeverDB's leveling builds, adapted to level 30"] = ""
 
 -- Dungeons/Dungeons.lua
 L["Kill %d %s"] = "Töte %d %s"

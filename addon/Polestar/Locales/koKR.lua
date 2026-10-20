@@ -2197,6 +2197,11 @@ L["Spirit Tap first: after each kill your regen jumps, so you drink far less."] 
 L["Mind Flay is your main damage and slow from here; Improved Mind Flay makes it hit harder."] = "정신 분열은 이제부터 주요 피해와 감속입니다; 강화된 정신 분열은 더 강하게 만듭니다."
 L["Vampiric Embrace heals you from your Shadow damage."] = "흡혈의 포옹은 암흑 피해로 당신을 치유합니다."
 L["Shadowform is the capstone: more Shadow damage and less physical damage taken."] = "암흑 형상은 최상위 기술: 더 많은 암흑 피해와 더 적은 물리 피해 수취."
+-- L["ForeverDB through level 30, Polestar after"] = ""
+-- L["Polestar, with ForeverDB's builds to level 20"] = ""
+-- L["Polestar, with ForeverDB's talent data"] = ""
+-- L["ForeverDB"] = ""
+-- L["ForeverDB's leveling builds, adapted to level 30"] = ""
 
 -- Nav/Handoff.lua
 L["Hand guiding to Shortest Path Forever"] = "Shortest Path Forever에 안내 맡기기"
