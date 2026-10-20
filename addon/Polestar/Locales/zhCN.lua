@@ -104,6 +104,7 @@ L["Riding"] = "骑术"
 L["Grey, kept: opens %s"] = "灰色，保留：开启%s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+-- L["Tame"] = ""
 L["You skipped this quest"] = "你跳过了这个任务"
 
 -- Core/Closes.lua

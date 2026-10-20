@@ -99,6 +99,7 @@ L["Riding"] = "Reiten"
 L["Grey, kept: opens %s"] = "Grau, behalten: öffnet %s"
 L["level and share of it: %d (%d%%)"] = "Stufe und Anteil: %d (%d%%)"
 -- L["Have at least"] = ""
+-- L["Tame"] = ""
 -- L["You skipped this quest"] = ""
 
 -- Core/Guides.lua

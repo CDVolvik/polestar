@@ -104,6 +104,7 @@ L["Riding"] = "Montaria"
 L["Grey, kept: opens %s"] = "Cinza, mantida: libera %s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+-- L["Tame"] = ""
 L["You skipped this quest"] = "Você pulou esta missão"
 
 -- Core/Closes.lua
