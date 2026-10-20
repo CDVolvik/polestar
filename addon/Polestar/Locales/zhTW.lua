@@ -104,6 +104,7 @@ L["Riding"] = "騎術"
 L["Grey, kept: opens %s"] = "灰色，保留：開啟%s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+L["You skipped this quest"] = "你跳過了這個任務"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 將永久關閉 %s。"
@@ -752,6 +753,8 @@ L["Set your home at the guide's inn"] = "在指南旅店綁定爐石"
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "當步驟要求您綁定住所並與旅店老闆交談時，將爐石綁定在此處。不會在其他旅店執行。按住Shift可跳過。"
 -- L["Riding reminder"] = ""
 -- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
+-- L["Hide the game's quest tracker"] = ""
+-- L["Hides the game's tracker on the right of the screen, with its quests, achievements and professions, as Questie can. Not with the gamepad interface."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "僅限聯盟"
@@ -1037,6 +1040,12 @@ L["Along the way"] = "順路完成"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
+L["Right-click to bring this quest back"] = "右鍵點擊以恢復這個任務"
+L["Right-click to tick it done or skip this quest"] = "右鍵點擊以標記為完成或跳過這個任務"
+L["Skip this quest"] = "跳過這個任務"
+L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "這個任務及其後續任務會在所有指南中跳過。再次右鍵點擊即可恢復。"
+L["the quest"] = "該任務"
+L["and the quests that follow from it"] = "及其後續任務"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "前往 %s 的升降梯"

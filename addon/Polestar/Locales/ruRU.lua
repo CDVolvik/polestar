@@ -104,6 +104,7 @@ L["Riding"] = "Верховая езда"
 L["Grey, kept: opens %s"] = "Серое, оставлено: открывает %s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+L["You skipped this quest"] = "Вы пропустили это задание"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."
@@ -752,6 +753,8 @@ L["Set your home at the guide's inn"] = "Привязать дом к тавер
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "Когда шаг предписывает привязать дом и вы разговариваете с хозяином таверны, привязывает Камень возвращения там. Никогда — в другой таверне. Удерживайте Shift для пропуска."
 -- L["Riding reminder"] = ""
 -- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
+-- L["Hide the game's quest tracker"] = ""
+-- L["Hides the game's tracker on the right of the screen, with its quests, achievements and professions, as Questie can. Not with the gamepad interface."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Только Альянс"
@@ -1037,6 +1040,12 @@ L["Along the way"] = "Попутные цели"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
+L["Right-click to bring this quest back"] = "Правый клик — вернуть это задание"
+L["Right-click to tick it done or skip this quest"] = "Правый клик — отметить выполненным или пропустить задание"
+L["Skip this quest"] = "Пропустить задание"
+L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "Это задание и следующие за ним пропускаются во всех гайдах. Повторный правый клик возвращает его."
+L["the quest"] = "задание"
+L["and the quests that follow from it"] = "и задания, которые следуют за ним"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Подъемник до %s"

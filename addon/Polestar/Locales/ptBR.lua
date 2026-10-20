@@ -104,6 +104,7 @@ L["Riding"] = "Montaria"
 L["Grey, kept: opens %s"] = "Cinza, mantida: libera %s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+L["You skipped this quest"] = "Você pulou esta missão"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Pegar %s fecha %s para sempre."
@@ -752,6 +753,8 @@ L["Set your home at the guide's inn"] = "Definir sua casa na estalagem da guia"
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "Quando a etapa define sua casa e você fala com o estalajadeiro, vincula sua Pedra de Regresso lá. Nunca em outra estalagem. Segure Shift para pular."
 -- L["Riding reminder"] = ""
 -- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
+-- L["Hide the game's quest tracker"] = ""
+-- L["Hides the game's tracker on the right of the screen, with its quests, achievements and professions, as Questie can. Not with the gamepad interface."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Só Aliança"
@@ -1037,6 +1040,12 @@ L["Along the way"] = "No caminho"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
+L["Right-click to bring this quest back"] = "Clique com o botão direito para retomar esta missão"
+L["Right-click to tick it done or skip this quest"] = "Clique com o botão direito para marcar como feita ou pular esta missão"
+L["Skip this quest"] = "Pular esta missão"
+L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "Esta missão e as que dependem dela são puladas em todos os guias. Outro clique com o botão direito a retoma."
+L["the quest"] = "a missão"
+L["and the quests that follow from it"] = "e as missões que dependem dela"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Elevador para %s"

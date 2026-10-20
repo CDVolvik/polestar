@@ -108,6 +108,7 @@ L["Riding"] = "Equitación"
 L["Grey, kept: opens %s"] = "Gris, se mantiene: abre %s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+-- L["You skipped this quest"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Requiere Polestar %s o posterior."
@@ -644,6 +645,8 @@ L["Set your home at the guide's inn"] = "Establecer tu hogar en la posada de la 
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "Cuando el paso establece tu hogar y hablas con el tabernero, vincula tu Piedra de hogar allí. Nunca en otra posada. Mantén Shift para omitir."
 -- L["Riding reminder"] = ""
 -- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
+-- L["Hide the game's quest tracker"] = ""
+-- L["Hides the game's tracker on the right of the screen, with its quests, achievements and professions, as Questie can. Not with the gamepad interface."] = ""
 
 -- QoL/QoL.lua
 L["%dh %02dm"] = "%dh %02dm"
@@ -1145,6 +1148,12 @@ L["Along the way"] = "De camino"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
+-- L["Right-click to bring this quest back"] = ""
+-- L["Right-click to tick it done or skip this quest"] = ""
+-- L["Skip this quest"] = ""
+-- L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = ""
+-- L["the quest"] = ""
+-- L["and the quests that follow from it"] = ""
 
 -- UI/Lookup.lua
 L["Loading the Codex\226\128\166"] = "Cargando el Codex…"
