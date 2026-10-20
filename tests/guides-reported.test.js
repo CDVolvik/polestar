@@ -242,6 +242,7 @@ test(`${TIRISFAL}: Onrevax's report (#365): the Coarse Thread for The Chill of D
 const BUY_AT_TURNIN = [
 	// [guide, quest, item, count, vendor npc or 'H' for `nearest` on the Horde, what]
 	['forever/alliance/30-40/01-hillsbrad-foothills.guide', 555, 3713, 1, 2381, 'the Soothing Spices for Chef Jessen'],
+	['forever/alliance/40-50/01-stranglethorn-vale.guide', 1218, 3713, 3, 4897, 'the Soothing Spices for "Swamp Eye" Jarl, from Theramore'],
 ];
 for (const [guide, quest, item, count, vendor, what] of BUY_AT_TURNIN) {
 	test(`${guide}: the same pattern as #365, ${what}: asked for again on the step that hands in ${quest}`, { skip }, () => {
