@@ -20,3 +20,8 @@ test('every prerequisite correction blocks the quest until its prerequisites are
 	}
 	assert.deepEqual(dead, [], `corrections that set prerequisites but block nothing: ${dead.join(', ')}`);
 });
+
+test('Highland Hides waits for Young Crocolisk Skins, not Daily Delivery (#533)', () => {
+	const { all, any } = blockingPrereqs({ id: 98815, start: { npc: [2094] }, ...corrections.quests[98815].set });
+	assert.deepEqual({ all, any }, { all: [], any: [484] });
+});
