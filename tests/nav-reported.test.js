@@ -130,6 +130,30 @@ test('Undercity: the walk from the Apothecarium to Varimathras stays in the city
 	assert.ok(top < -30, `it stays under the ground, never higher than ${top.toFixed(1)}`);
 });
 
+// #541 (Deadshot), Stormwind, Alliance: from the Trade District (1453
+// 68.48,75.35 live, street height 107) to Jennea Cannon in the Wizard's
+// Sanctum (the guide's goal: 49.56,85.80 live, z 29.7) the arrow ran a
+// straight line along the city walls, 369 yd. The client gives no height
+// for the player, so the walk may start on any storey under them: it takes
+// the terrain buried under the streets (75 yd under the Trade District, 59.5
+// under the Mage Quarter) and joins the Sanctum's lower floors from it. The
+// navigation grid walks the streets, 489 yd, never under 87 yd. Open: the
+// maps keep that terrain walkable.
+test('Stormwind: the walk from the Trade District to Jennea Cannon keeps to the streets, not the terrain under them (#541)', { skip, todo: 'open: the maps still walk the terrain under the city' }, () => {
+	const from = { c: 0, x: -8868.639, y: 533.077 };
+	const to = { c: 0, x: -8989.686, y: 861.813, z: 29.7 };
+	const got = walk(from, to, 'Alliance');
+	assert.ok(got, 'the engine finds a walk');
+	const pts = got.points;
+	const last = pts[pts.length - 1];
+	assert.ok(Math.hypot(last[0] - to.x, last[1] - to.y) < 10, 'to Jennea Cannon');
+	// Outside the Sanctum (40 yd round her), every point stands on a street.
+	for (const [x, y, z] of pts) {
+		if (z === false || Math.hypot(x - to.x, y - to.y) < 40) continue;
+		assert.ok(z > 85, `the walk passes ${x.toFixed(1)},${y.toFixed(1)} at ${z} yd, under the streets (${pts.length} points, ${Math.round(yardsOf(pts))} yd)`);
+	}
+});
+
 // #338 (Tazul), Stormwind: from the Dwarven District (66.04,39.37, street
 // height 95) the walk to the Deeprun Tram climbed the road towards the Keep and
 // ended on the roof above the tram's entrance, 417 yd: the tram's end had no
