@@ -150,6 +150,7 @@ A step must contain at least one goal.
 | `note` | `<text...>` | Informational line; never blocks. Quotes optional. |
 | `skill` | `<Profession> <N>` | Reach skill rank N (`Alchemy`, `Blacksmithing`, `Enchanting`, `Engineering`, `Herbalism`, `Leatherworking`, `Mining`, `Skinning`, `Tailoring`, `Cooking`, `Fishing`, `First Aid`, quoted when multi-word). |
 | `learn` | `<spellId> ["Name"]` | Learn a recipe or spell (trainer or recipe item); name from `professions.json`. A trainer-taught spell points at every trainer of its rank (a smart target; `npc <id>` fixes one); `learn <spellId> nearest` for a recipe sold by vendors sends the player to the closest own-faction vendor of the recipe item. |
+| `cast` | `<spellId> ["Name"]` | Cast a spell (a campfire, a class teleport, a racial): done when the player's own cast of that spell succeeds while the goal is open, in the step the guide is at or an along step listed under it; a cast before that does not count, and the tick is kept. Name from `professions.json` (a recipe), else give it: a spell in neither is an error. |
 | `craft` | `<spellId> ["Name"]` | Craft a recipe; `x<N>` crafts, or `until <N>` = until the recipe's profession reaches N. |
 | `rep` | `<Faction> <Standing>` | Reach a standing (`Neutral`, `Friendly`, `Honored`, `Revered`, `Exalted`) with a faction named in `factions.json`, or `rep <factionId> <Standing>`. |
 | `explore` | `<x>,<y> ["Area"]` | Discover the map area at those coordinates (current zone). |
@@ -326,7 +327,7 @@ A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
 Polestar 0.2.6 and later read. A `when money` or `when dungeon` predicate
 (above) writes format 5 (Polestar 0.3.0 and later), because 0.2.6 knows `when`
-but not those predicates; `money`, `task` and `enter` goals also need format 5
+but not those predicates; `money`, `task`, `enter` and `cast` goals also need format 5
 (docs/PACK_FORMAT.md).
 
 ## Along the way

@@ -857,6 +857,7 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `note` | `text` | — | never blocks (informational) |
 | `skill` | `skill` (name), `level` | `skillLine` | skill rank ≥ `level` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName` (trainer), `item` (recipe item) | spell known |
+| `cast` | `spell`, `spellName` | `map`, `x`, `y` | ticked by `Own.latchCast` on the player's `UNIT_SPELLCAST_SUCCEEDED` for `spell` (values read with `Compat.Readable`) while the goal is open: the live step, the step in view, or an along step listed under them; stored as a check-off (`CharState().manual`), so it is kept like the player's own tick; else manual |
 | `craft` | `spell`, `spellName` | `item`/`itemName` (created), `count`, `untilSkill`, `skillLine`, `reagents = { { item, itemName, count } }` | skill ≥ `untilSkill` if set, else created-item count ≥ `count`, else manual |
 | `rep` | `faction`, `factionName`, `standing` (1–8) | — | standing ≥ `standing` |
 | `explore` | `map`, `x`, `y` | `text` (area name) | area at that point explored; else arrival (latched) |

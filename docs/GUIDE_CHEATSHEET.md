@@ -121,6 +121,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `train <Profession> [Rank]` | Learn a profession or its next rank (`Apprentice`, `Journeyman`, `Expert`, `Artisan`) at the nearest trainer | `train Mining Journeyman` |
 | `skill <Profession> <N>` | Reach skill N (quote names of two words) | `skill "First Aid" 40` |
 | `learn <spell> ["Name"]` | Learn a recipe; from a trainer, or with `nearest` from the closest vendor of its recipe | `learn 3276` |
+| `cast <spellId> ["Name"]` | Cast that spell while the goal is open (needs Polestar 0.3.0) | `cast 818 "Basic Campfire"` |
 | `craft <spell> ["Name"]` | Craft a recipe, `x<N>` times | `craft 3275 x5` |
 | `until <N>` | On `craft`: until the profession reaches N | `craft 3275 until 40` |
 

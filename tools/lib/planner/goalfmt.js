@@ -242,6 +242,7 @@ function positionalTokens(verb, f) {
 			break;
 		case 'learn':
 		case 'craft':
+		case 'cast':
 			id('spell');
 			name('spellName');
 			break;
@@ -409,6 +410,7 @@ POSITIONAL.use = POSITIONAL.collect;
 POSITIONAL.buy = POSITIONAL.collect;
 POSITIONAL.explore = POSITIONAL.goto;
 POSITIONAL.craft = POSITIONAL.learn;
+POSITIONAL.cast = POSITIONAL.learn;
 
 const MODIFIER_FIELDS = {
 	at: [xy({ mod: 'at' })],

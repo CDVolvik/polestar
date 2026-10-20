@@ -1593,6 +1593,8 @@ goalDone = function(s, g, goal)
 	elseif t == "skill" then
 		if isManual(goal) then return false end
 		return skillState(goal, goal.level)
+	elseif t == "cast" then
+		return false -- ticked by the cast itself (Own.latchCast) or the player
 	elseif t == "learn" then
 		if isManual(goal) then return false end
 		return C.IsSpellKnown(goal.spell)
@@ -2309,6 +2311,8 @@ local function describe(goal)
 		return L["Reach level"], tostring(goal.level), "level", nil
 	elseif t == "skill" then
 		return L["Raise"], skillName(goal), "skill", fmt(L["to %d"], goal.level)
+	elseif t == "cast" then
+		return L["Cast"], N.Spell(goal.spell) or goal.spellName, "spell", nil
 	elseif t == "learn" then
 		local _, npcName = npcOf(goal)
 		return L["Learn"], N.Spell(goal.spell) or goal.spellName, "spell", fmt(L["from %s"], npcName)
@@ -3192,6 +3196,32 @@ function Own.latchTurnin(questID)
 				end
 			end
 		end
+	end
+	return hit
+end
+
+-- A `cast` goal that is open (in the step the guide is at, the step in view,
+-- or an along step listed under them) for spellID: ticked, as the player
+-- would tick it. A cast before the goal is open does not count.
+function Own.latchCast(spellID)
+	if not (guide and spellID) then return false end
+	local hit = false
+	local function tick(s)
+		for g, goal in ipairs(guide.steps[s].goals) do
+			if goal.t == "cast" and goal.spell == spellID and goalApplies(goal) then
+				local m = manualFor(guide.id, true)
+				local key = s .. ":" .. g
+				if not m[key] then
+					m[key] = true
+					hit = true
+				end
+			end
+		end
+	end
+	if current then tick(current) end
+	if computed and computed ~= current then tick(computed) end
+	for _, s in ipairs(Own.marksOf().along) do
+		if s ~= current and s ~= computed and Own.alongListed(s) then tick(s) end
 	end
 	return hit
 end
@@ -4501,6 +4531,20 @@ ns.RegisterEvent("QUEST_TURNED_IN", function(_, questID)
 	end
 	Own.clearMarks()
 	requestUpdate()
+end)
+
+-- The player's own successful casts: `cast` goals (Own.latchCast).
+ns.RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", function(_, unit, _, spellID)
+	local C = Compat()
+	spellID = C.Readable(spellID)
+	if C.Readable(unit) ~= "player" or type(spellID) ~= "number" or not player then return end
+	local hit = false
+	for i = 1, #tabs do
+		use(tabs[i])
+		if Own.latchCast(spellID) then hit = true end
+	end
+	useActive()
+	if hit then requestUpdate() end
 end)
 
 ns.RegisterEvent("PLAYER_LEVEL_UP", function(_, level)

@@ -159,6 +159,7 @@ local REQUIRED = {
 	note = { text = isStr },
 	skill = { skill = isStr, level = isNum },
 	learn = { spell = isNum, spellName = isStr },
+	cast = { spell = isNum, spellName = isStr },
 	craft = { spell = isNum, spellName = isStr },
 	rep = { faction = isNum, factionName = isStr, standing = isNum },
 	explore = { map = isNum, x = isNum, y = isNum },

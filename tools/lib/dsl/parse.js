@@ -76,6 +76,8 @@ const MODS = {
 	note: ['optional', 'only', ...COORDS],
 	skill: [...COMMON, ...COORDS],
 	learn: [...COMMON, ...COORDS, 'npc', 'item', 'nearest'],
+	// `cast <spellId> ["Name"]`: the player casts that spell while the goal is open.
+	cast: [...COMMON, ...COORDS],
 	craft: [...COMMON, ...COORDS, 'count', 'until'],
 	rep: [...COMMON, ...COORDS],
 	explore: [...COMMON, 'map', 'r', 'frame'],
@@ -748,7 +750,8 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 			return i + 1;
 		}
 		case 'learn':
-		case 'craft': {
+		case 'craft':
+		case 'cast': {
 			if (!t) return err(ln, `\`${verb}\` needs a spell id`), -1;
 			goal.spell = parseId(t, 'spell', ln, err);
 			if (goal.spell === null) return -1;

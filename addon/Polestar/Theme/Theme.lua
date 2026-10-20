@@ -777,6 +777,7 @@ for _, v in ipairs({ "accept", "turnin", "complete", "kill", "collect", "goto", 
 	VERB_ICON[v] = MEDIA .. "UI\\icon-" .. v
 end
 VERB_ICON.enter = VERB_ICON.goto
+VERB_ICON.cast = VERB_ICON.use
 
 function Theme.VerbIcon(t)
 	return VERB_ICON[t] or VERB_ICON.note

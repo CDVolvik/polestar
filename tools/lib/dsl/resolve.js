@@ -1483,6 +1483,15 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			if (goal.skillLine !== undefined) progressOf(ctx, goal.skillLine).target = g.level;
 			break;
 		}
+		case 'cast': {
+			// Any spell: its name from the professions data (a recipe), else the author's.
+			const found = data.recipe(g.spell);
+			const name = g.spellName || (found && found.recipe.name ? String(found.recipe.name) : null);
+			if (!name) err(ln, `spell ${g.spell} is not in data; give its name: \`cast ${g.spell} "Name"\``);
+			goal.spell = g.spell;
+			goal.spellName = name || undefined;
+			break;
+		}
 		case 'learn':
 		case 'craft': {
 			const found = data.recipe(g.spell);

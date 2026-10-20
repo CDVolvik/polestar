@@ -634,6 +634,8 @@ local function act(i, g, r)
 		local line = r.skillLine or r.skill
 		ensureSkill(r, line)
 		w.skillUp(line, r.level, math.max(r.level, w.skills[line].maxRank or 0))
+	elseif t == "cast" then
+		w.cast(r.spell)
 	elseif t == "learn" then
 		w.learnSpell(r.spell)
 		w.learnRecipe(r.spell)

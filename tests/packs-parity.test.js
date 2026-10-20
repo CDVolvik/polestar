@@ -59,6 +59,8 @@ const CASES = [
 	{ file: 'skill-level', reason: 'skill needs level', lint: /`skill` needs a profession and a rank/, goal: '{ t = "skill", skill = "First Aid" }' },
 	{ file: 'learn-spell', reason: 'learn needs spell', lint: /`learn` needs a spell id/, goal: '{ t = "learn", spellName = "First Aid" }' },
 	{ file: 'learn-spellname', reason: 'learn needs spellName', lint: /spell 999999 is not in data/, goal: '{ t = "learn", spell = 999999 }' },
+	{ file: 'cast-spell', reason: 'cast needs spell', lint: /`cast` needs a spell id/, goal: '{ t = "cast", spellName = "Basic Campfire" }' },
+	{ file: 'cast-spellname', reason: 'cast needs spellName', lint: /spell 999999 is not in data/, goal: '{ t = "cast", spell = 999999 }' },
 	{ file: 'craft-spell', reason: 'craft needs spell', lint: /`craft` needs a spell id/, goal: '{ t = "craft", spellName = "Linen Bandage" }' },
 	{ file: 'craft-spellname', reason: 'craft needs spellName', lint: /spell 999999 is not in data/, goal: '{ t = "craft", spell = 999999 }' },
 	{ file: 'rep-faction', reason: 'rep needs faction', lint: /unknown faction "Made Up"/, goal: '{ t = "rep", factionName = "Made Up", standing = 5 }' },
