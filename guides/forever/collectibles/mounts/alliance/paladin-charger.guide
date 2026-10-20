@@ -140,6 +140,7 @@ step Merideth Carlson
   zone Hillsbrad Foothills
   tip Merideth Carlson breeds horses in Southshore. She also wants 50 gold.
   accept 7645                         -- Merideth Carlson
+  buy 13724 x20 npc 10857             -- Enriched Manna Biscuits: Argent Quartermaster Lightspark, Chillwind Camp
   turnin 7645                         -- Manna-Enriched Horse Feed
 
 step Dire Maul: Tendris Warpwood
