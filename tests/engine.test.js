@@ -1326,6 +1326,54 @@ test('an objective goal reads the quest-log line named after its target, not the
 	assert.deepEqual(bait.map((g) => g.slice(0, 2)), [[5, 18], [2, 6]]);
 });
 
+// A pack's `collect` of an item the quest uses up, bound to a line that is not
+// an item objective (#538): the Sunscale Feather goes on the Scytheclaw nests,
+// and quest 905's lines are the three nest visits. The line never counts the
+// feather, so the bags do; using it up on a nest does not reopen the step.
+const FEATHER = `
+Polestar.RegisterGuide({
+	id = "test/feather", pack = "test", title = "The Barrens", faction = "Horde", minLevel = 10, maxLevel = 20, zone = 1413,
+	steps = {
+		{ title = "A feather", goals = {
+			{ t = "accept", quest = 905, title = "The Angry Scytheclaws", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, x = 52.23, y = 31.01 },
+			{ t = "collect", quest = 905, title = "The Angry Scytheclaws", item = 5165, itemName = "Sunscale Feather", oi = 1, map = 1413, x = 59.48, y = 45.18 },
+		} },
+		{ title = "The nests", goals = {
+			{ t = "interact", quest = 905, title = "The Angry Scytheclaws", object = 6907, objName = "Blue Raptor Nest", oi = 1, map = 1413, x = 52.6, y = 46.11 },
+		} },
+	},
+})
+`;
+
+test('a quest collect whose quest log has no item line counts the bags once the quest is taken, and stays done once the item is used (#538)', () => {
+	const out = run({
+		guides: NORTHSHIRE + FEATHER,
+		script: `
+			local w = stub.world
+			E.SetGuide("test/feather"); flush()
+			local goal = E.GetGuide().steps[1].goals[2]
+			local function state()
+				local g = E.GetStepView(1).goals[2]
+				return { E.GetStepIndex(), g.status, E.ObjectiveLine(goal) or false }
+			end
+			w.addItem(5165, 1); flush()
+			emit(state())
+			w.accept(905, { { text = "Blue Raptor Nest visited: 0/1", type = "object" }, { text = "Yellow Raptor Nest visited: 0/1", type = "object" }, { text = "Red Raptor Nest visited: 0/1", type = "object" } }); flush()
+			emit(state())
+			w.addItem(5165, -1); flush()
+			emit(state())
+		`,
+	});
+	assert.deepEqual(out, [
+		// The quest not taken: its lines are unknown, the step waits on the quest log.
+		[1, 'active', 1],
+		// Taken, no item line: the feather in the bags does it, and party counts have no line to read.
+		[2, 'done', false],
+		// The feather used on a nest: the step stays done.
+		[2, 'done', false],
+	]);
+});
+
 test('an objective goal keeps its compiled position when no line names its target', () => {
 	const [counts] = run({
 		guides: NORTHSHIRE + MURLOCS,
