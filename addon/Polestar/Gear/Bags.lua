@@ -2,9 +2,10 @@
 -- (QoL/Rewards.lua) on every item in the bags that Gear.IsUpgrade calls an
 -- upgrade, so the bags show at a glance what the tooltip's comparison line
 -- (Gear/Tooltip.lua) says on hover (gear.bagArrows, on by default; nothing
--- with gear advice off). An item that fits an empty slot and is worth nothing
--- under the weights, but no loss, gets the arrow too (Gear.FillsEmptySlot), as
--- the tooltip's "upgrade (empty slot)" says. The verdict is this character's.
+-- with gear advice off, or with gear.hideForPawn on and Pawn installed). An
+-- item that fits an empty slot and is worth nothing under the weights, but no
+-- loss, gets the arrow too (Gear.FillsEmptySlot), as the tooltip's "upgrade
+-- (empty slot)" says. The verdict is this character's.
 --
 --   Gear.Bags.IsUpgrade(link) -> bool   -- the verdict an arrow shows
 --   Gear.Bags.Redraw()                  -- repaint the shown bags now
@@ -54,8 +55,12 @@ local LAYER = 3 -- OVERLAY sublevel: over IconOverlay2, under searchOverlay
 local REDRAW = 0.2 -- seconds: GEAR_UPDATED repaints at most this often
 local WIDGET = "polestar_upgrade" -- Baganator corner widget id
 
+-- Pawn draws its own arrows on bag items: gear.hideForPawn leaves the bags to
+-- it while Pawn is installed and enabled.
 function Bags.IsOn()
-	return Gear.IsEnabled() and ns.Get("gear.bagArrows") and true or false
+	if not (Gear.IsEnabled() and ns.Get("gear.bagArrows")) then return false end
+	if ns.Get("gear.hideForPawn") and ns.Compat.AddOnPresent("Pawn") then return false end
+	return true
 end
 
 function Bags.IsUpgrade(link)

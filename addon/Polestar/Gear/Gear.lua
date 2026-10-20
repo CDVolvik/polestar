@@ -65,6 +65,7 @@ do
 		rewards = true,
 		pickTooltip = true, -- "Best pick" on quest reward items' tooltips
 		bagArrows = true, -- the upgrade arrow on bag items (Bags.lua)
+		hideForPawn = false, -- no bag arrows while Pawn is installed (it draws its own)
 		useBags = true,
 		minUpgrade = 1, -- percent
 		spec = spec, -- per class: "auto" or a spec key

@@ -318,3 +318,21 @@ test('EllesmereUI Bags loaded after Polestar: the painter registers as it loads,
 	assert.equal(before, true);
 	assert.equal(after, 'Polestar');
 });
+
+test('Leave bag arrows to Pawn hides the bag arrows only while Pawn is installed', () => {
+	const [off, withPawn, hidden, noPawn] = run(`${BAGS}
+		emit(G.Bags.IsOn())
+		C_AddOns = { IsAddOnLoaded = function(n) return n == "Pawn" end }
+		Polestar.Set("gear.hideForPawn", true)
+		emit(G.Bags.IsOn())
+		Polestar.Set("gear.hideForPawn", false)
+		emit(G.Bags.IsOn())
+		C_AddOns = nil
+		Polestar.Set("gear.hideForPawn", true)
+		emit(G.Bags.IsOn())
+	`);
+	assert.equal(off, true);
+	assert.equal(withPawn, false);
+	assert.equal(hidden, true);
+	assert.equal(noPawn, true);
+});
