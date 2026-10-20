@@ -243,7 +243,7 @@ Theme.SKIN_ORDER = { "polestar", "halo", "hearth", "forever", "blizzard", "class
 -- See issue #306.
 -- Each entry holds the skin's label so its translations survive in every locale
 -- until the skin returns (the i18n scanner would otherwise flag it as stale).
-local HIDDEN_SKINS = { forever = { label = ns.L["WoW Forever"] } }  -- #306
+local HIDDEN_SKINS = {}
 -- Tests may set Theme._testShowHidden = true to render hidden skins directly.
 Theme._testShowHidden = false
 -- The skins drawn in game colours and controls (the client's check boxes,
@@ -501,11 +501,11 @@ function Theme.GameSkin(key)
 end
 
 function Theme.SkinChoices()
-	-- "forever" is hidden while its border and progress bar are fixed (#306)
 	return {
 		{ value = "polestar", text = ns.L["Polestar"] },
 		{ value = "halo", text = ns.L["Halo"] },
 		{ value = "hearth", text = ns.L["Hearth"] },
+		{ value = "forever", text = ns.L["WoW Forever"] },
 		{ value = "blizzard", text = ns.L["Blizzard"] },
 		{ value = "classic", text = ns.L["Classic"] },
 	}
