@@ -277,6 +277,7 @@ hold:
 | `"zone"`, `"subzone"` | `name`; optional `area` | the zone (subzone) text reads as the area's name in the client's language, or as `name` |
 | `"bound"` | `name`; optional `area` | the bind location reads so |
 | `"dungeon"` | `name`; optional `map` (the instance's Map.csv id) | the character chose to run the dungeon with that `map` in leveling guides (Options, Discovery, Dungeons: "Dungeons in leveling guides"); without `map` it never holds |
+| `"done"` | `label`: a step label of the same guide (format 5) | the step so labelled applies, its goals are done and it was not skipped (by the player, a failed `when` or a `skipto` jump); refused in `nextWhen` |
 
 ```lua
 { title = "Back to Gornek", when = { { k = "onquest", q = { 788 } }, { k = "level", op = "<", n = 6 } }, goals = { ... } }
@@ -284,7 +285,7 @@ hold:
 
 A `when` that is not a non-empty list, or a predicate of another kind or
 without its keys, refuses the guide. Polestar 0.2.6 reads every kind above
-but `"money"` and `"dungeon"`, which came after it: a guide with one, on a
+but `"money"`, `"dungeon"` and `"done"`, which came after it: a guide with one, on a
 step or a `next` option, is written in format 5, so 0.2.6 says the pack needs
 Polestar 0.3.0 instead of refusing the guide ("bad when"). Once the route has moved past a step,
 Polestar stores whether its `when` held (per character, guide and step) and
@@ -323,9 +324,10 @@ list refuses the guide.
 
 ## Format 5
 
-Format 4 with the **`money`** and **`task`** goals and the **`money`** and
-**`dungeon`** `when` predicates (on a step or a `next` option). Polestar 0.3.0
-and later read it.
+Format 4 with the **`money`** and **`task`** goals, the **`money`**,
+**`dungeon`** and **`done`** `when` predicates (on a step or a `next` option;
+`done` on a step only) and a step's **`skipto`** jumps. Polestar 0.3.0 and
+later read it.
 The compiler writes a pack in format 5 only when its guides use one of them;
 any other pack stays in format 3 or 4. A 0.2.6 client accepts a format-4 pack
 and then refuses a guide with an unknown verb or predicate, so these features
@@ -342,6 +344,26 @@ refuses the guide.
 
 `money` when predicate: `{ k = "money", op = "<" | "<=" | ">" | ">=", n = <copper> }`.
 Like the `level` predicate but compares the character's money in copper.
+
+`done` when predicate: `{ k = "done", label = "<label>" }`, the label of a
+step of the same guide (GUIDE_FORMAT.md, "Jumps"). A label no step carries
+refuses the guide ("step N: bad when"), as does `done` in `nextWhen` ("bad
+nextWhen").
+
+`skipto` on a step: a non-empty list of jumps, each `{ to = "<label>", when =
+<predicate> }`, `to` the label of a later step and `when` one predicate as in
+a `when` list. When the route reaches the step, the first jump whose predicate
+holds skips the step and every step before the labelled one for the
+character: they are saved as the value `"jump"` in the skipped table, next to
+the player's own skips, so the jump does not undo itself, and the player can
+bring them back with Unskip. Anything else refuses the guide ("step N: bad
+skipto").
+
+```lua
+{ title = "Ask about the letter", skipto = { { to = "camp", when = { k = "turnedin", q = 1235 } } }, goals = { ... } },
+{ title = "Fetch the letter", goals = { ... } },
+{ title = "The camp", label = "camp", goals = { ... } },
+```
 
 ### `RegisterPack(meta)`
 
@@ -593,8 +615,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
   `along` and `label`, a `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6
-  and later, format 5 (the `money` and `task` goals, the `money` and
-  `dungeon` when predicates) by 0.3.0 and later.
+  and later, format 5 (the `money` and `task` goals, the `money`, `dungeon`
+  and `done` when predicates, a step's `skipto`) by 0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).

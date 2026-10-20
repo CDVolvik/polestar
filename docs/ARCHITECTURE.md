@@ -769,6 +769,7 @@ Polestar.RegisterGuide({
       when = { { k = "level", op = "<", n = 6 }, { k = "onquest", q = { 788 } } },  -- optional (format 4): conditions checked during play, all must hold
       along = "camp",              -- optional (format 4): true or a later step's label; the route passes over the step
       label = "camp",              -- optional (format 4): the step's name, unique in the guide
+      skipto = { { to = "camp", when = { k = "turnedin", q = 1235 } } },  -- optional (format 5): jumps to a later step's label, checked when the route reaches the step
       goals = { goal, ... },       -- at least one
     },
   },
@@ -1124,6 +1125,17 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   open, and a step change keeps it. The guide window lists them under "Then:"
   ("Along the way", `fillAlong`, at most six rows, not in compact mode);
   "Then:" and Up next skip along steps (`GetStepView(i).along`).
+- **Jumps.** A step with `skipto` (format 5; GUIDE_FORMAT, "Jumps") is
+  checked when `computeCurrent` reaches it as the first open step, once the
+  quest log can be read (`logReady`): `Own.jump` takes the first jump whose
+  predicate holds (`Own.predicateHolds`) and saves the step and every step
+  before the labelled one as `"jump"` in `CharState().skipped` (a skip already
+  there stays), and `computeCurrent` goes on from there. A step done before
+  the route reaches it never jumps. `Unskip`, and `Goto` on a jumped step with
+  `skipto`, mark it in `CharState().when` (`Own.keep`), so it takes no second
+  jump. A `done` predicate (`Own.labelDone`) holds when the labelled step
+  applies, is not skipped and its goals are done (`Own.goalsDone`, which is
+  `stepDone` without the along pass).
 - **Unavailable quests.** An `accept` whose `closedBy` names a quest that is
   in the log or done is unavailable before any visit (reason `"closed"`,
   "No longer offered: you took <quest>"): a breadcrumb whose follow-up is

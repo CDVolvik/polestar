@@ -229,11 +229,11 @@ local GOAL = rec({
 	direct = B, escort = B,
 })
 -- A step's `when` predicates and a `next` option's (format 4; Guides.Validate checks each kind's keys).
-local WHEN = rec({ k = S, neg = B, op = S, n = N, frac = N, q = NL, item = N, name = S, area = N, map = N, minLevel = N, pre = LN, preAll = LN, closedBy = LN })
+local WHEN = rec({ k = S, neg = B, op = S, n = N, frac = N, q = NL, item = N, name = S, label = S, area = N, map = N, minLevel = N, pre = LN, preAll = LN, closedBy = LN })
 -- A step's picture: read so a string carries the guide as its addon does, but
 -- an imported guide has no addon folder holding the file, so it shows none.
 local IMAGE = rec({ file = S, w = N, h = N })
-local STEP = rec({ title = S, note = S, image = IMAGE, label = S, only = ONLY, when = list(WHEN), along = BS, goals = list(GOAL) })
+local STEP = rec({ title = S, note = S, image = IMAGE, label = S, only = ONLY, when = list(WHEN), along = BS, skipto = list(rec({ to = S, when = WHEN })), goals = list(GOAL) })
 local GUIDE = rec({
 	id = S, title = S, faction = S, races = LS, classes = LS, minLevel = N, maxLevel = N, category = S, folder = S, keywords = LS,
 	collects = LN, reward = list(rec({ item = N, itemName = S, quality = N, choice = B, spell = N, spellName = S, text = S })),

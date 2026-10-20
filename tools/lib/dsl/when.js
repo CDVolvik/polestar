@@ -17,16 +17,19 @@
 //   [!]bound "<Location>"                     the hearthstone is bound there
 //   [!]dungeon "<Name>"                       the player chose to run that dungeon
 //   money<A  money<=A  money>A  money>=A     the character's money; A as copper or 1g50s / 7s / 25c
-// value = { k, neg?, op?, n?, frac?, q?, item?, name? }; `q` is a list for onquest.
+//   [!]done <label>                           the step so labelled was completed, not skipped
+// value = { k, neg?, op?, n?, frac?, q?, item?, name?, label? }; `q` is a list for onquest.
 
 const { levelPoint } = require('../game/xp');
 const { readMoney } = require('./money');
 
 const INT_RE = /^\d+$/;
-const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound', 'dungeon'];
+const KINDS = ['level', 'money', 'onquest', 'complete', 'turnedin', 'available', 'has', 'zone', 'subzone', 'bound', 'dungeon', 'done'];
+// A step label, as parse.js reads `label <name>`.
+const LABEL_RE = /^[A-Za-z0-9_-]+$/;
 const QUEST_ONE = new Set(['complete', 'turnedin', 'available']);
 const PLACE = new Set(['zone', 'subzone', 'bound']);
-const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>"`;
+const USAGE = `predicates: level<N, level>=N, money>=1s, [!]onquest <quest>, [!]complete <quest>, [!]turnedin <quest>, [!]available <quest>, [!]has <item> [xN], [!]zone "<Name>", [!]subzone "<Name>", [!]bound "<Location>", [!]dungeon "<Name>", [!]done <label>`;
 
 // A name written quoted or bare: `"Razor Hill"` or `Razor Hill`.
 function nameOf(text) {
@@ -83,6 +86,11 @@ function parseWhen(rest) {
 		const n = h[2] !== undefined ? Number(h[2]) : 1;
 		if (n < 1) return { error: '`has` needs a count of 1 or more' };
 		value.n = n;
+		return { value };
+	}
+	if (kind === 'done') {
+		if (!LABEL_RE.test(args)) return { error: '`done` needs a step label: done <label>' };
+		value.label = args;
 		return { value };
 	}
 	// zone, subzone, bound, dungeon
