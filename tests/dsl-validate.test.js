@@ -413,6 +413,36 @@ test('an objective index that names another objective of the quest is an error t
 	assert.equal(d[0].hint, 'write `quest 9700.2`, or `quest 9700` to take the index from the item');
 });
 
+// A quest whose one line is an object to visit, and an item it uses on the way
+// (#538: Sunscale Feather on the Scytheclaw nests); one whose line is another
+// item (the Fresh Zhevra Carcass that lures Ishamuhale for his Fang).
+function usedItemData() {
+	const base = fixtureData();
+	const items = {
+		...base.items,
+		95100: { id: 95100, name: 'Elite Tusk', drops: { npc: { 95003: 60 }, object: {} }, vendors: [] },
+		95101: { id: 95101, name: 'Kobold Tusk', drops: { npc: { 95003: 60 }, object: {} }, vendors: [] },
+	};
+	const quests = {
+		...base.quests,
+		9701: { ...base.quests[7], id: 9701, title: 'Nests', pre: [], objectives: [{ type: 'object', id: 1617, count: 1 }], requiredItems: [95100] },
+		9702: { ...base.quests[7], id: 9702, title: 'Visits', pre: [], objectives: [{ type: 'object', id: 1617, count: 1 }] },
+		9703: { ...base.quests[7], id: 9703, title: 'Bait', pre: [], objectives: [{ type: 'item', id: 95101, count: 1 }], requiredItems: [95100] },
+		9704: { ...base.quests[7], id: 9704, title: 'Crate and tusk', pre: [], objectives: [{ type: 'object', id: 1617, count: 1 }, { type: 'item', id: 95101, count: 1 }] },
+	};
+	return new Data({ quests, npcs: base.npcs, objects: base.objects, items, zones: base.zones, 'map-frames': base.mapFrames, meta: base.meta }, { dir: base.dir });
+}
+
+test('a collect bound to a quest line that is not an item warns; for an item the quest uses, the hint is to count the bags (#538)', () => {
+	const src = guideText(['step S', '  accept 9701', '  accept 9702', '  collect 95100 quest 9701.1', '  collect 95100 quest 9702.1', '  collect 95100 quest 9701', '  turnin 9701', '  turnin 9702']);
+	const w = compile(src, usedItemData()).diag.warnings.filter((x) => /not an item|no objective for this item/.test(x.message));
+	assert.deepEqual(w.map((x) => [x.line, x.message, x.hint]), [
+		[lineOf(src, '  collect 95100 quest 9701.1'), 'quest 9701.1 is interact Kobold Crate x1, not an item', 'the quest uses item 95100 without counting it: drop `quest 9701.1` so the step counts it in the bags'],
+		[lineOf(src, '  collect 95100 quest 9702.1'), 'quest 9702.1 is interact Kobold Crate x1, not an item', 'its objectives: 9702.1 = interact Kobold Crate x1'],
+		[lineOf(src, '  collect 95100 quest 9701'), 'quest 9701 has no objective for this item', 'the quest uses item 95100 without counting it: drop `quest 9701` so the step counts it in the bags'],
+	]);
+});
+
 test('`complete` on a quest without objectives warns: the turn-in is the action', () => {
 	const src = guideText(['step S', '  accept 783', '  accept 7', '  complete 783', '  complete 7', '  turnin 783', '  turnin 7']);
 	assert.deepEqual(only(compile(src).warnings, /no objectives/), [
@@ -560,4 +590,20 @@ test('lint applies the solo policy from the cached world in --sim (built from th
 	assert.match(r.stderr, /01-northshire\.guide:14: warning: quest 5261 \(Eagan Peltskinner\) is excluded from solo leveling \(dungeon: dungeon quest\)/);
 	// Without --sim, other data never reads the default cache.
 	assert.doesNotMatch(lint().stderr, /excluded from solo/);
+});
+
+test('a collect bound to the line of another item, on a quest that only uses its item: the hint is to count the bags (#538)', () => {
+	const src = guideText(['step S', '  accept 9703', '  collect 95100 quest 9703.1', '  turnin 9703']);
+	const w = compile(src, usedItemData()).diag.warnings.filter((x) => /9703\.1 is/.test(x.message));
+	assert.deepEqual(w.map((x) => [x.line, x.message, x.hint]), [
+		[lineOf(src, '  collect 95100 quest 9703.1'), 'quest 9703.1 is collect Kobold Tusk x1, not this item', 'the quest uses item 95100 without counting it: drop `quest 9703.1` so the step counts it in the bags'],
+	]);
+});
+
+test('a collect bound to a line that is not an item, when the item is another objective of the quest: the hint names its index', () => {
+	const src = guideText(['step S', '  accept 9704', '  collect 95101 quest 9704.1', '  turnin 9704']);
+	const w = compile(src, usedItemData()).diag.warnings.filter((x) => /not an item/.test(x.message));
+	assert.deepEqual(w.map((x) => [x.message, x.hint]), [
+		['quest 9704.1 is interact Kobold Crate x1, not an item', 'write `quest 9704.2`, or `quest 9704` to take the index from the item'],
+	]);
 });

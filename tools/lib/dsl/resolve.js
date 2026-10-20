@@ -1585,6 +1585,12 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			// target: progress and count would follow that one. When the target
 			// is another objective of the quest, the index is swapped, which is
 			// always wrong: an error (#214 shipped two that a warning let pass).
+			// An item the quest uses without counting it (Sunscale Feather on the
+			// Scytheclaw nests, the Fresh Zhevra Carcass that lures Ishamuhale,
+			// #538): no line of the quest log counts it, so only the bags can say
+			// it is there.
+			const used = v === 'collect' && id !== undefined && ((q.requiredItems || []).includes(id) || q.sourceItem === id);
+			const bagHint = `the quest uses item ${id} without counting it: drop \`quest ${g.quest}${oi !== undefined ? `.${oi}` : ''}\` so the step counts it in the bags`;
 			const named = oi !== undefined && kind && id !== undefined ? data.questObjectives(g.quest)[oi - 1] : null;
 			if (named && named.kind === kind && named.id != null && named.id !== id) {
 				const right = objectiveFor(q, kind, id);
@@ -1593,13 +1599,17 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 				(right ? err : warn)(
 					ln,
 					`${objectiveLabel(g.quest, named).replace(/^(\S+) = /, 'quest $1 is ')}, not this ${noun}${own ? `; ${own.name || `${noun} ${id}`} is ${g.quest}.${right}` : ''}`,
-					right ? `write \`quest ${g.quest}.${right}\`, or \`quest ${g.quest}\` to take the index from the ${noun}` : `its objectives: ${listed()}`,
+					right ? `write \`quest ${g.quest}.${right}\`, or \`quest ${g.quest}\` to take the index from the ${noun}` : used ? bagHint : `its objectives: ${listed()}`,
 				);
+			}
+			if (named && v === 'collect' && named.kind !== 'item') {
+				const right = objectiveFor(q, 'item', id);
+				warn(ln, `${objectiveLabel(g.quest, named).replace(/^(\S+) = /, 'quest $1 is ')}, not an item`, right ? `write \`quest ${g.quest}.${right}\`, or \`quest ${g.quest}\` to take the index from the item` : used ? bagHint : `its objectives: ${listed()}`);
 			}
 			if (oi === undefined) {
 				if (id !== undefined) oi = objectiveFor(q, kind, id) || undefined;
 				if (oi === undefined && q.objectives.length) {
-					warn(ln, `quest ${g.quest} has no objective for this ${v === 'kill' ? 'npc' : v === 'interact' ? 'object' : 'item'}; write \`quest ${g.quest}.<objective>\``, `its objectives: ${listed()}`);
+					warn(ln, `quest ${g.quest} has no objective for this ${v === 'kill' ? 'npc' : v === 'interact' ? 'object' : 'item'}${used ? '' : `; write \`quest ${g.quest}.<objective>\``}`, used ? bagHint : `its objectives: ${listed()}`);
 				}
 			}
 			if (oi !== undefined && g.count === undefined && (v === 'kill' || v === 'collect')) {

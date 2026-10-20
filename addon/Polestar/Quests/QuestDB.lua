@@ -95,6 +95,22 @@ function Q.HandsOver(questID, itemID)
 	return false
 end
 
+-- Whether quest questID uses item itemID without asking for it: the item is
+-- in its handed-over field, which also holds the items its work needs (the
+-- Sunscale Feather for the Scytheclaw nests, the Fresh Zhevra Carcass that
+-- lures Ishamuhale), and no objective of it is that item, so no quest-log
+-- line counts it. False while the database is not loaded. Allocation-free.
+function Q.UsesOnly(questID, itemID)
+	if not Q.HandsOver(questID, itemID) then return false end
+	local obj = data.quests[questID][QUEST_OBJ]
+	if obj then
+		for i = 1, #obj, 3 do
+			if obj[i] == 2 and obj[i + 1] == itemID then return false end
+		end
+	end
+	return true
+end
+
 -- A ref is an NPC id (> 0) or an object id (< 0), as in start/finish lists.
 local function entityRecord(ref)
 	if ref > 0 then return data.npcs[ref] end

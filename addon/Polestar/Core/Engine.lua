@@ -1225,7 +1225,7 @@ end
 local function latchable(goal)
 	local t = goal.t
 	return t == "goto" or t == "explore" or t == "sethome" or t == "hearth" or t == "fly" or t == "getfp"
-		or t == "buy" or (t == "collect" and not goal.quest) or (t == "craft" and craftMode(goal) == "count")
+		or t == "buy" or (t == "collect" and (not goal.quest or Own.bagCollect(goal))) or (t == "craft" and craftMode(goal) == "count")
 		or (t == "train" and goal.class == true) or t == "money"
 end
 
@@ -1335,11 +1335,25 @@ end
 -- The quest-log line (an index into Compat.GetQuestObjectives) objective goal
 -- `goal` reads, as Own.objectiveLine picks it; its `oi` while the quest is not in
 -- the log. Party sync reads members' counts by it: theirs come in the same
--- game order.
+-- game order. Nil for a goal that counts the bags (Own.bagCollect): no line
+-- counts its item.
 function Engine.ObjectiveLine(goal)
 	if type(goal) ~= "table" or not goal.quest or not goal.oi then return goal and goal.oi end
+	if Own.bagCollect(goal) then return nil end
 	local objs = Compat().GetQuestObjectives(goal.quest)
 	return objs and Own.objectiveLine(goal, objs) or goal.oi
+end
+
+-- Whether quest `collect` goal `goal` counts the bags: the quest uses its
+-- item without asking for it (QuestDB.UsesOnly), so no quest-log line counts
+-- it, whichever line the goal was bound to (#538: a pack's Sunscale Feather
+-- on "Blue Raptor Nest visited", its Fresh Zhevra Carcass on "Ishamuhale's
+-- Fang"). Without the quest database (every quest feature off) the goal
+-- reads its line. (On Own: the main chunk is at 200 locals.)
+function Own.bagCollect(goal)
+	if goal.t ~= "collect" or not goal.quest or not goal.item then return false end
+	local Q = ns.QuestDB
+	return Q and Q.IsLoaded() and Q.UsesOnly(goal.quest, goal.item) or false
 end
 
 -- Objective goals: done when objective `oi` (its line, Own.objectiveLine) is
@@ -1484,7 +1498,11 @@ goalDone = function(s, g, goal)
 		if goal.quest then return objectiveState(goal) end
 		return false
 	elseif t == "collect" then
-		if goal.quest then return objectiveState(goal) end
+		if goal.quest then
+			if not (Own.bagCollect(goal) and C.IsOnQuest(goal.quest)) then return objectiveState(goal) end
+			if C.IsQuestReadyForTurnIn(goal.quest) then return true end
+			return countState(goal)
+		end
 		if Own.starterTaken(s, g, goal) then return true end
 		return countState(goal)
 	elseif t == "buy" then
@@ -1607,7 +1625,7 @@ end
 -- Bag-count goals (non-quest buy/collect, count-mode craft), latched within
 -- their own step so using the items up does not reopen it.
 local function isBagCount(goal)
-	return goal.t == "buy" or (goal.t == "collect" and not goal.quest)
+	return goal.t == "buy" or (goal.t == "collect" and (not goal.quest or Own.bagCollect(goal)))
 		or (goal.t == "craft" and craftMode(goal) == "count") or goal.t == "money"
 end
 
@@ -4370,6 +4388,8 @@ for _, event in ipairs({
 }) do
 	ns.RegisterEvent(event, onUpdateEvent)
 end
+-- The quest database says which quest collects count the bags (Own.bagCollect).
+ns.On("QUESTDB_LOADED", onUpdateEvent)
 
 -- Where the player is changed enough to re-pick candidates: a zone change or
 -- landing (control comes back after a flight).
