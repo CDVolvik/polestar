@@ -46,7 +46,7 @@ return {
 	["Spider eye and bear claw"] = "蜘蛛眼和熊爪",
 	-- {item:20610} Bloodshot Spider Eye · {item:20611} Thick Black Claw · {zone:1422} Western Plaguelands
 	-- plural, as words: Venom Mist Lurkers = {npc:1822} Venom Mist Lurker · Diseased Black Bears = {npc:1815} Diseased Black Bear
-	["Collect eight {item:20610} and eight {item:20611}. In the {zone:1422}, Venom Mist Lurkers supply the eyes and Diseased Black Bears the claws; carrion birds can drop either. Keep these while already hunting here, then return to the quest giver once both quest counts are complete."] = "收集8个{item:20610}和8个{item:20611}。在{zone:1422}，{npc:1822}提供蜘蛛眼，{npc:1815}提供熊爪；食腐鸟可能掉落其中任一种。趁这次狩猎保留这些材料，两种任务计数都满后再回去交付。",
+	["In the {zone:1422}, the Venom Mist Lurkers drop the {item:20610} and the Diseased Black Bears the {item:20611} (about one kill in five each). Carrion birds can drop either, so keep what they give you on the way."] = "在{zone:1422}，{npc:1822}掉落{item:20610}，{npc:1815}掉落{item:20611}（各自大约五次击杀掉落一次）。食腐鸟可能掉落其中任一种，路上得到的也要留着。",
 
 	-- Step 7: The Sunken Temple
 	-- {area:1417} Sunken Temple
@@ -55,6 +55,5 @@ return {
 	["The {area:1417} ({area:1477}) lies under the {area:74}; the arrow points at its entrance. Gasher or {npc:5716} drop the {item:20606}, Hukku or Mijan the Blue, Zolo or Loro the Green: all six are elite trolls inside. Bring a group."] = "{area:1417}（{area:1477}）位于{area:74}下方；箭头指向其入口。加什尔或{npc:5716}掉落{item:20606}，胡库或米杉掉落蓝色，祖罗或洛若尔掉落绿色：六个都是里面的精英巨魔。组队前往。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
-	-- ["In the {zone:1422}, the Venom Mist Lurkers drop the {item:20610} and the Diseased Black Bears the {item:20611} (about one kill in five each)."] = "在{zone:1422}，{npc:1822}掉落{item:20610}，{npc:1815}掉落{item:20611}（各自大约五次击杀掉落一次）。",
 	-- ["One each of {item:7069}, Fire, Earth and Water. The Exiles of {zone:1417} drop them, one element each, about one kill in ten: Thundering (air), Burning (fire), Rumbling (earth) and Cresting (water). Or buy them at the auction house."] = "{item:7069}、元素火焰、元素之土和元素之水各一份。{zone:1417}的流放者会掉落它们，每种对应一个元素，大约十次击杀掉落一次：雷霆流放者（空气）、烈焰流放者（火焰）、顽石流放者（土）和水浪流放者（水）。也可以在拍卖行购买。",
 }

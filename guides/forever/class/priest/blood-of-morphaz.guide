@@ -62,7 +62,7 @@ step Ogtinc
   accept 8255
 
 step Of Coursers We Know
-  tip Mosshoof Coursers graze all over Azshara; about one in three drops a Healthy Courser Gland. Keep one Ichor of Undeath if you already have it: Ogtinc's next stage needs it. Turn in the glands and take the follow-up before handing over the ichor.
+  tip Mosshoof Coursers graze all over Azshara; about one in three drops a Healthy Courser Gland. Keep any Ichor of Undeath you loot: Ogtinc's next stage asks for one.
   collect 20027 quest 8255.1                  -- Healthy Courser Gland
 
 step Ogtinc
@@ -70,7 +70,7 @@ step Ogtinc
   accept 8256
 
 step The Ichor of Undeath
-  tip If you already have Ichor of Undeath, turn it in after taking this stage. Otherwise, look for the undead named here. The Lingering Highborne in the Ruins of Eldarath, below Ogtinc's cliffs, are the nearest; Highborne Apparitions and Lichlings haunt the ruins near Talrendis Point.
+  tip Already carrying an Ichor of Undeath? It counts as soon as you take this stage. Otherwise any undead can drop it. The Lingering Highborne in the Ruins of Eldarath, below Ogtinc's cliffs, are the nearest; Highborne Apparitions and Lichlings haunt the ruins near Talrendis Point.
   collect 7972 quest 8256.1                   -- Ichor of Undeath
 
 step Ogtinc

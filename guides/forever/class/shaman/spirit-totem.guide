@@ -63,7 +63,7 @@ step Bath'rah the Windwatcher
 
 step Spider eye and bear claw
   zone Western Plaguelands
-  tip Collect eight {item:20610} and eight {item:20611}. In the Western Plaguelands, Venom Mist Lurkers supply the eyes and Diseased Black Bears the claws; carrion birds can drop either. Keep these while already hunting here, then return to the quest giver once both quest counts are complete.
+  tip In the Western Plaguelands, the Venom Mist Lurkers drop the Bloodshot Spider Eye and the Diseased Black Bears the Thick Black Claw (about one kill in five each). Carrion birds can drop either, so keep what they give you on the way.
   collect 20610 quest 8412.1                  -- Bloodshot Spider Eye
   collect 20611 quest 8412.2                  -- Thick Black Claw
 
