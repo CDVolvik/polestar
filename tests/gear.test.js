@@ -317,9 +317,9 @@ test('options: the gear advice on Questing with the class spec dropdown, registe
 		local out = {}
 		for _, def in ipairs(seen) do
 			local keys = {}
-			for _, c in ipairs(def.controls) do keys[#keys + 1] = c.key .. "=" .. c.kind .. ":" .. (c.help and "help" or "nohelp") end
+			for _, c in ipairs(def.controls) do keys[#keys + 1] = (c.key or c.label) .. "=" .. c.kind .. ":" .. (c.help and "help" or "nohelp") end
 			out[#out + 1] = { page = def.page, section = def.section, keys = keys,
-				choices = def.controls[2].choices and #def.controls[2].choices or 0 }
+				choices = def.controls[2].choices and #def.controls[2].choices() or 0 }
 		end
 		emit(out)
 	`,
@@ -330,8 +330,10 @@ test('options: the gear advice on Questing with the class spec dropdown, registe
 	assert.deepEqual(defs[0].keys, [
 		'gear.enabled=toggle:help',
 		'gear.spec.WARRIOR=dropdown:help',
+		'Manage custom weights=button:help',
 		'gear.tooltip=toggle:help',
 		'gear.bagArrows=toggle:help',
+		'gear.hideForPawn=toggle:help',
 		'gear.rewards=toggle:help',
 		'gear.pickTooltip=toggle:help',
 	]);
