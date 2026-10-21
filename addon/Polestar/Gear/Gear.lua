@@ -395,14 +395,17 @@ function Gear.DetectSpec(class, classID)
 end
 
 -- Melee weapon DPS for the specs whose weights leave it out: every caster, and
--- Druids, whose forms ignore it. Low-level casters and Druids still fight with
--- the weapon, so a staff or dagger that hits harder counts. A tiebreaker: the
--- stats that matter outweigh it; a weight the spec has is never changed.
+-- Druids. Low-level casters and Druids still fight with the weapon, so a staff
+-- or dagger that hits harder counts. A tiebreaker: the stats that matter
+-- outweigh it; a weight the spec has is never changed. Feral is left out from
+-- the level Bear Form is learned (FERAL_FORM_LEVEL): forms ignore weapon DPS.
 local MELEE_DPS = 0.01
+local FERAL_FORM_LEVEL = 10
 local withMelee = setmetatable({}, { __mode = "k" }) -- weights -> weights with dps
 
-local function withMeleeDps(w)
+local function withMeleeDps(w, class, key, level)
 	if not w or w.dps ~= nil then return w end
+	if class == "DRUID" and key == "feral" and (level or 0) >= FERAL_FORM_LEVEL then return w end
 	local c = withMelee[w]
 	if not c then
 		c = {}
@@ -427,10 +430,10 @@ function Gear.WeightsFor(class, key, level)
 				break
 			end
 		end
-		return withMeleeDps(pick.weights), pick
+		return withMeleeDps(pick.weights, class, key, level), pick
 	end
 	local w = WEIGHTS[class] and WEIGHTS[class][key]
-	return withMeleeDps(w), w and { source = "polestar", upTo = 60 } or nil
+	return withMeleeDps(w, class, key, level), w and { source = "polestar", upTo = 60 } or nil
 end
 
 local function resolveSpec()

@@ -392,3 +392,13 @@ test('the melee DPS weight is only a tiebreaker: a stat on the item outweighs an
 	assert.equal(out.intWins, true, '+1 Intellect beats 10 DPS less');
 	assert.ok(Math.abs(out.dpsPct - 100) < 0.5, 'doubling the DPS of a bare weapon is +100%, at any weight');
 });
+
+test('Feral loses the melee DPS weight from the level Bear Form is learned; Balance keeps it', () => {
+	const w = (spec, level) => run(`
+		Polestar.Set("gear.spec.DRUID", "${spec}")
+		emit({ dps = G.GetWeights().dps or false })
+	`, { cls: 'DRUID', className: 'Druid', classID: 11, level })[0].dps;
+	assert.equal(w('feral', 9), 0.01, 'before any form the Druid fights with the weapon');
+	assert.equal(w('feral', 10), false, 'cat and bear damage ignores weapon DPS');
+	assert.equal(w('balance', 20), 0.01);
+});
