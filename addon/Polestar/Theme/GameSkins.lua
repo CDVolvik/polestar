@@ -557,17 +557,19 @@ local GUIDE = {
 		-- The micro menu box's bronze line (55 units, its chamfered corners 12),
 		-- the line 3 units in from the art's edge: laid 3 out so it runs on the
 		-- window's edge. Its filled middle is left out: the body is the window's own.
-		-- The border frame starts below the tab strip (f.psStrip) so the strip
-		-- draws above the border (not covered by the f+6 edge frame).
-		local stripH = f.psStrip and f.psStrip:GetHeight() or 0
-		if stripH < 1 then stripH = 0 end
+		-- The border starts at the tab strip's foot (f.psStrip), anchored so it
+		-- follows the strip as it shows and hides (compact mode) without a repaint.
 		-- At the window's own level, under its content: the art's inner shade
 		-- (all but its outer 3 units) drew over the nav row and the progress
 		-- bar at f+6 (#306).
 		local o = child(f, "edge", 0)
 		o:EnableMouse(false)
 		o:ClearAllPoints()
-		o:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -stripH)
+		if f.psStrip then
+			o:SetPoint("TOPLEFT", f.psStrip, "BOTTOMLEFT", 0, 0)
+		else
+			o:SetPoint("TOPLEFT", f, "TOPLEFT", 0, 0)
+		end
 		o:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", 0, 0)
 		sliced(f, "slim", kit, kit.slim, o, { 3, 0, 3, 3 }, "BORDER", 0, true)
 	end,

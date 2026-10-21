@@ -808,6 +808,10 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 		-- the border's frame under the window's content; the rows clear of it
 		local F = PolestarGuideFrame
 		out.edgeLevel = F.psSkin.kit.edge:GetFrameLevel() - F:GetFrameLevel()
+		do
+			local p, rel, rp = F.psSkin.kit.edge:GetPoint(1)
+			out.edgeTop = { p, rel == F.psStrip, rp }
+		end
 		out.pad = { T.Metric("guidePad", 14), T.Metric("guideLitInset", 4) }
 		local lit, row
 		for _, r in ipairs(GF.rows or {}) do
@@ -843,6 +847,7 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 	assert.equal(out.tick.big, 26, 'the Settings panel box as before');
 	assert.ok(Math.abs(out.tick.small - 15 * 26 / 18) < 1e-9, 'a 15 box: the art in the same proportion');
 	assert.equal(out.edgeLevel, 0, "the border's frame at the window's level: the content draws over its inner shade");
+	assert.deepEqual(out.edgeTop, ['TOPLEFT', true, 'BOTTOMLEFT'], "the border hangs from the tab strip's foot, so it follows the strip into and out of compact mode");
 	assert.deepEqual(out.pad, [18, 10], 'Forever pads its rows and the lit goal clear of the border');
 	assert.equal(out.lit, 10, 'the current goal lit 10 in');
 	assert.ok(out.tickRight <= -(10 + 10), `the tick box's art ends 10 or more inside the lit goal's outline (${out.tickRight})`);
