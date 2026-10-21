@@ -138,7 +138,7 @@ end
 
 local watched
 local function watchMap()
-	if watched or not WorldMapFrame then return end
+	if watched or not WorldMapFrame or not ns.MapCanvas then return end
 	watched = ns.MapCanvas.Watch(WorldMapFrame, function(_, what)
 		if what == "hide" or what == "map" or what == "size" or what == "scale" then closeMenu() end
 	end)

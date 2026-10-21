@@ -57,6 +57,27 @@ function run(script, { enabled, before = '' } = {}) {
   }).emitted;
 }
 
+test('service groups tolerate missing MapCanvas and install the watcher once when it becomes available', () => {
+  const [out] = runAddon({
+    stubs: ['stub_world.lua'],
+    addons: [{ name: 'Polestar', files: ['Core/Core.xml', 'Theme/Theme.xml', 'Maps/Maps.lua', 'Maps/ServiceClusters.lua'] }],
+    login: true,
+    script: `
+      local missing=Polestar.MapCanvas==nil
+      stub.addonLoaded("Blizzard_WorldMap")
+      local frame,calls=WorldMapFrame,0
+      WorldMapFrame=nil
+      Polestar.MapCanvas={Watch=function(map) assert(map==frame); calls=calls+1; return {} end}
+      stub.addonLoaded("Blizzard_WorldMap")
+      local withoutFrame=calls
+      WorldMapFrame=frame
+      stub.addonLoaded("Blizzard_WorldMap")
+      stub.addonLoaded("Blizzard_WorldMap")
+      emit({missing=missing,withoutFrame=withoutFrame,calls=calls})`,
+  }).emitted;
+  assert.deepEqual(out, { missing: true, withoutFrame: 0, calls: 1 });
+});
+
 test('services use Codex alone with live coordinates, reject hostile NPCs and invalid spawns, and distinguish mailbox IDs', () => {
   const [out] = run(`
     local out={}
