@@ -804,6 +804,11 @@ function mergeCodex(inputs) {
 			if (spawns.length) npc.spawns = spawns;
 		}
 	}
+	// Titles are for the map's NPC services (the tooltip, and the class roles
+	// above): any other NPC's would only add to the pack.
+	for (const npc of Object.values(npcs)) {
+		if (npc.subName && !(npc.roles || []).some((role) => SERVICE_ROLES.has(role))) delete npc.subName;
+	}
 
 	// ----- items
 	const cands = {}; // item -> [source]

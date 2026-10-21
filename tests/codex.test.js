@@ -715,12 +715,15 @@ test('Codex services retain exact spawns, trainer titles and mailbox factions th
 	const points = Array.from({ length: 28 }, (_, i) => [10 + i, 50]);
 	inputs.forever.npcs[4730].spawns[1438] = { f: 'e', pts: points.slice(0, 24), more: points.slice(24) };
 	inputs.forever.npcs[198].subName = 'Mage Trainer';
+	inputs.forever.npcs[77777] = { id: 77777, name: 'Town Crier', subName: 'Herald', level: 30, faction: 'A', spawns: { 1438: { f: 'e', pts: [[40, 40]] } } };
 	inputs.forever.objects[99999] = { id: 99999, name: 'Mailbox', roles: ['mailbox'], faction: 'H',
 		spawns: { 1438: { f: 'e', pts: [[25.2, 50.1], [25.3, 50.2]], more: [[70, 70]] } } };
 	const codex = mergeCodex(inputs);
 	assert.equal(codex.npcs[4730].spawns.length, 28, 'service points are not capped or averaged');
 	assert.equal(codex.npcs[198].subName, 'Mage Trainer');
 	assert.ok(codex.npcs[198].roles.includes('class:MAGE'));
+	assert.ok(codex.npcs[77777], 'the NPC without services is in the Codex');
+	assert.equal(codex.npcs[77777].subName, undefined, 'titles ride only on service NPCs');
 	assert.equal(codex.objects[99999].spawns.length, 3, 'unreferenced mailboxes retain every physical point');
 	const pack = writeCodexPack(codex);
 	try {

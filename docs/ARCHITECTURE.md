@@ -3336,8 +3336,9 @@ flight timer and the instance tracker are set under Quality of Life.
   no external database addon is needed during play. The data importer keeps
   mailbox roles and friendly sides from faction templates; faction ID zero
   means both sides, matching Questie's mailbox lists. Unknown nonzero templates
-  and templates hostile to both sides are omitted. The Codex retains
-  trainer titles and every service/mailbox spawn (`pts` and `more`), without
+  and templates hostile to both sides are omitted. The Codex retains the
+  titles of service NPCs only (no other NPC carries one, to keep the pack
+  small) and every service/mailbox spawn (`pts` and `more`), without
   clustering or caps. English trainer titles supplement class roles; displayed
   names remain localized. Repeated mailbox
   observations within 10 world yards share one icon at an original point;
