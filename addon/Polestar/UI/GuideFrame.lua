@@ -183,7 +183,11 @@ local function goalTooltip(row)
 	if goal.x and goal.map and ns.Nav and ns.Nav.SetTarget then
 		lines[#lines + 1] = { L["Click to point the arrow here"], ar, ag, ab }
 	end
-	if goal.tickable and goal.status ~= "skipped" then
+	if goal.unavailable == "skipped" then
+		lines[#lines + 1] = { L["Right-click to bring this quest back"], ar, ag, ab }
+	elseif goal.quest and goal.status ~= "done" then
+		lines[#lines + 1] = { L["Right-click to tick it done or skip this quest"], ar, ag, ab }
+	elseif goal.tickable and goal.status ~= "skipped" then
 		if goal.ticked then
 			lines[#lines + 1] = { L["Right-click to untick"], ar, ag, ab }
 		elseif goal.status ~= "done" then
@@ -215,17 +219,40 @@ local function toggleGoal(row)
 	if E and E.ToggleGoal and goal and goal.tickable and view then E.ToggleGoal(view.index, goal.index) end
 end
 
--- Skip an optional goal, or bring it back.
+-- Skip an optional goal, or bring it back; a quest the player skipped comes
+-- back (its accept's Undo).
 local function skipGoal(row)
 	local E, goal = Engine(), row.psGoal
-	if E and E.SkipGoal and goal and goal.optional and view then E.SkipGoal(view.index, goal.index) end
+	if not (E and goal and view) then return end
+	if goal.unavailable == "skipped" and E.SkipQuest then return E.SkipQuest(goal.quest, false) end
+	if E.SkipGoal and goal.optional then E.SkipGoal(view.index, goal.index) end
+end
+
+-- A quest's line, right-clicked: tick this goal done (or untick it), or skip
+-- the whole quest and what follows from it (Engine.SkipQuest), or bring a
+-- skipped quest back.
+local function rowMenu(row)
+	local E, goal = Engine(), row.psGoal
+	if not (E and goal and goal.quest and E.SkipQuest) then return false end
+	if goal.unavailable == "skipped" then
+		E.SkipQuest(goal.quest, false)
+		return true
+	end
+	local items = {}
+	if goal.tickable and goal.status ~= "done" or goal.ticked then
+		items[#items + 1] = { text = goal.ticked and L["Untick"] or L["Tick it done"], icon = "check", onClick = function() toggleGoal(row) end }
+	end
+	items[#items + 1] = { text = L["Skip this quest"], icon = "skip", tip = L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."],
+		onClick = function() E.SkipQuest(goal.quest, true) end }
+	W.ShowMenu(row, items)
+	return true
 end
 
 local function rowClick(row, button)
 	local goal = row.psGoal
 	if not goal then return end
 	if button == "RightButton" then
-		toggleGoal(row)
+		if not rowMenu(row) then toggleGoal(row) end
 		return
 	end
 	-- A goal of the step the guide is on: the Engine leads the arrow there
@@ -304,8 +331,9 @@ local function goalRow(i)
 	r.Skip:SetScript("OnEnter", function(b)
 		W.Color(b.Label, "text")
 		local goal = r.psGoal
-		W.Tooltip(b, "ANCHOR_TOP", goal and goal.dismissed and L["Bring it back"] or L["Skip this optional goal"],
-			{ goal and goal.dismissed and L["It leads the arrow again."] or L["The arrow moves on; Undo brings it back."] })
+		local back = goal and (goal.dismissed or goal.unavailable == "skipped")
+		W.Tooltip(b, "ANCHOR_TOP", back and L["Bring it back"] or L["Skip this optional goal"],
+			{ back and L["It leads the arrow again."] or L["The arrow moves on; Undo brings it back."] })
 		GF.HoverIn()
 	end)
 	r.Skip:SetScript("OnLeave", function(b)
@@ -431,10 +459,11 @@ local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing, noE
 	if locked then r.Check:Disable() else r.Check:Enable() end
 	r.Check:SetAlpha(locked and 0.45 or 1)
 	-- An open optional goal skips in one click; a skipped one comes back.
-	local canSkip = goal.optional and (goal.dismissed or (not done and not skipped)) and Engine() and Engine().SkipGoal
+	local questSkipped = goal.unavailable == "skipped" and goal.t == "accept"
+	local canSkip = questSkipped or goal.optional and (goal.dismissed or (not done and not skipped)) and Engine() and Engine().SkipGoal
 	r.Skip:SetShown(canSkip and true or false)
 	if canSkip then
-		r.Skip.Label:SetText(goal.dismissed and L["Undo"] or L["Skip"])
+		r.Skip.Label:SetText((goal.dismissed or questSkipped) and L["Undo"] or L["Skip"])
 		r.Skip:SetWidth(floor(r.Skip.Label:GetStringWidth() + 12 + 0.5))
 	end
 	if pop then
@@ -804,7 +833,7 @@ end
 ---------------------------------------------------------------------------
 
 local SKIPPED_SECONDS = 20 -- how long the "Skipped …" notices stay
-local notices = { stepSkip = nil, skipped = nil, away = nil, outlevel = nil, train = nil, riding = nil }
+local notices = { questSkip = nil, stepSkip = nil, skipped = nil, away = nil, outlevel = nil, train = nil, riding = nil }
 GF.notices = notices
 
 -- The step on screen when it is not the live step: { guideId, index, live,
@@ -830,6 +859,7 @@ local function bannerNotice()
 	-- On the way to a nearby service (Nav/Nearby.lua): the way back first.
 	local t = nearbyTrip()
 	if t then return "trip", t end
+	if notices.questSkip then return "questSkip", notices.questSkip end
 	local k = notices.stepSkip
 	if k and g ~= nil and g.id == k.guideId and (not view or view.index ~= k.step) then return "stepSkip", k end
 	local s = notices.skipped
@@ -868,6 +898,22 @@ ns.On("PLAYER_SKIPPED_STEP", function(guideId, step)
 	end)
 end)
 
+-- PLAYER_SKIPPED_QUEST(questID, title): a quest skipped from its line's
+-- menu; the card has moved on, so the banner offers the undo for
+-- SKIPPED_SECONDS (the quest's accept keeps its own Undo).
+ns.On("PLAYER_SKIPPED_QUEST", function(questID, title)
+	if not F or type(questID) ~= "number" then return end
+	local notice = { quest = questID, title = title }
+	notices.questSkip = notice
+	if ns.IsLoggedIn() then GF.Layout() end
+	C_Timer.After(SKIPPED_SECONDS, function()
+		if notices.questSkip == notice then
+			notices.questSkip = nil
+			if F and ns.IsLoggedIn() then GF.Layout() end
+		end
+	end)
+end)
+
 local function trainerPlace(t)
 	local zone = t.map and UI.MapName(t.map) or nil
 	if t.npcName and zone then return t.npcName .. ", " .. zone end
@@ -901,6 +947,11 @@ function GF.LayoutBanner(width)
 		local h = floor(9 + banner.Text:GetStringHeight() + 9 + 0.5)
 		banner:SetHeight(h)
 		return h
+	elseif kind == "questSkip" then
+		banner.Icon:SetTexture(Theme.Media("skip"))
+		banner.Text:SetText(string.format(L["Skipped %s"], n.title or L["the quest"]) .. "  \194\183  " .. L["and the quests that follow from it"])
+		placeLink(banner.Jump, L["Undo"], 0, -4)
+		banner.Close:Show()
 	elseif kind == "stepSkip" then
 		banner.Icon:SetTexture(Theme.Media("skip"))
 		local what = string.format(L["Step %d"], n.step)
@@ -998,6 +1049,9 @@ function GF.TakeBanner()
 	local E = Engine()
 	if kind == "trip" then
 		ns.Nav.nearby.EndTrip()
+	elseif kind == "questSkip" then
+		notices.questSkip = nil
+		if E and E.SkipQuest then E.SkipQuest(n.quest, false) end
 	elseif kind == "stepSkip" then
 		notices.stepSkip = nil
 		if E and E.Unskip then E.Unskip(n.step) end
