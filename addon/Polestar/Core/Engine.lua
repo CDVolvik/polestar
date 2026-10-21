@@ -522,6 +522,29 @@ function Own.isUpgrade(item)
 	return G.IsUpgrade(link) and true or false
 end
 
+-- `when cooldown`: the item or spell is cooling down, the global cooldown
+-- (1.5 s or less) aside. A cooldown runs out without an event, so one that
+-- holds asks for an update when it ends; one starting comes with
+-- BAG_UPDATE_COOLDOWN or SPELL_UPDATE_COOLDOWN, heard once a guide has asked.
+function Own.onCooldown(p)
+	Own.cooldownAsked = true
+	local C = Compat()
+	local start, duration
+	if p.item then start, duration = C.GetItemCooldown(p.item) else start, duration = C.GetSpellCooldown(p.spell) end
+	if duration <= 1.5 then return false end
+	local ends, now = start + duration, GetTime()
+	if ends <= now then return false end
+	local wake = Own.cooldownWake
+	if not (wake and wake > now and wake <= ends) then
+		Own.cooldownWake = ends
+		C_Timer.After(ends - now, function()
+			if Own.cooldownWake == ends then Own.cooldownWake = nil end
+			Engine.RequestUpdate()
+		end)
+	end
+	return true
+end
+
 function Own.predicateHolds(p)
 	local C, k, ok = Compat(), p.k, false
 	if k == "level" then
@@ -562,6 +585,11 @@ function Own.predicateHolds(p)
 		ok = p.map ~= nil and Engine.DungeonChosen(p.map)
 	elseif k == "done" then
 		ok = Own.labelDone(p.label)
+	elseif k == "skill" then
+		-- Not learned reads as rank 0, so `!skill Herbalism 1` is "has no Herbalism".
+		ok = (C.GetSkillRank and C.GetSkillRank(p.skillLine or p.name) or 0) >= p.n
+	elseif k == "cooldown" then
+		ok = Own.onCooldown(p)
 	end
 	if p.neg then return not ok end
 	return ok
@@ -4532,6 +4560,12 @@ ns.On("QUESTDB_LOADED", onUpdateEvent)
 
 -- New gear verdicts (equipment, spec, level, item data): `when upgrade`.
 ns.On("GEAR_UPDATED", onUpdateEvent)
+
+-- An item or spell going on cooldown: `when cooldown` (Own.onCooldown), once a
+-- guide has asked, since SPELL_UPDATE_COOLDOWN comes with every cast.
+for _, event in ipairs({ "BAG_UPDATE_COOLDOWN", "SPELL_UPDATE_COOLDOWN" }) do
+	ns.RegisterEvent(event, function() if Own.cooldownAsked then requestUpdate() end end)
+end
 
 -- Where the player is changed enough to re-pick candidates: a zone change or
 -- landing (control comes back after a flight).

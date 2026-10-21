@@ -279,6 +279,8 @@ hold:
 | `"bound"` | `name`; optional `area` | the bind location reads so |
 | `"dungeon"` | `name`; optional `map` (the instance's Map.csv id) | the character chose to run the dungeon with that `map` in leveling guides (Options, Discovery, Dungeons: "Dungeons in leveling guides"); without `map` it never holds |
 | `"done"` | `label`: a step label of the same guide (format 5) | the step so labelled applies, its goals are done and it was not skipped (by the player, a failed `when` or a `skipto` jump); refused in `nextWhen` |
+| `"skill"` | `name`, `n`; optional `skillLine` (format 5) | the character's rank in that profession is `n` or more; one not learned is rank 0 |
+| `"cooldown"` | `item` or `spell` (format 5) | the item or spell is on cooldown for more than the global cooldown (1.5 s) |
 
 ```lua
 { title = "Back to Gornek", when = { { k = "onquest", q = { 788 } }, { k = "level", op = "<", n = 6 } }, goals = { ... } }
@@ -286,7 +288,7 @@ hold:
 
 A `when` that is not a non-empty list, or a predicate of another kind or
 without its keys, refuses the guide. Polestar 0.2.6 reads every kind above
-but `"money"`, `"dungeon"`, `"upgrade"` and `"done"`, which came after it: a guide with one, on a
+but `"money"`, `"dungeon"`, `"upgrade"`, `"done"`, `"skill"` and `"cooldown"`, which came after it: a guide with one, on a
 step or a `next` option, is written in format 5, so 0.2.6 says the pack needs
 Polestar 0.3.0 instead of refusing the guide ("bad when"). Once the route has moved past a step,
 Polestar stores whether its `when` held (per character, guide and step) and
@@ -326,9 +328,9 @@ list refuses the guide.
 ## Format 5
 
 Format 4 with the **`money`** and **`task`** goals, the **`money`**,
-**`dungeon`**, **`upgrade`** and **`done`** `when` predicates (on a step or a
-`next` option; `done` on a step only) and a step's **`skipto`** jumps.
-Polestar 0.3.0 and later read it.
+**`dungeon`**, **`upgrade`**, **`done`**, **`skill`** and **`cooldown`** `when`
+predicates (on a step or a `next` option; `done` on a step only) and a step's
+**`skipto`** jumps. Polestar 0.3.0 and later read it.
 The compiler writes a pack in format 5 only when its guides use one of them;
 any other pack stays in format 3 or 4. A 0.2.6 client accepts a format-4 pack
 and then refuses a guide with an unknown verb or predicate, so these features
@@ -350,6 +352,18 @@ Like the `level` predicate but compares the character's money in copper.
 step of the same guide (GUIDE_FORMAT.md, "Jumps"). A label no step carries
 refuses the guide ("step N: bad when"), as does `done` in `nextWhen` ("bad
 nextWhen").
+
+`skill` when predicate: `{ k = "skill", name = "<Profession>", skillLine = <id>, n = <rank> }`.
+Holds while the character's rank in the profession is `n` or more (one not
+learned is rank 0). `skillLine` is the profession's SkillLine id, set when the
+compiler knew the name; without it the engine finds the skill by its English
+name (`Compat.GetSkillRank`).
+
+`cooldown` when predicate: `{ k = "cooldown", item = <id> }` or
+`{ k = "cooldown", spell = <id> }`, one of the two. Holds while the item
+(`Compat.GetItemCooldown`) or spell (`Compat.GetSpellCooldown`) has a cooldown
+longer than the global cooldown that has not run out; Polestar evaluates the
+guide again when it does.
 
 `skipto` on a step: a non-empty list of jumps, each `{ to = "<label>", when =
 <predicate> }`, `to` the label of a later step and `when` one predicate as in
@@ -617,7 +631,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
   `along` and `label`, a `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6
   and later, format 5 (the `money` and `task` goals, the `money`, `dungeon`,
-  `upgrade` and `done` when predicates, a step's `skipto`) by 0.3.0 and later.
+  `upgrade`, `done`, `skill` and `cooldown` when predicates, a step's `skipto`)
+  by 0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).
