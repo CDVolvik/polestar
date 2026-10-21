@@ -1347,7 +1347,7 @@ end
 -- back; quest goals stay live on purpose (abandoning reopens the step).
 local function latchable(goal)
 	local t = goal.t
-	return t == "goto" or t == "explore" or t == "sethome" or t == "hearth" or t == "fly" or t == "getfp"
+	return t == "goto" or t == "explore" or t == "sethome" or t == "hearth" or t == "fly" or t == "getfp" or t == "enter"
 		or t == "buy" or (t == "collect" and (not goal.quest or Own.bagCollect(goal))) or (t == "craft" and craftMode(goal) == "count")
 		or (t == "train" and goal.class == true) or t == "money"
 end
@@ -1684,6 +1684,9 @@ goalDone = function(s, g, goal)
 		local loc, areaName = C.GetBindLocation(), C.GetAreaName
 		if areaName and (same(loc, areaName(want and want.area)) or same(loc, areaName(goal.area))) then return true end
 		return same(loc, goal.location)
+	elseif t == "enter" then
+		-- In the zone or area: its zone or subzone text (inPlace).
+		return inPlace(goal)
 	elseif t == "hearth" or t == "fly" then
 		if inPlace(goal) then return true end
 		-- Done once any later goal of the step is, like goto: a hearth followed
@@ -1711,6 +1714,8 @@ goalDone = function(s, g, goal)
 	elseif t == "skill" then
 		if isManual(goal) then return false end
 		return skillState(goal, goal.level)
+	elseif t == "cast" then
+		return false -- ticked by the cast itself (Own.latchCast) or the player
 	elseif t == "learn" then
 		if isManual(goal) then return false end
 		return C.IsSpellKnown(goal.spell)
@@ -2170,7 +2175,7 @@ local function latchInStep(s, live)
 	if not stepApplies(step) then return end
 	for g, goal in ipairs(step.goals) do
 		local t = goal.t
-		if (isBagCount(goal) or (live and (t == "fly" or t == "hearth"))) and goalApplies(goal) and not checked(s, g) and goalDone(s, g, goal) then
+		if (isBagCount(goal) or (live and (t == "fly" or t == "hearth" or t == "enter"))) and goalApplies(goal) and not checked(s, g) and goalDone(s, g, goal) then
 			manualFor(guide.id, true)[s .. ":" .. g] = true
 		end
 	end
@@ -2403,6 +2408,8 @@ local function describe(goal)
 		return L["Set your home at"], npcName or L["the nearest inn"], npcName and "npc" or "text", nil
 	elseif t == "hearth" then
 		return L["Hearth to"], place or goal.location, "place", nil
+	elseif t == "enter" then
+		return L["Go to"], place or goal.location, "place", nil
 	elseif t == "getfp" then
 		return L["Get the flight path at"], place or N.Taxi(goal.node) or goal.location, "place", fmt(L["from %s"], N.Npc(goal.npc) or goal.npcName)
 	elseif t == "fly" then
@@ -2427,6 +2434,8 @@ local function describe(goal)
 		return L["Reach level"], tostring(goal.level), "level", nil
 	elseif t == "skill" then
 		return L["Raise"], skillName(goal), "skill", fmt(L["to %d"], goal.level)
+	elseif t == "cast" then
+		return L["Cast"], N.Spell(goal.spell) or goal.spellName, "spell", nil
 	elseif t == "learn" then
 		local _, npcName = npcOf(goal)
 		return L["Learn"], N.Spell(goal.spell) or goal.spellName, "spell", fmt(L["from %s"], npcName)
@@ -3353,6 +3362,32 @@ function Own.latchTurnin(questID)
 				end
 			end
 		end
+	end
+	return hit
+end
+
+-- A `cast` goal that is open (in the step the guide is at, the step in view,
+-- or an along step listed under them) for spellID: ticked, as the player
+-- would tick it. A cast before the goal is open does not count.
+function Own.latchCast(spellID)
+	if not (guide and spellID) then return false end
+	local hit = false
+	local function tick(s)
+		for g, goal in ipairs(guide.steps[s].goals) do
+			if goal.t == "cast" and goal.spell == spellID and goalApplies(goal) then
+				local m = manualFor(guide.id, true)
+				local key = s .. ":" .. g
+				if not m[key] then
+					m[key] = true
+					hit = true
+				end
+			end
+		end
+	end
+	if current then tick(current) end
+	if computed and computed ~= current then tick(computed) end
+	for _, s in ipairs(Own.marksOf().along) do
+		if s ~= current and s ~= computed and Own.alongListed(s) then tick(s) end
 	end
 	return hit
 end
@@ -4779,6 +4814,20 @@ ns.RegisterEvent("QUEST_TURNED_IN", function(_, questID)
 	end
 	Own.clearMarks()
 	requestUpdate()
+end)
+
+-- The player's own successful casts: `cast` goals (Own.latchCast).
+ns.RegisterEvent("UNIT_SPELLCAST_SUCCEEDED", function(_, unit, _, spellID)
+	local C = Compat()
+	spellID = C.Readable(spellID)
+	if C.Readable(unit) ~= "player" or type(spellID) ~= "number" or not player then return end
+	local hit = false
+	for i = 1, #tabs do
+		use(tabs[i])
+		if Own.latchCast(spellID) then hit = true end
+	end
+	useActive()
+	if hit then requestUpdate() end
 end)
 
 ns.RegisterEvent("PLAYER_LEVEL_UP", function(_, level)

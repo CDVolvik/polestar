@@ -64,6 +64,8 @@ const MODS = {
 	hearth: [...COMMON],
 	getfp: [...COMMON, ...COORDS, 'npc'],
 	fly: [...COMMON],
+	// `enter "<Place>"`: be in that zone or area (the zone or subzone text); coordinates only point the arrow.
+	enter: [...COMMON, ...COORDS],
 	train: [...COMMON, ...COORDS, 'npc'],
 	buy: [...COMMON, ...COORDS, 'npc', 'count', 'nearest'],
 	vendor: [...COMMON, ...COORDS, 'npc'],
@@ -74,6 +76,8 @@ const MODS = {
 	note: ['optional', 'only', ...COORDS],
 	skill: [...COMMON, ...COORDS],
 	learn: [...COMMON, ...COORDS, 'npc', 'item', 'nearest'],
+	// `cast <spellId> ["Name"]`: the player casts that spell while the goal is open.
+	cast: [...COMMON, ...COORDS],
 	craft: [...COMMON, ...COORDS, 'count', 'until'],
 	rep: [...COMMON, ...COORDS],
 	explore: [...COMMON, 'map', 'r', 'frame'],
@@ -683,7 +687,8 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 		case 'sethome':
 		case 'hearth':
 		case 'getfp':
-		case 'fly': {
+		case 'fly':
+		case 'enter': {
 			if (!t) return err(ln, `\`${verb}\` needs a "Location"${verb === 'sethome' ? ' or `nearest`' : ''}`), -1;
 			if (verb === 'sethome' && !t.quoted && t.text.toLowerCase() === 'nearest') {
 				goal.nearest = true;
@@ -746,7 +751,8 @@ function parsePositional(verb, goal, toks, line, lex, ln, err, spans) {
 			return i + 1;
 		}
 		case 'learn':
-		case 'craft': {
+		case 'craft':
+		case 'cast': {
 			if (!t) return err(ln, `\`${verb}\` needs a spell id`), -1;
 			goal.spell = parseId(t, 'spell', ln, err);
 			if (goal.spell === null) return -1;

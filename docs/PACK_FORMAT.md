@@ -328,7 +328,7 @@ list refuses the guide.
 
 ## Format 5
 
-Format 4 with the **`money`** and **`task`** goals, the **`money`**,
+Format 4 with the **`money`**, **`task`**, **`enter`** and **`cast`** goals, the **`money`**,
 **`dungeon`**, **`upgrade`**, **`done`**, **`skill`**, **`cooldown`** and **`group`**
 `when` predicates (on a step or a `next` option; `done` on a step only) and a step's
 **`skipto`** jumps. Polestar 0.3.0 and later read it.
@@ -345,6 +345,18 @@ spent. The guide window reads "Have at least 1s 50c".
 tick; holds its step until then (with `optional = true` it never holds). May
 have coordinates (`map`, `x`, `y`). A goal whose `text` is not a string
 refuses the guide.
+
+`enter` goal: `{ t = "enter", location = "<Place>", area = <AreaTable id> }`.
+Done while the zone or subzone text is the client's name of `area` (without
+one, `location`), and latched once its live step had it. May have
+coordinates, which only point the arrow. A goal whose `location` is not a
+string refuses the guide.
+
+`cast` goal: `{ t = "cast", spell = <spellId>, spellName = "<Name>" }`. Done
+when the player's own cast of that spell succeeds (`UNIT_SPELLCAST_SUCCEEDED`)
+while the goal is open: its step is the one the guide is at or in view, or an
+along step listed under it. The tick is kept like the player's own. A goal
+without a numeric `spell` or a string `spellName` refuses the guide.
 
 `money` when predicate: `{ k = "money", op = "<" | "<=" | ">" | ">=", n = <copper> }`.
 Like the `level` predicate but compares the character's money in copper.
@@ -490,6 +502,8 @@ frame; absent: the live frame), `r` (arrival radius in yards), `spots`
 | `hearth` | `location` | `area` |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` |
 | `fly` | `location` | `area` |
+| `enter` | `location` (format 5) | `area`, `map`, `x`, `y` |
+| `cast` | `spell`, `spellName` (format 5) | `map`, `x`, `y` |
 | `train` | — | `npc`, `npcName`, `class`, `skill`, `skillLine`, `rank`, `rankMax`, `candidates` |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName`, `candidates` |
 | `vendor` | — | `npc`, `npcName`, `candidates` |
@@ -590,7 +604,7 @@ wrap it). The payload is JSON:
 
 | Key | Required | Value |
 |---|---|---|
-| `format` | yes | the guide data's format (above): 5 when the guide uses `money`/`task` goals or a `money` when predicate, 4 when a step has `when`, `along` or `label` or a `level` goal has `frac`, else 3; Polestar refuses a format it does not read |
+| `format` | yes | the guide data's format (above): 5 when the guide uses `money`/`task`/`enter`/`cast` goals or a `money` when predicate, 4 when a step has `when`, `along` or `label` or a `level` goal has `frac`, else 3; Polestar refuses a format it does not read |
 | `license` | yes | the licence of the guide, from the pack's `pack.json` |
 | `guide` | yes | one guide exactly as `RegisterGuide(def)` takes it, without `pack`: the keys above, numbers rounded as `Guides.lua` writes them, `preTitles` with the quest ids as the object's keys |
 | `frames` | no | `RegisterMapFrames`'s `era` table for the maps its goals use, by uiMapID. Polestar takes a frame only for a map the guide's goals or their smart targets stand on, and only where no one (Polestar, a community addon, an earlier import) has registered one |
@@ -637,7 +651,7 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   later, format 2 (the `group`, `reward` and `why` keys) by 0.2.4 and later,
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
   `along` and `label`, a `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6
-  and later, format 5 (the `money` and `task` goals, the `money`, `dungeon`,
+  and later, format 5 (the `money`, `task`, `enter` and `cast` goals, the `money`, `dungeon`,
   `upgrade`, `done`, `skill`, `cooldown` and `group` when predicates, a step's
   `skipto`) by 0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the

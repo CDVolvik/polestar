@@ -1452,6 +1452,14 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			goal.location = g.location;
 			placeWarning(v, g.location);
 			break;
+		case 'enter':
+			// A zone or an area the game names: its area ID (goalArea) makes the check the client's language.
+			goal.location = g.location;
+			// Without the client's area table (no `sources` beside the data) an area name cannot be checked.
+			if (data.areas && !data.zoneNamed(g.location) && !data.areas.byName.has(g.location.trim().toLowerCase())) {
+				warn(ln, `enter "${g.location}": no zone or area has that name; the game never reports it, so the goal never checks off by itself`, 'write the place as the game names it (`polestar find --kind zone <text>`)');
+			}
+			break;
 		case 'buy': {
 			goal.item = g.item;
 			goal.itemName = requireName('item', g.item, g.itemName, 'Item name') || undefined;
@@ -1494,6 +1502,15 @@ function resolveGoal(g, zoneMap, prev, data, err, warn, ctx = { sides: ['Allianc
 			}
 			goal.level = g.level;
 			if (goal.skillLine !== undefined) progressOf(ctx, goal.skillLine).target = g.level;
+			break;
+		}
+		case 'cast': {
+			// Any spell: its name from the professions data (a recipe), else the author's.
+			const found = data.recipe(g.spell);
+			const name = g.spellName || (found && found.recipe.name ? String(found.recipe.name) : null);
+			if (!name) err(ln, `spell ${g.spell} is not in data; give its name: \`cast ${g.spell} "Name"\``);
+			goal.spell = g.spell;
+			goal.spellName = name || undefined;
 			break;
 		}
 		case 'learn':

@@ -853,6 +853,7 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `hearth` | `location` | `area` | zone or subzone equals the client's name of `area` (without one, `location`), else manual; latched once it lands in its live step |
 | `getfp` | `location` | `npc`, `npcName`, `node`, `area` | with `node`: that taxi node among the known ones (`flags.taxi`, recorded by Nav/Travel.lua from the flight map); without: taxi map opened at a flight master of that name (persisted in `flags.fp`); else manual |
 | `fly` | `location` | `area`, `node` | as `hearth`, including the in-step latch (`node`: the flight point, named in the client's language where no `area` names the place) |
+| `enter` | `location` | `area`, `map`, `x`, `y` | zone or subzone equals the client's name of `area` (without one, `location`), as `hearth` without the hearthstone: the in-step latch keeps it once its live step had it (`latchable`, so passing it keeps it too); the coordinates only make its waypoint |
 | `train` | — | `npc`, `npcName`, `text` | trainer window opened during this step, else manual |
 | `buy` | `item`, `itemName` | `count`, `npc`, `npcName` | item count ≥ `count` (default 1) |
 | `vendor` | — | `npc`, `npcName`, `text` | merchant window opened during this step, else manual |
@@ -860,6 +861,7 @@ as on a bag item (`W.ItemClick`: Shift links, Ctrl tries it on, Alt guides;
 | `note` | `text` | — | never blocks (informational) |
 | `skill` | `skill` (name), `level` | `skillLine` | skill rank ≥ `level` |
 | `learn` | `spell`, `spellName` | `skillLine`, `npc`/`npcName` (trainer), `item` (recipe item) | spell known |
+| `cast` | `spell`, `spellName` | `map`, `x`, `y` | ticked by `Own.latchCast` on the player's `UNIT_SPELLCAST_SUCCEEDED` for `spell` (values read with `Compat.Readable`) while the goal is open: the live step, the step in view, or an along step listed under them; stored as a check-off (`CharState().manual`), so it is kept like the player's own tick; else manual |
 | `craft` | `spell`, `spellName` | `item`/`itemName` (created), `count`, `untilSkill`, `skillLine`, `reagents = { { item, itemName, count } }` | skill ≥ `untilSkill` if set, else created-item count ≥ `count`, else manual |
 | `rep` | `faction`, `factionName`, `standing` (1–8) | — | standing ≥ `standing` |
 | `explore` | `map`, `x`, `y` | `text` (area name) | area at that point explored; else arrival (latched) |
