@@ -209,3 +209,13 @@ test('the client\'s bags: an item for an empty slot gets the arrow even when the
 	assert.deepEqual(out.verdict, [false, true], 'IsUpgrade is unchanged: no gain, no upgrade');
 	assert.deepEqual(out.filled, [1, 4], 'with the slot filled, the zero-value bracer is no upgrade');
 });
+
+test('the client\'s bags: an item the class cannot use gets no empty-slot arrow (a wand for a warrior, whose ranged slot is empty)', () => {
+	const [out] = run(`${BAGS}
+		g.defineItem("item:8101", { equipLoc = "INVTYPE_RANGEDRIGHT", classID = 2, subclassID = 19, minLevel = 10, stats = { ITEM_MOD_INTELLECT_SHORT = 2 } })
+		g.bag(0, 5, "item:8101")
+		g.openBag(0)
+		emit({ arrows = arrows(0), fills = G.FillsEmptySlot("item:8101") })
+	`);
+	assert.deepEqual(out, { arrows: [1, 4], fills: false });
+});
