@@ -358,7 +358,7 @@ L["Points the arrow at the nearest vendor, repair, inn, flight master or trainer
 L["Picture of this spot"] = "Bild von diesem Ort"
 L["Along the way"] = "Nebenbei"
 L["Level 40: class mount (Warlock)"] = "Stufe 40: Klassenreittier (Hexenmeister)"
-L["Summon Felsteed quest chain (Strahad Farsan, Ratchet); riding trainer otherwise."] = "Questreihe „Teufelsross beschwören“ (Strahad Farsan, Ratschet); sonst der Reitlehrer."
+L["Summon Felsteed quest chain (Strahad Farsan, Ratchet); riding trainer otherwise."] = "Questreihe „Teufelsross beschwören“ (Strahad Farsan, Ratchet); sonst der Reitlehrer."
 L["Level 40: class mount (Paladin)"] = "Stufe 40: Klassenreittier (Paladin)"
 L["Tome of Nobility quest chain (Lord Grayson Shadowbreaker, Stormwind); riding trainer otherwise."] = "Questreihe „Der Foliant des Adels“ (Lord Grayson Shadowbreaker, Sturmwind); sonst der Reitlehrer."
 L["Level 40: you can learn to ride"] = "Stufe 40: Du kannst reiten lernen"
