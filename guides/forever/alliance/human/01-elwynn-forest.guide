@@ -79,6 +79,10 @@ next forever/alliance/02-westfall
 #   handed in to McBride, and Report to Goldshire (54) and The Adventurer
 #   (96627) when Skirmish is: he offers each at once (#310).
 # - Eastvale: Sara Timberlain, on the way in, before Hagar Lowe.
+# - Goldshire, back from the east: The Escape (114) is taken after Marshal
+#   Dughan's turn-ins. Handing in Collecting Kelp (112) starts a short scene
+#   while William Pestle brews the liquor ("just one moment while I concoct
+#   the potion"), and Dughan stands a few yards away (#613).
 #
 # Class quests, as class-only steps (the level 10-12 ones from the last
 # Goldshire stop, about level 12):
@@ -448,11 +452,11 @@ step Goldshire
   turnin 91751 optional                       -- Helene Peltskinner
   turnin 99131                                -- Jason Mathers
   turnin 112                                  -- William Pestle
-  accept 114
-  turnin 39                                   -- Marshal Dughan
+  turnin 39                                   -- Marshal Dughan, while William brews
   turnin 76
   accept 59
   accept 239
+  accept 114                                  -- William Pestle
   train class
 
 step Maybell Maclure

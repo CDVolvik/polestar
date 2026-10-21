@@ -66,12 +66,12 @@ function flush() stub.advance(0.25) end
 function at() return E.GetLiveStep() end
 `;
 
-function run({ guide = GROUP_GUIDE, saved = { schema: 1, guide: 'test/group' }, script }) {
+function run({ guide = GROUP_GUIDE, saved = { schema: 1, guide: 'test/group' }, before = '', db = '', script }) {
 	return runAddon({
 		stubs: ['stub_world.lua'],
-		before: WORLD,
+		before: WORLD + before,
 		addons: [CORE],
-		saved: { Polestar: `PolestarCharDB = ${luaValue(saved)}` },
+		saved: { Polestar: `${db}PolestarCharDB = ${luaValue(saved)}` },
 		script: `${TEST_PACK}
 ${TEST_SOURCE}\n${guide}\n${HELPERS}\nstub.login()\nstub.fire("QUEST_LOG_UPDATE"); stub.advance(0.6)\n${script}`,
 	}).emitted;
@@ -127,6 +127,25 @@ test('an along step does not wait for an answer', () => {
 	const guide = GROUP_GUIDE.replace('{ title = "Group quest", when', '{ title = "Group quest", along = true, when');
 	const [rows] = run({ guide, script: 'emit({ at = at(), q = E.GroupQuestion() or false })' });
 	assert.deepEqual(rows, { at: 2, q: false });
+});
+
+test('a group quest with nothing to do now does not hold the route; one not open yet is asked about once it opens', () => {
+	const ask = 'emit({ at = at(), q = E.GroupQuestion() or false })';
+	// Handed in already.
+	const [done] = run({ before: 'w.complete({ 7 })', script: ask });
+	assert.deepEqual(done, { at: 3, q: false });
+	// Skipped by the player (Skip quest).
+	const [skipped] = run({ saved: { schema: 1, guide: 'test/group', skippedQuests: { 7: true } }, script: ask });
+	assert.deepEqual(skipped, { at: 3, q: false });
+	// Grey, left out by the catch-up ("Skip grey quests").
+	const grey = GROUP_GUIDE.replace('{ t = "accept", quest = 7,', '{ t = "accept", quest = 7, qlvl = 2,').replace('maxLevel = 10', 'maxLevel = 30');
+	const [left] = run({ guide: grey, before: 'w.setLevel(20)', db: 'PolestarDB = { schema = 1, settings = { behavior = { skipGrey = true } } }; ', script: ask });
+	assert.deepEqual(left, { at: 3, q: false });
+	// Above the character's level: passed for now, asked about at that level.
+	const high = GROUP_GUIDE.replace('{ t = "accept", quest = 7,', '{ t = "accept", quest = 7, minLevel = 5,');
+	const [early, opened] = run({ guide: high, script: `${ask}; stub.world.setLevel(5); stub.fire("PLAYER_LEVEL_UP", 5); stub.advance(1.5); ${ask}` });
+	assert.deepEqual(early, { at: 3, q: false });
+	assert.deepEqual(opened, { at: 1, q: 7 });
 });
 
 test('Guides.Validate takes `group` with one quest id on a step, and refuses it on a `next` option or a `skipto`', () => {

@@ -629,7 +629,7 @@ L["Learned %d spells for %s."] = "学会%d个法术，花费%s。"
 L["Not enough money for %d more (%s)."] = "金钱不足，还有%d个未学（%s）。"
 
 -- QoL/Rewards.lua
-L["best vendor value"] = "售价最高"
+L["best vendor value"] = "商人收购价最高"
 L["Took %s (%s)."] = "已选择%s（%s）。"
 L["Best reward: %s (%s)."] = "最佳奖励：%s（%s）。"
 

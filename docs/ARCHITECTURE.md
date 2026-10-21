@@ -130,6 +130,7 @@ Messages:
 | `NAME_LEARNED` | kind ("npc" \| "object"), id | Names, when a name learned in play is new or changed (the Codex, Dungeons and ItemDB caches drop their copy) |
 | `STEP_SKIPPED` | fromStep, toStep or nil, `{ { quest, title, reason, text }, ... }` | Engine, active tab, just before `STEP_CHANGED`: the computed step moved past a step whose open quest goals became unavailable (reasons as in "Unavailable quests") |
 | `PLAYER_SKIPPED_STEP` | guideId, stepIndex | Engine, after `Skip()` (the window, the menu, `/polestar skip`): the guide window offers the undo |
+| `PLAYER_SKIPPED_QUEST` | questID, title or nil | Engine, after `SkipQuest(questID)` (a quest's line, right-clicked): the guide window offers the undo |
 | `WAYPOINT_CHANGED` | waypoint or nil | Engine (and Nav when an override is set/cleared) |
 | `GUIDE_COMPLETED` | guideId | Engine |
 | `GUIDE_PLACED` | guideId, stepIndex or nil, `{ guideId, ... }` | Engine, active tab, once placement of a guide just opened ends (see "Placement"; not for a guide a login or /reload brings back): where the guide resumes, and the guides passed whole on the way; the guide window goes over the steps before it, titles and count rolling (`GF.PlayCatchUp`, after `PLAYER_ENTERING_WORLD`) |
@@ -172,7 +173,7 @@ the nearest 5, `opts.compact` writes yards from 1000 as "1.2k yd"
 keeps yards for whoever reads it.
 
 `PolestarDB = { schema = 1, settings = { [section] = { ... } }, packs = { [packId] = { off = true } }, imports = { [guideId] = { format, license, guide, frames } }, welcomeSeen = 1, gamepad = { chords = { [action] = "PADRSHOULDER+PADDUP" } } }`
-`PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = true }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, dungeons = { [mapId] = true }, welcomeSeen = 0|1 }`
+`PolestarCharDB = { schema = 1, guide = id|nil, tabs = { guideId, ... }, activeTab = n, absentAt = { [guideId] = place }, manual = { [guideId] = { ["s:g"] = true|"tick" } }, skipped = { [guideId] = { [stepIndex] = true, ["s:g"] = true } }, pins = { [guideId] = { step, done } }, offers = { [questID] = true }, skippedQuests = { [questID] = true }, shapes = { [guideId] = shape }, stepKeys = { [guideId] = { hash, ... } }, flags = { fp = { [name] = true }, ... }, dungeons = { [mapId] = true }, welcomeSeen = 0|1 }`
 
 `packs[<id>].off` hides a pack's guides account-wide (the Community guides page's
 switch). `imports` holds the guides pasted on the Import page, as decoded
@@ -990,6 +991,8 @@ Polestar.Engine.LevelTarget(level?) -> N, stepIndex | nil   -- the first `level 
 Polestar.Engine.StartGate(id) -> gate | nil -- a Class guide this character cannot start yet: { level } or { pre, preTitle }, with giver, map (see "Not yet available")
 Polestar.Engine.ToggleGoal(stepIndex, goalIndex) -> bool   -- tick any goal but a note done, or clear its check-off
 Polestar.Engine.SkipGoal(stepIndex, goalIndex) -> bool     -- skip an optional goal, or bring it back
+Polestar.Engine.SkipQuest(questID, on) -> bool               -- skip a quest and what follows from it, in every guide; on = false brings it back
+Polestar.Engine.IsQuestSkipped(questID) -> bool
 Polestar.Engine.AimGoal(stepIndex, goalIndex) -> bool      -- lead the arrow to a goal of the current step (row click)
 Polestar.Engine.GetAlong() -> { { index, title, goals = { goal view, ... } }, ... }  -- open goals of along steps behind the live step
 Polestar.Engine.AimAlong(stepIndex, goalIndex) -> bool     -- lead the arrow to one of them (row click); holds while it is listed
@@ -1214,6 +1217,17 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   <reason>" (one line per quest) until the step changes again, it is
   dismissed, or 20 seconds pass. With the window hidden it goes to chat
   instead. Placement at load never fires it.
+- **Quests the player skipped** (`Engine.SkipQuest`, a quest's line
+  right-clicked in the guide window: Skip this quest): saved per character
+  by quest id (`skippedQuests`), so in every guide. Until the quest is done,
+  each of its goals (accept, objectives, turn-in) has the unavailable mark
+  `"skipped"` ("You skipped this quest"), even with the quest in the log, so
+  its steps pass and the automation neither takes nor hands it in
+  (`WantsQuest`). Its follow-ups go with it, their prerequisite no longer
+  coming (`Own.preBlocked`), here and in the guides after. The other quests
+  of the step stay. Done anyway, the quest counts as done and its follow-ups
+  come back. The window's banner (`PLAYER_SKIPPED_QUEST`), the accept's Undo
+  or a right-click on the line bring it back (`SkipQuest(questID, false)`).
 - **Missable quests** (`Core/Closes.lua`, setting `behavior.warnClosing`,
   default off). `Closes.For(q, title)` lists what taking `q` closes for good
   for this character: the guide accepts whose `closedBy` names `q`, across
