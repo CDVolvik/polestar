@@ -2121,18 +2121,22 @@ or the minimap.
 
 ```lua
 Polestar.Pins.SetLayer(layer, pins, opts)   -- replace a layer; opts = { world = true, minimap = true, edge = false, scale = 1,
-                                            --   minimapAreas = false }
+                                            --   minimapAreas = false, minMapType = nil, worldLayout = nil }
 Polestar.Pins.ClearLayer(layer)
 Polestar.Pins.SetLayerVisible(layer, visible)
 -- pin = { map, x, y, f, icon (Theme.Media name or texture path), size, minimapSize, color = { r, g, b, a },
---         tooltip = string | function(tooltip), onClick = function(button), priority,
+--         tooltip = string | function(tooltip), onClick = function(button, owner), priority,
 --         glow (soft halo), ring = { r, g, b } (ring round the disc), backdrop (scrim disc), area (yards),
 --         hull = { wx1, wy1, ... } (a convex region in world yards on the pin's continent `c`),
 --         areaOnly (only the area or hull draws, no pin) }
 ```
 
 Pins are drawn on the world map for the map being viewed (converted through Compat
-for other maps) and projected on the minimap; `edge = true` clamps that layer's
+for other maps). Optional `worldLayout(projected, view)` receives this layer's
+`{ pin, x, y }` entries in viewed-map percentages and returns its world-map
+layout; map and canvas-size changes run it again. It never changes minimap
+pins. `minMapType` hides world pins on broader views.
+Pins are projected on the minimap; `edge = true` clamps that layer's
 out-of-range pins to the minimap rim. On the world map they are Polestar's own
 frames on the canvas, at the frame levels the map gives its own pins (MapCanvas,
 below): pins at `PIN_FRAME_LEVEL_SUPER_TRACKED_QUEST`, counter-scaled as a map
@@ -3311,8 +3315,57 @@ Polestar.Gear.Bags.Redraw()                  -- repaint the shown bags; GEAR_UPD
 Each feature is a setting on the Map page (Rares & travel, Zones), and none of
 them makes a frame or loads data until it's on. The icon layers (dungeon
 entrances, flight masters `maps.taxiPins`, docks `maps.dockPins`, inns
-`maps.innPins`, and `maps.travelMinimap` for the minimap) default to off. The
+`maps.innPins`, NPC services `maps.servicePins`, and `maps.travelMinimap` for
+the minimap) default to off. The
 flight timer and the instance tracker are set under Quality of Life.
+
+- NPC services (`maps.servicePins`, off; `Maps/Services.lua`): one pin per
+  friendly NPC spawn, with all its services in the tooltip and click-to-navigate.
+  The layer's `minMapType = UIMapType.Zone` hides it on world and continent
+  maps, while keeping zone, city and minimap icons. Vendors use the native
+  Banker tracking bag; bankers use the native treasure chest icon.
+  `Maps/ServiceClusters.lua` groups service points belonging to the same
+  detail map, only while an outdoor region in the existing zone-level catalog
+  is viewed. Map parentage and the native click lookup `GetMapInfoAtPosition`,
+  rather than `IsCityMap`, cover cities and other areas with a detail map,
+  including cities registered as siblings of their region. The catalog keeps
+  detail views individual even when opened directly, without visiting a region.
+  Groups use up to three native icons; totals stay in the tooltip, with no map badge. The area's own map,
+  services outside detail areas and minimap pins stay individual. Clicking a
+  group opens the existing widget menu: category, then NPCs with their original
+  coordinates (ten per page). Choosing an NPC sets a waypoint at its exact
+  spawn; it does not change the viewed map. Native clicks on the city/area
+  still open its detail map. Map/zoom/filter changes close the menu, while
+  unrelated layer updates leave it open. The map's right click passes through.
+  `maps.serviceFilters` selects the 11 categories (class trainers and mailboxes
+  on, the rest opt-in); flight masters and inns are not among them, and an NPC
+  with either role is left to the travel layers (`maps.taxiPins`,
+  `maps.innPins`) so nothing is drawn twice. `maps.serviceMinimap` opts
+  into minimap icons. Both tracking menus have a Polestar service submenu;
+  the same settings live under Map, Rares & travel, NPC services. Class trainers
+  are restricted to the character's class. A repair vendor has one icon, using
+  the first enabled category it offers, and remains a vendor when repair is off.
+  `Maps/ServiceData.lua` reads the bundled Codex role index and mailbox objects,
+  separately from NPC IDs. QuestieDB facts are imported only at build time;
+  no external database addon is needed during play. The data importer keeps
+  mailbox roles and friendly sides from faction templates; faction ID zero
+  means both sides, matching Questie's mailbox lists. Unknown nonzero templates
+  and templates hostile to both sides are omitted. The Codex retains the
+  titles of service NPCs only (no other NPC carries one, to keep the pack
+  small) and every service/mailbox spawn (`pts` and `more`), without
+  clustering or caps. English trainer titles supplement class roles; displayed
+  names remain localized. Repeated mailbox
+  observations within 10 world yards share one icon at an original point;
+  the other physical mailboxes keep their own pins. Codex spawn frame tags
+  are retained for coordinate projection and navigation. Optional escaped
+  `t<title>` NPC and `m<faction>` mailbox tails extend the packed records;
+  older readers skip these comma-free fields, and older packs stay readable.
+  Reads run in batches of 100 outside combat, the first time the world map
+  opens with the layer on (at once when its minimap icons are on), never at
+  login, so the Codex stays unloaded until then; filters reuse the records
+  (slim copies of the friendly ones: id, name, title, side, roles, spawns),
+  and a Codex/name-pack load invalidates them. Missing data
+  produces an explanatory message and is retried when the dependency loads.
 
 - Unexplored areas (`maps.reveal`: `off` | `on` | `tint`, `Maps/Reveal.lua`):
   textures on one frame of Polestar's on each map frame's canvas (the world

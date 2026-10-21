@@ -364,6 +364,7 @@ local BUILTIN = {
 	{ page = MAP, tab = L["Guide & quests"], section = L["Quest markers"], controls = {} },
 	{ page = MAP, tab = L["Rares & travel"], section = L["Rares and treasures"], controls = {} },
 	{ page = MAP, tab = L["Rares & travel"], section = L["Dungeons and travel"], controls = {} },
+	{ page = MAP, tab = L["Rares & travel"], section = L["NPC services"], controls = {} },
 	{ page = MAP, tab = L["Zones"], section = L["Zones"], controls = {} },
 	{ page = MAP, tab = L["Zones"], section = L["Coordinates"], controls = {} },
 }
