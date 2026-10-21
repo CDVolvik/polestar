@@ -34,8 +34,9 @@
 --     on the button's _textOverlay, bottom-left: top-left is where it shows
 --     the item's level (btn.ItemLevelText), which the arrow would cover, and
 --     bottom-right is its own Pawn arrow's. Registered as this file loads when
---     it is in, else when EllesmereUIBags loads; GEAR_UPDATED asks it to
---     repaint.
+--     it is in, else when EllesmereUIBags loads. New verdicts re-mark the
+--     shown slots from the link each last painted, so its window is not
+--     rebuilt (a full RefreshInventory) for them, in or out of combat.
 --
 -- New verdicts (GEAR_UPDATED: equipment, bags, level, spec, item data, gear
 -- settings) repaint the shown bags at most once every REDRAW seconds.
@@ -192,6 +193,7 @@ if not registerBaganator() then ns.RegisterEvent("ADDON_LOADED", onAddonLoaded) 
 local ELLESMERE = "Polestar" -- the painter's name in EUI_Bags.itemOverlayIcons
 local ellesmere = false
 local marks = setmetatable({}, { __mode = "k" }) -- item button -> arrow texture
+local painted = setmetatable({}, { __mode = "k" }) -- item button -> link it last painted (false: none)
 
 local function ellesmereAPI()
 	local B = _G.EUI_Bags
@@ -199,13 +201,9 @@ local function ellesmereAPI()
 	return nil
 end
 
--- data = { bag, slot, info, itemLink }, valid during the call only.
-local function paintEllesmere(button, data)
-	local link
-	if type(data) == "table" then
-		link = data.itemLink
-		if not link and data.bag and data.slot and data.slot > 0 then link = Gear.Client.BagLink(data.bag, data.slot) end
-	end
+-- One slot's arrow from its link. EllesmereUI Bags reruns the painters each
+-- time it fills a button, so the link last painted is the button's item.
+local function markEllesmere(button, link)
 	local t = marks[button]
 	if link and Bags.IsUpgrade(link) then
 		if not t then
@@ -221,6 +219,17 @@ local function paintEllesmere(button, data)
 	elseif t then
 		t:Hide()
 	end
+end
+
+-- data = { bag, slot, info, itemLink }, valid during the call only.
+local function paintEllesmere(button, data)
+	local link
+	if type(data) == "table" then
+		link = data.itemLink
+		if not link and data.bag and data.slot and data.slot > 0 then link = Gear.Client.BagLink(data.bag, data.slot) end
+	end
+	painted[button] = link or false
+	markEllesmere(button, link)
 end
 
 local function registerEllesmere()
@@ -248,10 +257,10 @@ function Bags.Redraw()
 	for _, f in ipairs(containerFrames()) do
 		if hooked[f] and f:IsShown() then onUpdateItems(f) end
 	end
-	local E = ellesmere and ellesmereAPI()
-	if E and E.IsShown and E:IsShown() and type(E.RefreshInventory) == "function"
-		and not (InCombatLockdown and InCombatLockdown()) then
-		E:RefreshInventory()
+	-- EllesmereUI Bags: re-mark the shown slots from the links they last
+	-- painted (bags and bank alike), without making it rebuild its window.
+	for button, link in pairs(painted) do
+		if button:IsVisible() then markEllesmere(button, link or nil) end
 	end
 	local API = baganator and baganatorAPI()
 	if API and API.RequestItemButtonsRefresh and (not API.IsCornerWidgetActive or API.IsCornerWidgetActive(WIDGET)) then

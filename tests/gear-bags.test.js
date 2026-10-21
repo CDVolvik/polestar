@@ -222,7 +222,8 @@ test('the client\'s bags: an item the class cannot use gets no empty-slot arrow 
 
 // EllesmereUI Bags' item overlay API (EllesmereUIBags/EUI_Bags_Slots.lua):
 // RegisterItemOverlayIcon(name, fn(button, data)) runs on every painted slot;
-// the arrow goes on the button's _textOverlay; RefreshInventory repaints.
+// the arrow goes on the button's _textOverlay; RefreshInventory rebuilds its
+// whole window, which Polestar leaves to it.
 const ELLESMERE = `
 EUI_Bags = { itemOverlayIcons = {}, refreshes = 0, shown = true }
 function EUI_Bags.RegisterItemOverlayIcon(name, fn) EUI_Bags.itemOverlayIcons[name] = fn end
@@ -286,25 +287,23 @@ test('EllesmereUI Bags: the link comes from the bag slot when the data has none;
 	assert.equal(disabled, false);
 });
 
-test('EllesmereUI Bags: new verdicts repaint its window once per burst, only while it is shown and out of combat', () => {
-	const [refreshes] = run(
+test('EllesmereUI Bags: new verdicts re-mark the shown slots from their last painted link, in combat too, without rebuilding its window', () => {
+	const [out] = run(
 		`${BAGS}
-		g.equip(1, "item:9006"); g.equip(1, "item:9001")
-		stub.advance(0.25)
-		local burst = EUI_Bags.refreshes
-		EUI_Bags.shown = false
+		local a, da = slot("item:9002", 0, 1)
+		paint(a, da)
+		local before = shown(a)
 		g.equip(1, "item:9006")
 		stub.advance(0.25)
-		local hidden = EUI_Bags.refreshes
-		EUI_Bags.shown = true
+		local better = shown(a)
 		stub.inCombat = true
 		g.equip(1, "item:9001")
 		stub.advance(0.25)
-		emit({ burst = burst, hidden = hidden, combat = EUI_Bags.refreshes })
+		emit({ before = before, better = better, combat = shown(a), refreshes = EUI_Bags.refreshes })
 	`,
 		{ before: ELLESMERE },
 	);
-	assert.deepEqual(refreshes, { burst: 1, hidden: 1, combat: 1 });
+	assert.deepEqual(out, { before: true, better: false, combat: true, refreshes: 0 });
 });
 
 test('EllesmereUI Bags loaded after Polestar: the painter registers as it loads, once', () => {
