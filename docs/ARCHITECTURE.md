@@ -3348,8 +3348,9 @@ flight timer and the instance tracker are set under Quality of Life.
   older readers skip these comma-free fields, and older packs stay readable.
   Reads run in batches of 100 outside combat, the first time the world map
   opens with the layer on (at once when its minimap icons are on), never at
-  login, so the Codex stays unloaded until then; filters
-  reuse the records, and a Codex/name-pack load invalidates them. Missing data
+  login, so the Codex stays unloaded until then; filters reuse the records
+  (slim copies of the friendly ones: id, name, title, side, roles, spawns),
+  and a Codex/name-pack load invalidates them. Missing data
   produces an explanatory message and is retried when the dependency loads.
 
 - Unexplored areas (`maps.reveal`: `off` | `on` | `tint`, `Maps/Reveal.lua`):

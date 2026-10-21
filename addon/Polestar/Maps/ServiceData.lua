@@ -5,6 +5,20 @@ local Maps = ns.Maps
 local ROLES = { "vendor", "repair", "banker", "auctioneer",
 	"battlemaster", "spirithealer", "stablemaster", "trainer", "weapon" }
 
+-- The layer keeps its records for filter changes: only friendly ones, and only
+-- the fields it draws (a decoded Codex record carries loot, levels and flags
+-- too: holding every decoded service record took about twice the memory).
+local function friendly(faction)
+	local info = ns.Compat and ns.Compat.GetPlayerInfo and ns.Compat.GetPlayerInfo() or {}
+	local side = info.faction == "Alliance" and "A" or info.faction == "Horde" and "H" or nil
+	return faction == "AH" or side == nil or faction == side
+end
+
+local function slim(rec, kind, roles)
+	return { id = rec.id, kind = kind, name = rec.name, subName = rec.subName, faction = rec.faction,
+		roles = roles or rec.roles, spawns = rec.spawns }
+end
+
 function Maps.ServiceSource()
 	local X = ns.Codex
 	if not (X and X.IsLoaded and X.WithRole and X.Npc) then return nil, "missing" end
@@ -23,8 +37,8 @@ function Maps.ServiceSource()
 	table.sort(ids)
 	return { ids = ids, read = function(id)
 		local npc = X.Npc(id)
-		if not npc or not npc.faction or (npc.instance and npc.instance ~= "") then return nil end
-		return npc
+		if not npc or not npc.faction or (npc.instance and npc.instance ~= "") or not friendly(npc.faction) then return nil end
+		return slim(npc)
 	end }
 end
 
@@ -36,8 +50,7 @@ function Maps.ServiceMailboxSource()
 	table.sort(ids)
 	return { ids = ids, read = function(id)
 		local object = X.Object(id)
-		if not object or not object.mailbox or not object.faction then return nil end
-		return { id = id, kind = "object", name = object.name, faction = object.faction,
-			spawns = object.spawns, roles = { "mailbox" } }
+		if not object or not object.mailbox or not object.faction or not friendly(object.faction) then return nil end
+		return slim(object, "object", { "mailbox" })
 	end }
 end

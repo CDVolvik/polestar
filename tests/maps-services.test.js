@@ -232,6 +232,18 @@ test('nearby mailbox observations merge across object IDs while separate physica
   assert.deepEqual(out, [{ id: 1, x: 48 }, { id: 3, x: 52 }]);
 });
 
+test('the records kept for filter changes are slim and friendly only', () => {
+  const [out] = run(`
+    __npcs[1].loot,__npcs[1].level={5},30
+    __objects[3]={id=3,name="Mailbox",mailbox=true,faction="H",loot={},spawns={{map=9000,x=60,y=50,f="l"}}}
+    local npcs,boxes=M.ServiceSource(),M.ServiceMailboxSource()
+    local smith=npcs.read(1)
+    emit({fields=(function() local k={} for f in pairs(smith) do k[#k+1]=f end table.sort(k) return k end)(),
+      shared=smith==__npcs[1],enemy=npcs.read(2)==nil,hostileBox=boxes.read(3)==nil,box=boxes.read(1).kind})
+  `);
+  assert.deepEqual(out, { fields: ['faction', 'id', 'name', 'roles', 'spawns', 'subName'], shared: false, enemy: true, hostileBox: true, box: 'object' });
+});
+
 test('services are opt-in with a lean category set, leave flight masters and inns to the travel layers, and use the native bag for vendors and a distinct chest for bankers', () => {
   const [out, weapon] = run(`
     local icons,on={},{}
