@@ -2274,6 +2274,17 @@ test(`${TELDRASSIL}: #555: Soft Saber Pelts accept comes before Zenn's Bidding t
 	assert.equal(coll488.s, coll87288.s, 'Nightsaber Fang (488.1) and Nightsaber Pelt (87288.1) are in the same step');
 });
 
+// --- Teldrassil (#619): Ferocitas drops the Gnarlpine Necklace, and Tallonkai's
+// Jewel is only in the bags once the necklace is opened.
+test(`${TELDRASSIL}: #619: the Gnarlpine Necklace is looted from Ferocitas before the jewel is collected`, { skip }, () => {
+	const list = goals(TELDRASSIL);
+	const necklace = at(list, 'collect 8049 (Gnarlpine Necklace)', (g) => g.t === 'collect' && g.item === 8049 && !g.quest);
+	const jewel = at(list, 'collect 8050 quest 2459 (Tallonkai\'s Jewel)', (g) => g.t === 'collect' && g.item === 8050 && g.quest === 2459);
+	assert.ok(necklace < jewel, 'the necklace comes before the jewel');
+	assert.equal(list[necklace].s, list[jewel].s, 'on the Ferocitas step');
+	assert.ok(located(list[necklace]), 'the arrow leads to Ferocitas for the necklace');
+});
+
 test('#327: Pirate Hats Ahoy! names every pirate that drops the hat, not the Southsea Kidnapper alone, in both guides', { skip }, () => {
 	for (const guide of [TANARIS_ALLIANCE, 'forever/horde/40-50/02-feralas.guide']) {
 		const list = goals(guide);
