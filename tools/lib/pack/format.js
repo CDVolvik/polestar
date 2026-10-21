@@ -7,15 +7,13 @@ const { header } = require('../generated');
 // reads each format (written into the TOC as X-Polestar-Needs). Format 2
 // adds `group` (docs/PACK_FORMAT.md, "Format 2"); format 4 adds a step's
 // `when`, `label` and `along`, a level goal's `frac` and a `next` option's
-// `when` (`nextWhen`); format 5 adds the `money` and `task` goals, the
-// `money`, `dungeon` and `done` when predicates and a step's `skipto`; format 6
-// adds the `abandon` and `destroy` goals; a pack is written in the first format
-// its guides need (formatFor): a pack without any stays readable by Polestar 0.2.5.
+// `when` (`nextWhen`); format 5 adds the `money`, `task`, `abandon` and `destroy` goals, the
+// `money`, `dungeon` and `done` when predicates and a step's `skipto`; a pack is written in the first format its guides
+// need (formatFor): a pack without any stays readable by Polestar 0.2.5.
 const FORMAT = 3;
 const WHEN_FORMAT = 4;
 const MONEY_TASK_FORMAT = 5;
-const ABANDON_DESTROY_FORMAT = 6;
-const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6', 5: '0.3.0', 6: '0.3.0' };
+const NEEDS = { 1: '0.1.0', 2: '0.2.4', 3: '0.2.5', 4: '0.2.6', 5: '0.3.0' };
 
 // A step with `label` or `along` (an older Polestar would stop at an along step).
 const usesAlong = (s) => s.label !== undefined || s.along !== undefined;
@@ -24,28 +22,24 @@ const usesAlong = (s) => s.label !== undefined || s.along !== undefined;
 // an older Polestar would count it done at the start of the level.
 const usesLevelFrac = (g) => (g.steps || []).some((s) => (s.goals || []).some((goal) => goal.t === 'level' && goal.frac));
 
-// The `money` and `task` goals, the `money`, `dungeon` and `done` when
+// The `money`, `task`, `abandon` and `destroy` goals, the `money`, `dungeon` and `done` when
 // predicates (on a step or a `next` option) and a step's `skipto` need format
 // 5: a 0.2.6 client would accept a format-4 pack but refuse these with
 // "unknown verb" or "bad when" rather than "needs Polestar 0.3.0", and would
 // never take a `skipto` jump.
-const MONEY_TASK_VERBS = new Set(['money', 'task']);
+const MONEY_TASK_VERBS = new Set(['money', 'task', 'abandon', 'destroy']);
 const FORMAT5_WHEN = new Set(['money', 'dungeon', 'done']);
 const needs5 = (list) => (list || []).some((p) => FORMAT5_WHEN.has(p.k));
 const usesMoneyTask = (g) => (g.steps || []).some((s) =>
 	(s.goals || []).some((goal) => MONEY_TASK_VERBS.has(goal.t)) || needs5(s.when) || (Array.isArray(s.skipto) && s.skipto.length)) ||
 	Object.values(g.nextWhen || {}).some(needs5);
 
-const ABANDON_DESTROY_VERBS = new Set(['abandon', 'destroy']);
-const usesAbandonDestroy = (g) => (g.steps || []).some((s) => (s.goals || []).some((goal) => ABANDON_DESTROY_VERBS.has(goal.t)));
-
-// The format a pack's compiled guides need: ABANDON_DESTROY_FORMAT when a guide
-// uses abandon/destroy goals, MONEY_TASK_FORMAT when a guide uses money/task
-// goals, a money, dungeon or done when predicate or a `skipto`, WHEN_FORMAT when
-// a step has `when`, `label` or `along`, a level goal has `frac`, or a `next`
+// The format a pack's compiled guides need: MONEY_TASK_FORMAT when a guide
+// uses money/task/abandon/destroy goals, a money, dungeon or done when predicate or a
+// `skipto`, WHEN_FORMAT when a step
+// has `when`, `label` or `along`, a level goal has `frac`, or a `next`
 // option has `when` (`nextWhen`), else FORMAT.
 function formatFor(guides) {
-	if ((guides || []).some(usesAbandonDestroy)) return ABANDON_DESTROY_FORMAT;
 	if ((guides || []).some(usesMoneyTask)) return MONEY_TASK_FORMAT;
 	const uses = (guides || []).some((g) => (g.steps || []).some((s) => (Array.isArray(s.when) && s.when.length) || usesAlong(s)));
 	if (uses || (guides || []).some(usesLevelFrac)) return WHEN_FORMAT;
@@ -98,4 +92,4 @@ function placeholderLicense(license) {
 	return `Licensed under ${license}: ${LICENSE_PLACEHOLDER}.\n`;
 }
 
-module.exports = { FORMAT, WHEN_FORMAT, MONEY_TASK_FORMAT, ABANDON_DESTROY_FORMAT, NEEDS, formatFor, PACK_ID_RE, FOLDER_RE, RESERVED_IDS, GENERATED_MARKER, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX, LICENSE_PLACEHOLDER, ownsGuideId, defaultFolder, placeholderLicense };
+module.exports = { FORMAT, WHEN_FORMAT, MONEY_TASK_FORMAT, NEEDS, formatFor, PACK_ID_RE, FOLDER_RE, RESERVED_IDS, GENERATED_MARKER, TOC_MARKER, TOC_TITLE_PREFIX, LEGACY_TOC_TITLE_PREFIX, LICENSE_PLACEHOLDER, ownsGuideId, defaultFolder, placeholderLicense };

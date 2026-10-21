@@ -9,7 +9,7 @@ const path = require('node:path');
 const { parseGuide } = require('../tools/lib/dsl/parse');
 const { Diagnostics } = require('../tools/lib/dsl/diag');
 const { emitGuides } = require('../tools/lib/dsl/emit');
-const { formatFor, FORMAT, ABANDON_DESTROY_FORMAT } = require('../tools/lib/pack/format');
+const { formatFor, FORMAT, MONEY_TASK_FORMAT } = require('../tools/lib/pack/format');
 const { readManifest } = require('../tools/lib/pack/manifest');
 const { compileProject } = require('../tools/lib/dsl/project');
 const { compile, guideText, lineOf, plain, DATA_DIR } = require('./helpers/dsl');
@@ -45,12 +45,12 @@ test('the resolver takes titles and names from data, lint takes an abandon as th
 	assert.match(lua, /\{ t = "destroy", item = 159, itemName = "Refreshing Spring Water" \},/);
 });
 
-test('a pack with an abandon or destroy goal is written in format 6', () => {
+test('a pack with an abandon or destroy goal is written in format 5', () => {
 	const mini = path.join(__dirname, 'fixtures', 'packs', 'mini');
 	const { manifest } = readManifest(mini);
 	const { guides } = compileProject({ packDir: mini, manifest, dataDir: DATA_DIR });
 	assert.equal(formatFor(guides), FORMAT);
 	const goal = { t: 'destroy', item: 159, itemName: 'Water' };
 	const copy = guides.map((g) => ({ ...g, steps: g.steps.map((s, i) => (i === 0 ? { ...s, goals: [...s.goals, goal] } : s)) }));
-	assert.equal(formatFor(copy), ABANDON_DESTROY_FORMAT);
+	assert.equal(formatFor(copy), MONEY_TASK_FORMAT);
 });
