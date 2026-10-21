@@ -545,6 +545,50 @@ function Own.onCooldown(p)
 	return true
 end
 
+-- `when group <quest>`: the player's answer to "do this group quest?",
+-- per character (CharState().groupQuests[q]: "do" or "skip"; Engine.AnswerGroup).
+-- Never guessed from the quest log: a solo alternative (`when !group`) may be
+-- for a quest the player already has.
+function Own.groupAnswer(q)
+	return ns.CharState().groupQuests[q]
+end
+
+-- The quest of the first unanswered `group` predicate of a step, or nil. Such
+-- a step applies but is not done (stepDone), so the route waits there until
+-- the player answers; an along step never waits (the route passes over it).
+-- Nor does a step with nothing to do for the quest now (Own.groupOpen): it
+-- then applies as it would without the question, and the route asks once
+-- the quest can be taken.
+function Own.groupPending(step)
+	if step.along or not step.when then return nil end
+	for _, p in ipairs(step.when) do
+		if p.k == "group" and Own.groupAnswer(p.q) == nil and Own.groupOpen(step, p.q) then return p.q end
+	end
+	return nil
+end
+
+-- Whether group quest q is worth asking about at step: not handed in nor
+-- skipped by the player (Own.questSkipped), and in the log or, when the step
+-- takes it, with an accept the character can take now. Not one the catch-up
+-- left out (grey), one closed for good, or one not open yet (level,
+-- prerequisite): the route would pass that accept anyway.
+function Own.groupOpen(step, q)
+	local C = Compat()
+	if questDone(q) or Own.questSkipped(q) then return false end
+	if C.IsOnQuest(q) then return true end
+	local takes = false
+	for _, goal in ipairs(step.goals) do
+		if goal.t == "accept" and goal.quest == q then
+			takes = true
+			local lvl = tonumber(goal.minLevel)
+			if goalApplies(goal) and not unavailableFor(goal) and not (lvl and (player.level or 1) < lvl) and not missingPre(goal) then
+				return true
+			end
+		end
+	end
+	return not takes
+end
+
 function Own.predicateHolds(p)
 	local C, k, ok = Compat(), p.k, false
 	if k == "level" then
@@ -590,6 +634,11 @@ function Own.predicateHolds(p)
 		ok = (C.GetSkillRank and C.GetSkillRank(p.skillLine or p.name) or 0) >= p.n
 	elseif k == "cooldown" then
 		ok = Own.onCooldown(p)
+	elseif k == "group" then
+		local answer = Own.groupAnswer(p.q)
+		-- Unanswered: the step applies either way, and waits (Own.groupPending).
+		if answer == nil then return true end
+		ok = answer == "do"
 	end
 	if p.neg then return not ok end
 	return ok
@@ -1698,6 +1747,7 @@ end
 
 local function stepDone(s)
 	if guide.steps[s].along then return true end -- the route passes over it (Own.alongListed)
+	if Own.groupPending(guide.steps[s]) then return false end -- waits for the player's answer
 	return Own.goalsDone(s)
 end
 
@@ -4142,6 +4192,56 @@ function Engine.ChooseDungeon(map, on)
 	requestUpdate()
 end
 
+-- The group quest the live step waits on (`when group`, unanswered): its
+-- quest id and title (the step's goal for it, else the guide's accept, else
+-- the step's title), or nil.
+function Engine.GroupQuestion()
+	local step = guide and computed and guide.steps[computed]
+	local q = step and Own.groupPending(step)
+	if not q then return nil end
+	for _, goal in ipairs(step.goals) do
+		if goal.quest == q and goal.title then return q, goal.title end
+	end
+	local a = layoutOf(guide).accepts[q]
+	return q, (a and a[1].goal.title) or step.title
+end
+
+-- The group quests (`when group`) of the guides for this character (the
+-- guide's faction, races and classes, the step's `only`): { { quest, title } },
+-- each quest once, in guide and step order. For the Options list.
+function Engine.GroupQuests()
+	if not player then refreshPlayer() end
+	local out, seen = {}, {}
+	for _, h in ipairs(Guides.List()) do
+		local g = Guides.Get(h.id)
+		if g and Guides.GuideMatches(g, player) then
+			for _, step in ipairs(g.steps) do
+				for _, p in ipairs(Guides.Matches(step.only, player) and step.when or NONE) do
+					if p.k == "group" and not seen[p.q] then
+						seen[p.q] = true
+						local title
+						for _, goal in ipairs(step.goals) do
+							if goal.quest == p.q and goal.title then title = goal.title break end
+						end
+						out[#out + 1] = { quest = p.q, title = title or step.title }
+					end
+				end
+			end
+		end
+	end
+	return out
+end
+
+-- The player's answer for group quest q: "do", "skip", or nil to ask again.
+-- Per character, for every guide (CharState().groupQuests).
+function Engine.GroupAnswer(q) return Own.groupAnswer(q) end
+
+function Engine.AnswerGroup(q, answer)
+	if type(q) ~= "number" or (answer ~= nil and answer ~= "do" and answer ~= "skip") then return end
+	ns.CharState().groupQuests[q] = answer
+	requestUpdate()
+end
+
 -- The active tab's finished guide when its route choice waits for the
 -- player, else nil.
 function Engine.PendingRouteChoice()
@@ -4908,8 +5008,10 @@ local function wantsFrom(from, verb, questID, span)
 	for s = from, #steps do
 		local step = steps[s]
 		if stepApplies(step) then
+			-- A group quest the player has not answered for yet is not taken or handed in for them.
+			local waits = Own.groupPending(step)
 			for g, goal in ipairs(step.goals) do
-				if matchesVerb(goal, verb) and goal.quest == questID and goalApplies(goal)
+				if matchesVerb(goal, verb) and goal.quest == questID and questID ~= waits and goalApplies(goal)
 					and not Own.questSkipped(questID)
 					and not (verb == "direct" and goalDone(s, g, goal)) then
 					return true

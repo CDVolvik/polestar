@@ -1107,7 +1107,13 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   learned is 0), and an item or spell on cooldown (`Own.onCooldown`: longer
   than the global cooldown and not run out; it times an update for when it
   ends, and `BAG_UPDATE_COOLDOWN`/`SPELL_UPDATE_COOLDOWN` update once a guide
-  has asked). `stepApplies` reads them, so such a step counts as one
+  has asked), and the player's answer at a group quest (`Own.groupAnswer`:
+  `CharState().groupQuests[q]`, "do" or "skip", set by `Engine.AnswerGroup`
+  from the guide window's banner or Options, Discovery, Group quests;
+  `Engine.GroupQuests` lists a character's). An unanswered `group` predicate
+  holds and `stepDone` is false while `Own.groupPending` names its quest (not
+  on an along step), so the route waits at the step; `Engine.GroupQuestion`
+  gives the banner the quest, and `wantsFrom` keeps automation off it. `stepApplies` reads them, so such a step counts as one
   for other characters while they fail, and a turn-in whose only accept sits
   there goes with it (`orphaned`). When the route moves past a step
   (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a

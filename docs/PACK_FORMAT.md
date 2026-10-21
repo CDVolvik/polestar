@@ -281,6 +281,7 @@ hold:
 | `"done"` | `label`: a step label of the same guide (format 5) | the step so labelled applies, its goals are done and it was not skipped (by the player, a failed `when` or a `skipto` jump); refused in `nextWhen` |
 | `"skill"` | `name`, `n`; optional `skillLine` (format 5) | the character's rank in that profession is `n` or more; one not learned is rank 0 |
 | `"cooldown"` | `item` or `spell` (format 5) | the item or spell is on cooldown for more than the global cooldown (1.5 s) |
+| `"group"` | `q` (format 5) | the player answered "do it" for that group quest (`CharState().groupQuests[q] == "do"`); unanswered, the step applies and is not done, so the route waits there; refused in `nextWhen` and `skipto` |
 
 ```lua
 { title = "Back to Gornek", when = { { k = "onquest", q = { 788 } }, { k = "level", op = "<", n = 6 } }, goals = { ... } }
@@ -288,7 +289,7 @@ hold:
 
 A `when` that is not a non-empty list, or a predicate of another kind or
 without its keys, refuses the guide. Polestar 0.2.6 reads every kind above
-but `"money"`, `"dungeon"`, `"upgrade"`, `"done"`, `"skill"` and `"cooldown"`, which came after it: a guide with one, on a
+but `"money"`, `"dungeon"`, `"upgrade"`, `"done"`, `"skill"`, `"cooldown"` and `"group"`, which came after it: a guide with one, on a
 step or a `next` option, is written in format 5, so 0.2.6 says the pack needs
 Polestar 0.3.0 instead of refusing the guide ("bad when"). Once the route has moved past a step,
 Polestar stores whether its `when` held (per character, guide and step) and
@@ -328,8 +329,8 @@ list refuses the guide.
 ## Format 5
 
 Format 4 with the **`money`** and **`task`** goals, the **`money`**,
-**`dungeon`**, **`upgrade`**, **`done`**, **`skill`** and **`cooldown`** `when`
-predicates (on a step or a `next` option; `done` on a step only) and a step's
+**`dungeon`**, **`upgrade`**, **`done`**, **`skill`**, **`cooldown`** and **`group`**
+`when` predicates (on a step or a `next` option; `done` on a step only) and a step's
 **`skipto`** jumps. Polestar 0.3.0 and later read it.
 The compiler writes a pack in format 5 only when its guides use one of them;
 any other pack stays in format 3 or 4. A 0.2.6 client accepts a format-4 pack
@@ -364,6 +365,12 @@ name (`Compat.GetSkillRank`).
 (`Compat.GetItemCooldown`) or spell (`Compat.GetSpellCooldown`) has a cooldown
 longer than the global cooldown that has not run out; Polestar evaluates the
 guide again when it does.
+
+`group` when predicate: `{ k = "group", q = <quest> }`. The player's answer for
+that group quest, per character: "do" holds, "skip" fails. Unanswered, the
+predicate holds and the step is not done (an along step aside), so the route
+waits there while the guide window asks. A `group` predicate in `nextWhen`
+refuses the guide ("bad nextWhen"), and in a `skipto` ("step N: bad skipto").
 
 `skipto` on a step: a non-empty list of jumps, each `{ to = "<label>", when =
 <predicate> }`, `to` the label of a later step and `when` one predicate as in
@@ -631,8 +638,8 @@ or nothing (equal or lower). Imported guides are listed in the guide menu as
   format 3 (name tokens) by 0.2.5 and later, format 4 (a step's `when`,
   `along` and `label`, a `level` goal's `frac`, a guide's `nextWhen`) by 0.2.6
   and later, format 5 (the `money` and `task` goals, the `money`, `dungeon`,
-  `upgrade`, `done`, `skill` and `cooldown` when predicates, a step's `skipto`)
-  by 0.3.0 and later.
+  `upgrade`, `done`, `skill`, `cooldown` and `group` when predicates, a step's
+  `skipto`) by 0.3.0 and later.
 - A pack in a format this Polestar does not read registers nothing; the
   Community guides page shows it as `too-new` with "Needs Polestar <version> or
   newer." (rule 5).
