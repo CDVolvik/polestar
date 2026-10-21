@@ -771,3 +771,57 @@ test('skins: Forever hover plates use ADD blend (#306c)', () => {
 	assert.equal(out.navBlend,  'ADD', 'navHover ADD');
 	assert.equal(out.platBlend, 'ADD', 'plateLit ADD');
 });
+
+// #306 in game (Forever, after the border fix): the guide window's progress
+// bar showed no fill, its frame clipped by the window's foot, and the goals'
+// tick boxes sat on the window's border. The fill is a texture of its own,
+// cropped to the value; the frame sits 7 round the bar with its 2x slice
+// margins drawn at half; the check art keeps the control's proportion.
+test("skins: Forever's progress bar draws its own fill to the bar's value, the frame round it at half its 2x margins; the tick boxes fit their control (#306)", () => {
+	const [out] = run(`
+		local GF = Polestar.UI.GuideFrame
+		Polestar.Set("ui.skin", "forever")
+		uistub.openTabs({ { uistub.elwynn, 3 } }, 1)
+		local b = GF.parts.foot.Status
+		b:SetWidth(200)
+		local k = b.psSkin.kit
+		local function fill() return { shown = k.statusFill:IsShown(), w = k.statusFill:GetWidth(), u1 = k.statusFill.texCoord and k.statusFill.texCoord[2] } end
+		local out = { own = b:GetStatusBarTexture():GetAlpha() }
+		b:SetValue(0.5)
+		out.half = fill()
+		b:SetValue(0)
+		out.none = fill()
+		b:SetValue(1)
+		out.full = fill()
+		-- the frame host and its top-left corner piece
+		local o = k.statusFrame
+		local p = o:GetPoint(1)
+		out.frame = { select(4, o:GetPoint(1)), select(5, o:GetPoint(1)), select(4, o:GetPoint(2)), select(5, o:GetPoint(2)) }
+		local corner = k.statusArt[1]
+		out.cap = { select(4, corner:GetPoint(2)) - select(4, corner:GetPoint(1)) }
+		-- a tick box of the guide window (15) and one of Options (18)
+		local small = Polestar.Widgets.Checkbox(UIParent, function() end); small:SetSize(15, 15)
+		T.SKIN_PAINT.forever.checkbox(small)
+		local big = Polestar.Widgets.Checkbox(UIParent, function() end); big:SetSize(18, 18)
+		T.SKIN_PAINT.forever.checkbox(big)
+		out.tick = { small = small.psSkin.kit.check:GetWidth(), big = big.psSkin.kit.check:GetWidth() }
+		-- back to the house style: the bar's own fill again
+		Polestar.Set("ui.skin", "hearth")
+		out.hearth = { own = b:GetStatusBarTexture():GetAlpha(), fill = k.statusFill:IsShown() }
+		emit(out)`, {
+		before: `C_Texture = { GetAtlasInfo = function(name)
+			local size = { ["Legacy-Progressbar-Frame"] = { 262, 52 }, ["Legacy-Progressbar-Fill"] = { 234, 24 }, ["Legacy-Progressbar-BG"] = { 234, 24 } }
+			local s = size[name] or { 30, 29 }
+			return { file = "atlas:" .. name, leftTexCoord = 0, rightTexCoord = 1, topTexCoord = 0, bottomTexCoord = 1, width = s[1], height = s[2] }
+		end }`,
+	});
+	assert.equal(out.own, 0, "the bar's own fill is unseen in Forever");
+	assert.deepEqual(out.half, { shown: true, w: 100, u1: 0.5 }, 'half the bar, the left half of the art');
+	assert.equal(out.none.shown, false, 'nothing at 0');
+	assert.deepEqual(out.full, { shown: true, w: 200, u1: 1 });
+	assert.deepEqual(out.frame, [-7, 6, 7, -7], '7 round the bar (the art is 14 2x pixels wider than the fill a side)');
+	assert.deepEqual(out.cap, [16.5], 'the 33-pixel 2x cap drawn 16.5 wide');
+	assert.equal(out.tick.big, 26, 'the Settings panel box as before');
+	assert.ok(Math.abs(out.tick.small - 15 * 26 / 18) < 1e-9, 'a 15 box: the art in the same proportion');
+	assert.deepEqual(out.hearth, { own: 1, fill: false }, "Hearth: the bar's own fill back");
+});

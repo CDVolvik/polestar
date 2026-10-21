@@ -297,8 +297,9 @@ Theme.KitNineOf = nineOf
 -- (UiTextureAtlasElementSliceData, ns.GameArtSlice): its margins (in its own
 -- units, at 1x) drawn at their size, the edges and middle stretched between.
 -- out = { l, t, r, b } past host's edges. Without slice data, one stretched
--- piece. -> the nine textures
-local function sliced(f, key, kit, name, host, out, layer, sub, noCentre)
+-- piece. scale: the margins' drawn size per unit of slice data (0.5 for an
+-- atlas whose slice data counts its 2x pixels; default 1). -> the nine textures
+local function sliced(f, key, kit, name, host, out, layer, sub, noCentre, scale)
 	out = out or { 0, 0, 0, 0 }
 	local k = store(f)
 	local p = k[key]
@@ -320,6 +321,10 @@ local function sliced(f, key, kit, name, host, out, layer, sub, noCentre)
 	local l, t, r, b = m[1], m[2], m[3], m[4]
 	local us = { { 0, l / w }, { l / w, 1 - r / w }, { 1 - r / w, 1 } }
 	local vs = { { 0, t / h }, { t / h, 1 - b / h }, { 1 - b / h, 1 } }
+	-- The pieces' texture coordinates come from the art's own size above;
+	-- only their drawn size scales.
+	scale = scale or 1
+	l, t, r, b = l * scale, t * scale, r * scale, b * scale
 	-- A row or column with no margin collapses into its neighbour.
 	local rows = { t > 0, true, b > 0 }
 	local cols = { l > 0, true, r > 0 }
@@ -746,15 +751,28 @@ local function checkbox(f, kit)
 	local d = f.psSkin
 	d.box:Hide()
 	local box = tex(f, "check", "ARTWORK", 0)
-	local w, h = 26, 25
+	-- The art (30 x 29 with its glow) at 26 x 25 on the Settings panel's 18
+	-- unit box, and in that proportion on a smaller one (the guide window's
+	-- tick boxes), so it stays inside the control's own room.
+	local function size()
+		local side = max(f:GetWidth(), f:GetHeight())
+		if side <= 0 then side = 18 end
+		local w, h = side * 26 / 18, side * 25 / 18
+		box:SetSize(w, h)
+		if d.check then d.check:SetSize(w, h) end
+	end
 	draw(box, kit, kit.check)
-	box:SetSize(w, h)
 	box:ClearAllPoints()
 	box:SetPoint("CENTER", f, "CENTER", 0, 0)
 	if d.check then
 		draw(d.check, kit, kit.checkOn)
-		d.check:SetSize(w, h)
 		d.check:SetVertexColor(1, 1, 1, 1)
+	end
+	size()
+	local k = store(f)
+	if not k.checkSized then
+		k.checkSized = true
+		f:HookScript("OnSizeChanged", function() if k.check and k.check:IsShown() then size() end end)
 	end
 	P.hoverWash(f):SetVertexColor(1, 1, 1, 0)
 end
@@ -1134,30 +1152,61 @@ end
 
 -- The guide window's progress bar in a kit, on StatusBar b (its Bg, a frame
 -- piece). -> true when the kit drew it
+--
+-- Forever's fill is drawn as a texture of its own, cropped to the bar's value
+-- (statusFill): a status bar recomputes its own texture's coordinates as it
+-- fills, which lost the atlas region set on it, so the fill never showed
+-- (#306). Its frame is Legacy-Progressbar-Frame round the bar as the client's
+-- legacy bars wear it: 7 out a side (its 262 x 52 against the fill's 234 x 24,
+-- in 2x pixels), the slice margins drawn at half their 2x size.
+-- statusFill to b's value: the fill's left share of its art, as wide as that
+-- share of the bar (nothing at none).
+local function paintFill(b)
+	local k = store(b)
+	local kit, t = k.fillKit, k.statusFill
+	if not (kit and t) then return end
+	local lo, hi = b:GetMinMaxValues()
+	local share = hi > lo and (b:GetValue() - lo) / (hi - lo) or 0
+	share = max(0, min(1, share))
+	local w = b:GetWidth() * share
+	if w < 0.5 then
+		t:Hide()
+		return
+	end
+	draw(t, kit, kit.status.fill, 0, share, 0, 1)
+	t:ClearAllPoints()
+	t:SetPoint("TOPLEFT", b, "TOPLEFT", 0, 0)
+	t:SetPoint("BOTTOMLEFT", b, "BOTTOMLEFT", 0, 0)
+	t:SetWidth(w)
+end
+Theme.KitPaintFill = paintFill
 function Theme.KitStatus(b)
 	local kit = Theme.Kit()
-	for _, key in ipairs({ "statusFrame", "statusEdge", "statusArt", "statusNine" }) do hideKey(b, key) end
+	for _, key in ipairs({ "statusFrame", "statusEdge", "statusArt", "statusNine", "statusFill" }) do hideKey(b, key) end
+	local own = b:GetStatusBarTexture()
+	if own then own:SetAlpha(1) end
+	local k = store(b)
+	k.fillKit = nil
 	if not kit then return false end
-	local fill = b:GetStatusBarTexture()
+	local fill = own
 	if kit.source == "atlas" then
-		local f, l, r, tp, bt = region(kit, kit.status.fill)
-		if f then b:SetStatusBarTexture(f); fill = b:GetStatusBarTexture(); fill:SetTexCoord(l, r, tp, bt) end
-		fill:SetVertexColor(1, 1, 1, 1)
+		-- The bar's own fill stays (others read and colour it) but unseen.
+		if own then own:SetAlpha(0) end
 		draw(b.Bg, kit, kit.status.bg)
-		-- Frame the bar with the nine-slice art. The host sits on the bar's own
-		-- bounds; out = the slice margins so every piece extends OUTSIDE the bar,
-		-- leaving the fill fully visible in the centre.
-		local _, _, _, _, _, fw, fh = region(kit, kit.status.frame)
-		local sm = ns.GameArtSlice and ns.GameArtSlice[kit.status.frame]
-		local sl = sm and sm[1] or 0
-		local st = sm and sm[2] or 0
-		local sr = sm and sm[3] or 0
-		local sb = sm and sm[4] or 0
+		local t = tex(b, "statusFill", "ARTWORK", 0)
+		k.fillKit = kit
+		if not k.fillHooked then
+			k.fillHooked = true
+			b:HookScript("OnValueChanged", paintFill)
+			b:HookScript("OnSizeChanged", paintFill)
+		end
+		paintFill(b)
 		local o = child(b, "statusFrame", 2)
 		o:EnableMouse(false)
 		o:ClearAllPoints()
-		o:SetAllPoints(b)
-		sliced(b, "statusArt", kit, kit.status.frame, o, { sl, st, sr, sb }, "ARTWORK", 0, true)
+		o:SetPoint("TOPLEFT", b, "TOPLEFT", -7, 6)
+		o:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 7, -7)
+		sliced(b, "statusArt", kit, kit.status.frame, o, nil, "ARTWORK", 0, true, 0.5)
 	elseif kit.source == "retail" then
 		b:SetStatusBarTexture(CLASSIC.statusFill[1])
 		fill = b:GetStatusBarTexture()
