@@ -185,6 +185,20 @@ test(`${TIRISFAL}: Onrevax's report: each Patience report goal names the NPC who
 	}
 });
 
+// Gordo walks the road between his spawn (43.1,54.7) and the edge of Brill
+// (CMaNGOS classic-db's waypoints for him), and you come to him for his report
+// from the fields west of Brill.
+test(`${TIRISFAL}: yiliev0's report (#674): Gordo's report is searched for along his road, from Brill's side out to his spawn`, { skip }, () => {
+	const list = goals(TIRISFAL);
+	const { goal } = list[at(list, 'collect 286202 (Gordo)', (g) => g.t === 'collect' && g.item === 286202)];
+	const spots = (goal.spots || []).filter((s) => !s.alt);
+	assert.ok(spots.length >= 3, `the arrow searches several points of his road: ${JSON.stringify(goal.spots)}`);
+	const spawn = { map: 1420, x: 43.06, y: 54.69 };
+	const at_ = (s) => ({ map: goal.map, x: s.x, y: s.y });
+	assert.ok(yards(at_(spots[0]), spawn) >= 300, `the search starts at Brill's end of his road, not at his spawn: ${JSON.stringify(spots[0])}`);
+	assert.ok(yards(at_(spots[spots.length - 1]), spawn) <= 30, 'and ends at his spawn');
+});
+
 test(`${STONETALON}: the Warsong update goals name the scouts who hand them over, from the data`, { skip }, () => {
 	const list = goals(STONETALON);
 	for (const [item, npc, name] of [[16764, 12862, 'Warsong Scout'], [16763, 12863, 'Warsong Runner'], [16765, 12864, 'Warsong Outrider']]) {
