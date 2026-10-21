@@ -89,6 +89,18 @@ test('refuses garbage, empty text, a newer version, a string with no stats', () 
 	assert.equal(parse('( Pawn: v1: "N": ' + 'Strength=1,'.repeat(1000) + ' )').err, 'toolong');
 });
 
+test('a long paste of mostly spaces is refused at once, not after seconds of trimming', () => {
+	const [r] = run(`
+		local t0 = os.clock()
+		local _, long = G.Pawn.Parse("x" .. string.rep(" ", 100000) .. "x")
+		local _, gap = G.Pawn.Parse("( Pawn: v1: Strength=1" .. string.rep(" ", 5900) .. ", Agility=2 )")
+		emit({ long = long, gap = gap or false, secs = os.clock() - t0 })
+	`);
+	assert.equal(r.long, 'toolong');
+	assert.equal(r.gap, false);
+	assert.ok(r.secs < 0.2, `took ${r.secs}s`);
+});
+
 function weights(str) {
 	const [r] = run(`
 		local p = G.Pawn.Parse(${JSON.stringify(str)})

@@ -74,8 +74,11 @@ for _, e in ipairs(Gear.PAWN_STATS or {}) do
 	for _, a in ipairs(e.alias or {}) do byName[lower(a)] = e end
 end
 
+-- Linear: a "%s+$" pattern retries from every space of a long gap, which takes
+-- seconds on a few thousand spaces.
 local function trim(s)
-	return (s:gsub("^%s+", ""):gsub("%s+$", ""))
+	local first = s:find("%S")
+	return first and s:match(".*%S", first) or ""
 end
 
 -- A plain decimal: 1, 1.5, .5, 1., -2, +3. Not hex, not an exponent.
@@ -88,9 +91,10 @@ end
 Pawn.Number = number
 
 function Pawn.Parse(text)
-	if type(text) ~= "string" or trim(text) == "" then return nil, "empty" end
+	if type(text) ~= "string" then return nil, "empty" end
 	if #text > MAX_LENGTH then return nil, "toolong" end
 	local s = trim(text)
+	if s == "" then return nil, "empty" end
 	-- The outer parentheses are optional.
 	s = trim((s:gsub("^%(", ""):gsub("%)$", "")))
 	local rest = s:match("^[Pp][Aa][Ww][Nn]%s*:%s*(.*)$")
