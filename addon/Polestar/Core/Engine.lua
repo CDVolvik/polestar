@@ -525,12 +525,36 @@ end
 -- The quest of the first unanswered `group` predicate of a step, or nil. Such
 -- a step applies but is not done (stepDone), so the route waits there until
 -- the player answers; an along step never waits (the route passes over it).
+-- Nor does a step with nothing to do for the quest now (Own.groupOpen): it
+-- then applies as it would without the question, and the route asks once
+-- the quest can be taken.
 function Own.groupPending(step)
 	if step.along or not step.when then return nil end
 	for _, p in ipairs(step.when) do
-		if p.k == "group" and Own.groupAnswer(p.q) == nil then return p.q end
+		if p.k == "group" and Own.groupAnswer(p.q) == nil and Own.groupOpen(step, p.q) then return p.q end
 	end
 	return nil
+end
+
+-- Whether group quest q is worth asking about at step: not handed in, and in
+-- the log or, when the step takes it, with an accept the character can take
+-- now. Not one the catch-up left out (grey), one closed for good, or one not
+-- open yet (level, prerequisite): the route would pass that accept anyway.
+function Own.groupOpen(step, q)
+	local C = Compat()
+	if questDone(q) then return false end
+	if C.IsOnQuest(q) then return true end
+	local takes = false
+	for _, goal in ipairs(step.goals) do
+		if goal.t == "accept" and goal.quest == q then
+			takes = true
+			local lvl = tonumber(goal.minLevel)
+			if goalApplies(goal) and not unavailableFor(goal) and not (lvl and (player.level or 1) < lvl) and not missingPre(goal) then
+				return true
+			end
+		end
+	end
+	return not takes
 end
 
 function Own.predicateHolds(p)

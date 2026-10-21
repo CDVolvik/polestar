@@ -356,10 +356,15 @@ step Anaya's Pendant with a group
 ```
 
 The answer is never taken from the quest log: a player may have the quest
-and still choose the solo way. An `along` step does not wait; it applies
-until the answer says otherwise. `group` cannot be used on a `next` line or
-a `skipto`, where there is no step to ask at. The quest id is checked
-against the data.
+and still choose the solo way. The route does not stop to ask about a quest
+there is nothing to do for now: one already handed in, or one the step
+accepts but the character cannot take (a grey quest "Skip grey quests"
+leaves out, one closed for good, one above their level or missing its
+prerequisite). The step then applies as if it had no `group`
+predicate, and the question comes once the quest can be taken. An `along`
+step does not wait; it applies until the answer says otherwise. `group`
+cannot be used on a `next` line or a `skipto`, where there is no step to ask
+at. The quest id is checked against the data.
 
 ### Conditional hand-offs
 
