@@ -105,6 +105,8 @@ L["Riding"] = "Monte"
 L["Grey, kept: opens %s"] = "Grise, conservée : débloque %s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+-- L["Tame"] = ""
+L["You skipped this quest"] = "Vous avez ignoré cette quête"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Prendre %s ferme %s pour de bon."
@@ -753,6 +755,8 @@ L["Set your home at the guide's inn"] = "Définir votre lieu de repos à l'auber
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "Quand l'étape définit votre lieu de repos et que vous parlez à l'aubergiste, lie votre Pierre de foyer à cet endroit. Jamais dans une autre auberge. Maintenez Maj pour ignorer."
 -- L["Riding reminder"] = ""
 -- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
+-- L["Hide the game's quest tracker"] = ""
+-- L["Hides the game's tracker on the right of the screen, with its quests, achievements and professions, as Questie can. Not with the gamepad interface."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "Alliance uniquement"
@@ -1038,6 +1042,12 @@ L["Along the way"] = "En chemin"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
+L["Right-click to bring this quest back"] = "Clic droit pour reprendre cette quête"
+L["Right-click to tick it done or skip this quest"] = "Clic droit pour cocher comme fait ou ignorer cette quête"
+L["Skip this quest"] = "Ignorer cette quête"
+L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "Cette quête et celles qui en découlent sont ignorées, dans tous les guides. Un nouveau clic droit la reprend."
+L["the quest"] = "la quête"
+L["and the quests that follow from it"] = "et les quêtes qui en découlent"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Ascenseur vers %s"

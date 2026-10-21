@@ -104,6 +104,7 @@ L["Riding"] = "骑术"
 L["Grey, kept: opens %s"] = "灰色，保留：开启%s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
+-- L["Tame"] = ""
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 会永久关闭 %s。"
@@ -628,7 +629,7 @@ L["Learned %d spells for %s."] = "学会%d个法术，花费%s。"
 L["Not enough money for %d more (%s)."] = "金钱不足，还有%d个未学（%s）。"
 
 -- QoL/Rewards.lua
-L["best vendor value"] = "售价最高"
+L["best vendor value"] = "商人收购价最高"
 L["Took %s (%s)."] = "已选择%s（%s）。"
 L["Best reward: %s (%s)."] = "最佳奖励：%s（%s）。"
 
@@ -752,6 +753,8 @@ L["Set your home at the guide's inn"] = "在指南旅店绑定炉石"
 L["When the step sets your home and you talk to its innkeeper, binds your Hearthstone there. Never at another inn. Hold Shift to skip."] = "当步骤要求您绑定住所并与旅店老板交谈时，将炉石绑定在此处。不会在其他旅店执行。按住Shift可跳过。"
 -- L["Riding reminder"] = ""
 -- L["At level 40 and 60, if you have not learned riding yet, says the cost in chat (with any Honored discount) and points the arrow at your race's riding trainer when you can afford it. Warlocks and Alliance Paladins are sent to their free-mount quest NPC instead. Once per tier per character."] = ""
+-- L["Hide the game's quest tracker"] = ""
+-- L["Hides the game's tracker on the right of the screen, with its quests, achievements and professions, as Questie can. Not with the gamepad interface."] = ""
 
 -- Lookup/Sources.lua
 L["Alliance only"] = "仅限联盟"
