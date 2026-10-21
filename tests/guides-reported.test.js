@@ -2292,6 +2292,20 @@ test(`${ASHENVALE}: Ioney's report (#524): Unrequited Love is handed to Tarrel R
 	assert.ok(list[take].goal.optional && list[give].goal.optional, 'both goals are optional');
 });
 
+// Ioney (#614): "No Oozes at the two spots in the east". Digging Through the
+// Ooze sends the player to the oozes at Ironbeard's Tomb (its quest text), but
+// the step searched every ooze spawn of the Wetlands, 21 spots from Menethil
+// to the eastern hills, and started in the east. The arrow now takes the tomb.
+
+test(`${ASHENVALE}: Ioney's report (#614): Sida's Bag is searched for at Ironbeard's Tomb, not at the oozes across the Wetlands`, { skip }, () => {
+	const list = goals(ASHENVALE);
+	const { goal } = list[at(list, 'collect 3349', (g) => g.t === 'collect' && g.item === 3349 && g.quest === 470)];
+	const tomb = ({ x, y }) => x >= 42 && x <= 49 && y >= 23 && y <= 30;
+	assert.ok(goal.map === 1437 && tomb(goal), `the point ${goal.x},${goal.y} is at Ironbeard's Tomb`);
+	const arrow = (goal.spots || []).filter((s) => !s.alt);
+	assert.ok(arrow.length && arrow.every(tomb), `the arrow picks only the tomb: ${JSON.stringify(goal.spots)}`);
+});
+
 // Pynte (#327): "Timberling Seeds quest points me to the north of Teldrassil
 // instead of just around the quest giver." XrayAlpha's diagnosis: QuestieDB's
 // server drop table gives the Elder Timberling (level 10) 100% for the seed and
