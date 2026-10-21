@@ -48,6 +48,10 @@
 
 ## Distributing Polestar
 
+The NPC service map layer reads Polestar's bundled Codex. Its service and
+mailbox facts follow the build-time sources below; no QuestieDB addon is
+required during play.
+
 Polestar's own code and guides are GPL-3.0 (see LICENSE). What a release
 (`node tools/polestar.js pack`) holds from the inputs above:
 
