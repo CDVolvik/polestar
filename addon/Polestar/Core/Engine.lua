@@ -37,6 +37,8 @@ ns.RegisterDefaults("behavior", {
 	closeSkipped = true, -- close the quest window the game opens after an auto accept/turn-in when it shows only quests the guide skips (Automation.lua)
 	routeChoice = "ask", -- "ask" | "recommended": what happens where a guide offers several next zones
 	trainReminder = "2", -- "2" | "1" | "off": remind to visit the class trainer every 2 levels, every level, never
+	offerClassQuests = true, -- offer a Class guide in a tab when it opens for the character (QoL/ClassQuests.lua)
+	groupQuests = "ask", -- "ask" | "do" | "skip": the answer at a group quest (`when group`) the player has not answered (Own.groupAnswer)
 	suggestFrom = "guides", -- pack id the suggestions come from (Guides.SuggestSource); ours fill in
 })
 
@@ -546,11 +548,16 @@ function Own.onCooldown(p)
 end
 
 -- `when group <quest>`: the player's answer to "do this group quest?",
--- per character (CharState().groupQuests[q]: "do" or "skip"; Engine.AnswerGroup).
--- Never guessed from the quest log: a solo alternative (`when !group`) may be
--- for a quest the player already has.
+-- per character (CharState().groupQuests[q]: "do" or "skip"; Engine.AnswerGroup),
+-- else the answer for every group quest (behavior.groupQuests "do" or "skip";
+-- "ask": none, so the route asks). Never guessed from the quest log: a solo
+-- alternative (`when !group`) may be for a quest the player already has.
 function Own.groupAnswer(q)
-	return ns.CharState().groupQuests[q]
+	local answer = ns.CharState().groupQuests[q]
+	if answer ~= nil then return answer end
+	local all = ns.Get("behavior.groupQuests")
+	if all == "do" or all == "skip" then return all end
+	return nil
 end
 
 -- The quest of the first unanswered `group` predicate of a step, or nil. Such
@@ -4268,7 +4275,8 @@ function Engine.GroupQuests()
 end
 
 -- The player's answer for group quest q: "do", "skip", or nil to ask again.
--- Per character, for every guide (CharState().groupQuests).
+-- Per character, for every guide (CharState().groupQuests); a quest not
+-- answered takes behavior.groupQuests ("do", "skip"; "ask": nil).
 function Engine.GroupAnswer(q) return Own.groupAnswer(q) end
 
 function Engine.AnswerGroup(q, answer)
@@ -4764,6 +4772,11 @@ ns.On("QOL_HEARTH_CHANGED", onUpdateEvent)
 
 -- New gear verdicts (equipment, spec, level, item data): `when upgrade`.
 ns.On("GEAR_UPDATED", onUpdateEvent)
+
+-- A new answer for every group quest (`when group`, Own.groupAnswer).
+ns.On("SETTING_CHANGED", function(path)
+	if path == "behavior.groupQuests" then requestUpdate() end
+end)
 
 -- An item or spell going on cooldown: `when cooldown` (Own.onCooldown), once a
 -- guide has asked, since SPELL_UPDATE_COOLDOWN comes with every cast.

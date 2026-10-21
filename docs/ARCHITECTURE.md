@@ -1092,6 +1092,12 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   `train` goal (an npc in the registry or `train class`). The UI shows a slim
   banner with Show (temporary `Nav.SetTarget`) and Later, cleared by
   `CLASS_TRAINED`; Options → Guide → Automation → "Trainer reminders".
+  With `behavior.offerClassQuests` (default on; QoL/ClassQuests.lua), a
+  Class guide that opens for the character (`GuideMatches`, its gate gone,
+  `Engine.StartGate`, nothing of it under way) fires `CLASS_QUEST_READY`
+  on level-up, a turn-in or login, and the banner offers it in a tab (Later:
+  again at a higher level; dismissed: never; `CharState().flags.classOffered`),
+  one at a time; Options → Guide → Automation → "Offer class quests".
 - **Conditions checked during play.** A step with `when` (format 4;
   GUIDE_FORMAT, "Conditions checked during play") applies only while every
   predicate holds (`Own.whenFails`, `Own.predicateHolds`): the level, quests
@@ -1112,7 +1118,10 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   has asked), and the player's answer at a group quest (`Own.groupAnswer`:
   `CharState().groupQuests[q]`, "do" or "skip", set by `Engine.AnswerGroup`
   from the guide window's banner or Options, Discovery, Group quests;
-  `Engine.GroupQuests` lists a character's). An unanswered `group` predicate
+  `Engine.GroupQuests` lists a character's; a quest not answered takes
+  `behavior.groupQuests`, "do" or "skip" for all of them, or "ask", none,
+  re-evaluated on `SETTING_CHANGED`; Options, Guide, Automation, "Group
+  quests", shown while `GroupQuests` lists one). An unanswered `group` predicate
   holds and `stepDone` is false while `Own.groupPending` names its quest (not
   on an along step), so the route waits at the step; `Engine.GroupQuestion`
   gives the banner the quest, and `wantsFrom` keeps automation off it. `stepApplies` reads them, so such a step counts as one
