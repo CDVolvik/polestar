@@ -271,6 +271,19 @@ test(`${TELDRASSIL}: Dolanaar Delivery is taken from Porthannius after the Shado
 	assert.ok(yards(next.goal, keldamyr) < yards(next.goal, tenaron), `the next stop (${next.goal.t} ${next.goal.quest}) is in Dolanaar`);
 });
 
+test(`${TELDRASSIL}: Pynte's report (#647): Teldrassil is taken from the Oracle Tree Bark on The Oracle Tree's turn-in and handed to Fandral with Crown of the Earth`, { skip }, () => {
+	const list = goals(TELDRASSIL);
+	const bark = at(list, 'turnin 98398 (The Oracle Tree)', is('turnin', 98398));
+	const take = at(list, 'accept 940 (Teldrassil)', is('accept', 940));
+	assert.equal(take, bark + 1, 'taken straight after The Oracle Tree is handed in');
+	assert.ok(everyone(list[take]), 'for every class');
+	assert.ok(yards(list[take].goal, list[bark].goal) < 5, 'at the same Oracle Tree Bark, not back at Arynia');
+	const fandral = at(list, 'turnin 935 (Crown of the Earth)', is('turnin', 935));
+	const hand = at(list, 'turnin 940 (Teldrassil)', is('turnin', 940));
+	assert.equal(list[hand].step, list[fandral].step, 'handed in on the Darnassus visit that already goes to Fandral');
+	assert.ok(yards(list[hand].goal, list[fandral].goal) < 5, 'to Fandral himself');
+});
+
 test(`${DUN_MOROGH}: Supplies to Tannok is taken from Hands Springsprocket at the tunnel, leaving Coldridge Valley`, { skip }, () => {
 	const list = goals(DUN_MOROGH);
 	const take = at(list, 'accept 2160 (Supplies to Tannok)', is('accept', 2160));
