@@ -809,12 +809,19 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 		local F = PolestarGuideFrame
 		out.edgeLevel = F.psSkin.kit.edge:GetFrameLevel() - F:GetFrameLevel()
 		out.pad = { T.Metric("guidePad", 14), T.Metric("guideLitInset", 4) }
-		local lit
+		local lit, row
 		for _, r in ipairs(GF.rows or {}) do
 			local t = r.psSkin and r.psSkin.kit and r.psSkin.kit.rowLit
-			if t and t:IsShown() then lit = select(4, t:GetPoint(1)) end
+			if t and t:IsShown() then lit, row = select(4, t:GetPoint(1)), r end
 		end
 		out.lit = lit or false
+		-- the lit goal's tick box: its art's right edge, and the text's top, in the row
+		if row then
+			local cx = select(4, row.Check:GetPoint(1))
+			local art = row.Check.psSkin.kit.check:GetWidth()
+			out.tickRight = cx + (art - row.Check:GetWidth()) / 2
+			out.textTop = select(5, row.Text:GetPoint(1))
+		end
 		-- back to the house style: the bar's own fill again
 		Polestar.Set("ui.skin", "hearth")
 		out.hearth = { own = b:GetStatusBarTexture():GetAlpha(), fill = k.statusFill:IsShown(), pad = T.Metric("guidePad", 14), lit = T.Metric("guideLitInset", 4) }
@@ -836,5 +843,7 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 	assert.equal(out.edgeLevel, 0, "the border's frame at the window's level: the content draws over its inner shade");
 	assert.deepEqual(out.pad, [18, 10], 'Forever pads its rows and the lit goal clear of the border');
 	assert.equal(out.lit, 10, 'the current goal lit 10 in');
+	assert.ok(out.tickRight <= -(10 + 4), `the tick box's art ends inside the lit goal's outline (${out.tickRight})`);
+	assert.equal(out.textTop, -8, "the lit goal's lines start 8 below its top, not 4");
 	assert.deepEqual(out.hearth, { own: 1, fill: false, pad: 12, lit: 4 }, "Hearth: the bar's own fill back, its own sizes");
 });

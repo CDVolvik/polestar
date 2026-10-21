@@ -57,6 +57,10 @@ local ICON = 15
 local TEXT_X = PAD + ICON + 10
 local ROW_MIN = 24
 local CHECK = 18
+-- A goal row's extra room above and below its lines, and its tick box's
+-- extra inset from the edge (a skin with a framed lit goal: WoW Forever).
+local ROW_PAD = 0
+local CHECK_IN = 0
 local UP_ROW = 24
 local UP_TOGGLE = 30
 local COMBAT_ALPHA = 0.35
@@ -73,6 +77,8 @@ local function readMetrics()
 	TEXT_X = PAD + ICON + Theme.Metric("guideIconGap", 10)
 	ROW_MIN = Theme.Metric("guideRow", 24)
 	CHECK = Theme.Metric("guideCheck", 18)
+	ROW_PAD = Theme.Metric("guideRowPad", 0)
+	CHECK_IN = Theme.Metric("guideCheckIn", 0)
 	UP_ROW = Theme.Metric("guideUpRow", 24)
 	UP_TOGGLE = Theme.Metric("guideUpToggle", 30)
 end
@@ -273,11 +279,11 @@ local function goalRow(i)
 	r.Mark:Hide()
 	r.Icon = r:CreateTexture(nil, "ARTWORK")
 	r.Icon:SetSize(ICON, ICON)
-	r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12)
+	r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12 - ROW_PAD)
 	r.Text = T(r, "goal", "text")
 	r.Text:SetWordWrap(true)
 	r.Text:SetJustifyV("TOP")
-	r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4)
+	r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4 - ROW_PAD)
 	r.Sub = T(r, "small", "textMuted")
 	r.Sub:SetWordWrap(true)
 	r.Sub:SetJustifyV("TOP")
@@ -313,7 +319,7 @@ local function goalRow(i)
 		W.HideTooltip(b)
 	end)
 	r.Skip:Hide()
-	r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -PAD + 3, -3)
+	r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(PAD - 3 + CHECK_IN), -3 - ROW_PAD)
 	-- "Other": the next-nearest trainer, vendor, inn or farm spot; for a goal
 	-- with spawn areas, the next spot. The arrow follows the goal there: the
 	-- Engine aims at it, and a point picked by hand gives way.
@@ -465,15 +471,15 @@ end
 local function measureRow(r, width)
 	-- Right edge, outside in: the tick, an optional goal's Skip, "Other".
 	local right = PAD
-	if r.Check:IsShown() then right = right + CHECK + 4 end
+	if r.Check:IsShown() then right = right + CHECK + 4 + CHECK_IN end
 	if r.Skip:IsShown() then
 		r.Skip:ClearAllPoints()
-		r.Skip:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -3)
+		r.Skip:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -3 - ROW_PAD)
 		right = right + r.Skip:GetWidth() + 2
 	end
 	if r.Alt:IsShown() then
 		r.Alt:ClearAllPoints()
-		r.Alt:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -2)
+		r.Alt:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -2 - ROW_PAD)
 		right = right + 20
 	end
 	local tw = max(40, width - TEXT_X - right)
@@ -495,7 +501,7 @@ local function measureRow(r, width)
 		r.Sub:SetPoint("TOPLEFT", above, "BOTTOMLEFT", 0, -3)
 		h = h + 3 + r.Sub:GetStringHeight()
 	end
-	return max(ROW_MIN, floor(h + 6 + 0.5))
+	return max(ROW_MIN, floor(h + 6 + ROW_PAD * 2 + 0.5))
 end
 
 ---------------------------------------------------------------------------
@@ -2182,10 +2188,10 @@ function GF.ApplySkin()
 	banner.Icon:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD, -10)
 	banner.Text:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD + 21, -9)
 	for _, r in ipairs(rows) do
-		r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12)
-		r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4)
+		r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12 - ROW_PAD)
+		r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4 - ROW_PAD)
 		r.Check:SetSize(CHECK, CHECK)
-		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -PAD + 3, -3)
+		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(PAD - 3 + CHECK_IN), -3 - ROW_PAD)
 		Theme.Repaint(r.Check)
 	end
 	-- The progress bar: the game's status bar in Hearth and the game's looks.

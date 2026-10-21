@@ -862,7 +862,7 @@ for _, k in ipairs({ "forever", "blizzard", "classic" }) do
 	METRICS[k] = METRICS.hearth
 	SKIN_ROLES[k] = SKIN_ROLES.hearth
 end
-METRICS.forever = setmetatable({ guidePad = 18, guideLitInset = 10 }, { __index = METRICS.hearth })
+METRICS.forever = setmetatable({ guidePad = 18, guideLitInset = 10, guideRowPad = 4, guideCheckIn = 6 }, { __index = METRICS.hearth })
 Theme.METRICS = METRICS
 
 function Theme.Metric(key, house)
