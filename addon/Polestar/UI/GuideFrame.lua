@@ -57,6 +57,11 @@ local ICON = 15
 local TEXT_X = PAD + ICON + 10
 local ROW_MIN = 24
 local CHECK = 18
+-- A goal row's extra room above and below its lines, and its tick box's
+-- extra inset from the edge (a skin with a framed lit goal: WoW Forever).
+local ROW_PAD = 0
+local CHECK_IN = 0
+local CHECK_MID = false -- the tick box on the row's middle, not its first line
 local UP_ROW = 24
 local UP_TOGGLE = 30
 local COMBAT_ALPHA = 0.35
@@ -64,6 +69,17 @@ local COMBAT_ALPHA = 0.35
 -- 2:1 when its pack gave no size (512x256, a common screenshot texture).
 local PICTURE_MAX_H = 160
 local PICTURE_ASPECT = 2
+
+-- A goal row's tick box: at the right of its first line, or (CHECK_MID) of
+-- its middle.
+local function placeCheck(r)
+	r.Check:ClearAllPoints()
+	if CHECK_MID then
+		r.Check:SetPoint("RIGHT", r, "RIGHT", -(PAD - 3 + CHECK_IN), 0)
+	else
+		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(PAD - 3 + CHECK_IN), -3 - ROW_PAD)
+	end
+end
 
 local function readMetrics()
 	PAD = Theme.Metric("guidePad", 14)
@@ -73,6 +89,9 @@ local function readMetrics()
 	TEXT_X = PAD + ICON + Theme.Metric("guideIconGap", 10)
 	ROW_MIN = Theme.Metric("guideRow", 24)
 	CHECK = Theme.Metric("guideCheck", 18)
+	ROW_PAD = Theme.Metric("guideRowPad", 0)
+	CHECK_IN = Theme.Metric("guideCheckIn", 0)
+	CHECK_MID = Theme.Metric("guideCheckMiddle", false) and true or false
 	UP_ROW = Theme.Metric("guideUpRow", 24)
 	UP_TOGGLE = Theme.Metric("guideUpToggle", 30)
 end
@@ -300,11 +319,11 @@ local function goalRow(i)
 	r.Mark:Hide()
 	r.Icon = r:CreateTexture(nil, "ARTWORK")
 	r.Icon:SetSize(ICON, ICON)
-	r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12)
+	r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12 - ROW_PAD)
 	r.Text = T(r, "goal", "text")
 	r.Text:SetWordWrap(true)
 	r.Text:SetJustifyV("TOP")
-	r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4)
+	r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4 - ROW_PAD)
 	r.Sub = T(r, "small", "textMuted")
 	r.Sub:SetWordWrap(true)
 	r.Sub:SetJustifyV("TOP")
@@ -341,7 +360,7 @@ local function goalRow(i)
 		W.HideTooltip(b)
 	end)
 	r.Skip:Hide()
-	r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -PAD + 3, -3)
+	placeCheck(r)
 	-- "Other": the next-nearest trainer, vendor, inn or farm spot; for a goal
 	-- with spawn areas, the next spot. The arrow follows the goal there: the
 	-- Engine aims at it, and a point picked by hand gives way.
@@ -423,7 +442,7 @@ local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing, noE
 		W.Color(r.Icon, done and "success" or ((current or gold) and "accent" or "textDim"))
 	end
 	-- The game's looks light the goal to do now with their own art.
-	Theme.KitRowLit(r, current and not done and not skipped and not transparent())
+	Theme.KitRowLit(r, current and not done and not skipped and not transparent(), nil, Theme.Metric("guideLitInset", 4))
 	r.Text:SetText(UI.GoalLine(goal))
 	-- White while it is to be done; done and skipped goals step back.
 	W.Color(r.Text, (done or skipped) and "textMuted" or "text")
@@ -494,15 +513,15 @@ end
 local function measureRow(r, width)
 	-- Right edge, outside in: the tick, an optional goal's Skip, "Other".
 	local right = PAD
-	if r.Check:IsShown() then right = right + CHECK + 4 end
+	if r.Check:IsShown() then right = right + CHECK + 4 + CHECK_IN end
 	if r.Skip:IsShown() then
 		r.Skip:ClearAllPoints()
-		r.Skip:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -3)
+		r.Skip:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -3 - ROW_PAD)
 		right = right + r.Skip:GetWidth() + 2
 	end
 	if r.Alt:IsShown() then
 		r.Alt:ClearAllPoints()
-		r.Alt:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -2)
+		r.Alt:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(right - 4), -2 - ROW_PAD)
 		right = right + 20
 	end
 	local tw = max(40, width - TEXT_X - right)
@@ -524,7 +543,7 @@ local function measureRow(r, width)
 		r.Sub:SetPoint("TOPLEFT", above, "BOTTOMLEFT", 0, -3)
 		h = h + 3 + r.Sub:GetStringHeight()
 	end
-	return max(ROW_MIN, floor(h + 6 + 0.5))
+	return max(ROW_MIN, floor(h + 6 + ROW_PAD * 2 + 0.5))
 end
 
 ---------------------------------------------------------------------------
@@ -824,7 +843,9 @@ function GF.RenderTabs()
 end
 
 ---------------------------------------------------------------------------
--- Banners: the step the player just skipped, with its undo; why the guide
+-- Banners: the group quest the live step waits on (`when group`: Skip it,
+-- the default, or Do it with a group; it cannot be dismissed); the step the
+-- player just skipped, with its undo; why the guide
 -- just moved past a quest (while that step's guide and next step are on
 -- screen); the step on screen when it is not the live one (skipped: unskip
 -- it; looked at with ‹ ›: back to the live step); then the out-levelled offer
@@ -860,6 +881,9 @@ local function bannerNotice()
 	local t = nearbyTrip()
 	if t then return "trip", t end
 	if notices.questSkip then return "questSkip", notices.questSkip end
+	local gq, gtitle
+	if E and E.GroupQuestion then gq, gtitle = E.GroupQuestion() end
+	if gq then return "group", { quest = gq, title = gtitle } end
 	local k = notices.stepSkip
 	if k and g ~= nil and g.id == k.guideId and (not view or view.index ~= k.step) then return "stepSkip", k end
 	local s = notices.skipped
@@ -933,6 +957,7 @@ end
 function GF.LayoutBanner(width)
 	local kind, n = bannerNotice()
 	banner.psKind = kind
+	banner.Jump.psDefault = kind == "group" or nil -- the gamepad's first focus (UI/GamepadGuide.lua)
 	banner.Text:SetWidth(width - PAD * 2 - 21 - 24)
 	banner.Later:Hide()
 	if kind == "skipped" then
@@ -952,6 +977,13 @@ function GF.LayoutBanner(width)
 		banner.Text:SetText(string.format(L["Skipped %s"], n.title or L["the quest"]) .. "  \194\183  " .. L["and the quests that follow from it"])
 		placeLink(banner.Jump, L["Undo"], 0, -4)
 		banner.Close:Show()
+	elseif kind == "group" then
+		banner.Icon:SetTexture(Theme.Media("icon-kill"))
+		banner.Text:SetText(string.format(L["Group quest: %s"], n.title or "") .. "\n" .. L["It needs a group. Skip it and the guide keeps to the solo route."])
+		-- Skip is the default answer: the accent link, the banner's main action.
+		local w = placeLink(banner.Jump, L["Skip it"], 0, -4)
+		placeLink(banner.Later, L["Do it with a group"], w + 10, -4)
+		banner.Close:Hide()
 	elseif kind == "stepSkip" then
 		banner.Icon:SetTexture(Theme.Media("skip"))
 		local what = string.format(L["Step %d"], n.step)
@@ -1052,6 +1084,8 @@ function GF.TakeBanner()
 	elseif kind == "questSkip" then
 		notices.questSkip = nil
 		if E and E.SkipQuest then E.SkipQuest(n.quest, false) end
+	elseif kind == "group" then
+		if E and E.AnswerGroup then E.AnswerGroup(n.quest, "skip") end
 	elseif kind == "stepSkip" then
 		notices.stepSkip = nil
 		if E and E.Unskip then E.Unskip(n.step) end
@@ -1085,13 +1119,27 @@ function GF.TakeBanner()
 	GF.Layout()
 end
 
+-- The banner's second action: Do it with a group for a group quest, else
+-- Later (dismiss).
+function GF.LaterBanner()
+	local kind, n = bannerNotice()
+	local E = Engine()
+	if kind == "group" then
+		if E and E.AnswerGroup then E.AnswerGroup(n.quest, "do") end
+		GF.Layout()
+	else
+		GF.DismissBanner()
+	end
+end
+
 -- Dismiss the visible notice (training: until the next due level; a step on
 -- screen that is not the live one: until another step is).
 function GF.DismissBanner()
 	local kind, n = bannerNotice()
 	if kind == "trip" then
 		ns.Nav.nearby.EndTrip()
-	elseif kind == "away" then
+	elseif kind == "away" or kind == "group" then
+		-- a group quest is answered, never dismissed
 	elseif kind == "riding" then
 		local R = ns.QoL and ns.QoL.Riding
 		if R and R.OnResolve then R.OnResolve(n.tier) end
@@ -1336,6 +1384,7 @@ function GF.Layout()
 		banner:Show()
 	else
 		banner:Hide()
+		banner.Jump.psDefault = nil
 	end
 	if state == "steps" then
 		local h = layoutCard(width)
@@ -2241,10 +2290,10 @@ function GF.ApplySkin()
 	banner.Icon:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD, -10)
 	banner.Text:SetPoint("TOPLEFT", banner, "TOPLEFT", PAD + 21, -9)
 	for _, r in ipairs(rows) do
-		r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12)
-		r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4)
+		r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12 - ROW_PAD)
+		r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4 - ROW_PAD)
 		r.Check:SetSize(CHECK, CHECK)
-		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -PAD + 3, -3)
+		placeCheck(r)
 		Theme.Repaint(r.Check)
 	end
 	-- The progress bar: the game's status bar in Hearth and the game's looks.
@@ -2480,6 +2529,8 @@ local function build()
 	end, 12)
 	hoverable(strip.Add)
 	chrome[#chrome + 1] = strip
+	-- The Forever skin positions its border below the tab strip; expose the strip.
+	F.psStrip = strip
 
 	-- Navigator: prev, "8 / 29", next on the left; Skip, the bug (report a
 	-- problem) and the menu on the right.
@@ -2737,7 +2788,7 @@ local function build()
 	banner.Later:SetHeight(18)
 	banner.Later.Label = T(banner.Later, "label", "textDim")
 	banner.Later.Label:SetPoint("LEFT", banner.Later, "LEFT", 0, 0)
-	banner.Later:SetScript("OnClick", function() GF.DismissBanner() end)
+	banner.Later:SetScript("OnClick", function() GF.LaterBanner() end)
 	banner.Later:SetScript("OnEnter", function(self) W.Color(self.Label, "text"); GF.HoverIn() end)
 	banner.Later:SetScript("OnLeave", function(self) W.Color(self.Label, "textDim") end)
 	-- A 12px glyph in a 24px target, centred where the old 18px one sat.

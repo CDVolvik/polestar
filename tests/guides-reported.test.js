@@ -2469,6 +2469,21 @@ emit(out)`,
 	assert.equal(horde.length, 0, 'Horde get none');
 });
 
+test("forever/professions: Schpune's report (#620): Skinning, Mining and Herbalism are learned at level 1, from the Junior trainers in the starting zones too", { skip: skip || needs('professions.json') }, () => {
+	// Junior trainers in Northshire Valley and The Den, by profession guide.
+	const juniors = { skinning: [247227, 267327], mining: [247226, 267328], herbalism: [247223, 267329] };
+	for (const [file, npcs] of Object.entries(juniors)) {
+		const guide = `forever/professions/${file}.guide`;
+		const learn = compiled(guide).steps[0];
+		assert.match(learn.title, /^Learn /, `${guide}: the first step learns the profession`);
+		assert.ok(!learn.goals.some((g) => g.t === 'level'), `${guide}: no level goal before Apprentice`);
+		const train = learn.goals.find((g) => g.t === 'train');
+		assert.equal(train.rank, 1, `${guide}: Apprentice`);
+		const ids = train.candidates.map((c) => c.npc);
+		for (const npc of npcs) assert.ok(ids.includes(npc), `${guide}: Junior trainer ${npc} is a candidate`);
+	}
+});
+
 // Nittepitte (#613): "Since Collecting Kelp starts an RP events, it should be
 // suggested to be turned in [...] before turning in Baited for Success."
 // Handing in Collecting Kelp (112) starts William Pestle's brewing scene before
