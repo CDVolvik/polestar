@@ -77,7 +77,7 @@ test('with the keyboard and mouse Polestar registers its slash commands, menu en
 		{ slash: r.slash, way: r.way, recorderSlash: r.recorderSlash, recorderCommand: r.recorderCommand, openMap: r.openMap, minimapButton: r.minimapButton },
 		{ slash: true, way: true, recorderSlash: true, recorderCommand: 'function', openMap: true, minimapButton: false },
 	);
-	assert.equal(r.menus, 6, 'nearby and service filters on the world map and minimap tracking menus, and two quest menus');
+	assert.equal(r.menus, 6, 'nearby and service filters on the world map and minimap, and two quest menus');
 	assert.ok(r.special > 0, 'its windows close with Escape');
 });
 
