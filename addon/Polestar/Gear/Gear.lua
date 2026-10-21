@@ -17,6 +17,10 @@
 --   Gear.IsUpgrade(link) -> bool, delta, pct
 --       Wearable now (level and proficiency) and at least gear.minUpgrade
 --       percent better (any gain fills an empty slot).
+--   Gear.FillsEmptySlot(link) -> bool
+--       Wearable now into an empty slot and no worse than nothing (score 0
+--       or more): what the bag arrow adds to IsUpgrade, so a weapon the
+--       weights give no value (a staff for a Druid) still beats a bare hand.
 --   Gear.GetSpec() -> key, label, source ("setting" | "talents" | "default")
 --   Gear.GetWeights() -> weights (read-only): the spec's band for this level
 --       (Gear.WEIGHT_BANDS, generated SpecData.lua), else the authored table
@@ -717,6 +721,12 @@ function Gear.IsUpgrade(link)
 	local up = r.delta > 0 and (r.minLevel or 0) <= player.level
 	if up and r.pct then up = r.pct >= (tonumber(ns.Get("gear.minUpgrade")) or 0) end
 	return up and true or false, r.delta, r.pct
+end
+
+function Gear.FillsEmptySlot(link)
+	local r = Gear.CompareToEquipped(link)
+	if not (r and r.usable and r.empty and not r.equipped and r.delta) then return false end
+	return r.delta >= 0 and (r.minLevel or 0) <= player.level
 end
 
 ---------------------------------------------------------------------------
