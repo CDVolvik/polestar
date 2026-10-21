@@ -61,6 +61,7 @@ local CHECK = 18
 -- extra inset from the edge (a skin with a framed lit goal: WoW Forever).
 local ROW_PAD = 0
 local CHECK_IN = 0
+local CHECK_MID = false -- the tick box on the row's middle, not its first line
 local UP_ROW = 24
 local UP_TOGGLE = 30
 local COMBAT_ALPHA = 0.35
@@ -68,6 +69,17 @@ local COMBAT_ALPHA = 0.35
 -- 2:1 when its pack gave no size (512x256, a common screenshot texture).
 local PICTURE_MAX_H = 160
 local PICTURE_ASPECT = 2
+
+-- A goal row's tick box: at the right of its first line, or (CHECK_MID) of
+-- its middle.
+local function placeCheck(r)
+	r.Check:ClearAllPoints()
+	if CHECK_MID then
+		r.Check:SetPoint("RIGHT", r, "RIGHT", -(PAD - 3 + CHECK_IN), 0)
+	else
+		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(PAD - 3 + CHECK_IN), -3 - ROW_PAD)
+	end
+end
 
 local function readMetrics()
 	PAD = Theme.Metric("guidePad", 14)
@@ -79,6 +91,7 @@ local function readMetrics()
 	CHECK = Theme.Metric("guideCheck", 18)
 	ROW_PAD = Theme.Metric("guideRowPad", 0)
 	CHECK_IN = Theme.Metric("guideCheckIn", 0)
+	CHECK_MID = Theme.Metric("guideCheckMiddle", false) and true or false
 	UP_ROW = Theme.Metric("guideUpRow", 24)
 	UP_TOGGLE = Theme.Metric("guideUpToggle", 30)
 end
@@ -319,7 +332,7 @@ local function goalRow(i)
 		W.HideTooltip(b)
 	end)
 	r.Skip:Hide()
-	r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(PAD - 3 + CHECK_IN), -3 - ROW_PAD)
+	placeCheck(r)
 	-- "Other": the next-nearest trainer, vendor, inn or farm spot; for a goal
 	-- with spawn areas, the next spot. The arrow follows the goal there: the
 	-- Engine aims at it, and a point picked by hand gives way.
@@ -2191,7 +2204,7 @@ function GF.ApplySkin()
 		r.Icon:SetPoint("CENTER", r, "TOPLEFT", PAD + ICON / 2, -12 - ROW_PAD)
 		r.Text:SetPoint("TOPLEFT", r, "TOPLEFT", TEXT_X, -4 - ROW_PAD)
 		r.Check:SetSize(CHECK, CHECK)
-		r.Check:SetPoint("TOPRIGHT", r, "TOPRIGHT", -(PAD - 3 + CHECK_IN), -3 - ROW_PAD)
+		placeCheck(r)
 		Theme.Repaint(r.Check)
 	end
 	-- The progress bar: the game's status bar in Hearth and the game's looks.

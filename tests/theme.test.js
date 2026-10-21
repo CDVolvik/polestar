@@ -821,6 +821,8 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 			local art = row.Check.psSkin.kit.check:GetWidth()
 			out.tickRight = cx + (art - row.Check:GetWidth()) / 2
 			out.textTop = select(5, row.Text:GetPoint(1))
+			local p, _, rp, _, y = row.Check:GetPoint(1)
+			out.tickAnchor = { p, rp, y }
 		end
 		-- back to the house style: the bar's own fill again
 		Polestar.Set("ui.skin", "hearth")
@@ -843,7 +845,8 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 	assert.equal(out.edgeLevel, 0, "the border's frame at the window's level: the content draws over its inner shade");
 	assert.deepEqual(out.pad, [18, 10], 'Forever pads its rows and the lit goal clear of the border');
 	assert.equal(out.lit, 10, 'the current goal lit 10 in');
-	assert.ok(out.tickRight <= -(10 + 4), `the tick box's art ends inside the lit goal's outline (${out.tickRight})`);
+	assert.ok(out.tickRight <= -(10 + 10), `the tick box's art ends 10 or more inside the lit goal's outline (${out.tickRight})`);
+	assert.deepEqual(out.tickAnchor, ['RIGHT', 'RIGHT', 0], "the tick box on the row's middle");
 	assert.equal(out.textTop, -8, "the lit goal's lines start 8 below its top, not 4");
 	assert.deepEqual(out.hearth, { own: 1, fill: false, pad: 12, lit: 4 }, "Hearth: the bar's own fill back, its own sizes");
 });
