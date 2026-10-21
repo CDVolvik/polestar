@@ -311,7 +311,8 @@ reloads the UI when it changes). With it on, Polestar:
   the key bindings open Polestar; the Recorder page calls
   `PolestarRecorder_Command`;
 - adds no entry to the world map and minimap tracking menus
-  (`Menu.ModifyMenu`, Nav/Nearby);
+  (`Menu.ModifyMenu`, Nav/Nearby) or to the quest log and objective
+  tracker menus (UI/QuestLinks);
 - puts no window in `UISpecialFrames` (`CloseOnEscape`), which the
   gamepad's menus read and close;
 - opens no world map (`Compat.OpenWorldMap`; a dungeon page has no "Show
@@ -590,7 +591,9 @@ registry, which calls addon handlers through `securecallfunction`),
 `C_Map.GetMapChildrenInfo`, `hooksecurefunc` on TomTom's own table, the
 `TomTom` global and `SlashCmdList`), the cursor on the minimap
 (`GetCursorPosition`; `Pins.MinimapCursor()`, `Nav/Pins.lua`), the nearby
-services' tracking menus (`Menu.ModifyMenu`, `Nav/Nearby.lua`) and the
+services' tracking menus (`Menu.ModifyMenu`, `Nav/Nearby.lua`), the quest
+log and objective tracker menus (`Menu.ModifyMenu`, `GetMouseFoci`;
+`UI/QuestLinks.lua`) and the
 gamepad and key binding API (`C_GamePad`, `C_InputInterfaceStyle`,
 `C_KeyBindings`, `SetBinding`, `GetBindingKey`, `SetOverrideBindingClick`,
 `IsKeyDown`; `UI/Gamepad.lua`). Frame and system calls (`GetTime`, `GetServerTime`, `C_Timer`,
