@@ -2381,3 +2381,21 @@ emit(out)`,
 	assert.ok(yards(alliance[0].goal, { map: 1413, x: 40.2, y: 24.88 }) <= 30, "it is the reporter's safe spot");
 	assert.equal(horde.length, 0, 'Horde get none');
 });
+
+// Nittepitte (#613): "Since Collecting Kelp starts an RP events, it should be
+// suggested to be turned in [...] before turning in Baited for Success."
+// Handing in Collecting Kelp (112) starts William Pestle's brewing scene before
+// he offers The Escape (114); cmangos classic-db's quest-end script runs it
+// for 5 seconds. Helene and Jason stand on the lake shore on the way in, so
+// they stay first, and Marshal Dughan's turn-ins, a few yards from William,
+// fill the wait.
+
+test(`${ELWYNN}: Nittepitte's report (#613): Marshal Dughan's turn-ins come between Collecting Kelp and The Escape, while William Pestle brews`, { skip }, () => {
+	const list = goals(ELWYNN);
+	const kelp = at(list, 'turnin 112', is('turnin', 112));
+	const escape = at(list, 'accept 114', is('accept', 114));
+	const dughan = at(list, 'turnin 39', is('turnin', 39));
+	assert.ok(at(list, 'turnin 99131', is('turnin', 99131)) < kelp, 'Baited for Success is handed to Jason on the way in');
+	assert.ok(kelp < dughan && dughan < escape, 'Collecting Kelp, then Dughan, then The Escape');
+	assert.equal(list[kelp].s, list[escape].s, 'all in the same Goldshire step');
+});
