@@ -517,6 +517,34 @@ function Engine.ToggleGoal(s, g)
 	Polestar.Fire("STEP_UPDATED", s)
 	return true
 end
+-- A quest skips, with every goal of it, and comes back (on = false).
+uistub.skippedQuests = {}
+function Engine.SkipQuest(q, on)
+	record("SkipQuest", q, on ~= false)
+	uistub.skippedQuests[q] = on ~= false or nil
+	for _, step in ipairs(guide and guide.steps or {}) do
+		for _, goal in ipairs(step.goals) do
+			if goal.quest == q then
+				if on ~= false then
+					goal.psWas = goal.psWas or goal.status
+					goal.status, goal.unavailable, goal.unavailableText = "skipped", "skipped", "You skipped this quest"
+				else
+					goal.status, goal.unavailable, goal.unavailableText, goal.psWas = goal.psWas or goal.status, nil, nil, nil
+				end
+			end
+		end
+	end
+	Polestar.Fire("STEP_UPDATED", current)
+	if on ~= false then
+		local title
+		for _, step in ipairs(guide and guide.steps or {}) do
+			for _, goal in ipairs(step.goals) do if goal.quest == q and not title then title = goal.subject end end
+		end
+		Polestar.Fire("PLAYER_SKIPPED_QUEST", q, title)
+	end
+	return true
+end
+function Engine.IsQuestSkipped(q) return uistub.skippedQuests[q] == true end
 -- Optional goals skip and come back.
 function Engine.SkipGoal(s, g)
 	record("SkipGoal", s, g)

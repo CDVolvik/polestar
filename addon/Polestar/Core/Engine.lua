@@ -380,17 +380,48 @@ Own.offered = {}
 -- one table per accept goal.
 Own.preMarks = setmetatable({}, { __mode = "k" })
 
--- Per quest, a goal's unavailable mark or nil. Known in advance when an
--- accept of the quest in this guide is closed for good (reason "closed"): one
--- of its `closedBy` (the quest a breadcrumb leads to, or one exclusive with
--- it) is in the log or done, so the giver never offers it again. Else the mark
--- its giver's window left this session. Else, also known in advance, "pre":
--- the accept lacks a prerequisite the route no longer brings (Own.preBlocked),
--- a mark that goes the moment that prerequisite is done. `depth`: how far
--- Own.coming has followed a chain of prerequisites.
+-- Quests the player skipped (Engine.SkipQuest): saved per character by quest
+-- id (CharState().skippedQuests), so in every guide. Until the quest is
+-- done, each of its goals (accept, objectives, turn-in) reads as skipped,
+-- "You skipped this quest", even with the quest in the log; its follow-ups
+-- go with it, their prerequisite no longer coming (Own.preBlocked).
+function Own.questSkipped(q)
+	local list = ns.CharState().skippedQuests
+	return type(list) == "table" and list[q] == true
+end
+
+Own.skipMarks = {}
+function Own.skipMark(goal)
+	local q = goal.quest
+	local m = Own.skipMarks[q]
+	if not m then
+		m = { reason = "skipped" }
+		Own.skipMarks[q] = m
+	end
+	-- The accept the text and the undo go by: this one, else this guide's.
+	local a = goal.t == "accept" and goal or nil
+	if not a and guide then
+		local list = layoutOf(guide).accepts[q]
+		a = list and list[1] and list[1].goal or nil
+	end
+	m.accept = a or m.accept or goal
+	return m
+end
+
+-- Per quest, a goal's unavailable mark or nil. First, a quest the player
+-- skipped (Own.questSkipped) reads as "skipped" until it is done, even in the
+-- log. Known in advance when an accept of the quest in this guide is closed
+-- for good (reason "closed"): one of its `closedBy` (the quest a breadcrumb
+-- leads to, or one exclusive with it) is in the log or done, so the giver
+-- never offers it again. Else the mark its giver's window left this session.
+-- Else, also known in advance, "pre": the accept lacks a prerequisite the
+-- route no longer brings (Own.preBlocked), a mark that goes the moment that
+-- prerequisite is done. `depth`: how far Own.coming has followed a chain of
+-- prerequisites.
 local function unavailableFor(goal, depth)
 	local q = goal.quest
 	if not q then return nil end
+	if Own.questSkipped(q) and not questDone(q) then return Own.skipMark(goal) end
 	local C = Compat()
 	if C.IsOnQuest(q) or questDone(q) then return nil end
 	local own = goal.t == "accept"
@@ -2217,6 +2248,7 @@ end
 
 -- Player-facing explanation of an unavailable mark.
 local function unavailableText(u)
+	if u.reason == "skipped" then return L["You skipped this quest"] end
 	local a = u.accept
 	if u.reason == "closed" then return L["No longer offered: you took %s"]:format(titleOfQuest(u.by, a.preTitles)) end
 	if u.reason == "level" then return L["Requires level %d"]:format(tonumber(a.minLevel) or 0) end
@@ -4319,6 +4351,38 @@ function Engine.ToggleGoal(stepIndex, goalIndex)
 	return true
 end
 
+-- Skip a quest, or bring it back (on = false): its goals in every guide read
+-- as skipped, and the quests that need it go with it; the guide moves on.
+-- The quest may already be in the log: it stays there, the guide no longer
+-- leads to it (the player abandons it or not). Saved per character. False
+-- for no quest id.
+function Engine.SkipQuest(questID, on)
+	if type(questID) ~= "number" then return false end
+	local st = ns.CharState()
+	if type(st.skippedQuests) ~= "table" then st.skippedQuests = {} end
+	st.skippedQuests[questID] = on ~= false or nil
+	if not next(st.skippedQuests) then st.skippedQuests = nil end
+	refreshPlayer()
+	placing = nil
+	evaluate()
+	-- PLAYER_SKIPPED_QUEST(questID, title): the guide window offers the undo.
+	if on ~= false then
+		local title
+		for _, step in ipairs(guide and guide.steps or NONE) do
+			for _, goal in ipairs(step.goals) do
+				if goal.quest == questID and goal.title then title = goal.title break end
+			end
+			if title then break end
+		end
+		ns.Fire("PLAYER_SKIPPED_QUEST", questID, title)
+	end
+	return true
+end
+
+function Engine.IsQuestSkipped(questID)
+	return Own.questSkipped(questID)
+end
+
 -- Skip an optional goal, or bring it back: it no longer leads the arrow and
 -- reads as skipped (saved as CharState().skipped[guideId]["s:g"]). A quest
 -- started by an item is one thing to do: its accept and the collect of its
@@ -4727,6 +4791,7 @@ local function wantsFrom(from, verb, questID, span)
 		if stepApplies(step) then
 			for g, goal in ipairs(step.goals) do
 				if matchesVerb(goal, verb) and goal.quest == questID and goalApplies(goal)
+					and not Own.questSkipped(questID)
 					and not (verb == "direct" and goalDone(s, g, goal)) then
 					return true
 				end

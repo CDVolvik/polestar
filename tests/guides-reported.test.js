@@ -71,6 +71,46 @@ const everyone = ({ step, goal }) => !step.only && !goal.only;
 // Goals a character of this class does (an `only` naming classes on the goal or its step must list it).
 const forClass = (cls) => ({ step, goal }) => [step.only, goal.only].every((o) => !o || !o.classes || o.classes.includes(cls));
 
+test(`${MULGORE}: Sharing the Land leads to each gnoll objective and resumes partial progress`, { skip }, () => {
+	const pack = buildSimPack(allGuides().filter(f => f.startsWith('forever/horde/')));
+	try {
+		assert.deepEqual(pack.diag.errors, []);
+		const g = pack.guides.find(g => g.id === MULGORE.slice(0, -6));
+		const si = g.steps.findIndex(s => s.goals.some(v => v.quest === 745 && ['kill', 'complete'].includes(v.t))) + 1;
+		assert.ok(si > 0);
+		for (const cls of ['SHAMAN', 'WARRIOR', 'DRUID']) {
+			const [out] = playGuide(pack, g, {
+				race: 'Tauren', faction: 'Horde', cls,
+				before: 'w.level=12;w.onQuest(745,{{required=10},{required=8},{required=5}})',
+				script: `
+local E=Polestar.Engine;E.Goto(${si})
+local function snap()
+ local p=E.GetWaypoint();local v=p and E.GetGuide().steps[p.stepIndex].goals[p.goalIndex]
+ return p and {map=p.map,x=p.x,y=p.y,quest=v.quest,npc=v.npc,oi=v.oi}or false
+end
+local out={snap()}
+for _,row in ipairs({{1,9},{1,10},{2,7},{2,8},{3,4}})do w.progress(745,row[1],row[2]);stub.advance(.6);out[#out+1]=snap()end
+w.progress(745,3,5);stub.advance(.6)
+local done=true;for _,v in ipairs(E.GetStepView(${si}).goals)do if v.quest==745 and v.status~='done'then done=false end end
+emit({points=out,done=done})`,
+			});
+			assert.equal(out.points.length, 6);
+			for (const [i, p] of out.points.entries()) {
+				assert.ok(p, `${cls}: the active gnoll objective has an arrow`);
+				assert.equal(p.map, 1412);
+				assert.equal(p.quest, 745);
+				assert.equal(p.npc, [2949, 2949, 2950, 2950, 2951, 2951][i]);
+				assert.equal(p.oi, [1, 1, 2, 2, 3, 3][i]);
+				assert.equal(typeof p.x, 'number');
+				assert.equal(typeof p.y, 'number');
+			}
+			assert.equal(out.done, true, `${cls}: all three counts finish the work`);
+		}
+	} finally {
+		pack.dispose();
+	}
+});
+
 test('Horde poisons: the mainline contact instructions use the supplied flare gun before saluting Fizzule', { skip }, () => {
 	const list = goals('forever/horde/04-the-barrens.guide');
 	const contact = list[at(list, 'contact Fizzule', is('turnin', 2458))].step;
@@ -772,6 +812,21 @@ test(`${BARRENS}: Fitz's report: Jorn Skyseer is passed by while The Angry Scyth
 	const done = questGoalStatus(BARRENS, 3261, warlock, { skills: 'w.complete({ 905 })' });
 	assert.equal(done.length, 2);
 	assert.ok(done.every((s) => !s.endsWith(' skipped') && !s.endsWith(' na')), `with 905 done Jorn Skyseer is open: ${done.join(', ')}`);
+});
+
+// Miguel Antunes (#592): the Ishamuhale step sent them straight at the raptor,
+// but he only comes when a Fresh Zhevra Carcass (10338, looted from a zhevra)
+// is used at the Dead Tree (object 164644; the item's Summon Ishamuhale needs
+// that spell focus in the Forever client). The carcass is looted, then used at
+// the tree, before the Fang.
+test(`${BARRENS}: Miguel Antunes's report (#592): loot a zhevra carcass and use it at the Dead Tree before Ishamuhale's Fang`, { skip }, () => {
+	const list = goals(BARRENS);
+	const carcass = at(list, 'collect 10338 (Fresh Zhevra Carcass)', (g) => g.t === 'collect' && g.item === 10338);
+	const use = at(list, 'use 10338 (at the Dead Tree)', (g) => g.t === 'use' && g.item === 10338);
+	const fang = at(list, 'collect 5101 (Ishamuhale\'s Fang)', (g) => g.t === 'collect' && g.item === 5101);
+	assert.ok(carcass < use && use < fang, 'carcass, then the tree, then the Fang');
+	const tree = { map: 1413, x: 59.95, y: 30.21 };
+	assert.ok(yards(list[use].goal, tree) <= 20, `the carcass is used at the Dead Tree, not ${Math.round(yards(list[use].goal, tree))} yd off`);
 });
 
 // --- Forever chains the quest data has no prerequisite for, so the guide took
@@ -1550,6 +1605,31 @@ test(`${ELWYNN}: Syfin's report (#221): Croaky's Head is an optional extra; Ridg
 	}
 });
 
+// --- Elwynn (zeike, #553): the Gold Pickup Schedule that starts The Collector
+// (123) drops from Gruff Swiftbite, a rare (86%; the Runts and Outrunners of
+// Riverpaw Gnoll Bounty 3%). The step waits for the armbands, not for him.
+// Without The Collector taken, its turn-in is not the player's, and the
+// Manhunt (147) step after it (`when turnedin 123`) takes Manhunt's ring and
+// turn-in with it. With 123, Dughan holds for both, and Manhunt's own
+// turn-in step (`when onquest 147`) applies once it is taken.
+test(`${ELWYNN}: zeike's report (#553): Forest's Edge does not wait for the rare Gruff Swiftbite; The Collector and Manhunt follow only the Schedule`, { skip }, () => {
+	const list = goals(ELWYNN);
+	const edge = list.filter(({ goal }) => goal.item === 1307 || (goal.t === 'accept' && goal.quest === 123));
+	assert.deepEqual(edge.map(({ goal }) => [goal.t, goal.optional]), [['collect', true], ['accept', true]]);
+	const s = edge[0].s;
+	assert.ok(list.some(({ s: n, goal }) => n === s && goal.t === 'collect' && goal.quest === 11 && !goal.optional), 'the armbands hold the step');
+	const human = { race: 'Human', raceName: 'Human', faction: 'Alliance', cls: 'MAGE', className: 'Mage', level: 11 };
+	assert.deepEqual(questGoalStatus(ELWYNN, 123, human), ['accept pending', 'turnin na']);
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human), ['accept na', 'collect na', 'turnin na']);
+	const took = { after: 'stub.world.accept(123, {})' };
+	assert.deepEqual(questGoalStatus(ELWYNN, 123, human, took), ['accept done', 'turnin pending']);
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human, took), ['accept na', 'collect na', 'turnin na']);
+	const handed = { after: 'stub.world.accept(123, {}); stub.world.turnIn(123)' };
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human, handed), ['accept pending', 'collect pending', 'turnin na']);
+	const manhunt = { after: 'stub.world.accept(123, {}); stub.world.turnIn(123); stub.world.accept(147, {})' };
+	assert.deepEqual(questGoalStatus(ELWYNN, 147, human, manhunt), ['accept done', 'collect pending', 'turnin pending']);
+});
+
 // --- A goal on a neighbour's map (#246): Kadrak stands at the Mor'shan
 // Rampart, in the Barrens (Wowhead Forever; AreaTable puts the Rampart, 1703,
 // under the Barrens), where the Barrens and Ashenvale maps overlap. The step's
@@ -2234,6 +2314,32 @@ test(`${TELDRASSIL}: Pynte's report (#327): the Timberling Seed arrow stays roun
 	assert.ok(yards(goal, denalan) <= 150, `the arrow at ${goal.x},${goal.y} is by Denalan, not ${Math.round(yards(goal, denalan))} yd off`);
 });
 
+// --- Teldrassil (#555): Soft Saber Pelts (87288) accepted from Aldia on first Dolanaar
+// stop so both Nightsaber quests are done in one east loop
+test(`${TELDRASSIL}: #555: Soft Saber Pelts accept comes before Zenn's Bidding turn-in, so both Nightsaber quests share the first east loop`, { skip }, () => {
+	const list = goals(TELDRASSIL);
+	const accept87288 = list.find(({ goal }) => goal.t === 'accept' && goal.quest === 87288);
+	const turnin488 = list.find(({ goal }) => goal.t === 'turnin' && goal.quest === 488);
+	assert.ok(accept87288, 'accept 87288 is in the guide');
+	assert.ok(accept87288.s < turnin488.s, 'accept 87288 (Soft Saber Pelts) comes before turnin 488 (Zenn\'s Bidding), not after it');
+	// Both collect goals are in the same step
+	const coll488 = list.find(({ goal }) => goal.t === 'collect' && goal.quest === 488 && goal.item === 3409);
+	const coll87288 = list.find(({ goal }) => goal.t === 'collect' && goal.quest === 87288);
+	assert.ok(coll87288, 'collect 280087 quest 87288.1 is in the guide');
+	assert.equal(coll488.s, coll87288.s, 'Nightsaber Fang (488.1) and Nightsaber Pelt (87288.1) are in the same step');
+});
+
+// --- Teldrassil (#619): Ferocitas drops the Gnarlpine Necklace, and Tallonkai's
+// Jewel is only in the bags once the necklace is opened.
+test(`${TELDRASSIL}: #619: the Gnarlpine Necklace is looted from Ferocitas before the jewel is collected`, { skip }, () => {
+	const list = goals(TELDRASSIL);
+	const necklace = at(list, 'collect 8049 (Gnarlpine Necklace)', (g) => g.t === 'collect' && g.item === 8049 && !g.quest);
+	const jewel = at(list, 'collect 8050 quest 2459 (Tallonkai\'s Jewel)', (g) => g.t === 'collect' && g.item === 8050 && g.quest === 2459);
+	assert.ok(necklace < jewel, 'the necklace comes before the jewel');
+	assert.equal(list[necklace].s, list[jewel].s, 'on the Ferocitas step');
+	assert.ok(located(list[necklace]), 'the arrow leads to Ferocitas for the necklace');
+});
+
 test('#327: Pirate Hats Ahoy! names every pirate that drops the hat, not the Southsea Kidnapper alone, in both guides', { skip }, () => {
 	for (const guide of [TANARIS_ALLIANCE, 'forever/horde/40-50/02-feralas.guide']) {
 		const list = goals(guide);
@@ -2333,4 +2439,22 @@ test('forever/horde/30-40/04-dustwallow-marsh.guide: Syrael\'s report (#575): th
 	assert.ok(yards(goal, finished) <= 200, `the arrow at ${goal.x},${goal.y} is in the Valley of Bones, not ${Math.round(yards(goal, finished))} yd off`);
 	assert.ok(at(list, 'collect 13703 (Kodo Bone)', (g) => g.t === 'collect' && g.quest === 5501) < plasm, 'the kodo bones come first');
 	assert.ok(plasm < at(list, 'turnin 6134', is('turnin', 6134)), 'the plasm is collected before Hornizz is handed it');
+});
+
+// Nittepitte (#613): "Since Collecting Kelp starts an RP events, it should be
+// suggested to be turned in [...] before turning in Baited for Success."
+// Handing in Collecting Kelp (112) starts William Pestle's brewing scene before
+// he offers The Escape (114); cmangos classic-db's quest-end script runs it
+// for 5 seconds. Helene and Jason stand on the lake shore on the way in, so
+// they stay first, and Marshal Dughan's turn-ins, a few yards from William,
+// fill the wait.
+
+test(`${ELWYNN}: Nittepitte's report (#613): Marshal Dughan's turn-ins come between Collecting Kelp and The Escape, while William Pestle brews`, { skip }, () => {
+	const list = goals(ELWYNN);
+	const kelp = at(list, 'turnin 112', is('turnin', 112));
+	const escape = at(list, 'accept 114', is('accept', 114));
+	const dughan = at(list, 'turnin 39', is('turnin', 39));
+	assert.ok(at(list, 'turnin 99131', is('turnin', 99131)) < kelp, 'Baited for Success is handed to Jason on the way in');
+	assert.ok(kelp < dughan && dughan < escape, 'Collecting Kelp, then Dughan, then The Escape');
+	assert.equal(list[kelp].s, list[escape].s, 'all in the same Goldshire step');
 });
