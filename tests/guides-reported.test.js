@@ -71,6 +71,46 @@ const everyone = ({ step, goal }) => !step.only && !goal.only;
 // Goals a character of this class does (an `only` naming classes on the goal or its step must list it).
 const forClass = (cls) => ({ step, goal }) => [step.only, goal.only].every((o) => !o || !o.classes || o.classes.includes(cls));
 
+test(`${MULGORE}: Sharing the Land leads to each gnoll objective and resumes partial progress`, { skip }, () => {
+	const pack = buildSimPack(allGuides().filter(f => f.startsWith('forever/horde/')));
+	try {
+		assert.deepEqual(pack.diag.errors, []);
+		const g = pack.guides.find(g => g.id === MULGORE.slice(0, -6));
+		const si = g.steps.findIndex(s => s.goals.some(v => v.quest === 745 && ['kill', 'complete'].includes(v.t))) + 1;
+		assert.ok(si > 0);
+		for (const cls of ['SHAMAN', 'WARRIOR', 'DRUID']) {
+			const [out] = playGuide(pack, g, {
+				race: 'Tauren', faction: 'Horde', cls,
+				before: 'w.level=12;w.onQuest(745,{{required=10},{required=8},{required=5}})',
+				script: `
+local E=Polestar.Engine;E.Goto(${si})
+local function snap()
+ local p=E.GetWaypoint();local v=p and E.GetGuide().steps[p.stepIndex].goals[p.goalIndex]
+ return p and {map=p.map,x=p.x,y=p.y,quest=v.quest,npc=v.npc,oi=v.oi}or false
+end
+local out={snap()}
+for _,row in ipairs({{1,9},{1,10},{2,7},{2,8},{3,4}})do w.progress(745,row[1],row[2]);stub.advance(.6);out[#out+1]=snap()end
+w.progress(745,3,5);stub.advance(.6)
+local done=true;for _,v in ipairs(E.GetStepView(${si}).goals)do if v.quest==745 and v.status~='done'then done=false end end
+emit({points=out,done=done})`,
+			});
+			assert.equal(out.points.length, 6);
+			for (const [i, p] of out.points.entries()) {
+				assert.ok(p, `${cls}: the active gnoll objective has an arrow`);
+				assert.equal(p.map, 1412);
+				assert.equal(p.quest, 745);
+				assert.equal(p.npc, [2949, 2949, 2950, 2950, 2951, 2951][i]);
+				assert.equal(p.oi, [1, 1, 2, 2, 3, 3][i]);
+				assert.equal(typeof p.x, 'number');
+				assert.equal(typeof p.y, 'number');
+			}
+			assert.equal(out.done, true, `${cls}: all three counts finish the work`);
+		}
+	} finally {
+		pack.dispose();
+	}
+});
+
 test('Horde poisons: the mainline contact instructions use the supplied flare gun before saluting Fizzule', { skip }, () => {
 	const list = goals('forever/horde/04-the-barrens.guide');
 	const contact = list[at(list, 'contact Fizzule', is('turnin', 2458))].step;
