@@ -2520,3 +2520,24 @@ test(`${ELWYNN}: Nittepitte's report (#613): Marshal Dughan's turn-ins come betw
 	assert.ok(kelp < dughan && dughan < escape, 'Collecting Kelp, then Dughan, then The Escape');
 	assert.equal(list[kelp].s, list[escape].s, 'all in the same Goldshire step');
 });
+
+// Nittepitte (#612): "it should tell you to pick up Mining Tools while
+// discovering the Jasperlode Mine." The step led to the mine's far end first,
+// then out to the Kobold Geomancers, and only then back in for the Mining
+// Tools, which lie along the tunnel from the entrance. The tools now come
+// first, on the walk in; the geomancers on the way out.
+
+test(`${ELWYNN}: Nittepitte's report (#612): the Mining Tools are picked up on the walk into the Jasperlode Mine, before its far end`, { skip }, () => {
+	const list = goals(ELWYNN);
+	const tools = at(list, 'collect 247816', (g) => g.t === 'collect' && g.item === 247816 && g.quest === 91732);
+	const explore = at(list, 'complete 76', is('complete', 76));
+	const geomancers = at(list, 'kill 476', is('kill', 91723));
+	assert.equal(list[tools].s, list[explore].s, 'one step in the mine');
+	assert.ok(tools < explore && explore < geomancers, 'the tools, then the far end, then the geomancers');
+	const entrance = list.slice(0, tools).reverse().find(({ goal }) => goal.t === 'goto');
+	assert.ok(entrance, 'the step before is the walk to the entrance');
+	const spots = list[tools].goal.spots || [list[tools].goal];
+	for (const s of spots) {
+		assert.ok(yards(entrance.goal, { map: list[tools].goal.map, ...s }) < yards(entrance.goal, list[explore].goal), `the tools at ${s.x},${s.y} lie between the entrance and the far end`);
+	}
+});
