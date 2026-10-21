@@ -856,11 +856,13 @@ local METRICS = {
 		guideProgress = 14, guideGrip = 8, guideFoot = 28, guideUpRow = 20, guideUpToggle = 26, guideNavGap = 4,
 	},
 }
--- The game's looks take Hearth's sizes and type.
+-- The game's looks take Hearth's sizes and type; WoW Forever's guide window
+-- keeps its rows and the lit goal clear of its bronze border (#306).
 for _, k in ipairs({ "forever", "blizzard", "classic" }) do
 	METRICS[k] = METRICS.hearth
 	SKIN_ROLES[k] = SKIN_ROLES.hearth
 end
+METRICS.forever = setmetatable({ guidePad = 18, guideLitInset = 10 }, { __index = METRICS.hearth })
 Theme.METRICS = METRICS
 
 function Theme.Metric(key, house)

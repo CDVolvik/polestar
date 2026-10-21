@@ -805,9 +805,19 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 		local big = Polestar.Widgets.Checkbox(UIParent, function() end); big:SetSize(18, 18)
 		T.SKIN_PAINT.forever.checkbox(big)
 		out.tick = { small = small.psSkin.kit.check:GetWidth(), big = big.psSkin.kit.check:GetWidth() }
+		-- the border's frame under the window's content; the rows clear of it
+		local F = PolestarGuideFrame
+		out.edgeLevel = F.psSkin.kit.edge:GetFrameLevel() - F:GetFrameLevel()
+		out.pad = { T.Metric("guidePad", 14), T.Metric("guideLitInset", 4) }
+		local lit
+		for _, r in ipairs(GF.rows or {}) do
+			local t = r.psSkin and r.psSkin.kit and r.psSkin.kit.rowLit
+			if t and t:IsShown() then lit = select(4, t:GetPoint(1)) end
+		end
+		out.lit = lit or false
 		-- back to the house style: the bar's own fill again
 		Polestar.Set("ui.skin", "hearth")
-		out.hearth = { own = b:GetStatusBarTexture():GetAlpha(), fill = k.statusFill:IsShown() }
+		out.hearth = { own = b:GetStatusBarTexture():GetAlpha(), fill = k.statusFill:IsShown(), pad = T.Metric("guidePad", 14), lit = T.Metric("guideLitInset", 4) }
 		emit(out)`, {
 		before: `C_Texture = { GetAtlasInfo = function(name)
 			local size = { ["Legacy-Progressbar-Frame"] = { 262, 52 }, ["Legacy-Progressbar-Fill"] = { 234, 24 }, ["Legacy-Progressbar-BG"] = { 234, 24 } }
@@ -823,5 +833,8 @@ test("skins: Forever's progress bar draws its own fill to the bar's value, the f
 	assert.deepEqual(out.cap, [16.5], 'the 33-pixel 2x cap drawn 16.5 wide');
 	assert.equal(out.tick.big, 26, 'the Settings panel box as before');
 	assert.ok(Math.abs(out.tick.small - 15 * 26 / 18) < 1e-9, 'a 15 box: the art in the same proportion');
-	assert.deepEqual(out.hearth, { own: 1, fill: false }, "Hearth: the bar's own fill back");
+	assert.equal(out.edgeLevel, 0, "the border's frame at the window's level: the content draws over its inner shade");
+	assert.deepEqual(out.pad, [18, 10], 'Forever pads its rows and the lit goal clear of the border');
+	assert.equal(out.lit, 10, 'the current goal lit 10 in');
+	assert.deepEqual(out.hearth, { own: 1, fill: false, pad: 12, lit: 4 }, "Hearth: the bar's own fill back, its own sizes");
 });

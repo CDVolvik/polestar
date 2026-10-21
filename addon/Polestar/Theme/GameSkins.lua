@@ -561,7 +561,10 @@ local GUIDE = {
 		-- draws above the border (not covered by the f+6 edge frame).
 		local stripH = f.psStrip and f.psStrip:GetHeight() or 0
 		if stripH < 1 then stripH = 0 end
-		local o = child(f, "edge", 6)
+		-- At the window's own level, under its content: the art's inner shade
+		-- (all but its outer 3 units) drew over the nav row and the progress
+		-- bar at f+6 (#306).
+		local o = child(f, "edge", 0)
 		o:EnableMouse(false)
 		o:ClearAllPoints()
 		o:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -stripH)

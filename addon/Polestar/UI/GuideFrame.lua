@@ -395,7 +395,7 @@ local function paintRow(r, goal, pop, sameStep, current, noParty, noMissing, noE
 		W.Color(r.Icon, done and "success" or ((current or gold) and "accent" or "textDim"))
 	end
 	-- The game's looks light the goal to do now with their own art.
-	Theme.KitRowLit(r, current and not done and not skipped and not transparent())
+	Theme.KitRowLit(r, current and not done and not skipped and not transparent(), nil, Theme.Metric("guideLitInset", 4))
 	r.Text:SetText(UI.GoalLine(goal))
 	-- White while it is to be done; done and skipped goals step back.
 	W.Color(r.Text, (done or skipped) and "textMuted" or "text")
