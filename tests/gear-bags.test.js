@@ -335,3 +335,20 @@ test('Leave bag arrows to Pawn hides the bag arrows only while Pawn is installed
 	assert.equal(hidden, true);
 	assert.equal(noPawn, true);
 });
+
+test('EllesmereUI Bags: the arrow takes the new success colour when the look changes', () => {
+	const [out] = run(
+		`${BAGS}
+		local a, da = slot("item:9002", 0, 1)
+		paint(a, da)
+		local r
+		for _, x in ipairs(a._textOverlay.regions) do if x.texture then r = x end end
+		Polestar.Set("ui.skin", "halo")
+		local want = { T.Color("success") }
+		local got = { r:GetVertexColor() }
+		emit({ want = { want[1], want[2], want[3] }, got = { got[1], got[2], got[3] } })
+	`,
+		{ before: ELLESMERE },
+	);
+	assert.deepEqual(out.got, out.want);
+});
