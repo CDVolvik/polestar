@@ -229,13 +229,19 @@ local function checkWhen(list)
 			end
 		elseif WHEN_QUEST[k] then
 			if not isNum(p.q) then return false end
-		elseif k == "has" then
+		elseif k == "has" or k == "upgrade" then
 			if not isNum(p.item) then return false end
 		elseif k == "dungeon" then
 			if not (isStr(p.name) and (p.map == nil or isNum(p.map))) then return false end
 		elseif k == "done" then
 			-- A step label (format 5); validate checks it names a step of the guide.
 			if not isStr(p.label) then return false end
+		elseif k == "skill" then
+			-- A profession by name, with its skill line when the compiler knew it (format 5).
+			if not (isStr(p.name) and isNum(p.n) and (p.skillLine == nil or isNum(p.skillLine))) then return false end
+		elseif k == "cooldown" then
+			-- One item or one spell (format 5).
+			if not ((isNum(p.item) and p.spell == nil) or (isNum(p.spell) and p.item == nil)) then return false end
 		elseif not (WHEN_PLACE[k] and isStr(p.name)) then
 			return false
 		end

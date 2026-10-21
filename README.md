@@ -370,7 +370,8 @@ guides you there instead.
   arrow, the one to take is framed, and a coin marks the one that sells for
   most. Turn-in goals name the best reward.
 - **In your bags** every item that is an upgrade gets the same green arrow,
-  in the game's bags and in Baganator.
+  in the game's bags, in Baganator and in EllesmereUI Bags. With Pawn
+  installed, "Leave bag arrows to Pawn" hides Polestar's.
 - **Your own stat weights**: paste a Pawn scale string (Options, Questing,
   Rewards & gear, or `/polestar gear import`) and choose it under Stat weights
   as "Custom: <name>". It replaces the built-in weights at every level. One

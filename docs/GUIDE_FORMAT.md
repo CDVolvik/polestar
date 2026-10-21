@@ -137,7 +137,7 @@ A step must contain at least one goal.
 | `interact` | `<objectId>` | Click a game object. |
 | `use` | `<itemId> ["Item name"]` | |
 | `sethome` | `"Location"` or `nearest` | Inn location as the game names it (the bind location it reports), e.g. `"Goldshire"`. Without `npc` the compiler names the inn's innkeeper, so the arrow leads to them ("What the compiler fills in"); `npc <id>` picks one yourself. `sethome nearest` binds at the nearest own-faction inn when the step comes up. Lint warns about a location no inn has (`polestar find --kind inn`). Completes on every client language: binding at the inn's innkeeper, or a bind location the client names as the inn's area (see "Places by ID"). A player with "Set your home at the guide's inn" on (Quality of Life, Travel; off by default) has Polestar bind and confirm when they talk to that innkeeper (for `nearest`, any innkeeper the compiler listed for it), never at another inn. |
-| `hearth` | `"Location"` | Done when the zone or subzone where you land has that name: an inn's location or the zone it is in, in the client's language when the compiler finds its area ("Places by ID"). Lint warns about any other name. |
+| `hearth` | `"Location"` | Done when the zone or subzone where you land has that name: an inn's location or the zone it is in, in the client's language when the compiler finds its area ("Places by ID"). Lint warns about any other name. While the Hearthstone is on cooldown (or not in the bags), the goal says how long until it is ready and the arrow leads to that inn on foot, so a "Hearthstone on cooldown?" note is not needed. |
 | `getfp` | `"Location"` | Discover a flight path: the flight point's name (`"Stormwind, Elwynn"`) or its part before the comma (`"Stormwind"`). The compiler adds its taxi node, so it completes on every client language ("Places by ID"), and without `npc` that node's flight master, so the arrow leads to them ("What the compiler fills in"); `npc <id>` picks one yourself. Lint warns about a name no flight point has (`polestar find --kind flight`). |
 | `fly` | `"Location"` | Take a flight: the flight point's town (`"Stormwind"`), as the flight map picks the node by it. Done when the zone or subzone where you land has that name (in the client's language when the compiler finds its area, "Places by ID"); where the landing area is named differently (`"Stormwind City"`), the goal checks off only through a later goal of its step. Lint warns about a name that is no flight point's town, inn location or zone they are in. |
 | `train` | `[npcId]`, `<Profession> [Rank]`, or `class` | `train First Aid` / `train Mining Expert`: the nearest own-faction trainer of that profession and rank (`Apprentice`, `Journeyman`, `Expert`, `Artisan`; ranks taught by a book or quest point at its vendor or quest giver). Without a rank: the highest rank whose minimum skill (0/50/125/225) the last earlier `skill` (or `craft … until`) target for that profession in the guide reaches, Apprentice when there is none, and always above a rank the guide already trained. `train class`: the nearest trainer of the player's class. Resolved at runtime from the player's faction and position. |
@@ -241,11 +241,14 @@ step Back to Gornek
 | `turnedin <quest>` | the quest is handed in |
 | `available <quest>` | the quest can be taken now: not in the log or done, the level reached, its prerequisites done and none of the quests that close it taken or done (the compiler copies these from the data, as for an `accept`) |
 | `has <item> [xN]` | the bags hold N (default 1) or more |
+| `upgrade <item>` | Polestar's gear advice rates the item an upgrade for the character (see "Gear upgrades" below) |
 | `zone "<Name>"` | the zone text reads so (the zone as the game names it) |
 | `subzone "<Name>"` | the subzone text reads so |
 | `bound "<Location>"` | the hearthstone is bound there (a bind location, as for `sethome`) |
 | `dungeon "<Name>"` | the character chose to run that dungeon (see "Dungeon steps" below) |
 | `done <label>` | the step carrying `label <label>` in this guide was completed: it applies, its goals are done, and it was not skipped by the player, a failed `when` or a `skipto` jump (see "Jumps"); not on a `next` line |
+| `skill <Profession> <N>` | the character's rank in that profession is N (1 or more) or higher, the profession named as for the `skill` goal (`when skill Cooking 50`, `when skill "First Aid" 1`); one not learned counts as rank 0, so `!skill Herbalism 1` holds while the character has no Herbalism |
+| `cooldown item <item>`, `cooldown spell <spell>` | the item or spell is on cooldown, the global cooldown aside: `when !cooldown item 6948` while the Hearthstone is ready. Polestar looks again when the cooldown runs out |
 
 `!` in front of any predicate but `level` turns it around: `!onquest 788`
 holds while the quest is not in the log, `!has 159 x5` while the bags hold
@@ -299,6 +302,28 @@ there (a typo, a raid) warns, and the step's `when dungeon` then never holds.
 Without the client tables (no `sources` folder beside the data) the name is
 not checked.
 
+**Gear upgrades.** `when upgrade <item>` is for a step that is worth doing
+only when the item beats what the character wears: buying a better weapon,
+picking up a piece of armour. It holds when Polestar's gear advice (the
+upgrade arrows and tooltips, Options, Gear) rates the item an upgrade now:
+the character can wear it at their level, and it scores at least the
+"minimum upgrade" better than what they wear in that slot, for their spec
+(an empty slot always gains). `when !upgrade <item>` is the route for
+everyone else.
+
+```
+step A better sword
+  when upgrade 2488
+  buy 2488 nearest
+```
+
+When the gear advice cannot judge the item (it is turned off, or Polestar
+knows neither the item's stats nor weights for the spec) the item counts as
+an upgrade, so the step is shown and the player decides. Like any `when`,
+the outcome is stored once the route has passed the step: a sword step
+skipped because the character wore something better does not come back
+later. The item id is checked against the data, as for `has`.
+
 ### Conditional hand-offs
 
 `next <id> when <predicate>` makes one `next` option conditional: one guide,
@@ -323,9 +348,10 @@ time. A subzone is looked up in the zone where the guide ends.
 
 A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
-Polestar 0.2.6 and later read. A `when money` or `when dungeon` predicate
-(above) writes format 5 (Polestar 0.3.0 and later), because 0.2.6 knows `when`
-but not those predicates; `money` and `task` goals also need format 5
+Polestar 0.2.6 and later read. A `when money`, `when dungeon`, `when
+upgrade`, `when skill` or `when cooldown` predicate (above) writes format 5
+(Polestar 0.3.0 and later), because 0.2.6 knows `when` but not those
+predicates; `money` and `task` goals also need format 5
 (docs/PACK_FORMAT.md).
 
 ## Along the way
