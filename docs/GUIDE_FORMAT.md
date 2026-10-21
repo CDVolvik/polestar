@@ -241,6 +241,7 @@ step Back to Gornek
 | `turnedin <quest>` | the quest is handed in |
 | `available <quest>` | the quest can be taken now: not in the log or done, the level reached, its prerequisites done and none of the quests that close it taken or done (the compiler copies these from the data, as for an `accept`) |
 | `has <item> [xN]` | the bags hold N (default 1) or more |
+| `upgrade <item>` | Polestar's gear advice rates the item an upgrade for the character (see "Gear upgrades" below) |
 | `zone "<Name>"` | the zone text reads so (the zone as the game names it) |
 | `subzone "<Name>"` | the subzone text reads so |
 | `bound "<Location>"` | the hearthstone is bound there (a bind location, as for `sethome`) |
@@ -299,6 +300,28 @@ there (a typo, a raid) warns, and the step's `when dungeon` then never holds.
 Without the client tables (no `sources` folder beside the data) the name is
 not checked.
 
+**Gear upgrades.** `when upgrade <item>` is for a step that is worth doing
+only when the item beats what the character wears: buying a better weapon,
+picking up a piece of armour. It holds when Polestar's gear advice (the
+upgrade arrows and tooltips, Options, Gear) rates the item an upgrade now:
+the character can wear it at their level, and it scores at least the
+"minimum upgrade" better than what they wear in that slot, for their spec
+(an empty slot always gains). `when !upgrade <item>` is the route for
+everyone else.
+
+```
+step A better sword
+  when upgrade 2488
+  buy 2488 nearest
+```
+
+When the gear advice cannot judge the item (it is turned off, or Polestar
+knows neither the item's stats nor weights for the spec) the item counts as
+an upgrade, so the step is shown and the player decides. Like any `when`,
+the outcome is stored once the route has passed the step: a sword step
+skipped because the character wore something better does not come back
+later. The item id is checked against the data, as for `has`.
+
 ### Conditional hand-offs
 
 `next <id> when <predicate>` makes one `next` option conditional: one guide,
@@ -323,8 +346,8 @@ time. A subzone is looked up in the zone where the guide ends.
 
 A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
-Polestar 0.2.6 and later read. A `when money` or `when dungeon` predicate
-(above) writes format 5 (Polestar 0.3.0 and later), because 0.2.6 knows `when`
+Polestar 0.2.6 and later read. A `when money`, `when dungeon` or `when
+upgrade` predicate (above) writes format 5 (Polestar 0.3.0 and later), because 0.2.6 knows `when`
 but not those predicates; `money` and `task` goals also need format 5
 (docs/PACK_FORMAT.md).
 

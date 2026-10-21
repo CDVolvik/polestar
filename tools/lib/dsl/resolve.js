@@ -908,8 +908,8 @@ function acceptGate(q, id, data) {
 }
 
 // A step's `when` predicates (tools/lib/dsl/when.js) as the engine reads them
-// (docs/PACK_FORMAT.md, "Format 4"): quest and item ids checked against the
-// data; `available` with what an accept of the quest waits on (minLevel,
+// (docs/PACK_FORMAT.md, "Format 4"): quest and item ids (`has`, `upgrade`)
+// checked against the data; `available` with what an accept of the quest waits on (minLevel,
 // pre, preAll, closedBy); a zone, subzone or bind location with its area
 // (places.js, "Places by ID"), the subzone looked up in the step's zone; a
 // dungeon with its Map.csv id (group.js dungeonNamed), the key of the
@@ -954,6 +954,10 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 			case 'has':
 				w.item = p.item;
 				w.n = p.n;
+				if (haveItems && !data.item(p.item)) warn(p.line, `item ${p.item} is not in data (new Forever content?)`);
+				break;
+			case 'upgrade':
+				w.item = p.item;
 				if (haveItems && !data.item(p.item)) warn(p.line, `item ${p.item} is not in data (new Forever content?)`);
 				break;
 			case 'zone': {
@@ -1007,7 +1011,7 @@ function resolveWhen(list, zoneId, levels, data, warn) {
 	const key = (p) => JSON.stringify({ ...p, neg: undefined, line: undefined });
 	for (const p of list) {
 		if (p.k !== 'level' && list.some((o) => o !== p && !!o.neg !== !!p.neg && key(o) === key(p))) {
-			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : p.k === 'dungeon' ? 'dungeon' : p.k === 'done' ? 'step' : 'place'}: no character sees it`);
+			warn(p.line, `the step asks for \`${p.k}\` and \`!${p.k}\` of the same ${p.k === 'has' || p.k === 'upgrade' ? 'item' : p.k === 'onquest' || p.k === 'complete' || p.k === 'turnedin' || p.k === 'available' ? 'quest' : p.k === 'dungeon' ? 'dungeon' : p.k === 'done' ? 'step' : 'place'}: no character sees it`);
 			break;
 		}
 	}

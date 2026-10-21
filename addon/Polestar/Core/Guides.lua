@@ -229,7 +229,7 @@ local function checkWhen(list)
 			end
 		elseif WHEN_QUEST[k] then
 			if not isNum(p.q) then return false end
-		elseif k == "has" then
+		elseif k == "has" or k == "upgrade" then
 			if not isNum(p.item) then return false end
 		elseif k == "dungeon" then
 			if not (isStr(p.name) and (p.map == nil or isNum(p.map))) then return false end

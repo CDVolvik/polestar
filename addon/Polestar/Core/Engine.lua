@@ -511,6 +511,17 @@ function Own.levelReached(level, frac)
 	return max > 0 and (player.xp or 0) / max >= frac
 end
 
+-- `when upgrade`: Polestar's gear advice (Gear.IsUpgrade: wearable now and at
+-- least the "minimum upgrade" better than what is worn) rates the item an
+-- upgrade. When it cannot judge (gear advice off, the item's stats or the
+-- spec's weights unknown) the item counts as one, so the step is shown and
+-- the player decides.
+function Own.isUpgrade(item)
+	local G, link = ns.Gear, "item:" .. item
+	if not (G and G.IsEnabled and G.IsEnabled() and G.CompareToEquipped(link)) then return true end
+	return G.IsUpgrade(link) and true or false
+end
+
 function Own.predicateHolds(p)
 	local C, k, ok = Compat(), p.k, false
 	if k == "level" then
@@ -540,6 +551,8 @@ function Own.predicateHolds(p)
 		ok = Own.availableNow(p)
 	elseif k == "has" then
 		ok = (C.GetItemCount(p.item) or 0) >= (p.n or 1)
+	elseif k == "upgrade" then
+		ok = Own.isUpgrade(p.item)
 	elseif k == "zone" or k == "subzone" then
 		local zone, sub = C.GetZoneText()
 		ok = Own.samePlace(k == "zone" and zone or sub, p)
@@ -4516,6 +4529,9 @@ for _, event in ipairs({
 end
 -- The quest database says which quest collects count the bags (Own.bagCollect).
 ns.On("QUESTDB_LOADED", onUpdateEvent)
+
+-- New gear verdicts (equipment, spec, level, item data): `when upgrade`.
+ns.On("GEAR_UPDATED", onUpdateEvent)
 
 -- Where the player is changed enough to re-pick candidates: a zone change or
 -- landing (control comes back after a flight).
