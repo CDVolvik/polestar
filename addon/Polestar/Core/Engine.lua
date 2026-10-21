@@ -2566,6 +2566,8 @@ local function goalView(s, g, goal, stepStatus, group)
 		skippedGrey = need == false or nil,
 		keptGrey = opens and opens.quest or nil,
 		keptGreyText = opens and L["Grey, kept: opens %s"]:format(questTitle(opens)) or nil,
+		-- A hearth goal still to do while the Hearthstone waits (#576).
+		hearthText = (status == "active" or status == "pending") and Own.hearthText(goal) or nil,
 		skillLine = goal.skillLine, spell = goal.spell, faction = goal.faction,
 		standing = goal.standing, standingName = goal.standing and standingName(goal.standing) or nil,
 		achievement = goal.achievement, criteria = goal.criteria,
@@ -2599,6 +2601,40 @@ end
 -- Waypoint and goto arrival
 ---------------------------------------------------------------------------
 
+-- A hearth goal while the Hearthstone cannot take the player there (#576):
+-- seconds until it is ready, 0 with no Hearthstone in the bags; nil when it
+-- is ready (or QoL, which reads it, is not loaded).
+function Own.hearthWait(goal)
+	if goal.t ~= "hearth" then return nil end
+	local Q = ns.QoL
+	local h = Q and Q.GetHearth and Q.GetHearth()
+	if not h then return nil end
+	if not h.have then return 0 end
+	if (h.remaining or 0) > 0 then return h.remaining end
+	return nil
+end
+
+-- The inn a hearth goal's location names (Nav/Travel.lua's inns), to walk to.
+function Own.hearthInn(goal)
+	local nav = ns.Nav
+	local inn = nav and nav.FindInn and nav.FindInn(goal.npc, goal.location)
+	if inn and inn.map and inn.x and inn.y then return inn end
+	return nil
+end
+
+-- "Hearthstone ready in 23 min: walk to the inn, or wait for it"; nil while
+-- it is ready.
+function Own.hearthText(goal)
+	local wait = Own.hearthWait(goal)
+	if not wait then return nil end
+	local inn = Own.hearthInn(goal) ~= nil
+	if wait == 0 then
+		return inn and L["No Hearthstone in your bags: walk to the inn"] or L["No Hearthstone in your bags"]
+	end
+	local left = wait < 60 and L["under a minute"] or L["%d min"]:format(math.ceil(wait / 60))
+	return (inn and L["Hearthstone ready in %s: walk to the inn, or wait for it"] or L["Hearthstone ready in %s"]):format(left)
+end
+
 -- Ranks for a fallback waypoint: blocking goals first, then optional goals,
 -- then notes (which never complete).
 local function waypointRank(goal)
@@ -2617,10 +2653,17 @@ end
 local function waypointOf(g, goal, at, s)
 	s = s or current
 	local map, x, y, f, area, z
+	local walk
 	if at then
 		map, x, y, f, z = at.map, at.x, at.y, at.f, at.z
 	else
 		map, x, y, f, area, z = posOf(goal)
+		-- A hearth goal has no place of its own; while the Hearthstone waits,
+		-- the arrow leads to its inn on foot (#576).
+		if not map and goal.t == "hearth" and Own.hearthWait(goal) then
+			local inn = Own.hearthInn(goal)
+			if inn then map, x, y, f, walk = inn.map, inn.x, inn.y, inn.f, true end
+		end
 	end
 	if not (map and x and y) or not goalApplies(goal) or unavailableFor(goal) or Own.goalSkipped(s, g)
 		or goalDone(s, g, goal) then return nil end
@@ -2628,7 +2671,7 @@ local function waypointOf(g, goal, at, s)
 	local many = area and #goal.spots > 1
 	return {
 		map = map, x = x, y = y, f = f, z = z,
-		label = (goalText(goal, verb, subject, detail)),
+		label = walk and L["Walk to %s"]:format(subject) or (goalText(goal, verb, subject, detail)),
 		stepIndex = s, goalIndex = g, kind = goal.t,
 		r = goal.r or DEFAULT_RADIUS, area = area,
 		search = area and goal.spread or nil,
@@ -3769,6 +3812,29 @@ local function evaluateLoaded(active)
 	end
 end
 
+-- While the shown step has an open hearth goal whose Hearthstone waits:
+-- evaluate again when its minute changes and once it is ready, so the time
+-- left and the walk to the inn follow it (#576). One timer at a time
+-- (Own.hearthTimer: the main chunk is at 200 locals).
+function Own.watchHearth()
+	if Own.hearthTimer or not (guide and current and guide.steps[current]) then return end
+	local wait
+	for g, goal in ipairs(guide.steps[current].goals) do
+		if goal.t == "hearth" and goalApplies(goal) and not goalDone(current, g, goal) then
+			local w = Own.hearthWait(goal)
+			if w and w > 0 and (not wait or w < wait) then wait = w end
+		end
+	end
+	if not wait then return end
+	local nextIn = wait % 60
+	if nextIn < 0.5 then nextIn = 60 end
+	Own.hearthTimer = true
+	C_Timer.After(math.min(nextIn, wait) + 0.1, function()
+		Own.hearthTimer = false
+		requestUpdate()
+	end)
+end
+
 -- Evaluate every tab, the active one last.
 local function evaluate()
 	lastEval = GetTime()
@@ -3782,6 +3848,7 @@ local function evaluate()
 	end
 	useActive()
 	evaluateLoaded(true)
+	Own.watchHearth()
 	-- Out-levelled: once per guide per session; for a guide the catch-up may
 	-- pass whole for the player (Own.opened, autoChain), once it is placed.
 	local mayPass = placing and autoChain and Own.opened[guide and guide.id or ""] and ns.Get("behavior.skipGrey")
@@ -4665,6 +4732,8 @@ for _, event in ipairs({
 end
 -- The quest database says which quest collects count the bags (Own.bagCollect).
 ns.On("QUESTDB_LOADED", onUpdateEvent)
+-- The Hearthstone's cooldown started, ended or the bind moved (QoL/Hearth.lua).
+ns.On("QOL_HEARTH_CHANGED", onUpdateEvent)
 
 -- New gear verdicts (equipment, spec, level, item data): `when upgrade`.
 ns.On("GEAR_UPDATED", onUpdateEvent)
