@@ -48,14 +48,14 @@ function state()
 end
 `;
 
-function run({ goals, when, before = '', script, onQuest = true }) {
+function run({ goals, when, before = '', script, onQuest = true, shape = (text) => text }) {
 	return runAddon({
 		stubs: ['stub_world.lua'],
 		before: WORLD + (onQuest ? 'w.onQuest(783, {})\n' : '') + before,
 		addons: [CORE],
 		saved: { Polestar: 'PolestarCharDB = { schema = 1, guide = "test/abandon" }' },
 		script: `${TEST_PACK}
-${TEST_SOURCE}\n${guide(goals, when)}\n${HELPERS}\nstub.login()\nstub.fire("QUEST_LOG_UPDATE"); stub.advance(0.6)\n${script}`,
+${TEST_SOURCE}\n${shape(guide(goals, when))}\n${HELPERS}\nstub.login()\nstub.fire("QUEST_LOG_UPDATE"); stub.advance(0.6)\n${script}`,
 	}).emitted;
 }
 
@@ -77,6 +77,16 @@ test('an abandon goal is done once its quest is out of the log, and the accept b
 		script: 'E.Next(); E.Next(); flush(); emit(E.GetLiveStep())',
 	});
 	assert.equal(ahead, 1);
+});
+
+test('an accept after the abandon (taking the quest again) is not done by it', () => {
+	// Step 3 takes A Threat Within again instead of handing it in.
+	const [rows] = run({
+		goals: '{ { t = "abandon", quest = 783, title = "A Threat Within" } }',
+		shape: (text) => text.replace('{ t = "turnin", quest = 783', '{ t = "accept", quest = 783'),
+		script: 'stub.world.abandon(783); flush(); emit({ live = E.GetLiveStep(), s1 = E.GetStepView(1).status, s3 = E.GetStepView(3).goals[1].status })',
+	});
+	assert.deepEqual(rows, { live: 3, s1: 'done', s3: 'active' });
 });
 
 test('a destroy goal is done once the item is out of the bags and stays done for its step', () => {

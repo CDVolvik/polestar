@@ -1474,17 +1474,21 @@ function Own.starterTaken(s, g, goal)
 	return false
 end
 
--- Whether the guide abandoned quest q (an `abandon` goal latched, or the live
--- route is at or past one and the quest is out of the log; a step the player
--- only looks at does not count). Its accept then stays done, so the route does
--- not go back to the giver; a player's own abandon still reopens it.
-function Own.abandonedByGuide(q)
+-- Whether the guide abandoned quest q after step s (an `abandon` goal latched,
+-- or the live route is at or past one and the quest is out of the log; a step
+-- the player only looks at does not count). An accept at step s then stays
+-- done, so the route does not go back to the giver; a player's own abandon
+-- still reopens it, and an accept after the abandon (taking it again) is not
+-- done by it.
+function Own.abandonedByGuide(q, s)
 	local list = layoutOf(guide).abandons[q]
 	if not list then return false end
 	local m = ns.CharState().manual[guide.id]
 	for _, a in ipairs(list) do
-		if m and m[a.key] == true then return true end
-		if computed and a.s <= computed and not Compat().IsOnQuest(q) then return true end
+		if a.s >= s then
+			if m and m[a.key] == true then return true end
+			if computed and a.s <= computed and not Compat().IsOnQuest(q) then return true end
+		end
 	end
 	return false
 end
@@ -1500,7 +1504,7 @@ goalDone = function(s, g, goal)
 	local now = Own.passedNow[guide.id]
 	if now and now[Own.key(s, g)] then return true end
 	if t == "accept" then
-		return C.IsOnQuest(goal.quest) or questDone(goal.quest) or Own.abandonedByGuide(goal.quest)
+		return C.IsOnQuest(goal.quest) or questDone(goal.quest) or Own.abandonedByGuide(goal.quest, s)
 	elseif t == "turnin" then
 		-- `direct`: only its latched QUEST_TURNED_IN (checked above) or the
 		-- completed flag. The session's turn-ins would close every later goal
