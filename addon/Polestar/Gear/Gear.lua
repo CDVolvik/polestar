@@ -17,13 +17,20 @@
 --   Gear.IsUpgrade(link) -> bool, delta, pct
 --       Wearable now (level and proficiency) and at least gear.minUpgrade
 --       percent better (any gain fills an empty slot).
---   Gear.GetSpec() -> key, label, source ("setting" | "talents" | "default")
+--   Gear.FillsEmptySlot(link) -> bool
+--       Wearable now into an empty slot and no worse than nothing (score 0
+--       or more): what the bag arrow adds to IsUpgrade, so a weapon the
+--       weights give no value (a staff for a Druid) still beats a bare hand.
+--   Gear.GetSpec() -> key, label, source ("setting" | "talents" | "default" | "custom")
+--       "custom": an imported Pawn scale (Pawn.lua); key is "custom:<id>", label
+--       "Custom: <name>", and its weights are used as they are, at every level
 --   Gear.GetWeights() -> weights (read-only): the spec's band for this level
 --       (Gear.WEIGHT_BANDS, generated SpecData.lua), else the authored table
 --   Gear.GetWeightsInfo() -> { source, note, upTo, level } of the weights in use
 --   Gear.GetPlayer() -> { class, classID, level, race, raceID, faction } (read-only)
 --   Gear.GetRacial() -> the racial gear traits in use (Gear.RACIALS by raceID) | nil
 --   Gear.IsEnabled() -> bool
+--   Gear.Scales, Gear.Pawn: custom weights from Pawn scale strings (Pawn.lua)
 --
 -- Item stats: the client's C_Item.GetItemStats (Forever's own numbers,
 -- including random "of the Bear" suffixes) when it answers; equip bonuses it
@@ -61,6 +68,7 @@ do
 		rewards = true,
 		pickTooltip = true, -- "Best pick" on quest reward items' tooltips
 		bagArrows = true, -- the upgrade arrow on bag items (Bags.lua)
+		hideForPawn = false, -- no bag arrows while Pawn is installed (it draws its own)
 		useBags = true,
 		minUpgrade = 1, -- percent
 		spec = spec, -- per class: "auto" or a spec key
@@ -316,7 +324,7 @@ Gear.GetItemInfo = itemInfo
 ---------------------------------------------------------------------------
 
 local player = { class = nil, classID = nil, level = 1, race = nil, raceID = nil, faction = nil }
-local specKey, specSource, weights, weightsInfo
+local specKey, specSource, weights, weightsInfo, customLabel
 local racial
 
 local function refreshPlayer()
@@ -420,6 +428,14 @@ local function resolveSpec()
 		return
 	end
 	local chosen = ns.Get("gear.spec." .. class)
+	customLabel = nil
+	local scale = Gear.Scales.FromSetting(class, chosen)
+	if scale then
+		specKey, specSource, weights = "custom:" .. scale.id, "custom", scale.weights
+		weightsInfo = { source = "custom", note = scale.name }
+		customLabel = (L["Custom: %s"]):format(scale.name)
+		return
+	end
 	if chosen and chosen ~= "auto" and WEIGHTS[class][chosen] then
 		specKey, specSource = chosen, "setting"
 	else
@@ -430,6 +446,7 @@ end
 
 function Gear.GetSpec()
 	if not specSource then resolveSpec() end
+	if specSource == "custom" then return specKey, customLabel, specSource end
 	local spec = specKey and specByKey(player.class, specKey)
 	return specKey, spec and spec.label or nil, specSource
 end
@@ -719,6 +736,12 @@ function Gear.IsUpgrade(link)
 	return up and true or false, r.delta, r.pct
 end
 
+function Gear.FillsEmptySlot(link)
+	local r = Gear.CompareToEquipped(link)
+	if not (r and r.usable and r.empty and not r.equipped and r.delta) then return false end
+	return r.delta >= 0 and (r.minLevel or 0) <= player.level
+end
+
 ---------------------------------------------------------------------------
 -- Keeping answers fresh
 ---------------------------------------------------------------------------
@@ -780,15 +803,45 @@ function Gear.GainText(pct)
 end
 
 -- Where the spec in use came from (Gear.GetSpec's source).
-local SPEC_SOURCE = { setting = L["setting"], talents = L["talents"], default = L["default"] }
+local SPEC_SOURCE = { setting = L["setting"], talents = L["talents"], default = L["default"], custom = L["custom"] }
+
+-- /polestar gear scales: the custom scales for this class, the chosen one marked.
+function Gear.PrintScales()
+	local class = Gear.GetPlayer().class
+	local list = class and Gear.Scales.List(class) or {}
+	if #list == 0 then
+		ns.Print(L["No custom scales yet. /polestar gear import adds one."])
+		return
+	end
+	local chosen = class and Gear.Scales.Chosen(class)
+	ns.Print(L["Custom scales"] .. ":")
+	for i, sc in ipairs(list) do
+		DEFAULT_CHAT_FRAME:AddMessage(("  %s%d. %s"):format(chosen == sc and ">" or " ", i, sc.name))
+	end
+end
 
 ns.RegisterCommand("gear", function(rest)
+	rest = rest or ""
+	local sub, arg = rest:match("^(%a+)%s*(.-)%s*$")
+	if sub == "scales" then
+		if ns.UI and ns.UI.ShowScales then ns.UI.ShowScales() else Gear.PrintScales() end
+		return
+	elseif sub == "import" then
+		if arg ~= "" then
+			local class = Gear.GetPlayer().class
+			local ok, res = Gear.Scales.Import(arg, class)
+			ns.Print(ok and Gear.Scales.Summary(res) or Gear.Scales.ErrorText(res))
+		elseif ns.UI and ns.UI.ShowScaleImport then
+			ns.UI.ShowScaleImport()
+		end
+		return
+	end
 	local key, label, source = Gear.GetSpec()
 	if not key then
 		ns.Print(L["Gear advice: no weights for this class"])
 		return
 	end
-	if label then label = L[label] end
+	if label and source ~= "custom" then label = L[label] end
 	if rest == nil or rest == "" then
 		ns.Print(L["Gear weights"] .. ": " .. tostring(label) .. " (" .. (SPEC_SOURCE[source] or tostring(source)) .. ")")
 		return

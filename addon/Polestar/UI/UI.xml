@@ -9,11 +9,13 @@
 	<Script file="GearPick.lua"/>
 	<Script file="LevelTip.lua"/>
 	<Script file="Picker.lua"/>
+	<Script file="QuestLinks.lua"/>
 	<Script file="Lookup.lua"/>
 	<Script file="Dungeons.lua"/>
 	<Script file="RouteChoice.lua"/>
 	<Script file="Welcome.lua"/>
 	<Script file="Copy.lua"/>
+	<Script file="GearScales.lua"/>
 	<Script file="Report.lua"/>
 	<Script file="Packs.lua"/>
 	<Script file="Import.lua"/>

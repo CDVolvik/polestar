@@ -102,7 +102,7 @@ return {
 
 	-- Step 18: Crystal Lake
 	-- plural, as words: Fishing Traps = {object:694772} Fishing Trap
-	["The Fishing Traps sit along the west shore of the lake."] = "Die Fischfallen ({object:694772}) stehen am Westufer des Sees.",
+	["The Fishing Traps sit along the west shore of the lake."] = "Die Fischfallen stehen am Westufer des Sees.",
 
 	-- Step 20: The murloc camp
 	["The murloc camp"] = "Das Murloclager",
