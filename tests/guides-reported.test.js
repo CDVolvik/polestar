@@ -774,6 +774,21 @@ test(`${BARRENS}: Fitz's report: Jorn Skyseer is passed by while The Angry Scyth
 	assert.ok(done.every((s) => !s.endsWith(' skipped') && !s.endsWith(' na')), `with 905 done Jorn Skyseer is open: ${done.join(', ')}`);
 });
 
+// Miguel Antunes (#592): the Ishamuhale step sent them straight at the raptor,
+// but he only comes when a Fresh Zhevra Carcass (10338, looted from a zhevra)
+// is used at the Dead Tree (object 164644; the item's Summon Ishamuhale needs
+// that spell focus in the Forever client). The carcass is looted, then used at
+// the tree, before the Fang.
+test(`${BARRENS}: Miguel Antunes's report (#592): loot a zhevra carcass and use it at the Dead Tree before Ishamuhale's Fang`, { skip }, () => {
+	const list = goals(BARRENS);
+	const carcass = at(list, 'collect 10338 (Fresh Zhevra Carcass)', (g) => g.t === 'collect' && g.item === 10338);
+	const use = at(list, 'use 10338 (at the Dead Tree)', (g) => g.t === 'use' && g.item === 10338);
+	const fang = at(list, 'collect 5101 (Ishamuhale\'s Fang)', (g) => g.t === 'collect' && g.item === 5101);
+	assert.ok(carcass < use && use < fang, 'carcass, then the tree, then the Fang');
+	const tree = { map: 1413, x: 59.95, y: 30.21 };
+	assert.ok(yards(list[use].goal, tree) <= 20, `the carcass is used at the Dead Tree, not ${Math.round(yards(list[use].goal, tree))} yd off`);
+});
+
 // --- Forever chains the quest data has no prerequisite for, so the guide took
 // a follow-up at the same visit as the quest before it and the giver did not
 // offer it: Baine's chain in Mulgore (Kori, #112) and Mull's report (#51),
