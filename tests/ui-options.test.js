@@ -68,7 +68,7 @@ test('pages: by order, a page with nothing to set left out, Recorder and About l
 	// here; Gear registered no control: all left out of the list. Community guides
 	// (a custom page) and Integrations (which says when it has nothing) are
 	// always there.
-	assert.deepEqual(out.nav, ['Guide', 'Appearance', 'Map', 'Quests', 'Integrations', 'Community guides', 'Gamepad', 'Recorder', 'About']);
+	assert.deepEqual(out.nav, ['Guide', 'Appearance', 'Map', 'Quests', 'Integrations', 'Community guides', 'Gamepad', 'Guiding Stars', 'Recorder', 'About']);
 	assert.equal(out.title, 'Guide');
 	assert.deepEqual(out.tabs, ['Window', 'Arrow & routes', 'Automation']);
 	assert.deepEqual(out.pages.find((p) => p.name === 'Quests'), { name: 'Quests', key: 'quests', builtin: false, tabs: ['Map'] });
@@ -199,7 +199,7 @@ test('page keys stay English on a translated client: /polestar options quests, g
 		'options qualityoflife': 'qualityoflife: Komfort > Travel',
 		'options about': 'about: Über > ',
 		packs: 'guidepacks: Community-Guides > ',
-		keys: ['guide', 'appearance', 'map', 'questing', 'discovery', 'qualityoflife', 'integrations', 'guidepacks', 'gamepad', 'recorder', 'about'],
+		keys: ['guide', 'appearance', 'map', 'questing', 'discovery', 'qualityoflife', 'integrations', 'guidepacks', 'gamepad', 'thanks', 'recorder', 'about'],
 	});
 });
 

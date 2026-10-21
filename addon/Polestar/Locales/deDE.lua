@@ -998,6 +998,7 @@ L["After Polestar accepts or turns in a quest, closes the quest window the NPC o
 -- L["Skip them"] = ""
 -- L["Offer class quests"] = ""
 -- L["When one of your class's Class guides opens (your level, its first quest), the guide window offers to open it in a tab."] = ""
+L["Celebrating the supporters and contributors behind Polestar."] = "Wir feiern die Unterstützer und Mitwirkenden hinter Polestar."
 
 -- UI/Dungeons.lua
 L["Ready to turn in"] = "Bereit zur Abgabe"
@@ -2451,6 +2452,24 @@ L["Recommended: level %d"] = "Empfohlen: Stufe %d"
 -- L["Copy a built-in spec"] = ""
 -- L["Copied %s. Change its weights below."] = ""
 -- L["No custom scales yet. Paste a Pawn string above."] = ""
+
+-- UI/Thanks.lua
+L["Special thanks to:"] = "Besonderer Dank an:"
+L["Guiding Stars"] = "Leitsterne"
+L["Everyone who supports Polestar and helps build it."] = "Alle, die Polestar unterstützen und mitbauen."
+L["1 pull request"] = "1 Pull-Request"
+L["%d pull requests"] = "%d Pull-Requests"
+L["Thank you to everyone who supports Polestar and helps build it"] = "Danke an alle, die Polestar unterstützen und mitbauen"
+L["Polestar is open source:"] = "Polestar ist Open Source:"
+L["contribute on GitHub"] = "auf GitHub mitwirken"
+L["Contribute on GitHub"] = "Auf GitHub mitwirken"
+L["Top supporter"] = "Top-Unterstützer"
+L["Top contributor"] = "Top-Mitwirkender"
+L["Supporters"] = "Unterstützer"
+L["Contributors"] = "Mitwirkende"
+L["on GitHub"] = "auf GitHub"
+L["Thank you for making Polestar possible."] = "Danke, dass ihr Polestar möglich macht."
+L["No names here yet."] = "Noch keine Namen."
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["The arrow's target and the areas it spawns in."] = "Das Ziel des Pfeils und die Gebiete, in denen es spawnt."

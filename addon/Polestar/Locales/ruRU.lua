@@ -1761,6 +1761,7 @@ L["After Polestar accepts or turns in a quest, closes the quest window the NPC o
 -- L["Skip them"] = ""
 -- L["Offer class quests"] = ""
 -- L["When one of your class's Class guides opens (your level, its first quest), the guide window offers to open it in a tab."] = ""
+L["Celebrating the supporters and contributors behind Polestar."] = "Чествуем тех, кто поддерживает и развивает Polestar."
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Предупреждение рейда"
@@ -2476,6 +2477,24 @@ L["Bound your Hearthstone."] = "Камень возвращения привяз
 -- L["Copy a built-in spec"] = ""
 -- L["Copied %s. Change its weights below."] = ""
 -- L["No custom scales yet. Paste a Pawn string above."] = ""
+
+-- UI/Thanks.lua
+L["Special thanks to:"] = "Особая благодарность:"
+L["Guiding Stars"] = "Путеводные звёзды"
+L["Everyone who supports Polestar and helps build it."] = "Все, кто поддерживает Polestar и помогает его создавать."
+L["1 pull request"] = "1 пул-реквест"
+L["%d pull requests"] = "Пул-реквестов: %d"
+L["Thank you to everyone who supports Polestar and helps build it"] = "Спасибо всем, кто поддерживает Polestar и помогает его создавать"
+L["Polestar is open source:"] = "У Polestar открытый код:"
+L["contribute on GitHub"] = "помогите на GitHub"
+L["Contribute on GitHub"] = "Помочь на GitHub"
+L["Top supporter"] = "Главный спонсор"
+L["Top contributor"] = "Главный участник"
+L["Supporters"] = "Поддержавшие"
+L["Contributors"] = "Участники"
+L["on GitHub"] = "на GitHub"
+L["Thank you for making Polestar possible."] = "Спасибо, что делаете Polestar возможным."
+L["No names here yet."] = "Здесь пока нет имён."
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Ведет Shortest Path Forever. Отключите «Вести через Shortest Path Forever, если он установлен» (Настройки, Стрелка и маршруты), чтобы использовать стрелку Polestar."

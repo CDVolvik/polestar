@@ -1761,6 +1761,7 @@ L["After Polestar accepts or turns in a quest, closes the quest window the NPC o
 -- L["Skip them"] = ""
 -- L["Offer class quests"] = ""
 -- L["When one of your class's Class guides opens (your level, its first quest), the guide window offers to open it in a tab."] = ""
+L["Celebrating the supporters and contributors behind Polestar."] = "Un homenaje a quienes apoyan y contribuyen a Polestar."
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Aviso de la banda"
@@ -2476,6 +2477,24 @@ L["Bound your Hearthstone."] = "Piedra de hogar vinculada."
 -- L["Copy a built-in spec"] = ""
 -- L["Copied %s. Change its weights below."] = ""
 -- L["No custom scales yet. Paste a Pawn string above."] = ""
+
+-- UI/Thanks.lua
+L["Special thanks to:"] = "Agradecimiento especial a:"
+L["Guiding Stars"] = "Estrellas guía"
+L["Everyone who supports Polestar and helps build it."] = "Todos los que apoyan Polestar y ayudan a construirlo."
+L["1 pull request"] = "1 pull request"
+L["%d pull requests"] = "%d pull requests"
+L["Thank you to everyone who supports Polestar and helps build it"] = "Gracias a todos los que apoyan Polestar y ayudan a construirlo"
+L["Polestar is open source:"] = "Polestar es de código abierto:"
+L["contribute on GitHub"] = "contribuye en GitHub"
+L["Contribute on GitHub"] = "Contribuye en GitHub"
+L["Top supporter"] = "Mayor mecenas"
+L["Top contributor"] = "Mayor colaborador"
+L["Supporters"] = "Mecenas"
+L["Contributors"] = "Colaboradores"
+L["on GitHub"] = "en GitHub"
+L["Thank you for making Polestar possible."] = "Gracias por hacer posible Polestar."
+L["No names here yet."] = "Aún no hay nombres."
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever está guiando. Desactiva \"Guiar con Shortest Path Forever si está instalado\" (Opciones, Flecha y rutas) para usar la flecha de Polestar."

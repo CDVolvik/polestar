@@ -1762,6 +1762,7 @@ L["After Polestar accepts or turns in a quest, closes the quest window the NPC o
 -- L["Skip them"] = ""
 -- L["Offer class quests"] = ""
 -- L["When one of your class's Class guides opens (your level, its first quest), the guide window offers to open it in a tab."] = ""
+L["Celebrating the supporters and contributors behind Polestar."] = "Hommage aux soutiens et contributeurs de Polestar."
 
 -- Rares/Rares.lua
 L["Raid warning"] = "Avertissement de raid"
@@ -2477,6 +2478,24 @@ L["Bound your Hearthstone."] = "Pierre de foyer liée."
 -- L["Copy a built-in spec"] = ""
 -- L["Copied %s. Change its weights below."] = ""
 -- L["No custom scales yet. Paste a Pawn string above."] = ""
+
+-- UI/Thanks.lua
+L["Special thanks to:"] = "Remerciements spéciaux à :"
+L["Guiding Stars"] = "Étoiles guides"
+L["Everyone who supports Polestar and helps build it."] = "Tous ceux qui soutiennent Polestar et aident à le construire."
+L["1 pull request"] = "1 pull request"
+L["%d pull requests"] = "%d pull requests"
+L["Thank you to everyone who supports Polestar and helps build it"] = "Merci à tous ceux qui soutiennent Polestar et aident à le construire"
+L["Polestar is open source:"] = "Polestar est open source :"
+L["contribute on GitHub"] = "contribuer sur GitHub"
+L["Contribute on GitHub"] = "Contribuer sur GitHub"
+L["Top supporter"] = "Meilleur soutien"
+L["Top contributor"] = "Meilleur contributeur"
+L["Supporters"] = "Soutiens"
+L["Contributors"] = "Contributeurs"
+L["on GitHub"] = "sur GitHub"
+L["Thank you for making Polestar possible."] = "Merci de rendre Polestar possible."
+L["No names here yet."] = "Aucun nom pour l'instant."
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Alliance"] = "Alliance"

@@ -1761,6 +1761,7 @@ L["After Polestar accepts or turns in a quest, closes the quest window the NPC o
 -- L["Skip them"] = ""
 -- L["Offer class quests"] = ""
 -- L["When one of your class's Class guides opens (your level, its first quest), the guide window offers to open it in a tab."] = ""
+L["Celebrating the supporters and contributors behind Polestar."] = "Polestar를 후원하고 함께 만드는 분들을 기립니다."
 
 -- Rares/Rares.lua
 L["Raid warning"] = "공격대 경보"
@@ -2476,6 +2477,24 @@ L["Bound your Hearthstone."] = "귀환석이 묶였습니다."
 -- L["Copy a built-in spec"] = ""
 -- L["Copied %s. Change its weights below."] = ""
 -- L["No custom scales yet. Paste a Pawn string above."] = ""
+
+-- UI/Thanks.lua
+L["Special thanks to:"] = "특별히 감사드립니다:"
+L["Guiding Stars"] = "길잡이 별"
+L["Everyone who supports Polestar and helps build it."] = "Polestar를 후원하고 함께 만드는 모든 분."
+L["1 pull request"] = "풀 리퀘스트 1개"
+L["%d pull requests"] = "풀 리퀘스트 %d개"
+L["Thank you to everyone who supports Polestar and helps build it"] = "Polestar를 후원하고 함께 만드는 모든 분께 감사드립니다"
+L["Polestar is open source:"] = "Polestar는 오픈 소스입니다:"
+L["contribute on GitHub"] = "GitHub에서 기여하기"
+L["Contribute on GitHub"] = "GitHub에서 기여하기"
+L["Top supporter"] = "최고 후원자"
+L["Top contributor"] = "최고 기여자"
+L["Supporters"] = "후원자"
+L["Contributors"] = "기여자"
+L["on GitHub"] = "GitHub"
+L["Thank you for making Polestar possible."] = "Polestar를 가능하게 해 주셔서 감사합니다."
+L["No names here yet."] = "아직 이름이 없습니다."
 
 -- No longer in the code (its English changed or it went away): reuse or delete.
 -- L["Shortest Path Forever is guiding. Turn off \"Guide with Shortest Path Forever when it's installed\" (Options, Arrow & routes) to use Polestar's arrow."] = "Shortest Path Forever가 가이드 중입니다. Polestar 화살표를 쓰려면 \"설치 시 Shortest Path Forever로 가이드\"를 끄십시오(설정, 화살표 및 경로)."
