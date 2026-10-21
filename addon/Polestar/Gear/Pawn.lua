@@ -81,12 +81,20 @@ local function trim(s)
 	return first and s:match(".*%S", first) or ""
 end
 
--- A plain decimal: 1, 1.5, .5, 1., -2, +3. Not hex, not an exponent.
+local HUGE = math.huge
+
+local function finite(n)
+	return type(n) == "number" and n == n and n > -HUGE and n < HUGE
+end
+
+-- A plain decimal: 1, 1.5, .5, 1., -2, +3. Not hex, not an exponent, and
+-- not so many digits that it reads as infinity.
 local function number(s)
 	if type(s) ~= "string" then return nil end
 	s = trim(s)
 	if not s:find("%d") or not s:find("^[+-]?%d*%.?%d*$") then return nil end
-	return tonumber(s)
+	local n = tonumber(s)
+	return finite(n) and n or nil
 end
 Pawn.Number = number
 
@@ -385,7 +393,7 @@ function Scales.SetWeight(class, id, key, value)
 	if not scale then return false, "gone" end
 	if not isStat(key) then return false, "stat" end
 	if type(value) == "string" then value = number(value) end
-	if type(value) ~= "number" then return false, "number" end
+	if not finite(value) then return false, "number" end
 	scale.weights[key] = value
 	rebuild(class, scale)
 	changed()

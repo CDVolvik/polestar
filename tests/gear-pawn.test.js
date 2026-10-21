@@ -71,6 +71,20 @@ test('a missing name parses with none; hex and words are not numbers', () => {
 	assert.equal(r.meta.Strength, '0x10');
 });
 
+test('a number so long it reads as infinity is no weight, in a string or typed in the details', () => {
+	const big = '9'.repeat(400);
+	const r = parse(`( Pawn: v1: "N": Strength=${big}, Agility=-${big}, Stamina=1 )`);
+	assert.deepEqual(r.stats, { Stamina: 1 });
+	const [out] = run(`
+		local _, res = G.Scales.Import('( Pawn: v1: "T": Class=Warrior, Strength=2 )')
+		local ok, err = G.Scales.SetWeight("WARRIOR", res.scale.id, "str", "${big}")
+		local okInf, errInf = G.Scales.SetWeight("WARRIOR", res.scale.id, "str", math.huge)
+		local okNan = G.Scales.SetWeight("WARRIOR", res.scale.id, "str", 0 / 0)
+		emit({ ok = ok, err = err, okInf = okInf, errInf = errInf, okNan = okNan, str = res.scale.weights.str, number = G.Pawn.Number("${big}") or false })
+	`);
+	assert.deepEqual(out, { ok: false, err: 'number', okInf: false, errInf: 'number', okNan: false, str: 2, number: false });
+});
+
 test("Pawn's X marker skips a stat; a repeated key keeps its last value", () => {
 	const r = parse('( Pawn: v1: "N": Strength=1, Agility=X, Strength=3 )');
 	assert.deepEqual(r.stats, { Strength: 3 });
