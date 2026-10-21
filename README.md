@@ -217,6 +217,9 @@ map. Renders of every window and state, drawn without the game, are in
   kills, loot, places reached, trainers visited, skills and reputation. Your
   place in a guide is recomputed from your quest log, so it survives lost
   saved variables.
+- **Skip a quest.** Right-click a quest's line, Skip this quest: the guide
+  drops it and the quests that follow from it, in every guide, and the
+  banner's Undo brings them back. Skip, at the top, passes the whole step.
 - **It catches up.** With "Skip grey quests" on, a guide you open on a
   character who already did part of the route goes over what is done to
   where you are: grey quests are left out, and so are green ones behind your
