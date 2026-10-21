@@ -137,7 +137,7 @@ A step must contain at least one goal.
 | `interact` | `<objectId>` | Click a game object. |
 | `use` | `<itemId> ["Item name"]` | |
 | `sethome` | `"Location"` or `nearest` | Inn location as the game names it (the bind location it reports), e.g. `"Goldshire"`. Without `npc` the compiler names the inn's innkeeper, so the arrow leads to them ("What the compiler fills in"); `npc <id>` picks one yourself. `sethome nearest` binds at the nearest own-faction inn when the step comes up. Lint warns about a location no inn has (`polestar find --kind inn`). Completes on every client language: binding at the inn's innkeeper, or a bind location the client names as the inn's area (see "Places by ID"). A player with "Set your home at the guide's inn" on (Quality of Life, Travel; off by default) has Polestar bind and confirm when they talk to that innkeeper (for `nearest`, any innkeeper the compiler listed for it), never at another inn. |
-| `hearth` | `"Location"` | Done when the zone or subzone where you land has that name: an inn's location or the zone it is in, in the client's language when the compiler finds its area ("Places by ID"). Lint warns about any other name. |
+| `hearth` | `"Location"` | Done when the zone or subzone where you land has that name: an inn's location or the zone it is in, in the client's language when the compiler finds its area ("Places by ID"). Lint warns about any other name. While the Hearthstone is on cooldown (or not in the bags), the goal says how long until it is ready and the arrow leads to that inn on foot, so a "Hearthstone on cooldown?" note is not needed. |
 | `getfp` | `"Location"` | Discover a flight path: the flight point's name (`"Stormwind, Elwynn"`) or its part before the comma (`"Stormwind"`). The compiler adds its taxi node, so it completes on every client language ("Places by ID"), and without `npc` that node's flight master, so the arrow leads to them ("What the compiler fills in"); `npc <id>` picks one yourself. Lint warns about a name no flight point has (`polestar find --kind flight`). |
 | `fly` | `"Location"` | Take a flight: the flight point's town (`"Stormwind"`), as the flight map picks the node by it. Done when the zone or subzone where you land has that name (in the client's language when the compiler finds its area, "Places by ID"); where the landing area is named differently (`"Stormwind City"`), the goal checks off only through a later goal of its step. Lint warns about a name that is no flight point's town, inn location or zone they are in. |
 | `enter` | `"Location"` | Be in a zone or an area: done once the zone or subzone text reads that name (`"Darnassus"`, `"Goldshire"`; in the client's language when the compiler finds its area, "Places by ID"), and kept once the step had it, so walking on does not reopen it. Coordinates (`@x,y`) only point the arrow there. Lint warns about a name that is no zone or area of the client's tables. |
@@ -251,6 +251,7 @@ step Back to Gornek
 | `done <label>` | the step carrying `label <label>` in this guide was completed: it applies, its goals are done, and it was not skipped by the player, a failed `when` or a `skipto` jump (see "Jumps"); not on a `next` line |
 | `skill <Profession> <N>` | the character's rank in that profession is N (1 or more) or higher, the profession named as for the `skill` goal (`when skill Cooking 50`, `when skill "First Aid" 1`); one not learned counts as rank 0, so `!skill Herbalism 1` holds while the character has no Herbalism |
 | `cooldown item <item>`, `cooldown spell <spell>` | the item or spell is on cooldown, the global cooldown aside: `when !cooldown item 6948` while the Hearthstone is ready. Polestar looks again when the cooldown runs out |
+| `group <quest>` | the player chose to do that group quest; `!group` holds when they chose to skip it. Until they answer, the route waits at the step and asks (see "Group quests" below); not on a `next` line or a `skipto` |
 
 `!` in front of any predicate but `level` turns it around: `!onquest 788`
 holds while the quest is not in the log, `!has 159 x5` while the bags hold
@@ -326,6 +327,47 @@ the outcome is stored once the route has passed the step: a sword step
 skipped because the character wore something better does not come back
 later. The item id is checked against the data, as for `has`.
 
+**Group quests.** `when group <quest>` is for a quest that needs a group (an
+elite, an escort): the player decides whether to do it. When the route
+reaches a step with `when group <quest>` or `when !group <quest>` and the
+player has not answered for that quest yet, the route waits there and the
+guide window asks: "Skip it" (the default, the solo route) or "Do it with a
+group". Quest automation leaves the quest alone until then. The answer is
+kept per character, once per quest, for every guide; Options, Discovery,
+Group quests lists them and changes an answer until the route has passed
+the step. "Do it" makes `when group` hold and `when !group` fail; "Skip it"
+the other way round.
+
+Put `when group` on the quest's accept step: when it fails, the quest's
+turn-in and objective goals later in the guide go with it, as for any
+accept that does not apply. A solo way to the same objective is a step with
+`when !group`:
+
+```
+step Arachnophobia
+  when group 6284
+  accept 6284
+
+step Anaya's Pendant, the solo way
+  when !group 963
+  complete 963
+
+step Anaya's Pendant with a group
+  when group 963
+  complete 963 group 3
+```
+
+The answer is never taken from the quest log: a player may have the quest
+and still choose the solo way. The route does not stop to ask about a quest
+there is nothing to do for now: one already handed in, or one the step
+accepts but the character cannot take (a grey quest "Skip grey quests"
+leaves out, one closed for good, one above their level or missing its
+prerequisite). The step then applies as if it had no `group`
+predicate, and the question comes once the quest can be taken. An `along`
+step does not wait; it applies until the answer says otherwise. `group`
+cannot be used on a `next` line or a `skipto`, where there is no step to ask
+at. The quest id is checked against the data.
+
 ### Conditional hand-offs
 
 `next <id> when <predicate>` makes one `next` option conditional: one guide,
@@ -351,9 +393,9 @@ time. A subzone is looked up in the zone where the guide ends.
 A pack with a `when` anywhere (on a step or a `next` option), or a `level`
 goal inside a level (`level 12.5`), is written in pack format 4, which
 Polestar 0.2.6 and later read. A `when money`, `when dungeon`, `when
-upgrade`, `when skill` or `when cooldown` predicate (above) writes format 5
-(Polestar 0.3.0 and later), because 0.2.6 knows `when` but not those
-predicates; `money`, `task`, `enter` and `cast` goals also need format 5
+upgrade`, `when skill`, `when cooldown` or `when group` predicate (above)
+writes format 5 (Polestar 0.3.0 and later), because 0.2.6 knows `when` but
+not those predicates; `money`, `task`, `enter` and `cast` goals also need format 5
 (docs/PACK_FORMAT.md).
 
 ## Along the way

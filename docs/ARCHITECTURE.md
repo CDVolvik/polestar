@@ -312,7 +312,8 @@ reloads the UI when it changes). With it on, Polestar:
   the key bindings open Polestar; the Recorder page calls
   `PolestarRecorder_Command`;
 - adds no entry to the world map and minimap tracking menus
-  (`Menu.ModifyMenu`, Nav/Nearby);
+  (`Menu.ModifyMenu`, Nav/Nearby) or to the quest log and objective
+  tracker menus (UI/QuestLinks);
 - puts no window in `UISpecialFrames` (`CloseOnEscape`), which the
   gamepad's menus read and close;
 - opens no world map (`Compat.OpenWorldMap`; a dungeon page has no "Show
@@ -591,7 +592,9 @@ registry, which calls addon handlers through `securecallfunction`),
 `C_Map.GetMapChildrenInfo`, `hooksecurefunc` on TomTom's own table, the
 `TomTom` global and `SlashCmdList`), the cursor on the minimap
 (`GetCursorPosition`; `Pins.MinimapCursor()`, `Nav/Pins.lua`), the nearby
-services' tracking menus (`Menu.ModifyMenu`, `Nav/Nearby.lua`) and the
+services' tracking menus (`Menu.ModifyMenu`, `Nav/Nearby.lua`), the quest
+log and objective tracker menus (`Menu.ModifyMenu`, `GetMouseFoci`;
+`UI/QuestLinks.lua`) and the
 gamepad and key binding API (`C_GamePad`, `C_InputInterfaceStyle`,
 `C_KeyBindings`, `SetBinding`, `GetBindingKey`, `SetOverrideBindingClick`,
 `IsKeyDown`; `UI/Gamepad.lua`). Frame and system calls (`GetTime`, `GetServerTime`, `C_Timer`,
@@ -1106,7 +1109,13 @@ Polestar.Engine.GetProgress() -> doneSteps, totalSteps
   learned is 0), and an item or spell on cooldown (`Own.onCooldown`: longer
   than the global cooldown and not run out; it times an update for when it
   ends, and `BAG_UPDATE_COOLDOWN`/`SPELL_UPDATE_COOLDOWN` update once a guide
-  has asked). `stepApplies` reads them, so such a step counts as one
+  has asked), and the player's answer at a group quest (`Own.groupAnswer`:
+  `CharState().groupQuests[q]`, "do" or "skip", set by `Engine.AnswerGroup`
+  from the guide window's banner or Options, Discovery, Group quests;
+  `Engine.GroupQuests` lists a character's). An unanswered `group` predicate
+  holds and `stepDone` is false while `Own.groupPending` names its quest (not
+  on an along step), so the route waits at the step; `Engine.GroupQuestion`
+  gives the banner the quest, and `wantsFrom` keeps automation off it. `stepApplies` reads them, so such a step counts as one
   for other characters while they fail, and a turn-in whose only accept sits
   there goes with it (`orphaned`). When the route moves past a step
   (`latchPassed`), its outcome is stored per character (`Own.latchWhen`): a
@@ -3808,6 +3817,12 @@ Reading flow: `docs/DESIGN.md` ("Intent" and "The Guide Window").
   `why`, "Guide data"), progress, pitch, pros and cons, a favourite
   star, "Load guide" and "Open in new tab". Selecting never loads; the buttons,
   a double-click or Enter do.
+  `UI.Picker.ShowQuest(questID)` opens this search with the client's quest
+  title, matching the exact ID in applicable guide goals. Its details put
+  those steps and their tips before the pitch; selecting loads nothing.
+  `UI/QuestLinks.lua` adds this action to the native quest log and objective
+  tracker menus through `Menu.ModifyMenu`, only with the keyboard and mouse
+  interface. It works without the Codex; only installed guides are searched.
   Its search also lists Codex matches under the guides (`UI.LookupRows`,
   `UI.LookupCount`, `UI.LookupTotal` from `UI/Lookup.lua`): an "In the
   Codex" folder with up to three per kind and a "Look up everything" line;
