@@ -134,6 +134,9 @@ test('a group quest with nothing to do now does not hold the route; one not open
 	// Handed in already.
 	const [done] = run({ before: 'w.complete({ 7 })', script: ask });
 	assert.deepEqual(done, { at: 3, q: false });
+	// Skipped by the player (Skip quest).
+	const [skipped] = run({ saved: { schema: 1, guide: 'test/group', skippedQuests: { 7: true } }, script: ask });
+	assert.deepEqual(skipped, { at: 3, q: false });
 	// Grey, left out by the catch-up ("Skip grey quests").
 	const grey = GROUP_GUIDE.replace('{ t = "accept", quest = 7,', '{ t = "accept", quest = 7, qlvl = 2,').replace('maxLevel = 10', 'maxLevel = 30');
 	const [left] = run({ guide: grey, before: 'w.setLevel(20)', db: 'PolestarDB = { schema = 1, settings = { behavior = { skipGrey = true } } }; ', script: ask });
