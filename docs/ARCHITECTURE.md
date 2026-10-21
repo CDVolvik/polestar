@@ -2372,24 +2372,38 @@ on is searched first: player to the current walk leg's end, or to the target,
 with `Path.Find` on the player's continent (from the player's height,
 `Compat.GetPlayerUnitPosition`; a ghost with `waterWalking`). Until the answer, and
 whenever there is none, the arrow points straight as before. With a path,
-`Nav.Sample` follows it with padding, so a road's little wiggles do not
-jerk the arrow: the next point is passed
-within 5 yd (the nearest segment among the next 12 decides how far along the
-player is), and from it the arrow aims at the furthest path point up to
-30 yd along the path (`AHEAD`) such that every path point on the way lies
-within 10 yd (`PAD`) of the straight line from the player to it, neither
-behind the player nor beyond it along that line. A real corner (a point
-more than 10 yd off the line) still turns the arrow, gradually from about
-30 yd out and fully at the corner; past the next point it aims at the
-middle of that point and the one before, so a zigzag of points either side
-of the road cancels out. It never aims past a point more than 6 yd
-(`FLOOR_STEP`) above or below the next one (another floor), past the path's
-end (the leg's goal: crossings, approach chains and guide gotos are legs of
-their own), or, on a piece of a split walk, past the last path point before
-its chokepoint (`Travel.Aim` passes `leg.seg`). The yards it reports are
-still the yards left along the path (to the next point, then along it),
-never to the aim point; `Travel.Aim` returns those yards as a fifth value.
-The arrow eases into each new direction (`Nav/Arrow.lua`'s `DAMPING`).
+`Nav.Sample` follows it with `Nav/Follow.lua`, which knows nothing of where
+the path came from (the walking engine today, a guide leg's polyline later):
+`Follow.Step(xs, ys, zs, left, n, state, px, py, stop)`. The player's place
+on the path is their projection onto it: the nearest point on a segment
+from the current one to 60 yd further along, so a point passed to one side
+counts as passed, and coming at the path at an angle or walking beside a
+road never holds the arrow on a node. The projection only moves forward;
+a later segment that is not the next one takes over only when 4 yd nearer
+(the far side of a hairpin), and it never moves past a blocking point the
+player has not come within 5 yd of: a point more than 6 yd (`FLOOR_STEP`)
+above or below the one before it (stairs, a ramp, a lift's landing), and,
+on a piece of a split walk, every point after the last one before its
+chokepoint (`Travel.Aim` passes `leg.seg` as `stop`). From the projection the
+arrow aims at the furthest point along the path within 35 yd of the player
+(`RADIUS`) and 45 yd along it (`AHEAD`), between points, so it slides along
+the path as the player moves. Every path point on the way lies within
+12 yd (`PAD`) of the line from the projection to it, so a road's wiggles stay
+inside; a real corner stops the aim where the line cuts inside it by 6 yd
+(`CORNER_PAD`), and it comes round as the player does. Where points are 8 yd
+or less apart on both sides, the aim slides along the path smoothed over each
+point's neighbours, so a zigzag either side of the road cancels out. It never
+aims onto another floor, past the path's end (the leg's goal: crossings,
+approach chains and guide gotos are legs of their own) or past `stop`. When
+no path ahead lies within 35 yd (the player has wandered off), it points back
+to the path 10 yd ahead of their place on it. The yards it reports are
+the yards left along the path (straight to the end of the segment the player
+is on, then along it), never to the aim point; `Travel.Aim` returns those
+yards as a fifth value, and `Walk.Progress(c, x, y)` gives the yards along
+the path to the player's place on it and the yards between them. The arrow
+eases into each new direction (`Nav/Arrow.lua`'s `DAMPING`, swinging at most
+`MAX_TURN`, about 200 degrees a second), on the target's bearing on the map:
+turning the camera moves it at once.
 A new goal (more than 1 yd away from the searched one) cancels the search
 in flight and drops the path; more than 25 yd off the path asks again (at
 most every 2 s, the old path kept meanwhile); a failed search (`nodata`,
