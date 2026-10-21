@@ -32,8 +32,12 @@ why The Ruby-Adorned Blade, C's payment for a solo job inside the Scarlet Monast
 # tooltip confirms suspicious activity breaks the disguise. Letter timing
 # differs from the datamined minimum; no exact mail level is asserted.
 
+# Follow-up, 2026-10-21: Gaunerh (78676) and Kimeera (78699) report
+# the invitation at 30 after the horn job and a city visit. This is
+# player evidence, not a guaranteed mail level or a level-gate change.
+
 step C's dead drop
-  tip The Dead Drop is a chest near Pyrewood Village in southern Silverpine, just south of Shadowfang Keep. After the horn job and C's next letter, check it for the new job. The data lists a minimum of 25; reaching that level alone does not guarantee the letter or quest is available. If no new note is offered, continue leveling and check after C writes.
+  tip The Dead Drop is a chest near Pyrewood Village in southern Silverpine, just south of Shadowfang Keep. After the horn job and C's next letter, check it for the new job. The data lists a minimum of 25, but beta players report receiving the invitation at 30 after the horn job and a city visit; this is not a guaranteed mail level. If no new note is offered, continue leveling and check after C writes.
   level 25
   accept 78676 object 410369                  -- Dead Drop
 

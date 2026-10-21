@@ -13,7 +13,7 @@ return {
 	-- Step 1: C's dead drop
 	["C's dead drop"] = "C的秘密投递点",
 	-- {object:410369} Dead Drop · {area:204} Pyrewood Village · {area:236} Shadowfang Keep
-	["The {object:410369} is a chest near {area:204} in southern Silverpine, just south of {area:236}. After the horn job and C's next letter, check it for the new job. The data lists a minimum of 25; reaching that level alone does not guarantee the letter or quest is available. If no new note is offered, continue leveling and check after C writes."] = "{object:410369}是银松森林南部{area:204}附近的箱子，就在{area:236}南边。完成号角委托并收到C的下一封信后，再来查看新委托。资料标注最低25级，但达到该等级并不保证信件或任务已经触发。没有新字条时先继续升级，收到来信后再查看。",
+	["The {object:410369} is a chest near {area:204} in southern Silverpine, just south of {area:236}. After the horn job and C's next letter, check it for the new job. The data lists a minimum of 25, but beta players report receiving the invitation at 30 after the horn job and a city visit; this is not a guaranteed mail level. If no new note is offered, continue leveling and check after C writes."] = "{object:410369}是银松森林南部{area:204}附近的箱子，就在{area:236}南边。完成号角委托并收到C的下一封信后，再来查看新委托。资料标注最低25级，但有测试服玩家完成号角委托后，在30级回主城时才收到邀请；这并非保证触发的来信等级。没有新字条时先继续升级，收到来信后再查看。",
 
 	-- Step 2: The Scarlet Monastery
 	-- {area:796} Scarlet Monastery
@@ -28,6 +28,7 @@ return {
 	["Place the eye in the {object:410369} near Pyrewood. Check a capital mailbox for C's payment letter on your next planned city visit, then return here for the reward quest. The payment may not be available immediately; do not repeat the infiltration just because the reward has not appeared."] = "把眼睛放进焚木村附近的{object:410369}。下次计划中回主城时，检查邮箱里C的报酬来信，再回这里领取奖励任务。报酬可能不会立刻出现，不要因为暂时没有奖励就重新潜入。",
 
 	-- No longer in the guide (its English changed or it went away): reuse or delete.
+	-- ["The {object:410369} is a chest near {area:204} in southern Silverpine, just south of {area:236}. After the horn job and C's next letter, check it for the new job. The data lists a minimum of 25; reaching that level alone does not guarantee the letter or quest is available. If no new note is offered, continue leveling and check after C writes."] = "{object:410369}是银松森林南部{area:204}附近的箱子，就在{area:236}南边。完成号角委托并收到C的下一封信后，再来查看新委托。资料标注最低25级，但达到该等级并不保证信件或任务已经触发。没有新字条时先继续升级，收到来信后再查看。",
 	-- ["Find the Eye of Bhossca inside the {area:796}."] = "在{area:796}里找到那只眼睛。",
 	-- ["Place the eye in the {object:410369} near Pyrewood. C's payment is the second Eye of Bhossca quest at the same chest."] = "把眼睛放进焚木村附近的{object:410369}。C的报酬是同一个箱子的第二个眼睛任务。",
 	-- ["The monastery stands in the far north-east of {zone:1420}. Go in alone; C advises a disguise from the monastery's grounds before you enter."] = "修道院位于{zone:1420}的最东北端。独自进去；C建议你进去前先从修道院的庭院弄一身伪装。",
