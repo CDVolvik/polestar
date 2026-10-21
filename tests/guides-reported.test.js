@@ -2123,6 +2123,22 @@ test(`${WESTFALL}: Pynte's report (#416): the farm quests and Report to Gryan St
 	assert.ok(!elwynn.some(({ goal }) => goal.t === 'getfp' && goal.node === hill.step.goals.find((g) => g.t === 'getfp').node), 'Elwynn leaves the Sentinel Hill flight path to Westfall');
 });
 
+// --- Handful of Oats (Xaden Ryan, #621): the oats were the first step's last
+// goal, unplaced, so before Saldean's the arrow searched every Sack of Oats
+// in the zone, down to Moonbrook, and the far sacks were empty. They are
+// gathered on the return to the Jansen Stead, in its fields, beside the
+// turn-in.
+test(`${WESTFALL}: Xaden Ryan's report (#621): the oats are gathered in the Jansen Stead's fields on the way back, not searched over the zone on the road in`, { skip }, () => {
+	const list = goals(WESTFALL);
+	const oats = at(list, 'collect 1528', (g) => g.t === 'collect' && g.item === 1528);
+	const turnin = at(list, 'turnin 151', is('turnin', 151));
+	assert.ok(oats > at(list, 'turnin 109', is('turnin', 109)), 'the oats are not gathered on the road in, before Sentinel Hill');
+	assert.ok(oats < turnin && list[oats].step === list[turnin].step, 'the oats are gathered on the turn-in stop, before Verna');
+	const { goal } = list[oats];
+	assert.ok(located(list[oats]) && !goal.spread, 'the oats have a point and are no zone-wide search');
+	assert.ok(yards(goal, list[turnin].goal) < 250, `the oats lead into the Jansen Stead's fields (${goal.x},${goal.y})`);
+});
+
 // --- Thendal Grove (Alx-Ryan, #363): the guide walked you to Rorian, up the
 // watchtower a few steps from Elatrell, then floated you back down to Rorian.
 // The tower comes first now: The Anchors of Zephras and Falling With Style
