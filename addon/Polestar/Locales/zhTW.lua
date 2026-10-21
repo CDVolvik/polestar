@@ -105,7 +105,6 @@ L["Grey, kept: opens %s"] = "灰色，保留：開啟%s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
 -- L["Tame"] = ""
-L["You skipped this quest"] = "你跳過了這個任務"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "接受 %s 將永久關閉 %s。"
@@ -1041,12 +1040,6 @@ L["Along the way"] = "順路完成"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
-L["Right-click to bring this quest back"] = "右鍵點擊以恢復這個任務"
-L["Right-click to tick it done or skip this quest"] = "右鍵點擊以標記為完成或跳過這個任務"
-L["Skip this quest"] = "跳過這個任務"
-L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "這個任務及其後續任務會在所有指南中跳過。再次右鍵點擊即可恢復。"
-L["the quest"] = "該任務"
-L["and the quests that follow from it"] = "及其後續任務"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "前往 %s 的升降梯"

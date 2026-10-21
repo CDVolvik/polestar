@@ -100,7 +100,6 @@ L["Grey, kept: opens %s"] = "Grau, behalten: öffnet %s"
 L["level and share of it: %d (%d%%)"] = "Stufe und Anteil: %d (%d%%)"
 -- L["Have at least"] = ""
 -- L["Tame"] = ""
--- L["You skipped this quest"] = ""
 
 -- Core/Guides.lua
 L["Needs Polestar %s or newer."] = "Benötigt Polestar %s oder neuer."
@@ -373,12 +372,6 @@ L["Along the way"] = "Nebenbei"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
--- L["Right-click to bring this quest back"] = ""
--- L["Right-click to tick it done or skip this quest"] = ""
--- L["Skip this quest"] = ""
--- L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = ""
--- L["the quest"] = ""
--- L["and the quests that follow from it"] = ""
 
 -- UI/Lookup.lua
 L["Both factions"] = "Beide Fraktionen"

@@ -105,7 +105,6 @@ L["Grey, kept: opens %s"] = "Cinza, mantida: libera %s"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
 -- L["Tame"] = ""
-L["You skipped this quest"] = "Você pulou esta missão"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Pegar %s fecha %s para sempre."
@@ -1041,12 +1040,6 @@ L["Along the way"] = "No caminho"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
-L["Right-click to bring this quest back"] = "Clique com o botão direito para retomar esta missão"
-L["Right-click to tick it done or skip this quest"] = "Clique com o botão direito para marcar como feita ou pular esta missão"
-L["Skip this quest"] = "Pular esta missão"
-L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "Esta missão e as que dependem dela são puladas em todos os guias. Outro clique com o botão direito a retoma."
-L["the quest"] = "a missão"
-L["and the quests that follow from it"] = "e as missões que dependem dela"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Elevador para %s"

@@ -105,7 +105,6 @@ L["Grey, kept: opens %s"] = "Серое, оставлено: открывает 
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
 -- L["Tame"] = ""
-L["You skipped this quest"] = "Вы пропустили это задание"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "Взяв %s, вы навсегда закроете %s."
@@ -1041,12 +1040,6 @@ L["Along the way"] = "Попутные цели"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
-L["Right-click to bring this quest back"] = "Правый клик — вернуть это задание"
-L["Right-click to tick it done or skip this quest"] = "Правый клик — отметить выполненным или пропустить задание"
-L["Skip this quest"] = "Пропустить задание"
-L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "Это задание и следующие за ним пропускаются во всех гайдах. Повторный правый клик возвращает его."
-L["the quest"] = "задание"
-L["and the quests that follow from it"] = "и задания, которые следуют за ним"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "Подъемник до %s"

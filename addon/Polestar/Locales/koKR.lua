@@ -105,7 +105,6 @@ L["Grey, kept: opens %s"] = "회색, 유지됨: %s 퀘스트를 엽니다"
 -- L["level and share of it: %d (%d%%)"] = ""
 -- L["Have at least"] = ""
 -- L["Tame"] = ""
-L["You skipped this quest"] = "이 퀘스트를 건너뛰었습니다"
 
 -- Core/Closes.lua
 L["Taking %s closes %s for good."] = "%s 퀘스트를 받으면 %s 퀘스트는 영영 받을 수 없습니다."
@@ -1041,12 +1040,6 @@ L["Along the way"] = "가는 길에"
 -- L["You have %d g."] = ""
 -- L["Take me there"] = ""
 -- L["Riding trainer"] = ""
-L["Right-click to bring this quest back"] = "우클릭하여 이 퀘스트를 되돌립니다"
-L["Right-click to tick it done or skip this quest"] = "우클릭하여 완료로 표시하거나 이 퀘스트를 건너뜁니다"
-L["Skip this quest"] = "이 퀘스트 건너뛰기"
-L["This quest and the ones that follow from it are skipped, in every guide. Right-click it again to bring it back."] = "이 퀘스트와 이어지는 퀘스트를 모든 가이드에서 건너뜁니다. 다시 우클릭하면 되돌립니다."
-L["the quest"] = "퀘스트"
-L["and the quests that follow from it"] = "및 이어지는 퀘스트"
 
 -- UI/JourneyPanel.lua
 L["Lift to %s"] = "%s행 승강기"
