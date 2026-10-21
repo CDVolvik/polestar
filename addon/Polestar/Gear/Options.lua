@@ -3,6 +3,8 @@
 -- file has loaded, so the registry exists whichever module defines it. The
 -- weights dropdown lists the player's own class specs; the setting is kept
 -- per class (gear.spec.<CLASS>), so alts of other classes keep "Automatic".
+-- Imported Pawn scales (Pawn.lua) follow the specs as "Custom: <name>"; one
+-- button opens the window that manages them (UI/GearScales.lua).
 
 local ADDON, ns = ...
 
@@ -25,6 +27,20 @@ local function disabled()
 	return not ns.Get("gear.enabled")
 end
 
+local playerClass
+
+-- The built-in specs, then this class's custom scales.
+local function choices()
+	local out = {}
+	for i = 1, #specChoices do out[i] = specChoices[i] end
+	for _, scale in ipairs(Gear.Scales.List(playerClass)) do
+		out[#out + 1] = { value = "custom:" .. scale.id, label = (L["Custom: %s"]):format(scale.name) }
+	end
+	return out
+end
+
+local function UI() return ns.UI end
+
 local registered = false
 
 local function register()
@@ -32,14 +48,18 @@ local function register()
 	local class = Gear.Client.PlayerClass()
 	if not class then return end
 	fillChoices(class)
+	playerClass = class
 	registered = true
 	ns.RegisterOptions({
 		page = L["Questing"], tab = L["Rewards & gear"], section = L["Gear advice"],
 		controls = {
 			{ kind = "toggle", key = "gear.enabled", label = L["Gear advice"],
 				help = L["Score items for your class and talents and point out upgrades."] },
-			{ kind = "dropdown", key = "gear.spec." .. class, label = L["Stat weights"], choices = specChoices, disabled = disabled,
+			{ kind = "dropdown", key = "gear.spec." .. class, label = L["Stat weights"], choices = choices, disabled = disabled,
 				help = L["Which levelling weights score your items. Automatic follows the talent tree with the most points."] },
+			{ kind = "button", icon = "bolt", label = L["Manage custom weights"], disabled = disabled,
+				help = L["Import a Pawn scale string, and use, rename, export or delete the scales you have."],
+				onClick = function() if UI() and UI().ShowScales then UI().ShowScales() end end },
 			{ kind = "toggle", key = "gear.tooltip", label = L["Tooltip comparison"], disabled = disabled,
 				help = L["Show on item tooltips how much better or worse an item is than what you wear."] },
 			{ kind = "toggle", key = "gear.bagArrows", label = L["Upgrade arrows in bags"], disabled = disabled,

@@ -2094,7 +2094,7 @@ test('rewards: a reward that never goes on (its bind confirmation cancelled) hol
 test('rewards: with the real Gear module, a two-hander stays on against a one-hander that wins only with a bag shield, rings end as the best two', () => {
 	const out = runAddon({
 		stubs: ['stub_qol.lua'],
-		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Theme/Theme.xml', 'Gear/ItemDB.lua', 'Gear/Weights.lua', 'Gear/SpecData.lua', 'Gear/Gear.lua', 'QoL/QoL.xml'] }],
+		addons: [{ name: 'Polestar', files: ['Core/Init.lua', 'Core/Compat.lua', 'Theme/Theme.xml', 'Gear/ItemDB.lua', 'Gear/Weights.lua', 'Gear/SpecData.lua', 'Gear/PawnStats.lua', 'Gear/Pawn.lua', 'Gear/Gear.lua', 'QoL/QoL.xml'] }],
 		before: `
 			local q = stub.qol
 			q.level = 30

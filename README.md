@@ -372,6 +372,11 @@ guides you there instead.
 - **In your bags** every item that is an upgrade gets the same green arrow,
   in the game's bags, in Baganator and in EllesmereUI Bags. With Pawn
   installed, "Leave bag arrows to Pawn" hides Polestar's.
+- **Your own stat weights**: paste a Pawn scale string (Options, Questing,
+  Rewards & gear, or `/polestar gear import`) and choose it under Stat weights
+  as "Custom: <name>". It replaces the built-in weights at every level. One
+  window lists your scales for every class: use, rename, export or delete
+  them, change their weights, and start one from a built-in spec.
 
 ### Lookup, Dungeons and Rares
 
@@ -519,6 +524,8 @@ settings instead, and Polestar keeps out of the game's own windows.
 | `reset` | Clear ticks and skips for the current guide |
 | `xp` | XP per hour, time to level and level splits |
 | `gear [item link]` | Gear advice: the weights in use, or compare an item |
+| `gear import [string]` | Import a Pawn scale: opens the paste box, or imports the string given |
+| `gear scales` | Open the window that manages your custom stat-weight scales |
 | `instances [clear]` | Instance limits, runs and lockouts |
 | `dungeons [name]` | Open Dungeons, or a dungeon's page |
 | `lookup [search]` | Open Lookup, optionally searching |
