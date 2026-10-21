@@ -1926,7 +1926,11 @@ function P.ShowQuest(id)
 	UI.ShowPicker()
 	P.ShowSection("Guides")
 	P.SetCategory("All")
-	ns.Set("ui.pickerFaction", UI.PlayerFaction() or "All")
+	-- The filter is account-wide: only lift one that hides this character's
+	-- faction, and back to "auto" so an alt of the other faction is not left
+	-- filtered to this one.
+	local filter = factionFilter()
+	if filter ~= "All" and filter ~= UI.PlayerFaction() then ns.Set("ui.pickerFaction", "auto") end
 	local name = UI.QuestTitle(id) or (ns.Names and ns.Names.Quest(id))
 	questContext = { id = id, query = name or tostring(id), steps = {} }
 	P.SetQuery(questContext.query)

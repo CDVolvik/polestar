@@ -58,6 +58,19 @@ emit({ label = buttons[2].text, native = buttons[1].text, shown = PolestarPicker
 	assert.equal(r.step, 2);
 });
 
+test('a quest menu leaves the account-wide faction filter following each character', () => {
+	const r = run(String.raw`
+local function after(setting)
+	Polestar.Set("ui.pickerFaction", setting)
+	P.ShowQuest(7)
+	return Polestar.Get("ui.pickerFaction")
+end
+emit({ auto = after("auto"), all = after("All"), other = after("Horde"), selected = P.Selected() })
+`);
+	assert.deepEqual([r.auto, r.all, r.other], ['auto', 'All', 'auto']);
+	assert.equal(r.selected, 'forever/alliance/human/01-elwynn-forest');
+});
+
 test('tracker resolves the quest from the clicked block and freezes it when its row is reused', () => {
 	const r = run(String.raw`
 local opened = {}
