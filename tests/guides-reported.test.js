@@ -25,6 +25,23 @@ const { makeProjector } = require('../tools/lib/route/geo');
 
 const skip = needs('quests.json', 'npcs.json', 'objects.json', 'map-frames.json');
 
+test('Horde Call of Fire: hand in the carried trainer lead at Kranal before starting the shared ritual', { skip }, () => {
+	for (const file of ['forever/horde/02-the-barrens.guide', 'forever/horde/orc-troll/02-the-barrens.guide']) {
+		const list = goals(file);
+		const start = list.findIndex(({ goal }) => goal.t === 'accept' && goal.quest === 1524);
+		assert.ok(start >= 0, `${file}: the shared ritual is offered`);
+		for (const quest of [1522, 1523, 2983, 2984]) {
+			const lead = list.slice(0, start).find(({ goal }) => goal.t === 'turnin' && goal.quest === quest);
+			assert.ok(lead, `${file}: carried trainer lead ${quest} is handed in before the shared ritual`);
+			if (quest !== (file.includes('orc-troll') ? 2983 : 1523)) {
+				assert.ok(lead.step.when.some((p) => p.k === 'onquest' && !p.neg && p.q.includes(quest)), `${file}: an uncarried alternative never blocks the route`);
+			}
+			assert.equal(lead.goal.npc, 5907, `${file}: no trip to a different giver`);
+			for (const field of ['map', 'x', 'y']) assert.equal(lead.goal[field], list[start].goal[field], `${file}: the same Kranal stop`);
+		}
+	}
+});
+
 const DUROTAR = 'forever/horde/orc-troll/01-durotar.guide';
 const DUN_MOROGH = 'forever/alliance/dwarf-gnome/01-dun-morogh.guide';
 const TELDRASSIL = 'forever/alliance/nightelf/01-teldrassil.guide';
