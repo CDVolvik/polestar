@@ -2571,3 +2571,12 @@ test(`${ELWYNN}: Nittepitte's report (#612): the Mining Tools are picked up on t
 		assert.ok(yards(entrance.goal, { map: list[tools].goal.map, ...s }) < yards(entrance.goal, list[explore].goal), `the tools at ${s.x},${s.y} lie between the entrance and the far end`);
 	}
 });
+
+test(`${ASHENVALE}: #424: the Horn of Awakening is taken from Kerlonian's Chest at the Grove, before the escort`, { skip }, () => {
+	const list = goals(ASHENVALE);
+	const horn = at(list, 'collect 13536 quest 5321 (Horn of Awakening)', (g) => g.t === 'collect' && g.item === 13536 && g.quest === 5321);
+	const turnin = at(list, 'turnin 5321', is('turnin', 5321));
+	assert.ok(horn < turnin, 'the horn comes before the hand-in at Maestra\'s Post');
+	assert.ok(located(list[horn]), 'the arrow leads to the chest');
+	assert.equal(list[horn].goal.map, 1439, 'the chest is at the Grove of the Ancients in Darkshore');
+});
