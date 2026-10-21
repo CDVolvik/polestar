@@ -1,19 +1,23 @@
--- Service NPCs and mailboxes, through the existing pin renderer. Read the
--- database only on first enable, in small batches outside combat.
+-- Service NPCs and mailboxes, through the existing pin renderer. Off by
+-- default, like the other map layers. Nothing is read at login: the Codex is
+-- read the first time the world map opens with the layer on (or at once when
+-- its minimap icons are on), in small batches outside combat.
+-- Flight masters and inns are not categories here: the travel layers
+-- (Maps/TravelPins.lua, maps.taxiPins and maps.innPins) own them, so an NPC
+-- with either role is left to those layers rather than drawn twice.
 local ADDON, ns = ...
 local Maps, L = ns.Maps, ns.L
 local type, ipairs, pairs = type, ipairs, pairs
 local LAYER = "maps.services"
 
+-- `on`: the lean set a player gets when turning the layer on; the rest are opt-in.
 local CATEGORIES = {
 	{ key = "repair", label = L["Repair"], texture = "Repair" },
-	{ key = "innkeeper", label = L["Innkeepers"], texture = "Innkeeper" },
-	{ key = "mailbox", label = L["Mailboxes"], texture = "Mailbox" },
-	{ key = "class", label = L["Class trainers"], texture = "Class" },
+	{ key = "mailbox", label = L["Mailboxes"], texture = "Mailbox", on = true },
+	{ key = "class", label = L["Class trainers"], texture = "Class", on = true },
 	{ key = "weapon", label = L["Weapon masters"], icon = "icon-train" },
 	{ key = "auctioneer", label = L["Auctioneers"], texture = "Auctioneer" },
 	{ key = "banker", label = L["Bankers"], icon = "Interface\\Icons\\INV_Misc_TreasureChest01a" },
-	{ key = "flightmaster", label = L["Flight masters"], texture = "FlightMaster" },
 	{ key = "battlemaster", label = L["Battlemasters"], texture = "BattleMaster" },
 	{ key = "spirithealer", label = L["Spirit healers"], icon = "Interface\\Icons\\Spell_Holy_GuardianSpirit" },
 	{ key = "stablemaster", label = L["Stable masters"], texture = "StableMaster" },
@@ -23,11 +27,11 @@ local CATEGORIES = {
 Maps.ServiceCategories = CATEGORIES
 local filters = {}
 for _, category in ipairs(CATEGORIES) do
-	filters[category.key] = true
+	filters[category.key] = category.on == true
 	category.icon = category.icon or ("Interface\\Minimap\\Tracking\\" .. category.texture)
 	if not category.icon:find("[\\/]") then category.icon = ns.Theme.Media(category.icon) end
 end
-ns.RegisterDefaults("maps", { servicePins = true, serviceMinimap = false, serviceFilters = filters })
+ns.RegisterDefaults("maps", { servicePins = false, serviceMinimap = false, serviceFilters = filters })
 
 local function rolesOf(record)
 	local roles = {}
@@ -78,10 +82,13 @@ function Maps.BuildServicePins(records)
 	for _, record in ipairs(records or {}) do
 		if record.faction == nil or record.faction == "AH" or (faction and record.faction == faction) then
 			local roles, selected, labels = rolesOf(record), nil, {}
-			for _, category in ipairs(CATEGORIES) do
-				if roles[category.key] then
-					labels[#labels + 1] = category.label
-					if not selected and ns.Get("maps.serviceFilters." .. category.key) then selected = category end
+			-- Inns and flight masters are the travel layers' (see the top).
+			if not (roles.innkeeper or roles.flightmaster) then
+				for _, category in ipairs(CATEGORIES) do
+					if roles[category.key] then
+						labels[#labels + 1] = category.label
+						if not selected and ns.Get("maps.serviceFilters." .. category.key) then selected = category end
+					end
 				end
 			end
 			if selected then
@@ -119,7 +126,7 @@ function Maps.BuildServicePins(records)
 	return pins
 end
 
-local records, job, failure, loading, scheduled
+local records, job, failure, loading, scheduled, wanted
 local refresh, step
 local function publish()
 	Maps.HideServiceMenu()
@@ -170,6 +177,8 @@ refresh = function()
 	if not ns.IsLoggedIn() or loading then return end
 	if not ns.Get("maps.servicePins") then publish(); return end
 	if records then publish(); return end
+	-- Not before the world map has opened, unless minimap icons are on.
+	if not (wanted or ns.Get("maps.serviceMinimap")) then return end
 	if inCombat() then return end
 	if job then schedule(); return end
 	loading = true
@@ -191,6 +200,14 @@ refresh = function()
 end
 Maps.RefreshServicePins = refresh
 
+-- The world map opened (Maps/ServiceClusters.lua's watcher): from now on the
+-- layer may read the Codex.
+function Maps.ServiceMapShown()
+	if wanted then return end
+	wanted = true
+	refresh()
+end
+
 local function addMenu(_, root)
 	local menu = root:CreateButton(L["Polestar: NPC services"])
 	local function checkbox(parent, label, key)
@@ -210,7 +227,7 @@ Maps.AddServiceMenu = addMenu
 
 local controls = {
 	{ kind = "toggle", key = "maps.servicePins", label = L["Show NPC services"],
-		help = L["Marks friendly service NPCs and mailboxes on the map using Polestar's bundled Codex. Click an individual icon to set a waypoint, or a city group to choose an NPC and destination; choose categories here or in the map's tracking menu."] },
+		help = L["Marks friendly service NPCs and mailboxes on zone and city maps using Polestar's bundled Codex. Click an individual icon to set a waypoint, or a city group to choose an NPC and destination; choose categories here or in the map's tracking menu. Flight masters and inns have their own toggles under Dungeons and travel."] },
 	{ kind = "toggle", key = "maps.serviceMinimap", label = L["Service icons on the minimap"],
 		help = L["Shows the enabled NPC service categories on the minimap as well."],
 		disabled = function() return not ns.Get("maps.servicePins") end },

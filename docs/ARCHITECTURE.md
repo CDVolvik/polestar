@@ -3301,10 +3301,11 @@ Polestar.Gear.Bags.Redraw()                  -- repaint the shown bags; GEAR_UPD
 Each feature is a setting on the Map page (Rares & travel, Zones), and none of
 them makes a frame or loads data until it's on. The icon layers (dungeon
 entrances, flight masters `maps.taxiPins`, docks `maps.dockPins`, inns
-`maps.innPins`, and `maps.travelMinimap` for the minimap) default to off. The
+`maps.innPins`, NPC services `maps.servicePins`, and `maps.travelMinimap` for
+the minimap) default to off. The
 flight timer and the instance tracker are set under Quality of Life.
 
-- NPC services (`maps.servicePins`, on; `Maps/Services.lua`): one pin per
+- NPC services (`maps.servicePins`, off; `Maps/Services.lua`): one pin per
   friendly NPC spawn, with all its services in the tooltip and click-to-navigate.
   The layer's `minMapType = UIMapType.Zone` hides it on world and continent
   maps, while keeping zone, city and minimap icons. Vendors use the native
@@ -3322,7 +3323,10 @@ flight timer and the instance tracker are set under Quality of Life.
   spawn; it does not change the viewed map. Native clicks on the city/area
   still open its detail map. Map/zoom/filter changes close the menu, while
   unrelated layer updates leave it open. The map's right click passes through.
-  `maps.serviceFilters` selects the 13 categories; `maps.serviceMinimap` opts
+  `maps.serviceFilters` selects the 11 categories (class trainers and mailboxes
+  on, the rest opt-in); flight masters and inns are not among them, and an NPC
+  with either role is left to the travel layers (`maps.taxiPins`,
+  `maps.innPins`) so nothing is drawn twice. `maps.serviceMinimap` opts
   into minimap icons. Both tracking menus have a Polestar service submenu;
   the same settings live under Map, Rares & travel, NPC services. Class trainers
   are restricted to the character's class. A repair vendor has one icon, using
@@ -3341,7 +3345,9 @@ flight timer and the instance tracker are set under Quality of Life.
   are retained for coordinate projection and navigation. Optional escaped
   `t<title>` NPC and `m<faction>` mailbox tails extend the packed records;
   older readers skip these comma-free fields, and older packs stay readable.
-  Reads run in batches of 100 outside combat, on first enable only; filters
+  Reads run in batches of 100 outside combat, the first time the world map
+  opens with the layer on (at once when its minimap icons are on), never at
+  login, so the Codex stays unloaded until then; filters
   reuse the records, and a Codex/name-pack load invalidates them. Missing data
   produces an explanatory message and is retried when the dependency loads.
 

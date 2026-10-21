@@ -1,7 +1,8 @@
 -- Town services from Polestar's bundled, load-on-demand Codex.
 local ADDON, ns = ...
 local Maps = ns.Maps
-local ROLES = { "vendor", "repair", "innkeeper", "banker", "auctioneer", "flightmaster",
+-- Inns and flight masters are the travel layers' (Maps/Services.lua).
+local ROLES = { "vendor", "repair", "banker", "auctioneer",
 	"battlemaster", "spirithealer", "stablemaster", "trainer", "weapon" }
 
 function Maps.ServiceSource()

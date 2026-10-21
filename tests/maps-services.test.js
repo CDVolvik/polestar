@@ -16,7 +16,7 @@ __reads, __spawns = 0, 0
 __npcs = {
   [1] = { name="Smith", subName="Weaponsmith", faction="A", roles={"vendor","repair"}, points={{40,50},{40,50},{-1,20},{0,0},{101,5}} },
   [2] = { name="Enemy", faction="H", roles={"vendor"}, points={{41,50}} },
-  [3] = { name="Neutral", faction="AH", roles={"innkeeper"}, points={{42,50}} },
+  [3] = { name="Neutral", faction="AH", roles={"innkeeper","vendor"}, points={{42,50}} },
   [4] = { name="Mage", subName="Mage Trainer", faction="A", roles={"trainer","class:MAGE"}, points={{43,50}} },
   [5] = { name="Warrior", subName="Warrior Trainer", faction="A", roles={"trainer","class:WARRIOR"}, points={{44,50}} },
   [6] = { name="Alchemist", subName="Alchemy Trainer", faction="A", roles={"trainer","trainer:171"}, points={{45,50}} },
@@ -48,12 +48,18 @@ __codex={
 LibQuestieDB=setmetatable({},{__index=function() error("POIs must not read QuestieDB") end})
 `;
 
-function run(script, { enabled, before = '' } = {}) {
+// The layer is opt-in with a lean category set (see the defaults test below);
+// most tests turn it and every category on, and open the world map, which is
+// when the layer first reads the Codex.
+const ALL_FILTERS = 'serviceFilters={repair=true,mailbox=true,class=true,weapon=true,auctioneer=true,banker=true,battlemaster=true,spirithealer=true,stablemaster=true,trainer=true,vendor=true}';
+const OPEN_MAP = 'WorldMapFrame:Show()\nstub.runMapFrame(WorldMapFrame,0)\nstub.advance(0.25)\n';
+
+function run(script, { enabled = true, before = '', settings = ALL_FILTERS, open = true } = {}) {
   return runAddon({
     stubs: ['stub_world.lua', 'stub_maps.lua'], before: BEFORE + before,
     addons: [{ name: 'Polestar', files: ['Core/Core.xml', 'Theme/Theme.xml', 'Nav/Nav.xml', 'Maps/Maps.xml'] }],
-    saved: { Polestar: `PolestarDB={schema=1, settings={maps={${enabled === undefined ? '' : `servicePins=${enabled}`}}}}; Polestar.Codex=__codex` }, login: true,
-    script: 'stub.advance(0.25)\nlocal M,P=Polestar.Maps,Polestar.Pins\n' + script,
+    saved: { Polestar: `PolestarDB={schema=1, settings={maps={${enabled === null ? '' : `servicePins=${enabled},`}${settings}}}}; Polestar.Codex=__codex` }, login: true,
+    script: 'stub.advance(0.25)\n' + (open ? OPEN_MAP : '') + 'local M,P=Polestar.Maps,Polestar.Pins\n' + script,
   }).emitted;
 }
 
@@ -78,7 +84,7 @@ test('service groups tolerate missing MapCanvas and install the watcher once whe
   assert.deepEqual(out, { missing: true, withoutFrame: 0, calls: 1 });
 });
 
-test('services use Codex alone with live coordinates, reject hostile NPCs and invalid spawns, and distinguish mailbox IDs', () => {
+test('services use Codex alone with live coordinates, reject hostile NPCs and invalid spawns, leave inns to the travel layer, and distinguish mailbox IDs', () => {
   const [out] = run(`
     local out={}
     for _,p in ipairs(P.GetLayer("maps.services") or {}) do
@@ -89,7 +95,6 @@ test('services use Codex alone with live coordinates, reject hostile NPCs and in
   assert.deepEqual(out, [
     { id: 1, kind: 'npc', category: 'repair', map: 9000, x: 40, y: 50, f: 'l' },
     { id: 1, kind: 'npc', category: 'repair', map: 9000, x: 0, y: 0, f: 'l' },
-    { id: 3, kind: 'npc', category: 'innkeeper', map: 9000, x: 42, y: 50, f: 'l' },
     { id: 5, kind: 'npc', category: 'class', map: 9000, x: 44, y: 50, f: 'l' },
     { id: 6, kind: 'npc', category: 'trainer', map: 9000, x: 45, y: 50, f: 'l' },
     { id: 7, kind: 'npc', category: 'weapon', map: 9000, x: 46, y: 50, f: 'l' },
@@ -109,7 +114,7 @@ test('category toggles update immediately without rereading the DB or misclassif
     Polestar.Set("maps.servicePins",true)
     emit({categories=found,hidden=hidden,readsSame=__reads==reads,restored=#P.GetLayer("maps.services")})
   `);
-  assert.deepEqual(out, { categories: { vendor: 2, innkeeper: 1, class: 1, trainer: 1, mailbox: 1 }, hidden: true, readsSame: true, restored: 6 });
+  assert.deepEqual(out, { categories: { vendor: 2, class: 1, trainer: 1, mailbox: 1 }, hidden: true, readsSame: true, restored: 5 });
 });
 
 test('tooltips expose all NPC services and a click routes to the exact spawn and frame', () => {
@@ -141,7 +146,7 @@ test('explicitly disabled services read no DB; combat defers the scan and one dr
     stub.advance(1)
     emit({initial=initial,combatReads=combatReads,reads=__reads,pins=#P.GetLayer("maps.services")})
   `, { enabled: false });
-  assert.deepEqual(out, { initial: 0, combatReads: 0, reads: 8, pins: 7 });
+  assert.deepEqual(out, { initial: 0, combatReads: 0, reads: 8, pins: 6 });
 });
 
 test('batched work pauses in combat, resumes, and retries after a missing database is enabled', () => {
@@ -163,7 +168,7 @@ test('batched work pauses in combat, resumes, and retries after a missing databa
   assert.equal(out.paused, true);
   assert.equal(out.first, 100);
   assert.equal(out.reads, 499);
-  assert.equal(out.pins, 7);
+  assert.equal(out.pins, 6);
 });
 
 test('tracking menus offer persistent categories and minimap opt-in', () => {
@@ -187,7 +192,7 @@ test('tracking menus offer persistent categories and minimap opt-in', () => {
       hooks=#stub.menus.MENU_WORLD_MAP_TRACKING,frames=#P.GetMinimapFrames("maps.services")})
   `);
   assert.equal(out.title, 'Polestar: NPC services');
-  assert.equal(out.count, 15);
+  assert.equal(out.count, 13);
   assert.equal(out.before, true);
   assert.equal(out.after, false);
   assert.equal(out.minimap, true);
@@ -227,18 +232,26 @@ test('nearby mailbox observations merge across object IDs while separate physica
   assert.deepEqual(out, [{ id: 1, x: 48 }, { id: 3, x: 52 }]);
 });
 
-test('services default to enabled with the native bag for vendors and a distinct chest for bankers', () => {
+test('services are opt-in with a lean category set, leave flight masters and inns to the travel layers, and use the native bag for vendors and a distinct chest for bankers', () => {
   const [out, weapon] = run(`
-    local icons={}
-    for _,category in ipairs(M.ServiceCategories) do icons[category.key]=category.icon end
-    emit({enabled=Polestar.Get("maps.servicePins"),vendor=icons.vendor,banker=icons.banker})
+    local icons,on={},{}
+    for _,category in ipairs(M.ServiceCategories) do
+      icons[category.key]=category.icon
+      if Polestar.Get("maps.serviceFilters."..category.key) then on[#on+1]=category.key end
+    end
+    emit({enabled=Polestar.Get("maps.servicePins"),on=on,inn=icons.innkeeper==nil,flight=icons.flightmaster==nil,
+      vendor=icons.vendor,banker=icons.banker,reads=__reads})
     emit(icons.weapon)
-  `);
+  `, { enabled: null, settings: '' });
   assert.ok(weapon.includes('AddOns') && weapon.endsWith('icon-train'));
   assert.deepEqual(out, {
-    enabled: true,
+    enabled: false,
+    on: ['mailbox', 'class'],
+    inn: true,
+    flight: true,
     vendor: 'Interface\\Minimap\\Tracking\\Banker',
     banker: 'Interface\\Icons\\INV_Misc_TreasureChest01a',
+    reads: 0,
   });
 });
 
@@ -442,7 +455,7 @@ test('Codex weapon masters use the existing NPC index without changing shared re
   assert.deepEqual(out,{category:'weapon',withoutProfession:1,withoutWeapon:0,professionOnly:0,roles:['trainer'],object:'mailbox'});
 });
 
-test('a fresh install loads service NPCs and faction-safe mailboxes from the generated Codex with no QuestieDB', () => {
+test('a fresh install leaves the Codex unloaded until the layer is on and the world map opens, then reads service NPCs and faction-safe mailboxes from it with no QuestieDB', () => {
   const { mergeCodex } = require('../tools/lib/codex/build');
   const { writeCodexPack } = require('./helpers/codex');
   const place = { 9000: { f: 'l', pts: [[40,50],[40.1,50.1]] } };
@@ -464,19 +477,24 @@ test('a fresh install loads service NPCs and faction-safe mailboxes from the gen
       addons: [{ name:'Polestar', files:['Core/Core.xml','Theme/Theme.xml','Nav/Nav.xml','Lookup/Codex.lua','Maps/Maps.xml'] }],
       saved: { Polestar:'PolestarDB={schema=1,settings={}}' }, login:true,
       script: `stub.advance(1)
-        local out={loaded=Polestar.Codex.IsLoaded(),questie=LibQuestieDB~=nil,npcs={},boxes={}}
+        local atLogin=Polestar.Codex.IsLoaded()
+        Polestar.Set("maps.servicePins",true)
+        stub.advance(1)
+        local beforeMap=Polestar.Codex.IsLoaded()
+        WorldMapFrame:Show(); stub.runMapFrame(WorldMapFrame,0); stub.advance(1)
+        local out={atLogin=atLogin,beforeMap=beforeMap,loaded=Polestar.Codex.IsLoaded(),questie=LibQuestieDB~=nil,npcs={},boxes={}}
         for _,p in ipairs(Polestar.Pins.GetLayer("maps.services")) do
           local list=p.kind=="object" and out.boxes or out.npcs
           list[#list+1]={id=p.id,category=p.category,x=p.x,y=p.y}
         end
         emit(out)`,
     }).emitted;
+    assert.equal(out.atLogin,false,'the Codex stays unloaded at login');
+    assert.equal(out.beforeMap,false,'turning the layer on reads nothing until the world map opens');
     assert.equal(out.loaded,true);
     assert.equal(out.questie,false);
-    assert.deepEqual(out.npcs,[
-      {id:101,category:'repair',x:40,y:50}, {id:101,category:'repair',x:40.1,y:50.1},
-      {id:103,category:'class',x:40,y:50}, {id:103,category:'class',x:40.1,y:50.1},
-    ]);
+    // The lean default set: class trainers and mailboxes; the repair vendor stays opt-in.
+    assert.deepEqual(out.npcs,[{id:103,category:'class',x:40,y:50}, {id:103,category:'class',x:40.1,y:50.1}]);
     assert.deepEqual(out.boxes,[{id:101,category:'mailbox',x:50,y:50},{id:103,category:'mailbox',x:70,y:50}]);
   } finally { pack.cleanup(); }
 });

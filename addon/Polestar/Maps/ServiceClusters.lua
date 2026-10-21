@@ -140,6 +140,7 @@ local watched
 local function watchMap()
 	if watched or not WorldMapFrame or not ns.MapCanvas then return end
 	watched = ns.MapCanvas.Watch(WorldMapFrame, function(_, what)
+		if what == "show" and Maps.ServiceMapShown then Maps.ServiceMapShown() end
 		if what == "hide" or what == "map" or what == "size" or what == "scale" then closeMenu() end
 	end)
 end
