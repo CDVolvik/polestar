@@ -219,6 +219,7 @@ function positionalTokens(verb, f) {
 		case 'hearth':
 		case 'getfp':
 		case 'fly':
+		case 'enter':
 			if (verb === 'sethome' && f.nearest) out.push('nearest');
 			else name('location');
 			break;
@@ -243,6 +244,7 @@ function positionalTokens(verb, f) {
 			break;
 		case 'learn':
 		case 'craft':
+		case 'cast':
 			id('spell');
 			name('spellName');
 			break;
@@ -390,6 +392,7 @@ const POSITIONAL = {
 	hearth: [fld('location', 'text', 'Location', { required: true, kind: 'inn' })],
 	getfp: [fld('location', 'text', 'Flight point', { required: true, kind: 'flight' })],
 	fly: [fld('location', 'text', 'Destination', { required: true, kind: 'flight' })],
+	enter: [fld('location', 'text', 'Zone or area', { required: true })],
 	level: [fld('level', 'int', 'Level', { required: true }), fld('frac', 'number', 'Share of the level (0-1)', { required: false }), fld('levelXp', 'int', 'XP into the level', { required: false })],
 	money: [fld('money', 'int', 'Amount in copper', { required: true })],
 	task: [fld('text', 'text', 'What to do', { required: true })],
@@ -411,6 +414,7 @@ POSITIONAL.abandon = POSITIONAL.accept;
 POSITIONAL.buy = POSITIONAL.collect;
 POSITIONAL.explore = POSITIONAL.goto;
 POSITIONAL.craft = POSITIONAL.learn;
+POSITIONAL.cast = POSITIONAL.learn;
 
 const MODIFIER_FIELDS = {
 	at: [xy({ mod: 'at' })],

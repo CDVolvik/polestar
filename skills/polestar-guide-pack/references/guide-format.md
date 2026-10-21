@@ -79,6 +79,7 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `use <item> ["Name"]` | Use an item | `quest` |
 | `sethome "<Location>"` / `sethome nearest` | Bind the hearthstone at an inn (`polestar find --kind inn`) | `npc` |
 | `hearth "<Location>"` | Use the hearthstone; done on landing there | no place modifiers |
+| `enter "<Place>"` | Be in that zone or area (the zone or subzone text; Polestar 0.3.0) | `@x,y` only points the arrow |
 | `getfp "<Flight point>"` | Learn a flight path (`polestar find --kind flight`) | `npc` |
 | `fly "<Town>"` | Take a flight; done on landing | no place modifiers |
 | `train class` / `train <npc>` / `train <Profession> [Rank]` | Visit a trainer: the nearest of the player's class, that one, or the nearest of a profession | `npc` |
@@ -90,6 +91,7 @@ otherwise, the place modifiers `@x,y`, `map`, `r`, `era` / `live`.
 | `note <text>` | A line of information; never holds the step. With `only`, quote the text | no `"text"`, no `group` |
 | `skill <Profession> <N>` | Reach skill N (`"First Aid"` quoted) | |
 | `learn <spell> ["Name"]` | Learn a recipe or spell | `npc`, `item`, `nearest` |
+| `cast <spellId> ["Name"]` | Cast that spell while the goal is open (Polestar 0.3.0); name it unless it is a recipe in the data | coordinates |
 | `craft <spell> ["Name"]` | Craft a recipe | `xN`, `until` |
 | `rep <Faction> <Standing>` | Reach a standing, `Hated` to `Exalted`, with a faction by name or id | |
 | `explore <x>,<y> ["Area"]` | Discover the map area there | `map`, `r`, `era` / `live` only |
@@ -152,7 +154,7 @@ unanswered, the route waits and asks; on the accept step, `!group` for a solo
 way; not on `next` or `skipto`); `!` in front of any but
 `level` and `money` turns it around. Once the route has passed the step, the
 outcome stays. A pack with `when` (on a step or a `next` line), `along` or
-`label` needs Polestar 0.2.6; with `money`, `task`, `abandon` or `destroy` goals, a `when money`,
+`label` needs Polestar 0.2.6; with `money`, `task`, `enter`, `cast`, `abandon` or `destroy` goals, a `when money`,
 `when dungeon`, `when upgrade`, `when done`, `when skill`, `when cooldown` or
 `when group` predicate, or `skipto`, needs Polestar 0.3.0.
 

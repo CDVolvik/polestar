@@ -70,6 +70,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `hearth "<Location>"` | Use the hearthstone; done on landing there | `hearth "Goldshire"` |
 | `getfp "<Flight point>"` | Learn a flight path from its flight master | `getfp "Stormwind"` |
 | `fly "<Town>"` | Take a flight; done on landing there | `fly "Stormwind"` |
+| `enter "<Place>"` | Be in that zone or area (the zone or subzone text); `@x,y` points the arrow (needs Polestar 0.3.0) | `enter "Goldshire"` |
 
 `polestar find --kind inn` and `polestar find --kind flight` list the names
 `sethome`, `hearth`, `getfp` and `fly` take.
@@ -122,6 +123,7 @@ Before the first `step`. `guide`, `title`, `levels` and `zone` are required.
 | `train <Profession> [Rank]` | Learn a profession or its next rank (`Apprentice`, `Journeyman`, `Expert`, `Artisan`) at the nearest trainer | `train Mining Journeyman` |
 | `skill <Profession> <N>` | Reach skill N (quote names of two words) | `skill "First Aid" 40` |
 | `learn <spell> ["Name"]` | Learn a recipe; from a trainer, or with `nearest` from the closest vendor of its recipe | `learn 3276` |
+| `cast <spellId> ["Name"]` | Cast that spell while the goal is open (needs Polestar 0.3.0) | `cast 818 "Basic Campfire"` |
 | `craft <spell> ["Name"]` | Craft a recipe, `x<N>` times | `craft 3275 x5` |
 | `until <N>` | On `craft`: until the profession reaches N | `craft 3275 until 40` |
 
