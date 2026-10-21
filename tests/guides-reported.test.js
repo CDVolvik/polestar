@@ -25,6 +25,23 @@ const { makeProjector } = require('../tools/lib/route/geo');
 
 const skip = needs('quests.json', 'npcs.json', 'objects.json', 'map-frames.json');
 
+test('Horde Call of Fire: hand in the carried trainer lead at Kranal before starting the shared ritual', { skip }, () => {
+	for (const file of ['forever/horde/02-the-barrens.guide', 'forever/horde/orc-troll/02-the-barrens.guide']) {
+		const list = goals(file);
+		const start = list.findIndex(({ goal }) => goal.t === 'accept' && goal.quest === 1524);
+		assert.ok(start >= 0, `${file}: the shared ritual is offered`);
+		for (const quest of [1522, 1523, 2983, 2984]) {
+			const lead = list.slice(0, start).find(({ goal }) => goal.t === 'turnin' && goal.quest === quest);
+			assert.ok(lead, `${file}: carried trainer lead ${quest} is handed in before the shared ritual`);
+			if (quest !== (file.includes('orc-troll') ? 2983 : 1523)) {
+				assert.ok(lead.step.when.some((p) => p.k === 'onquest' && !p.neg && p.q.includes(quest)), `${file}: an uncarried alternative never blocks the route`);
+			}
+			assert.equal(lead.goal.npc, 5907, `${file}: no trip to a different giver`);
+			for (const field of ['map', 'x', 'y']) assert.equal(lead.goal[field], list[start].goal[field], `${file}: the same Kranal stop`);
+		}
+	}
+});
+
 const DUROTAR = 'forever/horde/orc-troll/01-durotar.guide';
 const DUN_MOROGH = 'forever/alliance/dwarf-gnome/01-dun-morogh.guide';
 const TELDRASSIL = 'forever/alliance/nightelf/01-teldrassil.guide';
@@ -2123,6 +2140,22 @@ test(`${WESTFALL}: Pynte's report (#416): the farm quests and Report to Gryan St
 	assert.ok(!elwynn.some(({ goal }) => goal.t === 'getfp' && goal.node === hill.step.goals.find((g) => g.t === 'getfp').node), 'Elwynn leaves the Sentinel Hill flight path to Westfall');
 });
 
+// --- Handful of Oats (Xaden Ryan, #621): the oats were the first step's last
+// goal, unplaced, so before Saldean's the arrow searched every Sack of Oats
+// in the zone, down to Moonbrook, and the far sacks were empty. They are
+// gathered on the return to the Jansen Stead, in its fields, beside the
+// turn-in.
+test(`${WESTFALL}: Xaden Ryan's report (#621): the oats are gathered in the Jansen Stead's fields on the way back, not searched over the zone on the road in`, { skip }, () => {
+	const list = goals(WESTFALL);
+	const oats = at(list, 'collect 1528', (g) => g.t === 'collect' && g.item === 1528);
+	const turnin = at(list, 'turnin 151', is('turnin', 151));
+	assert.ok(oats > at(list, 'turnin 109', is('turnin', 109)), 'the oats are not gathered on the road in, before Sentinel Hill');
+	assert.ok(oats < turnin && list[oats].step === list[turnin].step, 'the oats are gathered on the turn-in stop, before Verna');
+	const { goal } = list[oats];
+	assert.ok(located(list[oats]) && !goal.spread, 'the oats have a point and are no zone-wide search');
+	assert.ok(yards(goal, list[turnin].goal) < 250, `the oats lead into the Jansen Stead's fields (${goal.x},${goal.y})`);
+});
+
 // --- Thendal Grove (Alx-Ryan, #363): the guide walked you to Rorian, up the
 // watchtower a few steps from Elatrell, then floated you back down to Rorian.
 // The tower comes first now: The Anchors of Zephras and Falling With Style
@@ -2292,6 +2325,20 @@ test(`${ASHENVALE}: Ioney's report (#524): Unrequited Love is handed to Tarrel R
 	assert.ok(list[take].goal.optional && list[give].goal.optional, 'both goals are optional');
 });
 
+// Ioney (#614): "No Oozes at the two spots in the east". Digging Through the
+// Ooze sends the player to the oozes at Ironbeard's Tomb (its quest text), but
+// the step searched every ooze spawn of the Wetlands, 21 spots from Menethil
+// to the eastern hills, and started in the east. The arrow now takes the tomb.
+
+test(`${ASHENVALE}: Ioney's report (#614): Sida's Bag is searched for at Ironbeard's Tomb, not at the oozes across the Wetlands`, { skip }, () => {
+	const list = goals(ASHENVALE);
+	const { goal } = list[at(list, 'collect 3349', (g) => g.t === 'collect' && g.item === 3349 && g.quest === 470)];
+	const tomb = ({ x, y }) => x >= 42 && x <= 49 && y >= 23 && y <= 30;
+	assert.ok(goal.map === 1437 && tomb(goal), `the point ${goal.x},${goal.y} is at Ironbeard's Tomb`);
+	const arrow = (goal.spots || []).filter((s) => !s.alt);
+	assert.ok(arrow.length && arrow.every(tomb), `the arrow picks only the tomb: ${JSON.stringify(goal.spots)}`);
+});
+
 // Pynte (#327): "Timberling Seeds quest points me to the north of Teldrassil
 // instead of just around the quest giver." XrayAlpha's diagnosis: QuestieDB's
 // server drop table gives the Elder Timberling (level 10) 100% for the seed and
@@ -2439,6 +2486,21 @@ test('forever/horde/30-40/04-dustwallow-marsh.guide: Syrael\'s report (#575): th
 	assert.ok(yards(goal, finished) <= 200, `the arrow at ${goal.x},${goal.y} is in the Valley of Bones, not ${Math.round(yards(goal, finished))} yd off`);
 	assert.ok(at(list, 'collect 13703 (Kodo Bone)', (g) => g.t === 'collect' && g.quest === 5501) < plasm, 'the kodo bones come first');
 	assert.ok(plasm < at(list, 'turnin 6134', is('turnin', 6134)), 'the plasm is collected before Hornizz is handed it');
+});
+
+test("forever/professions: Schpune's report (#620): Skinning, Mining and Herbalism are learned at level 1, from the Junior trainers in the starting zones too", { skip: skip || needs('professions.json') }, () => {
+	// Junior trainers in Northshire Valley and The Den, by profession guide.
+	const juniors = { skinning: [247227, 267327], mining: [247226, 267328], herbalism: [247223, 267329] };
+	for (const [file, npcs] of Object.entries(juniors)) {
+		const guide = `forever/professions/${file}.guide`;
+		const learn = compiled(guide).steps[0];
+		assert.match(learn.title, /^Learn /, `${guide}: the first step learns the profession`);
+		assert.ok(!learn.goals.some((g) => g.t === 'level'), `${guide}: no level goal before Apprentice`);
+		const train = learn.goals.find((g) => g.t === 'train');
+		assert.equal(train.rank, 1, `${guide}: Apprentice`);
+		const ids = train.candidates.map((c) => c.npc);
+		for (const npc of npcs) assert.ok(ids.includes(npc), `${guide}: Junior trainer ${npc} is a candidate`);
+	}
 });
 
 // Nittepitte (#613): "Since Collecting Kelp starts an RP events, it should be
