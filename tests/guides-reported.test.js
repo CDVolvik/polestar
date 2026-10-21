@@ -2339,6 +2339,22 @@ test(`${ASHENVALE}: Ioney's report (#614): Sida's Bag is searched for at Ironbea
 	assert.ok(arrow.length && arrow.every(tomb), `the arrow picks only the tomb: ${JSON.stringify(goal.spots)}`);
 });
 
+// Ioney (#617): "guide wants me to grind till level 28, i just reached level
+// 27". The grind to 28 for Pilot Longbeard's quest (1179, from level 28) came
+// at the Dragonmaw camp before the hearth to Menethil, so the hand-ins there
+// (about 7,200 XP) never counted towards it. It now comes after them, at the
+// same camp on the walk east to Dun Algaz.
+
+test(`${ASHENVALE}: Ioney's report (#617): the grind to 28 comes after the Menethil hand-ins, before Pilot Longbeard`, { skip }, () => {
+	const list = goals(ASHENVALE);
+	const grind = at(list, 'level 28', (g) => g.t === 'level' && g.level === 28);
+	for (const quest of [306, 484, 470, 98282]) {
+		assert.ok(at(list, `turnin ${quest}`, is('turnin', quest)) < grind, `the Menethil hand-in ${quest} counts towards 28`);
+	}
+	assert.ok(at(list, 'hearth to Menethil', (g) => g.t === 'hearth' && g.location === 'Deepwater Tavern') < grind, 'the grind is after the hearth');
+	assert.ok(grind < at(list, 'accept 1179', is('accept', 1179)), 'level 28 before Pilot Longbeard');
+});
+
 // Pynte (#327): "Timberling Seeds quest points me to the north of Teldrassil
 // instead of just around the quest giver." XrayAlpha's diagnosis: QuestieDB's
 // server drop table gives the Elder Timberling (level 10) 100% for the seed and
