@@ -625,7 +625,7 @@ step Henze Faulk
   only Paladin
   zone Elwynn Forest
   tip Head back out through Goldshire and east to Stone Cairn Lake. Henze Faulk lies south of the lake: use the Symbol of Life on him. The Defias Rogue Wizards around him carry the Defias Script.
-  complete 1786                               -- Use the Symbol of Life on Henze Faulk
+  complete 1786 @72.6,51.41                   -- Use the Symbol of Life on Henze Faulk
   turnin 1786                                 -- Henze Faulk
   accept 1787
   collect 6846 quest 1787.1                   -- Defias Script: Defias Rogue Wizards
