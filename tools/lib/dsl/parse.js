@@ -932,6 +932,11 @@ function parseGoal(verb, line, lex, ln, err, warn) {
 				if (!tk || tk.quoted || !NUM_RE.test(tk.text) || Number(tk.text) <= 0) {
 					return err(ln, `malformed radius "${tk ? tk.text : ''}" (yards > 0)`), null;
 				}
+				// The pack writes `r` with 2 decimals (emit.js luaNumber); one that rounds to 0 is refused by
+				// the addon ("bad radius", Guides.lua).
+				if (!(Number(Number(tk.text).toFixed(2)) > 0)) {
+					return err(ln, `radius "${tk.text}" rounds to 0 in the pack (2 decimals): use at least 0.005`), null;
+				}
 				goal.r = Number(tk.text);
 				i += 2;
 				continue;
