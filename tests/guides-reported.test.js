@@ -2648,3 +2648,25 @@ test('Alliance: a quest objective that opens its step leads the arrow to the obj
 		assert.ok(near < 30, `${file}: complete ${quest} leads to its objective (${near.toFixed(0)} yd away)`);
 	}
 });
+
+// --- Cozy Sleeping Bag (Hotline, #698): every quest of the chain needs level
+// 14, and a level 13 Horde Paladin was sent to the Barrens for a note it could
+// not take yet. Polestar holds back only Class guides at their gate by itself,
+// so the guide waits for the level before each faction sets out.
+test(`Hotline's report (#698): the Cozy Sleeping Bag chain waits for level 14 before either faction sets out`, { skip }, () => {
+	const list = goals('forever/miscellaneous/cozy-sleeping-bag.guide');
+	for (const faction of ['Alliance', 'Horde']) {
+		const mine = list.filter(({ step, goal }) => [step.only, goal.only].every((o) => !o || !o.factions || o.factions.includes(faction)));
+		let reached = 1;
+		let accepts = 0;
+		for (const { goal } of mine) {
+			if (goal.t === 'level') reached = Math.max(reached, goal.level);
+			if (goal.t !== 'accept') continue;
+			accepts++;
+			assert.ok((goal.minLevel || 1) <= reached, `${faction}: accept ${goal.quest} (from level ${goal.minLevel}) comes after the guide waits for that level`);
+			reached = Math.max(reached, goal.minLevel || 1);
+		}
+		assert.ok(accepts > 0, `${faction}: the chain is offered`);
+		assert.ok(reached >= 14, `${faction}: the chain's level 14 is reached before it starts`);
+	}
+});
