@@ -12,6 +12,9 @@ zone Westfall
 # The six-quest chain Forever kept from Season of Discovery, at lower levels
 # (22-32, needs 14). Every quest starts and ends at a game object; none has
 # objectives, so each step is a hand-in at the next hiding place.
+# Every quest of the chain needs level 14 (minLevel in data/forever), so each
+# faction's first step waits for it with `level 14` before the player sets
+# out; Polestar starts only Class guides at their gate by itself (#698).
 # Sources:
 # - Quests, objects and their spawns: data/forever (QuestieDB Forever):
 #   79008 / 79007 ... and that note you found, 79192 Stepping Stones, 79980
@@ -34,7 +37,8 @@ zone Westfall
 
 step The note in Westfall
   only Alliance
-  tip A burned-out campfire in western Westfall, with a nailed plank beside it.
+  tip The chain opens at level 14. A burned-out campfire in western Westfall, with a nailed plank beside it.
+  level 14
   accept 79008
 
 step Its twin in the Barrens
@@ -47,7 +51,8 @@ step Its twin in the Barrens
 step The note in the Barrens
   only Horde
   zone The Barrens
-  tip A burned-out campfire in the southern Barrens, with a nailed plank beside it.
+  tip The chain opens at level 14. A burned-out campfire in the southern Barrens, with a nailed plank beside it.
+  level 14
   accept 79007
 
 step Its twin in Westfall
