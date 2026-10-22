@@ -165,10 +165,12 @@ step Aramis and Venya
   accept 90902 only Paladin
   accept 1470 only Warlock            -- Venya Marthand
 
+# The Injured Deathguard kneel all over Deathknell; the nearest to Aramis lie
+# in front of the church (Wowhead Forever npc=259377 pins 31.6,65.8; issue #672).
 step Injured Deathguard
   only Paladin
   tip Rediscovering the Light: the Injured Deathguard lie around the church. Heal five of them with Holy Light.
-  goto 31.8,63.9 "Injured Deathguard"
+  goto 31.6,65.8 "Injured Deathguard"
   complete 90902
 
 step Rattlecages, scavengers and duskbats

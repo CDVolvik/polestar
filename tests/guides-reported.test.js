@@ -21,7 +21,7 @@ const { loadWowhead } = require('../tools/lib/codex/wowhead');
 const { runAddon } = require('./helpers/lua');
 const { writeTestPack } = require('./helpers/dsl');
 const { buildSimPack, playGuide, SIMULATE } = require('../tools/lib/playtest');
-const { makeProjector } = require('../tools/lib/route/geo');
+const { makeProjector, dist } = require('../tools/lib/route/geo');
 
 const skip = needs('quests.json', 'npcs.json', 'objects.json', 'map-frames.json');
 
@@ -690,6 +690,21 @@ test(`Hotline's report: a Paladin heals the Injured Deathguard before turning in
 	assert.ok(accept < complete && complete < turnin, 'healing comes between the accept and the turn-in');
 	const step = list[complete].step;
 	assert.ok(list.some((g) => g.step === step && g.goal.t === 'goto' && located(g)), 'the healing step leads to the Injured Deathguard');
+});
+
+// --- Tirisfal (yiliev0, a Scourge Paladin, #672): the arrow for the Injured
+// Deathguard pointed 60 yards north of the church, while some lie in front
+// of it (Wowhead Forever pins 31.6,65.8; a data/forever spawn at 31.59,65.83).
+
+test(`yiliev0's report (#672): the healing step leads to the Injured Deathguard in front of the church`, { skip }, () => {
+	const list = goals(TIRISFAL).filter(forClass('PALADIN'));
+	const step = list[at(list, 'complete 90902', is('complete', 90902))].step;
+	const arrow = list.find((g) => g.step === step && g.goal.t === 'goto');
+	const church = list.find(({ goal }) => goal.t === 'turnin' && goal.quest === 98601).goal;
+	assert.equal(arrow.goal.map, church.map, 'the same map as Aramis');
+	const { point } = makeProjector(data.mapFrames);
+	const where = (g) => point(g.map, g.x, g.y, g.f);
+	assert.ok(dist(where(arrow.goal), where(church)) < 40, 'within 40 yards of Aramis Hammerhand at the church');
 });
 
 // --- Durotar (AndarKerran): A Pain in the Neck (96873) is for enchanters.
