@@ -5249,7 +5249,6 @@ t.guides["forever/horde/undead/01-tirisfal-glades"] = (function() return {
 		["{item:2320} from {npc:2118}, for Gretchen"] = "从{npc:2118}处购买{item:2320}，交给格莉丝·戴玛",
 		["{item:2839}, a rare drop"] = "{item:2839}，稀有掉落",
 		["{item:7227}, in the farmstead's garden"] = "{item:7227}，在农场的花园里",
-		["{npc:10666}, the big abomination, walks the road a little further east. The {item:12737} grows along the road around him."] = "{npc:10666}是一个巨大的憎恶，在稍往东的路上巡逻。{item:12737}生长在他周围的路旁。",
 		["{npc:1495}'s camp"] = "{npc:1495}的营地",
 		["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}站在{area:159}。{npc:6390}在镇子北边山丘上的陵墓里等候：打开大门与他战斗。",
 		["{npc:1499}, in the town hall"] = "{npc:1499}，在城镇大厅里",

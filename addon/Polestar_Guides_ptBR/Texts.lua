@@ -5173,7 +5173,6 @@ t.guides["forever/horde/undead/01-tirisfal-glades"] = (function() return {
 		["{item:2320} from {npc:2118}, for Gretchen"] = "{item:2320} de {npc:2118}, para Gretchen",
 		["{item:2839}, a rare drop"] = "{item:2839}, item raro",
 		["{item:7227}, in the farmstead's garden"] = "{item:7227}, na horta da fazenda",
-		["{npc:10666}, the big abomination, walks the road a little further east. The {item:12737} grows along the road around him."] = "{npc:10666}, a grande abominação, anda pela estrada um pouco mais a leste. A {item:12737} cresce ao longo da estrada em volta dele.",
 		["{npc:1495}'s camp"] = "Acampamento de {npc:1495}",
 		["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496} fica em {area:159}. {npc:6390} espera no mausoléu na colina logo ao norte da cidade: abra o portão e lute com ele.",
 		["{npc:1499}, in the town hall"] = "{npc:1499}, na prefeitura",

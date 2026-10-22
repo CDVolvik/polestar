@@ -5173,7 +5173,6 @@ t.guides["forever/horde/undead/01-tirisfal-glades"] = (function() return {
 		["{item:2320} from {npc:2118}, for Gretchen"] = "그레첸 데드마에게 줄 {item:2320}, {npc:2118}에게서 구입",
 		["{item:2839}, a rare drop"] = "희귀 획득품 {item:2839}",
 		["{item:7227}, in the farmstead's garden"] = "농장 정원의 {item:7227}",
-		["{npc:10666}, the big abomination, walks the road a little further east. The {item:12737} grows along the road around him."] = "덩치 큰 누더기골렘 {npc:10666}은(는) 조금 더 동쪽 길을 걸어 다닙니다. {item:12737}은(는) 그 주변 길가에 자랍니다.",
 		["{npc:1495}'s camp"] = "{npc:1495}의 야영지",
 		["{npc:1496} stands in {area:159}. {npc:6390} waits in the mausoleum on the hill just north of town: open the gate and fight him."] = "{npc:1496}은(는) {area:159}에 있습니다. {npc:6390}은(는) 마을 바로 북쪽 언덕의 묘지에서 기다립니다. 문을 열고 그와 싸우십시오.",
 		["{npc:1499}, in the town hall"] = "마을 회관 안의 {npc:1499}",
