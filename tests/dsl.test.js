@@ -84,6 +84,7 @@ const MALFORMED = [
 	['  kill 6 x0', /malformed count "x0"/],
 	['  kill 6 npc 7', /`npc` already given positionally/],
 	['  kill 6 r -3', /malformed radius/],
+	['  kill 6 r 0.004', /radius "0\.004" rounds to 0 in the pack/],
 	['  kill 6 map abc', /malformed map id "abc"/],
 	['  train only !Human', /only classes can be negated/],
 	['  train only Warrior,,Mage', /empty condition/],
